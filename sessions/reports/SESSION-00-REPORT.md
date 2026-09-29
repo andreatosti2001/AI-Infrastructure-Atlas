@@ -178,3 +178,7 @@ Appended after the human review. The sections above are unchanged.
   in the registry). It is marked DRAFT and **still needs human review before S01 starts**.
 - **Validation after these changes:** unit tests 10 passed; `tools/validate_repo.py` OK.
 - **Updated handoff:** S01 can start once its prompt draft is approved.
+- **S01 prompt reconciled (D-012):** the human supplied their own S01 prompt. The final
+  `sessions/prompts/S01-PROMPT.md` is that prompt verbatim (Part A) plus Claude's aligned
+  18-section detail (Part B); Part A governs. The human asked for this work to be merged
+  into `main`, and that request is taken as approval. **S01 has not been run.**

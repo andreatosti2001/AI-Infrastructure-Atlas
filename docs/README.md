@@ -38,4 +38,4 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 
 | Artifact | Status | Owner |
 |---|---|---|
-| `research/domain-map.md`, `research/source-register.md` | planned | S01 (draft prompt) |
+| `research/domain-map.md`, `research/source-register.md` | planned | S01 |

@@ -118,3 +118,23 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 - **Decision:** Claude drafts `sessions/prompts/S01-PROMPT.md` following
   `SESSION-PROMPT-SPEC.md` §2. The human reviews and may edit it before S01 starts. It
   becomes immutable only once S01 begins.
+
+## D-012 — S01 prompt: human text governs, Claude's detail aligned beneath it
+
+- **Session:** S00 (human review) · **Date:** 2026-09-29 · **Status:** accepted (human instruction)
+- **Context:** After D-011, the human supplied their own S01 prompt, in the S00 format, and
+  asked for Claude's draft to be made compatible with it.
+- **Decision:** `sessions/prompts/S01-PROMPT.md` = **Part A**, the human prompt verbatim
+  (byte-identical to the upload), followed by **Part B**, Claude's 18-section
+  elaboration (SESSION-PROMPT-SPEC §2). Part A governs any conflict. Alignments made in
+  Part B:
+  - layer names use Part A's wording (e.g. "HBM", "EDA/equipment");
+  - Part A's human task and weekly gate become a plain-language chain overview and a
+    terminology section. The weekly gate stays a human judgement;
+  - Part A's report checklist is mapped onto the SESSION-PROMPT-SPEC §5 headings;
+  - Part A's claim classes omit `ATTRIBUTION`. Part B keeps it, because CLAUDE.md §6
+    takes precedence.
+- **Rejected:** replacing Part A with Part B (the human's contract would be lost);
+  keeping two separate S01 prompt files (two sources of truth for one session).
+- **Supersedes:** the DRAFT notice in the D-011 draft. The human's instruction to merge
+  this work into `main` is taken as approval of the combined prompt.
