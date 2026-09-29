@@ -138,3 +138,50 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   keeping two separate S01 prompt files (two sources of truth for one session).
 - **Supersedes:** the DRAFT notice in the D-011 draft. The human's instruction to merge
   this work into `main` is taken as approval of the combined prompt.
+
+## D-013 — Map "EDA/equipment" as two sub-layers (5a EDA, 5b SME)
+
+- **Session:** S01 · **Date:** 2026-09-29 · **Status:** proposed (human answers TQ-05)
+- **Context:** Part A names "EDA/equipment" as one layer. The retrieved sources treat
+  EDA (design software) and semiconductor manufacturing equipment (capital tools) as
+  separate production inputs (SRC-002 p.3, p.6). EDA is also co-dependent with foundry
+  process information (domain map EDA-03).
+- **Decision:** In `docs/research/domain-map.md`, keep Part A's layer numbering but map
+  the layer as two sub-layers, `5a EDA` and `5b SME`. S03/S04 decide whether the schema
+  keeps them as one layer or two.
+- **Rejected:** a single merged layer, which would hide the EDA ↔ foundry dependency;
+  two fully separate top-level layers, which would renumber Part A's human-authored
+  layer list without approval.
+
+## D-014 — S01 source retrieval: raw retrieval only; blocked sites are recorded, not worked around
+
+- **Session:** S01 · **Date:** 2026-09-29 · **Status:** proposed
+- **Context:** At the start of S01 the environment blocked all primary-source hosts. The
+  human widened network access mid-session. After that, several sites still refused
+  plain HTTPS requests (HTTP 403 or a challenge page). A headless-browser fetch was
+  attempted once and denied by the environment's permission check.
+- **Decision:** Sources are retrieved with `curl` and read from locally extracted text
+  (PDF via `pypdf`, installed only in the session scratch area, not the repository).
+  Web search is used only to discover URLs. Sites that refuse ordinary requests are
+  listed as "not retrievable" in `source-register.md` and their entries are marked
+  `not_researched`. They are not replaced by snippets, and the access controls are not
+  circumvented.
+- **Consequence:** JEDEC, TSMC, Samsung, Intel, SEC, IEA and The Green Grid / ISO PUE
+  sources are missing from S01. S05 should decide whether manual retrieval by the human
+  is acceptable for such sources.
+- **Rejected:** citing search snippets or secondary summaries in place of blocked primary
+  sources; retrieving through a headless browser to get past bot filtering.
+
+## D-015 — Provisional source tiers and the meaning of `verified` in research artifacts
+
+- **Session:** S01 · **Date:** 2026-09-29 · **Status:** proposed (superseded by S05's source policy when written)
+- **Decision:** Until S05, source tiers follow the S01 prompt Part B §05 order (`T1`
+  company documentation/filings … `T6` news). A `T1` company source is primary only for
+  its own products and processes. Its comparative or superlative claims ("unique to",
+  "world's first", "leader") are recorded as `ATTRIBUTION`. In research artifacts,
+  `verified` means the Verifier role re-read the retrieved source and found the quoted
+  anchor at its locator. It does **not** mean human review or canonical status
+  (CLAUDE.md §9, class C).
+- **Rejected:** reusing MA §10's evidence-status labels (`direct`, `partial` …) in S01;
+  they belong to the S06 claim model and would create a second status vocabulary
+  before that model exists.

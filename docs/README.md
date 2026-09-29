@@ -38,4 +38,4 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 
 | Artifact | Status | Owner |
 |---|---|---|
-| `research/domain-map.md`, `research/source-register.md` | planned | S01 |
+| [`research/domain-map.md`](./research/domain-map.md), [`research/source-register.md`](./research/source-register.md) | draft (S01; awaiting human terminology review) | S01; register frozen after S06 migration |
