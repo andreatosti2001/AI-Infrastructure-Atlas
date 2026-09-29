@@ -163,3 +163,18 @@ Recorded in `docs/architecture/baseline.md` §7, not resolved:
 - **Open issues:** U-1–U-5; Gate 0 is partial.
 - **Files to read first:** `CLAUDE.md`, MA §6 and §10, `SESSION-ROADMAP.md` S01, `docs/architecture/baseline.md` §2 and §7, this report.
 - **Recommended next decision:** fix the wording of the first analytical question (U-1).
+
+## Addendum — human review outcome (2026-09-29)
+
+Appended after the human review. The sections above are unchanged.
+
+- **Approvals 1–2:** the human confirmed independence from `Eu-Digital-Policy` and accepted
+  D-001–D-007. Their status in `decisions.md` is now `accepted`.
+- **Approval 3:** U-1 resolved by D-008 (global question first, EU lens later); U-3 by
+  D-009 (bootstrap prompt superseded, kept as history); U-4/U-5 by D-010 (agent
+  contracts in S06 under `docs/agents/`, no `AGENTS.md`). U-2 remains open and does not
+  block S01.
+- **Approval 4:** by D-011, Claude drafted `sessions/prompts/S01-PROMPT.md` (already listed
+  in the registry). It is marked DRAFT and **still needs human review before S01 starts**.
+- **Validation after these changes:** unit tests 10 passed; `tools/validate_repo.py` OK.
+- **Updated handoff:** S01 can start once its prompt draft is approved.

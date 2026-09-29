@@ -42,6 +42,8 @@ needs them (decision D-005). Their layout is that session's design decision.
 
 ## 2. Initial scope boundaries
 
+- First analytical question: the global wording (CLAUDE.md §10, MA §25). The EU vs
+  non-EU view comes later, built over the same records — decision D-008.
 - First vertical, deliberately narrow: `AI compute → accelerators → manufacturing →
   advanced packaging → HBM → equipment → cloud/data centres` — MA §6.4, §25.
 - Energy and networking are added only after the base graph is reliable — MA §6.4.
@@ -51,8 +53,8 @@ needs them (decision D-005). Their layout is that session's design decision.
 ## 3. Intended agent roles
 
 Roles and the contract format are defined in CLAUDE.md §8 and MA §11–12. **No agent
-contracts exist yet.** No session in `SESSION-ROADMAP.md` explicitly owns writing them
-before the S19 agent audit (see Known uncertainties, U-4).
+contracts exist yet.** S06 writes them in `docs/agents/`. There is no root `AGENTS.md`
+(decision D-010).
 
 ## 4. Initial data model
 
@@ -98,24 +100,25 @@ From `SESSION-ROADMAP.md` S00 and `OPUS-5.5-BOOTSTRAP-PROMPT.md`:
 
 ## 7. Known uncertainties
 
-Recorded, not resolved. Each needs a human decision (see S00 report).
+U-1, U-3, U-4 and U-5 were resolved by human decision after S00 (D-008–D-010). The
+original wording is kept below for traceability. U-2 remains open.
 
-- **U-1 — First analytical question has two wordings.** CLAUDE.md §10/§20 and MA §25:
+- **U-1 — RESOLVED by D-008. First analytical question has two wordings.** CLAUDE.md §10/§20 and MA §25:
   *"Where are the critical dependencies behind AI compute, and what evidence supports that
   assessment?"* MA §6.3 and MA §22 M2: *"Where and how is European AI compute dependent
   on non-EU capabilities?"* / "EU AI compute dependency map". The second adds a
   jurisdictional frame (EU vs non-EU) that changes scope and data requirements.
-- **U-2 — Milestone labels collide.** MA §22 M0–M7 are portfolio milestones (e.g. M4 =
+- **U-2 — OPEN. Milestone labels collide.** MA §22 M0–M7 are portfolio milestones (e.g. M4 =
   global governance); `SESSION-ROADMAP.md` M0–M7 are project milestones (e.g. M4 =
   analytical intelligence). A bare "M4" is ambiguous.
-- **U-3 — First-session scope is stated three ways.** CLAUDE.md §20 and
+- **U-3 — RESOLVED by D-009. First-session scope is stated three ways.** CLAUDE.md §20 and
   `OPUS-5.5-BOOTSTRAP-PROMPT.md` ask the first session for schema, vocabulary, source
   policy, agent contracts, seed data and a UI slice; `SESSION-ROADMAP.md` and
   `S00-PROMPT.md` split that across S00–S11. S00 followed the session prompt. Whether
   the bootstrap prompt is superseded is undecided.
-- **U-4 — No owner for agent contracts.** CLAUDE.md §20 lists "an agent contract set" as a
+- **U-4 — RESOLVED by D-010. No owner for agent contracts.** CLAUDE.md §20 lists "an agent contract set" as a
   first-phase output and PROJECT-EVALUATION-FRAMEWORK §11 expects `docs/agents/`, but no
   session before S19 is assigned to produce it.
-- **U-5 — `AGENTS.md`.** CLAUDE.md §3–§4 refers to `AGENTS.md` as canonical; the text
+- **U-5 — RESOLVED by D-010. `AGENTS.md`.** CLAUDE.md §3–§4 refers to `AGENTS.md` as canonical; the text
   appears to describe `Eu-Digital-Policy`. This repository has none. Whether the Atlas
   should have one is undecided.
