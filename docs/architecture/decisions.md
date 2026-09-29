@@ -197,3 +197,95 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   conflicts (map §5).
 - **Rejected:** copying the answers into this log, which would give them a second home
   that could drift from the map.
+
+## D-017 — Project boundaries for v1.0
+
+- **Session:** S02 · **Date:** 2026-09-29 · **Status:** proposed (human decision required: "approve project boundaries", S02 prompt)
+- **Context:** The boundaries are scattered across MA §3, §6.4 and §25, D-008, D-013 and
+  D-016. Some rest on decisions and some on prose. S01 marked four energy concepts `v1`,
+  while MA §6.4 adds energy "after the base graph is reliable".
+- **Decision:** The boundaries are stated once, in `baseline.md` §2. Where MA and a session
+  prompt differ, MA governs (SESSION-PROMPT-SPEC §1). So energy stays concept-level in v1
+  (no records or edges); rated power and nameplate capacity are only attributes.
+- **Rejected:** treating S01's `v1` energy calls as canonical scope (a session prompt would
+  override MA); dropping energy from the domain map (the concept-level understanding is
+  still needed, and S09 needs TQ-10's capacity rule).
+
+## D-018 — Lessons from `Eu-Digital-Policy` adopted as architecture commitments
+
+- **Session:** S02 · **Date:** 2026-09-29 · **Status:** proposed (human decision; each item may be accepted or rejected separately)
+- **Context:** The S02 process benchmark (`milestone-audits/M0-audit.md` Part 1) found
+  eleven anti-patterns (A-1 to A-11) in EU-DP's history. This record is the one home of
+  the commitments that follow. The audit holds the evidence.
+- **Decision:** the Atlas commits to:
+  - **L-01 · Agent runtime comes last.** Until S19 finds a manual workflow that needs one,
+    agents are role contracts (S06) plus deterministic validators. No orchestrator,
+    dispatcher, autonomous write path or control plane (A-1).
+  - **L-02 · A gate exists only when CI runs it.** No document may call a check a gate
+    unless CI runs it on every push. An unrun check is described as "manual" (A-2).
+  - **L-03 · Every session report records its base.** This means the commit it started
+    from and the `git branch -a` result at start. A future Gate 0 extension checks the
+    field (A-3). S02's report does this by hand.
+  - **L-04 · No hand-typed derived counts.** A count in a document is either produced by a
+    script or labelled "as measured at `<commit>`" (A-4).
+  - **L-05 · One copy of each fact.** No inlined copies of data in pages, and no
+    translations in v1.0 (NG-10). Each new data file joins the validator's scope in the
+    session that creates it (A-5).
+  - **L-06 · Two axes, per-record dates.** Claim type and evidence status are separate
+    fields from S06's first schema. Verification dates are per record, never a batch
+    stamp (K-3, A-8).
+  - **L-07 · Only `main` counts, and there is no cumulative handover.** A lesson or
+    decision is in force only once it is on `main`. Session state lives in the session
+    report, and no single handover file accumulates sessions (A-6, A-10).
+  - **L-08 · Reports keep "ran locally" and "CI result" apart,** and never report a
+    placeholder as a value (A-7).
+  - **L-09 · Read before you automate.** A step is performed and checked by hand on real
+    sources before it is automated. Content review is budgeted before form checks (A-9).
+- **Rejected:**
+  - copying EU-DP's policy documents, validators or agent modules (MA §4.2, D-006);
+  - adopting EU-DP's A/B/C/D autonomy detail beyond CLAUDE.md §9, which already has it;
+  - a GP-06-style self-updating `CLAUDE.md` (EU-DP's own proposal records the case
+    against it).
+
+## D-019 — Milestone label convention (resolves U-2)
+
+- **Session:** S02 · **Date:** 2026-09-29 · **Status:** proposed (human decision)
+- **Context:** U-2. MA §22 M0–M7 are portfolio milestones. `SESSION-ROADMAP.md` M0–M7 are
+  Atlas project milestones.
+- **Decision:** In documents written in this repository, a bare `M0`–`M7` means the
+  `SESSION-ROADMAP.md` milestones. MA §22 milestones are always written "portfolio M4"
+  or "MA §22 M4". The human-authored root documents are not edited.
+- **Rejected:** renaming the milestones in MA or the roadmap (editing human documents to
+  fix a label); a different letter prefix (it would diverge from both documents).
+
+## D-020 — v1 concept classification is S03's starting input
+
+- **Session:** S02 · **Date:** 2026-09-29 · **Status:** proposed (human decision; the S01 handoff's "recommended next decision")
+- **Decision:** The 40 `v1` concepts from S01 are classified as follows in
+  `milestone-audits/M0-audit.md` Part 4 (the single home of the list):
+  - 20 model;
+  - 5 actor role;
+  - 4 attribute;
+  - 2 energy concept-only;
+  - 9 definitional.
+
+  S03 starts from this list. S03 may reclassify a concept only through a decision record
+  that gives the reason. The "actor role" class asks S03 to test MA §6.1's role-named
+  entity types (`CloudProvider`, `EquipmentSupplier`) against the S01 blurs B-2 and B-3.
+- **Rejected:**
+  - modelling all 40 as entity types (it would create entities for glossary terms);
+  - deciding the schema here (S03 owns it).
+
+## D-021 — Non-goals frozen for v1.0
+
+- **Session:** S02 · **Date:** 2026-09-29 · **Status:** proposed (human decision required: "explicitly freeze non-goals", S02 prompt)
+- **Decision:**
+  - `baseline.md` §6 lists the non-goals NG-01 to NG-13. That list is their only home.
+  - Once accepted, they are frozen until the v1.0 release (S25).
+  - A non-goal changes only through a new decision record, approved by the human
+    **before** the work starts.
+  - A session that finds a non-goal blocking must stop and report (CLAUDE.md §18). It
+    may not work around the non-goal.
+- **Rejected:** freezing until the end of M1 only (too short to protect the build
+  phases); an unwritten list carried in each session prompt (it would drift from one
+  session to the next).

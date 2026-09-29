@@ -25,14 +25,14 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 
 | Artifact | Status | Owner |
 |---|---|---|
-| [`architecture/baseline.md`](./architecture/baseline.md) | draft | S00; approval at S02 |
+| [`architecture/baseline.md`](./architecture/baseline.md) | proposed for approval (S02; approval record §8) | S00; approval at S02 |
 | [`architecture/decisions.md`](./architecture/decisions.md) | active | every session |
-| `architecture/milestone-audits/` | planned | first at end of M0 (S02) |
+| [`architecture/milestone-audits/M0-audit.md`](./architecture/milestone-audits/M0-audit.md) | draft (S02): M0 audit, EU-DP process benchmark, maturity baseline, v1 concept classification | one per milestone |
 | `research/source-policy.md` | planned | S05 |
 | `research/content-review-log.md` | planned | first session that records claims |
 | `agents/roles.md`, `agents/contracts.md` | planned | S06 (D-010) |
 | `quality/evaluation-framework.md` | satisfied by root `PROJECT-EVALUATION-FRAMEWORK.md` (not duplicated) | — |
-| `quality/audit-history.md` | planned | first audit (S02) |
+| [`quality/audit-history.md`](./quality/audit-history.md) | active | every audit |
 
 ## Research outputs
 
