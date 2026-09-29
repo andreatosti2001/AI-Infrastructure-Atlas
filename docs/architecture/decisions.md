@@ -141,7 +141,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-013 — Map "EDA/equipment" as two sub-layers (5a EDA, 5b SME)
 
-- **Session:** S01 · **Date:** 2026-09-29 · **Status:** proposed (human answers TQ-05)
+- **Session:** S01 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S01; TQ-05 answer)
 - **Context:** Part A names "EDA/equipment" as one layer. The retrieved sources treat
   EDA (design software) and semiconductor manufacturing equipment (capital tools) as
   separate production inputs (SRC-002 p.3, p.6). EDA is also co-dependent with foundry
@@ -155,7 +155,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-014 — S01 source retrieval: raw retrieval only; blocked sites are recorded, not worked around
 
-- **Session:** S01 · **Date:** 2026-09-29 · **Status:** proposed
+- **Session:** S01 · **Date:** 2026-09-29 · **Status:** proposed (deferred at the S01 human review, 2026-09-29; to be decided in S02/S05)
 - **Context:** At the start of S01 the environment blocked all primary-source hosts. The
   human widened network access mid-session. After that, several sites still refused
   plain HTTPS requests (HTTP 403 or a challenge page). A headless-browser fetch was
@@ -174,7 +174,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-015 — Provisional source tiers and the meaning of `verified` in research artifacts
 
-- **Session:** S01 · **Date:** 2026-09-29 · **Status:** proposed (superseded by S05's source policy when written)
+- **Session:** S01 · **Date:** 2026-09-29 · **Status:** proposed (deferred at the S01 human review, 2026-09-29; to be decided in S02/S05; superseded by S05's source policy when written)
 - **Decision:** Until S05, source tiers follow the S01 prompt Part B §05 order (`T1`
   company documentation/filings … `T6` news). A `T1` company source is primary only for
   its own products and processes. Its comparative or superlative claims ("unique to",
@@ -185,3 +185,15 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 - **Rejected:** reusing MA §10's evidence-status labels (`direct`, `partial` …) in S01;
   they belong to the S06 claim model and would create a second status vocabulary
   before that model exists.
+
+## D-016 — S01 terminology review: working terms for S02–S04
+
+- **Session:** S01 (human review) · **Date:** 2026-09-29 · **Status:** accepted (human decision)
+- **Context:** Part A's "Human task" asked the human to challenge the domain map's
+  terminology. The map listed 12 questions (TQ-01 to TQ-12).
+- **Decision:** The human's answers, recorded once in `docs/research/domain-map.md`
+  §7.1, are the working terminology for S02–S04. Later sessions may revise them, but
+  only through a new decision record. The answers do not resolve the recorded source
+  conflicts (map §5).
+- **Rejected:** copying the answers into this log, which would give them a second home
+  that could drift from the map.

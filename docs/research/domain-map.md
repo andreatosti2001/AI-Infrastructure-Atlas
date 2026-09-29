@@ -1,6 +1,6 @@
 # Domain map — the physical AI compute stack
 
-**Status:** DRAFT research artifact, awaiting human terminology review (S01 Part A "Human task").
+**Status:** DRAFT research artifact. Terminology reviewed by the human on 2026-09-29 (§7.1). The Part A weekly gate is still open.
 **Session:** S01 · **Date:** 2026-09-29 · **Sources:** [`source-register.md`](./source-register.md)
 **Governing question (D-008):** *Where are the critical dependencies behind AI compute, and
 what evidence supports that assessment?*
@@ -165,7 +165,7 @@ answer. The v1/future calls are **proposals** for S02 to freeze.
   device but built from more than one logic die in one package. NVIDIA states all
   Blackwell products join two reticle-limited dies with a chip-to-chip interconnect.
 - **Evidence:** SRC-007 — "two reticle-limited dies connected by a 10 terabytes per second (TB/s) chip-to-chip interconnect in a unified single GPU"
-- **Status:** verified (for the example). Whether this counts as a "chiplet" design is open (TQ-09).
+- **Status:** verified (for the example). Labelled "multi-die", not "chiplet" (TQ-09 answer, §7.1).
 - **Upstream:** FAB-01, PKG-06 · **Downstream:** ACC-01
 - **Scope:** v1 — makes the accelerator → advanced-packaging dependency explicit.
 
@@ -310,7 +310,7 @@ accelerator memory, SRC-012/013), NAND/storage (future), HBM product specificati
 - **Evidence:** SRC-004 p.7 — "Chiplets refer to small, partially functional, semiconductor chips"; SRC-005 p.21 — "Heterogeneous integration of chiplets is the process of combining multiple chips and chiplets to match the functionality of a single monolithic system-on-chip"; SRC-013 — "it is a technology that divides existing logic chips by function and connects them with TSV"
 - **Status:** disputed (CON-03, TQ-09)
 - **Upstream:** PKG-04, EDA-01 · **Downstream:** ACC-05
-- **Scope:** v1 as a concept, because multi-die accelerators exist (ACC-05). The chiplet ecosystem and interconnect standards are future.
+- **Scope:** v1 only as "multi-die package" (TQ-09 answer). "Chiplet" is recorded only where a source uses the term. The chiplet ecosystem and interconnect standards are future.
 
 #### PKG-07 — Outsourced semiconductor assembly and test (OSAT) firm (actor type)
 - **Kind:** actor type
@@ -389,7 +389,7 @@ the TQ-03 breadth decision first), package test (future).
 - **Evidence:** SRC-005 p.30 — "advanced node (<10 nanometers)"
 - **Status:** disputed (no agreed threshold; TQ-07)
 - **Upstream:** SME-02 · **Downstream:** ACC-01
-- **Scope:** v1 — "which fabs can make accelerator logic dies" depends on it. The threshold needs a human decision.
+- **Scope:** future — per the TQ-07 answer, v1 records the vendor-declared process (FAB-05) and sets no leading-edge threshold.
 
 *Considered and excluded from Layer 4:* silicon wafers and fab materials (future —
 materials layer; SRC-002 p.67), mature-node and analog fabrication (future), fab
@@ -786,6 +786,30 @@ draft. Please challenge any of them. Answers go to S02.
   workloads on accelerators in data centres) the right top node?
 
 ---
+
+### 7.1 Human answers (2026-09-29, S01 review)
+
+These answers are human decisions (CLAUDE.md §9, class C review). They set the
+**working terminology for S02–S04** (decision D-016). They do not resolve the source
+conflicts in §5, which stay recorded as found.
+
+| Question | Answer | Effect on this map |
+|---|---|---|
+| TQ-01 | GPUs + AI ASICs. FPGAs and CPUs are future scope. | ACC-01 working definition adopted. |
+| TQ-02 | "In-package". Google's "on-chip" is kept as an attributed loose usage. | HBM-02 / CON-02 wording adopted. |
+| TQ-03 | Narrow: 2.5D interposer integration of logic + HBM, and HBM die stacking. Flip-chip, fan-out etc. are future. | PKG-03 working definition adopted. |
+| TQ-04 | Split: "fab" = facility, "foundry" = business model, "foundry operator" = firm. IDMs selling foundry services count as foundry operators for those services. | FAB-03 working definition adopted, extended to IDMs. |
+| TQ-05 | Two sub-layers, 5a EDA and 5b SME. | D-013 accepted. |
+| TQ-06 | Model each process step separately and record who performs it. Front/middle/back end are descriptive labels, not categories. | Input for S03/S04. |
+| TQ-07 | Record each chip's process as the vendor names it. No leading-edge threshold in v1. | FAB-05 stays v1 as an attribute; FAB-06 moves to future. |
+| TQ-08 | Data centre = facility, cloud = service model. "Hyperscaler" is not used as a category until an authoritative definition is sourced. | DC-01, DC-02 and DC-04 unchanged. |
+| TQ-09 | Use neutral "multi-die". "Chiplet" is recorded only where a source uses it. NVIDIA Blackwell = multi-die. | ACC-05 labelled multi-die; PKG-06 scope narrowed. |
+| TQ-10 | The interface ends at the grid connection. Every capacity value must state whether it is nameplate IT capacity or interconnection capacity. | Layer 7 boundary adopted; rule for S09. |
+| TQ-11 | Server/system integration stays inside layer 6 (cloud/DC) for v1. Revisit if server makers prove to be a critical dependency. | DC-05 and DC-06 unchanged. |
+| TQ-12 | X-01 accepted as written. | X-01 working definition adopted. |
+
+**Still open after the review:** D-014 and D-015 (deferred to S02/S05); the handling of
+blocked sources (left to S05); the Part A weekly gate (the human is still reviewing).
 
 ## 8. Gaps and open evidence work
 

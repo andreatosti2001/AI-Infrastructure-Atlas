@@ -290,3 +290,35 @@ TQ-01 to TQ-12 in `domain-map.md` §7. The most consequential for S03/S04:
   2. `docs/research/domain-map.md` (§1, §3, §7);
   3. `docs/architecture/baseline.md`;
   4. `docs/architecture/decisions.md` D-013 to D-015.
+
+## Addendum — human review outcome (2026-09-29)
+
+Appended after the human's review of the S01 output. The sections above are unchanged.
+
+- **Terminology (approval 1):** the human answered TQ-01 to TQ-12. The answers are
+  recorded once in `domain-map.md` §7.1 and adopted as working terminology for
+  S02–S04 by **D-016** (accepted). Every answer took the working choice proposed in the
+  map, with one addition: TQ-04 extends "foundry operator" to IDMs for the foundry
+  services they sell.
+  Map changes that follow from the answers:
+  - FAB-06 (leading-edge threshold) moves from v1 to **future** (TQ-07);
+  - ACC-05 is labelled "multi-die" (TQ-09);
+  - PKG-06 scope is narrowed to "multi-die package" (TQ-09).
+
+  v1/future is now 40/6.
+- **Decisions (approval 2):**
+  - **D-013 accepted.**
+  - **D-014 and D-015 deferred.** Both stay `proposed` and are carried to S02/S05. Until
+    then, the map's `verified` markers and source tiers rest on a proposed definition,
+    not an accepted one.
+- **Weekly gate (approval 3):** **open.** The human is still reviewing and has not judged
+  the gate.
+- **Blocked sources (approval 4):** left to S05's source policy. No human-supplied
+  documents were added.
+- **U-2:** still open.
+- **Validation after these changes:** see the commit that adds this addendum. The unit
+  tests, `tools/validate_repo.py` and the scratch evidence audit were re-run before
+  pushing.
+- **Updated handoff to S02:** the terminology questions are answered, so the recommended
+  next decision is unchanged: freeze the v1 concept set (now 40 proposed) for S03/S04.
+  S02 should also decide D-014 and D-015.
