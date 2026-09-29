@@ -71,7 +71,7 @@ All commands were run locally on Python 3.11.15 from the repository root.
 | `yaml.safe_load(.github/workflows/ci.yml)` | parses |
 | `cmp` uploaded prompt vs `sessions/prompts/S00-PROMPT.md` | identical |
 | Fresh `git clone` of the S00 commit into a scratch directory → unit tests + validator | 10 passed; `Repository integrity: OK`; `git status` clean afterwards (no generated files) |
-| GitHub Actions CI | not observed from this session. The first run happens on push; human to confirm it is green |
+| GitHub Actions CI, run [36561496803](https://github.com/andreatosti2001/AI-Infrastructure-Atlas/actions/runs/36561496803) on `9208202` | steps "Unit tests" and "Repository integrity (Gate 0)" both `success` |
 
 Not run: browser QA, accessibility, data validation. None applies yet, since there is no UI or data.
 
