@@ -6,4 +6,4 @@ D-019.
 
 | Date | Session | Kind | Scope | Record | Outcome |
 |---|---|---|---|---|---|
-| 2026-09-29 | S02 | Milestone audit (M0) + process benchmark | S00–S01 outputs; `Eu-Digital-Policy` `origin/main` @ `cc1f7d0`, read-only | [`../architecture/milestone-audits/M0-audit.md`](../architecture/milestone-audits/M0-audit.md) | draft; baseline awaiting human approval |
+| 2026-09-29 | S02 | Milestone audit (M0) + process benchmark | S00–S01 outputs; `Eu-Digital-Policy` `origin/main` @ `cc1f7d0`, read-only | [`../architecture/milestone-audits/M0-audit.md`](../architecture/milestone-audits/M0-audit.md) | accepted; baseline approved and M0 closed on 2026-09-29 |

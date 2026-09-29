@@ -290,3 +290,24 @@ is approved.
   3. `docs/architecture/milestone-audits/M0-audit.md` (Part 4, then Part 1 §1.5);
   4. `docs/architecture/decisions.md` (D-017 to D-021);
   5. `docs/research/domain-map.md` (§2, §4, §7.1).
+
+## Addendum — human review outcome (2026-09-29)
+
+Appended after the human's review of the S02 output. The sections above are unchanged.
+
+- **Baseline approved.** The human wrote "Approvo la baseline". This is read as covering
+  all three rows of `baseline.md` §8, because the boundaries (§2) and the non-goals (§6)
+  are sections of the baseline.
+- **Decisions accepted:** D-017, D-018 (all nine items, L-01 to L-09), D-019, D-020 and
+  D-021. The non-goals NG-01 to NG-13 are frozen from 2026-09-29 until v1.0.
+- **Milestone M0: complete.** The S02 gate is "Baseline Architecture Record approved"
+  (`SESSION-ROADMAP.md` S02). U-2 is resolved by D-019.
+- **Still open, not covered by this approval:**
+  - D-014 and D-015 stay `proposed`. The recommendation above (accept both as interim
+    rules until S05) still stands;
+  - whether S00's "external API dependency" becomes a non-goal;
+  - S01's weekly gate;
+  - merging this branch into `main` (no pull request opened yet).
+- **Updated handoff to S03.** S03 may now start. Its prompt should be written in
+  SESSION-PROMPT-SPEC §2 form first, with `M0-audit.md` Part 4 as its required input.
+

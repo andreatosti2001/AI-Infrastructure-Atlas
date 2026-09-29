@@ -200,7 +200,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-017 — Project boundaries for v1.0
 
-- **Session:** S02 · **Date:** 2026-09-29 · **Status:** proposed (human decision required: "approve project boundaries", S02 prompt)
+- **Session:** S02 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S02: "Approvo la baseline")
 - **Context:** The boundaries are scattered across MA §3, §6.4 and §25, D-008, D-013 and
   D-016. Some rest on decisions and some on prose. S01 marked four energy concepts `v1`,
   while MA §6.4 adds energy "after the base graph is reliable".
@@ -213,7 +213,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-018 — Lessons from `Eu-Digital-Policy` adopted as architecture commitments
 
-- **Session:** S02 · **Date:** 2026-09-29 · **Status:** proposed (human decision; each item may be accepted or rejected separately)
+- **Session:** S02 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S02: "Approvo la baseline"); all nine items L-01 to L-09 accepted
 - **Context:** The S02 process benchmark (`milestone-audits/M0-audit.md` Part 1) found
   eleven anti-patterns (A-1 to A-11) in EU-DP's history. This record is the one home of
   the commitments that follow. The audit holds the evidence.
@@ -249,7 +249,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-019 — Milestone label convention (resolves U-2)
 
-- **Session:** S02 · **Date:** 2026-09-29 · **Status:** proposed (human decision)
+- **Session:** S02 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S02: "Approvo la baseline")
 - **Context:** U-2. MA §22 M0–M7 are portfolio milestones. `SESSION-ROADMAP.md` M0–M7 are
   Atlas project milestones.
 - **Decision:** In documents written in this repository, a bare `M0`–`M7` means the
@@ -260,7 +260,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-020 — v1 concept classification is S03's starting input
 
-- **Session:** S02 · **Date:** 2026-09-29 · **Status:** proposed (human decision; the S01 handoff's "recommended next decision")
+- **Session:** S02 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S02: "Approvo la baseline")
 - **Decision:** The 40 `v1` concepts from S01 are classified as follows in
   `milestone-audits/M0-audit.md` Part 4 (the single home of the list):
   - 20 model;
@@ -278,7 +278,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-021 — Non-goals frozen for v1.0
 
-- **Session:** S02 · **Date:** 2026-09-29 · **Status:** proposed (human decision required: "explicitly freeze non-goals", S02 prompt)
+- **Session:** S02 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S02: "Approvo la baseline"); non-goals frozen from this date
 - **Decision:**
   - `baseline.md` §6 lists the non-goals NG-01 to NG-13. That list is their only home.
   - Once accepted, they are frozen until the v1.0 release (S25).

@@ -1,6 +1,7 @@
 # M0 Milestone Audit — Project Constitution (S00–S02)
 
-**Status:** DRAFT. Written in S02. The human's approval of the baseline closes M0.
+**Status:** ACCEPTED. Written in S02. The human approved the baseline on 2026-09-29, and
+M0 is closed (`baseline.md` §8).
 **Date:** 2026-09-29
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §4 ("At every major milestone") and
 `SESSION-ROADMAP.md` S02 ("process benchmark").
@@ -190,7 +191,8 @@ marked "not started". That is not a defect.
 ## Part 4 — Proposed v1 concept classification (input to S03/S04; `INTERPRETATION`)
 
 S01 proposed 40 concepts as v1 (after the TQ-07 move) and handed S02 the job of freezing
-which ones S03/S04 must model. This is a proposal. **S03 owns the entity schema** and may
+which ones S03/S04 must model. Accepted on 2026-09-29 (D-020) as S03's starting input.
+**S03 owns the entity schema** and may
 reclassify any row through a new decision record (D-020).
 
 | Class | Meaning for S03/S04 | Concepts | n |

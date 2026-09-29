@@ -1,7 +1,7 @@
 # Baseline Architecture Record
 
-**Status:** PROPOSED FOR APPROVAL. Created in S00 and brought to approval in S02. Approval
-is the S02 gate (`SESSION-ROADMAP.md`, S02); see §8.
+**Status:** APPROVED by the human on 2026-09-29 (S02 gate, `SESSION-ROADMAP.md` S02; see §8).
+Created in S00, revised and approved in S02.
 **Date:** 2026-09-29 (S00); revised 2026-09-29 (S02)
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` §4 ("At project start").
 
@@ -44,7 +44,7 @@ needs them (decision D-005). Their layout is that session's design decision.
 
 ## 2. Initial scope boundaries
 
-Proposed in S02 for the human's approval (D-017). This section is the single statement of
+Approved 2026-09-29 (D-017). This section is the single statement of
 the boundaries; the sources it cites keep their own wording.
 
 - **Repository boundary.** The Atlas holds the industrial and physical records only
@@ -100,15 +100,15 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 | Command (MA §15) | Status |
 |---|---|
 | `validate-data` | not built — needs schemas (S03+) |
-| `validate-i18n` | not applicable in v1.0 if NG-10 (English only) is approved |
+| `validate-i18n` | not applicable in v1.0 (NG-10: English only) |
 | `validate-design` | not built — needs UI (S11+) |
 | `validate-freshness` | not built — needs sources with access dates (S06+) |
 | `qa-browser` | not built — needs UI (S11+) |
 
-## 6. Explicit non-goals — proposed freeze for v1.0 (D-021)
+## 6. Explicit non-goals — frozen for v1.0 (D-021)
 
-This list is the one home of the Atlas non-goals. Once approved, it is frozen until the
-v1.0 release (S25). A non-goal changes only through a new decision record, approved by the
+This list is the one home of the Atlas non-goals. It was approved on 2026-09-29 and is
+frozen until the v1.0 release (S25). A non-goal changes only through a new decision record, approved by the
 human **before** the work starts. Each row cites where the rule comes from.
 
 | ID | Not in v1.0 | Source |
@@ -137,15 +137,15 @@ listed in each session's prompt.
 ## 7. Known uncertainties
 
 U-1, U-3, U-4 and U-5 were resolved by human decision after S00 (D-008–D-010). The
-original wording is kept below for traceability. U-2 has a proposed resolution (D-019).
-D-014 and D-015 (S01) are still `proposed`, and their fate is part of S02's approvals.
+original wording is kept below for traceability. U-2 was resolved by D-019 at the S02
+review. D-014 and D-015 (S01) are still `proposed`; the baseline approval did not cover them.
 
 - **U-1 — RESOLVED by D-008. First analytical question has two wordings.** CLAUDE.md §10/§20 and MA §25:
   *"Where are the critical dependencies behind AI compute, and what evidence supports that
   assessment?"* MA §6.3 and MA §22 M2: *"Where and how is European AI compute dependent
   on non-EU capabilities?"* / "EU AI compute dependency map". The second adds a
   jurisdictional frame (EU vs non-EU) that changes scope and data requirements.
-- **U-2 — OPEN; resolution proposed in D-019. Milestone labels collide.** MA §22 M0–M7 are portfolio milestones (e.g. M4 =
+- **U-2 — RESOLVED by D-019. Milestone labels collide.** MA §22 M0–M7 are portfolio milestones (e.g. M4 =
   global governance); `SESSION-ROADMAP.md` M0–M7 are project milestones (e.g. M4 =
   analytical intelligence). A bare "M4" is ambiguous.
 - **U-3 — RESOLVED by D-009. First-session scope is stated three ways.** CLAUDE.md §20 and
@@ -162,11 +162,14 @@ D-014 and D-015 (S01) are still `proposed`, and their fate is part of S02's appr
 
 ## 8. Approval record (S02 gate)
 
-Filled in by the human. Until every row reads `approved`, M0 is **not** complete, and S03
-may not start on the strength of this record.
+Filled in from the human's decision ("Approvo la baseline", 2026-09-29). Every row reads
+`approved`, so the S02 gate is passed and M0 is complete.
 
 | Item | Where | Human decision | Date |
 |---|---|---|---|
-| Project boundaries | §2, D-017 | pending | — |
-| Non-goals frozen | §6, D-021 | pending | — |
-| Architecture baseline as a whole | this file, with D-018 to D-020 | pending | — |
+| Project boundaries | §2, D-017 | approved | 2026-09-29 |
+| Non-goals frozen | §6, D-021 | approved | 2026-09-29 |
+| Architecture baseline as a whole | this file, with D-018 to D-020 | approved | 2026-09-29 |
+
+Not covered by this approval, and still open: D-014 and D-015; whether S00's "external
+API dependency" becomes a non-goal (§6, closing note); S01's weekly gate.

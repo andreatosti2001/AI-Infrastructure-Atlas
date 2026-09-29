@@ -25,9 +25,9 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 
 | Artifact | Status | Owner |
 |---|---|---|
-| [`architecture/baseline.md`](./architecture/baseline.md) | proposed for approval (S02; approval record §8) | S00; approval at S02 |
+| [`architecture/baseline.md`](./architecture/baseline.md) | approved 2026-09-29 (S02; approval record §8) | S00; approved at S02 |
 | [`architecture/decisions.md`](./architecture/decisions.md) | active | every session |
-| [`architecture/milestone-audits/M0-audit.md`](./architecture/milestone-audits/M0-audit.md) | draft (S02): M0 audit, EU-DP process benchmark, maturity baseline, v1 concept classification | one per milestone |
+| [`architecture/milestone-audits/M0-audit.md`](./architecture/milestone-audits/M0-audit.md) | accepted (S02; M0 closed 2026-09-29): M0 audit, EU-DP process benchmark, maturity baseline, v1 concept classification | one per milestone |
 | `research/source-policy.md` | planned | S05 |
 | `research/content-review-log.md` | planned | first session that records claims |
 | `agents/roles.md`, `agents/contracts.md` | planned | S06 (D-010) |
