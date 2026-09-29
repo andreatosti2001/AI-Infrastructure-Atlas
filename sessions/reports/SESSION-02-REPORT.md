@@ -179,6 +179,10 @@ definition nobody has accepted.
    - The session stopped and asked the human, who chose this repository.
    - The branch name `claude/atlas-architecture-baseline-jow618` was reused here.
      `Eu-Digital-Policy` was only read.
+   - **Human confirmation (2026-09-29, after the report was first pushed):** S02's work
+     stays in `AI-Infrastructure-Atlas`. This applies the existing rule (CLAUDE.md §3,
+     MA §4.1) and needs no new decision record. A future session launched with a branch
+     in `Eu-Digital-Policy` should work in this repository, not stop to ask again.
    - The EU-DP clone's local refs were deepened by a `git fetch` to read the full history.
      No file there changed.
 2. **Prompt encoding.**
