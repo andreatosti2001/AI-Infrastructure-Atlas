@@ -359,3 +359,26 @@ so that the Atlas can answer "What exactly supports this relationship?"
 - **Observed after push:** CI run 29 on `616f732` completed with `success`
   (<https://github.com/andreatosti2001/AI-Infrastructure-Atlas/actions/runs/36750698133>).
   This replaces "not observed" in Tests run for that commit.
+
+## Addendum — human review outcome (2026-09-30)
+
+Appended after the human's review of the S05 output. The sections above are unchanged.
+
+- **Decisions accepted:** D-034 to D-041 ("Approva tutte (Consigliato)"). The 12-month
+  horizon for `time_sensitive` rows is approved ("12 mesi").
+- **D-014 and D-015:** superseded in part, by D-039 (the retrieval clause) and D-036 (the
+  tier order). D-015's meaning of `verified` stays in force until S06.
+- **EDGAR:** filings are taken from the filer's own published copy, and no identity is
+  declared to EDGAR ("Filing dai siti aziendali"). Recorded as D-042 (accepted).
+- **External API dependency:** a v1.0 non-goal ("Sì, non-obiettivo v1.0"). Recorded as D-043
+  (accepted), which adds NG-14 to `baseline.md` §6, as D-021 requires.
+- **Week-2 gate:** not yet declared. The human reads `source-policy.md` §14 first ("Leggo
+  prima §14").
+- **Documents updated to match:** the status lines of D-014, D-015 and D-034 to D-041; the
+  policy's status line and §11, §12, §16; the schema description; `docs/README.md`; the
+  baseline state rows, §6 (NG-14), §7 and §8; `README.md`.
+- **Merge:** by pull request with a merge commit, once CI is green ("PR + merge commit
+  (Consigliato)").
+- **Still open:** the week-2 gate; S01's weekly gate.
+- **Updated handoff to S06:** S06 may start once the human has judged the week-2 gate. Its
+  source record extends the accepted class vocabulary.

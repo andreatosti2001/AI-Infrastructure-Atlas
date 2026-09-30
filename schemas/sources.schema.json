@@ -2,11 +2,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/andreatosti2001/AI-Infrastructure-Atlas/schemas/sources.schema.json",
   "title": "Atlas source class",
-  "description": "The source_class controlled vocabulary (S05; D-034, proposed). This file is the one home of the class values and their one-line definitions. It is deliberately not a source-record schema: S06 extends it into the full source record, with the class as one field (Part B §16, H-2). Why each class exists, the test that separates it from its neighbours, what it is primary for and what it is never enough for, and which class each registered source has, are in docs/research/source-policy.md. A class describes the kind of document and publisher. It is not a rank, not a verification result and not a confidence value.",
+  "description": "The source_class controlled vocabulary (S05; D-034, accepted 2026-09-30). This file is the one home of the class values and their one-line definitions. It is deliberately not a source-record schema: S06 extends it into the full source record, with the class as one field (Part B §16, H-2). Why each class exists, the test that separates it from its neighbours, what it is primary for and what it is never enough for, and which class each registered source has, are in docs/research/source-policy.md. A class describes the kind of document and publisher. It is not a rank, not a verification result and not a confidence value.",
   "$ref": "#/$defs/vocab_source_class",
   "$defs": {
     "vocab_source_class": {
-      "description": "Eleven classes. Search results, snippets, aggregator copies and tertiary summaries are discovery aids, not sources, so they have no class and cannot be cited (source-policy.md §2).",
+      "description": "Search results, snippets, aggregator copies and tertiary summaries are discovery aids, not sources, so they have no class and cannot be cited (source-policy.md §2).",
       "type": "string",
       "oneOf": [
         { "const": "company_filing", "description": "A disclosure a company makes to a regulator or exchange under a named legal reporting obligation (e.g. an annual report on Form 10-K or 20-F), for whose misstatement the company is legally accountable." },

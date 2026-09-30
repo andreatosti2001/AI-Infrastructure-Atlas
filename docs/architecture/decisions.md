@@ -155,7 +155,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-014 — S01 source retrieval: raw retrieval only; blocked sites are recorded, not worked around
 
-- **Session:** S01 · **Date:** 2026-09-29 · **Status:** proposed (deferred at the S01 human review, 2026-09-29; to be decided in S02/S05)
+- **Session:** S01 · **Date:** 2026-09-29 · **Status:** superseded in part by D-039 (2026-09-30, human review of S05): the retrieval clause. Raw retrieval and no circumvention continue in D-039
 - **Context:** At the start of S01 the environment blocked all primary-source hosts. The
   human widened network access mid-session. After that, several sites still refused
   plain HTTPS requests (HTTP 403 or a challenge page). A headless-browser fetch was
@@ -174,7 +174,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-015 — Provisional source tiers and the meaning of `verified` in research artifacts
 
-- **Session:** S01 · **Date:** 2026-09-29 · **Status:** proposed (deferred at the S01 human review, 2026-09-29; to be decided in S02/S05; superseded by S05's source policy when written)
+- **Session:** S01 · **Date:** 2026-09-29 · **Status:** superseded in part by D-036 (2026-09-30, human review of S05): the tier order. The meaning of `verified` stays in force until S06's claim model confirms or replaces it
 - **Decision:** Until S05, source tiers follow the S01 prompt Part B §05 order (`T1`
   company documentation/filings … `T6` news). A `T1` company source is primary only for
   its own products and processes. Its comparative or superlative claims ("unique to",
@@ -645,7 +645,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-034 — Source classes: document kinds, one per source, in a vocabulary schema
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
 - **Context:**
   - `SESSION-ROADMAP.md` S05: "Create a source hierarchy tailored to industrial technology
     research".
@@ -679,7 +679,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-035 — Standing, attribution chains and independence
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
 - **Context:** D-015 made a company source primary "for its own products and processes".
   S04's worked examples showed a company can be first-hand about an edge with another firm
   (NVIDIA naming TSMC's process for NVIDIA's own chip, SRC-006), and a laboratory can be
@@ -706,7 +706,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-036 — Preference matrix; no global ranking; MA §10 and D-015 reconciled
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
 - **Context:**
   - The roadmap S05 gate: "Every material claim type has a preferred source class."
   - MA §10 and D-015 give two different global orders (`source-policy.md` §9).
@@ -731,7 +731,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-037 — Evidence rules ER-1 to ER-10, including the search rule for `not_publicly_determinable`
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
 - **Context:** S04 left three evidence rules without a policy home
   (`relationship-taxonomy.md` §12, §9): the process name as fabricator, the vendor as
   designer, and a single page's silence.
@@ -754,7 +754,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-038 — Conflict policy: kinds of conflict, never settled by rank
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
 - **Context:** Domain map §5 preserves CON-01 to CON-05. CLAUDE.md §9 makes "publication of
   unresolved material disputes" human-only.
 - **Decision:**
@@ -773,7 +773,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-039 — Retrieval and access; manual retrieval by the human (supersedes D-014's retrieval clause)
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
 - **Context:**
   - D-014 asked "whether manual retrieval by the human is acceptable".
   - The human answered before S05 started (Part B §16, H-1: "i follow your
@@ -799,7 +799,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-040 — Freshness: separate dates, byte changes trigger re-checks, a proposed 12-month horizon
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte"); the 12-month horizon approved ("12 mesi")
 - **Context:** Undated live pages (register note 3); CSET's 2019 data; SK hynix's 2024 plan.
   S05 re-retrieved every registered source: some returned changed bytes, yet every anchor
   re-read was still at its locator (counts as measured on 2026-09-30 are in `source-policy.md` §12).
@@ -819,7 +819,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-041 — Where each source's class lives; the CSET decision
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
 - **Context:** The register holds S01's provisional `source_tier`. S06 migrates the register
   into source records and then freezes it. S05 may not edit the register without a
   human-approved decision (Part B §08).
@@ -831,3 +831,29 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   - CSET (SRC-002, SRC-003) is `policy_research_brief`: in S01's terms, from T4 to T5
     (register note 1).
 - **Rejected:** annotating the register (a second home, and outside S05's write boundary).
+
+## D-042 — Filings are taken from the filer's own published copy; no identity is declared to EDGAR
+
+- **Session:** S05 (human review) · **Date:** 2026-09-30 · **Status:** accepted (human decision: "Filing dai siti aziendali")
+- **Context:** SEC EDGAR refused plain requests, and the access policy it cites is behind the
+  same refusal (`source-policy.md` §11, S05-A1). D-039 left the path to the human.
+- **Decision:**
+  - Filings are retrieved from copies the filer publishes itself (as S05-R1), under RA-6.
+    Each records its host, and that its identity with the regulator's copy is not verified.
+  - No client identity is declared to EDGAR. Filings available only from the SEC remain an
+    access gap.
+- **Rejected:** the human reading EDGAR's policy now (possible later, under RA-4, through a
+  new decision); leaving filings as a gap.
+
+## D-043 — External API dependency is a v1.0 non-goal (NG-14; amends the D-021 list)
+
+- **Session:** S05 (human review) · **Date:** 2026-09-30 · **Status:** accepted (human decision, given before the change: "Sì, non-obiettivo v1.0")
+- **Context:** S00 listed "external API dependency" as a session non-goal. Baseline §6 left it
+  to the human. D-039 recorded it as a question. D-021 lets the non-goal list change only
+  through a decision the human approves before the work starts.
+- **Decision:** NG-14 is added to `baseline.md` §6: no runtime or retrieval dependency on an
+  external API in v1.0. Sources are retrieved by ordinary HTTPS requests (RA-1) or manually
+  by the human (RA-4). It is frozen with the other non-goals until S25.
+- **Rejected:** leaving the question open (the policy's retrieval rules already assume no API);
+  allowing regulator APIs now (no session needs one, and it would add an external runtime
+  dependency).

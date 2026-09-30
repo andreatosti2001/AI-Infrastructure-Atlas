@@ -1,6 +1,6 @@
 # Source policy — which sources the Atlas believes, and for what
 
-**Status:** PROPOSED (S05, 2026-09-30): D-034 to D-041, awaiting human review.
+**Status:** ACCEPTED (human review of S05, 2026-09-30): D-034 to D-041; with D-042 and D-043.
 **Session:** S05 · **Date:** 2026-09-30
 **Inputs:**
 - `../architecture/relationship-taxonomy.md` §5 (evidence expectations), §9 (unknown and
@@ -163,7 +163,7 @@ Verifier has found the statement at its locator. Otherwise it is `ATTRIBUTION` o
 
 ## 6. Evidence rules
 
-These rules are D-037 (proposed). Each applies to every source class.
+These rules are D-037. Each applies to every source class.
 
 | ID | Rule | Origin |
 |---|---|---|
@@ -380,7 +380,7 @@ edited.
 
 ## 10. Conflicts
 
-This policy is D-038 (proposed). A conflict is two or more claims that cannot all be read as one value.
+This policy is D-038. A conflict is two or more claims that cannot all be read as one value.
 
 ### 10.1 Kinds of conflict
 
@@ -457,14 +457,13 @@ with SEC.gov's Privacy and Security Policy" and points to `www.sec.gov/developer
 - **What is established:** EDGAR's refusal cites a published policy for automated access.
 - **What is not established:** what the policy requires, or whether a declared client
   identity would satisfy it. S05 sent no custom client identity (RA-3, RA-7).
-- **The path:** the human reads `www.sec.gov/developer` in a browser (RA-4) and records
-  what it requires. A later session then decides whether automated retrieval can follow it,
-  and the human chooses any identity it declares.
+- **The path chosen** (D-042): filings are taken from copies the filer publishes itself
+  (RA-6), and no identity is declared to EDGAR. Filings available only from the SEC stay an
+  access gap.
 
-**Recorded, not decided: "external API dependency".** Retrieving filings through a
-regulator's programmatic interface would make the Atlas depend on an external API. Whether
-that becomes a v1.0 non-goal is the human's decision (baseline §6, closing note). S05
-uses no API.
+**External API dependency is a non-goal** (NG-14, D-043). Retrieving filings through a
+regulator's programmatic interface would make the Atlas depend on an external API, so v1.0
+does not.
 
 ## 12. Freshness and dated evidence
 
@@ -502,8 +501,8 @@ extra package). So:
   base-die plan (SRC-014) needs re-checking before any record relies on it (domain map §8).
 - **`time_sensitive` rows** (§7): evidence whose as-of date (or publication date, when no
   as-of date is given) is more than 12 months before its use in a canonical record must be
-  re-checked first. The 12 months is a proposed horizon (`INTERPRETATION`, D-040), for the
-  human to approve or change. CSET's 2019 market data are stale by this rule, and the
+  re-checked first. The 12 months is a design choice (`INTERPRETATION`), approved by the
+  human at the S05 review (D-040). CSET's 2019 market data are stale by this rule, and the
   domain map already does not use them.
 - **`stable` rows** have no age limit. Only supersession and anchor drift make them stale.
 
@@ -661,6 +660,5 @@ process customized for NVIDIA" (SRC-006, quoted in FAB-05).
 | A class for announcements by standards bodies or associations, if one is retrieved | S06 | §2 |
 | `validate-freshness`: hash-change re-checks, supersession, the 12-month horizon | S06+ | §12; L-01 |
 | Event rows in the matrix | S09 | §7 |
-| What EDGAR's access policy requires; any declared identity | the human, then the session that needs filings | §11 |
-| Whether "external API dependency" becomes a non-goal | the human | baseline §6 |
+| Filings only available from the SEC | the session that needs them; a new decision if EDGAR's policy is to be read (D-042) | §11 |
 | ISO 3166-1 as a registered source for jurisdiction identity | S07 or the first session that creates a jurisdiction record | §7 |
