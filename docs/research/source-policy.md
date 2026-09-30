@@ -1,6 +1,7 @@
 # Source policy — which sources the Atlas believes, and for what
 
 **Status:** ACCEPTED (human review of S05, 2026-09-30): D-034 to D-041; with D-042 and D-043.
+**Week-2 gate:** passed (human decision, 2026-09-30, after reading §14: "Accetto s14").
 **Session:** S05 · **Date:** 2026-09-30
 **Inputs:**
 - `../architecture/relationship-taxonomy.md` §5 (evidence expectations), §9 (unknown and
@@ -591,7 +592,7 @@ pure-play foundry business" (FAB-03).
 
 *Written for the week-2 gate (operational roadmap, week 2): the ontology and evidence policy
 are understandable before large-scale data collection begins. It walks one S01 sentence through all three models.
-The human judges the gate; S05 does not declare it passed.*
+The human judged the gate on this section and declared it passed (2026-09-30).*
 
 **The sentence.** NVIDIA's technical page says the H100 is "fabricated using the TSMC 4N
 process customized for NVIDIA" (SRC-006, quoted in FAB-05).
