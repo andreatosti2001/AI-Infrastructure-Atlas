@@ -1,7 +1,7 @@
 # Baseline Architecture Record
 
 **Status:** APPROVED by the human on 2026-09-29 (S02 gate, `SESSION-ROADMAP.md` S02; see §8).
-Created in S00, revised and approved in S02. S03 and S04 updated only the dated state rows (§1 table, §4, §5); the approved content is unchanged.
+Created in S00, revised and approved in S02. S03, S04 and S05 updated only the dated state rows (§1 table, §4, §5). The S05 review added NG-14 to §6 through D-043, as D-021 requires, and updated the open items in §7 and §8.
 **Date:** 2026-09-29 (S00); revised 2026-09-29 (S02)
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` §4 ("At project start").
 
@@ -23,7 +23,7 @@ repository are logged in [`decisions.md`](./decisions.md).
   DuckDB + SQL for analysis, vanilla HTML/CSS/JS, GitHub Actions — MA §17, CLAUDE.md §11.
   No database server, graph database or frontend framework — MA §18.
 
-### State at end of S00, updated at S02, S03 and S04
+### State at end of S00, updated at S02, S03, S04 and S05
 
 | Layer | Exists? | Introduced by (per `SESSION-ROADMAP.md`) |
 |---|---|---|
@@ -34,7 +34,7 @@ repository are logged in [`decisions.md`](./decisions.md).
 | M0 milestone audit + EU-DP process benchmark | yes, draft (S02) | S02 |
 | Entity schema | yes, accepted (S03): `schemas/entities.schema.json`, `entity-taxonomy.md` | S03 |
 | Relationship schema | yes, accepted (S04): `schemas/relationships.schema.json`, `relationship-taxonomy.md` | S04 |
-| Source/evidence policy | no | S05 |
+| Source/evidence policy | yes, accepted (S05 review): `docs/research/source-policy.md`, `schemas/sources.schema.json` (class vocabulary only) | S05 |
 | Claim/provenance implementation | no | S06 |
 | Canonical data | no | S07–S10 |
 | Presentation / UI | no | S11 |
@@ -80,7 +80,9 @@ semantics) is MA §5; the Atlas-specific entity and relationship lists are MA §
 claim types and evidence status are MA §10. The entity schema was accepted in S03
 (`entity-taxonomy.md`, D-022 to D-025). The relationship schema was accepted in S04
 (`relationship-taxonomy.md`, D-028 to D-033); its §6 reconciles MA §6.2, the relationship
-list in `SESSION-ROADMAP.md` S04 and the verbs in `domain-map.md` §3.
+list in `SESSION-ROADMAP.md` S04 and the verbs in `domain-map.md` §3. The source policy was accepted at the S05 review (`source-policy.md`, D-034 to
+D-043): source classes, a preference matrix read from both schemas, and evidence, conflict,
+retrieval and freshness rules. The claim and source records remain S06's.
 
 ## 5. Quality gates
 
@@ -89,7 +91,7 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 | Gate (MA §14) | Status in this repository |
 |---|---|
 | 0 — Repository integrity | **Partial, automated.** `tools/validate_repo.py` checks required docs and session prompt/report conventions; runs in CI. It does not check branch or unexpected generated changes. |
-| 1 — Schema | **Partial.** CI tests the entity and relationship schemas' behaviour against fictional fixtures (S03, S04; D-026). No records exist yet, so no record is validated. |
+| 1 — Schema | **Partial.** CI tests the entity and relationship schemas' behaviour against fictional fixtures, and the source-class vocabulary against valid and invalid values (S03, S04, S05; D-026). No records exist yet, so no record is validated. |
 | 2 — Provenance | not applicable yet (no claims) |
 | 3 — Semantic integrity | not applicable yet |
 | 4 — Derivation | not applicable yet |
@@ -127,19 +129,20 @@ human **before** the work starts. Each row cites where the rule comes from.
 | NG-11 | Metrics, scores or rankings before their question and denominator are defined (S14–S15) | SESSION-PROMPT-SPEC §7; PEF §8 |
 | NG-12 | Legal advice or compliance determinations | CLAUDE.md §13; MA §20 |
 | NG-13 | Public deployment before the S11 vertical slice exists and passes its gates | D-004; MA §14 |
+| NG-14 | A runtime or retrieval dependency on an external API (added 2026-09-30, human decision) | S00 prompt; D-043 |
 
 The list this section replaced was S00's, taken from `SESSION-ROADMAP.md` S00:
 production data ingestion; canonical data; frontend work; graph database; external API
 dependency. Those were session-scoped and stay in the S00 prompt. Graph databases are
-covered by NG-07. **"External API dependency" is not frozen here.** Whether it should be
-a v1.0 non-goal is left to the human at approval. Later session-level non-goals are
+covered by NG-07. "External API dependency" was left to the human at approval, and became NG-14 at
+the S05 review (D-043). Later session-level non-goals are
 listed in each session's prompt.
 
 ## 7. Known uncertainties
 
 U-1, U-3, U-4 and U-5 were resolved by human decision after S00 (D-008–D-010). The
 original wording is kept below for traceability. U-2 was resolved by D-019 at the S02
-review. D-014 and D-015 (S01) are still `proposed`; the baseline approval did not cover them.
+review. D-014 and D-015 (S01) were superseded in part at the S05 review (D-039, D-036).
 
 - **U-1 — RESOLVED by D-008. First analytical question has two wordings.** CLAUDE.md §10/§20 and MA §25:
   *"Where are the critical dependencies behind AI compute, and what evidence supports that
@@ -172,5 +175,5 @@ Filled in from the human's decision ("Approvo la baseline", 2026-09-29). Every r
 | Non-goals frozen | §6, D-021 | approved | 2026-09-29 |
 | Architecture baseline as a whole | this file, with D-018 to D-020 | approved | 2026-09-29 |
 
-Not covered by this approval, and still open: D-014 and D-015; whether S00's "external
-API dependency" becomes a non-goal (§6, closing note); S01's weekly gate.
+Not covered by this approval: D-014 and D-015, superseded in part at the S05 review (D-039,
+D-036); "external API dependency", which became NG-14 (D-043). Still open: S01's weekly gate.

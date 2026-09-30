@@ -1,0 +1,30 @@
+{
+  "_about": "Values used only to test schemas/sources.schema.json. The schema is a vocabulary, not a record (H-2; S06 builds the source record), so each fixture is one value rather than a record, and each invalid case is one value that must be rejected for the reason it names.",
+  "valid": [
+    "company_filing",
+    "company_technical_documentation",
+    "company_press_release",
+    "company_marketing",
+    "standard_specification",
+    "government_publication",
+    "research_report",
+    "policy_research_brief",
+    "industry_association",
+    "market_research_consultancy",
+    "news_media"
+  ],
+  "invalid": [
+    { "case": "s01_tier_label", "value": "T1", "why": "D-015's provisional tiers are not classes; a tier is a rank" },
+    { "case": "ma_rank_number", "value": 1, "why": "MA §10's order is not stored as a number (no ranking, no score)" },
+    { "case": "primary", "value": "primary", "why": "first-hand standing is a relation between a source and a claim (D-035), never a class" },
+    { "case": "verified", "value": "verified", "why": "verification is the Verifier's act on a claim, not a property of the source" },
+    { "case": "publisher_only", "value": "company", "why": "company sources are split by document kind; the publisher alone is not a class" },
+    { "case": "marketing_short", "value": "marketing", "why": "near miss: the value is company_marketing" },
+    { "case": "wrong_case", "value": "Company_Filing", "why": "values are lower-case snake case" },
+    { "case": "tertiary", "value": "tertiary_summary", "why": "tertiary summaries and snippets are discovery aids with no class (source-policy.md §2)" },
+    { "case": "search_snippet", "value": "search_result", "why": "a search result is never a source (D-014; source-policy.md §2)" },
+    { "case": "empty", "value": "", "why": "an empty class is not a class; a missing class is never a default" },
+    { "case": "null", "value": null, "why": "unknown is not null; a source without a class is a gap to fix, not a value" },
+    { "case": "two_classes", "value": ["industry_association", "market_research_consultancy"], "why": "one class per source; a joint report takes its publisher's class (source-policy.md §2)" }
+  ]
+}

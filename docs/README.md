@@ -28,7 +28,7 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 | [`architecture/baseline.md`](./architecture/baseline.md) | approved 2026-09-29 (S02; approval record §8) | S00; approved at S02 |
 | [`architecture/decisions.md`](./architecture/decisions.md) | active | every session |
 | [`architecture/milestone-audits/M0-audit.md`](./architecture/milestone-audits/M0-audit.md) | accepted (S02; M0 closed 2026-09-29): M0 audit, EU-DP process benchmark, maturity baseline, v1 concept classification | one per milestone |
-| `research/source-policy.md` | planned | S05 |
+| [`research/source-policy.md`](./research/source-policy.md) (source classes, preference matrix, evidence, conflict, retrieval and freshness rules; class of every registered source) with [`../schemas/sources.schema.json`](../schemas/sources.schema.json) (the source-class vocabulary) | accepted (S05 review, 2026-09-30; D-034 to D-043) | S05 |
 | `research/content-review-log.md` | planned | first session that records claims |
 | `agents/roles.md`, `agents/contracts.md` | planned | S06 (D-010) |
 | `quality/evaluation-framework.md` | satisfied by root `PROJECT-EVALUATION-FRAMEWORK.md` (not duplicated) | — |
@@ -40,7 +40,8 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 |---|---|---|
 | [`architecture/entity-taxonomy.md`](./architecture/entity-taxonomy.md) (why each type exists; v1 concept and MA mappings) with [`../schemas/entities.schema.json`](../schemas/entities.schema.json) (field shapes and vocabulary values) | accepted (S03 review, 2026-09-30; D-022 to D-025) | S03 |
 | [`architecture/relationship-taxonomy.md`](./architecture/relationship-taxonomy.md) (relation types, levels, evidence expectations, verb reconciliation, DEP mapping) with [`../schemas/relationships.schema.json`](../schemas/relationships.schema.json) (record shape, vocabulary, endpoint types) | accepted (S04 review, 2026-09-30; D-028 to D-033) | S04 |
-| Source and claim schemas | planned | S05/S06 |
+| Source-class vocabulary | accepted (S05 review, 2026-09-30): [`../schemas/sources.schema.json`](../schemas/sources.schema.json) | S05 |
+| Source record and claim schemas | planned | S06 (extends the S05 vocabulary) |
 | First product records | planned | S08 (D-027) |
 | Event schema | planned | S09 (D-022) |
 
