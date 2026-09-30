@@ -1,9 +1,45 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/andreatosti2001/AI-Infrastructure-Atlas/schemas/sources.schema.json",
-  "title": "Atlas source class",
-  "description": "The source_class controlled vocabulary (S05; D-034, accepted 2026-09-30). This file is the one home of the class values and their one-line definitions. It is deliberately not a source-record schema: S06 extends it into the full source record, with the class as one field (Part B §16, H-2). Why each class exists, the test that separates it from its neighbours, what it is primary for and what it is never enough for, and which class each registered source has, are in docs/research/source-policy.md. A class describes the kind of document and publisher. It is not a rank, not a verification result and not a confidence value.",
-  "$ref": "#/$defs/vocab_source_class",
+  "title": "Atlas source record",
+  "description": "One canonical source record: a retrievable document the Atlas has read (S06; D-050, proposed). The records live in data/sources.json (H-2). This file is also the one home of the source_class vocabulary and its one-line definitions (S05; D-034, accepted 2026-09-30), kept unchanged in $defs. Why each class exists, the test that separates it from its neighbours, what it is primary for and what it is never enough for are in docs/research/source-policy.md. How claims cite a source, and how the S01 register was migrated into these records, are in docs/architecture/claim-model.md. A class describes the kind of document and publisher. It is not a rank, not a verification result and not a confidence value. Standing is a property of a citation, not of a source (D-035), so it lives in claims.schema.json.",
+  "type": "object",
+  "required": ["id", "source_class", "title", "publisher", "publisher_entity", "authors", "url", "stated_dates", "retrieval"],
+  "properties": {
+    "id": { "$ref": "#/$defs/source_id" },
+    "migrated_from": { "description": "The label the source had before S06: a register row (SRC-NNN) or an S05 retrieval (S05-RN). Present only on migrated records, so that every label cited in older documents resolves to one record (D-050).", "type": "string", "pattern": "^(SRC-[0-9]{3}|S05-R[0-9]+)$" },
+    "source_class": { "$ref": "#/$defs/vocab_source_class" },
+    "title": { "$ref": "#/$defs/text", "description": "The title as the source states it." },
+    "publisher": { "$ref": "#/$defs/text", "description": "The body that publishes the document, as text. One publisher per source: a joint or commissioned report takes the publishing party (source-policy.md §2), and co-authors go in authors." },
+    "publisher_entity": {
+      "description": "The publisher as a company record, where the publisher is a company (source-policy.md §4: the party test needs it). not_researched until S07 establishes the company's identity and ID. not_applicable for a non-company publisher, because institution stays reserved (D-022).",
+      "oneOf": [ { "$ref": "entities.schema.json#/$defs/ref_company" }, { "$ref": "#/$defs/state_not_researched" }, { "$ref": "#/$defs/state_not_applicable" } ]
+    },
+    "authors": {
+      "description": "Authors or issuing office as the source names them, as text. not_researched when no one has recorded them.",
+      "oneOf": [ { "$ref": "#/$defs/text" }, { "$ref": "#/$defs/state_not_researched" } ]
+    },
+    "url": { "description": "Where the Atlas retrieved the document. The host of a copy is part of the URL, so it is not stored again.", "type": "string", "pattern": "^https://\\S+$" },
+    "stated_dates": {
+      "description": "The dates the source states for itself, each with its kind, never guessed (source-policy.md §12). undated when the source states none.",
+      "oneOf": [ { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/stated_date" } }, { "$ref": "#/$defs/state_undated" } ]
+    },
+    "retrieval": { "$ref": "#/$defs/retrieval" },
+    "filing_copy": { "$ref": "#/$defs/vocab_filing_copy" }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": { "properties": { "source_class": { "enum": ["company_filing", "company_technical_documentation", "company_press_release", "company_marketing"] } }, "required": ["source_class"] },
+      "then": { "properties": { "publisher_entity": { "not": { "$ref": "#/$defs/state_not_applicable" } } } },
+      "else": { "properties": { "publisher_entity": { "$ref": "#/$defs/state_not_applicable" } } }
+    },
+    {
+      "if": { "properties": { "source_class": { "const": "company_filing" } }, "required": ["source_class"] },
+      "then": { "required": ["filing_copy"] },
+      "else": { "properties": { "filing_copy": false } }
+    }
+  ],
   "$defs": {
     "vocab_source_class": {
       "description": "Search results, snippets, aggregator copies and tertiary summaries are discovery aids, not sources, so they have no class and cannot be cited (source-policy.md §2).",
@@ -20,6 +56,53 @@
         { "const": "industry_association", "description": "A publication of a membership body that represents an industry's companies, including reports it publishes with commissioned co-authors." },
         { "const": "market_research_consultancy", "description": "Analysis, estimates or advice sold by a commercial market-research or consulting firm, including trackers, forecasts and analysts' communications." },
         { "const": "news_media", "description": "Journalism published by a news organisation or trade press for a general or trade readership." }
+      ]
+    },
+    "source_id": { "description": "src- plus three digits. The S01 numbers are kept: register row SRC-NNN is src-NNN (D-050).", "type": "string", "pattern": "^src-[0-9]{3}$" },
+    "text": { "type": "string", "minLength": 1, "pattern": "^\\S(.*\\S)?$" },
+    "full_date": { "description": "A calendar date, YYYY-MM-DD.", "type": "string", "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$" },
+    "utc_minute": { "description": "A UTC time to the minute, as the register records access times: YYYY-MM-DDTHH:MMZ.", "type": "string", "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]Z$" },
+    "sha256": { "description": "SHA-256 of the bytes retrieved, in lower-case hex: all 64 characters, or the first 12 as S01 and S05 recorded them.", "type": "string", "pattern": "^[0-9a-f]{12}([0-9a-f]{52})?$" },
+    "retrieval": {
+      "description": "How and when the Atlas obtained the bytes this record describes (source-policy.md §11–§12).",
+      "type": "object",
+      "required": ["method", "accessed_at", "sha256"],
+      "properties": {
+        "method": { "$ref": "#/$defs/vocab_retrieval_method" },
+        "accessed_at": { "$ref": "#/$defs/utc_minute" },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      },
+      "additionalProperties": false
+    },
+    "stated_date": {
+      "type": "object",
+      "required": ["kind", "date"],
+      "properties": { "kind": { "$ref": "#/$defs/vocab_date_kind" }, "date": { "$ref": "entities.schema.json#/$defs/partial_date" } },
+      "additionalProperties": false
+    },
+    "state_undated": { "description": "The source states no date of any kind (register: 'undated (live page)'). Its access date is its only temporal anchor.", "type": "object", "required": ["state"], "properties": { "state": { "const": "undated" } }, "additionalProperties": false },
+    "state_not_researched": { "type": "object", "required": ["state"], "properties": { "state": { "allOf": [ { "$ref": "entities.schema.json#/$defs/vocab_unresolved_state" }, { "const": "not_researched" } ] } }, "additionalProperties": false },
+    "state_not_applicable": { "type": "object", "required": ["state"], "properties": { "state": { "allOf": [ { "$ref": "entities.schema.json#/$defs/vocab_unresolved_state" }, { "const": "not_applicable" } ] } }, "additionalProperties": false },
+    "vocab_retrieval_method": {
+      "oneOf": [
+        { "const": "automated", "description": "An ordinary HTTPS request made in a session, read from locally extracted text (RA-1). Reproducible by repeating the request." },
+        { "const": "manual_by_human", "description": "Downloaded by the human under RA-4 and supplied to the session. Not reproducible by automated retrieval. The full text stays outside the repository." }
+      ]
+    },
+    "vocab_date_kind": {
+      "oneOf": [
+        { "const": "published", "description": "A publication or issue date the source states." },
+        { "const": "modified", "description": "A modification date in the page's own metadata." },
+        { "const": "last_updated", "description": "A 'last updated' date the page displays." },
+        { "const": "signed", "description": "The date on a document's signature page (a filing)." }
+      ]
+    },
+    "vocab_filing_copy": {
+      "description": "company_filing only: whose copy was retrieved, and whether it was checked against the copy filed with the regulator (RA-6, D-042).",
+      "oneOf": [
+        { "const": "regulator_hosted", "description": "Retrieved from the regulator's own copy." },
+        { "const": "filer_hosted_not_checked", "description": "The filer's own published copy. Its identity with the regulator's copy was not checked." },
+        { "const": "filer_hosted_checked", "description": "The filer's own published copy, checked identical to the regulator's copy." }
       ]
     }
   }

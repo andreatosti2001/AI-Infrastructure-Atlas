@@ -1,0 +1,586 @@
+[
+  {
+    "id": "src-001",
+    "migrated_from": "SRC-001",
+    "source_class": "government_publication",
+    "title": "The NIST Definition of Cloud Computing (Special Publication 800-145)",
+    "publisher": "National Institute of Standards and Technology (NIST)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "P. Mell, T. Grance",
+    "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2011-09"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:25Z",
+      "sha256": "7b0c1a9fdfc6"
+    }
+  },
+  {
+    "id": "src-002",
+    "migrated_from": "SRC-002",
+    "source_class": "policy_research_brief",
+    "title": "The Semiconductor Supply Chain: Assessing National Competitiveness (Issue Brief)",
+    "publisher": "Center for Security and Emerging Technology (CSET), Georgetown University",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "S. M. Khan, D. Peterson, A. Mann",
+    "url": "https://cset.georgetown.edu/wp-content/uploads/The-Semiconductor-Supply-Chain-Issue-Brief-1.pdf",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2021-01"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:25Z",
+      "sha256": "319d942ba534"
+    }
+  },
+  {
+    "id": "src-003",
+    "migrated_from": "SRC-003",
+    "source_class": "policy_research_brief",
+    "title": "AI Chips: What They Are and Why They Matter (Issue Brief)",
+    "publisher": "Center for Security and Emerging Technology (CSET), Georgetown University",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "S. M. Khan, A. Mann",
+    "url": "https://cset.georgetown.edu/wp-content/uploads/AI-Chips—What-They-Are-and-Why-They-Matter-1.pdf",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2020-04"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:25Z",
+      "sha256": "0f80b4fa1650"
+    }
+  },
+  {
+    "id": "src-004",
+    "migrated_from": "SRC-004",
+    "source_class": "government_publication",
+    "title": "The Vision for the National Advanced Packaging Manufacturing Program",
+    "publisher": "NIST",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "CHIPS Research and Development Office",
+    "url": "https://www.nist.gov/system/files/documents/2023/11/19/NAPMP-Vision-Paper-20231120.pdf",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2023-11-20"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:26Z",
+      "sha256": "bb83ae40b640"
+    }
+  },
+  {
+    "id": "src-005",
+    "migrated_from": "SRC-005",
+    "source_class": "industry_association",
+    "title": "Emerging Resilience in the Semiconductor Supply Chain",
+    "publisher": "Semiconductor Industry Association (SIA)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "R. Varadarajan et al. (Semiconductor Industry Association and Boston Consulting Group)",
+    "url": "https://www.semiconductors.org/wp-content/uploads/2024/05/Report_Emerging-Resilience-in-the-Semiconductor-Supply-Chain.pdf",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2024-05"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:29Z",
+      "sha256": "27040f69e8e0"
+    }
+  },
+  {
+    "id": "src-006",
+    "migrated_from": "SRC-006",
+    "source_class": "company_technical_documentation",
+    "title": "NVIDIA Hopper Architecture In-Depth",
+    "publisher": "NVIDIA (NVIDIA Technical Blog)",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2022-03-22"
+      },
+      {
+        "kind": "modified",
+        "date": "2025-07-22"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:26Z",
+      "sha256": "ed8dc6f2a694"
+    }
+  },
+  {
+    "id": "src-007",
+    "migrated_from": "SRC-007",
+    "source_class": "company_marketing",
+    "title": "NVIDIA Blackwell Architecture (product technology page)",
+    "publisher": "NVIDIA",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:29Z",
+      "sha256": "66b30443aaba"
+    }
+  },
+  {
+    "id": "src-008",
+    "migrated_from": "SRC-008",
+    "source_class": "company_technical_documentation",
+    "title": "Introduction to Cloud TPU",
+    "publisher": "Google Cloud",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://docs.cloud.google.com/tpu/docs/intro-to-tpu",
+    "stated_dates": [
+      {
+        "kind": "last_updated",
+        "date": "2026-09-24"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:26Z",
+      "sha256": "4e8ea7a6e8fb"
+    }
+  },
+  {
+    "id": "src-009",
+    "migrated_from": "SRC-009",
+    "source_class": "company_technical_documentation",
+    "title": "TPU architecture",
+    "publisher": "Google Cloud",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://docs.cloud.google.com/tpu/docs/system-architecture-tpu-vm",
+    "stated_dates": [
+      {
+        "kind": "last_updated",
+        "date": "2026-09-24"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:26Z",
+      "sha256": "e8db2f579437"
+    }
+  },
+  {
+    "id": "src-010",
+    "migrated_from": "SRC-010",
+    "source_class": "company_technical_documentation",
+    "title": "Trainium2 Architecture",
+    "publisher": "Amazon Web Services (AWS Neuron documentation)",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:29Z",
+      "sha256": "9afd23f3a56d"
+    }
+  },
+  {
+    "id": "src-011",
+    "migrated_from": "SRC-011",
+    "source_class": "company_marketing",
+    "title": "[We Do Future Technology] Become a Semiconductor Expert with SK hynix – HBM",
+    "publisher": "SK hynix Newsroom",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://news.skhynix.com/en/become-a-semiconductor-expert-with-sk-hynix-hbm/",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2023-05-02"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:26Z",
+      "sha256": "59489adb6035"
+    }
+  },
+  {
+    "id": "src-012",
+    "migrated_from": "SRC-012",
+    "source_class": "company_marketing",
+    "title": "Creating New Values in DRAM Using Through-Silicon-Via Technology for Continued Scaling in Memory System Performance and Capacity",
+    "publisher": "SK hynix Newsroom",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://news.skhynix.com/en/creating-new-values-in-dram-using-through-silicon-via-technology-for-continued-scaling-in-memory-system-performance-and-capacity/",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2019-11-20"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:26Z",
+      "sha256": "2b75c7f7cdd3"
+    }
+  },
+  {
+    "id": "src-013",
+    "migrated_from": "SRC-013",
+    "source_class": "company_marketing",
+    "title": "Semiconductor Back-end Process 4: Packages, Part 2",
+    "publisher": "SK hynix Newsroom",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://news.skhynix.com/semiconductor-back-end-process-episode-4-packages-part-2/",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2023-06-27"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:26Z",
+      "sha256": "855179c796fa"
+    }
+  },
+  {
+    "id": "src-014",
+    "migrated_from": "SRC-014",
+    "source_class": "company_press_release",
+    "title": "SK hynix Partners with TSMC to Strengthen HBM Technological Leadership",
+    "publisher": "SK hynix Newsroom",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://news.skhynix.com/en/sk-hynix-partners-with-tsmc-to-strengthen-hbm-technological-leadership/",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2024-04-19"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:30Z",
+      "sha256": "181722d106d0"
+    }
+  },
+  {
+    "id": "src-015",
+    "migrated_from": "SRC-015",
+    "source_class": "company_marketing",
+    "title": "High-bandwidth memory (HBM) (product page)",
+    "publisher": "Micron Technology",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.micron.com/products/memory/hbm",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:29Z",
+      "sha256": "7846bb06c806"
+    }
+  },
+  {
+    "id": "src-016",
+    "migrated_from": "SRC-016",
+    "source_class": "company_marketing",
+    "title": "2.5D/3D TSV Packaging",
+    "publisher": "Amkor Technology",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://amkor.com/technology/25d-3d-tsv/",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2017-11-21"
+      },
+      {
+        "kind": "modified",
+        "date": "2025-07-31"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:27Z",
+      "sha256": "4655a423e3b4"
+    }
+  },
+  {
+    "id": "src-017",
+    "migrated_from": "SRC-017",
+    "source_class": "company_marketing",
+    "title": "EUV lithography systems (product page)",
+    "publisher": "ASML",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.asml.com/en/products/euv-lithography-systems",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:27Z",
+      "sha256": "ec896b9cb6bc"
+    }
+  },
+  {
+    "id": "src-018",
+    "migrated_from": "SRC-018",
+    "source_class": "company_marketing",
+    "title": "What is Electronic Design Automation (EDA)? (glossary)",
+    "publisher": "Synopsys",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.synopsys.com/glossary/what-is-electronic-design-automation.html",
+    "stated_dates": [
+      {
+        "kind": "modified",
+        "date": "2025-09-09"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:27Z",
+      "sha256": "35ef0d04a255"
+    }
+  },
+  {
+    "id": "src-019",
+    "migrated_from": "SRC-019",
+    "source_class": "company_marketing",
+    "title": "Our Processes",
+    "publisher": "Lam Research",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.lamresearch.com/products/our-processes/",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2017-08-02"
+      },
+      {
+        "kind": "modified",
+        "date": "2022-04-11"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:30Z",
+      "sha256": "025e37a7b57b"
+    }
+  },
+  {
+    "id": "src-020",
+    "migrated_from": "SRC-020",
+    "source_class": "company_technical_documentation",
+    "title": "AWS Regions and Availability Zones (user guide)",
+    "publisher": "Amazon Web Services",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions-availability-zones.html",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:29Z",
+      "sha256": "1f172d6e220c"
+    }
+  },
+  {
+    "id": "src-021",
+    "migrated_from": "SRC-021",
+    "source_class": "research_report",
+    "title": "United States Data Center Energy Usage Report: 2025 Update (LBNL-2001758; DOI 10.71468/P1RP4F)",
+    "publisher": "Lawrence Berkeley National Laboratory (LBNL)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "S. J. Smith, A. Hubbard, A. Newkirk, M. Ganeshalingam, B. Holecek, D. Sartor, M. Mills, A. Shehabi",
+    "url": "https://www.osti.gov/servlets/purl/3374245",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2026-06-18"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:28Z",
+      "sha256": "1108b5a0f829"
+    }
+  },
+  {
+    "id": "src-022",
+    "migrated_from": "SRC-022",
+    "source_class": "research_report",
+    "title": "Electricity Rate Designs for Large Loads: Evolving Practices and Opportunities (Technical Brief)",
+    "publisher": "Lawrence Berkeley National Laboratory",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "A. Satchwell, N. Mims Frick, P. Cappers (with The Brattle Group and U.S. DOE)",
+    "url": "https://www.osti.gov/servlets/purl/2502077",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2025-01"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:27Z",
+      "sha256": "bf8d49690b8d"
+    }
+  },
+  {
+    "id": "src-023",
+    "migrated_from": "SRC-023",
+    "source_class": "research_report",
+    "title": "Powering Intelligence: Analyzing Artificial Intelligence and Data Center Energy Consumption (2024 White Paper)",
+    "publisher": "Electric Power Research Institute (EPRI)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://restservice.epri.com/publicdownload/000000003002028905/0/Product",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2024-05"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-29T13:28Z",
+      "sha256": "c3870a8229ec"
+    }
+  },
+  {
+    "id": "src-024",
+    "migrated_from": "S05-R1",
+    "source_class": "company_filing",
+    "title": "Annual Report on Form 10-K for the fiscal year ended January 25, 2026",
+    "publisher": "NVIDIA Corporation",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://investor.nvidia.com/files/doc_financials/2026/q4/10K-NVDA.pdf",
+    "stated_dates": [
+      {
+        "kind": "signed",
+        "date": "2026-02-25"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-09-30T16:57Z",
+      "sha256": "a056b59e4170"
+    },
+    "filing_copy": "filer_hosted_not_checked"
+  }
+]

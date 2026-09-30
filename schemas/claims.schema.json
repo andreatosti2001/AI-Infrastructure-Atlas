@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/andreatosti2001/AI-Infrastructure-Atlas/schemas/claims.schema.json",
+  "title": "Atlas claim record",
+  "description": "One claim: a single proposition, stated once, with what supports it (S06; D-044 to D-049, proposed). Staging claims live in data/staging/claims.json; accepted claims in data/claims.json (H-2). This file is the one home of the claim shape and of the claim-type, evidence-status, standing, review and search vocabularies. Why each value exists, how the MA §10 lists map onto them, the type × status table, the meaning of verified and the migration are in docs/architecture/claim-model.md. Claim type and evidence status are separate fields (L-06). There is no numeric confidence, score or rank (NG-11). Records point to claims through their claim_ids; a claim never lists the records it supports (D-044). Shared shapes come from entities.schema.json and sources.schema.json by $ref.",
+  "type": "object",
+  "required": ["id", "claim_type", "statement", "evidence_status", "review"],
+  "properties": {
+    "id": { "$ref": "entities.schema.json#/$defs/claim_ids/items" },
+    "claim_type": { "$ref": "#/$defs/vocab_claim_type" },
+    "statement": { "$ref": "sources.schema.json#/$defs/text", "description": "The proposition, in the Atlas's words. It may not say more than the sentence at each cited locator (or than the input claims) supports." },
+    "evidence_status": { "$ref": "#/$defs/vocab_evidence_status" },
+    "citations": { "description": "FACT and ATTRIBUTION only: the sources that state the proposition, each at one locator.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/citation" } },
+    "input_claim_ids": { "$ref": "entities.schema.json#/$defs/claim_ids", "description": "DERIVATION, INTERPRETATION and IMPLICATION only: the claims this one rests on. Sources are reached through them, never cited directly." },
+    "reasoning": { "$ref": "sources.schema.json#/$defs/text", "description": "DERIVATION, INTERPRETATION and IMPLICATION only: the step from the inputs to the statement, naming the rule or choice applied (e.g. ER-1, a TQ answer)." },
+    "search": { "$ref": "#/$defs/search" },
+    "as_of": {
+      "description": "FACT and ATTRIBUTION only: the date the content describes, when the source says it (source-policy.md §12). not_stated otherwise; the source's own dates then apply. A claim with inputs takes its dates from them, so it has none.",
+      "oneOf": [ { "$ref": "entities.schema.json#/$defs/partial_date" }, { "$ref": "#/$defs/state_not_stated" } ]
+    },
+    "verified_on": { "$ref": "sources.schema.json#/$defs/full_date", "description": "When the Verifier last checked this claim (D-048). Required unless the status is unverified, forbidden when it is. Per record, never a batch stamp (L-06)." },
+    "disputed_with": { "$ref": "entities.schema.json#/$defs/claim_ids", "description": "disputed only: the competing claims. They stay in the record; a disputed status never replaces them (D-046)." },
+    "review": {
+      "description": "The human's class C review (CLAUDE.md §9). Only an accepted claim may be canonical (D-048).",
+      "oneOf": [ { "$ref": "#/$defs/state_not_reviewed" }, { "$ref": "#/$defs/review_verdict" } ]
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": { "properties": { "claim_type": { "const": "FACT" } }, "required": ["claim_type"] },
+      "then": {
+        "required": ["citations", "as_of"],
+        "properties": {
+          "evidence_status": { "enum": ["unverified", "supported", "partial", "context_only", "disputed"] },
+          "citations": { "items": { "properties": { "standing": { "enum": ["party", "originator"] } } } },
+          "input_claim_ids": false, "reasoning": false, "search": false
+        }
+      }
+    },
+    {
+      "if": { "properties": { "claim_type": { "const": "ATTRIBUTION" } }, "required": ["claim_type"] },
+      "then": {
+        "required": ["citations", "as_of"],
+        "properties": {
+          "evidence_status": { "enum": ["unverified", "supported", "partial", "context_only"] },
+          "input_claim_ids": false, "reasoning": false, "search": false
+        }
+      }
+    },
+    {
+      "if": { "properties": { "claim_type": { "const": "DERIVATION" } }, "required": ["claim_type"] },
+      "then": {
+        "required": ["reasoning"],
+        "anyOf": [ { "required": ["input_claim_ids"] }, { "required": ["search"] } ],
+        "properties": {
+          "evidence_status": { "enum": ["unverified", "supported", "partial", "disputed"] },
+          "citations": false, "as_of": false
+        }
+      }
+    },
+    {
+      "if": { "properties": { "claim_type": { "enum": ["INTERPRETATION", "IMPLICATION"] } }, "required": ["claim_type"] },
+      "then": {
+        "required": ["input_claim_ids", "reasoning"],
+        "properties": {
+          "evidence_status": { "enum": ["unverified", "supported", "partial"] },
+          "citations": false, "as_of": false, "search": false
+        }
+      }
+    },
+    {
+      "if": { "properties": { "evidence_status": { "const": "unverified" } }, "required": ["evidence_status"] },
+      "then": { "properties": { "verified_on": false, "citations": { "items": { "properties": { "read": false } } } } },
+      "else": { "required": ["verified_on"], "properties": { "citations": { "items": { "required": ["read"] } } } }
+    },
+    {
+      "if": { "properties": { "evidence_status": { "const": "disputed" } }, "required": ["evidence_status"] },
+      "then": { "required": ["disputed_with"] },
+      "else": { "properties": { "disputed_with": false } }
+    },
+    {
+      "if": { "properties": { "review": { "required": ["verdict"], "properties": { "verdict": { "const": "accepted" } } } }, "required": ["review"] },
+      "then": { "properties": { "evidence_status": { "enum": ["supported", "disputed"] } } }
+    }
+  ],
+  "$defs": {
+
+    "citation": {
+      "description": "One source at one locator. The anchor is a verbatim extract of the sentence (or table cell) that states the proposition; the locator says where that sentence is. The Verifier and the human judge the claim against that sentence (D-047).",
+      "type": "object",
+      "required": ["source_id", "locator", "anchor", "standing"],
+      "properties": {
+        "source_id": { "$ref": "sources.schema.json#/$defs/source_id" },
+        "locator": { "$ref": "sources.schema.json#/$defs/text", "description": "PDF page index (p.N) or, for HTML, the section heading and the sentence's opening words." },
+        "anchor": { "$ref": "sources.schema.json#/$defs/text", "description": "Verbatim, including the source's own quotation marks and apostrophes." },
+        "standing": { "$ref": "#/$defs/vocab_standing" },
+        "originator": { "$ref": "#/$defs/originator" },
+        "read": { "$ref": "#/$defs/read" }
+      },
+      "additionalProperties": false,
+      "if": { "properties": { "standing": { "const": "reporter" } }, "required": ["standing"] },
+      "then": { "required": ["originator"] },
+      "else": { "properties": { "originator": false } }
+    },
+    "originator": {
+      "description": "reporter citations only: the first link of the attribution chain, as the retrieved source names it (source-policy.md §4, ER-6). The originator was not retrieved and is never cited as if it had been.",
+      "type": "object",
+      "required": ["name", "source_class", "named_at"],
+      "properties": {
+        "name": { "$ref": "sources.schema.json#/$defs/text" },
+        "source_class": { "$ref": "sources.schema.json#/$defs/vocab_source_class", "description": "The class the originator's statement would have, read from how the reporter describes it (an INTERPRETATION, because the originator was not read)." },
+        "named_at": { "$ref": "sources.schema.json#/$defs/text", "description": "Where in the retrieved source the originator is named." }
+      },
+      "additionalProperties": false
+    },
+    "read": {
+      "description": "The bytes the Verifier read to check this citation. When the hash differs from the source record's retrieval, the source changed and the anchor was re-checked (source-policy.md §12).",
+      "type": "object",
+      "required": ["accessed_at", "sha256"],
+      "properties": {
+        "accessed_at": { "$ref": "sources.schema.json#/$defs/utc_minute" },
+        "sha256": { "$ref": "sources.schema.json#/$defs/sha256" }
+      },
+      "additionalProperties": false
+    },
+
+    "search": {
+      "description": "DERIVATION only: the search record ER-3 requires before a value may be not_publicly_determinable (D-049). Whether the classes searched are every preferred class of the citing record's matrix row is checked where the row is known, on the record (V-10 family, S10).",
+      "type": "object",
+      "required": ["question", "searched_on", "classes", "conclusion"],
+      "properties": {
+        "question": { "$ref": "sources.schema.json#/$defs/text" },
+        "searched_on": { "$ref": "sources.schema.json#/$defs/full_date" },
+        "classes": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/searched_class" } },
+        "conclusion": { "allOf": [ { "$ref": "entities.schema.json#/$defs/vocab_unresolved_state" }, { "enum": ["not_publicly_determinable", "not_researched"] } ] }
+      },
+      "additionalProperties": false,
+      "if": { "properties": { "conclusion": { "const": "not_publicly_determinable" } }, "required": ["conclusion"] },
+      "then": { "properties": { "classes": { "items": { "properties": { "outcome": { "const": "no_answer" } } } } } }
+    },
+    "searched_class": {
+      "type": "object",
+      "required": ["source_class", "outcome"],
+      "properties": {
+        "source_class": { "$ref": "sources.schema.json#/$defs/vocab_source_class" },
+        "outcome": { "$ref": "#/$defs/vocab_search_outcome" },
+        "source_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "sources.schema.json#/$defs/source_id" } },
+        "gap": { "$ref": "sources.schema.json#/$defs/text", "description": "not_accessible only: what refused access, and when." }
+      },
+      "additionalProperties": false,
+      "if": { "properties": { "outcome": { "const": "no_answer" } }, "required": ["outcome"] },
+      "then": { "required": ["source_ids"], "properties": { "gap": false } },
+      "else": { "required": ["gap"] }
+    },
+
+    "state_not_stated": { "description": "The source gives no as-of date for this content.", "type": "object", "required": ["state"], "properties": { "state": { "const": "not_stated" } }, "additionalProperties": false },
+    "state_not_reviewed": { "description": "The human has not reviewed this claim. It cannot be canonical.", "type": "object", "required": ["state"], "properties": { "state": { "const": "not_reviewed" } }, "additionalProperties": false },
+    "review_verdict": {
+      "type": "object",
+      "required": ["verdict", "reviewer", "reviewed_on", "recorded_in"],
+      "properties": {
+        "verdict": { "$ref": "#/$defs/vocab_review_verdict" },
+        "reviewer": { "const": "human", "description": "Class C review is the human's (CLAUDE.md §9). No agent role may write a verdict." },
+        "reviewed_on": { "$ref": "sources.schema.json#/$defs/full_date" },
+        "recorded_in": { "description": "The session report whose addendum holds the human's words.", "type": "string", "pattern": "^sessions/reports/SESSION-[0-9]{2}-REPORT\\.md$" }
+      },
+      "additionalProperties": false
+    },
+
+    "vocab_claim_type": {
+      "description": "CLAUDE.md §6 labels, written as CLAUDE.md writes them. MA §10's seven types map onto these five (claim-model.md §2).",
+      "oneOf": [
+        { "const": "FACT", "description": "A proposition about the world, stated by a first-hand source (standing party or originator) at its locator. Never the Atlas's own inference." },
+        { "const": "ATTRIBUTION", "description": "What a named source says, defines, claims, plans or estimates, recorded as that source's statement. Superlatives, intentions and second-hand reports are always this type (ER-5, ER-6, ER-8)." },
+        { "const": "DERIVATION", "description": "A proposition that follows from other claims, or from a recorded search, by a stated step. The Atlas's inference, shown as inferred." },
+        { "const": "INTERPRETATION", "description": "The Atlas's own judgement or choice, such as a working definition, citing the claims it interprets." },
+        { "const": "IMPLICATION", "description": "A consequence for the Atlas's research, data or users, drawn from the claims it cites. Not a forecast about the world." }
+      ]
+    },
+    "vocab_evidence_status": {
+      "description": "How well the evidence supports the claim, after verification (D-046). Not a claim type and not a confidence value. Only supported and disputed claims may be canonical.",
+      "oneOf": [
+        { "const": "unverified", "description": "No Verifier has checked this claim yet. Written explicitly, never a default." },
+        { "const": "supported", "description": "The Verifier read each cited locator, found the anchor, and judged that the sentence states the proposition and the wording does not exceed it; for a claim with inputs, every input is supported and the stated step follows. MA §10 'direct', renamed." },
+        { "const": "partial", "description": "The anchors or inputs were found but support only part of the proposition: the wording exceeds them. The claim must be narrowed into a new claim before any record rests on it." },
+        { "const": "context_only", "description": "The cited locators were read and do not state the proposition. At most they give context, and the claim supports no record (ER-10)." },
+        { "const": "disputed", "description": "Supported by its own evidence, and in factual contradiction with other supported claims, named in disputed_with (source-policy.md §10.1). Never used for definitional, wording, temporal or scope conflicts." }
+      ]
+    },
+    "vocab_standing": {
+      "description": "How the publisher relates to this claim (D-035). The values' meanings are source-policy.md §4.",
+      "oneOf": [
+        { "const": "party", "description": "source-policy.md §4, row party." },
+        { "const": "originator", "description": "source-policy.md §4, row originator." },
+        { "const": "reporter", "description": "source-policy.md §4, row reporter. Needs the originator (ER-6) and supports at most ATTRIBUTION." }
+      ]
+    },
+    "vocab_review_verdict": {
+      "oneOf": [
+        { "const": "accepted", "description": "The human accepts the claim as canonical. It moves to data/claims.json." },
+        { "const": "rejected", "description": "The human rejects the claim. It stays in staging with this verdict, so the evidence is not lost." }
+      ]
+    },
+    "vocab_search_outcome": {
+      "oneOf": [
+        { "const": "no_answer", "description": "Sources of this class were read for the question, and none states the answer." },
+        { "const": "not_accessible", "description": "Sources of this class could not be read (source-policy.md §11). The class was not searched, so the conclusion can be at most not_researched (ER-3, SP-7)." }
+      ]
+    }
+  }
+}
