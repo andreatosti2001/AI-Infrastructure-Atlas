@@ -1,6 +1,6 @@
 # Claim model — how the Atlas records what supports a statement
 
-**Status:** PROPOSED (S06, 2026-09-30): D-044 to D-053, for human review.
+**Status:** ACCEPTED (human review of S06, 2026-09-30: "Approve all"): D-044 to D-053.
 **Session:** S06 · **Date:** 2026-09-30
 **Inputs:**
 - `../research/source-policy.md` §4 (standing and chains), §5 (separate axes), §6 (ER-1 to

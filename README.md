@@ -6,7 +6,7 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 **M1 — Domain + Evidence Foundation.** The repository contains governance documents, the
 session system, a repository-integrity check, the S01 domain map, the accepted entity
 schema (S03), the accepted relationship schema (S04), the accepted source policy with its
-source-class vocabulary (S05), and the proposed claim model (S06): source and claim
+source-class vocabulary (S05), and the accepted claim model (S06): source and claim
 schemas, the migrated source records, seed claims awaiting the human's review, `validate-data`
 and a trace command. It contains **no entity or relationship records and no UI yet**. See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is

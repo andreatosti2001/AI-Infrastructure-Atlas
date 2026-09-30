@@ -1,6 +1,6 @@
 # Source register — S01 domain map
 
-**Status:** FROZEN (S06, 2026-09-30; D-050, proposed): migrated into [`data/sources.json`](../../data/sources.json) as `src-NNN`; kept as history · **Session:** S01 · **Accessed:** 2026-09-29
+**Status:** FROZEN (S06, 2026-09-30; D-050, accepted): migrated into [`data/sources.json`](../../data/sources.json) as `src-NNN`; kept as history · **Session:** S01 · **Accessed:** 2026-09-29
 **Used by:** [`domain-map.md`](./domain-map.md)
 
 > **One home / lifecycle.** This register is a *research-staging* artifact, not canonical

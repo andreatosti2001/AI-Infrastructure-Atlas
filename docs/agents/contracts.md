@@ -1,6 +1,6 @@
 # Agent contracts
 
-**Status:** PROPOSED (S06, 2026-09-30; D-052, D-010). **Session:** S06.
+**Status:** ACCEPTED (human review of S06, 2026-09-30; D-052, D-010). **Session:** S06.
 
 MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. Each contract has
 MA's nine fields, in MA's order.

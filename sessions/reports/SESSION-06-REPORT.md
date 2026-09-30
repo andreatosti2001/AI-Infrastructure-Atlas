@@ -479,6 +479,26 @@ first-hand identity claims in the S06 shape, with V-1 and V-10 switched on.
   (<https://github.com/andreatosti2001/AI-Infrastructure-Atlas/actions/runs/36782578679>).
   This replaces "not observed" in Tests run for that commit.
 
+## Addendum — human review outcome (2026-09-30)
+
+Appended after the human's review of the S06 output. The sections above are unchanged.
+
+- **Merge:** by pull request with a merge commit, once CI was green (PR #10, `9424ebb`),
+  on the human's instruction "Merge to main".
+- **Decisions accepted:** D-044 to D-053 ("Approve all (Recommended)"), given as answer H-0
+  while the S07 prompt was prepared.
+- **D-015:** its status line now records that it is superseded by D-036 (the tier order)
+  and D-048 (the meaning of `verified`, confirmed and extended).
+- **Documents updated to match:** the status lines of D-044 to D-053 and D-015, of
+  `claim-model.md`, `roles.md`, `contracts.md`, the register and the two `source-policy.md`
+  notes; the schema descriptions; `docs/README.md`; the baseline rows; `README.md`.
+- **Seed claims: no verdict yet.** The human has not yet done the manual test (Part A).
+  All ten seed claims stay in `data/staging/claims.json` with `review: not_reviewed`, and
+  none is canonical. They move only on the human's recorded verdicts (D-048).
+- **Still open:** the seed-claim verdicts; S01's weekly gate.
+- **Updated handoff to S07:** S07 may start once its prompt is on `main`. It builds on
+  accepted S06 decisions.
+
 ## Review sheet for the human's manual test
 
 For each claim: open the URL, find the locator and the anchor, read the **whole sentence**,

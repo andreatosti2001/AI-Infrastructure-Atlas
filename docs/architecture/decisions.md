@@ -174,7 +174,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-015 — Provisional source tiers and the meaning of `verified` in research artifacts
 
-- **Session:** S01 · **Date:** 2026-09-29 · **Status:** superseded in part by D-036 (2026-09-30, human review of S05): the tier order. The meaning of `verified` stays in force until S06's claim model confirms or replaces it
+- **Session:** S01 · **Date:** 2026-09-29 · **Status:** superseded by D-036 (2026-09-30, human review of S05) for the tier order, and by D-048 (2026-09-30, human review of S06) for the meaning of `verified`, which D-048 confirms and extends
 - **Decision:** Until S05, source tiers follow the S01 prompt Part B §05 order (`T1`
   company documentation/filings … `T6` news). A `T1` company source is primary only for
   its own products and processes. Its comparative or superlative claims ("unique to",
@@ -860,7 +860,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-044 — The claim record: one proposition, linked from records, row derived
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
 - **Context:**
   - Entity and relationship records already cite `claim_ids` (D-025, D-028), and the
     `claim-<slug>` format waits for the claim record (`entity-taxonomy.md` §7).
@@ -879,7 +879,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-045 — Claim types: the CLAUDE.md labels; MA §10's list reconciled
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
 - **Context:** CLAUDE.md §6 and the roadmap S06 require their labels. MA §10 lists its own
   types "at minimum".
 - **Decision** (`claim-model.md` §2, machine-checked against MA):
@@ -898,7 +898,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-046 — Evidence status vocabulary and the type × status rules
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
 - **Context:** L-06 requires claim type and evidence status as separate fields. S05 defined
   no status (`source-policy.md` §5, §16). MA §10 lists six statuses.
 - **Decision** (`claim-model.md` §3–§4):
@@ -917,7 +917,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-047 — Citations: locator, verbatim anchor, standing, chain and bytes read
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
 - **Context:** `source-policy.md` §4 and ER-6 leave standing and the attribution chain to
   S06. MA §5.2 has one `locator` for several `source_ids`, so it cannot say which source is
   at which place.
@@ -933,7 +933,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-048 — What `verified` means; staging, canonical and the human's review (H-1, H-2)
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
 - **Context:**
   - D-015's second part defines `verified` "until S06's claim model confirms or replaces
     it" (D-036).
@@ -964,7 +964,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-049 — The `not_publicly_determinable` search record
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
 - **Context:** ER-3 requires the search to be recorded. D-031 and D-025 require a
   `not_publicly_determinable` state to cite claims.
 - **Decision** (`claim-model.md` §8):
@@ -985,7 +985,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-050 — The source record; the register migrated and frozen
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
 - **Context:**
   - `source-policy.md` §16 lists the source fields.
   - D-041 moves each source's class to the source record at migration.
@@ -1013,7 +1013,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-051 — validate-data as CI tests; no validate-freshness code yet (H-4)
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
 - **Context:**
   - MA §15 asks for a documented `validate-data`.
   - D-026 keeps `tools/` standard library.
@@ -1031,7 +1031,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-052 — Agent roles and contracts (H-3; D-010)
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
 - **Context:**
   - D-010 assigns `docs/agents/roles.md` and `docs/agents/contracts.md` to S06, in the MA
     §12 format.
@@ -1049,7 +1049,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-053 — The trace command
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
 - **Context:** the S06 gate: "The system can answer: 'What exactly supports this
   relationship?'" No relationship record exists before S10.
 - **Decision** (`claim-model.md` §12):
