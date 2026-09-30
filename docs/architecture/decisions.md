@@ -33,7 +33,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-003 — Tooling uses the Python standard library only
 
-- **Session:** S00 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S00)
+- **Session:** S00 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S00); amended by D-026 (pinned test-only dependencies)
 - **Context:** Python is the intended language (MA §17). S00 needs only a structural
   validator and its tests.
 - **Decision:** `tools/validate_repo.py` and `tests/` use the standard library (`unittest`,
@@ -289,3 +289,149 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 - **Rejected:** freezing until the end of M1 only (too short to protect the build
   phases); an unwritten list carried in each session prompt (it would drift from one
   session to the next).
+
+## D-022 — Entity taxonomy: six instantiable types, two reserved, four record kinds owned elsewhere
+
+- **Session:** S03 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - `SESSION-ROADMAP.md` S03 lists twelve candidates. The human's S03 focus names ten.
+  - MA §5.1 and §6.1 list more, some of them role or facility labels.
+  - M0 Part 4 (D-020) says which v1 concepts must be modelled.
+- **Decision:** `docs/architecture/entity-taxonomy.md` is the one home of the type
+  reasoning. `schemas/entities.schema.json` is the one home of field shapes and vocabulary
+  values.
+  - **Instantiable domain types:** `company`, `facility`, `technology`, `component`,
+    `product`, `jurisdiction`.
+    - Each has its own identity test (taxonomy R-1) and a v1 use (R-2, §5).
+    - The human's "Country" is the type `jurisdiction`, with kind `country` the only one
+      allowed in v1. This avoids a rename when the D-008 EU lens needs a supranational
+      jurisdiction.
+  - **Reserved** (defined, no schema; the schema rejects their records):
+    - `institution`: S05/S06 if source publishers link to it, otherwise S17;
+    - `policy`: S17.
+  - **Record kinds** (boundary defined here, schema owned elsewhere):
+    - `source` (S05/S06);
+    - `claim` (S06);
+    - `relationship` (S04);
+    - `event`: S09, **proposed**, because S09's gate is the temporal facility model.
+      The roadmap names no owner.
+  - Design rules R-1 to R-8 (taxonomy §1) apply to every later schema change.
+- **Rejected:**
+  - one entity schema holding claims, sources, events and relationships as "entity types"
+    (four kinds with different owners and lifecycles in one schema);
+  - a type named `country` (renamed later, when the EU lens arrives);
+  - instantiating `institution` now (no v1 concept needs it, R-2);
+  - an Event schema in S03 (no dated record exists before S09; L-09).
+
+## D-023 — Dispositions of the MA entity-type lists
+
+- **Session:** S03 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - MA §6.1 lists role-named types (`CloudProvider`, `EquipmentSupplier`) and
+    facility-named types (`Fab`, `PackagingFacility`, `DataCentre`).
+  - D-020 asked S03 to test the role-named types against blurs B-2 and B-3.
+  - MA §5 expects physical schemas to "differ" while the concepts converge. So mapping an
+    MA type onto a role or a kind puts MA's concept into practice; it does not override
+    MA (SESSION-PROMPT-SPEC §1: expected evolution, not a scope violation).
+- **Decision:** every MA §6.1 and §5.1 entity type has exactly one disposition, in
+  `entity-taxonomy.md` §6 (machine-checked). In summary:
+  - role-named types become `roles` values on Company;
+  - facility-named types become `facility_kinds` values;
+  - `ChipDesign` is folded into Product for v1;
+  - `Investment` is an event;
+  - `Metric` is a derivation (NG-11);
+  - a cited `standard` is a source;
+  - `dependency` is a relationship or a derivation;
+  - policy-named types are reserved for S17;
+  - `provision` stays out of this repository;
+  - energy and network assets are excluded (NG-04, NG-05).
+  - MA §5.1's example-record fields `jurisdiction`, `status` and `source_ids` are not
+    adopted (taxonomy §4.5).
+- **Rejected:**
+  - typing firms by role (one firm would need several records: blurs B-2, B-3);
+  - dropping MA types without a recorded disposition;
+  - a separate `ChipDesign` type (no v1 concept needs a design apart from the product,
+    and it would give "which process is this chip made on" two homes).
+
+## D-024 — Actor roles are claim-backed, time-bounded values on Company; FAB-03 reclassified
+
+- **Session:** S03 · **Date:** 2026-09-30 · **Status:** proposed
+- **Decision:**
+  - What a firm does is recorded in the company's `roles` attribute. Each value cites
+    claims and may carry `valid_from`/`valid_to`. A company may hold several roles.
+  - The vocabulary (defined in the schema):
+    - `fabless_designer`, `idm`, `foundry_operator`, `osat`, `memory_manufacturer`,
+      `cloud_provider`, `equipment_maker`, `eda_vendor`.
+  - A role is **never derived** from relationships. "Fabless" asserts that a firm has *no*
+    fabs, and incomplete data cannot establish an absence (unknown ≠ none). A later
+    semantic check may warn when a role and the relationships disagree (taxonomy §9).
+  - **FAB-03 "Foundry" is reclassified from model to actor role** (`foundry_operator`),
+    as D-020 allows.
+    - Reason: TQ-04 made "foundry" the business model and "foundry operator" the firm,
+      and no separate foundry record is needed.
+    - The fab itself is FAB-02, a facility kind.
+    - M0 Part 4 is not edited. Taxonomy §5 records the move and cites this decision.
+  - `equipment_maker` and `eda_vendor` are not D-020 concepts.
+    - They come from the actor-type column of domain map §4, and from MA's
+      `EquipmentSupplier`.
+    - They are added so that layers 5a and 5b have actors (`INTERPRETATION`).
+    - Each assignment still needs a claim.
+- **Rejected:**
+  - deriving roles from edges;
+  - roles as relationships to role records (a role is not an entity);
+  - a `hyperscaler` role (TQ-08);
+  - an `accelerator_designer` role for B-2. The S04 `designs` relationship already says
+    it, and a role would be a second home.
+
+## D-025 — Attribute value contract for entity records
+
+- **Session:** S03 · **Date:** 2026-09-30 · **Status:** proposed
+- **Decision** (explained in taxonomy §7; the schema is the home of the shapes):
+  - **Two groups of field.** Identity fields say *what the record is*. They include
+    `identity_claim_ids`, which needs at least one claim. Attributes say *what is true of
+    it*.
+  - **Two forms of attribute.** Every attribute holds either a non-empty list of
+    assertions `{value, claim_ids, valid_from?, valid_to?}` or an explicit state:
+    - `not_researched`;
+    - `not_publicly_determinable`, which must cite claims;
+    - `not_applicable`.
+  - **Every field of a type is required.** A missing field or `null` is invalid.
+  - **Unknown is never zero or false.** Power and capacity values must be greater than
+    zero. A boolean is `false` only when a source says so.
+  - **Evidence states stay on claims.** `verified` and `disputed` describe evidence, so
+    they belong to claims (S06; K-3, L-06). Competing values are several assertions.
+  - **Forbidden fields:** no free-text `notes`, `status` or `layer`.
+  - **References are typed by ID prefix.** Whether a referenced record exists is checked
+    by `validate-data` (S06/S07).
+  - **Taxonomy is a field; composition and dependency are relationships.** Hierarchy is
+    the `broader` field. "Part of" and "requires" are S04 relationships.
+  - **The claim ID format is fixed** as `claim-<slug>`. S06 may change it through a
+    decision.
+- **Rejected:**
+  - optional or nullable fields (a missing field hides "not researched", so it breaks
+    unknown ≠ null);
+  - record-level `source_ids` (they cannot say which source supports which value);
+  - a `disputed` value state (it would duplicate the claim's evidence status: a second
+    home);
+  - taxonomic `is_a` relationships in S04's table (dependency queries would walk the
+    classification tree).
+
+## D-026 — Pinned test-only dependency for schema validation (amends D-003)
+
+- **Session:** S03 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human
+  decision on the S03 plan: "Schema + jsonschema tests")
+- **Context:**
+  - S03's registry gate is a stable entity schema.
+  - A JSON Schema is only known to behave when records are validated against it.
+  - D-003 allowed a dependency "with a recorded reason, when one appears".
+- **Decision:**
+  - `requirements-test.txt` pins `jsonschema` and its transitive dependencies to exact
+    versions. CI installs it before the tests.
+  - `tests/test_entity_schema.py` validates fictional fixtures. Valid records must pass,
+    and each invalid case (one mutation of a valid record) must fail.
+  - `tools/` stays standard-library only. Only tests may import pinned test dependencies.
+- **Rejected:**
+  - a hand-written validator for a subset of JSON Schema (it reimplements a standard, and
+    would itself need testing);
+  - leaving the schema untested until S06/S07;
+  - an unpinned requirement (the result could change between runs).
