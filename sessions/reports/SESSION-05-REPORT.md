@@ -382,3 +382,14 @@ Appended after the human's review of the S05 output. The sections above are unch
 - **Still open:** the week-2 gate; S01's weekly gate.
 - **Updated handoff to S06:** S06 may start once the human has judged the week-2 gate. Its
   source record extends the accepted class vocabulary.
+
+## Addendum — week-2 gate (2026-09-30)
+
+- **Week-2 gate passed.** After reading `source-policy.md` §14, the human accepted it
+  ("Accetto s14"). The gate ("the ontology and evidence policy are understandable before
+  large-scale data collection begins") is passed. This replaces "not yet declared" and the
+  week-2 gate under "Still open" in the review addendum.
+- **§14 is kept as written.** The unclear sentence in step 6 was pointed out to the human
+  before acceptance and was not changed.
+- **Still open:** S01's weekly gate.
+- **Updated handoff to S06:** S06 may start.
