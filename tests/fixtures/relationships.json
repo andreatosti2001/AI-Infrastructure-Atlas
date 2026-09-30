@@ -1,0 +1,211 @@
+{
+  "_about": "Fictional records used only to test schemas/relationships.schema.json. They are not data and assert nothing about the world. Every endpoint is an 'example' ID and every claim ID is 'claim-fixture-...'. Each invalid case is one mutation (JSON Pointer set/remove) of one valid base, so it can fail only for the reason it names. 'at' is not used: the test checks that some error is reported at the mutated pointer or at its parent.",
+  "valid": {
+    "requires_component_to_technology": {
+      "id": "rel-example-stack-requires-via",
+      "relation_type": "requires",
+      "source_entity": "component-example-memory-stack",
+      "target_entity": "technology-example-via",
+      "claim_ids": ["claim-fixture-101", "claim-fixture-102"]
+    },
+    "requires_technology_to_equipment": {
+      "id": "rel-example-patterning-requires-scanner",
+      "relation_type": "requires",
+      "source_entity": "technology-example-patterning",
+      "target_entity": "component-example-scanner",
+      "claim_ids": ["claim-fixture-103"]
+    },
+    "has_part": {
+      "id": "rel-example-stack-has-base-die",
+      "relation_type": "has_part",
+      "source_entity": "component-example-memory-stack",
+      "target_entity": "component-example-base-die",
+      "claim_ids": ["claim-fixture-104"]
+    },
+    "owns_company": {
+      "id": "rel-example-parent-owns-foundry",
+      "relation_type": "owns",
+      "source_entity": "company-example-parent",
+      "target_entity": "company-example-foundry",
+      "claim_ids": ["claim-fixture-105"],
+      "valid_from": "2019"
+    },
+    "owns_facility": {
+      "id": "rel-example-foundry-owns-fab-1",
+      "relation_type": "owns",
+      "source_entity": "company-example-foundry",
+      "target_entity": "facility-example-fab-1",
+      "claim_ids": ["claim-fixture-106"]
+    },
+    "operates": {
+      "id": "rel-example-operator-operates-fab-1",
+      "relation_type": "operates",
+      "source_entity": "company-example-operator",
+      "target_entity": "facility-example-fab-1",
+      "claim_ids": ["claim-fixture-107"],
+      "valid_from": "2021-03",
+      "valid_to": "2024-06-30"
+    },
+    "designs": {
+      "id": "rel-example-designer-designs-accelerator",
+      "relation_type": "designs",
+      "source_entity": "company-example-designer",
+      "target_entity": "product-example-accelerator",
+      "claim_ids": ["claim-fixture-108"]
+    },
+    "fabricates": {
+      "id": "rel-example-foundry-fabricates-accelerator",
+      "relation_type": "fabricates",
+      "source_entity": "company-example-foundry",
+      "target_entity": "product-example-accelerator",
+      "claim_ids": ["claim-fixture-109"]
+    },
+    "packages": {
+      "id": "rel-example-osat-packages-accelerator",
+      "relation_type": "packages",
+      "source_entity": "company-example-osat",
+      "target_entity": "product-example-accelerator",
+      "claim_ids": ["claim-fixture-110"],
+      "valid_from": "2025-01"
+    },
+    "incorporates_class_supplier_npd": {
+      "id": "rel-example-accelerator-incorporates-stack",
+      "relation_type": "incorporates",
+      "source_entity": "product-example-accelerator",
+      "target_entity": "component-example-memory-stack",
+      "claim_ids": ["claim-fixture-111"],
+      "supplier": { "state": "not_publicly_determinable", "claim_ids": ["claim-fixture-112"] }
+    },
+    "incorporates_class_supplier_not_researched": {
+      "id": "rel-example-accelerator-2-incorporates-stack",
+      "relation_type": "incorporates",
+      "source_entity": "product-example-accelerator-2",
+      "target_entity": "component-example-memory-stack",
+      "claim_ids": ["claim-fixture-113"],
+      "supplier": { "state": "not_researched" }
+    },
+    "incorporates_class_dual_source": {
+      "id": "rel-example-accelerator-3-incorporates-stack",
+      "relation_type": "incorporates",
+      "source_entity": "product-example-accelerator-3",
+      "target_entity": "component-example-memory-stack",
+      "claim_ids": ["claim-fixture-114"],
+      "supplier": [
+        { "value": "company-example-memory-a", "claim_ids": ["claim-fixture-115"] },
+        { "value": "company-example-memory-b", "claim_ids": ["claim-fixture-116"], "valid_from": "2025-09" }
+      ]
+    },
+    "incorporates_named_product": {
+      "id": "rel-example-system-incorporates-accelerator",
+      "relation_type": "incorporates",
+      "source_entity": "product-example-system",
+      "target_entity": "product-example-accelerator",
+      "claim_ids": ["claim-fixture-117"],
+      "supplier": { "state": "not_applicable" }
+    },
+    "supplies": {
+      "id": "rel-example-toolmaker-supplies-foundry",
+      "relation_type": "supplies",
+      "source_entity": "company-example-toolmaker",
+      "target_entity": "company-example-foundry",
+      "claim_ids": ["claim-fixture-118"],
+      "item": "product-example-tool",
+      "valid_from": "2023"
+    },
+    "supplies_class_item": {
+      "id": "rel-example-memory-a-supplies-designer",
+      "relation_type": "supplies",
+      "source_entity": "company-example-memory-a",
+      "target_entity": "company-example-designer",
+      "claim_ids": ["claim-fixture-119"],
+      "item": "component-example-memory-stack"
+    },
+    "houses": {
+      "id": "rel-example-dc-1-houses-system",
+      "relation_type": "houses",
+      "source_entity": "facility-example-dc-1",
+      "target_entity": "product-example-system",
+      "claim_ids": ["claim-fixture-120"]
+    },
+    "provides_access_to": {
+      "id": "rel-example-service-accesses-accelerator",
+      "relation_type": "provides_access_to",
+      "source_entity": "product-example-cloud-service",
+      "target_entity": "product-example-accelerator",
+      "claim_ids": ["claim-fixture-121"]
+    }
+  },
+  "invalid": [
+    { "case": "generic_associated_with", "why": "rejected as vague: no definition or evidence expectation is possible (RR-10)", "base": "fabricates", "set": { "/relation_type": "associated_with" } },
+    { "case": "generic_related_to", "why": "generic synonym of associated_with", "base": "fabricates", "set": { "/relation_type": "related_to" } },
+    { "case": "generic_linked_to", "why": "generic synonym of associated_with", "base": "fabricates", "set": { "/relation_type": "linked_to" } },
+    { "case": "generic_connected_to", "why": "generic synonym of associated_with", "base": "fabricates", "set": { "/relation_type": "connected_to" } },
+    { "case": "generic_involved_with", "why": "generic synonym of associated_with", "base": "fabricates", "set": { "/relation_type": "involved_with" } },
+    { "case": "vague_partners_with", "why": "partnership is a specific edge or an event (§6)", "base": "fabricates", "set": { "/relation_type": "partners_with" } },
+    { "case": "vague_uses", "why": "uses covers inclusion, necessity and consumption (§6)", "base": "incorporates_class_supplier_npd", "set": { "/relation_type": "uses" } },
+    { "case": "umbrella_manufactures", "why": "umbrella over fabricates and packages (TQ-06)", "base": "fabricates", "set": { "/relation_type": "manufactures" } },
+    { "case": "umbrella_produces", "why": "umbrella over fabricates and packages (TQ-06)", "base": "fabricates", "set": { "/relation_type": "produces" } },
+    { "case": "derived_depends_on", "why": "depends_on is a derivation (RR-5, NG-11)", "base": "supplies", "set": { "/relation_type": "depends_on" } },
+    { "case": "derived_competes_with", "why": "competes_with is a derivation or an interpretation (§6)", "base": "supplies", "set": { "/relation_type": "competes_with" } },
+    { "case": "field_located_in", "why": "location is a facility field (D-030)", "base": "owns_facility", "set": { "/relation_type": "located_in" } },
+    { "case": "event_acquired", "why": "an acquisition is an event (MA §5.5)", "base": "owns_company", "set": { "/relation_type": "acquired" } },
+    { "case": "event_invests_in", "why": "an investment is an event (D-023)", "base": "owns_company", "set": { "/relation_type": "invests_in" } },
+    { "case": "policy_restricted_by", "why": "policy verbs are reserved for S17", "base": "supplies", "set": { "/relation_type": "restricted_by" } },
+    { "case": "policy_constrained_by", "why": "policy verbs are reserved for S17", "base": "supplies", "set": { "/relation_type": "constrained_by" } },
+    { "case": "energy_supplies_power_to", "why": "energy edges are excluded (NG-05)", "base": "houses", "set": { "/relation_type": "supplies_power_to" } },
+    { "case": "taxonomic_is_a", "why": "taxonomy is the broader field, never an edge (D-025)", "base": "has_part", "set": { "/relation_type": "is_a" } },
+    { "case": "taxonomic_subclass_of", "why": "taxonomy is the broader field, never an edge (D-025)", "base": "has_part", "set": { "/relation_type": "subclass_of" } },
+    { "case": "taxonomic_instance_of", "why": "classification is product.instance_of, never an edge", "base": "incorporates_named_product", "set": { "/relation_type": "instance_of" } },
+    { "case": "stored_inverse_fabricated_by", "why": "inverse readings are display text, never stored (RR-3)", "base": "fabricates", "set": { "/relation_type": "fabricated_by" } },
+    { "case": "stored_inverse_part_of", "why": "inverse of has_part (RR-3)", "base": "has_part", "set": { "/relation_type": "part_of" } },
+    { "case": "stored_inverse_enables", "why": "enables is the inverse reading of requires (RR-3)", "base": "requires_component_to_technology", "set": { "/relation_type": "enables" } },
+    { "case": "stored_inverse_owned_by", "why": "inverse of owns (RR-3)", "base": "owns_company", "set": { "/relation_type": "owned_by" } },
+    { "case": "wrong_endpoint_designs_facility", "why": "designs targets a product", "base": "designs", "set": { "/target_entity": "facility-example-fab-1" } },
+    { "case": "wrong_endpoint_operates_product", "why": "operates targets a facility", "base": "operates", "set": { "/target_entity": "product-example-accelerator" } },
+    { "case": "wrong_endpoint_has_part_technology", "why": "composition is between component classes", "base": "has_part", "set": { "/target_entity": "technology-example-via" } },
+    { "case": "wrong_endpoint_requires_company", "why": "requires is class level; companies are instances (RR-2)", "base": "requires_component_to_technology", "set": { "/source_entity": "company-example-foundry" } },
+    { "case": "wrong_endpoint_fabricates_class", "why": "a company fabricating a class restates a role (D-024, §7)", "base": "fabricates", "set": { "/target_entity": "component-example-memory-stack" } },
+    { "case": "wrong_endpoint_houses_company", "why": "houses starts at a facility", "base": "houses", "set": { "/source_entity": "company-example-operator" } },
+    { "case": "jurisdiction_endpoint", "why": "no v1 type connects to a jurisdiction: location is a field (D-030)", "base": "owns_facility", "set": { "/target_entity": "jurisdiction-zz" } },
+    { "case": "reserved_endpoint_policy", "why": "policy is reserved until S17 (D-022)", "base": "supplies", "set": { "/target_entity": "policy-example-rule" } },
+    { "case": "reserved_endpoint_institution", "why": "institution is reserved (D-022)", "base": "supplies", "set": { "/source_entity": "institution-example-body" } },
+    { "case": "record_kind_endpoint_claim", "why": "claims support edges; they are not endpoints (RR-6)", "base": "fabricates", "set": { "/source_entity": "claim-fixture-109" } },
+    { "case": "record_kind_endpoint_source", "why": "sources are evidence, not endpoints", "base": "fabricates", "set": { "/source_entity": "source-example-001" } },
+    { "case": "record_kind_endpoint_event", "why": "events are not endpoints (RR-8)", "base": "owns_company", "set": { "/target_entity": "event-example-acquisition" } },
+    { "case": "placeholder_unknown_supplier", "why": "a placeholder is not a company (RR-7, D-031)", "base": "supplies_class_item", "set": { "/source_entity": "company-unknown-supplier" } },
+    { "case": "placeholder_tbd", "why": "a placeholder is not a company (RR-7)", "base": "fabricates", "set": { "/source_entity": "company-tbd" } },
+    { "case": "placeholder_supplier_value", "why": "an unknown supplier is a state, not a fake company", "base": "incorporates_class_dual_source", "set": { "/supplier/1/value": "company-undisclosed-memory-maker" } },
+    { "case": "no_claims", "why": "every edge cites at least one claim (RR-6)", "base": "fabricates", "remove": ["/claim_ids"] },
+    { "case": "empty_claims", "why": "an empty claim list is no provenance", "base": "fabricates", "set": { "/claim_ids": [] } },
+    { "case": "record_level_source_ids", "why": "provenance is claim-level; MA §5.4 source_ids replaced (D-028)", "base": "fabricates", "set": { "/source_ids": ["source-example-001"] } },
+    { "case": "malformed_claim_id", "why": "claim references have a checkable shape (resolved from entities.schema.json)", "base": "fabricates", "set": { "/claim_ids": ["SRC-006"] } },
+    { "case": "free_text_notes", "why": "notes are a hidden second home for facts (D-028)", "base": "fabricates", "set": { "/notes": "Example note." } },
+    { "case": "stored_status", "why": "status is derived, never stored (R-8)", "base": "operates", "set": { "/status": "active" } },
+    { "case": "confidence_score", "why": "confidence belongs to the claim's evidence status (S06), not a score on the edge", "base": "fabricates", "set": { "/confidence": 0.8 } },
+    { "case": "evidence_status_on_edge", "why": "evidence status lives on claims (L-06)", "base": "fabricates", "set": { "/evidence_status": "verified" } },
+    { "case": "process_qualifier_on_fabricates", "why": "the process has one home: product.vendor_process_name (D-030)", "base": "fabricates", "set": { "/vendor_process_name": "Example 3X" } },
+    { "case": "packaging_process_qualifier", "why": "vendor-named packaging processes are not modelled in v1 (D-032)", "base": "packages", "set": { "/packaging_process": "Example-CoW" } },
+    { "case": "class_level_with_valid_from", "why": "a time-bound statement is contingent, so not class level (§10)", "base": "requires_component_to_technology", "set": { "/valid_from": "2024" } },
+    { "case": "class_level_with_valid_to", "why": "a time-bound statement is contingent, so not class level (§10)", "base": "has_part", "set": { "/valid_to": "2030" } },
+    { "case": "bad_partial_date", "why": "dates are YYYY, YYYY-MM or YYYY-MM-DD", "base": "operates", "set": { "/valid_from": "2021-13" } },
+    { "case": "supplies_without_item", "why": "a supply edge must say what is supplied", "base": "supplies", "remove": ["/item"] },
+    { "case": "supplies_item_is_company", "why": "the item is a product or a component class", "base": "supplies", "set": { "/item": "company-example-designer" } },
+    { "case": "item_on_owns", "why": "item belongs to supplies only", "base": "owns_company", "set": { "/item": "product-example-tool" } },
+    { "case": "supplier_on_fabricates", "why": "supplier belongs to incorporates only", "base": "fabricates", "set": { "/supplier": { "state": "not_researched" } } },
+    { "case": "incorporates_without_supplier", "why": "a missing supplier would hide 'not researched' (D-025, D-031)", "base": "incorporates_class_supplier_npd", "remove": ["/supplier"] },
+    { "case": "incorporates_supplier_null", "why": "null is not a state (MA §5.7)", "base": "incorporates_class_supplier_npd", "set": { "/supplier": null } },
+    { "case": "incorporates_npd_without_claims", "why": "not_publicly_determinable must show why", "base": "incorporates_class_supplier_npd", "set": { "/supplier": { "state": "not_publicly_determinable" } } },
+    { "case": "incorporates_supplier_unknown_state", "why": "'unknown' is not an MA §5.7 state", "base": "incorporates_class_supplier_npd", "set": { "/supplier": { "state": "unknown" } } },
+    { "case": "incorporates_named_part_with_supplier", "why": "a named part's supplier is its vendor field; a value here is a second home", "base": "incorporates_named_product", "set": { "/supplier": [{ "value": "company-example-designer", "claim_ids": ["claim-fixture-117"] }] } },
+    { "case": "incorporates_class_part_not_applicable", "why": "a class-level part always has a supplier question", "base": "incorporates_class_supplier_npd", "set": { "/supplier": { "state": "not_applicable" } } },
+    { "case": "incorporates_supplier_not_company", "why": "a supplier is a company", "base": "incorporates_class_dual_source", "set": { "/supplier/0/value": "facility-example-fab-1" } },
+    { "case": "incorporates_supplier_without_claims", "why": "every supplier value is claim-backed", "base": "incorporates_class_dual_source", "remove": ["/supplier/0/claim_ids"] },
+    { "case": "bad_rel_id_prefix", "why": "relationship IDs start rel- (MA §5.4)", "base": "fabricates", "set": { "/id": "edge-example-1" } },
+    { "case": "uppercase_rel_id", "why": "IDs are lower-case slugs", "base": "fabricates", "set": { "/id": "rel-Example" } },
+    { "case": "endpoint_raw_name", "why": "endpoints are record IDs, not names found in a source", "base": "fabricates", "set": { "/source_entity": "Example Foundry" } },
+    { "case": "endpoint_list", "why": "one edge connects exactly two records; several parties are several edges", "base": "fabricates", "set": { "/source_entity": ["company-example-foundry", "company-example-operator"] } },
+    { "case": "missing_target", "why": "an edge with one endpoint is not an edge", "base": "designs", "remove": ["/target_entity"] },
+    { "case": "symmetric_flag", "why": "every v1 type is directed; there is no symmetric flag (RR-3)", "base": "supplies", "set": { "/symmetric": true } },
+    { "case": "inverse_reading_stored", "why": "the inverse reading is display text from the vocabulary, not a record field", "base": "fabricates", "set": { "/inverse": "fabricated by" } }
+  ]
+}

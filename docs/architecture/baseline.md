@@ -1,7 +1,7 @@
 # Baseline Architecture Record
 
 **Status:** APPROVED by the human on 2026-09-29 (S02 gate, `SESSION-ROADMAP.md` S02; see §8).
-Created in S00, revised and approved in S02. S03 updated only the dated state rows (§1 table, §4, §5); the approved content is unchanged.
+Created in S00, revised and approved in S02. S03 and S04 updated only the dated state rows (§1 table, §4, §5); the approved content is unchanged.
 **Date:** 2026-09-29 (S00); revised 2026-09-29 (S02)
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` §4 ("At project start").
 
@@ -23,7 +23,7 @@ repository are logged in [`decisions.md`](./decisions.md).
   DuckDB + SQL for analysis, vanilla HTML/CSS/JS, GitHub Actions — MA §17, CLAUDE.md §11.
   No database server, graph database or frontend framework — MA §18.
 
-### State at end of S00, updated at S02 and S03
+### State at end of S00, updated at S02, S03 and S04
 
 | Layer | Exists? | Introduced by (per `SESSION-ROADMAP.md`) |
 |---|---|---|
@@ -33,7 +33,7 @@ repository are logged in [`decisions.md`](./decisions.md).
 | Domain map / source register | yes, draft (S01) | S01 |
 | M0 milestone audit + EU-DP process benchmark | yes, draft (S02) | S02 |
 | Entity schema | yes, accepted (S03): `schemas/entities.schema.json`, `entity-taxonomy.md` | S03 |
-| Relationship schema | no | S04 |
+| Relationship schema | yes, accepted (S04): `schemas/relationships.schema.json`, `relationship-taxonomy.md` | S04 |
 | Source/evidence policy | no | S05 |
 | Claim/provenance implementation | no | S06 |
 | Canonical data | no | S07–S10 |
@@ -78,9 +78,9 @@ plus deterministic validators, with no agent runtime (D-018 L-01; NG-08).
 The conceptual contract (Entity, Claim, Source, Relationship, Event; status and null
 semantics) is MA §5; the Atlas-specific entity and relationship lists are MA §6.1–6.2;
 claim types and evidence status are MA §10. The entity schema was accepted in S03
-(`entity-taxonomy.md`, D-022 to D-025); the relationship schema is S04's. Those sessions must reconcile MA §6.2 with the relationship list in
-`SESSION-ROADMAP.md` S04, which differs (e.g. `designs`, `packages`, `fabricates`,
-`constrained_by`, `affected_by` appear only in the roadmap).
+(`entity-taxonomy.md`, D-022 to D-025). The relationship schema was accepted in S04
+(`relationship-taxonomy.md`, D-028 to D-033); its §6 reconciles MA §6.2, the relationship
+list in `SESSION-ROADMAP.md` S04 and the verbs in `domain-map.md` §3.
 
 ## 5. Quality gates
 
@@ -89,7 +89,7 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 | Gate (MA §14) | Status in this repository |
 |---|---|
 | 0 — Repository integrity | **Partial, automated.** `tools/validate_repo.py` checks required docs and session prompt/report conventions; runs in CI. It does not check branch or unexpected generated changes. |
-| 1 — Schema | **Partial.** CI tests the entity schema's behaviour against fictional fixtures (S03, D-026). No records exist yet, so no record is validated. |
+| 1 — Schema | **Partial.** CI tests the entity and relationship schemas' behaviour against fictional fixtures (S03, S04; D-026). No records exist yet, so no record is validated. |
 | 2 — Provenance | not applicable yet (no claims) |
 | 3 — Semantic integrity | not applicable yet |
 | 4 — Derivation | not applicable yet |

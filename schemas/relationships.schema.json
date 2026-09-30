@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/andreatosti2001/AI-Infrastructure-Atlas/schemas/relationships.schema.json",
+  "title": "Atlas relationship record",
+  "description": "One typed, directed edge between two canonical entity records. Status: accepted (S04 human review, 2026-09-30; D-028 to D-033). This file is the one home of the record shape, the relation-type vocabulary and each type's endpoint types. Why each type exists, its level, its evidence expectation and what it must not be confused with are in docs/architecture/relationship-taxonomy.md. Shared shapes (claim IDs, partial dates, entity ID patterns, assertions, explicit states) are referenced from entities.schema.json, never copied.",
+  "type": "object",
+  "required": ["id", "relation_type", "source_entity", "target_entity", "claim_ids"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^rel-[a-z0-9]+(-[a-z0-9]+)*$" },
+    "relation_type": { "$ref": "#/$defs/vocab_relation_type" },
+    "source_entity": { "$ref": "#/$defs/endpoint_any", "description": "The subject of the sentence '<source> <relation_type> <target>'. Its allowed types depend on relation_type." },
+    "target_entity": { "$ref": "#/$defs/endpoint_any", "description": "The object of the sentence. Its allowed types depend on relation_type." },
+    "claim_ids": { "$ref": "entities.schema.json#/$defs/claim_ids", "description": "Claims that support the edge itself (D-028). Claim type and evidence status live on the claim (S06). There is no record-level source_ids." },
+    "valid_from": { "$ref": "entities.schema.json#/$defs/partial_date", "description": "Start of the period the cited claims support. Left out when the claims give no period. Instance-level types only." },
+    "valid_to": { "$ref": "entities.schema.json#/$defs/partial_date", "description": "End of the period the cited claims support. Left out when the claims give no end; that is not a claim that the edge is current." },
+    "item": { "description": "supplies only: what is supplied. Part of what the edge says, so it is supported by the record's claim_ids." },
+    "supplier": { "description": "incorporates only: who supplies the part, as assertions with their own claims, or an explicit state (D-031)." }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    { "if": { "properties": { "relation_type": { "const": "requires" } } }, "then": { "$ref": "#/$defs/rel_requires" } },
+    { "if": { "properties": { "relation_type": { "const": "has_part" } } }, "then": { "$ref": "#/$defs/rel_has_part" } },
+    { "if": { "properties": { "relation_type": { "const": "owns" } } }, "then": { "$ref": "#/$defs/rel_owns" } },
+    { "if": { "properties": { "relation_type": { "const": "operates" } } }, "then": { "$ref": "#/$defs/rel_operates" } },
+    { "if": { "properties": { "relation_type": { "const": "designs" } } }, "then": { "$ref": "#/$defs/rel_designs" } },
+    { "if": { "properties": { "relation_type": { "const": "fabricates" } } }, "then": { "$ref": "#/$defs/rel_fabricates" } },
+    { "if": { "properties": { "relation_type": { "const": "packages" } } }, "then": { "$ref": "#/$defs/rel_packages" } },
+    { "if": { "properties": { "relation_type": { "const": "incorporates" } } }, "then": { "$ref": "#/$defs/rel_incorporates" } },
+    { "if": { "properties": { "relation_type": { "const": "supplies" } } }, "then": { "$ref": "#/$defs/rel_supplies" } },
+    { "if": { "properties": { "relation_type": { "const": "houses" } } }, "then": { "$ref": "#/$defs/rel_houses" } },
+    { "if": { "properties": { "relation_type": { "const": "provides_access_to" } } }, "then": { "$ref": "#/$defs/rel_provides_access_to" } }
+  ],
+  "$defs": {
+
+    "rel_requires": {
+      "description": "Class level. Endpoints are vendor-neutral classes; no time bounds (a time-bound statement is contingent and belongs at instance level).",
+      "properties": {
+        "source_entity": { "anyOf": [ { "$ref": "#/$defs/endpoint_technology" }, { "$ref": "#/$defs/endpoint_component" } ] },
+        "target_entity": { "anyOf": [ { "$ref": "#/$defs/endpoint_technology" }, { "$ref": "#/$defs/endpoint_component" } ] },
+        "valid_from": false, "valid_to": false, "item": false, "supplier": false
+      }
+    },
+    "rel_has_part": {
+      "description": "Class level. Whole class to part class; both constituent components (checked by validate-data).",
+      "properties": {
+        "source_entity": { "$ref": "#/$defs/endpoint_component" },
+        "target_entity": { "$ref": "#/$defs/endpoint_component" },
+        "valid_from": false, "valid_to": false, "item": false, "supplier": false
+      }
+    },
+    "rel_owns": {
+      "description": "Instance level. Controlling ownership of a company or a site.",
+      "properties": {
+        "source_entity": { "$ref": "#/$defs/endpoint_company" },
+        "target_entity": { "anyOf": [ { "$ref": "#/$defs/endpoint_company" }, { "$ref": "#/$defs/endpoint_facility" } ] },
+        "item": false, "supplier": false
+      }
+    },
+    "rel_operates": {
+      "description": "Instance level. Running a site, which may differ from owning it (S09 distinction).",
+      "properties": {
+        "source_entity": { "$ref": "#/$defs/endpoint_company" },
+        "target_entity": { "$ref": "#/$defs/endpoint_facility" },
+        "item": false, "supplier": false
+      }
+    },
+    "rel_designs": {
+      "description": "Instance level. A named company performs the design of a named product. Never a class target: what a firm does in general is a role (D-024).",
+      "properties": {
+        "source_entity": { "$ref": "#/$defs/endpoint_company" },
+        "target_entity": { "$ref": "#/$defs/endpoint_product" },
+        "item": false, "supplier": false
+      }
+    },
+    "rel_fabricates": {
+      "description": "Instance level. Wafer fabrication of a named product's dies. No process qualifier: the process as the vendor names it lives in product.vendor_process_name (one home).",
+      "properties": {
+        "source_entity": { "$ref": "#/$defs/endpoint_company" },
+        "target_entity": { "$ref": "#/$defs/endpoint_product" },
+        "item": false, "supplier": false
+      }
+    },
+    "rel_packages": {
+      "description": "Instance level. Assembly and packaging of a named product, including 2.5D integration and HBM die stacking. No vendor-named packaging-process qualifier in v1 (D-032).",
+      "properties": {
+        "source_entity": { "$ref": "#/$defs/endpoint_company" },
+        "target_entity": { "$ref": "#/$defs/endpoint_product" },
+        "item": false, "supplier": false
+      }
+    },
+    "rel_incorporates": {
+      "description": "Instance level. A named product physically contains a part: a component class, or a named product. When the part is a named product its supplier is that product's vendor, so supplier must be not_applicable (one home).",
+      "properties": {
+        "source_entity": { "$ref": "#/$defs/endpoint_product" },
+        "target_entity": { "anyOf": [ { "$ref": "#/$defs/endpoint_product" }, { "$ref": "#/$defs/endpoint_component" } ] },
+        "supplier": { "$ref": "#/$defs/attr_supplier" },
+        "item": false
+      },
+      "required": ["supplier"],
+      "if": { "properties": { "target_entity": { "pattern": "^product-" } } },
+      "then": { "properties": { "supplier": { "$ref": "#/$defs/state_not_applicable" } } },
+      "else": { "properties": { "supplier": { "not": { "$ref": "#/$defs/state_not_applicable" } } } }
+    },
+    "rel_supplies": {
+      "description": "Instance level. Company-level supply: the source sells the item to the target company. Recorded only from a claim stated at company level; never derived from product-level supplier values.",
+      "properties": {
+        "source_entity": { "$ref": "#/$defs/endpoint_company" },
+        "target_entity": { "$ref": "#/$defs/endpoint_company" },
+        "item": { "anyOf": [ { "$ref": "#/$defs/endpoint_product" }, { "$ref": "#/$defs/endpoint_component" } ] },
+        "supplier": false
+      },
+      "required": ["item"]
+    },
+    "rel_houses": {
+      "description": "Instance level. Units of a named hardware product are installed and run at a named data-centre facility. No count: counts are metrics (NG-11) and usually non-public.",
+      "properties": {
+        "source_entity": { "$ref": "#/$defs/endpoint_facility" },
+        "target_entity": { "$ref": "#/$defs/endpoint_product" },
+        "item": false, "supplier": false
+      }
+    },
+    "rel_provides_access_to": {
+      "description": "Instance level. A named service product gives its users access to a named hardware product.",
+      "properties": {
+        "source_entity": { "$ref": "#/$defs/endpoint_product" },
+        "target_entity": { "$ref": "#/$defs/endpoint_product" },
+        "item": false, "supplier": false
+      }
+    },
+
+    "not_placeholder": {
+      "description": "An endpoint names a real, identified record. A placeholder such as company-unknown-supplier would turn 'not recorded' into a fake entity (D-028). An unknown supplier is an explicit state (D-031).",
+      "not": { "pattern": "^[a-z]+-(unknown|unspecified|undisclosed|unidentified|anonymous|tbd|tba|placeholder|various|other|others|none|null|generic)(-|$)" }
+    },
+    "endpoint_company": { "allOf": [ { "$ref": "entities.schema.json#/$defs/ref_company" }, { "$ref": "#/$defs/not_placeholder" } ] },
+    "endpoint_facility": { "allOf": [ { "$ref": "entities.schema.json#/$defs/facility/properties/id" }, { "$ref": "#/$defs/not_placeholder" } ] },
+    "endpoint_technology": { "allOf": [ { "$ref": "entities.schema.json#/$defs/ref_technology" }, { "$ref": "#/$defs/not_placeholder" } ] },
+    "endpoint_component": { "allOf": [ { "$ref": "entities.schema.json#/$defs/ref_component" }, { "$ref": "#/$defs/not_placeholder" } ] },
+    "endpoint_product": { "allOf": [ { "$ref": "entities.schema.json#/$defs/product/properties/id" }, { "$ref": "#/$defs/not_placeholder" } ] },
+    "endpoint_any": {
+      "description": "Any instantiable entity type that some relation type uses. Jurisdiction is deliberately absent: location, incorporation and headquarters are entity fields (D-030). Reserved types and record kinds are never endpoints (D-028).",
+      "anyOf": [
+        { "$ref": "#/$defs/endpoint_company" },
+        { "$ref": "#/$defs/endpoint_facility" },
+        { "$ref": "#/$defs/endpoint_technology" },
+        { "$ref": "#/$defs/endpoint_component" },
+        { "$ref": "#/$defs/endpoint_product" }
+      ]
+    },
+
+    "attr_supplier": {
+      "description": "D-025 attribute contract applied to one edge qualifier: a non-empty list of company assertions, each with its own claims (several = multi-sourcing), or an explicit state. not_publicly_determinable must cite the claims that show it.",
+      "oneOf": [
+        { "type": "array", "minItems": 1, "items": { "$ref": "entities.schema.json#/$defs/assertion", "properties": { "value": { "$ref": "#/$defs/endpoint_company" } } } },
+        { "$ref": "entities.schema.json#/$defs/unresolved" }
+      ]
+    },
+    "state_not_applicable": {
+      "type": "object", "required": ["state"],
+      "properties": { "state": { "const": "not_applicable" } }
+    },
+
+    "vocab_relation_type": {
+      "description": "Relation types adopted in v1 (D-029). Generic verbs (associated_with, related_to, uses, depends_on, ...), stored inverses (fabricated_by, part_of, ...), taxonomic verbs (is_a, instance_of, ...) and policy or energy verbs are deliberately absent, so records using them fail here. x-level is class or instance; x-deps lists the domain-map dependencies the type covers; x-inverse-reading is display text only, never a stored type.",
+      "oneOf": [
+        { "const": "requires", "x-level": "class", "x-deps": ["DEP-02", "DEP-03", "DEP-06", "DEP-07", "DEP-08", "DEP-09", "DEP-18"], "x-inverse-reading": "required by",
+          "description": "Making or operating any instance of the source class is not possible, at the state of technology the cited source describes, without the target class. Necessity, not current practice." },
+        { "const": "has_part", "x-level": "class", "x-deps": [], "x-inverse-reading": "part of",
+          "description": "Every instance of the source component class physically contains an instance of the target component class, by the class's technical definition (e.g. an HBM stack has a base die, HBM-03)." },
+        { "const": "owns", "x-level": "instance", "x-deps": [], "x-inverse-reading": "owned by",
+          "description": "The source company holds controlling ownership of the target company or facility, as the cited source states it (e.g. a subsidiary). A minority stake is not owns; an investment is an event." },
+        { "const": "operates", "x-level": "instance", "x-deps": ["DEP-13"], "x-inverse-reading": "operated by",
+          "description": "The source company runs the day-to-day activity of the target facility. Says nothing about who owns it." },
+        { "const": "designs", "x-level": "instance", "x-deps": ["DEP-05", "DEP-15"], "x-inverse-reading": "designed by",
+          "description": "The source company performs design work on the target product (a chip or system). Not established by the product's vendor field alone." },
+        { "const": "fabricates", "x-level": "instance", "x-deps": ["DEP-05"], "x-inverse-reading": "fabricated by",
+          "description": "The source company performs wafer fabrication of the target product's dies (front end, including TSV formation). Not packaging, not design." },
+        { "const": "packages", "x-level": "instance", "x-deps": ["DEP-02"], "x-inverse-reading": "packaged by",
+          "description": "The source company performs assembly and packaging of the target product after wafer fabrication: dicing, die stacking, 2.5D integration on an interposer, and steps such as TSV reveal. Package test is not included (future scope)." },
+        { "const": "incorporates", "x-level": "instance", "x-deps": ["DEP-01"], "x-inverse-reading": "incorporated in",
+          "description": "The source product physically contains the target: a constituent component class, or a named product. The supplier of a class-level part is the edge's supplier qualifier." },
+        { "const": "supplies", "x-level": "instance", "x-deps": ["DEP-07", "DEP-09"], "x-inverse-reading": "supplied by",
+          "description": "The source company sells or licenses the item (a product or a component class) to the target company, as a claim states at company level." },
+        { "const": "houses", "x-level": "instance", "x-deps": ["DEP-12"], "x-inverse-reading": "housed in",
+          "description": "Units of the target hardware product are installed and run at the source data-centre facility." },
+        { "const": "provides_access_to", "x-level": "instance", "x-deps": ["DEP-14"], "x-inverse-reading": "accessible through",
+          "description": "The source service product lets its users run workloads on the target hardware product, as the provider's documentation states." }
+      ]
+    }
+  }
+}
