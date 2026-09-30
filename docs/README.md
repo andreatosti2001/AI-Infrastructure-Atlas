@@ -34,6 +34,16 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 | `quality/evaluation-framework.md` | satisfied by root `PROJECT-EVALUATION-FRAMEWORK.md` (not duplicated) | — |
 | [`quality/audit-history.md`](./quality/audit-history.md) | active | every audit |
 
+## Data model
+
+| Artifact | Status | Owner |
+|---|---|---|
+| [`architecture/entity-taxonomy.md`](./architecture/entity-taxonomy.md) (why each type exists; v1 concept and MA mappings) with [`../schemas/entities.schema.json`](../schemas/entities.schema.json) (field shapes and vocabulary values) | accepted (S03 review, 2026-09-30; D-022 to D-025) | S03 |
+| Relationship taxonomy | planned | S04 |
+| Source and claim schemas | planned | S05/S06 |
+| First product records | planned | S08 (D-027) |
+| Event schema | planned | S09 (D-022) |
+
 ## Research outputs
 
 | Artifact | Status | Owner |

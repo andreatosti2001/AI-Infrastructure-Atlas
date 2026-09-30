@@ -1,0 +1,312 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/andreatosti2001/AI-Infrastructure-Atlas/schemas/entities.schema.json",
+  "title": "Atlas canonical entity record",
+  "description": "One canonical domain-entity record. Status: accepted (S03 human review, 2026-09-30; D-022 to D-025). This file is the one home of field shapes and controlled-vocabulary values. Why each type exists, its identity test and what it must not be confused with are in docs/architecture/entity-taxonomy.md.",
+  "type": "object",
+  "required": ["type"],
+  "properties": {
+    "type": { "$ref": "#/$defs/vocab_entity_type" }
+  },
+  "allOf": [
+    { "if": { "properties": { "type": { "const": "company" } } }, "then": { "$ref": "#/$defs/company" } },
+    { "if": { "properties": { "type": { "const": "facility" } } }, "then": { "$ref": "#/$defs/facility" } },
+    { "if": { "properties": { "type": { "const": "technology" } } }, "then": { "$ref": "#/$defs/technology" } },
+    { "if": { "properties": { "type": { "const": "component" } } }, "then": { "$ref": "#/$defs/component" } },
+    { "if": { "properties": { "type": { "const": "product" } } }, "then": { "$ref": "#/$defs/product" } },
+    { "if": { "properties": { "type": { "const": "jurisdiction" } } }, "then": { "$ref": "#/$defs/jurisdiction" } }
+  ],
+  "$defs": {
+
+    "company": {
+      "description": "A legal person that can own, operate and contract. Business models are roles, not types (D-024). Ownership and operation of facilities are relationships (S04), not fields.",
+      "type": "object",
+      "required": ["id", "type", "name", "aliases", "identity_claim_ids", "legal_name", "incorporated_in", "headquartered_in", "roles"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^company-[a-z0-9]+(-[a-z0-9]+)*$" },
+        "type": { "const": "company" },
+        "name": { "$ref": "#/$defs/display_name" },
+        "aliases": { "$ref": "#/$defs/aliases" },
+        "identity_claim_ids": { "$ref": "#/$defs/claim_ids" },
+        "legal_name": { "$ref": "#/$defs/attr_text", "description": "Registered legal name, as a source states it." },
+        "incorporated_in": { "$ref": "#/$defs/attr_jurisdiction", "description": "Jurisdiction of incorporation. Not the headquarters and not any facility location (S09 distinction)." },
+        "headquartered_in": { "$ref": "#/$defs/attr_jurisdiction", "description": "Jurisdiction of the headquarters, as a source states it. Not the incorporation and not any facility location." },
+        "roles": { "$ref": "#/$defs/attr_actor_role", "description": "Business-model roles the company holds, each claim-backed and optionally time-bounded. Several at once are normal (blurs B-2, B-3)." }
+      },
+      "additionalProperties": false
+    },
+
+    "facility": {
+      "description": "A physical site at a location where production or computing takes place. Who owns or operates it is a relationship (S04), never a field.",
+      "type": "object",
+      "required": ["id", "type", "name", "aliases", "identity_claim_ids", "facility_kinds", "located_in", "locality", "nameplate_it_capacity_mw"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^facility-[a-z0-9]+(-[a-z0-9]+)*$" },
+        "type": { "const": "facility" },
+        "name": { "$ref": "#/$defs/display_name" },
+        "aliases": { "$ref": "#/$defs/aliases" },
+        "identity_claim_ids": { "$ref": "#/$defs/claim_ids" },
+        "facility_kinds": {
+          "description": "What the site does. More than one kind is allowed, because one site can both fabricate wafers and package dies (blur B-3).",
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": { "$ref": "#/$defs/vocab_facility_kind" }
+        },
+        "located_in": { "$ref": "#/$defs/attr_jurisdiction", "description": "Jurisdiction where the site physically is." },
+        "locality": { "$ref": "#/$defs/attr_text", "description": "Sub-national location (city, region, park) exactly as a source gives it." },
+        "nameplate_it_capacity_mw": { "$ref": "#/$defs/attr_positive_number", "description": "Nameplate IT capacity in megawatts: the IT load the facility is designed to serve (EN-04, TQ-10). Never interconnection capacity. not_applicable for sites that are not data centres." }
+      },
+      "additionalProperties": false
+    },
+
+    "technology": {
+      "description": "A vendor-neutral way of making, integrating, designing or delivering something. Not a thing that is shipped, and not a vendor's named offering.",
+      "type": "object",
+      "required": ["id", "type", "name", "aliases", "identity_claim_ids", "technology_kind", "broader", "concept_refs", "definition"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^technology-[a-z0-9]+(-[a-z0-9]+)*$" },
+        "type": { "const": "technology" },
+        "name": { "$ref": "#/$defs/display_name" },
+        "aliases": { "$ref": "#/$defs/aliases" },
+        "identity_claim_ids": { "$ref": "#/$defs/claim_ids" },
+        "technology_kind": { "$ref": "#/$defs/vocab_technology_kind" },
+        "broader": {
+          "description": "Broader technologies this one is a kind of. Empty means top level. Several parents are allowed (blur B-1: TSV). Taxonomy only: 'is part of' and 'requires' are S04 relationships.",
+          "type": "array", "uniqueItems": true,
+          "items": { "$ref": "#/$defs/ref_technology" }
+        },
+        "concept_refs": { "$ref": "#/$defs/concept_refs" },
+        "definition": { "$ref": "#/$defs/attr_text", "description": "The Atlas working definition. Competing source definitions are preserved in the cited claims." }
+      },
+      "additionalProperties": false
+    },
+
+    "component": {
+      "description": "A vendor-neutral class of physical item: either built into AI compute hardware or used to make it. A class, never a vendor's named product.",
+      "type": "object",
+      "required": ["id", "type", "name", "aliases", "identity_claim_ids", "use_class", "broader", "concept_refs", "definition"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^component-[a-z0-9]+(-[a-z0-9]+)*$" },
+        "type": { "const": "component" },
+        "name": { "$ref": "#/$defs/display_name" },
+        "aliases": { "$ref": "#/$defs/aliases" },
+        "identity_claim_ids": { "$ref": "#/$defs/claim_ids" },
+        "use_class": { "$ref": "#/$defs/vocab_component_use_class" },
+        "broader": {
+          "description": "Broader component classes this one is a kind of (e.g. a data-centre GPU is a kind of AI accelerator). Empty means top level. Composition ('HBM base die is part of an HBM stack') is an S04 relationship, not this field.",
+          "type": "array", "uniqueItems": true,
+          "items": { "$ref": "#/$defs/ref_component" }
+        },
+        "concept_refs": { "$ref": "#/$defs/concept_refs" },
+        "definition": { "$ref": "#/$defs/attr_text", "description": "The Atlas working definition. Competing source definitions are preserved in the cited claims." }
+      },
+      "additionalProperties": false
+    },
+
+    "product": {
+      "description": "A specific commercial offering, named by the company that offers it: a chip, a memory product, a system, a software product or a service. An instance of a component or technology class.",
+      "type": "object",
+      "required": ["id", "type", "name", "aliases", "identity_claim_ids", "vendor", "product_kind", "instance_of", "vendor_process_name", "tdp_w", "rated_power_w", "rack_scale", "cooling_method"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^product-[a-z0-9]+(-[a-z0-9]+)*$" },
+        "type": { "const": "product" },
+        "name": { "$ref": "#/$defs/display_name" },
+        "aliases": { "$ref": "#/$defs/aliases" },
+        "identity_claim_ids": { "$ref": "#/$defs/claim_ids" },
+        "vendor": { "$ref": "#/$defs/ref_company", "description": "The company that offers the product under this name. Part of the product's identity. Who designs, fabricates or packages it are S04 relationships." },
+        "product_kind": { "$ref": "#/$defs/vocab_product_kind" },
+        "instance_of": {
+          "description": "The vendor-neutral classes this product belongs to.",
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": { "anyOf": [ { "$ref": "#/$defs/ref_component" }, { "$ref": "#/$defs/ref_technology" } ] }
+        },
+        "vendor_process_name": { "$ref": "#/$defs/attr_text", "description": "The fabrication process exactly as the vendor names it (FAB-05, TQ-07). Not comparable across vendors; no leading-edge threshold is derived from it." },
+        "tdp_w": { "$ref": "#/$defs/attr_positive_number", "description": "Thermal design power of a chip or component, in watts, as the vendor states it (EN-03)." },
+        "rated_power_w": { "$ref": "#/$defs/attr_positive_number", "description": "Rated power of a server or system, in watts, as the manufacturer specifies it (EN-03)." },
+        "rack_scale": { "$ref": "#/$defs/attr_boolean", "description": "Whether the vendor describes the system as a rack-scale design (DC-06)." },
+        "cooling_method": { "$ref": "#/$defs/attr_cooling_method", "description": "Cooling method the vendor states for the system (DC-06)." }
+      },
+      "additionalProperties": false
+    },
+
+    "jurisdiction": {
+      "description": "A territory with its own legal authority. The v1 kind is country only. The id slug is the ISO 3166-1 alpha-2 code in lower case, so the code has one home.",
+      "type": "object",
+      "required": ["id", "type", "name", "aliases", "identity_claim_ids", "jurisdiction_kind"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^jurisdiction-[a-z]{2}$" },
+        "type": { "const": "jurisdiction" },
+        "name": { "$ref": "#/$defs/display_name" },
+        "aliases": { "$ref": "#/$defs/aliases" },
+        "identity_claim_ids": { "$ref": "#/$defs/claim_ids" },
+        "jurisdiction_kind": { "$ref": "#/$defs/vocab_jurisdiction_kind" }
+      },
+      "additionalProperties": false
+    },
+
+    "display_name": {
+      "description": "The label the Atlas displays. An editorial choice, not a sourced fact; the sourced legal name is a separate field where it matters.",
+      "type": "string", "minLength": 1, "pattern": "^\\S(.*\\S)?$"
+    },
+    "aliases": {
+      "description": "Other names under which sources refer to this record, used to detect duplicates. May be empty.",
+      "type": "array", "uniqueItems": true,
+      "items": { "$ref": "#/$defs/display_name" }
+    },
+    "claim_ids": {
+      "description": "References to claim records (S06). The claim holds the source, locator, claim type and evidence status.",
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^claim-[a-z0-9]+(-[a-z0-9]+)*$" }
+    },
+    "concept_refs": {
+      "description": "S01 domain-map concept IDs this record realises. Traceability from records back to the research. The concept prefix also gives the chain layer, so no layer field is stored.",
+      "type": "array", "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^(X|ACC|HBM|PKG|FAB|EDA|SME|DC|EN)-[0-9]{2}$" }
+    },
+    "partial_date": {
+      "description": "ISO 8601 calendar date at the precision the source gives: YYYY, YYYY-MM or YYYY-MM-DD.",
+      "type": "string",
+      "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$"
+    },
+
+    "ref_company": { "type": "string", "pattern": "^company-[a-z0-9]+(-[a-z0-9]+)*$" },
+    "ref_technology": { "type": "string", "pattern": "^technology-[a-z0-9]+(-[a-z0-9]+)*$" },
+    "ref_component": { "type": "string", "pattern": "^component-[a-z0-9]+(-[a-z0-9]+)*$" },
+    "ref_jurisdiction": { "type": "string", "pattern": "^jurisdiction-[a-z]{2}$" },
+
+    "assertion": {
+      "description": "One sourced value of an attribute. valid_from and valid_to bound the period the cited claims support; leave them out when the source gives no period.",
+      "type": "object",
+      "required": ["value", "claim_ids"],
+      "properties": {
+        "value": true,
+        "claim_ids": { "$ref": "#/$defs/claim_ids" },
+        "valid_from": { "$ref": "#/$defs/partial_date" },
+        "valid_to": { "$ref": "#/$defs/partial_date" }
+      },
+      "additionalProperties": false
+    },
+    "unresolved": {
+      "description": "An explicit statement that no sourced value is recorded, and why (MA §5.7). A missing field or null is never accepted in its place.",
+      "type": "object",
+      "required": ["state"],
+      "properties": {
+        "state": { "$ref": "#/$defs/vocab_unresolved_state" },
+        "claim_ids": { "$ref": "#/$defs/claim_ids" }
+      },
+      "additionalProperties": false,
+      "if": { "properties": { "state": { "const": "not_publicly_determinable" } } },
+      "then": { "required": ["claim_ids"] }
+    },
+
+    "attr_text": {
+      "oneOf": [
+        { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/assertion", "properties": { "value": { "type": "string", "minLength": 1 } } } },
+        { "$ref": "#/$defs/unresolved" }
+      ]
+    },
+    "attr_jurisdiction": {
+      "oneOf": [
+        { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/assertion", "properties": { "value": { "$ref": "#/$defs/ref_jurisdiction" } } } },
+        { "$ref": "#/$defs/unresolved" }
+      ]
+    },
+    "attr_actor_role": {
+      "oneOf": [
+        { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/assertion", "properties": { "value": { "$ref": "#/$defs/vocab_actor_role" } } } },
+        { "$ref": "#/$defs/unresolved" }
+      ]
+    },
+    "attr_positive_number": {
+      "description": "Strictly positive: a zero is never used to mean unknown.",
+      "oneOf": [
+        { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/assertion", "properties": { "value": { "type": "number", "exclusiveMinimum": 0 } } } },
+        { "$ref": "#/$defs/unresolved" }
+      ]
+    },
+    "attr_boolean": {
+      "description": "false only when a source states the negative. Absence of a statement is not_researched, never false.",
+      "oneOf": [
+        { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/assertion", "properties": { "value": { "type": "boolean" } } } },
+        { "$ref": "#/$defs/unresolved" }
+      ]
+    },
+    "attr_cooling_method": {
+      "oneOf": [
+        { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/assertion", "properties": { "value": { "$ref": "#/$defs/vocab_cooling_method" } } } },
+        { "$ref": "#/$defs/unresolved" }
+      ]
+    },
+
+    "vocab_entity_type": {
+      "description": "Instantiable domain-entity types (D-022). Reserved types (institution, policy) and record kinds owned by other sessions (source, claim, event, relationship) are deliberately absent, so records of those kinds fail here.",
+      "oneOf": [
+        { "const": "company", "description": "entity-taxonomy.md §3.1" },
+        { "const": "facility", "description": "entity-taxonomy.md §3.2" },
+        { "const": "technology", "description": "entity-taxonomy.md §3.3" },
+        { "const": "component", "description": "entity-taxonomy.md §3.4" },
+        { "const": "product", "description": "entity-taxonomy.md §3.5" },
+        { "const": "jurisdiction", "description": "entity-taxonomy.md §3.6" }
+      ]
+    },
+    "vocab_actor_role": {
+      "description": "Business-model roles a company can hold (D-024). A role is claim-backed; it is never derived from missing relationships.",
+      "oneOf": [
+        { "const": "fabless_designer", "description": "Designs and sells chips, and buys wafer fabrication from a foundry operator and assembly, test and packaging from others.", "x-concepts": ["ACC-04"] },
+        { "const": "idm", "description": "Integrated device manufacturer: performs design, wafer fabrication, and assembly, test and packaging itself.", "x-concepts": ["FAB-04"] },
+        { "const": "foundry_operator", "description": "Operates fab capacity that makes chips designed by other firms (the foundry business model). An IDM that sells foundry services holds this role for those services (TQ-04).", "x-concepts": ["FAB-03"] },
+        { "const": "osat", "description": "Outsourced semiconductor assembly and test firm: performs assembly, test and packaging for third-party customers.", "x-concepts": ["PKG-07"] },
+        { "const": "memory_manufacturer", "description": "Fabricates DRAM and, in the v1 chain, stacks it into HBM supplied to the maker of the logic package.", "x-concepts": ["HBM-06"] },
+        { "const": "cloud_provider", "description": "Offers computing resources as a cloud service (the NIST cloud model) from facilities on its own premises. 'Hyperscaler' is not a separate role (TQ-08).", "x-concepts": ["DC-04"] },
+        { "const": "equipment_maker", "description": "Makes and sells semiconductor manufacturing equipment: capital tools used to fabricate, assemble, test or package chips. Replaces MA §6.1 EquipmentSupplier (D-023).", "x-concepts": [] },
+        { "const": "eda_vendor", "description": "Makes and sells electronic design automation tools.", "x-concepts": [] }
+      ]
+    },
+    "vocab_facility_kind": {
+      "oneOf": [
+        { "const": "wafer_fab", "description": "A semiconductor fabrication facility where chips are made on wafers, logic or memory. The facility, not the business model: see actor role foundry_operator (TQ-04).", "x-concepts": ["FAB-02"] },
+        { "const": "packaging_facility", "description": "A facility where dies are assembled, packaged and tested, including 2.5D and 3D advanced packaging.", "x-concepts": [] },
+        { "const": "data_centre", "description": "A facility used to house computer systems and associated components (LBNL). A cloud region or availability zone is not a facility (D-022).", "x-concepts": ["DC-01"] }
+      ]
+    },
+    "vocab_technology_kind": {
+      "oneOf": [
+        { "const": "process", "description": "A way of fabricating, patterning, stacking or packaging (e.g. TSV formation, 2.5D interposer integration, EUV lithography).", "x-concepts": ["HBM-04", "PKG-03", "PKG-04", "PKG-05", "PKG-06", "SME-03"] },
+        { "const": "design_approach", "description": "A way of architecting a chip or system that changes what must be manufactured (e.g. a multi-die accelerator).", "x-concepts": ["ACC-05"] },
+        { "const": "software", "description": "A class of design or engineering software, independent of any vendor's product (e.g. EDA).", "x-concepts": ["EDA-01"] },
+        { "const": "service_model", "description": "A way of delivering computing to users (e.g. cloud computing as NIST defines it).", "x-concepts": ["DC-02"] }
+      ]
+    },
+    "vocab_component_use_class": {
+      "oneOf": [
+        { "const": "constituent", "description": "Becomes physically part of AI compute hardware: a die, a memory stack, an accelerator, a server.", "x-concepts": ["ACC-01", "ACC-02", "ACC-03", "HBM-02", "HBM-03", "DC-05"] },
+        { "const": "production_equipment", "description": "A tool used to make constituents and not built into them (semiconductor manufacturing equipment).", "x-concepts": ["SME-01", "SME-06"] }
+      ]
+    },
+    "vocab_product_kind": {
+      "oneOf": [
+        { "const": "hardware", "description": "A physical product: a chip, a memory product, a server or system, a manufacturing tool." },
+        { "const": "software", "description": "A licensed software product, such as an EDA tool." },
+        { "const": "service", "description": "A service offering, such as a cloud compute service." }
+      ]
+    },
+    "vocab_jurisdiction_kind": {
+      "oneOf": [
+        { "const": "country", "description": "A state or territory with its own ISO 3166-1 alpha-2 code. The code is used as an identifier; it states no position on sovereignty. Supranational jurisdictions are reserved for the EU lens (D-008, D-022)." }
+      ]
+    },
+    "vocab_cooling_method": {
+      "oneOf": [
+        { "const": "liquid", "description": "The vendor states the system is liquid-cooled.", "x-concepts": ["DC-06"] },
+        { "const": "air", "description": "The vendor states the system is air-cooled.", "x-concepts": ["DC-06"] }
+      ]
+    },
+    "vocab_unresolved_state": {
+      "description": "MA §5.7 states for a value that is not recorded. 'verified' and 'disputed' describe evidence, so they live on claims (S06), not here.",
+      "oneOf": [
+        { "const": "not_researched", "description": "No source has been checked for this value yet. Says nothing about whether the value is public." },
+        { "const": "not_publicly_determinable", "description": "Research found the value is not publicly disclosed. The cited claims show why." },
+        { "const": "not_applicable", "description": "The attribute does not apply to this record, e.g. nameplate IT capacity for a wafer fab." }
+      ]
+    }
+  }
+}

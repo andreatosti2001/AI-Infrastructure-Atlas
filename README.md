@@ -3,8 +3,9 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 
 ## Status
 
-**M0 — Project Constitution.** The repository contains governance documents, the session
-system and a repository-integrity check. It contains **no data, schemas or UI yet**. See
+**M1 — Domain + Evidence Foundation.** The repository contains governance documents, the
+session system, a repository-integrity check, the S01 domain map and the accepted entity
+schema (S03). It contains **no data records or UI yet**. See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is
 planned.
 
@@ -15,18 +16,21 @@ This is an independent repository. It shares no code, data or runtime with
 
 ```text
 CLAUDE.md, MASTER-ARCHITECTURE.md, ...   constitutional documents (see docs/README.md)
-docs/            documentation map, baseline architecture record, decision log
+docs/            documentation map, baseline, decision log, entity taxonomy, research
+schemas/         JSON Schema for canonical entity records (accepted, S03)
 sessions/        session prompts, prompt registry and session reports
 tools/           validators
-tests/           unit tests for tools/
+tests/           unit tests for tools/ and schemas/, with fictional fixtures
 .github/         CI
 ```
 
 ## Validate
 
-Requires Python 3.11+. No third-party packages are needed.
+Requires Python 3.11+. The tools use the standard library only. The tests also need
+the pinned test dependencies (decision D-026).
 
 ```bash
+python -m pip install -r requirements-test.txt
 python -m unittest discover -s tests -v   # unit tests
 python tools/validate_repo.py             # Gate 0: repository integrity
 ```
