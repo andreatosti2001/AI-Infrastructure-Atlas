@@ -356,3 +356,6 @@ so that the Atlas can answer "What exactly supports this relationship?"
 
 - At the commit that adds this report, CI had not been observed. Local results only
   (D-018 L-08).
+- **Observed after push:** CI run 29 on `616f732` completed with `success`
+  (<https://github.com/andreatosti2001/AI-Infrastructure-Atlas/actions/runs/36750698133>).
+  This replaces "not observed" in Tests run for that commit.
