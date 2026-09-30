@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/andreatosti2001/AI-Infrastructure-Atlas/schemas/sources.schema.json",
+  "title": "Atlas source class",
+  "description": "The source_class controlled vocabulary (S05; D-034, proposed). This file is the one home of the class values and their one-line definitions. It is deliberately not a source-record schema: S06 extends it into the full source record, with the class as one field (Part B §16, H-2). Why each class exists, the test that separates it from its neighbours, what it is primary for and what it is never enough for, and which class each registered source has, are in docs/research/source-policy.md. A class describes the kind of document and publisher. It is not a rank, not a verification result and not a confidence value.",
+  "$ref": "#/$defs/vocab_source_class",
+  "$defs": {
+    "vocab_source_class": {
+      "description": "Eleven classes. Search results, snippets, aggregator copies and tertiary summaries are discovery aids, not sources, so they have no class and cannot be cited (source-policy.md §2).",
+      "type": "string",
+      "oneOf": [
+        { "const": "company_filing", "description": "A disclosure a company makes to a regulator or exchange under a named legal reporting obligation (e.g. an annual report on Form 10-K or 20-F), for whose misstatement the company is legally accountable." },
+        { "const": "company_technical_documentation", "description": "Documentation in which a company specifies its own product, service or process for the people who build on, integrate or operate it: datasheets, architecture papers, developer and service documentation, user guides." },
+        { "const": "company_press_release", "description": "A dated announcement by a company of its own event, result, decision, plan or partnership, issued as news." },
+        { "const": "company_marketing", "description": "Content a company publishes to present its products, technologies or expertise to customers and the public: product and technology pages, glossaries, newsroom explainers. Neither a specification, nor a dated announcement, nor a regulated disclosure." },
+        { "const": "standard_specification", "description": "A document issued by a standards body through its standards process under a standard designation (e.g. a JEDEC JESD or an ISO/IEC number), defining terms, interfaces or measurement methods." },
+        { "const": "government_publication", "description": "A publication or record issued by a government agency, programme office, regulator or intergovernmental organisation in its official capacity: definitions, programme documents, official registers, permits, statistics." },
+        { "const": "research_report", "description": "A report of research methods and results by a research organisation (national laboratory, university, independent research institute), including peer-reviewed papers, even when a government sponsors the work." },
+        { "const": "policy_research_brief", "description": "Analysis framed to inform policy decisions, published by a policy research centre or think tank (e.g. an issue brief addressed to policymakers), whether or not the centre sits in a university." },
+        { "const": "industry_association", "description": "A publication of a membership body that represents an industry's companies, including reports it publishes with commissioned co-authors." },
+        { "const": "market_research_consultancy", "description": "Analysis, estimates or advice sold by a commercial market-research or consulting firm, including trackers, forecasts and analysts' communications." },
+        { "const": "news_media", "description": "Journalism published by a news organisation or trade press for a general or trade readership." }
+      ]
+    }
+  }
+}

@@ -642,3 +642,192 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   - correcting roles or edges automatically;
   - encoding the role checks in the relationship schema: they need two records, and
     JSON Schema sees one.
+
+## D-034 — Source classes: document kinds, one per source, in a vocabulary schema
+
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - `SESSION-ROADMAP.md` S05: "Create a source hierarchy tailored to industrial technology
+    research".
+  - The register's 23 sources and its blocked hosts include filings (blocked), datasheets,
+    press releases, product pages, newsroom explainers, government documents, national
+    laboratory reports, policy briefs and an association report.
+  - The human chose option (b) for machine-readability before S05 started, with (a) as the
+    fallback (S05 prompt Part B §16, H-2: "i follow your recommendations").
+- **Decision:**
+  - The classes, defined once in `schemas/sources.schema.json`: `company_filing`,
+    `company_technical_documentation`, `company_press_release`, `company_marketing`,
+    `standard_specification`, `government_publication`, `research_report`,
+    `policy_research_brief`, `industry_association`, `market_research_consultancy`,
+    `news_media`.
+  - `source-policy.md` §2 and §3 hold what each class is primary for, what it is never
+    enough for, and a neighbour test for each easily confused pair.
+  - Company sources are split by document kind, because each kind answers for different
+    things.
+  - One class per source. A joint or commissioned report takes its publisher's class
+    (SRC-005: `industry_association`).
+  - Search results, snippets, aggregator copies and tertiary summaries are not sources and
+    have no class.
+  - The classes settled (CSET by document purpose; SIA/BCG by publishing party), so H-2's
+    option (b) applies, not the fallback.
+- **Rejected:**
+  - one `company` class;
+  - "primary" and "secondary" as classes (D-035);
+  - a two-class value for joint reports;
+  - a `tertiary_summary` class;
+  - the full source-record schema now (S06's, H-2).
+
+## D-035 — Standing, attribution chains and independence
+
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:** D-015 made a company source primary "for its own products and processes".
+  S04's worked examples showed a company can be first-hand about an edge with another firm
+  (NVIDIA naming TSMC's process for NVIDIA's own chip, SRC-006), and a laboratory can be
+  second-hand (LBNL reporting IDC, DEP-11).
+- **Decision:**
+  - "Primary" is a relation between a source and one claim, called **standing**:
+    `party`, `originator` or `reporter` (`source-policy.md` §4). It is a claim field for S06,
+    not a class.
+  - First-hand means `party` (instance-level claims) or `originator` (class-level claims and
+    definitions). `reporter` supports at most `ATTRIBUTION`.
+  - Second-hand claims record the chain (reporter, originator, locator). The originator is
+    never cited as if retrieved.
+  - Sources are independent only when their publishers differ and neither commissioned the
+    other. One publisher's documents are one voice.
+  - To test `party`, S06's source record must let a company publisher be a reference to a
+    company record. `institution` stays reserved (D-022).
+- **Consequence:** S01's corroboration of DEP-02 and DEP-03 rests on one publisher (SK
+  hynix). The domain map is not edited. S08 and S10 must find an independent source before
+  those class-level edges are recorded as `FACT`.
+- **Rejected:**
+  - standing as a source property (one source can be party to one claim and reporter for
+    the next);
+  - counting pages rather than publishers for corroboration.
+
+## D-036 — Preference matrix; no global ranking; MA §10 and D-015 reconciled
+
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - The roadmap S05 gate: "Every material claim type has a preferred source class."
+  - MA §10 and D-015 give two different global orders (`source-policy.md` §9).
+  - D-015: provisional tiers, "superseded by S05's source policy when written".
+- **Decision:**
+  - Material claim types are read from the schemas: every relation type, every edge
+    qualifier with its own claims, the identity of every entity type, and every attribute
+    field. Each has one row in `source-policy.md` §7, which assigns every class to
+    preferred, acceptable or never sufficient alone, and states the standing and freshness
+    it needs. Rows point to `relationship-taxonomy.md` §5 and the entity schema; they never
+    copy them. A test fails when a schema gains a type or field without a row.
+  - No global ranking survives. The matrix is the "project-specific source policy" MA §10
+    asks for. MA's order stays as its general guidance, and MA is not edited.
+  - D-015's tier order is superseded by this decision once accepted. D-015's meaning of
+    `verified` in research artifacts stays in force until S06's claim model confirms or
+    replaces it.
+  - Event types get rows when S09 defines them. Until then ER-8 governs plans.
+- **Rejected:**
+  - keeping MA §10's or D-015's order as a tie-break;
+  - a hand-written list of claim types (it would drift from the schemas);
+  - numeric scores per class (D-028; NG-11).
+
+## D-037 — Evidence rules ER-1 to ER-10, including the search rule for `not_publicly_determinable`
+
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:** S04 left three evidence rules without a policy home
+  (`relationship-taxonomy.md` §12, §9): the process name as fabricator, the vendor as
+  designer, and a single page's silence.
+- **Decision:** `source-policy.md` §6 is the one home of ER-1 to ER-10. In particular:
+  - ER-1: a foundry named only inside a process name supports fabrication only as
+    `DERIVATION`;
+  - ER-2: a vendor is not a designer;
+  - ER-3: `not_publicly_determinable` needs every **preferred** class of the row to have
+    been searched for the specific question. The claim records the question, the classes
+    and sources searched, the date and the result. An inaccessible preferred class leaves
+    the value `not_researched`;
+  - ER-8: plans and forward-looking statements, in any class, support an event and an
+    intention, never a state;
+  - ER-9: company-level statements never support product-level edges or suppliers;
+  - ER-10: a preferred class is never a verification.
+- **Rejected:**
+  - letting a filing's supplier list stand in for a product's supplier (S05-R1 shows why);
+  - allowing `not_publicly_determinable` after searching any class other than the
+    preferred ones.
+
+## D-038 — Conflict policy: kinds of conflict, never settled by rank
+
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:** Domain map §5 preserves CON-01 to CON-05. CLAUDE.md §9 makes "publication of
+  unresolved material disputes" human-only.
+- **Decision:**
+  - Kinds: `definitional`, `wording`, `factual_contradiction`, `temporal`, `scope`
+    (`source-policy.md` §10.1). Each has a recording rule.
+  - No conflict is settled by class or rank. Evidence is never deleted.
+  - A factual contradiction closes only on new evidence that explains it, and a material
+    one also needs the human. A working definition is a choice, not a resolution.
+  - Self-interest is recorded through class and standing. It is not a kind of conflict and
+    never decides one.
+  - CON-01 to CON-05 are each classified in §10.2, and all stay preserved. The domain map is not edited.
+- **Rejected:**
+  - self-interest as a kind;
+  - resolving a conflict by the higher-preferred class (CON-02 shows the rank orders would
+    have favoured the less specific source).
+
+## D-039 — Retrieval and access; manual retrieval by the human (supersedes D-014's retrieval clause)
+
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - D-014 asked "whether manual retrieval by the human is acceptable".
+  - The human answered before S05 started (Part B §16, H-1: "i follow your
+    recommendations"): allowed, with conditions.
+- **Decision:**
+  - `source-policy.md` §11, RA-1 to RA-7. Raw retrieval and no circumvention continue from
+    D-014.
+  - RA-4 records H-1: legitimate access only; targeted; each download records URL, the
+    method "manual, by the human", the human's download date and a content hash, and is
+    marked not reproducible; full texts stay out of the repository; verification is
+    unchanged.
+  - Following a site's published rules for automated clients is not circumvention, but only
+    after the rules have been read. For SEC EDGAR they could not be read: the refusal page
+    cites a policy that is behind the same refusal (S05-A1). Nothing is assumed, and no
+    client identity was sent.
+  - Declaring an identity to a site is the human's decision (class D).
+  - Whether "external API dependency" becomes a non-goal is recorded, not decided.
+- **Consequence:** D-014's retrieval clause is superseded once this is accepted; its
+  status line changes at the human's review.
+- **Rejected:**
+  - sending a declared client identity to EDGAR from memory of its policy;
+  - treating a secondary summary of a paywalled standard as the standard.
+
+## D-040 — Freshness: separate dates, byte changes trigger re-checks, a proposed 12-month horizon
+
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:** Undated live pages (register note 3); CSET's 2019 data; SK hynix's 2024 plan.
+  S05 re-retrieved every registered source: some returned changed bytes, yet every anchor
+  re-read was still at its locator (counts as measured on 2026-09-30 are in `source-policy.md` §12).
+- **Decision:**
+  - As-of date, publication date, access date with content hash, and verification date are
+    kept apart. The as-of and verification dates belong to claims (S06).
+  - A changed hash triggers an anchor re-check. Staleness is a missing anchor, a newer
+    edition in the same series, or a plan whose date has passed.
+  - `time_sensitive` matrix rows: evidence more than 12 months old at use must be re-checked.
+    The 12 months is a proposal for the human (`INTERPRETATION`). `stable` rows have no age
+    limit.
+  - `validate-freshness` implements this later (S06+).
+- **Rejected:**
+  - treating any byte change as staleness (it would have flagged sources whose anchors had not
+    moved; `source-policy.md` §12);
+  - one age limit for every claim type.
+
+## D-041 — Where each source's class lives; the CSET decision
+
+- **Session:** S05 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:** The register holds S01's provisional `source_tier`. S06 migrates the register
+  into source records and then freezes it. S05 may not edit the register without a
+  human-approved decision (Part B §08).
+- **Decision:**
+  - `source-policy.md` §8.1 is the one home of each registered source's class until S06.
+    The source record's class field then becomes the home, and §8.1 becomes history.
+  - The register is not annotated. Its tier column stays S01's record.
+  - Sources retrieved in S05 are listed in §8.3 (S05-R1) until S06 migrates them.
+  - CSET (SRC-002, SRC-003) is `policy_research_brief`: in S01's terms, from T4 to T5
+    (register note 1).
+- **Rejected:** annotating the register (a second home, and outside S05's write boundary).
