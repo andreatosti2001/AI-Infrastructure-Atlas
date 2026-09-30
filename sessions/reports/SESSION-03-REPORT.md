@@ -321,3 +321,27 @@ The main ones are listed here. Each decision record lists its own.
   3. `schemas/entities.schema.json`;
   4. `docs/research/domain-map.md` §3 (dependencies and proposed verbs);
   5. `docs/architecture/decisions.md` (D-022 to D-026).
+
+## Addendum — human review outcome (2026-09-30)
+
+Appended after the human's review of the S03 output. The sections above are unchanged.
+
+- **CI:** run 15 on `4113e48` completed with `success`
+  (<https://github.com/andreatosti2001/AI-Infrastructure-Atlas/actions/runs/36739053651>).
+  This replaces "not yet observed" in Tests run.
+- **Decisions accepted:** D-022, D-023, D-024 and D-025 ("Approve all four"). With D-026,
+  every S03 decision is now accepted. The registry gate, "stable entity schema", is met.
+- **Event schema owner:** S09 ("S09 (Recommended)"), noted on D-022's status line.
+- **First product records:** S08 ("S08 (Recommended)"), recorded as **D-027**. The S08
+  prompt must include them.
+- **Baseline edits** (Deviation 3): kept ("Keep (Recommended)"). The baseline's dated
+  state rows are updated when they become false; its approved sections are not.
+- **Documents updated to match:** the taxonomy and schema status lines, taxonomy §2,
+  §3.5, §6 and §9, `docs/README.md`, the baseline state rows and `README.md`.
+- **Merge:** the human asked for this branch to be merged into `main`.
+- **Still open, not covered by this review:**
+  - D-014 and D-015;
+  - whether "external API dependency" becomes a non-goal;
+  - S01's weekly gate.
+- **Updated handoff to S04:** S04 may start. Its endpoint rules can rely on the accepted
+  types, and its prompt should list the constraints in taxonomy §9.

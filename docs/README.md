@@ -38,10 +38,11 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 
 | Artifact | Status | Owner |
 |---|---|---|
-| [`architecture/entity-taxonomy.md`](./architecture/entity-taxonomy.md) (why each type exists; v1 concept and MA mappings) with [`../schemas/entities.schema.json`](../schemas/entities.schema.json) (field shapes and vocabulary values) | proposed (S03; D-022 to D-025) | S03 |
+| [`architecture/entity-taxonomy.md`](./architecture/entity-taxonomy.md) (why each type exists; v1 concept and MA mappings) with [`../schemas/entities.schema.json`](../schemas/entities.schema.json) (field shapes and vocabulary values) | accepted (S03 review, 2026-09-30; D-022 to D-025) | S03 |
 | Relationship taxonomy | planned | S04 |
 | Source and claim schemas | planned | S05/S06 |
-| Event schema | planned | S09 (proposed, D-022) |
+| First product records | planned | S08 (D-027) |
+| Event schema | planned | S09 (D-022) |
 
 ## Research outputs
 

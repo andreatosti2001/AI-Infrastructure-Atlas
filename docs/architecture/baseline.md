@@ -32,7 +32,7 @@ repository are logged in [`decisions.md`](./decisions.md).
 | Repository integrity validator + CI | yes | S00 |
 | Domain map / source register | yes, draft (S01) | S01 |
 | M0 milestone audit + EU-DP process benchmark | yes, draft (S02) | S02 |
-| Entity schema | yes, proposed (S03): `schemas/entities.schema.json`, `entity-taxonomy.md` | S03 |
+| Entity schema | yes, accepted (S03): `schemas/entities.schema.json`, `entity-taxonomy.md` | S03 |
 | Relationship schema | no | S04 |
 | Source/evidence policy | no | S05 |
 | Claim/provenance implementation | no | S06 |
@@ -77,7 +77,7 @@ plus deterministic validators, with no agent runtime (D-018 L-01; NG-08).
 
 The conceptual contract (Entity, Claim, Source, Relationship, Event; status and null
 semantics) is MA §5; the Atlas-specific entity and relationship lists are MA §6.1–6.2;
-claim types and evidence status are MA §10. The entity schema was proposed in S03
+claim types and evidence status are MA §10. The entity schema was accepted in S03
 (`entity-taxonomy.md`, D-022 to D-025); the relationship schema is S04's. Those sessions must reconcile MA §6.2 with the relationship list in
 `SESSION-ROADMAP.md` S04, which differs (e.g. `designs`, `packages`, `fabricates`,
 `constrained_by`, `affected_by` appear only in the roadmap).

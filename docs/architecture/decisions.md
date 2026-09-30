@@ -292,7 +292,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-022 — Entity taxonomy: six instantiable types, two reserved, four record kinds owned elsewhere
 
-- **Session:** S03 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S03 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S03); Event schema owner S09 confirmed
 - **Context:**
   - `SESSION-ROADMAP.md` S03 lists twelve candidates. The human's S03 focus names ten.
   - MA §5.1 and §6.1 list more, some of them role or facility labels.
@@ -325,7 +325,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-023 — Dispositions of the MA entity-type lists
 
-- **Session:** S03 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S03 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S03)
 - **Context:**
   - MA §6.1 lists role-named types (`CloudProvider`, `EquipmentSupplier`) and
     facility-named types (`Fab`, `PackagingFacility`, `DataCentre`).
@@ -355,7 +355,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-024 — Actor roles are claim-backed, time-bounded values on Company; FAB-03 reclassified
 
-- **Session:** S03 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S03 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S03)
 - **Decision:**
   - What a firm does is recorded in the company's `roles` attribute. Each value cites
     claims and may carry `valid_from`/`valid_to`. A company may hold several roles.
@@ -385,7 +385,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-025 — Attribute value contract for entity records
 
-- **Session:** S03 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S03 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S03)
 - **Decision** (explained in taxonomy §7; the schema is the home of the shapes):
   - **Two groups of field.** Identity fields say *what the record is*. They include
     `identity_claim_ids`, which needs at least one claim. Attributes say *what is true of
@@ -435,3 +435,16 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
     would itself need testing);
   - leaving the schema untested until S06/S07;
   - an unpinned requirement (the result could change between runs).
+
+## D-027 — S08 creates the first product records
+
+- **Session:** S03 (human review) · **Date:** 2026-09-30 · **Status:** accepted (human decision)
+- **Context:** Product is an instantiable type (D-022), but no roadmap session was
+  assigned to create product records (`entity-taxonomy.md` §9).
+- **Decision:** S08 (technology + component dataset) creates the first product records.
+  S08 already creates the component and technology classes, so each product's
+  `instance_of` can point to a class made in the same session. S10 then connects
+  products with supply-chain edges.
+- **Consequence:** the future S08 prompt must include product records in its scope.
+- **Rejected:** creating products only in S10, which would build classes and their
+  instances in different sessions and leave S10 to do both entity and edge work.

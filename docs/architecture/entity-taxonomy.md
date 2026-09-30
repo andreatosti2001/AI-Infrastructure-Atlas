@@ -1,6 +1,6 @@
 # Entity taxonomy — canonical entity types for the first vertical
 
-**Status:** PROPOSED. Decisions D-022 to D-025 await human review; D-026 is accepted.
+**Status:** ACCEPTED (human review of S03, 2026-09-30): D-022 to D-027.
 **Session:** S03 · **Date:** 2026-09-30
 **Inputs:**
 - `milestone-audits/M0-audit.md` Part 4 (D-020);
@@ -57,7 +57,7 @@ The human's ten are in **bold**. The roadmap adds Institution and Relationship.
 | **Policy** | world: rule | reserved (defined, no records) | S17 | Is it a legal or governmental instrument? |
 | **Source** | evidence | boundary defined here | S05/S06 | Is it a document or dataset that can be retrieved? |
 | **Claim** | evidence | boundary defined here | S06 | Is it one proposition, with a claim type and an evidence status, tied to a source locator? |
-| **Event** | change over time | boundary defined here | S09 (proposed, D-022) | Is it a dated occurrence that changed something? |
+| **Event** | change over time | boundary defined here | S09 (D-022) | Is it a dated occurrence that changed something? |
 | Relationship | connection | boundary defined here | S04 | Is it a typed, directed statement linking two entities? |
 
 ## 3. Instantiable types
@@ -196,7 +196,7 @@ Each type below gives:
 - **Fields:** `vendor`, `product_kind`, `instance_of`, `vendor_process_name`, `tdp_w`,
   `rated_power_w`, `rack_scale`, `cooling_method`. An attribute that does not apply to
   the product (e.g. `tdp_w` on a cloud service) is `not_applicable`.
-- **Open:** no roadmap session is assigned to create product records (§9).
+- **Created by:** S08, together with the component and technology classes (D-027).
 
 ### 3.6 Jurisdiction ("Country")
 
@@ -413,7 +413,7 @@ disposition. The Target column uses the §5 syntax plus:
 | Metric | 6.1 | a derivation, not a canonical entity (S14–S15) | `none` | NG-11 |
 | Source | 6.1 | record kind owned by S05/S06 | `kind:source` | D-022 |
 | Claim | 6.1 | record kind owned by S06 | `kind:claim` | D-022 |
-| Event | 6.1 | record kind, schema proposed for S09 | `kind:event` | D-022 |
+| Event | 6.1 | record kind, schema owned by S09 | `kind:event` | D-022 |
 | Relationship | 6.1 | record kind owned by S04 | `kind:relationship` | D-022 |
 | company | 5.1 | adopted | `type:company` | D-022 |
 | country/jurisdiction | 5.1 | adopted, kind `country` only in v1 | `type:jurisdiction` | D-022 |
@@ -427,7 +427,7 @@ disposition. The Target column uses the §5 syntax plus:
 | infrastructure asset | 5.1 | v1 kinds covered by facility; energy and network assets excluded | `type:facility` | D-023 |
 | policy instrument | 5.1 | reserved for S17 | `reserved:policy` | D-023 |
 | standard | 5.1 | not an entity in v1: a cited standard is a source; a standard as an instrument is S17's | `kind:source` | D-023 |
-| event | 5.1 | record kind, schema proposed for S09 | `kind:event` | D-022 |
+| event | 5.1 | record kind, schema owned by S09 | `kind:event` | D-022 |
 | metric | 5.1 | a derivation, not a canonical entity (S14–S15) | `none` | NG-11 |
 | dependency | 5.1 | not an entity: a structural dependency is a relationship (S04); a criticality assessment is a derivation (S15) | `kind:relationship` | D-023 |
 | relationship | 5.1 | record kind owned by S04 | `kind:relationship` | D-022 |
@@ -497,8 +497,8 @@ the chain suggested them.
 | Relationship vocabulary, including ownership, operation, composition (`part_of`) and design/fabrication/packaging | S04 | Constraints to respect: endpoints typed by entity type and `use_class`; no taxonomic `is_a` relationship, because taxonomy is `broader`; how to hold vendor-named processes on edges (e.g. CoWoS) |
 | Source schema; linking a publisher to a company or institution record | S05/S06 | §3.7 |
 | Claim schema, including claim type and evidence status as two fields (L-06) | S06 | The ID format is fixed here (§7) |
-| Event schema and event-type vocabulary | S09 (proposed, D-022) | S09's gate is the temporal facility model |
+| Event schema and event-type vocabulary | S09 (D-022) | S09's gate is the temporal facility model |
 | `validate-data`: IDs unique; references resolve; `broader` acyclic; `valid_from` ≤ `valid_to`; jurisdiction IDs on the ISO list; warnings when roles and relationships conflict | S06/S07, with the first records | L-05, L-09: the checks arrive with the data they check |
-| Which session creates product records | **unassigned** (S08 or S10) | Needs a human decision before S08 |
+| First product records | S08 (D-027) | Classes and their products in the same session; S10 adds the edges |
 | Institution and Policy schemas | S05/S06 (institution, if publishers link to it); S17 (policy) | §3.7 |
 | Registering the ISO 3166-1 standard as a source | S07, with the first jurisdiction records | §3.6 |
