@@ -165,11 +165,11 @@ def material_claim_types() -> set[str]:
 
 
 def mapped_class() -> dict[str, str]:
-    result = {}
-    for row in mapping_rows():
-        (value,) = backticked(row[1])
-        result[row[0]] = value
-    return result
+    """Register label -> class, from the live home: the source records (S06; D-041, D-050).
+
+    §8.1 is history since the migration; VD-9 (test_data_integrity.py) checks it once."""
+    records = json.loads(read("data/sources.json"))
+    return {r["migrated_from"]: r["source_class"] for r in records if "migrated_from" in r}
 
 
 # --- tests ----------------------------------------------------------------------------------

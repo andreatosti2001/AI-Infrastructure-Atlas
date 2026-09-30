@@ -1,8 +1,9 @@
-"""Behaviour tests for schemas/sources.schema.json (S05; D-034, H-2).
+"""Behaviour tests for the source_class vocabulary in schemas/sources.schema.json (S05; D-034).
 
-The schema is the source_class vocabulary, not a source record (S06 builds the record).
-Every class must be accepted, and each invalid value must be rejected. The error must
-come from the vocabulary itself, so a value cannot fail for an unrelated reason.
+Since S06 the schema's root is the source record (D-050), tested in
+test_source_record_schema.py; the vocabulary is unchanged in $defs and is tested here on
+its own. Every class must be accepted, and each invalid value must be rejected. The error
+must come from the vocabulary itself, so a value cannot fail for an unrelated reason.
 
 Requires the pinned test dependencies: pip install -r requirements-test.txt
 """
@@ -20,7 +21,7 @@ CLASSES = [item["const"] for item in SCHEMA["$defs"]["vocab_source_class"]["oneO
 
 
 class SourceClassSchemaTests(unittest.TestCase):
-    validator = Draft202012Validator(SCHEMA)
+    validator = Draft202012Validator(SCHEMA["$defs"]["vocab_source_class"])
 
     def errors(self, value) -> list:
         return list(self.validator.iter_errors(value))

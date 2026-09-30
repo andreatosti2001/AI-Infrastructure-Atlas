@@ -857,3 +857,208 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 - **Rejected:** leaving the question open (the policy's retrieval rules already assume no API);
   allowing regulator APIs now (no session needs one, and it would add an external runtime
   dependency).
+
+## D-044 — The claim record: one proposition, linked from records, row derived
+
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - Entity and relationship records already cite `claim_ids` (D-025, D-028), and the
+    `claim-<slug>` format waits for the claim record (`entity-taxonomy.md` §7).
+  - The S06 gate asks "What exactly supports this relationship?".
+- **Decision** (`claim-model.md` §1; shapes in `schemas/claims.schema.json`):
+  - A claim is one proposition, stated once. Several sources supporting it are citations on
+    that one claim. Corroboration still needs independent publishers (ER-7).
+  - The link runs one way: records list claims, and a derived claim lists its inputs. A
+    claim never lists the records it supports. The inverse is computed (the trace).
+  - The matrix row a claim is judged against is derived from the citing record and field,
+    never stored on the claim.
+  - The `claim-<slug>` format is kept. No accepted schema changes.
+- **Rejected:** a `supports` list on the claim (a second home for the link); a `matrix_row`
+  field (one claim can serve two rows); one claim per source sentence (it would split one
+  proposition across records).
+
+## D-045 — Claim types: the CLAUDE.md labels; MA §10's list reconciled
+
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:** CLAUDE.md §6 and the roadmap S06 require their labels. MA §10 lists its own
+  types "at minimum".
+- **Decision** (`claim-model.md` §2, machine-checked against MA):
+  - The values are `FACT`, `ATTRIBUTION`, `DERIVATION`, `INTERPRETATION`, `IMPLICATION`,
+    written as CLAUDE.md writes them.
+  - MA's fact, derived, attributed and interpretation map directly.
+  - A critique is an `ATTRIBUTION` when a named source makes it, and an `INTERPRETATION`
+    when the Atlas does.
+  - A forecast is an `ATTRIBUTION` (a third party's, or a company's plan under ER-8). The
+    Atlas's own forecasts are out of scope (NG-11).
+  - Law / normative text is reserved for the policy layer (S17).
+  - MA is not edited.
+- **Rejected:** MA's list as values (critique and forecast are the same labels with a
+  speaker rule);
+  lower-case values (a second spelling of labels used across the documents).
+
+## D-046 — Evidence status vocabulary and the type × status rules
+
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:** L-06 requires claim type and evidence status as separate fields. S05 defined
+  no status (`source-policy.md` §5, §16). MA §10 lists six statuses.
+- **Decision** (`claim-model.md` §3–§4):
+  - The values are `unverified`, `supported`, `partial`, `context_only`, `disputed`.
+    - MA's `direct` is renamed `supported`, because "direct" reads like standing.
+    - MA's `derived` is dropped: it duplicates the `DERIVATION` type.
+  - Only `supported` and `disputed` claims may be canonical.
+  - A claim with inputs is no stronger than its inputs (the §4 status table).
+  - `disputed` applies to factual contradictions only, on `FACT` and `DERIVATION`. It names
+    the competing claims, mutually, and never replaces them.
+  - The type table (§4) fixes, per type: sources or inputs, standing, reasoning, `as_of`,
+    and the allowed statuses. The schema enforces it, and a test checks the two agree by
+    probing every type and status.
+- **Rejected:** a numeric strength or confidence (NG-11); `disputed` for definitional or
+  wording conflicts (both attributions are true); a default status.
+
+## D-047 — Citations: locator, verbatim anchor, standing, chain and bytes read
+
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:** `source-policy.md` §4 and ER-6 leave standing and the attribution chain to
+  S06. MA §5.2 has one `locator` for several `source_ids`, so it cannot say which source is
+  at which place.
+- **Decision** (`claim-model.md` §5):
+  - Each citation has one source, one locator, a verbatim anchor and a standing.
+  - A `reporter` citation also names its originator: the originator's class, and where the
+    reporter names it.
+  - The anchor is required. A figure without quotable text cannot be cited in v1.
+  - The claim is judged against the whole sentence at the locator, not only the anchor.
+  - A verified citation records the time and hash of the bytes the Verifier read.
+- **Rejected:** MA §5.2's `source_ids` plus one `locator`; standing on the source (D-035);
+  optional anchors.
+
+## D-048 — What `verified` means; staging, canonical and the human's review (H-1, H-2)
+
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - D-015's second part defines `verified` "until S06's claim model confirms or replaces
+    it" (D-036).
+  - CLAUDE.md §9 makes real claims class C: the human reviews them before they are
+    canonical.
+  - Before S06 started, the human chose a staging seed of 5 to 10 real claims (H-1:
+    "Seed 5–10 in staging (Consigliato)") and one JSON array file per record kind (H-2:
+    "Un file JSON per tipo (Consigliato)").
+- **Decision** (`claim-model.md` §6–§7):
+  - **`verified` is confirmed and extended.**
+    - For a claim that cites sources: the Verifier re-read each source at its locator,
+      found the anchor, and judged whether the statement exceeds the sentence.
+    - For a claim with inputs: the inputs are allowed and the stated step follows.
+    - It is recorded by a status other than `unverified`, a per-record `verified_on`, and
+      per-citation bytes read.
+    - It is not human review and not canonical status.
+  - **Staging and canonical.** Unreviewed claims live in `data/staging/claims.json`.
+    Canonical claims live in `data/claims.json`, created with the first accepted claim.
+    Every claim carries `review`: `not_reviewed`, or the human's verdict with date and
+    report. VD-8 ties the file to the verdict.
+  - **Seed claims.** Ten real claims (as measured at this commit) cover all five types.
+    They are verified, all `not_reviewed`, and none is canonical.
+- **Consequence:** at the human's review, D-015's status line records that its second part
+  is superseded by this decision.
+- **Rejected:** a `verified` field (a third home beside the status and date); one claims
+  file with a staging flag (a consumer could read an unreviewed claim as canonical); an
+  agent-written verdict.
+
+## D-049 — The `not_publicly_determinable` search record
+
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:** ER-3 requires the search to be recorded. D-031 and D-025 require a
+  `not_publicly_determinable` state to cite claims.
+- **Decision** (`claim-model.md` §8):
+  - The search is a `search` block on a `DERIVATION` claim: question, date, each class with
+    the sources consulted or the access gap, and a conclusion (`not_publicly_determinable`
+    or `not_researched`).
+  - A `not_publicly_determinable` conclusion cannot include an inaccessible class.
+  - Whether every preferred class of the row was searched is checked on the citing record
+    (S10).
+  - **Applied by hand to HBM-06:**
+    - Samsung's technical documentation was refused.
+    - No memory maker's documentation or filing was read.
+    - NVIDIA's filing speaks at company level only.
+    - So the H100's HBM supplier is `not_researched`, not `not_publicly_determinable`.
+    - The domain map is not edited.
+- **Rejected:** a separate search-record kind or claim type (machinery for one block);
+  leaving the shape to S10 (the accepted state would have nothing valid to cite).
+
+## D-050 — The source record; the register migrated and frozen
+
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - `source-policy.md` §16 lists the source fields.
+  - D-041 moves each source's class to the source record at migration.
+  - The register says it is frozen after S06.
+- **Decision** (`claim-model.md` §9; shape in `schemas/sources.schema.json`, class vocabulary
+  unchanged):
+  - **IDs** are `src-NNN`, keeping S01's numbers: `SRC-006` is `src-006`. S05-R1 is
+    `src-024`. `migrated_from` keeps each old label resolvable.
+  - **Fields:** class, publisher text, `publisher_entity`, authors, URL, stated dates by
+    kind (or `undated`), retrieval (method, access time, hash), and `filing_copy` for
+    filings.
+  - **`publisher_entity`** is `not_researched` for company publishers until S07, and
+    `not_applicable` otherwise.
+  - **The migration is a deterministic function in the tests.** VD-9 re-runs it against
+    the register and `source-policy.md` §8.1 and §8.3.
+    - One override is applied: SRC-005's publisher, per §2 and §8.1.
+    - `source_type`, `source_tier` and `locators_used` are not migrated.
+  - **After the migration:**
+    - the register's status line says it is frozen;
+    - §8.1 is marked as history;
+    - the tests read classes from `data/sources.json`.
+- **Rejected:** MA's `source-001` (breaks the link to older documents); keeping `SRC-001`
+  (breaks the lower-case ID convention); company IDs chosen now (S07's); migrating the
+  "Retrieved but not cited" and "Not retrievable" rows (not sources).
+
+## D-051 — validate-data as CI tests; no validate-freshness code yet (H-4)
+
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - MA §15 asks for a documented `validate-data`.
+  - D-026 keeps `tools/` standard library.
+  - Before S06 started, the human chose tests in CI (H-4: "Test in CI (Consigliato)").
+- **Decision** (`claim-model.md` §10–§11):
+  - `validate-data` is `tests/test_data_schema.py` (VD-2, pinned `jsonschema`) and
+    `tests/test_data_integrity.py` (VD-1, VD-3 to VD-13, standard library). CI runs them
+    in the existing unit-test step.
+  - V-1 to V-9 wait for entity and relationship records. V-10 is defined and waits for the
+    first record.
+  - No `validate-freshness` code: its rules need matrix rows from records. The dates it
+    needs are required fields now.
+- **Rejected:** `tools/validate_data.py` importing `jsonschema` (amends D-026); a
+  standard-library command without schema checks; running V-rules on fixtures only.
+
+## D-052 — Agent roles and contracts (H-3; D-010)
+
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - D-010 assigns `docs/agents/roles.md` and `docs/agents/contracts.md` to S06, in the MA
+    §12 format.
+  - Before S06 started, the human chose full contracts for the roles active through S10
+    (H-3: "Pipeline fino a S10 (Consigliato)").
+- **Decision:**
+  - `roles.md` lists every CLAUDE.md §8 role, and names the session that first
+    activates each inactive one.
+  - `contracts.md` gives MA §12 contracts to Source Scout, Extractor, Verifier, Knowledge
+    Architect and Data Auditor. Each validation gate is a test CI runs (L-02).
+  - No role may write `data/claims.json` or a review verdict.
+  - Contracts are documents; there is no runtime (NG-08, L-01).
+- **Rejected:** full contracts for every role now (the inactive ones would describe work no
+  session does yet); deferring (it would amend D-010).
+
+## D-053 — The trace command
+
+- **Session:** S06 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:** the S06 gate: "The system can answer: 'What exactly supports this
+  relationship?'" No relationship record exists before S10.
+- **Decision** (`claim-model.md` §12):
+  - `tools/trace.py`, standard library, prints record → claims → citations → sources, and
+    claim → inputs, recursively. For a source, it lists the claims that cite it.
+  - It exits 1 when a reference does not resolve.
+  - It is tested on the fictional relationship fixtures and on every seed claim.
+  - The gate is **met for review**: the path from a relationship to its sources works on
+    fixtures, and the path from claims to real sources works on the seed claims.
+  - What it cannot show is listed in `claim-model.md` §12.
+- **Rejected:** a graph or database layer (NG-07); declaring the gate met without a real
+  relationship (it is the human's call, with S10).

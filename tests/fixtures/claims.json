@@ -1,0 +1,978 @@
+{
+  "_about": "Fictional claims used only to test schemas/claims.schema.json, the data checks and the trace. They assert nothing about the world and cite only the fictional sources src-901 to src-905 (tests/fixtures/source_records.json). claim-fixture-109, -111 and -112 are the claims that tests/fixtures/relationships.json cites for the fabricates and the not_publicly_determinable supplier fixtures. Each invalid case is one JSON Pointer mutation (set or remove) of one valid base, and must fail at, under or beside the pointer it mutates.",
+  "valid": {
+    "fact": {
+      "id": "claim-fixture-201",
+      "claim_type": "FACT",
+      "statement": "The example accelerator is fabricated on the process its vendor names “Example 3X process”.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "src-901",
+          "locator": "section 'Architecture', the sentence beginning 'The example die'",
+          "anchor": "fabricated using the Example 3X process",
+          "standing": "party",
+          "read": {
+            "accessed_at": "2026-09-30T10:00Z",
+            "sha256": "0123456789ab"
+          }
+        }
+      ],
+      "as_of": {
+        "state": "not_stated"
+      },
+      "verified_on": "2026-09-30",
+      "review": {
+        "state": "not_reviewed"
+      }
+    },
+    "derivation": {
+      "id": "claim-fixture-109",
+      "claim_type": "DERIVATION",
+      "statement": "Example Foundry performs the wafer fabrication of the example accelerator's die.",
+      "evidence_status": "supported",
+      "input_claim_ids": [
+        "claim-fixture-201"
+      ],
+      "reasoning": "ER-1: the foundry is named only inside the vendor's process name, so fabrication by it is inferred.",
+      "verified_on": "2026-09-30",
+      "review": {
+        "state": "not_reviewed"
+      }
+    },
+    "fact_incorporates": {
+      "id": "claim-fixture-111",
+      "claim_type": "FACT",
+      "statement": "The example accelerator uses example stacked memory.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "src-901",
+          "locator": "section 'Memory'",
+          "anchor": "uses example stacked memory",
+          "standing": "party",
+          "read": {
+            "accessed_at": "2026-09-30T10:00Z",
+            "sha256": "0123456789ab"
+          }
+        }
+      ],
+      "as_of": "2025-03",
+      "verified_on": "2026-09-30",
+      "review": {
+        "state": "not_reviewed"
+      }
+    },
+    "derivation_search_npd": {
+      "id": "claim-fixture-112",
+      "claim_type": "DERIVATION",
+      "statement": "Which company supplies the example accelerator's stacked memory is not publicly determinable from the preferred classes searched.",
+      "evidence_status": "supported",
+      "reasoning": "ER-3: every preferred class was searched for this question and none states the answer.",
+      "search": {
+        "question": "Which company supplies the stacked memory in the example accelerator?",
+        "searched_on": "2026-09-30",
+        "classes": [
+          {
+            "source_class": "company_technical_documentation",
+            "outcome": "no_answer",
+            "source_ids": [
+              "src-901"
+            ]
+          },
+          {
+            "source_class": "company_filing",
+            "outcome": "no_answer",
+            "source_ids": [
+              "src-904"
+            ]
+          }
+        ],
+        "conclusion": "not_publicly_determinable"
+      },
+      "verified_on": "2026-09-30",
+      "review": {
+        "state": "not_reviewed"
+      }
+    },
+    "derivation_search_gap": {
+      "id": "claim-fixture-210",
+      "claim_type": "DERIVATION",
+      "statement": "Which company supplies the example system's memory is not researched: one preferred class could not be read.",
+      "evidence_status": "unverified",
+      "reasoning": "ER-3: a preferred class that could not be accessed was not searched.",
+      "search": {
+        "question": "Which company supplies the memory in the example system?",
+        "searched_on": "2026-09-30",
+        "classes": [
+          {
+            "source_class": "company_technical_documentation",
+            "outcome": "no_answer",
+            "source_ids": [
+              "src-901"
+            ]
+          },
+          {
+            "source_class": "company_filing",
+            "outcome": "not_accessible",
+            "gap": "investor.example.com refused the request (HTTP 403), 2026-09-30"
+          }
+        ],
+        "conclusion": "not_researched"
+      },
+      "review": {
+        "state": "not_reviewed"
+      }
+    },
+    "attribution_chain": {
+      "id": "claim-fixture-202",
+      "claim_type": "ATTRIBUTION",
+      "statement": "The example laboratory reports example analysts' view that accelerator supply is constrained.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "src-903",
+          "locator": "p.18",
+          "anchor": "supply is constrained",
+          "standing": "reporter",
+          "originator": {
+            "name": "Example Analytics analysts",
+            "source_class": "market_research_consultancy",
+            "named_at": "p.18 citation; p.31 reference list"
+          },
+          "read": {
+            "accessed_at": "2026-09-30T10:00Z",
+            "sha256": "0123456789ab"
+          }
+        }
+      ],
+      "as_of": {
+        "state": "not_stated"
+      },
+      "verified_on": "2026-09-30",
+      "review": {
+        "state": "not_reviewed"
+      }
+    },
+    "attribution_unverified": {
+      "id": "claim-fixture-203",
+      "claim_type": "ATTRIBUTION",
+      "statement": "Example Memory Co. describes its product as the fastest example memory.",
+      "evidence_status": "unverified",
+      "citations": [
+        {
+          "source_id": "src-905",
+          "locator": "opening paragraph",
+          "anchor": "the fastest example memory",
+          "standing": "party"
+        }
+      ],
+      "as_of": {
+        "state": "not_stated"
+      },
+      "review": {
+        "state": "not_reviewed"
+      }
+    },
+    "attribution_definition": {
+      "id": "claim-fixture-205",
+      "claim_type": "ATTRIBUTION",
+      "statement": "The example agency defines a computing service as one delivered from pooled resources.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "src-902",
+          "locator": "p.2",
+          "anchor": "delivered from pooled resources",
+          "standing": "originator",
+          "read": {
+            "accessed_at": "2026-09-30T10:00Z",
+            "sha256": "0123456789ab"
+          }
+        }
+      ],
+      "as_of": {
+        "state": "not_stated"
+      },
+      "verified_on": "2026-09-30",
+      "review": {
+        "state": "not_reviewed"
+      }
+    },
+    "interpretation": {
+      "id": "claim-fixture-204",
+      "claim_type": "INTERPRETATION",
+      "statement": "For the example atlas, a computing service is one delivered from pooled resources.",
+      "evidence_status": "supported",
+      "input_claim_ids": [
+        "claim-fixture-205"
+      ],
+      "reasoning": "A working definition chosen from the one source definition.",
+      "verified_on": "2026-09-30",
+      "review": {
+        "state": "not_reviewed"
+      }
+    },
+    "implication": {
+      "id": "claim-fixture-206",
+      "claim_type": "IMPLICATION",
+      "statement": "The example atlas should record the site behind a computing service only where a source names it.",
+      "evidence_status": "supported",
+      "input_claim_ids": [
+        "claim-fixture-204",
+        "claim-fixture-202"
+      ],
+      "reasoning": "Pooled resources are not sites.",
+      "verified_on": "2026-09-30",
+      "review": {
+        "state": "not_reviewed"
+      }
+    },
+    "fact_disputed_a": {
+      "id": "claim-fixture-207",
+      "claim_type": "FACT",
+      "statement": "Example Fab 1 is in country A.",
+      "evidence_status": "disputed",
+      "disputed_with": [
+        "claim-fixture-208"
+      ],
+      "citations": [
+        {
+          "source_id": "src-904",
+          "locator": "p.12",
+          "anchor": "Fab 1, country A",
+          "standing": "party",
+          "read": {
+            "accessed_at": "2026-09-30T10:00Z",
+            "sha256": "0123456789ab"
+          }
+        }
+      ],
+      "as_of": "2026",
+      "verified_on": "2026-09-30",
+      "review": {
+        "state": "not_reviewed"
+      }
+    },
+    "fact_disputed_b": {
+      "id": "claim-fixture-208",
+      "claim_type": "FACT",
+      "statement": "Example Fab 1 is in country B.",
+      "evidence_status": "disputed",
+      "disputed_with": [
+        "claim-fixture-207"
+      ],
+      "citations": [
+        {
+          "source_id": "src-902",
+          "locator": "register entry 17",
+          "anchor": "Fab 1 (country B)",
+          "standing": "originator",
+          "read": {
+            "accessed_at": "2026-09-30T10:00Z",
+            "sha256": "0123456789ab"
+          }
+        }
+      ],
+      "as_of": "2026",
+      "verified_on": "2026-09-30",
+      "review": {
+        "state": "not_reviewed"
+      }
+    },
+    "fact_accepted": {
+      "id": "claim-fixture-209",
+      "claim_type": "FACT",
+      "statement": "Example Foundry Corp.'s filing states its legal name as “Example Foundry Corp.”.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "src-904",
+          "locator": "p.1, cover page",
+          "anchor": "Example Foundry Corp.",
+          "standing": "party",
+          "read": {
+            "accessed_at": "2026-09-30T10:00Z",
+            "sha256": "0123456789ab"
+          }
+        }
+      ],
+      "as_of": "2026-01",
+      "verified_on": "2026-09-30",
+      "review": {
+        "verdict": "accepted",
+        "reviewer": "human",
+        "reviewed_on": "2026-10-01",
+        "recorded_in": "sessions/reports/SESSION-06-REPORT.md"
+      }
+    },
+    "fact_context_only": {
+      "id": "claim-fixture-211",
+      "claim_type": "FACT",
+      "statement": "The example accelerator's memory is made by Example Memory Co.",
+      "evidence_status": "context_only",
+      "citations": [
+        {
+          "source_id": "src-905",
+          "locator": "opening paragraph",
+          "anchor": "memory for leading accelerators",
+          "standing": "party",
+          "read": {
+            "accessed_at": "2026-09-30T10:00Z",
+            "sha256": "0123456789ab"
+          }
+        }
+      ],
+      "as_of": {
+        "state": "not_stated"
+      },
+      "verified_on": "2026-09-30",
+      "review": {
+        "state": "not_reviewed"
+      }
+    },
+    "attribution_partial_rejected": {
+      "id": "claim-fixture-212",
+      "claim_type": "ATTRIBUTION",
+      "statement": "The example agency says every computing service hides its location.",
+      "evidence_status": "partial",
+      "citations": [
+        {
+          "source_id": "src-902",
+          "locator": "p.2",
+          "anchor": "a sense of location independence",
+          "standing": "originator",
+          "read": {
+            "accessed_at": "2026-09-30T10:00Z",
+            "sha256": "0123456789ab"
+          }
+        }
+      ],
+      "as_of": {
+        "state": "not_stated"
+      },
+      "verified_on": "2026-09-30",
+      "review": {
+        "verdict": "rejected",
+        "reviewer": "human",
+        "reviewed_on": "2026-10-01",
+        "recorded_in": "sessions/reports/SESSION-06-REPORT.md"
+      }
+    }
+  },
+  "invalid": [
+    {
+      "case": "fact_without_citations",
+      "why": "a FACT whose support cannot be followed to a source (acceptance 4)",
+      "base": "fact",
+      "remove": [
+        "/citations"
+      ]
+    },
+    {
+      "case": "fact_reporter_standing",
+      "why": "a reporter supports at most ATTRIBUTION (ER-6, D-035)",
+      "base": "fact",
+      "set": {
+        "/citations/0/standing": "reporter"
+      }
+    },
+    {
+      "case": "fact_with_inputs",
+      "why": "a FACT cites sources, never input claims",
+      "base": "fact",
+      "set": {
+        "/input_claim_ids": [
+          "claim-fixture-205"
+        ]
+      }
+    },
+    {
+      "case": "fact_with_reasoning",
+      "why": "a FACT is not an inference; reasoning belongs to claims with inputs",
+      "base": "fact",
+      "set": {
+        "/reasoning": "read from the process name"
+      }
+    },
+    {
+      "case": "fact_with_search",
+      "why": "a search record belongs to a DERIVATION (D-049)",
+      "base": "fact",
+      "set": {
+        "/search": {
+          "question": "Which company supplies the stacked memory in the example accelerator?",
+          "searched_on": "2026-09-30",
+          "classes": [
+            {
+              "source_class": "company_technical_documentation",
+              "outcome": "no_answer",
+              "source_ids": [
+                "src-901"
+              ]
+            },
+            {
+              "source_class": "company_filing",
+              "outcome": "no_answer",
+              "source_ids": [
+                "src-904"
+              ]
+            }
+          ],
+          "conclusion": "not_publicly_determinable"
+        }
+      }
+    },
+    {
+      "case": "fact_without_as_of",
+      "why": "as_of is required on FACT and ATTRIBUTION; not_stated is explicit",
+      "base": "fact",
+      "remove": [
+        "/as_of"
+      ]
+    },
+    {
+      "case": "fact_as_of_null",
+      "why": "unknown is an explicit state, never null",
+      "base": "fact",
+      "set": {
+        "/as_of": null
+      }
+    },
+    {
+      "case": "derivation_without_inputs",
+      "why": "a DERIVATION cites its input claims (acceptance 4)",
+      "base": "derivation",
+      "remove": [
+        "/input_claim_ids"
+      ]
+    },
+    {
+      "case": "derivation_with_citations",
+      "why": "a derivation that cites a source looks like a sourced fact",
+      "base": "derivation",
+      "set": {
+        "/citations": [
+          {
+            "source_id": "src-901",
+            "locator": "section 'Architecture', the sentence beginning 'The example die'",
+            "anchor": "fabricated using the Example 3X process",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-30T10:00Z",
+              "sha256": "0123456789ab"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "derivation_with_as_of",
+      "why": "a claim with inputs takes its dates from them",
+      "base": "derivation",
+      "set": {
+        "/as_of": "2025"
+      }
+    },
+    {
+      "case": "derivation_without_reasoning",
+      "why": "the step must be inspectable",
+      "base": "derivation",
+      "remove": [
+        "/reasoning"
+      ]
+    },
+    {
+      "case": "derivation_inputs_empty",
+      "why": "claim_ids has at least one item",
+      "base": "derivation",
+      "set": {
+        "/input_claim_ids": []
+      }
+    },
+    {
+      "case": "interpretation_without_inputs",
+      "why": "an INTERPRETATION cites the claims it interprets",
+      "base": "interpretation",
+      "remove": [
+        "/input_claim_ids"
+      ]
+    },
+    {
+      "case": "interpretation_with_citations",
+      "why": "the Atlas's judgement must not look sourced",
+      "base": "interpretation",
+      "set": {
+        "/citations": [
+          {
+            "source_id": "src-901",
+            "locator": "section 'Architecture', the sentence beginning 'The example die'",
+            "anchor": "fabricated using the Example 3X process",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-30T10:00Z",
+              "sha256": "0123456789ab"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "interpretation_disputed",
+      "why": "a working choice is never disputed; definitional conflicts are ATTRIBUTION claims (§10.1)",
+      "base": "interpretation",
+      "set": {
+        "/evidence_status": "disputed"
+      }
+    },
+    {
+      "case": "implication_with_search",
+      "why": "search records belong to DERIVATION",
+      "base": "implication",
+      "set": {
+        "/search": {
+          "question": "Which company supplies the stacked memory in the example accelerator?",
+          "searched_on": "2026-09-30",
+          "classes": [
+            {
+              "source_class": "company_technical_documentation",
+              "outcome": "no_answer",
+              "source_ids": [
+                "src-901"
+              ]
+            },
+            {
+              "source_class": "company_filing",
+              "outcome": "no_answer",
+              "source_ids": [
+                "src-904"
+              ]
+            }
+          ],
+          "conclusion": "not_publicly_determinable"
+        }
+      }
+    },
+    {
+      "case": "implication_context_only",
+      "why": "context_only describes cited locators; an implication cites none",
+      "base": "implication",
+      "set": {
+        "/evidence_status": "context_only"
+      }
+    },
+    {
+      "case": "attribution_disputed",
+      "why": "an attribution is true whatever its content; conflicts between statements are recorded by kind",
+      "base": "attribution_definition",
+      "set": {
+        "/evidence_status": "disputed"
+      }
+    },
+    {
+      "case": "citation_without_locator",
+      "why": "a citation without a locator (acceptance 4)",
+      "base": "fact",
+      "remove": [
+        "/citations/0/locator"
+      ]
+    },
+    {
+      "case": "citation_without_source",
+      "why": "a citation without a source (acceptance 4)",
+      "base": "fact",
+      "remove": [
+        "/citations/0/source_id"
+      ]
+    },
+    {
+      "case": "citation_without_anchor",
+      "why": "every citation has a verbatim anchor (D-047)",
+      "base": "fact",
+      "remove": [
+        "/citations/0/anchor"
+      ]
+    },
+    {
+      "case": "citation_empty_anchor",
+      "why": "an empty anchor is no anchor",
+      "base": "fact",
+      "set": {
+        "/citations/0/anchor": ""
+      }
+    },
+    {
+      "case": "citation_register_label",
+      "why": "sources are cited by record ID, not register label (D-050)",
+      "base": "fact",
+      "set": {
+        "/citations/0/source_id": "SRC-901"
+      }
+    },
+    {
+      "case": "citation_without_standing",
+      "why": "standing is required, never a default",
+      "base": "fact",
+      "remove": [
+        "/citations/0/standing"
+      ]
+    },
+    {
+      "case": "citation_standing_primary",
+      "why": "standing values are party, originator, reporter",
+      "base": "attribution_definition",
+      "set": {
+        "/citations/0/standing": "primary"
+      }
+    },
+    {
+      "case": "reporter_without_originator",
+      "why": "a chain records its originator (ER-6)",
+      "base": "attribution_chain",
+      "remove": [
+        "/citations/0/originator"
+      ]
+    },
+    {
+      "case": "originator_on_party",
+      "why": "only a reporter citation has an originator",
+      "base": "fact",
+      "set": {
+        "/citations/0/originator": {
+          "name": "Example Analytics analysts",
+          "source_class": "market_research_consultancy",
+          "named_at": "p.18 citation; p.31 reference list"
+        }
+      }
+    },
+    {
+      "case": "originator_class_invalid",
+      "why": "the originator's class is a source class",
+      "base": "attribution_chain",
+      "set": {
+        "/citations/0/originator/source_class": "analyst"
+      }
+    },
+    {
+      "case": "citations_empty",
+      "why": "FACT and ATTRIBUTION need at least one citation",
+      "base": "fact",
+      "set": {
+        "/citations": []
+      }
+    },
+    {
+      "case": "type_lowercase_ma",
+      "why": "the values are CLAUDE.md §6 labels (D-045)",
+      "base": "fact",
+      "set": {
+        "/claim_type": "fact"
+      }
+    },
+    {
+      "case": "type_normative",
+      "why": "law / normative text is reserved for S17 (D-045)",
+      "base": "fact",
+      "set": {
+        "/claim_type": "NORMATIVE"
+      }
+    },
+    {
+      "case": "type_forecast",
+      "why": "a forecast is ATTRIBUTION, or out of scope (D-045)",
+      "base": "fact",
+      "set": {
+        "/claim_type": "FORECAST"
+      }
+    },
+    {
+      "case": "type_missing",
+      "why": "claim type is required (L-06)",
+      "base": "fact",
+      "remove": [
+        "/claim_type"
+      ]
+    },
+    {
+      "case": "status_derived",
+      "why": "MA 'derived' duplicates DERIVATION and is dropped (D-046)",
+      "base": "derivation",
+      "set": {
+        "/evidence_status": "derived"
+      }
+    },
+    {
+      "case": "status_direct",
+      "why": "MA 'direct' is renamed supported (D-046)",
+      "base": "fact",
+      "set": {
+        "/evidence_status": "direct"
+      }
+    },
+    {
+      "case": "status_verified",
+      "why": "verified is the Verifier's act, recorded by status and date (D-048)",
+      "base": "fact",
+      "set": {
+        "/evidence_status": "verified"
+      }
+    },
+    {
+      "case": "status_not_researched",
+      "why": "unresolved states stay on attributes (D-025)",
+      "base": "fact",
+      "set": {
+        "/evidence_status": "not_researched"
+      }
+    },
+    {
+      "case": "status_numeric",
+      "why": "no numeric confidence (NG-11)",
+      "base": "fact",
+      "set": {
+        "/evidence_status": 0.8
+      }
+    },
+    {
+      "case": "status_missing",
+      "why": "evidence status is required, never 'unverified' by default (L-06)",
+      "base": "fact",
+      "remove": [
+        "/evidence_status"
+      ]
+    },
+    {
+      "case": "field_confidence",
+      "why": "no confidence field (D-028, NG-11)",
+      "base": "fact",
+      "set": {
+        "/confidence": 0.9
+      }
+    },
+    {
+      "case": "field_notes",
+      "why": "no free-text notes (D-025)",
+      "base": "fact",
+      "set": {
+        "/notes": "see also"
+      }
+    },
+    {
+      "case": "field_source_ids",
+      "why": "sources are cited with locators, not listed (MA §5.2 replaced)",
+      "base": "fact",
+      "set": {
+        "/source_ids": [
+          "src-901"
+        ]
+      }
+    },
+    {
+      "case": "field_supports",
+      "why": "a claim never lists the records it supports (D-044)",
+      "base": "fact",
+      "set": {
+        "/supports": [
+          "rel-example-foundry-fabricates-accelerator"
+        ]
+      }
+    },
+    {
+      "case": "field_matrix_row",
+      "why": "the matrix row is derived from the citing record (D-044)",
+      "base": "fact",
+      "set": {
+        "/matrix_row": "attr:product.vendor_process_name"
+      }
+    },
+    {
+      "case": "disputed_without_competitors",
+      "why": "a disputed status names the competing claims (D-046)",
+      "base": "fact_disputed_a",
+      "remove": [
+        "/disputed_with"
+      ]
+    },
+    {
+      "case": "disputed_with_on_supported",
+      "why": "only a disputed claim names competitors",
+      "base": "fact",
+      "set": {
+        "/disputed_with": [
+          "claim-fixture-207"
+        ]
+      }
+    },
+    {
+      "case": "supported_without_verified_on",
+      "why": "a verified claim has a verification date (D-048)",
+      "base": "fact",
+      "remove": [
+        "/verified_on"
+      ]
+    },
+    {
+      "case": "supported_without_read",
+      "why": "a verified citation records the bytes read (D-047)",
+      "base": "fact",
+      "remove": [
+        "/citations/0/read"
+      ]
+    },
+    {
+      "case": "unverified_with_verified_on",
+      "why": "an unverified claim has no verification date",
+      "base": "attribution_unverified",
+      "set": {
+        "/verified_on": "2026-09-30"
+      }
+    },
+    {
+      "case": "unverified_with_read",
+      "why": "an unverified citation was not read by a Verifier",
+      "base": "attribution_unverified",
+      "set": {
+        "/citations/0/read": {
+          "accessed_at": "2026-09-30T10:00Z",
+          "sha256": "0123456789ab"
+        }
+      }
+    },
+    {
+      "case": "verified_on_partial",
+      "why": "a verification date is a full date",
+      "base": "fact",
+      "set": {
+        "/verified_on": "2026-09"
+      }
+    },
+    {
+      "case": "read_bad_hash",
+      "why": "the bytes read are identified by a hash",
+      "base": "fact",
+      "set": {
+        "/citations/0/read/sha256": "not-a-hash"
+      }
+    },
+    {
+      "case": "accepted_but_unverified",
+      "why": "only supported or disputed claims may be accepted (D-048)",
+      "base": "fact_accepted",
+      "set": {
+        "/evidence_status": "unverified"
+      }
+    },
+    {
+      "case": "accepted_but_partial",
+      "why": "a claim whose wording exceeds its evidence cannot be canonical",
+      "base": "fact_accepted",
+      "set": {
+        "/evidence_status": "partial"
+      }
+    },
+    {
+      "case": "review_by_agent",
+      "why": "class C review is the human's (CLAUDE.md §9)",
+      "base": "fact_accepted",
+      "set": {
+        "/review/reviewer": "verifier"
+      }
+    },
+    {
+      "case": "review_pending_verdict",
+      "why": "verdicts are accepted or rejected",
+      "base": "fact_accepted",
+      "set": {
+        "/review/verdict": "pending"
+      }
+    },
+    {
+      "case": "review_recorded_elsewhere",
+      "why": "the human's words are kept in a session report",
+      "base": "fact_accepted",
+      "set": {
+        "/review/recorded_in": "docs/review.md"
+      }
+    },
+    {
+      "case": "review_missing",
+      "why": "not_reviewed is explicit",
+      "base": "fact",
+      "remove": [
+        "/review"
+      ]
+    },
+    {
+      "case": "review_null",
+      "why": "unknown is an explicit state, never null",
+      "base": "fact",
+      "set": {
+        "/review": null
+      }
+    },
+    {
+      "case": "search_npd_with_gap",
+      "why": "an inaccessible preferred class leaves the value not_researched (ER-3)",
+      "base": "derivation_search_npd",
+      "set": {
+        "/search/classes/1/outcome": "not_accessible"
+      }
+    },
+    {
+      "case": "search_no_answer_without_sources",
+      "why": "'no answer' names the sources consulted (ER-3)",
+      "base": "derivation_search_npd",
+      "remove": [
+        "/search/classes/0/source_ids"
+      ]
+    },
+    {
+      "case": "search_gap_without_description",
+      "why": "an access gap says what refused access",
+      "base": "derivation_search_gap",
+      "remove": [
+        "/search/classes/1/gap"
+      ]
+    },
+    {
+      "case": "search_conclusion_not_applicable",
+      "why": "a search concludes not_publicly_determinable or not_researched",
+      "base": "derivation_search_npd",
+      "set": {
+        "/search/conclusion": "not_applicable"
+      }
+    },
+    {
+      "case": "search_without_date",
+      "why": "ER-3 records the search date",
+      "base": "derivation_search_npd",
+      "remove": [
+        "/search/searched_on"
+      ]
+    },
+    {
+      "case": "search_without_question",
+      "why": "ER-3 records the question",
+      "base": "derivation_search_npd",
+      "remove": [
+        "/search/question"
+      ]
+    },
+    {
+      "case": "id_uppercase",
+      "why": "claim IDs are claim-<slug> (D-025, D-044)",
+      "base": "fact",
+      "set": {
+        "/id": "CLAIM-201"
+      }
+    },
+    {
+      "case": "statement_empty",
+      "why": "a claim states a proposition",
+      "base": "fact",
+      "set": {
+        "/statement": ""
+      }
+    }
+  ]
+}

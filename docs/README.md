@@ -30,7 +30,7 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 | [`architecture/milestone-audits/M0-audit.md`](./architecture/milestone-audits/M0-audit.md) | accepted (S02; M0 closed 2026-09-29): M0 audit, EU-DP process benchmark, maturity baseline, v1 concept classification | one per milestone |
 | [`research/source-policy.md`](./research/source-policy.md) (source classes, preference matrix, evidence, conflict, retrieval and freshness rules; class of every registered source) with [`../schemas/sources.schema.json`](../schemas/sources.schema.json) (the source-class vocabulary) | accepted (S05 review, 2026-09-30; D-034 to D-043) | S05 |
 | `research/content-review-log.md` | planned | first session that records claims |
-| `agents/roles.md`, `agents/contracts.md` | planned | S06 (D-010) |
+| [`agents/roles.md`](./agents/roles.md), [`agents/contracts.md`](./agents/contracts.md) (every CLAUDE.md §8 role; MA §12 contracts for the roles active through S10) | proposed (S06; D-052) | S06 (D-010) |
 | `quality/evaluation-framework.md` | satisfied by root `PROJECT-EVALUATION-FRAMEWORK.md` (not duplicated) | — |
 | [`quality/audit-history.md`](./quality/audit-history.md) | active | every audit |
 
@@ -41,7 +41,8 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 | [`architecture/entity-taxonomy.md`](./architecture/entity-taxonomy.md) (why each type exists; v1 concept and MA mappings) with [`../schemas/entities.schema.json`](../schemas/entities.schema.json) (field shapes and vocabulary values) | accepted (S03 review, 2026-09-30; D-022 to D-025) | S03 |
 | [`architecture/relationship-taxonomy.md`](./architecture/relationship-taxonomy.md) (relation types, levels, evidence expectations, verb reconciliation, DEP mapping) with [`../schemas/relationships.schema.json`](../schemas/relationships.schema.json) (record shape, vocabulary, endpoint types) | accepted (S04 review, 2026-09-30; D-028 to D-033) | S04 |
 | Source-class vocabulary | accepted (S05 review, 2026-09-30): [`../schemas/sources.schema.json`](../schemas/sources.schema.json) | S05 |
-| Source record and claim schemas | planned | S06 (extends the S05 vocabulary) |
+| [`architecture/claim-model.md`](./architecture/claim-model.md) (claim types and evidence status, MA §10 reconciled; citations; `verified`; staging and canonical; the search record; the migration; `validate-data`; the trace) with [`../schemas/claims.schema.json`](../schemas/claims.schema.json) and the source record in [`../schemas/sources.schema.json`](../schemas/sources.schema.json) | proposed (S06; D-044 to D-053) | S06 |
+| [`../data/sources.json`](../data/sources.json) (canonical source records, migrated from the register) and [`../data/staging/claims.json`](../data/staging/claims.json) (seed claims awaiting the human's review) | S06 | S06; later sessions add records |
 | First product records | planned | S08 (D-027) |
 | Event schema | planned | S09 (D-022) |
 
@@ -49,4 +50,4 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 
 | Artifact | Status | Owner |
 |---|---|---|
-| [`research/domain-map.md`](./research/domain-map.md), [`research/source-register.md`](./research/source-register.md) | draft (S01; terminology reviewed 2026-09-29, D-016; weekly gate open) | S01; register frozen after S06 migration |
+| [`research/domain-map.md`](./research/domain-map.md), [`research/source-register.md`](./research/source-register.md) | domain map: draft (S01; terminology reviewed 2026-09-29, D-016; weekly gate open). Register: frozen (S06 migration, D-050) | S01 |

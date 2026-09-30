@@ -1,0 +1,385 @@
+{
+  "_about": "Fictional source records used only to test schemas/sources.schema.json, the data checks and the trace. They describe no real document. IDs src-901 to src-999 are reserved for fixtures. Each invalid case is one JSON Pointer mutation (set or remove) of one valid base, and must fail at, under or beside the pointer it mutates.",
+  "valid": {
+    "technical_documentation": {
+      "id": "src-901",
+      "source_class": "company_technical_documentation",
+      "title": "Example Accelerator Architecture In-Depth",
+      "publisher": "Example Designer Inc.",
+      "publisher_entity": "company-example-designer",
+      "authors": {
+        "state": "not_researched"
+      },
+      "url": "https://example.com/accelerator-architecture",
+      "stated_dates": [
+        {
+          "kind": "published",
+          "date": "2025-03-01"
+        },
+        {
+          "kind": "modified",
+          "date": "2026-01-15"
+        }
+      ],
+      "retrieval": {
+        "method": "automated",
+        "accessed_at": "2026-09-29T09:00Z",
+        "sha256": "0123456789ab"
+      }
+    },
+    "government_undated": {
+      "id": "src-902",
+      "source_class": "government_publication",
+      "title": "Example Definition of a Computing Service",
+      "publisher": "Example Standards Agency",
+      "publisher_entity": {
+        "state": "not_applicable"
+      },
+      "authors": "A. Example, B. Example",
+      "url": "https://example.org/definition.pdf",
+      "stated_dates": {
+        "state": "undated"
+      },
+      "retrieval": {
+        "method": "automated",
+        "accessed_at": "2026-09-29T09:05Z",
+        "sha256": "abcdefabcdef"
+      }
+    },
+    "research_report": {
+      "id": "src-903",
+      "source_class": "research_report",
+      "title": "Example Laboratory Energy Report",
+      "publisher": "Example National Laboratory",
+      "publisher_entity": {
+        "state": "not_applicable"
+      },
+      "authors": "C. Example et al.",
+      "url": "https://example.org/report.pdf",
+      "stated_dates": [
+        {
+          "kind": "published",
+          "date": "2026-06"
+        }
+      ],
+      "retrieval": {
+        "method": "automated",
+        "accessed_at": "2026-09-29T09:10Z",
+        "sha256": "fedcba987654"
+      }
+    },
+    "filing_manual": {
+      "id": "src-904",
+      "migrated_from": "S05-R9",
+      "source_class": "company_filing",
+      "title": "Annual Report for the Example Fiscal Year",
+      "publisher": "Example Foundry Corp.",
+      "publisher_entity": {
+        "state": "not_researched"
+      },
+      "authors": {
+        "state": "not_researched"
+      },
+      "url": "https://investor.example.com/annual-report.pdf",
+      "stated_dates": [
+        {
+          "kind": "signed",
+          "date": "2026-02-25"
+        }
+      ],
+      "retrieval": {
+        "method": "manual_by_human",
+        "accessed_at": "2026-09-30T08:00Z",
+        "sha256": "0f1e2d3c4b5a69788796a5b4c3d2e1f00f1e2d3c4b5a69788796a5b4c3d2e1f0"
+      },
+      "filing_copy": "filer_hosted_not_checked"
+    },
+    "marketing_migrated": {
+      "id": "src-905",
+      "migrated_from": "SRC-905",
+      "source_class": "company_marketing",
+      "title": "Example Memory Product Page",
+      "publisher": "Example Memory Co.",
+      "publisher_entity": {
+        "state": "not_researched"
+      },
+      "authors": {
+        "state": "not_researched"
+      },
+      "url": "https://example.com/memory",
+      "stated_dates": [
+        {
+          "kind": "last_updated",
+          "date": "2026-09-24"
+        }
+      ],
+      "retrieval": {
+        "method": "automated",
+        "accessed_at": "2026-09-29T09:15Z",
+        "sha256": "112233445566"
+      }
+    }
+  },
+  "invalid": [
+    {
+      "case": "id_register_label",
+      "why": "the register label SRC-001 is migrated_from, not the ID (D-050)",
+      "base": "technical_documentation",
+      "set": {
+        "/id": "SRC-901"
+      }
+    },
+    {
+      "case": "id_ma_style",
+      "why": "MA §5.3's source-001 is not the Atlas format (D-050)",
+      "base": "technical_documentation",
+      "set": {
+        "/id": "source-901"
+      }
+    },
+    {
+      "case": "id_missing",
+      "why": "every record has an ID",
+      "base": "technical_documentation",
+      "remove": [
+        "/id"
+      ]
+    },
+    {
+      "case": "class_missing",
+      "why": "a source without a class is a gap to fix, never a default (D-034)",
+      "base": "technical_documentation",
+      "remove": [
+        "/source_class"
+      ]
+    },
+    {
+      "case": "class_tier",
+      "why": "D-015's tiers are not classes",
+      "base": "technical_documentation",
+      "set": {
+        "/source_class": "T1"
+      }
+    },
+    {
+      "case": "class_primary",
+      "why": "standing is per claim (D-035)",
+      "base": "technical_documentation",
+      "set": {
+        "/source_class": "primary"
+      }
+    },
+    {
+      "case": "company_publisher_not_applicable",
+      "why": "a company publisher is a company; not_applicable is for non-company publishers",
+      "base": "technical_documentation",
+      "set": {
+        "/publisher_entity": {
+          "state": "not_applicable"
+        }
+      }
+    },
+    {
+      "case": "government_publisher_as_company",
+      "why": "institution is reserved (D-022); a government publisher is never a company reference",
+      "base": "government_undated",
+      "set": {
+        "/publisher_entity": "company-example-agency"
+      }
+    },
+    {
+      "case": "publisher_entity_npd",
+      "why": "who publishes a document is never not_publicly_determinable: it is on the document",
+      "base": "technical_documentation",
+      "set": {
+        "/publisher_entity": {
+          "state": "not_publicly_determinable"
+        }
+      }
+    },
+    {
+      "case": "publisher_entity_institution_ref",
+      "why": "institution records do not exist (D-022)",
+      "base": "government_undated",
+      "set": {
+        "/publisher_entity": "institution-example-agency"
+      }
+    },
+    {
+      "case": "publisher_missing",
+      "why": "publisher text is required",
+      "base": "technical_documentation",
+      "remove": [
+        "/publisher"
+      ]
+    },
+    {
+      "case": "authors_null",
+      "why": "unknown is an explicit state, never null",
+      "base": "government_undated",
+      "set": {
+        "/authors": null
+      }
+    },
+    {
+      "case": "title_padded",
+      "why": "text has no leading or trailing whitespace",
+      "base": "technical_documentation",
+      "set": {
+        "/title": " Example "
+      }
+    },
+    {
+      "case": "url_http",
+      "why": "sources are retrieved over HTTPS (RA-1)",
+      "base": "technical_documentation",
+      "set": {
+        "/url": "http://example.com/page"
+      }
+    },
+    {
+      "case": "filing_without_copy",
+      "why": "a filing records whose copy was read (RA-6)",
+      "base": "filing_manual",
+      "remove": [
+        "/filing_copy"
+      ]
+    },
+    {
+      "case": "filing_copy_on_marketing",
+      "why": "filing_copy applies to filings only",
+      "base": "marketing_migrated",
+      "set": {
+        "/filing_copy": "regulator_hosted"
+      }
+    },
+    {
+      "case": "filing_copy_unknown",
+      "why": "the copy values are defined",
+      "base": "filing_manual",
+      "set": {
+        "/filing_copy": "copy"
+      }
+    },
+    {
+      "case": "stated_dates_empty",
+      "why": "no dates is the explicit state undated, never an empty list",
+      "base": "government_undated",
+      "set": {
+        "/stated_dates": []
+      }
+    },
+    {
+      "case": "stated_dates_text",
+      "why": "dates are not the register's free text (D-050)",
+      "base": "technical_documentation",
+      "set": {
+        "/stated_dates": "2022-03-22 (modified 2025-07-22)"
+      }
+    },
+    {
+      "case": "date_kind_accessed",
+      "why": "the access date belongs to retrieval, not to the dates the source states",
+      "base": "technical_documentation",
+      "set": {
+        "/stated_dates/0/kind": "accessed"
+      }
+    },
+    {
+      "case": "date_not_iso",
+      "why": "partial dates are ISO 8601",
+      "base": "technical_documentation",
+      "set": {
+        "/stated_dates/0/date": "March 2025"
+      }
+    },
+    {
+      "case": "retrieval_missing",
+      "why": "every source records its access date and hash (source-policy.md §12)",
+      "base": "technical_documentation",
+      "remove": [
+        "/retrieval"
+      ]
+    },
+    {
+      "case": "accessed_at_no_zone",
+      "why": "access times are UTC to the minute",
+      "base": "technical_documentation",
+      "set": {
+        "/retrieval/accessed_at": "2026-09-29 09:00"
+      }
+    },
+    {
+      "case": "hash_short",
+      "why": "a hash is the 12-character prefix or the full 64",
+      "base": "technical_documentation",
+      "set": {
+        "/retrieval/sha256": "0123456"
+      }
+    },
+    {
+      "case": "hash_missing",
+      "why": "a byte change can only be seen with a hash",
+      "base": "technical_documentation",
+      "remove": [
+        "/retrieval/sha256"
+      ]
+    },
+    {
+      "case": "method_curl",
+      "why": "retrieval methods are defined values",
+      "base": "technical_documentation",
+      "set": {
+        "/retrieval/method": "curl"
+      }
+    },
+    {
+      "case": "migrated_from_bad",
+      "why": "migrated_from holds a register or S05 label only",
+      "base": "marketing_migrated",
+      "set": {
+        "/migrated_from": "src-905"
+      }
+    },
+    {
+      "case": "field_source_tier",
+      "why": "D-015's tier column is not migrated (D-036, D-050)",
+      "base": "technical_documentation",
+      "set": {
+        "/source_tier": "T1"
+      }
+    },
+    {
+      "case": "field_source_type",
+      "why": "S01's free-text type is superseded by the class (D-034)",
+      "base": "technical_documentation",
+      "set": {
+        "/source_type": "company technical documentation"
+      }
+    },
+    {
+      "case": "field_locators_used",
+      "why": "locators belong to citations, one home (D-047)",
+      "base": "technical_documentation",
+      "set": {
+        "/locators_used": "p.6"
+      }
+    },
+    {
+      "case": "field_standing",
+      "why": "standing is a citation field, never a source field (D-035)",
+      "base": "technical_documentation",
+      "set": {
+        "/standing": "party"
+      }
+    },
+    {
+      "case": "field_verified",
+      "why": "verification belongs to claims (D-048)",
+      "base": "technical_documentation",
+      "set": {
+        "/verified": true
+      }
+    }
+  ]
+}

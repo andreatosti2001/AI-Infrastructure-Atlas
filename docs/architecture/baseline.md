@@ -1,7 +1,7 @@
 # Baseline Architecture Record
 
 **Status:** APPROVED by the human on 2026-09-29 (S02 gate, `SESSION-ROADMAP.md` S02; see §8).
-Created in S00, revised and approved in S02. S03, S04 and S05 updated only the dated state rows (§1 table, §4, §5). The S05 review added NG-14 to §6 through D-043, as D-021 requires, and updated the open items in §7 and §8.
+Created in S00, revised and approved in S02. S03, S04, S05 and S06 updated only the dated state rows (§1 table, §3, §4, §5). The S05 review added NG-14 to §6 through D-043, as D-021 requires, and updated the open items in §7 and §8.
 **Date:** 2026-09-29 (S00); revised 2026-09-29 (S02)
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` §4 ("At project start").
 
@@ -23,7 +23,7 @@ repository are logged in [`decisions.md`](./decisions.md).
   DuckDB + SQL for analysis, vanilla HTML/CSS/JS, GitHub Actions — MA §17, CLAUDE.md §11.
   No database server, graph database or frontend framework — MA §18.
 
-### State at end of S00, updated at S02, S03, S04 and S05
+### State at end of S00, updated at S02, S03, S04, S05 and S06
 
 | Layer | Exists? | Introduced by (per `SESSION-ROADMAP.md`) |
 |---|---|---|
@@ -34,9 +34,9 @@ repository are logged in [`decisions.md`](./decisions.md).
 | M0 milestone audit + EU-DP process benchmark | yes, draft (S02) | S02 |
 | Entity schema | yes, accepted (S03): `schemas/entities.schema.json`, `entity-taxonomy.md` | S03 |
 | Relationship schema | yes, accepted (S04): `schemas/relationships.schema.json`, `relationship-taxonomy.md` | S04 |
-| Source/evidence policy | yes, accepted (S05 review): `docs/research/source-policy.md`, `schemas/sources.schema.json` (class vocabulary only) | S05 |
-| Claim/provenance implementation | no | S06 |
-| Canonical data | no | S07–S10 |
+| Source/evidence policy | yes, accepted (S05 review): `docs/research/source-policy.md`, and the class vocabulary in `schemas/sources.schema.json` | S05 |
+| Claim/provenance implementation | yes, proposed (S06): `docs/architecture/claim-model.md`, `schemas/claims.schema.json`, the source record in `schemas/sources.schema.json`, `tools/trace.py` | S06 |
+| Canonical data | source records only (S06: `data/sources.json`, the migrated register); seed claims in staging, none canonical (`data/staging/claims.json`). Entities and relationships: no | S06; S07–S10 |
 | Presentation / UI | no | S11 |
 | DuckDB / SQL layer | no | S14 |
 
@@ -68,8 +68,9 @@ the boundaries; the sources it cites keep their own wording.
 
 ## 3. Intended agent roles
 
-Roles and the contract format are defined in CLAUDE.md §8 and MA §11–12. **No agent
-contracts exist yet.** S06 writes them in `docs/agents/`. There is no root `AGENTS.md`
+Roles and the contract format are defined in CLAUDE.md §8 and MA §11–12. S06 wrote
+`docs/agents/roles.md` and `docs/agents/contracts.md` (proposed, D-052): the roles active
+through S10 have contracts, and the others name the session that first activates them. There is no root `AGENTS.md`
 (decision D-010). Until S19 finds a manual workflow that needs one, agents are contracts
 plus deterministic validators, with no agent runtime (D-018 L-01; NG-08).
 
@@ -82,7 +83,7 @@ claim types and evidence status are MA §10. The entity schema was accepted in S
 (`relationship-taxonomy.md`, D-028 to D-033); its §6 reconciles MA §6.2, the relationship
 list in `SESSION-ROADMAP.md` S04 and the verbs in `domain-map.md` §3. The source policy was accepted at the S05 review (`source-policy.md`, D-034 to
 D-043): source classes, a preference matrix read from both schemas, and evidence, conflict,
-retrieval and freshness rules. The claim and source records remain S06's.
+retrieval and freshness rules. S06 proposed the claim and source records (`claim-model.md`, D-044 to D-053).
 
 ## 5. Quality gates
 
@@ -91,8 +92,8 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 | Gate (MA §14) | Status in this repository |
 |---|---|
 | 0 — Repository integrity | **Partial, automated.** `tools/validate_repo.py` checks required docs and session prompt/report conventions; runs in CI. It does not check branch or unexpected generated changes. |
-| 1 — Schema | **Partial.** CI tests the entity and relationship schemas' behaviour against fictional fixtures, and the source-class vocabulary against valid and invalid values (S03, S04, S05; D-026). No records exist yet, so no record is validated. |
-| 2 — Provenance | not applicable yet (no claims) |
+| 1 — Schema | **Partial, automated.** CI tests every schema's behaviour against fictional fixtures (S03 to S06; D-026), and validates every source and claim record in `data/` (VD-2, S06). No entity or relationship record exists yet. |
+| 2 — Provenance | **Partial, automated** (S06). Every claim's sources, inputs, anchors, statuses and review state are checked in CI (VD-3 to VD-13, `claim-model.md` §11). Whether a record's claims suit its matrix row (V-10) waits for records (S07) |
 | 3 — Semantic integrity | not applicable yet |
 | 4 — Derivation | not applicable yet |
 | 5 — Content | not applicable yet |
@@ -102,10 +103,10 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 
 | Command (MA §15) | Status |
 |---|---|
-| `validate-data` | not built. The entity schema exists (S03); record validation (IDs, references, dates) arrives with the first records (S06/S07) |
+| `validate-data` | **built for sources and claims** (S06, D-051): `python -m unittest discover -s tests -p "test_data*.py"`, run in CI. The entity and relationship rules V-1 to V-10 arrive with those records (S07, S10) |
 | `validate-i18n` | not applicable in v1.0 (NG-10: English only) |
 | `validate-design` | not built — needs UI (S11+) |
-| `validate-freshness` | not built — needs sources with access dates (S06+) |
+| `validate-freshness` | not built. Sources now have access dates and hashes (S06); the check needs matrix rows from records (S07, D-051) |
 | `qa-browser` | not built — needs UI (S11+) |
 
 ## 6. Explicit non-goals — frozen for v1.0 (D-021)

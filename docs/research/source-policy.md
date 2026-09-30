@@ -257,6 +257,11 @@ attribute rows.
 
 ### 8.1 SRC-001 to SRC-023
 
+> **Status note (S06, 2026-09-30; D-050, proposed).** Migrated. Each source's class now
+> lives in its record in `data/sources.json` (`src-NNN`, with the old label in
+> `migrated_from`; S05-R1 in §8.3 is `src-024`). This table and §8.3 are history. VD-9
+> (`claim-model.md` §11) checks that the migration matches them.
+
 This table is the one home of each registered source's class until S06 migrates the
 register into source records. After that, the source record's class field is the home,
 and this table is history. `source-register.md` is not edited: its `source_tier` column
@@ -651,6 +656,10 @@ process customized for NVIDIA" (SRC-006, quoted in FAB-05).
 | Retrieving EDGAR with a declared client identity | The access policy could not be read, and choosing an identity is the human's (RA-3, RA-7) |
 
 ## 16. What S05 leaves to other sessions
+
+> **Status note (S06, 2026-09-30; D-044 to D-051, proposed).** S06 took the source record,
+> the claim fields, the meaning of `verified` and the migration (`claim-model.md`).
+> `validate-freshness` is left to S07 (D-051). The announcement class is still open.
 
 | Item | Owner | Note |
 |---|---|---|
