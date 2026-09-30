@@ -77,6 +77,9 @@ Commit only verified work.
 >   higher-level documents (`CLAUDE.md`, `MASTER-ARCHITECTURE.md`) govern both.
 > - The human may edit Part B before S05 starts. It becomes immutable once S05 begins
 >   (D-011).
+> - **Edited before S05 started (2026-09-30):** the human answered the two questions
+>   §16 would have asked ("i follow your recommendations"). The answers are recorded in
+>   §16. §06 q8, §06 q10 and §07 task 5 point to them.
 
 ## 01 — Session identity
 
@@ -356,9 +359,12 @@ and the decision records.
    - Apply the handling to CON-01 to CON-05, as illustrations, without editing the
      domain map.
 8. **Blocked and non-retrievable sources (D-014).**
-   - Is manual retrieval by the human acceptable? This is a human decision; see §16.
-   - If it is, how is such a source recorded: retrieval method, who retrieved it, hash,
-     and the access date as the human's?
+   - Manual retrieval by the human is **allowed, with conditions**. The human decided
+     this before S05 (§16, H-1). S05 writes the recording rules into the policy, and
+     records H-1 in a decision that supersedes D-014's retrieval clause.
+   - Can a site's published access policy be followed by automated retrieval without
+     circumvention? Example, to be checked, not assumed: whether SEC EDGAR's refusals are
+     about a declared client identity.
    - How is a login-walled or paid standard (ISO, The Green Grid) treated?
    - Does "external API dependency" matter here? Record the question only.
 9. **Freshness and dated evidence.**
@@ -376,9 +382,11 @@ and the decision records.
 
     D-022 assigns sources to "S05/S06". The S03/S04 pattern keeps vocabulary values in a
     schema with one definition each. Against that, A-1 warns about machinery before a
-    used loop. This is the one design choice to put to the human before any file is
-    written (§16). Recommendation to test: (b) if the classes are stable after the §06
-    reasoning, otherwise (a).
+    used loop. **The human has chosen (b), with (a) as the fallback** (§16, H-2):
+    - write the `source_class` vocabulary schema if the classes are stable after the §06
+      reasoning;
+    - otherwise keep the classes in the policy document, and say in the report which
+      cases kept them from settling.
 11. **The register's future.** S06 migrates `source-register.md` rows into canonical
     source records, and the register is then frozen.
     - Does S05 annotate the register's tier column, or leave it as S01 history and map it
@@ -410,8 +418,8 @@ and the decision records.
 3. Write the preference matrix (§06 q3), keyed by relationship type and entity field, as
    they appear in the schemas.
 4. Write the conflict policy (§06 q7), and apply it to CON-01 to CON-05.
-5. Write the retrieval, access and freshness rules (§06 q8–q9). Any rule that needs the
-   human's decision waits for it.
+5. Write the retrieval, access and freshness rules (§06 q8–q9), applying the human's
+   decision H-1 (§16).
 6. Work through at least four registered sources as examples. Each is an illustration,
    not a record, and its quoted anchors must be verbatim in the domain map:
    - SRC-006 (NVIDIA technical blog): primary for NVIDIA's product; what it supports
@@ -656,12 +664,34 @@ that the gate itself is the human's call.
 
 Stop and report, rather than improvise, when:
 
-- **human decisions needed before files are written** (ask both together, each with a
-  recommendation):
-  1. §06 q8: is manual retrieval of blocked primary sources by the human acceptable, and
-     under what recording rules?
-  2. §06 q10: policy only, a `source_class` vocabulary schema now, or the full source
-     schema now?
+- **Human decisions already taken** (2026-09-30, before S05 started; "i follow your
+  recommendations"). Do not ask them again. Record each in a decision (`proposed`, citing
+  the human's answer), and stop only if a condition cannot be met:
+  - **H-1 — manual retrieval (§06 q8): allowed, with conditions.**
+    - Only sources the human can access legitimately: public pages, filings, and
+      standards obtainable free with registration. Nothing paywalled or members-only
+      (ISO, The Green Grid) unless the human already has legitimate access.
+    - Targeted, not bulk: only sources the policy names as preferred for a claim that
+      matters, listed by S05 or the session that needs them.
+    - Each download records the URL, the retrieval method ("manual, by the human"), the
+      human's download date and the file's content hash. It is marked as not
+      reproducible by automated retrieval.
+    - Full texts stay out of the repository (copyright). The repository keeps the record,
+      the locators and short quoted anchors. The file lives in a local folder that is not
+      committed.
+    - Verification is unchanged: Claude reads the text the human supplies and checks
+      each anchor at its locator.
+    - Following a site's published access policy for automated clients is not
+      circumvention. Whether that applies to SEC EDGAR is to be checked, not assumed
+      (model memory is not evidence).
+  - **H-2 — machine-readability (§06 q10): option (b), with (a) as the fallback.**
+    - A `source_class` controlled vocabulary goes in a new `schemas/sources.schema.json`,
+      one definition per value. S06 extends it into the full source record.
+    - Fall back to (a), the policy document with machine-checked tables, if the classes
+      do not settle. Examples: CSET as research or secondary analysis; SIA/BCG as an
+      advocacy association plus a consultancy.
+    - Never (c): the full source-record schema belongs to S06 with the claim model and
+      the register migration.
 - a preference would require a new entity field, a new relationship qualifier or a claim
   field. Record it for S06, S08 or S10; do not add it;
 - a claim type has no publicly available preferred class. Record the pattern with
