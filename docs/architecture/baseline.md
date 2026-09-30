@@ -33,7 +33,7 @@ repository are logged in [`decisions.md`](./decisions.md).
 | Domain map / source register | yes, draft (S01) | S01 |
 | M0 milestone audit + EU-DP process benchmark | yes, draft (S02) | S02 |
 | Entity schema | yes, accepted (S03): `schemas/entities.schema.json`, `entity-taxonomy.md` | S03 |
-| Relationship schema | yes, proposed (S04): `schemas/relationships.schema.json`, `relationship-taxonomy.md` | S04 |
+| Relationship schema | yes, accepted (S04): `schemas/relationships.schema.json`, `relationship-taxonomy.md` | S04 |
 | Source/evidence policy | no | S05 |
 | Claim/provenance implementation | no | S06 |
 | Canonical data | no | S07–S10 |
@@ -78,7 +78,7 @@ plus deterministic validators, with no agent runtime (D-018 L-01; NG-08).
 The conceptual contract (Entity, Claim, Source, Relationship, Event; status and null
 semantics) is MA §5; the Atlas-specific entity and relationship lists are MA §6.1–6.2;
 claim types and evidence status are MA §10. The entity schema was accepted in S03
-(`entity-taxonomy.md`, D-022 to D-025). The relationship schema was proposed in S04
+(`entity-taxonomy.md`, D-022 to D-025). The relationship schema was accepted in S04
 (`relationship-taxonomy.md`, D-028 to D-033); its §6 reconciles MA §6.2, the relationship
 list in `SESSION-ROADMAP.md` S04 and the verbs in `domain-map.md` §3.
 

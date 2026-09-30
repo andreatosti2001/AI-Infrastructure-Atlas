@@ -451,7 +451,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-028 — Relationship record contract
 
-- **Session:** S04 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S04 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S04: "Approve all six")
 - **Context:**
   - MA §5.4 shows a relationship with `id`, `source_entity`, `relation_type`,
     `target_entity`, `valid_from`, `valid_to` and `source_ids`.
@@ -488,7 +488,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-029 — Relationship vocabulary v1: eleven types at two levels
 
-- **Session:** S04 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S04 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S04: "Approve all six")
 - **Context:**
   - `SESSION-ROADMAP.md` S04: "prevent accidental inference from co-occurrence"; gate
     "Every relationship has a clear semantic definition and evidence expectation."
@@ -527,7 +527,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-030 — Reconciliation of the three verb lists; one-home rulings on S03 fields
 
-- **Session:** S04 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S04 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S04: "Approve all six")
 - **Context:** MA §6.2, the `SESSION-ROADMAP.md` S04 list and domain map §3 name
   different verbs (28 distinct, as measured at `1d0522c` by the parser in
   `tests/test_relationship_taxonomy.py`). `baseline.md` §4 asks S04 to reconcile them.
@@ -570,7 +570,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-031 — Unknown suppliers and non-public edges
 
-- **Session:** S04 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S04 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S04: "Approve all six")
 - **Context:**
   - DEP-01 and HBM-06: which HBM maker supplies which accelerator is
     `not_publicly_determinable` from the product documentation retrieved.
@@ -599,7 +599,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-032 — Vendor-named packaging processes and constituent-level fabrication are not modelled in v1
 
-- **Session:** S04 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S04 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S04: "Approve all six")
 - **Context:**
   - SK hynix describes CoWoS as "A TSMC proprietary packaging process" (PKG-04, SRC-014).
   - SK hynix plans to use TSMC's logic process for the HBM4 base die (DEP-04), so one
@@ -621,7 +621,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-033 — Role and edge conflicts are semantic warnings; validate-data rules for edges
 
-- **Session:** S04 · **Date:** 2026-09-30 · **Status:** proposed
+- **Session:** S04 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S04: "Approve all six")
 - **Context:**
   - D-024 makes roles claim-backed and never derived. It foresaw "a later semantic check"
     when roles and relationships disagree.

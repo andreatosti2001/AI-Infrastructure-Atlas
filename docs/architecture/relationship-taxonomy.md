@@ -1,6 +1,6 @@
 # Relationship taxonomy — typed edges for the first vertical
 
-**Status:** PROPOSED (S04, 2026-09-30): D-028 to D-033, awaiting human review.
+**Status:** ACCEPTED (human review of S04, 2026-09-30): D-028 to D-033.
 **Session:** S04 · **Date:** 2026-09-30
 **Inputs:**
 - `entity-taxonomy.md` (§1 rules R-1 to R-8, §3, §4.2–4.4, §7, §9);

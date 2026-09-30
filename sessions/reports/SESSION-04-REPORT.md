@@ -401,3 +401,32 @@ Each decision record lists its own. The main ones:
   3. `docs/architecture/entity-taxonomy.md` §7;
   4. `docs/research/source-register.md`;
   5. `docs/architecture/decisions.md` D-014, D-015 and D-028 to D-033.
+
+## Addendum — human review outcome (2026-09-30)
+
+Appended after the human's review of the S04 output. The sections above are unchanged.
+
+- **CI:** run 20 on `cf51c85` completed with `success`
+  (<https://github.com/andreatosti2001/AI-Infrastructure-Atlas/actions/runs/36744307934>).
+  This replaces "not yet observed" in Tests run.
+- **Decisions accepted:** D-028 to D-033 ("Approve all six (Recommended)"). Composition
+  stays `has_part`. The registry gate, "semantic relationship model", is met.
+- **Deviation 1 accepted:** the S04 prompt stays as the cherry-picked original commit
+  ("Accept cherry-pick (Recommended)").
+- **Deviation 3 kept:** the new tests keep importing the S03 test helpers ("Keep the
+  imports (Recommended)"). It remains recorded as debt.
+- **Documents updated to match:**
+  - the status lines of D-028 to D-033;
+  - the taxonomy and schema status lines;
+  - `docs/README.md`;
+  - the baseline state rows;
+  - `README.md`.
+- **Merge:** by pull request with a merge commit, once CI is green, as for PRs #1 to #3
+  ("PR + merge commit (Recommended)").
+- **Still open, not covered by this review:**
+  - D-014 and D-015 (S05);
+  - whether "external API dependency" becomes a non-goal;
+  - S01's weekly gate;
+  - the week-2 gate.
+- **Updated handoff to S05:** S05 may start. Its source classes attach to the accepted
+  relation types in `relationship-taxonomy.md` §5.

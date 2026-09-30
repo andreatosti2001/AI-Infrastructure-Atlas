@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/andreatosti2001/AI-Infrastructure-Atlas/schemas/relationships.schema.json",
   "title": "Atlas relationship record",
-  "description": "One typed, directed edge between two canonical entity records. Status: proposed (S04; D-028 to D-033). This file is the one home of the record shape, the relation-type vocabulary and each type's endpoint types. Why each type exists, its level, its evidence expectation and what it must not be confused with are in docs/architecture/relationship-taxonomy.md. Shared shapes (claim IDs, partial dates, entity ID patterns, assertions, explicit states) are referenced from entities.schema.json, never copied.",
+  "description": "One typed, directed edge between two canonical entity records. Status: accepted (S04 human review, 2026-09-30; D-028 to D-033). This file is the one home of the record shape, the relation-type vocabulary and each type's endpoint types. Why each type exists, its level, its evidence expectation and what it must not be confused with are in docs/architecture/relationship-taxonomy.md. Shared shapes (claim IDs, partial dates, entity ID patterns, assertions, explicit states) are referenced from entities.schema.json, never copied.",
   "type": "object",
   "required": ["id", "relation_type", "source_entity", "target_entity", "claim_ids"],
   "properties": {
