@@ -35,7 +35,7 @@ repository are logged in [`decisions.md`](./decisions.md).
 | Entity schema | yes, accepted (S03): `schemas/entities.schema.json`, `entity-taxonomy.md` | S03 |
 | Relationship schema | yes, accepted (S04): `schemas/relationships.schema.json`, `relationship-taxonomy.md` | S04 |
 | Source/evidence policy | yes, accepted (S05 review): `docs/research/source-policy.md`, and the class vocabulary in `schemas/sources.schema.json` | S05 |
-| Claim/provenance implementation | yes, proposed (S06): `docs/architecture/claim-model.md`, `schemas/claims.schema.json`, the source record in `schemas/sources.schema.json`, `tools/trace.py` | S06 |
+| Claim/provenance implementation | yes, accepted (S06 review): `docs/architecture/claim-model.md`, `schemas/claims.schema.json`, the source record in `schemas/sources.schema.json`, `tools/trace.py` | S06 |
 | Canonical data | source records only (S06: `data/sources.json`, the migrated register); seed claims in staging, none canonical (`data/staging/claims.json`). Entities and relationships: no | S06; S07–S10 |
 | Presentation / UI | no | S11 |
 | DuckDB / SQL layer | no | S14 |
@@ -69,7 +69,7 @@ the boundaries; the sources it cites keep their own wording.
 ## 3. Intended agent roles
 
 Roles and the contract format are defined in CLAUDE.md §8 and MA §11–12. S06 wrote
-`docs/agents/roles.md` and `docs/agents/contracts.md` (proposed, D-052): the roles active
+`docs/agents/roles.md` and `docs/agents/contracts.md` (accepted at the S06 review, D-052): the roles active
 through S10 have contracts, and the others name the session that first activates them. There is no root `AGENTS.md`
 (decision D-010). Until S19 finds a manual workflow that needs one, agents are contracts
 plus deterministic validators, with no agent runtime (D-018 L-01; NG-08).
@@ -83,7 +83,7 @@ claim types and evidence status are MA §10. The entity schema was accepted in S
 (`relationship-taxonomy.md`, D-028 to D-033); its §6 reconciles MA §6.2, the relationship
 list in `SESSION-ROADMAP.md` S04 and the verbs in `domain-map.md` §3. The source policy was accepted at the S05 review (`source-policy.md`, D-034 to
 D-043): source classes, a preference matrix read from both schemas, and evidence, conflict,
-retrieval and freshness rules. S06 proposed the claim and source records (`claim-model.md`, D-044 to D-053).
+retrieval and freshness rules. The claim and source records were accepted at the S06 review (`claim-model.md`, D-044 to D-053).
 
 ## 5. Quality gates
 

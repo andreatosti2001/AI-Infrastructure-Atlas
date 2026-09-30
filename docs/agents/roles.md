@@ -1,6 +1,6 @@
 # Agent roles
 
-**Status:** PROPOSED (S06, 2026-09-30; D-052, D-010). **Session:** S06.
+**Status:** ACCEPTED (human review of S06, 2026-09-30; D-052, D-010). **Session:** S06.
 
 The roles are CLAUDE.md §8's; their duties are MA §11's. This file says which roles are
 active and where each active role's contract is. It does not restate the duties.
