@@ -470,6 +470,15 @@ No part of Part A or Part B was skipped.
 **One next milestone:** S07 creates the first company records, each citing
 first-hand identity claims in the S06 shape, with V-1 and V-10 switched on.
 
+## Addendum — CI
+
+- At the commit that adds this report (`bb47dfc`), CI had not been observed. Local results
+  only (D-018 L-08).
+- **Observed after push:** CI run 43 on `bb47dfc` completed with `success`. Its steps
+  were: pinned install, unit tests, Gate 0
+  (<https://github.com/andreatosti2001/AI-Infrastructure-Atlas/actions/runs/36782578679>).
+  This replaces "not observed" in Tests run for that commit.
+
 ## Review sheet for the human's manual test
 
 For each claim: open the URL, find the locator and the anchor, read the **whole sentence**,
