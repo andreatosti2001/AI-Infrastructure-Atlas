@@ -4,8 +4,8 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 ## Status
 
 **M1 — Domain + Evidence Foundation.** The repository contains governance documents, the
-session system, a repository-integrity check, the S01 domain map and the accepted entity
-schema (S03). It contains **no data records or UI yet**. See
+session system, a repository-integrity check, the S01 domain map, the accepted entity
+schema (S03) and the proposed relationship schema (S04). It contains **no data records or UI yet**. See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is
 planned.
 
@@ -16,8 +16,8 @@ This is an independent repository. It shares no code, data or runtime with
 
 ```text
 CLAUDE.md, MASTER-ARCHITECTURE.md, ...   constitutional documents (see docs/README.md)
-docs/            documentation map, baseline, decision log, entity taxonomy, research
-schemas/         JSON Schema for canonical entity records (accepted, S03)
+docs/            documentation map, baseline, decision log, entity and relationship taxonomies, research
+schemas/         JSON Schema for entity records (accepted, S03) and relationship records (proposed, S04)
 sessions/        session prompts, prompt registry and session reports
 tools/           validators
 tests/           unit tests for tools/ and schemas/, with fictional fixtures

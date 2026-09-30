@@ -448,3 +448,197 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 - **Consequence:** the future S08 prompt must include product records in its scope.
 - **Rejected:** creating products only in S10, which would build classes and their
   instances in different sessions and leave S10 to do both entity and edge work.
+
+## D-028 — Relationship record contract
+
+- **Session:** S04 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - MA §5.4 shows a relationship with `id`, `source_entity`, `relation_type`,
+    `target_entity`, `valid_from`, `valid_to` and `source_ids`.
+  - S03 replaced record-level `source_ids` on entities with claim-level provenance
+    (D-025).
+  - The S06 gate asks "What exactly supports this relationship?".
+- **Decision:** `schemas/relationships.schema.json` is the one home of the record shape.
+  `relationship-taxonomy.md` §1–§2 explains it.
+  - **Fields:**
+    - `id` (`rel-<slug>`);
+    - `relation_type`;
+    - `source_entity` and `target_entity`, typed by ID prefix (MA §5.4 names kept);
+    - `claim_ids`, with at least one claim;
+    - optional `valid_from` / `valid_to` (partial dates);
+    - a per-type qualifier only where the type needs one (`item`, `supplier`).
+  - **Replaced:** MA §5.4's `source_ids` is replaced by `claim_ids`, following the D-025
+    precedent.
+  - **Forbidden:** `source_ids`, `notes`, `status`, `confidence`, `evidence_status` and any
+    inverse or symmetric field. Evidence status lives on claims (L-06).
+  - **Endpoints** are instantiable entity types only (D-022). Reserved types, record kinds
+    (source, claim, event) and jurisdictions are never endpoints. The schema rejects
+    placeholder endpoint IDs (`…-unknown…`, `…-tbd` and similar).
+  - **Every type is directed and stored once.** Inverse readings are display text. No
+    inverse, transitive or derived edge is stored.
+  - Shared shapes (claim IDs, partial dates, entity ID patterns, assertions, explicit
+    states) are `$ref`s into `entities.schema.json`, never copies. A test proves that
+    `jsonschema` resolves them.
+- **Rejected:**
+  - record-level `source_ids` (it cannot say which source supports the edge);
+  - a confidence score (it invents precision; confidence is the claim's evidence status);
+  - a free-text `notes` field (a hidden second home);
+  - a stored `status` (derived, R-8);
+  - copying the shared shapes into the relationship schema (two homes).
+
+## D-029 — Relationship vocabulary v1: eleven types at two levels
+
+- **Session:** S04 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - `SESSION-ROADMAP.md` S04: "prevent accidental inference from co-occurrence"; gate
+    "Every relationship has a clear semantic definition and evidence expectation."
+  - The domain map separates structural from contingent dependencies, which need
+    different evidence.
+  - S03 left ownership, operation, composition and design, fabrication and packaging to
+    S04 (`entity-taxonomy.md` §9).
+- **Decision:** the v1 types, each defined in the schema and explained in
+  `relationship-taxonomy.md` §4, with evidence expectations in §5:
+  - **class level** (technology and component endpoints, no dates): `requires`,
+    `has_part`;
+  - **instance level** (at least one company, facility or product endpoint): `owns`,
+    `operates`, `designs`, `fabricates`, `packages`, `incorporates`, `supplies`,
+    `houses`, `provides_access_to`.
+  - **One verb, one level (RR-2).** A class-level statement needs a source stating
+    necessity for the class. A product's use of a class is an instance edge.
+  - **Direction convention:** structural edges point from the dependent to the
+    dependency; activity edges point from the actor to its object.
+  - **Composition** is `has_part` (whole → part), so that it follows the convention. "Part
+    of" is its display reading.
+  - **Ownership** is an `owns` edge with its own claims and period. It is not derived from
+    acquisition events: event histories are rarely complete, and filings state the
+    ownership itself. Acquisitions and investments stay events (D-023).
+  - **Activity edges target named products only.** What a firm does in general is a role
+    (D-024).
+  - **Kind constraints** (use class, facility kind, product kind) need the endpoint
+    record. They are documented in taxonomy §2 and checked by `validate-data` later.
+    The schema checks types by prefix.
+- **Rejected:**
+  - one verb serving both levels;
+  - `manufactures` or `produces` as umbrellas (TQ-06);
+  - `part_of` as the stored direction;
+  - company → class edges;
+  - symmetric types;
+  - a stored `depends_on`.
+
+## D-030 — Reconciliation of the three verb lists; one-home rulings on S03 fields
+
+- **Session:** S04 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:** MA §6.2, the `SESSION-ROADMAP.md` S04 list and domain map §3 name
+  different verbs (28 distinct, as measured at `1d0522c` by the parser in
+  `tests/test_relationship_taxonomy.py`). `baseline.md` §4 asks S04 to reconcile them.
+- **Decision:** every verb has exactly one disposition, in `relationship-taxonomy.md` §6
+  (machine-checked against the three documents):
+  - **adopted:** `owns`, `operates`, `supplies`, `requires`, `designs`, `packages`,
+    `fabricates`, `houses`;
+  - **merged:**
+    - `enables` → `requires` (its inverse);
+    - `licenses` → `supplies`;
+    - `offered_via` → `provides_access_to`;
+    - `integrates` → `packages`;
+    - `stacks_on` → `has_part`;
+  - **entity field:** `located_in`;
+  - **events:** `invests_in`, `acquired`;
+  - **derivations:** `depends_on`, `competes_with`;
+  - **reserved for S17:** `restricted_by`, `regulated_by`, `supported_by`,
+    `constrained_by`;
+  - **excluded:** `supplies_power_to` (NG-05);
+  - **rejected as vague:** `manufactures`, `produces`, `uses`, `partners_with`,
+    `affected_by`.
+  - **One home:** every accepted S03 field listed in the S04 prompt stays the home of its
+    fact (taxonomy §7):
+    - `located_in`, `incorporated_in` and `headquartered_in`;
+    - `vendor`;
+    - `broader` and `instance_of`;
+    - `vendor_process_name`;
+    - `roles`.
+
+    No fact moves from a field to an edge, so no accepted S03 decision changes. No v1
+    type has a jurisdiction endpoint.
+  - **Exclusions:** DEP-10 and DEP-11 map to no edge (taxonomy §8). The reasons are
+    definitional endpoints, a two-way relation, and a market-state claim.
+  - **MA text is not edited.** MA §6.2 introduces its list as "Examples". MA §5.4's
+    `manufactures` is replaced by the specific activity types.
+- **Rejected:**
+  - adopting all 28 verbs (several have no definable evidence expectation);
+  - a `located_in` edge beside the fields (a second home);
+  - editing MA to match.
+
+## D-031 — Unknown suppliers and non-public edges
+
+- **Session:** S04 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - DEP-01 and HBM-06: which HBM maker supplies which accelerator is
+    `not_publicly_determinable` from the product documentation retrieved.
+  - `SESSION-ROADMAP.md` S10: "No relationship is published without evidence or an
+    explicit non-published/unverified state." A missing edge must never read as "no
+    relationship".
+- **Decision:**
+  - `incorporates` carries a required `supplier` qualifier, using the D-025 attribute
+    contract:
+    - claim-backed company assertions, where several means multi-sourcing; or
+    - `not_researched`; or
+    - `not_publicly_determinable`, citing claims that show what was searched.
+  - When the part is a named product, `supplier` must be `not_applicable`, because the
+    part's `vendor` already says it. The schema enforces this.
+  - A missing edge means "not recorded". Consumers must not render it as "none", and
+    metrics must not count it as zero.
+  - Placeholder companies are rejected by the schema.
+  - A general "unknown endpoint" record is **not** created in v1. S01's other
+    non-public findings are quantities, not parties. S10 proposes one if it meets the
+    case (M0 audit A-1; L-09).
+- **Rejected:**
+  - a placeholder company;
+  - leaving the supplier out (hides `not_researched`);
+  - inferring the supplier from market share or a supplier's customer list;
+  - an unknown-endpoint record type now.
+
+## D-032 — Vendor-named packaging processes and constituent-level fabrication are not modelled in v1
+
+- **Session:** S04 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - SK hynix describes CoWoS as "A TSMC proprietary packaging process" (PKG-04, SRC-014).
+  - SK hynix plans to use TSMC's logic process for the HBM4 base die (DEP-04), so one
+    product's dies would come from two fabricators.
+  - The chip's fabrication process already lives in `product.vendor_process_name`.
+- **Decision:**
+  - No packaging-process qualifier on `packages`, and no `part` qualifier on
+    `fabricates`, in v1.
+  - CoWoS does not become a technology record (R-4). It never goes into
+    `vendor_process_name`, whose definition is the fabrication process.
+  - A `fabricates` edge is never recorded for a whole product when the evidence covers
+    only one constituent. S10 must stop and propose a qualifier, with the first confirmed
+    case as its evidence.
+- **Rejected:**
+  - a `packaging_process` qualifier now: no retrieved source ties a named packaging
+    process to a named product;
+  - a `part` qualifier now: its only case is an announced plan, an event;
+  - reusing `vendor_process_name`: it would make that field mean two things.
+
+## D-033 — Role and edge conflicts are semantic warnings; validate-data rules for edges
+
+- **Session:** S04 · **Date:** 2026-09-30 · **Status:** proposed
+- **Context:**
+  - D-024 makes roles claim-backed and never derived. It foresaw "a later semantic check"
+    when roles and relationships disagree.
+  - MA §14 Gate 3 asks for "no impossible relationships".
+- **Decision:**
+  - The conflicts RW-1 to RW-3 (`relationship-taxonomy.md` §11) are **warnings**. They
+    are raised when a `fabless_designer` company also owns or operates a wafer fab,
+    fabricates, or packages, over overlapping or undated periods.
+  - No record is corrected automatically.
+  - An `idm`, `foundry_operator` or `memory_manufacturer` that packages (B-3), and a
+    `cloud_provider` that designs (B-2), are not conflicts.
+  - Rules V-1 to V-9 in taxonomy §15 are handed to `validate-data` (S06/S07). They cover
+    references resolving, kind constraints, self-loops, date order, duplicates, `broader`
+    restated as an edge, the vendor of a supplied item, the role warnings, and
+    placeholder entity IDs.
+  - None of them is a gate until CI runs it (L-02).
+- **Rejected:**
+  - correcting roles or edges automatically;
+  - encoding the role checks in the relationship schema: they need two records, and
+    JSON Schema sees one.
