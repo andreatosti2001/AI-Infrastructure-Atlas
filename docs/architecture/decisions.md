@@ -1316,6 +1316,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   CSET (separate grades). No equipment class for scanners in v1.
 - **Rejected:** one record (it would hold two distinct processes); scanner classes (no v1
   concept asks for them).
+- **Review (2026-10-01):** not approved at the S08 review. The two records stay staging
+  (they also rest on `src-041`, D-076).
 
 ## D-071 — `broader` assignments and acyclicity (B-1)
 
@@ -1356,14 +1358,15 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-074 — Trainium2's vendor is `company-amazon-com`
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human ruling at the S08 review: "Trainium2 vendor = Amazon")
 - **Context:** Part B §16 makes an unclear vendor legal entity a stop condition. AWS's page
   says Trainium2 is "from AWS". The canonical record `company-amazon-com` carries "AWS" and
   "Amazon Web Services" as aliases, accepted at the S07 review (the 10-K names AWS as a
   segment).
 - **Decision** (`concept-dataset.md` §7): the vendor is `company-amazon-com`; the record
   stays staging until the human rules on this question. Which legal entity publishes the
-  page stays open for S10.
+  page stays open for S10. The human approved the ruling at the S08 review, together with
+  reading Trainium2 as an AI ASIC (`claim-atlas-trainium2-ai-asic`).
 - **Rejected:** a new AWS company record (no filing of a separate AWS legal entity has been
   read); leaving Trainium2 out (H-2 names it).
 
@@ -1384,9 +1387,13 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 - **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed
 - **Context:** `source-policy.md` §2 assigns each source one class.
 - **Decision** (`concept-dataset.md` §6): the IEEE EPS Heterogeneous Integration Roadmap
-  chapter (`src-039`) is a `research_report`; the ECP milestone report (`src-040`) is a
-  `research_report`; the NIST news article (`src-041`) is a `government_publication`.
-  The first and third are flagged for the human.
+  chapter (`src-039`) is a `research_report`, and the NIST news article (`src-041`) is a
+  `government_publication`. The ECP milestone report (`src-040`), a national-laboratory
+  report, is a `research_report` as the LBNL reports `src-021` and `src-022` already are;
+  that follows precedent and is not a ruling.
+- **Review (2026-10-01):** the human did not approve the two rulings at the S08 review.
+  They stay proposed, and the claims citing `src-039` and `src-041`, with the working
+  definitions and records resting on them, stay staging.
 - **Rejected:** `standard_specification` for the roadmap (no standards body adopted it);
   `news_media` for the NIST article (the agency is its originator, writing about its own
   work).

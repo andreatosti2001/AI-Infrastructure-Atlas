@@ -1,6 +1,7 @@
 # Concept dataset — technologies, components and the first products
 
-**Status:** PROPOSED (S08): D-067 to D-077, for the human's review.
+**Status:** PROPOSED (S08): D-067 to D-077. At the S08 review the human accepted both
+batches of claims and approved D-074; D-070 and D-076 were not approved and stay open (§8).
 **Session:** S08 · **Date:** 2026-10-01
 **Inputs:**
 - `entity-taxonomy.md` §3.3 (technology), §3.4 (component), §3.5 (product), §4.2 (the
@@ -191,7 +192,7 @@ its full hash registered; their texts stay outside the repository (RA-4(4)):
 | Source | What | Class | Why this class |
 |---|---|---|---|
 | `src-039` | IEEE EPS, Heterogeneous Integration Roadmap 2020, Chapter 22 | `research_report` | a technical roadmap by a professional society's committee; not a standard (no standards body adopted it) and not policy research. **Ruling for the human** (D-076) |
-| `src-040` | ECP Milestone M1 Report: HBM2/3 Evaluation on Many-core CPU (Sandia, SAND2018-6370R) | `research_report` | a national-laboratory report for the DOE Exascale Computing Project |
+| `src-040` | ECP Milestone M1 Report: HBM2/3 Evaluation on Many-core CPU (Sandia, SAND2018-6370R) | `research_report` | a national-laboratory report for the DOE Exascale Computing Project, as the LBNL reports `src-021` and `src-022`: precedent, not a ruling |
 | `src-041` | NIST news, "UV Lithography: Taking Extreme Measures" (2011) | `government_publication` | published by NIST on nist.gov about its own work. **Ruling for the human** (D-076): it is a news article, but the agency is its originator |
 | `src-042` to `src-045` | re-retrievals of `src-006`, `src-010`, `src-015` and `src-013` | as the originals | their bytes changed (below) |
 
@@ -212,7 +213,8 @@ its anchor is still at its locator.
 
 - **JEDEC JESD238 (HBM3)** — free with registration. Registering declares an identity to a
   site, which is the human's decision (RA-7), so the human was asked to download it
-  (RA-4) at the start of S08. Not received by the end of S08: HBM-03 and HBM-04 stay gaps.
+  (RA-4) at the start of S08. Not received; at the S08 review the human chose to close
+  HBM-03 and HBM-04 as recorded gaps.
 - **`srcmapt.org`** (the MAPT roadmap) answered with an automated challenge page. Not
   circumvented (RA-2): an access gap.
 - **Considered, not registered:** two other NIST pages on EUV (a conference paper on EUV
@@ -276,6 +278,13 @@ As D-061, with the layout of H-3 (D-077): one canonical and one staging file per
 type. A record becomes canonical only on the human's verdict, and only if every claim it
 cites is canonical. CE-1 extends to the new files: a canonical record cites canonical
 claims, and its `broader`, `instance_of` and `vendor` point to canonical records.
+
+**What the S08 review left in staging.** The human accepted both batches and approved the
+Trainium2 rulings, but not D-070 (the EUV/DUV split) or D-076 (the classes of `src-039`
+and `src-041`). Every claim citing those two sources stays staging, with the working
+definitions that rest on them. So do the five records they support: advanced packaging,
+2.5D packaging, 3D die stacking, and EUV and DUV lithography. They become canonical when
+the human approves the open rulings, or after new sources replace them.
 
 ## 9. validate-data for concept and product records
 

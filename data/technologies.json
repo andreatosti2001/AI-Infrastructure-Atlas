@@ -1,1 +1,92 @@
-[]
+[
+  {
+    "id": "technology-multi-die-accelerator",
+    "type": "technology",
+    "name": "Multi-die accelerator",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-nist-chiplet-definition"
+    ],
+    "technology_kind": "design_approach",
+    "broader": [],
+    "concept_refs": [
+      "ACC-05"
+    ],
+    "definition": [
+      {
+        "value": "A multi-die accelerator is a design approach in which an AI accelerator, presented as one device, is built from more than one die assembled in one package. The Atlas calls it multi-die; 'chiplet' is used only where a source uses it.",
+        "claim_ids": [
+          "claim-atlas-multi-die-accelerator-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-multi-die-package",
+    "type": "technology",
+    "name": "Multi-die package",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-nist-chiplet-definition"
+    ],
+    "technology_kind": "process",
+    "broader": [],
+    "concept_refs": [
+      "PKG-06"
+    ],
+    "definition": [
+      {
+        "value": "A multi-die package is the packaging of two or more dies in one package so that they work as one functional subsystem. The Atlas calls it multi-die; 'chiplet' is used only where a source uses it.",
+        "claim_ids": [
+          "claim-atlas-multi-die-package-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-electronic-design-automation",
+    "type": "technology",
+    "name": "Electronic design automation",
+    "aliases": [
+      "EDA"
+    ],
+    "identity_claim_ids": [
+      "claim-cset-eda-definition"
+    ],
+    "technology_kind": "software",
+    "broader": [],
+    "concept_refs": [
+      "EDA-01"
+    ],
+    "definition": [
+      {
+        "value": "Electronic design automation (EDA) is the class of software used to design chips. A vendor's EDA tool is a product, not this record.",
+        "claim_ids": [
+          "claim-atlas-electronic-design-automation-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-cloud-computing",
+    "type": "technology",
+    "name": "Cloud computing",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-nist-cloud-computing-definition"
+    ],
+    "technology_kind": "service_model",
+    "broader": [],
+    "concept_refs": [
+      "DC-02"
+    ],
+    "definition": [
+      {
+        "value": "Cloud computing is a service model: on-demand network access to a shared pool of configurable computing resources, rapidly provisioned and released with minimal management effort, as NIST defines it. A provider's cloud service is a product, not this record.",
+        "claim_ids": [
+          "claim-atlas-cloud-computing-working-definition"
+        ]
+      }
+    ]
+  }
+]

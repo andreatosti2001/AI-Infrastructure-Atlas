@@ -1,1 +1,175 @@
-[]
+[
+  {
+    "id": "component-ai-accelerator",
+    "type": "component",
+    "name": "AI accelerator",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-cset-ai-chip-definition",
+      "claim-lbnl-ai-accelerator-accounting"
+    ],
+    "use_class": "constituent",
+    "broader": [],
+    "concept_refs": [
+      "ACC-01"
+    ],
+    "definition": [
+      {
+        "value": "An AI accelerator is a data-centre logic chip, a GPU or an AI ASIC, whose primary purpose is AI training or inference. FPGAs and CPUs are outside v1 scope.",
+        "claim_ids": [
+          "claim-atlas-ai-accelerator-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "component-data-centre-gpu",
+    "type": "component",
+    "name": "Data-centre GPU",
+    "aliases": [
+      "data center GPU"
+    ],
+    "identity_claim_ids": [
+      "claim-cset-gpu-definition",
+      "claim-lbnl-gpu-definition"
+    ],
+    "use_class": "constituent",
+    "broader": [
+      "component-ai-accelerator"
+    ],
+    "concept_refs": [
+      "ACC-02"
+    ],
+    "definition": [
+      {
+        "value": "A data-centre GPU is a GPU, a logic chip specialised for parallel processing, that is an AI accelerator: used in data centres primarily for AI training or inference.",
+        "claim_ids": [
+          "claim-atlas-data-centre-gpu-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "component-ai-asic",
+    "type": "component",
+    "name": "AI ASIC",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-cset-asic-definition",
+      "claim-lbnl-asic-definition"
+    ],
+    "use_class": "constituent",
+    "broader": [
+      "component-ai-accelerator"
+    ],
+    "concept_refs": [
+      "ACC-03"
+    ],
+    "definition": [
+      {
+        "value": "An AI ASIC is an application-specific integrated circuit, a logic chip designed for a specific application rather than general-purpose use, whose application is AI training or inference in data centres.",
+        "claim_ids": [
+          "claim-atlas-ai-asic-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "component-high-bandwidth-memory",
+    "type": "component",
+    "name": "High Bandwidth Memory",
+    "aliases": [
+      "HBM"
+    ],
+    "identity_claim_ids": [
+      "claim-ecp-hbm-definition"
+    ],
+    "use_class": "constituent",
+    "broader": [],
+    "concept_refs": [
+      "HBM-02"
+    ],
+    "definition": [
+      {
+        "value": "High Bandwidth Memory (HBM) is a memory component: a stack of DRAM dies, placed vertically and connected directly by through-silicon vias.",
+        "claim_ids": [
+          "claim-atlas-high-bandwidth-memory-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "component-semiconductor-manufacturing-equipment",
+    "type": "component",
+    "name": "Semiconductor manufacturing equipment",
+    "aliases": [
+      "SME"
+    ],
+    "identity_claim_ids": [
+      "claim-cset-sme-definition"
+    ],
+    "use_class": "production_equipment",
+    "broader": [],
+    "concept_refs": [
+      "SME-01"
+    ],
+    "definition": [
+      {
+        "value": "Semiconductor manufacturing equipment is the class of tools used to fabricate, assemble, test and package chips. The tools are not built into the chips they make.",
+        "claim_ids": [
+          "claim-atlas-semiconductor-manufacturing-equipment-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "component-assembly-packaging-and-wafer-level-packaging-tools",
+    "type": "component",
+    "name": "Assembly, packaging and wafer-level packaging tools",
+    "aliases": [
+      "assembly and packaging tools"
+    ],
+    "identity_claim_ids": [
+      "claim-cset-assembly-packaging-tools",
+      "claim-nist-wafer-fab-processes-for-packaging"
+    ],
+    "use_class": "production_equipment",
+    "broader": [
+      "component-semiconductor-manufacturing-equipment"
+    ],
+    "concept_refs": [
+      "SME-06"
+    ],
+    "definition": [
+      {
+        "value": "Assembly, packaging and wafer-level packaging tools are semiconductor manufacturing equipment that turns a wafer of completed, unseparated chips into separate packaged chips, together with the wafer-based fab tools that advanced packaging needs.",
+        "claim_ids": [
+          "claim-atlas-assembly-packaging-and-wafer-level-packaging-tools-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "component-accelerated-server",
+    "type": "component",
+    "name": "Accelerated server",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-lbnl-server-definition",
+      "claim-lbnl-accelerated-servers-category"
+    ],
+    "use_class": "constituent",
+    "broader": [],
+    "concept_refs": [
+      "DC-05"
+    ],
+    "definition": [
+      {
+        "value": "An accelerated server is a server, a computer providing data, resources or services to other computers over a network, that is configured with one or more AI accelerators.",
+        "claim_ids": [
+          "claim-atlas-accelerated-server-working-definition"
+        ]
+      }
+    ]
+  }
+]
