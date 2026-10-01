@@ -720,6 +720,29 @@
     "filing_copy": "regulator_hosted"
   },
   {
+    "id": "src-031",
+    "source_class": "company_filing",
+    "title": "Annual Report on Form 20-F for the fiscal year ended December 31, 2025",
+    "publisher": "Taiwan Semiconductor Manufacturing Company Limited",
+    "publisher_entity": "company-taiwan-semiconductor-manufacturing-company",
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf",
+    "stated_dates": [
+      {
+        "kind": "signed",
+        "date": "2026-04-16"
+      }
+    ],
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:44Z",
+      "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+    },
+    "filing_copy": "filer_hosted_not_checked"
+  },
+  {
     "id": "src-032",
     "source_class": "standard_specification",
     "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for US, identity block (screenshot)",
@@ -844,31 +867,6 @@
       "accessed_at": "2026-10-01T14:26Z",
       "sha256": "e81ab0ff68a4abb36414a2be4381d9e23836651e58a893abe37afd2aeca97fa8"
     }
-  },
-  {
-    "id": "src-031",
-    "source_class": "company_filing",
-    "title": "Annual Report on Form 20-F for the fiscal year ended December 31, 2025",
-    "publisher": "Taiwan Semiconductor Manufacturing Company Limited",
-    "publisher_entity": {
-      "state": "not_researched"
-    },
-    "authors": {
-      "state": "not_researched"
-    },
-    "url": "https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf",
-    "stated_dates": [
-      {
-        "kind": "signed",
-        "date": "2026-04-16"
-      }
-    ],
-    "retrieval": {
-      "method": "manual_by_human",
-      "accessed_at": "2026-10-01T14:44Z",
-      "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
-    },
-    "filing_copy": "filer_hosted_not_checked"
   },
   {
     "id": "src-038",

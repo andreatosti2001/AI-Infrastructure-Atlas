@@ -539,6 +539,13 @@ the date and that report (§7). An accepted claim moves to `data/claims.json`.
 
 ## 16. What S06 leaves to other sessions
 
+> **Status note (S07, 2026-10-01; D-062, D-063, D-064, proposed).** S07 took four items of
+> this table: anchors from new retrievals are Verifier-attested from the date in
+> `company-dataset.md` §7, and VD-11 checks that they were read from the registered bytes;
+> V-1, V-4, V-9 and V-10 run on entity records (`company-dataset.md` §8); the first
+> `validate-freshness` rule runs (§9); `publisher_entity` is set for filings (D-065). The
+> human accepted the ten seed claims in S07, recorded in `SESSION-07-REPORT.md`.
+
 | Item | Owner | Note |
 |---|---|---|
 | The human's verdicts on the seed claims; moving accepted claims to `data/claims.json` | the human, then the next session | §7, §14 |

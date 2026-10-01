@@ -28,6 +28,7 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 | [`architecture/baseline.md`](./architecture/baseline.md) | approved 2026-09-29 (S02; approval record §8) | S00; approved at S02 |
 | [`architecture/decisions.md`](./architecture/decisions.md) | active | every session |
 | [`architecture/milestone-audits/M0-audit.md`](./architecture/milestone-audits/M0-audit.md) | accepted (S02; M0 closed 2026-09-29): M0 audit, EU-DP process benchmark, maturity baseline, v1 concept classification | one per milestone |
+| [`architecture/milestone-audits/M1-audit.md`](./architecture/milestone-audits/M1-audit.md) | proposed (S07, H-5): M1 audit over S03–S06, findings, maturity ratings | S07 (D-066) |
 | [`research/source-policy.md`](./research/source-policy.md) (source classes, preference matrix, evidence, conflict, retrieval and freshness rules; class of every registered source) with [`../schemas/sources.schema.json`](../schemas/sources.schema.json) (the source-class vocabulary) | accepted (S05 review, 2026-09-30; D-034 to D-043) | S05 |
 | `research/content-review-log.md` | planned | first session that records claims |
 | [`agents/roles.md`](./agents/roles.md), [`agents/contracts.md`](./agents/contracts.md) (every CLAUDE.md §8 role; MA §12 contracts for the roles active through S10) | accepted (S06 review, 2026-09-30; D-052) | S06 (D-010) |
@@ -42,7 +43,8 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 | [`architecture/relationship-taxonomy.md`](./architecture/relationship-taxonomy.md) (relation types, levels, evidence expectations, verb reconciliation, DEP mapping) with [`../schemas/relationships.schema.json`](../schemas/relationships.schema.json) (record shape, vocabulary, endpoint types) | accepted (S04 review, 2026-09-30; D-028 to D-033) | S04 |
 | Source-class vocabulary | accepted (S05 review, 2026-09-30): [`../schemas/sources.schema.json`](../schemas/sources.schema.json) | S05 |
 | [`architecture/claim-model.md`](./architecture/claim-model.md) (claim types and evidence status, MA §10 reconciled; citations; `verified`; staging and canonical; the search record; the migration; `validate-data`; the trace) with [`../schemas/claims.schema.json`](../schemas/claims.schema.json) and the source record in [`../schemas/sources.schema.json`](../schemas/sources.schema.json) | accepted (S06 review, 2026-09-30; D-044 to D-053) | S06 |
-| [`../data/sources.json`](../data/sources.json) (canonical source records, migrated from the register) and [`../data/staging/claims.json`](../data/staging/claims.json) (seed claims awaiting the human's review) | S06 | S06; later sessions add records |
+| [`architecture/company-dataset.md`](./architecture/company-dataset.md) (the seed, legal-entity rulings, the ID rule, claim patterns, jurisdictions, entity staging and canonical, attested anchors, record checks, freshness) | proposed (S07; D-054 to D-066) | S07 |
+| [`../data/sources.json`](../data/sources.json), [`../data/claims.json`](../data/claims.json), [`../data/companies.json`](../data/companies.json), [`../data/jurisdictions.json`](../data/jurisdictions.json) (canonical; the S07 records accepted by the human in the session), with staging copies under [`../data/staging/`](../data/staging/) | S06, S07 | S06, S07; later sessions add records |
 | First product records | planned | S08 (D-027) |
 | Event schema | planned | S09 (D-022) |
 
