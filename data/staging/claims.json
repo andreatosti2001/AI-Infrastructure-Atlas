@@ -1,1 +1,899 @@
-[]
+[
+  {
+    "id": "claim-atlas-2-5d-packaging-with-an-interposer-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, 2.5D packaging with an interposer is the process of placing two or more active dies side by side on an interposer (silicon, glass or ceramic) that carries the dense interconnect between them, inside one package.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-hir-2d-architecture-definition",
+      "claim-hir-2x-names-no-technical-basis"
+    ],
+    "reasoning": "HIR calls this architecture 2DS and says the '2.x' names have no technical basis. The Atlas keeps the taxonomy's term '2.5D' as its working label (TQ-03), and narrows HIR's 2DS to the interposer case: HIR's 2DS also covers bridges. The naming dispute is recorded; the technical content is HIR's.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-3d-die-stacking-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, 3D die stacking is the process of stacking two or more active dies and interconnecting them directly, not through the package. In v1 it covers HBM stacking only.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-hir-3d-architecture-definition",
+      "claim-ecp-hbm-definition"
+    ],
+    "reasoning": "HIR's 3D architecture gives the definition; the ECP report gives HBM as a case (DRAM dies stacked and connected by TSVs). The v1 scope (HBM only) is the taxonomy's (entity-taxonomy §5, PKG-05).",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-accelerated-server-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, an accelerated server is a server, a computer providing data, resources or services to other computers over a network, that is configured with one or more AI accelerators.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-lbnl-server-definition",
+      "claim-lbnl-accelerated-servers-category",
+      "claim-atlas-ai-accelerator-working-definition"
+    ],
+    "reasoning": "LBNL defines the server and counts accelerated servers apart from CPU-driven ones; it gives no one-sentence definition of 'accelerated server'. The record composes the two with the AI-accelerator working definition. TQ-11: servers stay inside layer 6.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-advanced-packaging-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, advanced packaging is packaging that integrates multiple dies at high interconnect density. In v1 it means two things: 2.5D interposer integration of logic and HBM, and HBM die stacking.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nist-advanced-packaging-scope",
+      "claim-sia-advanced-packaging-breadth",
+      "claim-hir-2d-architecture-definition",
+      "claim-hir-3d-architecture-definition"
+    ],
+    "reasoning": "CON-04: NIST ties the term to high-density integration that blurs chip and package; SIA/BCG say it covers a wide range of technologies. TQ-03 chose the narrow working definition for v1. HIR's 2DS and 3D definitions are the technical anchors of the two v1 cases. The choice is the human's, not a resolution of the dispute; both breadths stay as ATTRIBUTION claims.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-ai-asic-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, an AI ASIC is an application-specific integrated circuit, a logic chip designed for a specific application rather than general-purpose use, whose application is AI training or inference in data centres.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-cset-asic-definition",
+      "claim-lbnl-asic-definition",
+      "claim-atlas-ai-accelerator-working-definition"
+    ],
+    "reasoning": "CSET and LBNL define the ASIC in compatible terms; LBNL adds that ASICs in data centers are often used for AI tasks. The record narrows the ASIC to the Atlas's AI accelerator (TQ-01). No CON conflict applies.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-assembly-packaging-and-wafer-level-packaging-tools-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, assembly, packaging and wafer-level packaging tools are semiconductor manufacturing equipment that turns a wafer of completed, unseparated chips into separate packaged chips, together with the wafer-based fab tools that advanced packaging needs.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-cset-assembly-packaging-tools",
+      "claim-nist-wafer-fab-processes-for-packaging",
+      "claim-cset-sme-definition"
+    ],
+    "reasoning": "CSET describes assembly and packaging tools; NIST says advanced packaging needs wafer-based fab processes. Combining the two is the Atlas's step, which the S01 domain map recorded as a derivation (SME-06). This record is equipment; the processes are the packaging technology records.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-cloud-computing-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, cloud computing is a service model: on-demand network access to a shared pool of configurable computing resources, rapidly provisioned and released with minimal management effort, as NIST defines it. A provider's cloud service is a product, not this record.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nist-cloud-computing-definition"
+    ],
+    "reasoning": "NIST SP 800-145's definition, unchanged in substance. No CON conflict applies.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-data-centre-gpu-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, a data-centre GPU is a GPU, a logic chip specialised for parallel processing, that is an AI accelerator: used in data centres primarily for AI training or inference.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-cset-gpu-definition",
+      "claim-lbnl-gpu-definition",
+      "claim-atlas-ai-accelerator-working-definition"
+    ],
+    "reasoning": "CSET and LBNL define the GPU; neither defines a 'data-centre GPU'. The record narrows the GPU to the Atlas's AI accelerator (TQ-01), so the AI-accelerator working definition is an input. No CON conflict applies.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-duv-lithography-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, dUV lithography is photolithography that patterns chips with deep ultraviolet light, typically at 193 nm. CSET's DUV grade includes ArF immersion, ArF and KrF tools.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nist-euv-duv-wavelengths",
+      "claim-cset-photolithography-grades"
+    ],
+    "reasoning": "As for EUV lithography. 'Typically at 193 nm' is NIST's wording; KrF tools use another wavelength, which no retrieved source states, so the definition does not give one.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-electronic-design-automation-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, electronic design automation (EDA) is the class of software used to design chips. A vendor's EDA tool is a product, not this record.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-cset-eda-definition"
+    ],
+    "reasoning": "CSET's glossary definition. Synopsys's broader description (software and hardware tools, SRC-018) is company marketing and is not used to define the class.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-euv-lithography-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, eUV lithography is photolithography that patterns chips with extreme ultraviolet light at a wavelength of 13.5 nm. It is a different grade of lithography from DUV.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nist-euv-duv-wavelengths",
+      "claim-cset-photolithography-grades"
+    ],
+    "reasoning": "NIST gives the wavelength; CSET lists EUV and DUV as separate grades. SME-03 is split into two records (D-070) so that the two processes are not merged. No vendor source is used.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-high-bandwidth-memory-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, high Bandwidth Memory (HBM) is a memory component: a stack of DRAM dies, placed vertically and connected directly by through-silicon vias.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-ecp-hbm-definition"
+    ],
+    "reasoning": "The ECP report describes HBM as a DRAM stacking technology. The Atlas records HBM as a component (entity-taxonomy §5, HBM-02), so the working definition names the stack the technology produces; the stacking process itself is the 3D die stacking record. Where the stack sits (TQ-02, in-package) is an S10 edge, not part of the definition.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-multi-die-accelerator-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, a multi-die accelerator is a design approach in which an AI accelerator, presented as one device, is built from more than one die assembled in one package. The Atlas calls it multi-die; 'chiplet' is used only where a source uses it.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-atlas-ai-accelerator-working-definition",
+      "claim-nist-chiplet-definition",
+      "claim-sia-heterogeneous-integration-definition",
+      "claim-sk-hynix-chiplet-description"
+    ],
+    "reasoning": "CON-03: NIST, SIA/BCG and SK hynix describe chiplets differently. TQ-09 chose the neutral term 'multi-die'. The working definition keeps only what the three share (more than one die forming one functional unit) and applies it to the AI accelerator. Every side is an input; SK hynix's side is company marketing and is preserved as a position, not as a definitional source.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-multi-die-package-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, a multi-die package is the packaging of two or more dies in one package so that they work as one functional subsystem. The Atlas calls it multi-die; 'chiplet' is used only where a source uses it.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nist-chiplet-definition",
+      "claim-sia-heterogeneous-integration-definition",
+      "claim-sk-hynix-chiplet-description"
+    ],
+    "reasoning": "CON-03 and TQ-09, as for the multi-die accelerator. This record is the packaging process; the multi-die accelerator is the design approach. Every side is an input.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-semiconductor-manufacturing-equipment-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, semiconductor manufacturing equipment is the class of tools used to fabricate, assemble, test and package chips. The tools are not built into the chips they make.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-cset-sme-definition"
+    ],
+    "reasoning": "CSET's glossary definition, with the use class (production equipment) the taxonomy assigns. No CON conflict applies.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-trainium2-ai-asic",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, AWS Trainium2 is an AI ASIC: AWS describes it as a purpose-built machine learning chip, which is a chip designed for a specific application.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-trainium2-identity",
+      "claim-cset-asic-definition",
+      "claim-lbnl-asic-definition",
+      "claim-atlas-ai-asic-working-definition"
+    ],
+    "reasoning": "AWS's sentence does not use the word ASIC. 'Purpose-built' for machine learning matches CSET's and LBNL's ASIC definitions (a design specialised for an application rather than general-purpose use). The step from the vendor's words to the class is the Atlas's, so it is an INTERPRETATION, flagged for the human.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-cset-asic-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "CSET's glossary defines application-specific integrated circuits (ASICs) as logic chips with designs specialized for certain applications.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-002",
+        "locator": "p.65, Appendix B: Glossary, entry 'Application-specific integrated circuits (ASICs)'",
+        "anchor": "Application-specific integrated circuits (ASICs) are logic chips with designs specialized for certain applications",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "319d942ba53468a6d5af97c9e46f6134fda2bf03958237e966bdc8c9cc8098ff"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-cset-assembly-packaging-tools",
+    "claim_type": "ATTRIBUTION",
+    "statement": "CSET describes assembly and packaging tools as taking a wafer with completed, unseparated chips and turning it into separate, packaged chips.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-002",
+        "locator": "p.45, section 'Assembly and Packaging', first sentence",
+        "anchor": "Japan, China, Singapore, the United States, and a number of other countries produce assembly and packaging tools (Figure 22 and Table 15), taking a wafer with completed, unseparated chips and turning it into separate, packaged chips",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "319d942ba53468a6d5af97c9e46f6134fda2bf03958237e966bdc8c9cc8098ff"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-cset-eda-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "CSET's glossary says electronic design automation (EDA) software is used to design chips.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-002",
+        "locator": "p.66, Appendix B: Glossary, entry 'Electronic design automation (EDA)'",
+        "anchor": "Electronic design automation (EDA) software is used to design chips",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "319d942ba53468a6d5af97c9e46f6134fda2bf03958237e966bdc8c9cc8098ff"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-cset-gpu-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "CSET's glossary defines graphics processing units (GPUs) as specialized logic chips used most commonly for graphics processing and developing artificial intelligence algorithms.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-002",
+        "locator": "p.66, Appendix B: Glossary, entry 'Graphics processing units (GPUs)'",
+        "anchor": "Graphics processing units (GPUs) are specialized logic chips used most commonly for graphics processing and developing artificial intelligence algorithms",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "319d942ba53468a6d5af97c9e46f6134fda2bf03958237e966bdc8c9cc8098ff"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-cset-photolithography-grades",
+    "claim_type": "ATTRIBUTION",
+    "statement": "CSET lists EUV and deep ultraviolet (DUV) as separate grades of photolithography tool, DUV including ArF immersion, ArF and KrF.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-002",
+        "locator": "p.32, section on lithography tools, the sentence beginning 'Photolithography tools are used in high-volume chip production'",
+        "anchor": "Photolithography tools are used in high-volume chip production, and currently include six grades from most to least advanced by supported nodes: EUV, deep ultraviolet (DUV)—which includes ArF immersion (also called wet ArF or ArFi), ArF (also called dry ArF), and krypton fluoride (KrF)—i-line, and mask aligners",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "319d942ba53468a6d5af97c9e46f6134fda2bf03958237e966bdc8c9cc8098ff"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-cset-sme-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "CSET's glossary says semiconductor manufacturing equipment includes tools used to fabricate, assemble, test, and package chips.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-002",
+        "locator": "p.67, Appendix B: Glossary, entry 'Semiconductor manufacturing equipment'",
+        "anchor": "Semiconductor manufacturing equipment includes tools used to fabricate, assemble, test, and package chips",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "319d942ba53468a6d5af97c9e46f6134fda2bf03958237e966bdc8c9cc8098ff"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-ecp-hbm-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "An ECP milestone report by Sandia describes HBM as a DRAM stacking technology that vertically stacks multiple DRAM dies and directly connects them with through-silicon vias (TSVs).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-040",
+        "locator": "p.5 (printed p.1), §1 'Introduction', second sentence",
+        "anchor": "HBM is a DRAM stacking technology that vertically stacks multiple DRAM dies and directly connects them with through-silicon vias (TSVs)",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:51Z",
+          "sha256": "8a9e0dd19680df611754313dade196f95ca80c945fa3e0dc011c1c63801e8be8"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-h100-identity",
+    "claim_type": "FACT",
+    "statement": "The NVIDIA H100 Tensor Core GPU is a data center GPU that NVIDIA offers for large-scale AI and HPC.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-042",
+        "locator": "section 'Introducing the NVIDIA H100 Tensor Core GPU', first sentence",
+        "anchor": "The NVIDIA H100 Tensor Core GPU is our ninth-generation data center GPU designed to deliver an order-of-magnitude performance leap for large-scale AI and HPC",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "c509a2dc0ff25905818e630dfea548d1fc3a7df4d2d697706129cbfaf868244c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-h100-process-name",
+    "claim_type": "FACT",
+    "statement": "NVIDIA names the fabrication process of the H100 “TSMC 4N”.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-042",
+        "locator": "after the GH100 specification list, the sentence beginning 'Using the TSMC 4N fabrication process'",
+        "anchor": "Using the TSMC 4N fabrication process enables H100 to increase GPU core frequency",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "c509a2dc0ff25905818e630dfea548d1fc3a7df4d2d697706129cbfaf868244c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-hir-2d-architecture-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "The IEEE EPS Heterogeneous Integration Roadmap defines a 2D architecture as two or more active silicon devices placed side by side on a package and interconnected on it, and calls it 2DS when its enhanced interconnect uses an inorganic medium such as a silicon, glass or ceramic interposer or bridge.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-039",
+        "locator": "p.4 (chapter page 2), §3 'Converged Nomenclature Framework for 2D & 3D Architectures', item a",
+        "anchor": "A 2D architecture is defined as an architecture where two or more active silicon devices are placed side-by-side on a package and are interconnected on the package. If the interconnect is “enhanced”, i.e., has higher interconnect density than mainstream organic packages, and is accomplished using an organic medium, the architecture is further sub-categorized as a 2DO (2D Organic) architecture and similarly, if the enhanced architecture uses an inorganic medium (e.g. a silicon/glass/ceramic interposer or bridge) the architecture is further sub-categorized as a 2DS architecture",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:46Z",
+          "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-hir-2x-names-no-technical-basis",
+    "claim_type": "ATTRIBUTION",
+    "statement": "The IEEE EPS Heterogeneous Integration Roadmap says the “2.x” names for enhanced 2D architectures do not have any particular technical basis.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-039",
+        "locator": "p.4 (chapter page 2), §3, item a, the sentences after the 2DS definition",
+        "anchor": "Architectures that include enhancements over and above traditional 2D architectures (typically 2 or more die flip-chip attached on a traditional organic package) are variously referred to as 2.x architectures to emphasize their specialness. These nomenclatures do not have any particular technical basis",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:46Z",
+          "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-hir-3d-architecture-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "The IEEE EPS Heterogeneous Integration Roadmap defines a 3D architecture as two or more active silicon devices stacked and interconnected without the agency of the package.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-039",
+        "locator": "p.4 (chapter page 2), §3, item b",
+        "anchor": "A 3D architecture is defined as an architecture where two or more active silicon devices are stacked and interconnected without the agency of the package",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:46Z",
+          "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-lbnl-accelerated-servers-category",
+    "claim_type": "ATTRIBUTION",
+    "statement": "LBNL's 2025 update distinguishes accelerated servers from CPU-driven servers, and describes a shift to accelerated servers for advanced workloads.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-021",
+        "locator": "p.16, §3.1.1, the sentence beginning 'This reflects the shift'",
+        "anchor": "This reflects the shift to accelerated servers for advanced workloads, moving away from CPU-driven compute",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-lbnl-asic-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "LBNL's 2025 update defines an ASIC as a type of semiconductor designed for a specific application rather than general-purpose use, and says that in data centers ASICs are often used for AI tasks.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-021",
+        "locator": "p.6, glossary, entry 'ASIC (Application-Specific Integrated Circuit)'",
+        "anchor": "ASIC (Application-Specific Integrated Circuit) – A type of semiconductor designed for a specific application rather than general-purpose use. In data centers, ASICs are often used for AI tasks due to their efficiency",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-lbnl-gpu-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "LBNL's 2025 update defines a GPU as a type of processor particularly well-suited for parallel processing tasks, often used in AI applications and graphics rendering.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-021",
+        "locator": "p.7, glossary, entry 'GPU (Graphics Processing Unit)'",
+        "anchor": "GPU (Graphics Processing Unit) – A type of processor particularly well-suited for parallel processing tasks, often used in AI applications and graphics rendering",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-lbnl-server-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "LBNL's 2025 update defines a server as a computer or system providing data, resources, or services to other computers (clients) over a network.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-021",
+        "locator": "p.7, glossary, entry 'Server'",
+        "anchor": "Server – A computer or system providing data, resources, or services to other computers (clients) over a network",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-micron-hbm4-identity",
+    "claim_type": "FACT",
+    "statement": "Micron names an HBM4 product “HBM4 36GB 12H” and states that it is in high-volume production.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-044",
+        "locator": "section 'Micron HBM4 in high-volume production', first sentence",
+        "anchor": "Micron is in high-volume production of HBM4 36GB 12H",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "bb6d6d8f798080ec8c5faee25233cc4d51b126f82cae78d9dc673d8201aba50c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-nist-advanced-packaging-scope",
+    "claim_type": "ATTRIBUTION",
+    "statement": "NIST's NAPMP vision paper ties advanced packaging to integrating multi-component assemblies with large numbers of interconnects, to a degree of integration that blurs the line between chip and package.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-004",
+        "locator": "p.4, 'Opportunities in Advanced Packaging', the sentence beginning 'Advanced packaging and capabilities'",
+        "anchor": "Advanced packaging and capabilities, such as heterogeneous integration, encompass the need to integrate multi-component-assemblies with large numbers of interconnects to achieve a degree of integration that blurs the line between chip and package",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "bb83ae40b64004a77ec5754e374f129ea8426a7bc5dc63d50bb423cdb0c52cf7"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-nist-chiplet-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "NIST's NAPMP vision paper says chiplets are small, partially functional semiconductor chips that, when assembled at tight pitch and close to one another, result in a highly functional subsystem.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-004",
+        "locator": "p.7, bullet 'Developing a chiplet ecosystem', the sentence beginning 'Chiplets refer to'",
+        "anchor": "Chiplets refer to small, partially functional, semiconductor chips that, when assembled at tight pitch and close to one another, result in a highly functional subsystem",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "bb83ae40b64004a77ec5754e374f129ea8426a7bc5dc63d50bb423cdb0c52cf7"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-nist-cloud-computing-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "NIST SP 800-145 defines cloud computing as a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources that can be rapidly provisioned and released with minimal management effort or service provider interaction.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-001",
+        "locator": "p.6, §2 'The NIST Definition of Cloud Computing', first sentence",
+        "anchor": "Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:54Z",
+          "sha256": "7b0c1a9fdfc67218b8ba2098f448c100c27070db91736b3c87fed63bfa21d418"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-nist-euv-duv-wavelengths",
+    "claim_type": "ATTRIBUTION",
+    "statement": "NIST wrote in 2011 that the smallest features were typically made with deep ultraviolet light at 193 nm, and that lithography was shifting to extreme ultraviolet (EUV) at 13.5 nm.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-041",
+        "locator": "article body, the paragraph beginning 'In general, feature size is proportional to the wavelength'",
+        "anchor": "Today's super-small features are typically made with \"deep\" ultraviolet light at 193 nm. \"But now we're trying to make a dramatic shift by dropping more than an order of magnitude, down to extreme ultraviolet (EUV) at 13.5 nm,\"",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:46Z",
+          "sha256": "4483140a773ab6c24971acedaa530c7e4d9d7823510e6d16277512b121bd362d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-nist-wafer-fab-processes-for-packaging",
+    "claim_type": "ATTRIBUTION",
+    "statement": "NIST's NAPMP vision paper says many wafer-based fab processes are necessary for advanced packaging.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-004",
+        "locator": "p.5, bullet 'Manufacturing equipment'",
+        "anchor": "U.S. leadership in microelectronics equipment will be leveraged to implement many wafer-based fab processes necessary for advanced packaging",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "bb83ae40b64004a77ec5754e374f129ea8426a7bc5dc63d50bb423cdb0c52cf7"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-sia-advanced-packaging-breadth",
+    "claim_type": "ATTRIBUTION",
+    "statement": "SIA/BCG say the term “advanced packaging” covers a wide range of materials and manufacturing technologies.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-005",
+        "locator": "p.21, 'SIDEBAR: Chiplets', first sentence",
+        "anchor": "The term “advanced packaging” covers a wide range of materials and manufacturing technologies",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "27040f69e8e036c927a193a8477e7d975a2ae35fb7e7cf37f759553fc14ff9cf"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-sia-heterogeneous-integration-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "SIA/BCG describe heterogeneous integration of chiplets as the process of combining multiple chips and chiplets to match the functionality of a single monolithic system-on-chip.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-005",
+        "locator": "p.21, 'SIDEBAR: Chiplets', the sentence beginning 'Heterogeneous integration of chiplets is'",
+        "anchor": "Heterogeneous integration of chiplets is the process of combining multiple chips and chiplets to match the functionality of a single monolithic system-on-chip (SoC)",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "27040f69e8e036c927a193a8477e7d975a2ae35fb7e7cf37f759553fc14ff9cf"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-sk-hynix-chiplet-description",
+    "claim_type": "ATTRIBUTION",
+    "statement": "SK hynix describes chiplets as a technology that divides existing logic chips by function and connects them with TSV.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-045",
+        "locator": "the paragraph after 'Figure 5. Conceptual diagram of a chiplet', the sentence beginning 'As shown in Figure 5'",
+        "anchor": "As shown in Figure 5, it is a technology that divides existing logic chips by function and connects them with TSV",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:54Z",
+          "sha256": "660a781f4882d74424ad4fdd7f28dfba9ff11ed1a3b23264be683e6b809235c9"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-trainium2-identity",
+    "claim_type": "FACT",
+    "statement": "Trainium2 is a machine learning chip that AWS offers, its third generation of purpose-built machine learning chip.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-043",
+        "locator": "heading 'Trainium2 Architecture', first sentence",
+        "anchor": "Trainium2 is the third generation, purpose-built Machine Learning chip from AWS",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T20:44Z",
+          "sha256": "746c25212873fd403894481c62b4cd1535b02ebf4f7439ae98b507fe47400cbf"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  }
+]

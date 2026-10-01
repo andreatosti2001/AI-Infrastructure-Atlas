@@ -1,0 +1,210 @@
+[
+  {
+    "id": "technology-multi-die-accelerator",
+    "type": "technology",
+    "name": "Multi-die accelerator",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-nist-chiplet-definition"
+    ],
+    "technology_kind": "design_approach",
+    "broader": [],
+    "concept_refs": [
+      "ACC-05"
+    ],
+    "definition": [
+      {
+        "value": "A multi-die accelerator is a design approach in which an AI accelerator, presented as one device, is built from more than one die assembled in one package. The Atlas calls it multi-die; 'chiplet' is used only where a source uses it.",
+        "claim_ids": [
+          "claim-atlas-multi-die-accelerator-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-advanced-packaging",
+    "type": "technology",
+    "name": "Advanced packaging",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-nist-advanced-packaging-scope",
+      "claim-hir-2d-architecture-definition",
+      "claim-hir-3d-architecture-definition"
+    ],
+    "technology_kind": "process",
+    "broader": [],
+    "concept_refs": [
+      "PKG-03"
+    ],
+    "definition": [
+      {
+        "value": "Advanced packaging is packaging that integrates multiple dies at high interconnect density. In v1 it means two things: 2.5D interposer integration of logic and HBM, and HBM die stacking.",
+        "claim_ids": [
+          "claim-atlas-advanced-packaging-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-2-5d-packaging-with-an-interposer",
+    "type": "technology",
+    "name": "2.5D packaging with an interposer",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-hir-2d-architecture-definition"
+    ],
+    "technology_kind": "process",
+    "broader": [
+      "technology-advanced-packaging"
+    ],
+    "concept_refs": [
+      "PKG-04"
+    ],
+    "definition": [
+      {
+        "value": "2.5D packaging with an interposer is the process of placing two or more active dies side by side on an interposer (silicon, glass or ceramic) that carries the dense interconnect between them, inside one package.",
+        "claim_ids": [
+          "claim-atlas-2-5d-packaging-with-an-interposer-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-3d-die-stacking",
+    "type": "technology",
+    "name": "3D die stacking",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-hir-3d-architecture-definition"
+    ],
+    "technology_kind": "process",
+    "broader": [
+      "technology-advanced-packaging"
+    ],
+    "concept_refs": [
+      "PKG-05"
+    ],
+    "definition": [
+      {
+        "value": "3D die stacking is the process of stacking two or more active dies and interconnecting them directly, not through the package. In v1 it covers HBM stacking only.",
+        "claim_ids": [
+          "claim-atlas-3d-die-stacking-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-multi-die-package",
+    "type": "technology",
+    "name": "Multi-die package",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-nist-chiplet-definition"
+    ],
+    "technology_kind": "process",
+    "broader": [],
+    "concept_refs": [
+      "PKG-06"
+    ],
+    "definition": [
+      {
+        "value": "A multi-die package is the packaging of two or more dies in one package so that they work as one functional subsystem. The Atlas calls it multi-die; 'chiplet' is used only where a source uses it.",
+        "claim_ids": [
+          "claim-atlas-multi-die-package-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-euv-lithography",
+    "type": "technology",
+    "name": "EUV lithography",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-nist-euv-duv-wavelengths",
+      "claim-cset-photolithography-grades"
+    ],
+    "technology_kind": "process",
+    "broader": [],
+    "concept_refs": [
+      "SME-03"
+    ],
+    "definition": [
+      {
+        "value": "EUV lithography is photolithography that patterns chips with extreme ultraviolet light at a wavelength of 13.5 nm. It is a different grade of lithography from DUV.",
+        "claim_ids": [
+          "claim-atlas-euv-lithography-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-duv-lithography",
+    "type": "technology",
+    "name": "DUV lithography",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-nist-euv-duv-wavelengths",
+      "claim-cset-photolithography-grades"
+    ],
+    "technology_kind": "process",
+    "broader": [],
+    "concept_refs": [
+      "SME-03"
+    ],
+    "definition": [
+      {
+        "value": "DUV lithography is photolithography that patterns chips with deep ultraviolet light, typically at 193 nm. CSET's DUV grade includes ArF immersion, ArF and KrF tools.",
+        "claim_ids": [
+          "claim-atlas-duv-lithography-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-electronic-design-automation",
+    "type": "technology",
+    "name": "Electronic design automation",
+    "aliases": [
+      "EDA"
+    ],
+    "identity_claim_ids": [
+      "claim-cset-eda-definition"
+    ],
+    "technology_kind": "software",
+    "broader": [],
+    "concept_refs": [
+      "EDA-01"
+    ],
+    "definition": [
+      {
+        "value": "Electronic design automation (EDA) is the class of software used to design chips. A vendor's EDA tool is a product, not this record.",
+        "claim_ids": [
+          "claim-atlas-electronic-design-automation-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-cloud-computing",
+    "type": "technology",
+    "name": "Cloud computing",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-nist-cloud-computing-definition"
+    ],
+    "technology_kind": "service_model",
+    "broader": [],
+    "concept_refs": [
+      "DC-02"
+    ],
+    "definition": [
+      {
+        "value": "Cloud computing is a service model: on-demand network access to a shared pool of configurable computing resources, rapidly provisioned and released with minimal management effort, as NIST defines it. A provider's cloud service is a product, not this record.",
+        "claim_ids": [
+          "claim-atlas-cloud-computing-working-definition"
+        ]
+      }
+    ]
+  }
+]
