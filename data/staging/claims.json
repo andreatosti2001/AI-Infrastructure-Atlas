@@ -385,5 +385,206 @@
       "state": "not_reviewed"
     },
     "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-1-tw",
+    "claim_type": "FACT",
+    "statement": "ISO 3166 assigns the alpha-2 code TW to the entry with the short name “TAIWAN, PROVINCE OF CHINA” (its Full name row is empty), with status 'Officially assigned'.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-038",
+        "locator": "screenshot of the OBP entry, below 'Standard: ISO 3166', rows 'Alpha-2 code' and 'Short name'",
+        "anchor": "Alpha-2 code TW Short name TAIWAN, PROVINCE OF CHINA",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:30Z",
+          "sha256": "506e72caa98ef136479a2530204364f63a761b9ac1ff658c2ec47b9b0f7291b8"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-tsmc-legal-name",
+    "claim_type": "FACT",
+    "statement": "TSMC's Articles of Incorporation give its name as 台灣積體電路製造股份有限公司 in the Chinese language and Taiwan Semiconductor Manufacturing Company Limited in the English language. The 20-F cover gives the Chinese name as the exact name in its charter, and the English name as its translation.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-031",
+        "locator": "p.179, Exhibit 1.1, Articles of Incorporation, Article 1",
+        "anchor": "its name shall be 台灣積體電路製造股份有限公司 in the Chinese language, and Taiwan Semiconductor Manufacturing Company Limited in the English language",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      },
+      {
+        "source_id": "src-031",
+        "locator": "p.20, Item 4, 'Our History and Structure', the first sentence",
+        "anchor": "Our legal and commercial name is 台灣積體電路製造股份有限公司 (Taiwan Semiconductor Manufacturing Company Limited)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      },
+      {
+        "source_id": "src-031",
+        "locator": "p.1, cover page, the name printed above the label '(Exact Name of Registrant as Specified in Its Charter)'",
+        "anchor": "台灣積體電路製造股份有限公司 (Exact Name of Registrant as Specified in Its Charter)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      },
+      {
+        "source_id": "src-031",
+        "locator": "p.1, cover page, the English name and its label; the text runs on into the jurisdiction field beside it",
+        "anchor": "Taiwan Semiconductor Manufacturing Company Limited Republic of China (Translation of Registrant’s Name Into English)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-tsmc-incorporated-roc",
+    "claim_type": "FACT",
+    "statement": "TSMC was incorporated in the R.O.C. (Republic of China) as a company limited by shares on February 21, 1987, under the Company Law of the Republic of China.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-031",
+        "locator": "p.179, Exhibit 1.1, Articles of Incorporation, Article 1",
+        "anchor": "The Corporation shall be incorporated, as a company limited by shares, under the Company Law of the Republic of China",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      },
+      {
+        "source_id": "src-031",
+        "locator": "p.20, Item 4, 'Our History and Structure', the second sentence",
+        "anchor": "were incorporated in the R.O.C. as a company limited by shares on February 21, 1987",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      },
+      {
+        "source_id": "src-031",
+        "locator": "p.108, Note 1 'General', the first sentence",
+        "anchor": "Taiwan Semiconductor Manufacturing Company Limited (TSMC), a Republic of China (R.O.C.) corporation, was incorporated on February 21, 1987",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-tsmc-head-office-taiwan",
+    "claim_type": "FACT",
+    "statement": "TSMC's Articles of Incorporation place its head office in Hsinchu Science Park, Taiwan, Republic of China, and its corporate headquarters are located in the Hsinchu Science Park.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-031",
+        "locator": "p.180, Exhibit 1.1, Articles of Incorporation, Article 3",
+        "anchor": "The Corporation shall have its head office in Hsinchu Science Park, Taiwan, Republic of China",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      },
+      {
+        "source_id": "src-031",
+        "locator": "p.21, Item 4, 'Our Semiconductor Facilities', the second sentence",
+        "anchor": "Our corporate headquarters and nine of our fabs are located in the Hsinchu Science Park",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-tsmc-foundry",
+    "claim_type": "FACT",
+    "statement": "As a foundry, TSMC manufactures semiconductors with its own manufacturing processes for its customers, based on proprietary integrated circuit designs that the customers provide.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-031",
+        "locator": "p.21, Item 4, 'Business Overview of the Company', the first sentence",
+        "anchor": "As a foundry, we manufacture semiconductors using our manufacturing processes for our customers based on proprietary integrated circuit designs provided by them",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-tsmc-incorporated-in-tw",
+    "claim_type": "DERIVATION",
+    "statement": "TSMC's jurisdiction of incorporation is recorded as the ISO 3166 entry with code TW.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-tsmc-incorporated-roc",
+      "claim-tsmc-head-office-taiwan",
+      "claim-iso-3166-1-tw"
+    ],
+    "reasoning": "The filing names the jurisdiction of incorporation as the R.O.C. (claim-tsmc-incorporated-roc). The same filing writes the head office's place as 'Taiwan, Republic of China', using both names for one place (claim-tsmc-head-office-taiwan). ISO 3166 assigns the code TW to the entry whose short name is 'TAIWAN, PROVINCE OF CHINA' (claim-iso-3166-1-tw). So the Atlas records the entry TW. The code is an identifier and states no position on sovereignty (entity-taxonomy.md §3.6); the filing's own name for the jurisdiction stays in its claim. The step is the Atlas's (D-057).",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
   }
 ]

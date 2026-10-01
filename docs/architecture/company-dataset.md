@@ -92,7 +92,7 @@ field does.
 | `company-amazon-com` | AMAZON.COM, INC. | the 10-K registrant. "Amazon Web Services" is one of its three segments (p.14), so it is an alias here. Whether a separate legal entity publishes the AWS documentation (`src-010`, `src-020`) is open (§14) |
 | `company-asml-holding` | ASML Holding N.V. | the 20-F registrant. The filing says it "operates through its subsidiaries" (p.89). Which subsidiary operates which site is S09/S10's |
 | `company-sk-hynix` | 에스케이하이닉스 주식회사, in English SK hynix Inc. | the filer of the annual report. "SK hynix Newsroom" (`src-011` to `src-014`) is a channel |
-| `company-taiwan-semiconductor-manufacturing-company` | Taiwan Semiconductor Manufacturing Company Limited, if the 20-F cover confirms it (§11) | the 20-F registrant. "TSMC" is the display name and an alias |
+| `company-taiwan-semiconductor-manufacturing-company` | 台灣積體電路製造股份有限公司, in English Taiwan Semiconductor Manufacturing Company Limited | the 20-F registrant. Its Articles of Incorporation (Exhibit 1.1, Article 1) give both names; the 20-F cover calls the Chinese name the charter name and the English its translation. "TSMC" is the display name |
 
 **Display names are editorial** (`entity-taxonomy.md` §7). "Amazon", "ASML" or "TSMC" can
 change without any ID or claim changing (§3).
@@ -191,7 +191,7 @@ attributes point to. Each cites ISO 3166-1 as published by ISO, the preferred cl
 the Online Browsing Platform, OBP) returned an HTTP 403 challenge on 2026-10-01, and ISO's
 open maintenance portal has no ISO 3166 entry. That is H-4's stop condition. The human chose
 manual retrieval (RA-4): the human took screenshots of the OBP entries in their own browser,
-and the session registers each image as a source (`src-032` to `src-037`, §11). No secondary
+and the session registers each image as a source (`src-032` to `src-038`, §11). No secondary
 list stands in for the standard (RA-5).
 
 **Screenshots as evidence.** Each image shows the `iso.org` host, the "Online Browsing Platform
@@ -337,8 +337,8 @@ full hash, stated dates, and `filing_copy`:
 | `src-028` | Amazon, 2025 Annual Report, which contains the 10-K from p.12 | `filer_hosted_not_checked`: `ir.aboutamazon.com/files/…` |
 | `src-029` | ASML, 2025 Annual Report based on US GAAP: the Form 20-F (signature page p.349) | `filer_hosted_not_checked`: `ourbrand.asml.com`, linked from `investor.asml.com` |
 | `src-030` | SK hynix, Annual Report for fiscal 2025, section I.1 | `regulator_hosted`: English DART (D-059) |
-| `src-031` | TSMC, 20-F for 2025 | manual retrieval by the human (D-060) |
-| `src-032` to `src-037` | ISO 3166 OBP screenshots: US identity block and two subdivision tables; NL identity block; KR identity block and subdivision table | manual retrieval by the human (D-058) |
+| `src-031` | TSMC, 20-F for 2025, 244 pages, signed 2026-04-16 (p.95) | manual retrieval by the human (D-060): downloaded from `investor.tsmc.com` and supplied through a share link; `filer_hosted_not_checked` |
+| `src-032` to `src-038` | ISO 3166 OBP screenshots: US identity block and two subdivision tables; NL identity block; KR identity block and subdivision table; TW identity block | manual retrieval by the human (D-058) |
 
 `src-024` (NVIDIA's 10-K) was re-read. Its bytes are unchanged since S05 (`a056b59e4170`).
 

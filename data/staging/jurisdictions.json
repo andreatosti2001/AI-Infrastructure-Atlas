@@ -40,5 +40,18 @@
       "claim-iso-3166-1-kr"
     ],
     "jurisdiction_kind": "country"
+  },
+  {
+    "id": "jurisdiction-tw",
+    "type": "jurisdiction",
+    "name": "Taiwan",
+    "aliases": [
+      "TAIWAN, PROVINCE OF CHINA",
+      "Taiwan (Province of China)"
+    ],
+    "identity_claim_ids": [
+      "claim-iso-3166-1-tw"
+    ],
+    "jurisdiction_kind": "country"
   }
 ]

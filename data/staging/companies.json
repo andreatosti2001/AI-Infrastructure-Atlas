@@ -1,1 +1,53 @@
-[]
+[
+  {
+    "id": "company-taiwan-semiconductor-manufacturing-company",
+    "type": "company",
+    "name": "TSMC",
+    "aliases": [
+      "Taiwan Semiconductor Manufacturing Company Limited",
+      "台灣積體電路製造股份有限公司"
+    ],
+    "identity_claim_ids": [
+      "claim-tsmc-legal-name"
+    ],
+    "legal_name": [
+      {
+        "value": "台灣積體電路製造股份有限公司",
+        "claim_ids": [
+          "claim-tsmc-legal-name"
+        ]
+      },
+      {
+        "value": "Taiwan Semiconductor Manufacturing Company Limited",
+        "claim_ids": [
+          "claim-tsmc-legal-name"
+        ]
+      }
+    ],
+    "incorporated_in": [
+      {
+        "value": "jurisdiction-tw",
+        "claim_ids": [
+          "claim-tsmc-incorporated-in-tw"
+        ],
+        "valid_from": "1987-02-21"
+      }
+    ],
+    "headquartered_in": [
+      {
+        "value": "jurisdiction-tw",
+        "claim_ids": [
+          "claim-tsmc-head-office-taiwan"
+        ]
+      }
+    ],
+    "roles": [
+      {
+        "value": "foundry_operator",
+        "claim_ids": [
+          "claim-tsmc-foundry"
+        ]
+      }
+    ]
+  }
+]
