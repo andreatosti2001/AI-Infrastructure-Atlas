@@ -426,6 +426,23 @@ product vendors pointing to the S07 companies.
 - **H-6 sample for sheet 2:** the screenshots are the human's own captures. No TSMC claim was
   named as opened.
 
+## Addendum — human review outcome of S07 (2026-10-01)
+
+Appended after the human's review of the S07 output, while the S08 prompt was prepared. The
+sections above are unchanged.
+
+- **Decisions:** D-054 to D-066 accepted (H-0 of the S08 prompt: "Approve all
+  (Recommended)"). Their status lines, `company-dataset.md`'s status line and the
+  `claim-model.md` §16 note record it.
+- **M1 audit:** accepted with the same answer; `M1-audit.md`, `docs/README.md` and
+  `docs/quality/audit-history.md` record it.
+- **CI:** run 57 on `433b19a` completed with `success`. The run on `4a5f7b3` was queued when
+  last checked; the merge's own CI run is the next observation (L-08).
+- **Merge:** on the human's instruction, "merge in main everything", by pull request with a
+  merge commit.
+- **Still open:** the operational roadmap's week-3 checkpoint; S01's weekly gate.
+- **Handoff:** S08 may start once its prompt is on `main`. It builds on accepted S07 decisions.
+
 ## Review sheets
 
 ### Review sheet 1 (as given to the human)

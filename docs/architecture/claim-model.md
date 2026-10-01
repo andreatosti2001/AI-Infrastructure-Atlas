@@ -539,7 +539,7 @@ the date and that report (§7). An accepted claim moves to `data/claims.json`.
 
 ## 16. What S06 leaves to other sessions
 
-> **Status note (S07, 2026-10-01; D-062, D-063, D-064, proposed).** S07 took four items of
+> **Status note (S07, 2026-10-01; D-062, D-063, D-064, accepted at the S07 review).** S07 took four items of
 > this table: anchors from new retrievals are Verifier-attested from the date in
 > `company-dataset.md` §7, and VD-11 checks that they were read from the registered bytes;
 > V-1, V-4, V-9 and V-10 run on entity records (`company-dataset.md` §8); the first

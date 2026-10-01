@@ -1065,7 +1065,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-054 — The company seed and the legal-entity rulings (H-1)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
 - **Context:** the roadmap's S07 target is "A small, high-quality seed set rather than
   maximum coverage". Before S07 started, the human chose eight companies, one per chain
   layer (H-1: "8, one per layer (Recommended)"). `entity-taxonomy.md` §3.1 makes a record
@@ -1083,7 +1083,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-055 — Entity data layout: one file per entity type (H-2)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
 - **Context:** D-005 leaves each data layout to the session that first needs it. Before S07
   started, the human chose one JSON array file per entity type (H-2: "One file per entity
   type (Recommended)").
@@ -1096,7 +1096,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-056 — Company ID rule (ID-1)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
 - **Context:** the S07 gate requires "stable IDs". A renamed company keeps its ID
   (`entity-taxonomy.md` §3.1). The display name is editorial (§7).
 - **Decision** (`company-dataset.md` §3):
@@ -1112,7 +1112,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-057 — Claim patterns for company identity and attributes
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
 - **Context:** `claim-model.md` §16 and the S06 report hand S07 the claim shape. The rows are
   `identity:company` and `attr:company.*` (`source-policy.md` §7). R-5 forbids reading a
   headquarters off a facility or a listing, and D-024 forbids deriving roles from edges.
@@ -1137,7 +1137,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-058 — Jurisdiction records from ISO pages retrieved by the human (H-4, RA-4)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
 - **Context:** H-4 ("Create the needed ones (Recommended)") required ISO 3166-1 as ISO
   publishes it, and said to stop and ask if it could not be retrieved under RA-1/RA-2.
   `www.iso.org` refused plain requests (HTTP 403 challenge) on 2026-10-01, so S07 stopped and
@@ -1158,7 +1158,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-059 — Regulator-hosted filings readable under RA-1 (SK hynix)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
 - **Context:** D-042 takes filings from the filer's own copy, because EDGAR refused plain
   requests and its access policy could not be read. SK hynix's IR site hosts no annual
   report and points readers to the regulator's English DART for disclosures. DART answered
@@ -1174,7 +1174,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-060 — TSMC's 20-F by manual retrieval (RA-4)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
 - **Context:** every TSMC host and EDGAR answered with a challenge or refusal on 2026-10-01.
   The human chose to download the 20-F ("RA-4: you download its 20-F (Recommended)").
 - **Decision:** the human downloads TSMC's 2025 Form 20-F from `investor.tsmc.com` and
@@ -1185,7 +1185,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-061 — Staging and canonical for entity records; the human's review in S07 (H-3)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
 - **Context:** the accepted entity schema has no review field, and Part B §08 forbids adding
   one without approval. Before S07 started, the human chose to review inside S07 (H-3: "Your
   review inside S07 (Recommended)").
@@ -1201,7 +1201,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-062 — Anchors from new retrievals are Verifier-attested (H-6)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
 - **Context:** VD-11 machine-checks only anchors whose text is in the repository
   (`claim-model.md` §5, §16). Before S07 started, the human chose Verifier attestation with
   a human sample (H-6: "Verifier + your sample (Recommended)").
@@ -1217,7 +1217,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-063 — validate-data for entity records
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
 - **Context:** `relationship-taxonomy.md` §15 and `claim-model.md` §11 hand V-1, V-9 and
   V-10 to S07. `entity-taxonomy.md` §9 asks for jurisdiction IDs on the ISO list.
 - **Decision** (`company-dataset.md` §8): `tests/test_data_entities.py` adds V-1, V-4, V-9,
@@ -1230,7 +1230,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-064 — validate-freshness: the first rule (F-1)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
 - **Context:** D-040 sets a 12-month horizon for `time_sensitive` rows, "before its use in a
   canonical record". D-051 left the code to the first session with such records.
 - **Decision** (`company-dataset.md` §9): `tests/test_freshness.py` checks that every
@@ -1243,7 +1243,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-065 — `publisher_entity` is set for filings only
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
 - **Context:** D-050 left `publisher_entity` `not_researched` for company publishers until
   S07. The S07 prompt (§06 q11) allows it only where the evidence shows the legal entity.
 - **Decision** (`company-dataset.md` §10): a filing's `publisher_entity` names its filer's
@@ -1254,7 +1254,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-066 — The M1 milestone audit is written first in S07 (H-5)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
 - **Context:** PEF §4 requires a milestone audit "At every major milestone". M1 (S03–S06)
   closed with S06, and no session was assigned the audit. Before S07 started, the human
   placed it as S07's first task (H-5: "First task of S07 (Recommended)").

@@ -1,6 +1,6 @@
 # Company dataset — the first canonical entities
 
-**Status:** proposed (S07): D-054 to D-066.
+**Status:** ACCEPTED (human review of S07, 2026-10-01: "Approve all"): D-054 to D-066.
 **Session:** S07 · **Date:** 2026-10-01
 **Inputs:**
 - `entity-taxonomy.md` §3.1 (company identity), §3.6 (jurisdiction), §7 (attribute contract),
