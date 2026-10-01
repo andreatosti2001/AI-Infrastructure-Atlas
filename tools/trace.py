@@ -11,7 +11,9 @@ Usage:
     ID         a record ID (in a --records file), a claim ID, a source ID or a register label
     --data     directory holding sources.json, staging/claims.json and, once a claim is
                accepted, claims.json (default: the repository's data/)
-    --records  a JSON array of records that cite claims (entities, relationships); repeatable
+    --records  a JSON array of records that cite claims (entities, relationships); repeatable.
+               The entity files of --data (companies.json, jurisdictions.json and their
+               staging copies, S07) are always read when they exist
 
 Exit status: 0 when every reference resolves, 1 when one does not, 2 when ID is unknown.
 Standard library only (D-003, D-026).
@@ -25,6 +27,8 @@ import sys
 from pathlib import Path
 
 DEFAULT_DATA = Path(__file__).resolve().parent.parent / "data"
+# The entity data files (S07, H-2 layout), canonical then staging.
+ENTITY_FILES = ("companies.json", "jurisdictions.json", "staging/companies.json", "staging/jurisdictions.json")
 
 
 class Store:
@@ -38,6 +42,9 @@ class Store:
                 self.claims[claim["id"]] = claim
                 self.where[claim["id"]] = name
         self.records: dict[str, tuple[dict, str]] = {}
+        for path in [data / name for name in ENTITY_FILES]:
+            for record in self._load(path):
+                self.records[record["id"]] = (record, f"{'staging' if 'staging' in path.parts else 'canonical'} {path.name}")
         for path in record_files:
             for record in self._load(path, required=True):
                 self.records[record["id"]] = (record, str(path))
@@ -55,14 +62,14 @@ class Store:
         return records
 
 
-def claim_paths(node, pointer: str = "") -> list[tuple[str, str]]:
-    """Every (JSON pointer, claim ID) in a record, in document order."""
+def claim_paths(node, pointer: str = "") -> list[tuple[str, str, object]]:
+    """Every (JSON pointer, claim ID, asserted value or None) in a record, in document order."""
     found = []
     if isinstance(node, dict):
         for key, value in node.items():
             path = f"{pointer}/{key}"
             if key in {"claim_ids", "identity_claim_ids"} and isinstance(value, list):
-                found += [(path, claim_id) for claim_id in value]
+                found += [(path, claim_id, node.get("value", node.get("state"))) for claim_id in value]
             else:
                 found += claim_paths(value, path)
     elif isinstance(node, list):
@@ -187,9 +194,12 @@ class Printer:
             summary = record.get("name", "")
         self.out(0, f"{record['id']} · {kind} · {origin}")
         self.out(1, summary)
-        for pointer, claim_id in claim_paths(record):
-            self.out(1, f"{pointer}:")
+        for pointer, claim_id, value in claim_paths(record):
+            self.out(1, f"{pointer}:" + (f" {value}" if value is not None and pointer.endswith("/claim_ids") else ""))
             self.claim(2, claim_id)
+        for key, value in record.items():
+            if isinstance(value, dict) and "state" in value and "claim_ids" not in value:
+                self.out(1, f"/{key}: {value['state']}")
 
     def source(self, source: dict) -> None:
         self.out(0, f"{source['id']} · source record")

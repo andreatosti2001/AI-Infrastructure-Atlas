@@ -1,6 +1,7 @@
 # Agent contracts
 
 **Status:** ACCEPTED (human review of S06, 2026-09-30; D-052, D-010). **Session:** S06.
+Paths updated in S07 (Editorial, paths only, Part B §10): the staging entity files, `company-dataset.md` and the S07 test modules.
 
 MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. Each contract has
 MA's nine fields, in MA's order.
@@ -34,11 +35,11 @@ MA's nine fields, in MA's order.
 | ROLE | Extractor |
 | INPUTS | a retrieved source (bytes, access time, hash) or a manual retrieval by the human (RA-4); the claim model and the schemas |
 | OUTPUTS | a source record; candidate claims with citations (locator, verbatim anchor, standing, originator for a chain) or input claims with reasoning; all with `evidence_status: unverified` and `review: not_reviewed` |
-| ALLOWED_WRITES | `data/sources.json` (new records); `data/staging/claims.json` (new claims) |
+| ALLOWED_WRITES | `data/sources.json` (new records; `publisher_entity` per D-065); `data/staging/claims.json` (new claims); `data/staging/companies.json`, `data/staging/jurisdictions.json` (staging entity records, S07, D-055) |
 | FORBIDDEN_WRITES | `data/claims.json`; a claim's `review`; `evidence_status` other than `unverified`; `verified_on` or a citation's `read`; migrated source values (a change needs a decision, VD-9) |
 | EVIDENCE_REQUIREMENTS | every candidate keeps its provenance (MA §11.3); the anchor is copied verbatim; the type follows `claim-model.md` §2 and ER-1 to ER-10; unknowns are explicit states, never null or zero |
 | HANDOFF_FORMAT | the records themselves, plus a report list of new IDs for the Verifier |
-| VALIDATION_GATE | `tests/test_data_schema.py` (VD-2) and `tests/test_data_integrity.py` (VD-1, VD-3 to VD-13) |
+| VALIDATION_GATE | `tests/test_data_schema.py` (VD-2) and `tests/test_data_integrity.py` (VD-1, VD-3 to VD-13); for entity records, `tests/test_data_entities.py` (V-1, V-4, V-9, V-10, CE-1, ID-1, J-1, S07) |
 | FAILURE_BEHAVIOUR | a value the source does not give is left as an explicit state; a sentence that cannot be quoted is not cited; the problem is reported, never patched with an inference |
 
 ## Verifier
@@ -62,7 +63,7 @@ MA's nine fields, in MA's order.
 | ROLE | Knowledge Architect |
 | INPUTS | the session prompt; the schemas; the taxonomies, the source policy and the claim model; the decision log |
 | OUTPUTS | schema and vocabulary changes, each with a decision; one-home rulings; ID formats |
-| ALLOWED_WRITES | `schemas/`; `docs/architecture/claim-model.md`; `docs/architecture/decisions.md` (append only) |
+| ALLOWED_WRITES | `schemas/`; `docs/architecture/claim-model.md`; `docs/architecture/company-dataset.md` (S07); `docs/architecture/decisions.md` (append only) |
 | FORBIDDEN_WRITES | any file in `data/`; a claim's `review`; an accepted vocabulary value or field without a decision the human approves first; the root constitutional documents |
 | EVIDENCE_REQUIREMENTS | a vocabulary value needs a used case (M0 audit A-1, L-09); where a choice rests on the domain, it cites the concept or source that shows it |
 | HANDOFF_FORMAT | a decision record (`proposed`) and the changed schema, with fixtures |
@@ -80,5 +81,5 @@ MA's nine fields, in MA's order.
 | FORBIDDEN_WRITES | any file in `data/`: the Auditor reports, and the Extractor or Verifier fixes; a claim's `review`; a check weakened to make data pass |
 | EVIDENCE_REQUIREMENTS | each check is shown to catch a planted fault before it is trusted (deliberate breaks); prose counts are tested or labelled as measured (L-04) |
 | HANDOFF_FORMAT | failing test output naming the record and the rule, in the session report |
-| VALIDATION_GATE | `tests/test_data_integrity.py`, `tests/test_data_schema.py`, `tests/test_trace.py`, `tests/test_agent_contracts.py` |
+| VALIDATION_GATE | `tests/test_data_integrity.py`, `tests/test_data_schema.py`, `tests/test_data_entities.py`, `tests/test_freshness.py`, `tests/test_trace.py`, `tests/test_agent_contracts.py` |
 | FAILURE_BEHAVIOUR | a failure that cannot be explained stops the session (CLAUDE.md §18); no test is skipped or loosened to get green |

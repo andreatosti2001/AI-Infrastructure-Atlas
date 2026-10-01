@@ -1,0 +1,472 @@
+{
+  "_about": "Fictional entity world for tests/test_data_entities.py and tests/test_freshness.py (S07). Every name, code and URL is invented; jurisdiction-xa uses an ISO 3166-1 user-assigned code. 'valid' is one consistent data set: sources, canonical and staging claims, canonical and staging entity records. Each fault is one change to it that one check must catch, with the text its error must contain.",
+  "valid": {
+    "sources": [
+      {
+        "id": "src-911",
+        "source_class": "company_filing",
+        "title": "Example Designer annual report",
+        "publisher": "Example Designer Inc.",
+        "publisher_entity": "company-example-designer",
+        "authors": {
+          "state": "not_researched"
+        },
+        "url": "https://example.com/src-911",
+        "stated_dates": [
+          {
+            "kind": "signed",
+            "date": "2026-02-01"
+          }
+        ],
+        "retrieval": {
+          "method": "automated",
+          "accessed_at": "2026-09-29T09:00Z",
+          "sha256": "abababababababababababababababababababababababababababababababab"
+        },
+        "filing_copy": "filer_hosted_not_checked"
+      },
+      {
+        "id": "src-912",
+        "source_class": "standard_specification",
+        "title": "Example country code list",
+        "publisher": "Example Standards Body",
+        "publisher_entity": {
+          "state": "not_applicable"
+        },
+        "authors": {
+          "state": "not_researched"
+        },
+        "url": "https://example.com/src-912",
+        "stated_dates": {
+          "state": "undated"
+        },
+        "retrieval": {
+          "method": "manual_by_human",
+          "accessed_at": "2026-09-29T09:00Z",
+          "sha256": "abababababababababababababababababababababababababababababababab"
+        }
+      },
+      {
+        "id": "src-914",
+        "source_class": "company_filing",
+        "title": "Example Foundry annual report",
+        "publisher": "Example Foundry Corporation",
+        "publisher_entity": {
+          "state": "not_researched"
+        },
+        "authors": {
+          "state": "not_researched"
+        },
+        "url": "https://example.com/src-914",
+        "stated_dates": [
+          {
+            "kind": "signed",
+            "date": "2026-03-01"
+          }
+        ],
+        "retrieval": {
+          "method": "automated",
+          "accessed_at": "2026-09-29T09:00Z",
+          "sha256": "abababababababababababababababababababababababababababababababab"
+        },
+        "filing_copy": "filer_hosted_not_checked"
+      }
+    ],
+    "canonical_claims": [
+      {
+        "id": "claim-fixture-301",
+        "claim_type": "FACT",
+        "statement": "The registrant's exact name is “Example Designer Inc.”.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-911",
+            "locator": "p.1, cover page",
+            "anchor": "Example Designer Inc. (Exact name of registrant as specified in its charter)",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "abababababababababababababababababababababababababababababababab"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-09-30",
+          "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+        }
+      },
+      {
+        "id": "claim-fixture-302",
+        "claim_type": "FACT",
+        "statement": "Example Designer Inc. states Example State as its state of incorporation.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-911",
+            "locator": "p.1, cover page",
+            "anchor": "Example State (State or other jurisdiction of incorporation or organization)",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "abababababababababababababababababababababababababababababababab"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-09-30",
+          "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+        }
+      },
+      {
+        "id": "claim-fixture-303",
+        "claim_type": "FACT",
+        "statement": "The example code list assigns the alpha-2 code XA to Example Country, and lists Example State as its subdivision XA-ES.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-912",
+            "locator": "country page XA",
+            "anchor": "Alpha-2 code XA",
+            "standing": "originator",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "abababababababababababababababababababababababababababababababab"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-09-30",
+          "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+        }
+      },
+      {
+        "id": "claim-fixture-304",
+        "claim_type": "DERIVATION",
+        "statement": "Example Designer Inc. is incorporated in Example Country.",
+        "evidence_status": "supported",
+        "input_claim_ids": [
+          "claim-fixture-302",
+          "claim-fixture-303"
+        ],
+        "reasoning": "Example State is a subdivision of Example Country in the code list, so the country of incorporation is Example Country.",
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-09-30",
+          "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+        }
+      },
+      {
+        "id": "claim-fixture-305",
+        "claim_type": "FACT",
+        "statement": "Example Designer Inc. utilizes a fabless manufacturing strategy.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-911",
+            "locator": "p.8",
+            "anchor": "We utilize a fabless manufacturing strategy",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "abababababababababababababababababababababababababababababababab"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-09-30",
+          "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+        }
+      }
+    ],
+    "staging_claims": [
+      {
+        "id": "claim-fixture-311",
+        "claim_type": "FACT",
+        "statement": "The registrant's exact name is “Example Foundry Corporation”.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-914",
+            "locator": "p.1, cover page",
+            "anchor": "Example Foundry Corporation (Exact name of registrant as specified in its charter)",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "abababababababababababababababababababababababababababababababab"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-312",
+        "claim_type": "FACT",
+        "statement": "Example Foundry operates fab capacity for chips designed by other firms.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-914",
+            "locator": "p.5",
+            "anchor": "We manufacture wafers for our customers' designs",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "abababababababababababababababababababababababababababababababab"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      }
+    ],
+    "entities": {
+      "canonical": {
+        "companies": [
+          {
+            "id": "company-example-designer",
+            "type": "company",
+            "name": "Example Designer",
+            "aliases": [
+              "Example Designer Inc."
+            ],
+            "identity_claim_ids": [
+              "claim-fixture-301"
+            ],
+            "legal_name": [
+              {
+                "value": "Example Designer Inc.",
+                "claim_ids": [
+                  "claim-fixture-301"
+                ]
+              }
+            ],
+            "incorporated_in": [
+              {
+                "value": "jurisdiction-xa",
+                "claim_ids": [
+                  "claim-fixture-304"
+                ],
+                "valid_from": "1993-04"
+              }
+            ],
+            "headquartered_in": {
+              "state": "not_researched"
+            },
+            "roles": [
+              {
+                "value": "fabless_designer",
+                "claim_ids": [
+                  "claim-fixture-305"
+                ]
+              }
+            ]
+          }
+        ],
+        "jurisdictions": [
+          {
+            "id": "jurisdiction-xa",
+            "type": "jurisdiction",
+            "name": "Example Country",
+            "aliases": [],
+            "identity_claim_ids": [
+              "claim-fixture-303"
+            ],
+            "jurisdiction_kind": "country"
+          }
+        ]
+      },
+      "staging": {
+        "companies": [
+          {
+            "id": "company-example-foundry",
+            "type": "company",
+            "name": "Example Foundry",
+            "aliases": [
+              "Example Foundry Corporation"
+            ],
+            "identity_claim_ids": [
+              "claim-fixture-311"
+            ],
+            "legal_name": [
+              {
+                "value": "Example Foundry Corporation",
+                "claim_ids": [
+                  "claim-fixture-311"
+                ]
+              }
+            ],
+            "incorporated_in": {
+              "state": "not_researched"
+            },
+            "headquartered_in": {
+              "state": "not_researched"
+            },
+            "roles": [
+              {
+                "value": "foundry_operator",
+                "claim_ids": [
+                  "claim-fixture-312"
+                ]
+              }
+            ]
+          }
+        ],
+        "jurisdictions": []
+      }
+    }
+  },
+  "faults": [
+    {
+      "name": "company cites a claim that does not exist",
+      "action": "set_company_field",
+      "field": "identity_claim_ids",
+      "value": [
+        "claim-fixture-399"
+      ],
+      "expect": "cites missing claim claim-fixture-399"
+    },
+    {
+      "name": "incorporated_in points to a missing jurisdiction",
+      "action": "set_company_field",
+      "field": "incorporated_in",
+      "value": [
+        {
+          "value": "jurisdiction-xz",
+          "claim_ids": [
+            "claim-fixture-311"
+          ]
+        }
+      ],
+      "expect": "points to missing jurisdiction jurisdiction-xz"
+    },
+    {
+      "name": "identity rests on a class identity:company never allows alone",
+      "action": "set_source_field",
+      "source": "src-914",
+      "field": "source_class",
+      "value": "news_media",
+      "expect": "identity_claim_ids: no citation"
+    },
+    {
+      "name": "identity claim with reporter standing",
+      "action": "set_citation_field",
+      "claim": "claim-fixture-311",
+      "field": "standing",
+      "value": "reporter",
+      "expect": "identity_claim_ids: no citation"
+    },
+    {
+      "name": "canonical company cites a staging claim",
+      "action": "move_company_to_canonical",
+      "expect": "cites staging claim claim-fixture-311"
+    },
+    {
+      "name": "placeholder slug",
+      "action": "set_company_field",
+      "field": "id",
+      "value": "company-unknown",
+      "expect": "company-unknown is a placeholder slug"
+    },
+    {
+      "name": "role asserted with no claim",
+      "action": "set_company_field",
+      "field": "roles",
+      "value": [
+        {
+          "value": "osat",
+          "claim_ids": []
+        }
+      ],
+      "expect": "roles = osat: no citation"
+    },
+    {
+      "name": "ID not the slug of a legal name",
+      "action": "set_company_field",
+      "field": "legal_name",
+      "value": [
+        {
+          "value": "Renamed Foundry Corporation",
+          "claim_ids": [
+            "claim-fixture-311"
+          ]
+        }
+      ],
+      "expect": "not the slug of a Latin-script legal name"
+    },
+    {
+      "name": "valid_from after valid_to",
+      "action": "set_company_field",
+      "field": "roles",
+      "value": [
+        {
+          "value": "foundry_operator",
+          "claim_ids": [
+            "claim-fixture-312"
+          ],
+          "valid_from": "2026",
+          "valid_to": "2020-05"
+        }
+      ],
+      "expect": "valid_from 2026 is after valid_to 2020-05"
+    },
+    {
+      "name": "jurisdiction code not on its ISO evidence",
+      "action": "set_citation_field",
+      "claim": "claim-fixture-303",
+      "field": "anchor",
+      "value": "Alpha-2 code XB",
+      "expect": "carries the code XA"
+    },
+    {
+      "name": "publisher_entity points to a staging company",
+      "action": "set_source_field",
+      "source": "src-914",
+      "field": "publisher_entity",
+      "value": "company-example-foundry",
+      "expect": "not a canonical company"
+    },
+    {
+      "name": "canonical company points to a non-canonical jurisdiction",
+      "action": "drop_jurisdiction",
+      "where": "canonical",
+      "expect": "non-canonical jurisdiction-xa"
+    }
+  ]
+}

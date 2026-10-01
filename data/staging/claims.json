@@ -222,5 +222,738 @@
     "review": {
       "state": "not_reviewed"
     }
+  },
+  {
+    "id": "claim-nvidia-registrant-name",
+    "claim_type": "FACT",
+    "statement": "The registrant of NVIDIA's Annual Report on Form 10-K for the fiscal year ended January 25, 2026 has the exact name “NVIDIA CORPORATION”, as specified in its charter.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-024",
+        "locator": "p.1, cover page, the name printed above the label '(Exact name of registrant as specified in its charter)'",
+        "anchor": "NVIDIA CORPORATION (Exact name of registrant as specified in its charter)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-nvidia-incorporation-history",
+    "claim_type": "FACT",
+    "statement": "NVIDIA was incorporated in California in April 1993 and reincorporated in Delaware in April 1998.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-024",
+        "locator": "p.5, Item 1 'Business', the sentence beginning 'Headquartered in Santa Clara, California'",
+        "anchor": "NVIDIA was incorporated in California in April 1993 and reincorporated in Delaware in April 1998",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-nvidia-headquarters-santa-clara",
+    "claim_type": "FACT",
+    "statement": "NVIDIA is headquartered in Santa Clara, California.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-024",
+        "locator": "p.5, Item 1 'Business', the sentence beginning 'Headquartered in Santa Clara, California'",
+        "anchor": "Headquartered in Santa Clara, California, NVIDIA was incorporated in California in April 1993",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-nvidia-fabless-strategy",
+    "claim_type": "FACT",
+    "statement": "NVIDIA utilizes a fabless and contracting manufacturing strategy: it partners with suppliers for all phases of manufacturing, including wafer fabrication, assembly, testing and packaging, and focuses its own resources on product design, quality assurance, marketing and customer support.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-024",
+        "locator": "p.8, 'Manufacturing', the sentence beginning 'We utilize a fabless and contracting manufacturing strategy'",
+        "anchor": "We utilize a fabless and contracting manufacturing strategy, whereby we employ and partner with key suppliers for all phases of the manufacturing process, including wafer fabrication, assembly, testing, and packaging",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396"
+        }
+      },
+      {
+        "source_id": "src-024",
+        "locator": "p.8, 'Manufacturing', the sentence beginning 'As a result, we can focus our resources'",
+        "anchor": "As a result, we can focus our resources on product design, quality assurance, marketing, and customer support",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-micron-registrant-name",
+    "claim_type": "FACT",
+    "statement": "The registrant of Micron's Annual Report on Form 10-K for the fiscal year ended August 28, 2025 has the exact name “Micron Technology, Inc.”, as specified in its charter.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-025",
+        "locator": "p.1, cover page, the name printed above the label '(Exact name of registrant as specified in its charter)'",
+        "anchor": "Micron Technology, Inc. (Exact name of registrant as specified in its charter)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-micron-incorporation-state",
+    "claim_type": "FACT",
+    "statement": "Micron Technology, Inc. states Delaware as its state or other jurisdiction of incorporation or organization.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-025",
+        "locator": "p.1, cover page, the field labelled '(State or other jurisdiction of incorporation or organization)', whose value is 'Delaware'; the number printed beside it is the IRS Employer Identification No.",
+        "anchor": "Delaware 75-1618004 (State or other jurisdiction of incorporation or organization)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-micron-headquarters-boise",
+    "claim_type": "FACT",
+    "statement": "Micron's corporate headquarters are located in Boise, Idaho.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-025",
+        "locator": "p.47, Item 2 'Properties', the first sentence",
+        "anchor": "Our corporate headquarters are located in Boise, Idaho",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-micron-manufactures-memory",
+    "claim_type": "FACT",
+    "statement": "Micron manufactures its products, which include DRAM, NAND and NOR products, within its own facilities, and also uses subcontractors for certain manufacturing processes.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-025",
+        "locator": "p.13, 'Manufacturing', the first sentence",
+        "anchor": "We manufacture our products within our own facilities located in Taiwan, Singapore, Japan, the United States, Malaysia, China, and India and also utilize subcontractors to perform certain manufacturing processes",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      },
+      {
+        "source_id": "src-025",
+        "locator": "p.13, 'Manufacturing', the sentence beginning 'Our DRAM, NAND, and NOR products'",
+        "anchor": "Our DRAM, NAND, and NOR products share a number of common manufacturing processes",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amkor-registrant-name",
+    "claim_type": "FACT",
+    "statement": "The registrant of Amkor's Annual Report on Form 10-K for the fiscal year ended December 31, 2025 has the exact name “Amkor Technology, Inc.”, as specified in its charter.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-026",
+        "locator": "p.1, cover page, the name printed above the label '(Exact name of registrant as specified in its charter)'",
+        "anchor": "Amkor Technology, Inc. (Exact name of registrant as specified in its charter)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "e73f374e6925226c9f632287899f6ee9ecd71ec94c5c1022966887b85b94dc0d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amkor-incorporation-state",
+    "claim_type": "FACT",
+    "statement": "Amkor Technology, Inc. states Delaware as its state or other jurisdiction of incorporation or organization.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-026",
+        "locator": "p.1, cover page, the field labelled '(State or other jurisdiction of incorporation or organization)', whose value is 'Delaware'; the number printed beside it is the I.R.S. Employer Identification Number",
+        "anchor": "Delaware 23-1722724 (State or other jurisdiction of incorporation or organization)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "e73f374e6925226c9f632287899f6ee9ecd71ec94c5c1022966887b85b94dc0d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amkor-us-headquartered-osat",
+    "claim_type": "FACT",
+    "statement": "Amkor is a U.S. headquartered outsourced semiconductor assembly and test service provider (OSAT).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-026",
+        "locator": "p.7, Item 1 'Business', the sentence beginning 'As a U.S. headquartered OSAT'",
+        "anchor": "As a U.S. headquartered OSAT",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "e73f374e6925226c9f632287899f6ee9ecd71ec94c5c1022966887b85b94dc0d"
+        }
+      },
+      {
+        "source_id": "src-026",
+        "locator": "p.4, Item 1 'Business', 'Overview', the first sentence, where the abbreviation is defined (the sentence's superlative is not adopted, ER-5)",
+        "anchor": "outsourced semiconductor assembly and test service provider (“OSAT”)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "e73f374e6925226c9f632287899f6ee9ecd71ec94c5c1022966887b85b94dc0d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-synopsys-registrant-name",
+    "claim_type": "FACT",
+    "statement": "The registrant of Synopsys's Annual Report on Form 10-K for the fiscal year ended October 31, 2025 has the exact name “SYNOPSYS, INC.”, as specified in its charter.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-027",
+        "locator": "p.1, cover page, the name printed above the label '(Exact name of registrant as specified in its charter)'",
+        "anchor": "SYNOPSYS, INC. (Exact name of registrant as specified in its charter)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-synopsys-incorporation-state",
+    "claim_type": "FACT",
+    "statement": "Synopsys, Inc. states Delaware as its state or other jurisdiction of incorporation or organization.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-027",
+        "locator": "p.1, cover page, the field labelled '(State or other jurisdiction of incorporation or organization)', whose value is 'Delaware'; the number printed beside it is the I.R.S. Employer Identification No.",
+        "anchor": "Delaware 56-1546236 (State or other jurisdiction of incorporation or organization)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-synopsys-headquarters-sunnyvale",
+    "claim_type": "FACT",
+    "statement": "Synopsys's headquarters are located at 675 Almanor Avenue, Sunnyvale, California.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-027",
+        "locator": "p.6, Item 1 'Business', 'Corporate Information', the first sentence",
+        "anchor": "Our headquarters are located at 675 Almanor Avenue, Sunnyvale, California 94085",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-synopsys-sells-eda",
+    "claim_type": "FACT",
+    "statement": "Synopsys's Design Automation segment includes an EDA revenue group, and Synopsys's EDA products automate tasks in chip design.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-027",
+        "locator": "p.7, 'Products and Services', 'Design Automation Segment', the first sentence",
+        "anchor": "Our Design Automation segment includes the EDA, Ansys and Other revenue groups",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905"
+        }
+      },
+      {
+        "source_id": "src-027",
+        "locator": "p.7, the sentence beginning 'Our EDA products increase designer productivity'",
+        "anchor": "Our EDA products increase designer productivity and efficiency by automating tasks",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-registrant-name",
+    "claim_type": "FACT",
+    "statement": "The registrant of Amazon's Annual Report on Form 10-K for the fiscal year ended December 31, 2025 has the exact name “AMAZON.COM, INC.”, as specified in its charter.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-028",
+        "locator": "p.12 (the Form 10-K's cover page, which follows the shareholder letter), the name printed above the label '(Exact name of registrant as specified in its charter)'",
+        "anchor": "AMAZON.COM, INC. (Exact name of registrant as specified in its charter)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-incorporation-state",
+    "claim_type": "FACT",
+    "statement": "Amazon.com, Inc. states Delaware as its state or other jurisdiction of incorporation or organization.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-028",
+        "locator": "p.12 (the Form 10-K's cover page), the field labelled '(State or other jurisdiction of incorporation or organization)', whose value is 'Delaware'; the number printed beside it is the I.R.S. Employer Identification No.",
+        "anchor": "Delaware 91-1646860 (State or other jurisdiction of incorporation or organization)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-headquarters-washington-virginia",
+    "claim_type": "FACT",
+    "statement": "Amazon owns and leases its corporate headquarters in Washington's Puget Sound region and in Arlington, Virginia.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-028",
+        "locator": "p.29, Form 10-K Item 2 'Properties', the sentence after the facilities tables",
+        "anchor": "We own and lease our corporate headquarters in Washington’s Puget Sound region and Arlington, Virginia",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-provides-cloud-services",
+    "claim_type": "FACT",
+    "statement": "Amazon provides cloud services to businesses, and through AWS offers on-demand technology services, including compute, storage and database services.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-028",
+        "locator": "p.23, Form 10-K Item 1A, under 'Our Commercial Agreements, Strategic Alliances, and Other Business Relationships Expose Us to Risks', the first sentence",
+        "anchor": "We provide physical, e-commerce, and omnichannel retail, cloud services, and other services to businesses",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      },
+      {
+        "source_id": "src-028",
+        "locator": "p.14, Form 10-K Item 1 'Business', 'Developers and Enterprises'",
+        "anchor": "through AWS, which offers a broad set of on-demand technology services, including compute, storage, database",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-operates-data-centers",
+    "claim_type": "FACT",
+    "statement": "As of December 31, 2025, Amazon operated leased and owned facilities in the category 'Fulfillment, data centers, and other', in North America and internationally.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-028",
+        "locator": "p.29, Form 10-K Item 2 'Properties', the first sentence",
+        "anchor": "As of December 31, 2025, we operated the following facilities",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      },
+      {
+        "source_id": "src-028",
+        "locator": "p.29, Form 10-K Item 2 'Properties', first table, column 'Description of Use', the rows for North America and International",
+        "anchor": "Fulfillment, data centers, and other",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      }
+    ],
+    "as_of": "2025-12-31",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-asml-holding-nv-company",
+    "claim_type": "FACT",
+    "statement": "ASML Holding N.V. is a public limited liability company organized under Dutch law.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-029",
+        "locator": "p.76, 'Corporate governance', the sentence beginning 'ASML Holding N.V. is a public limited liability company'",
+        "anchor": "ASML Holding N.V. is a public limited liability company organized under Dutch law",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-asml-incorporated-netherlands",
+    "claim_type": "FACT",
+    "statement": "ASML is incorporated in the Netherlands.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-029",
+        "locator": "p.309, Note on income taxes, 'Global Minimum Tax', the first sentence",
+        "anchor": "Global minimum tax legislation was enacted in the Netherlands, the jurisdiction in which ASML is incorporated",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-asml-headquarters-veldhoven",
+    "claim_type": "FACT",
+    "statement": "ASML's headquarters are located in Veldhoven, the Netherlands.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-029",
+        "locator": "p.327, 'Facilities in EMEA', the first sentence",
+        "anchor": "Our headquarters, mainly manufacturing and R&D facilities, are located in Veldhoven, the Netherlands",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-asml-semiconductor-equipment",
+    "claim_type": "FACT",
+    "statement": "ASML develops, produces, markets, sells, upgrades and services advanced semiconductor equipment systems, consisting of lithography, metrology and inspection systems.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-029",
+        "locator": "p.287, Note 3 'Segment disclosure', the first sentence",
+        "anchor": "for the development, production, marketing, sales, upgrading and servicing of advanced semiconductor equipment systems, consisting of lithography, metrology and inspection systems",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-sk-hynix-legal-name",
+    "claim_type": "FACT",
+    "statement": "The company's name is 에스케이하이닉스 주식회사, written in English as SK hynix Inc. (the Atlas's translation of the Korean sentence).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-030",
+        "locator": "I.1 'Company overview', item 나 (the company's legal and commercial names), the first sentence",
+        "anchor": "당사의 명칭은 에스케이하이닉스 주식회사이며, 영문으로는 SK hynix Inc.라고 표기합니다",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:37Z",
+          "sha256": "b067389a5f3c7d88fb7c3d91b7fef948e924a2d49791736ce8a92327fd4b6f2c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-sk-hynix-head-office-gyeonggi",
+    "claim_type": "FACT",
+    "statement": "SK hynix's head office address is 2091 Gyeongchung-daero, Icheon-si, Gyeonggi-do (the Atlas's translation of the Korean address).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-030",
+        "locator": "I.1 'Company overview', item 라 (head office address, telephone number and website), its heading and the address line",
+        "anchor": "본사의 주소, 전화번호, 홈페이지 주소 주소: 경기도 이천시 경충대로 2091",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:37Z",
+          "sha256": "b067389a5f3c7d88fb7c3d91b7fef948e924a2d49791736ce8a92327fd4b6f2c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-sk-hynix-memory-products",
+    "claim_type": "FACT",
+    "statement": "SK hynix's main manufactured products are memory semiconductor products such as DRAM, NAND Flash and MCP (Multi-chip Package) (the Atlas's translation of the Korean sentence).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-030",
+        "locator": "I.1 'Company overview', item 바 (main business), the first sentence",
+        "anchor": "현재 당사의 주력 생산제품은 DRAM, NAND Flash 및 MCP(Multi-chip Package)와 같은 메모리 반도체 제품입니다",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:37Z",
+          "sha256": "b067389a5f3c7d88fb7c3d91b7fef948e924a2d49791736ce8a92327fd4b6f2c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
   }
 ]
