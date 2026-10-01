@@ -190,8 +190,16 @@ attributes point to. Each cites ISO 3166-1 as published by ISO, the preferred cl
 **Access.** ISO's own pages refused plain requests: `www.iso.org` (the country-codes page and
 the Online Browsing Platform, OBP) returned an HTTP 403 challenge on 2026-10-01, and ISO's
 open maintenance portal has no ISO 3166 entry. That is H-4's stop condition. The human chose
-manual retrieval (RA-4): the human saves the OBP country pages, and the session registers
-them (`src-032` to `src-035`, §11). No secondary list stands in for the standard (RA-5).
+manual retrieval (RA-4): the human took screenshots of the OBP entries in their own browser,
+and the session registers each image as a source (`src-032` to `src-037`, §11). No secondary
+list stands in for the standard (RA-5).
+
+**Screenshots as evidence.** Each image shows the `iso.org` host, the "Online Browsing Platform
+(OBP)" header and "Standard: ISO 3166", so its origin is visible. An image has no text layer,
+so the Verifier reads each anchor off the image and copies it verbatim, in reading order (row
+label, then value). The hash is of the image file. The human confirms these anchors on the
+review sheet. The images stay outside the repository (RA-4(4)), and they show the human's ISO
+account, which is a second reason.
 
 **What each jurisdiction record holds:**
 
@@ -330,7 +338,7 @@ full hash, stated dates, and `filing_copy`:
 | `src-029` | ASML, 2025 Annual Report based on US GAAP: the Form 20-F (signature page p.349) | `filer_hosted_not_checked`: `ourbrand.asml.com`, linked from `investor.asml.com` |
 | `src-030` | SK hynix, Annual Report for fiscal 2025, section I.1 | `regulator_hosted`: English DART (D-059) |
 | `src-031` | TSMC, 20-F for 2025 | manual retrieval by the human (D-060) |
-| `src-032` to `src-035` | ISO 3166 OBP pages for US, NL, KR, TW | manual retrieval by the human (D-058) |
+| `src-032` to `src-037` | ISO 3166 OBP screenshots: US identity block and two subdivision tables; NL identity block; KR identity block and subdivision table | manual retrieval by the human (D-058) |
 
 `src-024` (NVIDIA's 10-K) was re-read. Its bytes are unchanged since S05 (`a056b59e4170`).
 

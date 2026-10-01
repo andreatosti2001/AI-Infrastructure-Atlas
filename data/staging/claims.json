@@ -222,5 +222,392 @@
     "review": {
       "state": "not_reviewed"
     }
+  },
+  {
+    "id": "claim-iso-3166-1-us",
+    "claim_type": "FACT",
+    "statement": "ISO 3166 assigns the alpha-2 code US to the entry with the short name “UNITED STATES OF AMERICA” (full name “the United States of America”), with status 'Officially assigned'.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-032",
+        "locator": "screenshot of the OBP entry, below 'Standard: ISO 3166', rows 'Alpha-2 code' and 'Short name'",
+        "anchor": "Alpha-2 code US Short name UNITED STATES OF AMERICA",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:30Z",
+          "sha256": "d02a4287f81268386a9f61a3b8d64b96460ca1cdb4b8f4d5e0a61ac4362ecda0"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-1-nl",
+    "claim_type": "FACT",
+    "statement": "ISO 3166 assigns the alpha-2 code NL to the entry with the short name “NETHERLANDS, KINGDOM OF THE” (full name “the Kingdom of the Netherlands”), with status 'Officially assigned'.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-035",
+        "locator": "screenshot of the OBP entry, below 'Standard: ISO 3166', rows 'Alpha-2 code' and 'Short name'",
+        "anchor": "Alpha-2 code NL Short name NETHERLANDS, KINGDOM OF THE",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:30Z",
+          "sha256": "354e5466a3de5c738b2b7b1e4ff37543e12c828cfaa044770e6d2525f2870292"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-1-kr",
+    "claim_type": "FACT",
+    "statement": "ISO 3166 assigns the alpha-2 code KR to the entry with the short name “KOREA, REPUBLIC OF” (full name “the Republic of Korea”), with status 'Officially assigned'.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-036",
+        "locator": "screenshot of the OBP entry, below 'Standard: ISO 3166', rows 'Alpha-2 code' and 'Short name'",
+        "anchor": "Alpha-2 code KR Short name KOREA, REPUBLIC OF",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:30Z",
+          "sha256": "639a2393887f70a7b4f73aa146d0fd909420441eccf87933ad8433cc7567cb21"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-2-us-ca",
+    "claim_type": "FACT",
+    "statement": "ISO 3166-2 lists California, of subdivision category 'state', with the code US-CA.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-033",
+        "locator": "screenshot of the subdivision table, the row for US-CA",
+        "anchor": "state US-CA California",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:26Z",
+          "sha256": "d247a0bf3d4e92ee22b5b16366f2da11526190619595d104461333652c045a9d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-2-us-de",
+    "claim_type": "FACT",
+    "statement": "ISO 3166-2 lists Delaware, of subdivision category 'state', with the code US-DE.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-033",
+        "locator": "screenshot of the subdivision table, the row for US-DE",
+        "anchor": "state US-DE Delaware",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:26Z",
+          "sha256": "d247a0bf3d4e92ee22b5b16366f2da11526190619595d104461333652c045a9d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-2-us-id",
+    "claim_type": "FACT",
+    "statement": "ISO 3166-2 lists Idaho, of subdivision category 'state', with the code US-ID.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-033",
+        "locator": "screenshot of the subdivision table, the row for US-ID",
+        "anchor": "state US-ID Idaho",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:26Z",
+          "sha256": "d247a0bf3d4e92ee22b5b16366f2da11526190619595d104461333652c045a9d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-2-us-va",
+    "claim_type": "FACT",
+    "statement": "ISO 3166-2 lists Virginia, of subdivision category 'state', with the code US-VA.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-034",
+        "locator": "screenshot of the subdivision table, the row for US-VA",
+        "anchor": "state US-VA Virginia",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:26Z",
+          "sha256": "6825089a17a0758f864082577ffe219557c0991199c759f3b02bb1e96731f5b7"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-2-us-wa",
+    "claim_type": "FACT",
+    "statement": "ISO 3166-2 lists Washington, of subdivision category 'state', with the code US-WA.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-034",
+        "locator": "screenshot of the subdivision table, the row for US-WA",
+        "anchor": "state US-WA Washington",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:26Z",
+          "sha256": "6825089a17a0758f864082577ffe219557c0991199c759f3b02bb1e96731f5b7"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-2-kr-41",
+    "claim_type": "FACT",
+    "statement": "ISO 3166-2 lists Gyeonggi-do, of subdivision category 'province', with the code KR-41.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-037",
+        "locator": "screenshot of the subdivision table, the row for KR-41",
+        "anchor": "province KR-41 Gyeonggi-do Gyeonggi",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:26Z",
+          "sha256": "e81ab0ff68a4abb36414a2be4381d9e23836651e58a893abe37afd2aeca97fa8"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-nvidia-incorporated-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "NVIDIA's jurisdiction of incorporation, since April 1993, is in the country with ISO 3166 code US (California, then Delaware).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nvidia-incorporation-history",
+      "claim-iso-3166-2-us-ca",
+      "claim-iso-3166-2-us-de",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-nvidia-incorporation-history). ISO 3166-2 lists it as US-CA and US-DE. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-nvidia-headquartered-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "NVIDIA's headquarters is in the country with ISO 3166 code US (Santa Clara, California).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nvidia-headquarters-santa-clara",
+      "claim-iso-3166-2-us-ca",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-nvidia-headquarters-santa-clara). ISO 3166-2 lists it as US-CA. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-micron-incorporated-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Micron Technology, Inc.'s jurisdiction of incorporation is in the country with ISO 3166 code US (Delaware).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-micron-incorporation-state",
+      "claim-iso-3166-2-us-de",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-micron-incorporation-state). ISO 3166-2 lists it as US-DE. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-micron-headquartered-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Micron's headquarters is in the country with ISO 3166 code US (Boise, Idaho).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-micron-headquarters-boise",
+      "claim-iso-3166-2-us-id",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-micron-headquarters-boise). ISO 3166-2 lists it as US-ID. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amkor-incorporated-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Amkor Technology, Inc.'s jurisdiction of incorporation is in the country with ISO 3166 code US (Delaware).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-amkor-incorporation-state",
+      "claim-iso-3166-2-us-de",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-amkor-incorporation-state). ISO 3166-2 lists it as US-DE. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-synopsys-incorporated-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Synopsys, Inc.'s jurisdiction of incorporation is in the country with ISO 3166 code US (Delaware).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-synopsys-incorporation-state",
+      "claim-iso-3166-2-us-de",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-synopsys-incorporation-state). ISO 3166-2 lists it as US-DE. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-synopsys-headquartered-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Synopsys's headquarters is in the country with ISO 3166 code US (Sunnyvale, California).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-synopsys-headquarters-sunnyvale",
+      "claim-iso-3166-2-us-ca",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-synopsys-headquarters-sunnyvale). ISO 3166-2 lists it as US-CA. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-incorporated-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Amazon.com, Inc.'s jurisdiction of incorporation is in the country with ISO 3166 code US (Delaware).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-amazon-incorporation-state",
+      "claim-iso-3166-2-us-de",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-amazon-incorporation-state). ISO 3166-2 lists it as US-DE. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-headquartered-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Amazon's corporate headquarters is in the country with ISO 3166 code US (Washington's Puget Sound region and Arlington, Virginia).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-amazon-headquarters-washington-virginia",
+      "claim-iso-3166-2-us-wa",
+      "claim-iso-3166-2-us-va",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-amazon-headquarters-washington-virginia). ISO 3166-2 lists it as US-WA and US-VA. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-sk-hynix-headquartered-in-kr",
+    "claim_type": "DERIVATION",
+    "statement": "SK hynix's head office is in the country with ISO 3166 code KR (경기도, which ISO lists as Gyeonggi-do; the romanisation is part of this step).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-sk-hynix-head-office-gyeonggi",
+      "claim-iso-3166-2-kr-41",
+      "claim-iso-3166-1-kr"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-sk-hynix-head-office-gyeonggi). ISO 3166-2 lists it as KR-41. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is KR (claim-iso-3166-1-kr). So the country is the one coded KR. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-01"
   }
 ]

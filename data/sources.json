@@ -718,5 +718,131 @@
       "sha256": "b067389a5f3c7d88fb7c3d91b7fef948e924a2d49791736ce8a92327fd4b6f2c"
     },
     "filing_copy": "regulator_hosted"
+  },
+  {
+    "id": "src-032",
+    "source_class": "standard_specification",
+    "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for US, identity block (screenshot)",
+    "publisher": "International Organization for Standardization (ISO)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.iso.org/obp/ui/#iso:code:3166:US",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:30Z",
+      "sha256": "d02a4287f81268386a9f61a3b8d64b96460ca1cdb4b8f4d5e0a61ac4362ecda0"
+    }
+  },
+  {
+    "id": "src-033",
+    "source_class": "standard_specification",
+    "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for US, subdivision table, Alabama to New York (screenshot)",
+    "publisher": "International Organization for Standardization (ISO)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.iso.org/obp/ui/#iso:code:3166:US",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:26Z",
+      "sha256": "d247a0bf3d4e92ee22b5b16366f2da11526190619595d104461333652c045a9d"
+    }
+  },
+  {
+    "id": "src-034",
+    "source_class": "standard_specification",
+    "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for US, subdivision table, North Carolina to Wyoming (screenshot)",
+    "publisher": "International Organization for Standardization (ISO)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.iso.org/obp/ui/#iso:code:3166:US",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:26Z",
+      "sha256": "6825089a17a0758f864082577ffe219557c0991199c759f3b02bb1e96731f5b7"
+    }
+  },
+  {
+    "id": "src-035",
+    "source_class": "standard_specification",
+    "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for NL, identity block (screenshot)",
+    "publisher": "International Organization for Standardization (ISO)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.iso.org/obp/ui/#iso:code:3166:NL",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:30Z",
+      "sha256": "354e5466a3de5c738b2b7b1e4ff37543e12c828cfaa044770e6d2525f2870292"
+    }
+  },
+  {
+    "id": "src-036",
+    "source_class": "standard_specification",
+    "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for KR, identity block (screenshot)",
+    "publisher": "International Organization for Standardization (ISO)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.iso.org/obp/ui/#iso:code:3166:KR",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:30Z",
+      "sha256": "639a2393887f70a7b4f73aa146d0fd909420441eccf87933ad8433cc7567cb21"
+    }
+  },
+  {
+    "id": "src-037",
+    "source_class": "standard_specification",
+    "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for KR, subdivision table (screenshot)",
+    "publisher": "International Organization for Standardization (ISO)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.iso.org/obp/ui/#iso:code:3166:KR",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:26Z",
+      "sha256": "e81ab0ff68a4abb36414a2be4381d9e23836651e58a893abe37afd2aeca97fa8"
+    }
   }
 ]

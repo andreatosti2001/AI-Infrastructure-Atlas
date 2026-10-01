@@ -1143,9 +1143,11 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   `www.iso.org` refused plain requests (HTTP 403 challenge) on 2026-10-01, so S07 stopped and
   asked. The human chose manual retrieval ("RA-4: you save ISO pages (Recommended)").
 - **Decision** (`company-dataset.md` §5):
-  - The human saves the ISO Online Browsing Platform pages for US, NL, KR and TW. Each is a
-    source record with `standard_specification` class and method `manual_by_human`, and its
-    full text stays outside the repository.
+  - The human captures the ISO Online Browsing Platform entries for US, NL, KR and TW. Each
+    capture is a source record with `standard_specification` class and method
+    `manual_by_human`, and the file stays outside the repository. The human supplied
+    screenshots ("Can i send you the screens?"); each shows the `iso.org` host and the OBP
+    header, and the Verifier reads its anchors off the image.
   - Each jurisdiction record's identity claim is a `FACT`, standing `originator`, whose
     anchor carries the alpha-2 code (J-1).
   - ISO 3166-2 subdivision entries on the same pages are `FACT`s used as inputs to the
