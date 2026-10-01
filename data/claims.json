@@ -812,5 +812,259 @@
       "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
     },
     "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-h100-gh100-process-name",
+    "claim_type": "FACT",
+    "statement": "NVIDIA's GH100 GPU, which powers the H100 GPU, is fabricated on a process that NVIDIA names the “TSMC 4N process customized for NVIDIA”.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-006",
+        "locator": "section 'NVIDIA H100 GPU architecture in-depth' (the register's 'H100 GPU hardware architecture in-depth'), the sentence beginning 'The full GH100 GPU that powers the H100 GPU'",
+        "anchor": "fabricated using the TSMC 4N process customized for NVIDIA",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "fd13c05a1586cc78874b066b0adf074292b5e8e1461c179621a032ab5957c8d8"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-tsmc-fabricates-h100-gh100",
+    "claim_type": "DERIVATION",
+    "statement": "TSMC performs the wafer fabrication of the GH100 GPU die in NVIDIA's H100.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-h100-gh100-process-name"
+    ],
+    "reasoning": "ER-1: TSMC is named only inside the process name NVIDIA gives for the GH100, so fabrication by TSMC is read out of that name. No retrieved source names the manufacturer directly. NVIDIA's 10-K names TSMC among its foundries at company level only (src-024 p.8, ER-9), so it does not make this a FACT.",
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-asml-euv-unique-to-asml",
+    "claim_type": "ATTRIBUTION",
+    "statement": "ASML describes EUV lithography as a technology “unique to ASML”.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-017",
+        "locator": "opening paragraph, the sentence beginning 'The technology, which is unique to ASML'",
+        "anchor": "The technology, which is unique to ASML, prints microchips using light with a wavelength of just 13.5 nm",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "ec896b9cb6bcf9d21fea330b9172c00e1d43fbe244c3ca5ab177c9e6a292c514"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-lbnl-reports-idc-gpu-die-supply",
+    "claim_type": "ATTRIBUTION",
+    "statement": "LBNL's 2025 update reports IDC analysts' advice, in forecasting high-end GPU shipments, that the market “is currently constrained by die supply”.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-021",
+        "locator": "p.18, §3.1.2 'AI Accelerator Shipments', under 'Functional Unit for GPU Forecasts', the sentence beginning 'Because the market is currently constrained', in the paragraph that reports what 'IDC analysts advised us' and ends '(IDC, 2026)'",
+        "anchor": "the market is currently constrained by die supply",
+        "standing": "reporter",
+        "originator": {
+          "name": "IDC (International Data Corporation) analysts",
+          "source_class": "market_research_consultancy",
+          "named_at": "p.18, 'IDC analysts advised us' and the citation '(IDC, 2026)'; p.31, reference list: a direct communication with an IDC executive analyst"
+        },
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-cset-ai-chip-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "CSET's definition of “AI chips” includes GPUs, FPGAs and certain types of ASICs.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-003",
+        "locator": "p.4, footnote *",
+        "anchor": "Our definition of “AI chips” includes graphics processing units (GPUs), field-programmable gate arrays (FPGAs), and certain types of application-specific integrated circuits (ASICs)",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "0f80b4fa16509e838b5a3e172b29d9fdb69a042815a9d326a3b8b9e46393842c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-lbnl-ai-accelerator-accounting",
+    "claim_type": "ATTRIBUTION",
+    "statement": "LBNL's 2025 update says that the dataset of its 2024 report covered GPU accelerators only, and that the update “expands the accounting to all AI accelerators, namely ASICs”.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-021",
+        "locator": "p.16, §3.1.2 'AI Accelerator Shipments', the sentence beginning 'The analogous dataset used in the 2024 Report'",
+        "anchor": "this update expands the accounting to all AI accelerators, namely ASICs",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-atlas-ai-accelerator-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, an AI accelerator is a data-centre logic chip, a GPU or an AI ASIC, whose primary purpose is AI training or inference. FPGAs and CPUs are outside v1 scope.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-cset-ai-chip-definition",
+      "claim-lbnl-ai-accelerator-accounting"
+    ],
+    "reasoning": "CON-01 is a definitional conflict (source-policy.md §10.2): CSET's definition includes FPGAs; LBNL's accounting covers GPUs and ASICs. The working definition is a choice, not a resolution. The human chose it at TQ-01 (domain-map.md §7.1, D-016). Both source positions stay as ATTRIBUTION claims.",
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-nist-cloud-location-independence",
+    "claim_type": "ATTRIBUTION",
+    "statement": "NIST's definition of cloud computing says there is “a sense of location independence”: the customer generally has no control or knowledge over the exact location of the provided resources, but may be able to specify location at a higher level of abstraction, such as a country, state or datacenter.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-001",
+        "locator": "p.6, essential characteristic 'Resource pooling', the sentence beginning 'There is a sense of location independence'",
+        "anchor": "There is a sense of location independence",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "7b0c1a9fdfc67218b8ba2098f448c100c27070db91736b3c87fed63bfa21d418"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-aws-availability-zone-data-centers",
+    "claim_type": "FACT",
+    "statement": "Each AWS Availability Zone consists of one or more discrete data centers, each with redundant power, networking and connectivity, and housed in separate facilities.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-020",
+        "locator": "section 'Availability Zones', the sentence beginning 'Each Availability Zone consists of'",
+        "anchor": "Each Availability Zone consists of one or more discrete data centers, each with redundant power, networking, and connectivity, and housed in separate facilities",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "1f172d6e220c740279a04165d30d6de3ac639c642b8cda575832c57a085abb87"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-cloud-compute-facility-often-undisclosed",
+    "claim_type": "IMPLICATION",
+    "statement": "For cloud AI compute, the Atlas should expect the facility behind a service to be undisclosed: providers may let customers specify location only at a level above the site, and an Availability Zone groups one or more data centers. A facility is recorded only where a source names it, never read off a region or zone (D-022), and a missing site stays not_researched until an ER-3 search supports not_publicly_determinable.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nist-cloud-location-independence",
+      "claim-aws-availability-zone-data-centers"
+    ],
+    "reasoning": "Domain map §6 draws this implication from SRC-001 p.6 and SRC-020. It is restated here so that it does not pre-empt ER-3: expecting non-disclosure is a planning consequence, not a finding that any site is not_publicly_determinable.",
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
   }
 ]

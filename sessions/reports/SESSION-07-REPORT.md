@@ -91,6 +91,22 @@ claims accepted and moved to `data/claims.json`; 7 companies in `data/companies.
   sentence as the claim states. This is the H-6 sample for review sheet 1: 3 of 27 claims,
   one each of a cover-page identity, a role and an incorporation sentence.
 
+## Addendum — the S06 seed claims and the screenshot date (2026-10-01)
+
+- **Question put to the human:** "Did your 'accept all' also cover the ten S06 seed claims?
+  Yes or no."
+- **The human's words, verbatim:** "i accept all"
+- **Recorded as:** yes. The ten S06 seed claims (their sheet: `SESSION-06-REPORT.md`, Review
+  sheet) are accepted. Each claim's `review` records `accepted`, 2026-10-01 and this report,
+  and the ten moved unchanged to `data/claims.json`. The verdict is recorded here, where the
+  human gave it, and not in an addendum to the S06 report as `claim-model.md` §14 foresaw
+  (deviation).
+- **Not covered:** review sheet 2, which had not been sent. "Accept all" is not read as a
+  verdict on claims the human has not seen.
+- **Screenshot date, the human's words:** "i took them today" (2026-10-01). Each ISO source
+  records the time the image reached the session, which matches the phone clock shown in two
+  of the images (16:29 local, 14:29 UTC).
+
 ### Review sheet 1 (as given to the human)
 
 For each claim: open the URL, go to the locator, find the anchor, read the **whole sentence**, and answer: **does it say this, and no more?** Then give a verdict: **accept**, **reject**, or **wording too strong**.
