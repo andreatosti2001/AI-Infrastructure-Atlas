@@ -563,9 +563,7 @@
     "source_class": "company_filing",
     "title": "Annual Report on Form 10-K for the fiscal year ended January 25, 2026",
     "publisher": "NVIDIA Corporation",
-    "publisher_entity": {
-      "state": "not_researched"
-    },
+    "publisher_entity": "company-nvidia",
     "authors": {
       "state": "not_researched"
     },
@@ -582,5 +580,313 @@
       "sha256": "a056b59e4170"
     },
     "filing_copy": "filer_hosted_not_checked"
+  },
+  {
+    "id": "src-025",
+    "source_class": "company_filing",
+    "title": "Annual Report on Form 10-K for the fiscal year ended August 28, 2025",
+    "publisher": "Micron Technology, Inc.",
+    "publisher_entity": "company-micron-technology",
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://investors.micron.com/files/doc_financials/2025/ar/2025-Form-10-K.pdf",
+    "stated_dates": [
+      {
+        "kind": "signed",
+        "date": "2025-10-03"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-01T05:33Z",
+      "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+    },
+    "filing_copy": "filer_hosted_not_checked"
+  },
+  {
+    "id": "src-026",
+    "source_class": "company_filing",
+    "title": "Annual Report on Form 10-K for the fiscal year ended December 31, 2025",
+    "publisher": "Amkor Technology, Inc.",
+    "publisher_entity": "company-amkor-technology",
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://ir.amkor.com/static-files/ab60f0aa-e0e8-433f-9a27-191c6ff48b5b",
+    "stated_dates": [
+      {
+        "kind": "signed",
+        "date": "2026-02-20"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-01T05:33Z",
+      "sha256": "e73f374e6925226c9f632287899f6ee9ecd71ec94c5c1022966887b85b94dc0d"
+    },
+    "filing_copy": "filer_hosted_not_checked"
+  },
+  {
+    "id": "src-027",
+    "source_class": "company_filing",
+    "title": "Annual Report on Form 10-K for the fiscal year ended October 31, 2025",
+    "publisher": "Synopsys, Inc.",
+    "publisher_entity": "company-synopsys",
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://investor.synopsys.com/files/doc_financials/2025/q4/cb4c09c0-5b5a-4b6f-870f-0e69ec26a5ae.pdf",
+    "stated_dates": [
+      {
+        "kind": "signed",
+        "date": "2025-12-19"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-01T05:33Z",
+      "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905"
+    },
+    "filing_copy": "filer_hosted_not_checked"
+  },
+  {
+    "id": "src-028",
+    "source_class": "company_filing",
+    "title": "2025 Annual Report (including the Annual Report on Form 10-K for the fiscal year ended December 31, 2025)",
+    "publisher": "Amazon.com, Inc.",
+    "publisher_entity": "company-amazon-com",
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://ir.aboutamazon.com/files/doc_financials/2026/ar/Amazon-2025-Annual-Report.pdf",
+    "stated_dates": [
+      {
+        "kind": "signed",
+        "date": "2026-02-05"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-01T05:33Z",
+      "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+    },
+    "filing_copy": "filer_hosted_not_checked"
+  },
+  {
+    "id": "src-029",
+    "source_class": "company_filing",
+    "title": "2025 Annual Report based on US GAAP (Annual Report on Form 20-F for the year ended December 31, 2025)",
+    "publisher": "ASML Holding N.V.",
+    "publisher_entity": "company-asml-holding",
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://ourbrand.asml.com/m/71076aaad607de4d/original/asml-2025-annual-report-based-on-us-gaap.pdf",
+    "stated_dates": [
+      {
+        "kind": "signed",
+        "date": "2026-02-25"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-01T05:33Z",
+      "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+    },
+    "filing_copy": "filer_hosted_not_checked"
+  },
+  {
+    "id": "src-030",
+    "source_class": "company_filing",
+    "title": "Annual Report for fiscal year 2025 (제78기), section I.1 'Company overview' (English DART)",
+    "publisher": "SK hynix Inc.",
+    "publisher_entity": "company-sk-hynix",
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://englishdart.fss.or.kr/report/eng/viewer.do?rcpNo=20260317000635&dcmNo=11132576&eleId=4&offset=20380&length=52430&dtd=dart4.xsd",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2026-03-17"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-01T05:37Z",
+      "sha256": "b067389a5f3c7d88fb7c3d91b7fef948e924a2d49791736ce8a92327fd4b6f2c"
+    },
+    "filing_copy": "regulator_hosted"
+  },
+  {
+    "id": "src-031",
+    "source_class": "company_filing",
+    "title": "Annual Report on Form 20-F for the fiscal year ended December 31, 2025",
+    "publisher": "Taiwan Semiconductor Manufacturing Company Limited",
+    "publisher_entity": "company-taiwan-semiconductor-manufacturing-company",
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf",
+    "stated_dates": [
+      {
+        "kind": "signed",
+        "date": "2026-04-16"
+      }
+    ],
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:44Z",
+      "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+    },
+    "filing_copy": "filer_hosted_not_checked"
+  },
+  {
+    "id": "src-032",
+    "source_class": "standard_specification",
+    "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for US, identity block (screenshot)",
+    "publisher": "International Organization for Standardization (ISO)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.iso.org/obp/ui/#iso:code:3166:US",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:30Z",
+      "sha256": "d02a4287f81268386a9f61a3b8d64b96460ca1cdb4b8f4d5e0a61ac4362ecda0"
+    }
+  },
+  {
+    "id": "src-033",
+    "source_class": "standard_specification",
+    "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for US, subdivision table, Alabama to New York (screenshot)",
+    "publisher": "International Organization for Standardization (ISO)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.iso.org/obp/ui/#iso:code:3166:US",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:26Z",
+      "sha256": "d247a0bf3d4e92ee22b5b16366f2da11526190619595d104461333652c045a9d"
+    }
+  },
+  {
+    "id": "src-034",
+    "source_class": "standard_specification",
+    "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for US, subdivision table, North Carolina to Wyoming (screenshot)",
+    "publisher": "International Organization for Standardization (ISO)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.iso.org/obp/ui/#iso:code:3166:US",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:26Z",
+      "sha256": "6825089a17a0758f864082577ffe219557c0991199c759f3b02bb1e96731f5b7"
+    }
+  },
+  {
+    "id": "src-035",
+    "source_class": "standard_specification",
+    "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for NL, identity block (screenshot)",
+    "publisher": "International Organization for Standardization (ISO)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.iso.org/obp/ui/#iso:code:3166:NL",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:30Z",
+      "sha256": "354e5466a3de5c738b2b7b1e4ff37543e12c828cfaa044770e6d2525f2870292"
+    }
+  },
+  {
+    "id": "src-036",
+    "source_class": "standard_specification",
+    "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for KR, identity block (screenshot)",
+    "publisher": "International Organization for Standardization (ISO)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.iso.org/obp/ui/#iso:code:3166:KR",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:30Z",
+      "sha256": "639a2393887f70a7b4f73aa146d0fd909420441eccf87933ad8433cc7567cb21"
+    }
+  },
+  {
+    "id": "src-037",
+    "source_class": "standard_specification",
+    "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for KR, subdivision table (screenshot)",
+    "publisher": "International Organization for Standardization (ISO)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.iso.org/obp/ui/#iso:code:3166:KR",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:26Z",
+      "sha256": "e81ab0ff68a4abb36414a2be4381d9e23836651e58a893abe37afd2aeca97fa8"
+    }
+  },
+  {
+    "id": "src-038",
+    "source_class": "standard_specification",
+    "title": "ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for TW, identity block (screenshot)",
+    "publisher": "International Organization for Standardization (ISO)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.iso.org/obp/ui/#iso:code:3166:TW",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "manual_by_human",
+      "accessed_at": "2026-10-01T14:30Z",
+      "sha256": "506e72caa98ef136479a2530204364f63a761b9ac1ff658c2ec47b9b0f7291b8"
+    }
   }
 ]

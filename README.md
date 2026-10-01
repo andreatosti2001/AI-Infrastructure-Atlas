@@ -3,12 +3,13 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 
 ## Status
 
-**M1 — Domain + Evidence Foundation.** The repository contains governance documents, the
+**M2 — Canonical Dataset (S07 complete; S08–S10 to come).** The repository contains governance documents, the
 session system, a repository-integrity check, the S01 domain map, the accepted entity
 schema (S03), the accepted relationship schema (S04), the accepted source policy with its
-source-class vocabulary (S05), and the accepted claim model (S06): source and claim
-schemas, the migrated source records, seed claims awaiting the human's review, `validate-data`
-and a trace command. It contains **no entity or relationship records and no UI yet**. See
+source-class vocabulary (S05), the accepted claim model (S06), and the first canonical
+entities (S07, M2): 8 companies and 4 jurisdictions, each traceable to the companies' own
+filings and to ISO 3166, with record-level `validate-data` and a first `validate-freshness`
+rule. It contains **no relationship records and no UI yet**. See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is
 planned.
 
@@ -19,8 +20,8 @@ This is an independent repository. It shares no code, data or runtime with
 
 ```text
 CLAUDE.md, MASTER-ARCHITECTURE.md, ...   constitutional documents (see docs/README.md)
-data/            source records (sources.json) and claims awaiting review (staging/claims.json)
-docs/            documentation map, baseline, decision log, entity and relationship taxonomies, claim model, agent roles and contracts, research, source policy
+data/            source records, canonical claims, companies and jurisdictions; staging/ holds records awaiting the human's review
+docs/            documentation map, baseline, decision log, entity and relationship taxonomies, claim model, company dataset, milestone audits, agent roles and contracts, research, source policy
 schemas/         JSON Schema for entity records (accepted, S03), relationship records (accepted, S04), source records around the accepted source-class vocabulary (S05, S06) and claims (S06)
 sessions/        session prompts, prompt registry and session reports
 tools/           Gate 0 validator and the trace command
@@ -38,7 +39,8 @@ python -m pip install -r requirements-test.txt
 python -m unittest discover -s tests -v   # unit tests
 python tools/validate_repo.py             # Gate 0: repository integrity
 python -m unittest discover -s tests -p "test_data*.py" -v   # validate-data
-python tools/trace.py claim-tsmc-fabricates-h100-gh100       # what supports a claim or record
+python -m unittest discover -s tests -p "test_freshness.py" -v   # validate-freshness
+python tools/trace.py company-nvidia                         # what supports a record or claim
 ```
 
 CI runs both on every push and pull request.

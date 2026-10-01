@@ -1062,3 +1062,206 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   - What it cannot show is listed in `claim-model.md` §12.
 - **Rejected:** a graph or database layer (NG-07); declaring the gate met without a real
   relationship (it is the human's call, with S10).
+
+## D-054 — The company seed and the legal-entity rulings (H-1)
+
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Context:** the roadmap's S07 target is "A small, high-quality seed set rather than
+  maximum coverage". Before S07 started, the human chose eight companies, one per chain
+  layer (H-1: "8, one per layer (Recommended)"). `entity-taxonomy.md` §3.1 makes a record
+  "one record per legal entity as sources name it".
+- **Decision** (`company-dataset.md` §1–§2):
+  - The seed is NVIDIA, SK hynix, Micron, Amkor, TSMC, ASML, Synopsys and Amazon.
+  - Each record is the legal entity that the company's own filing names as registrant or
+    filer: e.g. AMAZON.COM, INC., not Amazon Web Services; ASML Holding N.V., not an
+    operating subsidiary.
+  - Brands and channels ("AWS", "SK hynix Newsroom", "NVIDIA Technical Blog") are names or
+    aliases, never records.
+  - Parent and subsidiary questions stay open for S10's `owns`.
+- **Rejected:** the minimal five and the broader twelve (H-1); a record per brand or segment
+  (R-3, `entity-taxonomy.md` §3.1).
+
+## D-055 — Entity data layout: one file per entity type (H-2)
+
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Context:** D-005 leaves each data layout to the session that first needs it. Before S07
+  started, the human chose one JSON array file per entity type (H-2: "One file per entity
+  type (Recommended)").
+- **Decision:** `data/companies.json` and `data/jurisdictions.json` hold canonical records.
+  `data/staging/companies.json` and `data/staging/jurisdictions.json` hold staging records.
+  Each joins `validate-data` in this session (L-05), and `tools/trace.py` reads them by
+  default.
+- **Rejected:** one `data/entities.json` for every type (H-2); a staging flag inside one file
+  (the D-048 reason: a consumer could read a staging record as canonical).
+
+## D-056 — Company ID rule (ID-1)
+
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Context:** the S07 gate requires "stable IDs". A renamed company keeps its ID
+  (`entity-taxonomy.md` §3.1). The display name is editorial (§7).
+- **Decision** (`company-dataset.md` §3):
+  - A company ID is `company-` plus the slug of a Latin-script legal name, as first
+    recorded: drop one trailing legal-form designation from the §3 table, lower-case,
+    reduce to ASCII, and join words with `-`.
+  - A rename keeps the old legal name as an assertion with `valid_to`, so the ID still
+    checks.
+  - Collisions add the incorporation code. A further collision needs a decision.
+  - `tests/test_data_entities.py` (ID-1) checks it on every record.
+- **Rejected:** IDs from the display name or a ticker (they change for reasons other than
+  identity); hand-chosen short IDs (no check possible).
+
+## D-057 — Claim patterns for company identity and attributes
+
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Context:** `claim-model.md` §16 and the S06 report hand S07 the claim shape. The rows are
+  `identity:company` and `attr:company.*` (`source-policy.md` §7). R-5 forbids reading a
+  headquarters off a facility or a listing, and D-024 forbids deriving roles from edges.
+- **Decision** (`company-dataset.md` §4):
+  - One `FACT` with `party` standing, quoting the filer's own name statement, serves
+    `identity_claim_ids` and `legal_name` (D-044). The legal name is recorded verbatim,
+    capitals included.
+  - Cover-page anchors are the value followed by its printed label, in text order. The
+    locator says which value is which.
+  - `incorporated_in` and `headquartered_in` are `FACT` when the sentence names the country,
+    and a `DERIVATION` when it names a subdivision. The derivation's second input is the ISO
+    3166-2 claim (D-058).
+  - `headquartered_in` needs a sentence with "headquarters" or "head office". A cover address
+    alone is not used.
+  - A role needs a sentence that states the business model of the role's schema definition.
+    Superlatives (ER-5) and plans (ER-8) are not adopted.
+  - Korean anchors are verbatim. The statement is the Atlas's translation and says so.
+  - A field with no such sentence in the sections read is `not_researched`.
+- **Rejected:** a `FACT` that a Delaware company is incorporated in the United States (the
+  filing does not say it); the cover address as the headquarters; inferring incorporation
+  from a legal form.
+
+## D-058 — Jurisdiction records from ISO pages retrieved by the human (H-4, RA-4)
+
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Context:** H-4 ("Create the needed ones (Recommended)") required ISO 3166-1 as ISO
+  publishes it, and said to stop and ask if it could not be retrieved under RA-1/RA-2.
+  `www.iso.org` refused plain requests (HTTP 403 challenge) on 2026-10-01, so S07 stopped and
+  asked. The human chose manual retrieval ("RA-4: you save ISO pages (Recommended)").
+- **Decision** (`company-dataset.md` §5):
+  - The human captures the ISO Online Browsing Platform entries for US, NL, KR and TW. Each
+    capture is a source record with `standard_specification` class and method
+    `manual_by_human`, and the file stays outside the repository. The human supplied
+    screenshots ("Can i send you the screens?"); each shows the `iso.org` host and the OBP
+    header, and the Verifier reads its anchors off the image.
+  - Each jurisdiction record's identity claim is a `FACT`, standing `originator`, whose
+    anchor carries the alpha-2 code (J-1).
+  - ISO 3166-2 subdivision entries on the same pages are `FACT`s used as inputs to the
+    state-to-country derivations (D-057).
+  - Display names are editorial, and ISO's short names are aliases, as ISO gives them.
+- **Rejected:** a secondary code list (RA-5); no jurisdiction records in S07 (H-4's
+  alternative, not chosen).
+
+## D-059 — Regulator-hosted filings readable under RA-1 (SK hynix)
+
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Context:** D-042 takes filings from the filer's own copy, because EDGAR refused plain
+  requests and its access policy could not be read. SK hynix's IR site hosts no annual
+  report and points readers to the regulator's English DART for disclosures. DART answered
+  plain HTTPS requests. The human chose the DART copy ("DART regulator copy (Recommended)").
+- **Decision:**
+  - D-042's filer-copy rule answers EDGAR's refusal. It does not forbid a regulator's copy
+    that answers an ordinary request.
+  - A filing read from a regulator's own system under RA-1 is recorded with
+    `filing_copy: regulator_hosted`.
+  - EDGAR stays an access gap, and no identity is declared to any site (D-042, RA-7).
+- **Rejected:** SK hynix's newsroom pages as identity evidence (an acceptable class, but
+  weaker, and `incorporated_in` has no acceptable alternative); leaving SK hynix out.
+
+## D-060 — TSMC's 20-F by manual retrieval (RA-4)
+
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Context:** every TSMC host and EDGAR answered with a challenge or refusal on 2026-10-01.
+  The human chose to download the 20-F ("RA-4: you download its 20-F (Recommended)").
+- **Decision:** the human downloads TSMC's 2025 Form 20-F from `investor.tsmc.com` and
+  supplies it. It is a source record with method `manual_by_human` and `filing_copy:
+  filer_hosted_not_checked`. The Verifier reads the file the human supplies, and records its
+  hash (RA-4(5)).
+- **Rejected:** leaving TSMC open with a seven-company seed.
+
+## D-061 — Staging and canonical for entity records; the human's review in S07 (H-3)
+
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Context:** the accepted entity schema has no review field, and Part B §08 forbids adding
+  one without approval. Before S07 started, the human chose to review inside S07 (H-3: "Your
+  review inside S07 (Recommended)").
+- **Decision** (`company-dataset.md` §6):
+  - A record's file says whether it is staging or canonical (D-055).
+  - CE-1: a canonical record cites only canonical claims and canonical jurisdictions, and no
+    ID is in both files.
+  - Accepted claims move to `data/claims.json` with the human's verdict. A record moves only
+    when every claim it cites is accepted.
+  - The S06 seed claims move only on their own verdicts.
+- **Rejected:** a review field on entity records (a schema change); promotion after the
+  session (H-3's alternative).
+
+## D-062 — Anchors from new retrievals are Verifier-attested (H-6)
+
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Context:** VD-11 machine-checks only anchors whose text is in the repository
+  (`claim-model.md` §5, §16). Before S07 started, the human chose Verifier attestation with
+  a human sample (H-6: "Verifier + your sample (Recommended)").
+- **Decision** (`company-dataset.md` §7):
+  - A citation read on or after the date in `company-dataset.md` §7 is attested. The
+    Verifier found the anchor verbatim in text extracted from those bytes and read the
+    sentence. VD-11 requires the bytes read to be the registered bytes, hashed in full.
+  - Reads before that date stay machine-checked against their home.
+  - The human spot-checks a sample, recorded in the report.
+- **Rejected:** committing full texts so that anchors can be machine-checked (RA-4(4));
+  a list of attested claim IDs (a second home for the read time); the human checking every
+  anchor (H-6's alternative).
+
+## D-063 — validate-data for entity records
+
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Context:** `relationship-taxonomy.md` §15 and `claim-model.md` §11 hand V-1, V-9 and
+  V-10 to S07. `entity-taxonomy.md` §9 asks for jurisdiction IDs on the ISO list.
+- **Decision** (`company-dataset.md` §8): `tests/test_data_entities.py` adds V-1, V-4, V-9,
+  V-10, CE-1, ID-1 and J-1. VD-2 and VD-11 are extended. Each check runs on the real files
+  and on a fictional fixture world, where one planted fault per check must be caught. V-10
+  reads the matrix from `source-policy.md` §7 on every run. V-2, V-3 and V-5 to V-8 wait
+  for relationships (S10).
+- **Rejected:** a `tools/validate_data.py` (D-051); running V-rules on fixtures only
+  (D-051).
+
+## D-064 — validate-freshness: the first rule (F-1)
+
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Context:** D-040 sets a 12-month horizon for `time_sensitive` rows, "before its use in a
+  canonical record". D-051 left the code to the first session with such records.
+- **Decision** (`company-dataset.md` §9): `tests/test_freshness.py` checks that every
+  `time_sensitive` field rests on at least one accepted citation whose evidence date is
+  within the horizon of the claim's `verified_on`. The horizon is read from
+  `source-policy.md` §12. Re-checking means newer evidence. Scheduled re-checks as filings
+  age stay with the Change Detector, which is inactive.
+- **Rejected:** comparing with the date the test runs (a commit's result would change with
+  the calendar); counting a re-read of an old filing as fresh.
+
+## D-065 — `publisher_entity` is set for filings only
+
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Context:** D-050 left `publisher_entity` `not_researched` for company publishers until
+  S07. The S07 prompt (§06 q11) allows it only where the evidence shows the legal entity.
+- **Decision** (`company-dataset.md` §10): a filing's `publisher_entity` names its filer's
+  canonical company record. Web pages stay `not_researched`, because they name a channel or
+  brand, not a legal entity. V-1 checks that the reference names a canonical company.
+- **Rejected:** setting it from copyright lines (a rights holder is not shown to be the
+  publisher); setting it for a staging company (V-1).
+
+## D-066 — The M1 milestone audit is written first in S07 (H-5)
+
+- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Context:** PEF §4 requires a milestone audit "At every major milestone". M1 (S03–S06)
+  closed with S06, and no session was assigned the audit. Before S07 started, the human
+  placed it as S07's first task (H-5: "First task of S07 (Recommended)").
+- **Decision:** `docs/architecture/milestone-audits/M1-audit.md`, a document only, with a row
+  in `docs/quality/audit-history.md`. Claude writes it in the Portfolio Reviewer role, which
+  `docs/agents/roles.md` marks inactive and gives no contract. This is recorded as a
+  deviation from `roles.md`, not a change to it.
+- **Rejected:** deferring the audit to S12 (H-5's alternative); activating the Portfolio
+  Reviewer role with a contract for one document (D-052's reason: a contract for work no
+  session does regularly yet).

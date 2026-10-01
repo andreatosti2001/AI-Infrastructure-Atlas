@@ -1,0 +1,1733 @@
+[
+  {
+    "id": "claim-nvidia-registrant-name",
+    "claim_type": "FACT",
+    "statement": "The registrant of NVIDIA's Annual Report on Form 10-K for the fiscal year ended January 25, 2026 has the exact name “NVIDIA CORPORATION”, as specified in its charter.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-024",
+        "locator": "p.1, cover page, the name printed above the label '(Exact name of registrant as specified in its charter)'",
+        "anchor": "NVIDIA CORPORATION (Exact name of registrant as specified in its charter)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-nvidia-incorporation-history",
+    "claim_type": "FACT",
+    "statement": "NVIDIA was incorporated in California in April 1993 and reincorporated in Delaware in April 1998.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-024",
+        "locator": "p.5, Item 1 'Business', the sentence beginning 'Headquartered in Santa Clara, California'",
+        "anchor": "NVIDIA was incorporated in California in April 1993 and reincorporated in Delaware in April 1998",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-nvidia-headquarters-santa-clara",
+    "claim_type": "FACT",
+    "statement": "NVIDIA is headquartered in Santa Clara, California.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-024",
+        "locator": "p.5, Item 1 'Business', the sentence beginning 'Headquartered in Santa Clara, California'",
+        "anchor": "Headquartered in Santa Clara, California, NVIDIA was incorporated in California in April 1993",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-nvidia-fabless-strategy",
+    "claim_type": "FACT",
+    "statement": "NVIDIA utilizes a fabless and contracting manufacturing strategy: it partners with suppliers for all phases of manufacturing, including wafer fabrication, assembly, testing and packaging, and focuses its own resources on product design, quality assurance, marketing and customer support.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-024",
+        "locator": "p.8, 'Manufacturing', the sentence beginning 'We utilize a fabless and contracting manufacturing strategy'",
+        "anchor": "We utilize a fabless and contracting manufacturing strategy, whereby we employ and partner with key suppliers for all phases of the manufacturing process, including wafer fabrication, assembly, testing, and packaging",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396"
+        }
+      },
+      {
+        "source_id": "src-024",
+        "locator": "p.8, 'Manufacturing', the sentence beginning 'As a result, we can focus our resources'",
+        "anchor": "As a result, we can focus our resources on product design, quality assurance, marketing, and customer support",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-micron-registrant-name",
+    "claim_type": "FACT",
+    "statement": "The registrant of Micron's Annual Report on Form 10-K for the fiscal year ended August 28, 2025 has the exact name “Micron Technology, Inc.”, as specified in its charter.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-025",
+        "locator": "p.1, cover page, the name printed above the label '(Exact name of registrant as specified in its charter)'",
+        "anchor": "Micron Technology, Inc. (Exact name of registrant as specified in its charter)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-micron-incorporation-state",
+    "claim_type": "FACT",
+    "statement": "Micron Technology, Inc. states Delaware as its state or other jurisdiction of incorporation or organization.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-025",
+        "locator": "p.1, cover page, the field labelled '(State or other jurisdiction of incorporation or organization)', whose value is 'Delaware'; the number printed beside it is the IRS Employer Identification No.",
+        "anchor": "Delaware 75-1618004 (State or other jurisdiction of incorporation or organization)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-micron-headquarters-boise",
+    "claim_type": "FACT",
+    "statement": "Micron's corporate headquarters are located in Boise, Idaho.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-025",
+        "locator": "p.47, Item 2 'Properties', the first sentence",
+        "anchor": "Our corporate headquarters are located in Boise, Idaho",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-micron-manufactures-memory",
+    "claim_type": "FACT",
+    "statement": "Micron manufactures its products, which include DRAM, NAND and NOR products, within its own facilities, and also uses subcontractors for certain manufacturing processes.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-025",
+        "locator": "p.13, 'Manufacturing', the first sentence",
+        "anchor": "We manufacture our products within our own facilities located in Taiwan, Singapore, Japan, the United States, Malaysia, China, and India and also utilize subcontractors to perform certain manufacturing processes",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      },
+      {
+        "source_id": "src-025",
+        "locator": "p.13, 'Manufacturing', the sentence beginning 'Our DRAM, NAND, and NOR products'",
+        "anchor": "Our DRAM, NAND, and NOR products share a number of common manufacturing processes",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amkor-registrant-name",
+    "claim_type": "FACT",
+    "statement": "The registrant of Amkor's Annual Report on Form 10-K for the fiscal year ended December 31, 2025 has the exact name “Amkor Technology, Inc.”, as specified in its charter.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-026",
+        "locator": "p.1, cover page, the name printed above the label '(Exact name of registrant as specified in its charter)'",
+        "anchor": "Amkor Technology, Inc. (Exact name of registrant as specified in its charter)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "e73f374e6925226c9f632287899f6ee9ecd71ec94c5c1022966887b85b94dc0d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amkor-incorporation-state",
+    "claim_type": "FACT",
+    "statement": "Amkor Technology, Inc. states Delaware as its state or other jurisdiction of incorporation or organization.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-026",
+        "locator": "p.1, cover page, the field labelled '(State or other jurisdiction of incorporation or organization)', whose value is 'Delaware'; the number printed beside it is the I.R.S. Employer Identification Number",
+        "anchor": "Delaware 23-1722724 (State or other jurisdiction of incorporation or organization)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "e73f374e6925226c9f632287899f6ee9ecd71ec94c5c1022966887b85b94dc0d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amkor-us-headquartered-osat",
+    "claim_type": "FACT",
+    "statement": "Amkor is a U.S. headquartered outsourced semiconductor assembly and test service provider (OSAT).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-026",
+        "locator": "p.7, Item 1 'Business', the sentence beginning 'As a U.S. headquartered OSAT'",
+        "anchor": "As a U.S. headquartered OSAT",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "e73f374e6925226c9f632287899f6ee9ecd71ec94c5c1022966887b85b94dc0d"
+        }
+      },
+      {
+        "source_id": "src-026",
+        "locator": "p.4, Item 1 'Business', 'Overview', the first sentence, where the abbreviation is defined (the sentence's superlative is not adopted, ER-5)",
+        "anchor": "outsourced semiconductor assembly and test service provider (“OSAT”)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "e73f374e6925226c9f632287899f6ee9ecd71ec94c5c1022966887b85b94dc0d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-synopsys-registrant-name",
+    "claim_type": "FACT",
+    "statement": "The registrant of Synopsys's Annual Report on Form 10-K for the fiscal year ended October 31, 2025 has the exact name “SYNOPSYS, INC.”, as specified in its charter.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-027",
+        "locator": "p.1, cover page, the name printed above the label '(Exact name of registrant as specified in its charter)'",
+        "anchor": "SYNOPSYS, INC. (Exact name of registrant as specified in its charter)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-synopsys-incorporation-state",
+    "claim_type": "FACT",
+    "statement": "Synopsys, Inc. states Delaware as its state or other jurisdiction of incorporation or organization.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-027",
+        "locator": "p.1, cover page, the field labelled '(State or other jurisdiction of incorporation or organization)', whose value is 'Delaware'; the number printed beside it is the I.R.S. Employer Identification No.",
+        "anchor": "Delaware 56-1546236 (State or other jurisdiction of incorporation or organization)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-synopsys-headquarters-sunnyvale",
+    "claim_type": "FACT",
+    "statement": "Synopsys's headquarters are located at 675 Almanor Avenue, Sunnyvale, California.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-027",
+        "locator": "p.6, Item 1 'Business', 'Corporate Information', the first sentence",
+        "anchor": "Our headquarters are located at 675 Almanor Avenue, Sunnyvale, California 94085",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-synopsys-sells-eda",
+    "claim_type": "FACT",
+    "statement": "Synopsys's Design Automation segment includes an EDA revenue group, and Synopsys's EDA products automate tasks in chip design.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-027",
+        "locator": "p.7, 'Products and Services', 'Design Automation Segment', the first sentence",
+        "anchor": "Our Design Automation segment includes the EDA, Ansys and Other revenue groups",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905"
+        }
+      },
+      {
+        "source_id": "src-027",
+        "locator": "p.7, the sentence beginning 'Our EDA products increase designer productivity'",
+        "anchor": "Our EDA products increase designer productivity and efficiency by automating tasks",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-registrant-name",
+    "claim_type": "FACT",
+    "statement": "The registrant of Amazon's Annual Report on Form 10-K for the fiscal year ended December 31, 2025 has the exact name “AMAZON.COM, INC.”, as specified in its charter.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-028",
+        "locator": "p.12 (the Form 10-K's cover page, which follows the shareholder letter), the name printed above the label '(Exact name of registrant as specified in its charter)'",
+        "anchor": "AMAZON.COM, INC. (Exact name of registrant as specified in its charter)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-incorporation-state",
+    "claim_type": "FACT",
+    "statement": "Amazon.com, Inc. states Delaware as its state or other jurisdiction of incorporation or organization.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-028",
+        "locator": "p.12 (the Form 10-K's cover page), the field labelled '(State or other jurisdiction of incorporation or organization)', whose value is 'Delaware'; the number printed beside it is the I.R.S. Employer Identification No.",
+        "anchor": "Delaware 91-1646860 (State or other jurisdiction of incorporation or organization)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-headquarters-washington-virginia",
+    "claim_type": "FACT",
+    "statement": "Amazon owns and leases its corporate headquarters in Washington's Puget Sound region and in Arlington, Virginia.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-028",
+        "locator": "p.29, Form 10-K Item 2 'Properties', the sentence after the facilities tables",
+        "anchor": "We own and lease our corporate headquarters in Washington’s Puget Sound region and Arlington, Virginia",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-provides-cloud-services",
+    "claim_type": "FACT",
+    "statement": "Amazon provides cloud services to businesses, and through AWS offers on-demand technology services, including compute, storage and database services.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-028",
+        "locator": "p.23, Form 10-K Item 1A, under 'Our Commercial Agreements, Strategic Alliances, and Other Business Relationships Expose Us to Risks', the first sentence",
+        "anchor": "We provide physical, e-commerce, and omnichannel retail, cloud services, and other services to businesses",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      },
+      {
+        "source_id": "src-028",
+        "locator": "p.14, Form 10-K Item 1 'Business', 'Developers and Enterprises'",
+        "anchor": "through AWS, which offers a broad set of on-demand technology services, including compute, storage, database",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-operates-data-centers",
+    "claim_type": "FACT",
+    "statement": "As of December 31, 2025, Amazon operated leased and owned facilities in the category 'Fulfillment, data centers, and other', in North America and internationally.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-028",
+        "locator": "p.29, Form 10-K Item 2 'Properties', the first sentence",
+        "anchor": "As of December 31, 2025, we operated the following facilities",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      },
+      {
+        "source_id": "src-028",
+        "locator": "p.29, Form 10-K Item 2 'Properties', first table, column 'Description of Use', the rows for North America and International",
+        "anchor": "Fulfillment, data centers, and other",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      }
+    ],
+    "as_of": "2025-12-31",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-asml-holding-nv-company",
+    "claim_type": "FACT",
+    "statement": "ASML Holding N.V. is a public limited liability company organized under Dutch law.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-029",
+        "locator": "p.76, 'Corporate governance', the sentence beginning 'ASML Holding N.V. is a public limited liability company'",
+        "anchor": "ASML Holding N.V. is a public limited liability company organized under Dutch law",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-asml-incorporated-netherlands",
+    "claim_type": "FACT",
+    "statement": "ASML is incorporated in the Netherlands.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-029",
+        "locator": "p.309, Note on income taxes, 'Global Minimum Tax', the first sentence",
+        "anchor": "Global minimum tax legislation was enacted in the Netherlands, the jurisdiction in which ASML is incorporated",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-asml-headquarters-veldhoven",
+    "claim_type": "FACT",
+    "statement": "ASML's headquarters are located in Veldhoven, the Netherlands.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-029",
+        "locator": "p.327, 'Facilities in EMEA', the first sentence",
+        "anchor": "Our headquarters, mainly manufacturing and R&D facilities, are located in Veldhoven, the Netherlands",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-asml-semiconductor-equipment",
+    "claim_type": "FACT",
+    "statement": "ASML develops, produces, markets, sells, upgrades and services advanced semiconductor equipment systems, consisting of lithography, metrology and inspection systems.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-029",
+        "locator": "p.287, Note 3 'Segment disclosure', the first sentence",
+        "anchor": "for the development, production, marketing, sales, upgrading and servicing of advanced semiconductor equipment systems, consisting of lithography, metrology and inspection systems",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:33Z",
+          "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-sk-hynix-legal-name",
+    "claim_type": "FACT",
+    "statement": "The company's name is 에스케이하이닉스 주식회사, written in English as SK hynix Inc. (the Atlas's translation of the Korean sentence).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-030",
+        "locator": "I.1 'Company overview', item 나 (the company's legal and commercial names), the first sentence",
+        "anchor": "당사의 명칭은 에스케이하이닉스 주식회사이며, 영문으로는 SK hynix Inc.라고 표기합니다",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:37Z",
+          "sha256": "b067389a5f3c7d88fb7c3d91b7fef948e924a2d49791736ce8a92327fd4b6f2c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-sk-hynix-head-office-gyeonggi",
+    "claim_type": "FACT",
+    "statement": "SK hynix's head office address is 2091 Gyeongchung-daero, Icheon-si, Gyeonggi-do (the Atlas's translation of the Korean address).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-030",
+        "locator": "I.1 'Company overview', item 라 (head office address, telephone number and website), its heading and the address line",
+        "anchor": "본사의 주소, 전화번호, 홈페이지 주소 주소: 경기도 이천시 경충대로 2091",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:37Z",
+          "sha256": "b067389a5f3c7d88fb7c3d91b7fef948e924a2d49791736ce8a92327fd4b6f2c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-sk-hynix-memory-products",
+    "claim_type": "FACT",
+    "statement": "SK hynix's main manufactured products are memory semiconductor products such as DRAM, NAND Flash and MCP (Multi-chip Package) (the Atlas's translation of the Korean sentence).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-030",
+        "locator": "I.1 'Company overview', item 바 (main business), the first sentence",
+        "anchor": "현재 당사의 주력 생산제품은 DRAM, NAND Flash 및 MCP(Multi-chip Package)와 같은 메모리 반도체 제품입니다",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T05:37Z",
+          "sha256": "b067389a5f3c7d88fb7c3d91b7fef948e924a2d49791736ce8a92327fd4b6f2c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-h100-gh100-process-name",
+    "claim_type": "FACT",
+    "statement": "NVIDIA's GH100 GPU, which powers the H100 GPU, is fabricated on a process that NVIDIA names the “TSMC 4N process customized for NVIDIA”.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-006",
+        "locator": "section 'NVIDIA H100 GPU architecture in-depth' (the register's 'H100 GPU hardware architecture in-depth'), the sentence beginning 'The full GH100 GPU that powers the H100 GPU'",
+        "anchor": "fabricated using the TSMC 4N process customized for NVIDIA",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "fd13c05a1586cc78874b066b0adf074292b5e8e1461c179621a032ab5957c8d8"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-tsmc-fabricates-h100-gh100",
+    "claim_type": "DERIVATION",
+    "statement": "TSMC performs the wafer fabrication of the GH100 GPU die in NVIDIA's H100.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-h100-gh100-process-name"
+    ],
+    "reasoning": "ER-1: TSMC is named only inside the process name NVIDIA gives for the GH100, so fabrication by TSMC is read out of that name. No retrieved source names the manufacturer directly. NVIDIA's 10-K names TSMC among its foundries at company level only (src-024 p.8, ER-9), so it does not make this a FACT.",
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-asml-euv-unique-to-asml",
+    "claim_type": "ATTRIBUTION",
+    "statement": "ASML describes EUV lithography as a technology “unique to ASML”.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-017",
+        "locator": "opening paragraph, the sentence beginning 'The technology, which is unique to ASML'",
+        "anchor": "The technology, which is unique to ASML, prints microchips using light with a wavelength of just 13.5 nm",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "ec896b9cb6bcf9d21fea330b9172c00e1d43fbe244c3ca5ab177c9e6a292c514"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-lbnl-reports-idc-gpu-die-supply",
+    "claim_type": "ATTRIBUTION",
+    "statement": "LBNL's 2025 update reports IDC analysts' advice, in forecasting high-end GPU shipments, that the market “is currently constrained by die supply”.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-021",
+        "locator": "p.18, §3.1.2 'AI Accelerator Shipments', under 'Functional Unit for GPU Forecasts', the sentence beginning 'Because the market is currently constrained', in the paragraph that reports what 'IDC analysts advised us' and ends '(IDC, 2026)'",
+        "anchor": "the market is currently constrained by die supply",
+        "standing": "reporter",
+        "originator": {
+          "name": "IDC (International Data Corporation) analysts",
+          "source_class": "market_research_consultancy",
+          "named_at": "p.18, 'IDC analysts advised us' and the citation '(IDC, 2026)'; p.31, reference list: a direct communication with an IDC executive analyst"
+        },
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-cset-ai-chip-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "CSET's definition of “AI chips” includes GPUs, FPGAs and certain types of ASICs.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-003",
+        "locator": "p.4, footnote *",
+        "anchor": "Our definition of “AI chips” includes graphics processing units (GPUs), field-programmable gate arrays (FPGAs), and certain types of application-specific integrated circuits (ASICs)",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "0f80b4fa16509e838b5a3e172b29d9fdb69a042815a9d326a3b8b9e46393842c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-lbnl-ai-accelerator-accounting",
+    "claim_type": "ATTRIBUTION",
+    "statement": "LBNL's 2025 update says that the dataset of its 2024 report covered GPU accelerators only, and that the update “expands the accounting to all AI accelerators, namely ASICs”.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-021",
+        "locator": "p.16, §3.1.2 'AI Accelerator Shipments', the sentence beginning 'The analogous dataset used in the 2024 Report'",
+        "anchor": "this update expands the accounting to all AI accelerators, namely ASICs",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-atlas-ai-accelerator-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, an AI accelerator is a data-centre logic chip, a GPU or an AI ASIC, whose primary purpose is AI training or inference. FPGAs and CPUs are outside v1 scope.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-cset-ai-chip-definition",
+      "claim-lbnl-ai-accelerator-accounting"
+    ],
+    "reasoning": "CON-01 is a definitional conflict (source-policy.md §10.2): CSET's definition includes FPGAs; LBNL's accounting covers GPUs and ASICs. The working definition is a choice, not a resolution. The human chose it at TQ-01 (domain-map.md §7.1, D-016). Both source positions stay as ATTRIBUTION claims.",
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-nist-cloud-location-independence",
+    "claim_type": "ATTRIBUTION",
+    "statement": "NIST's definition of cloud computing says there is “a sense of location independence”: the customer generally has no control or knowledge over the exact location of the provided resources, but may be able to specify location at a higher level of abstraction, such as a country, state or datacenter.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-001",
+        "locator": "p.6, essential characteristic 'Resource pooling', the sentence beginning 'There is a sense of location independence'",
+        "anchor": "There is a sense of location independence",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "7b0c1a9fdfc67218b8ba2098f448c100c27070db91736b3c87fed63bfa21d418"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-aws-availability-zone-data-centers",
+    "claim_type": "FACT",
+    "statement": "Each AWS Availability Zone consists of one or more discrete data centers, each with redundant power, networking and connectivity, and housed in separate facilities.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-020",
+        "locator": "section 'Availability Zones', the sentence beginning 'Each Availability Zone consists of'",
+        "anchor": "Each Availability Zone consists of one or more discrete data centers, each with redundant power, networking, and connectivity, and housed in separate facilities",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-09-30T21:29Z",
+          "sha256": "1f172d6e220c740279a04165d30d6de3ac639c642b8cda575832c57a085abb87"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-cloud-compute-facility-often-undisclosed",
+    "claim_type": "IMPLICATION",
+    "statement": "For cloud AI compute, the Atlas should expect the facility behind a service to be undisclosed: providers may let customers specify location only at a level above the site, and an Availability Zone groups one or more data centers. A facility is recorded only where a source names it, never read off a region or zone (D-022), and a missing site stays not_researched until an ER-3 search supports not_publicly_determinable.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nist-cloud-location-independence",
+      "claim-aws-availability-zone-data-centers"
+    ],
+    "reasoning": "Domain map §6 draws this implication from SRC-001 p.6 and SRC-020. It is restated here so that it does not pre-empt ER-3: expecting non-disclosure is a planning consequence, not a finding that any site is not_publicly_determinable.",
+    "verified_on": "2026-09-30",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-iso-3166-1-us",
+    "claim_type": "FACT",
+    "statement": "ISO 3166 assigns the alpha-2 code US to the entry with the short name “UNITED STATES OF AMERICA” (full name “the United States of America”), with status 'Officially assigned'.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-032",
+        "locator": "screenshot of the OBP entry, below 'Standard: ISO 3166', rows 'Alpha-2 code' and 'Short name'",
+        "anchor": "Alpha-2 code US Short name UNITED STATES OF AMERICA",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:30Z",
+          "sha256": "d02a4287f81268386a9f61a3b8d64b96460ca1cdb4b8f4d5e0a61ac4362ecda0"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-1-nl",
+    "claim_type": "FACT",
+    "statement": "ISO 3166 assigns the alpha-2 code NL to the entry with the short name “NETHERLANDS, KINGDOM OF THE” (full name “the Kingdom of the Netherlands”), with status 'Officially assigned'.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-035",
+        "locator": "screenshot of the OBP entry, below 'Standard: ISO 3166', rows 'Alpha-2 code' and 'Short name'",
+        "anchor": "Alpha-2 code NL Short name NETHERLANDS, KINGDOM OF THE",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:30Z",
+          "sha256": "354e5466a3de5c738b2b7b1e4ff37543e12c828cfaa044770e6d2525f2870292"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-1-kr",
+    "claim_type": "FACT",
+    "statement": "ISO 3166 assigns the alpha-2 code KR to the entry with the short name “KOREA, REPUBLIC OF” (full name “the Republic of Korea”), with status 'Officially assigned'.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-036",
+        "locator": "screenshot of the OBP entry, below 'Standard: ISO 3166', rows 'Alpha-2 code' and 'Short name'",
+        "anchor": "Alpha-2 code KR Short name KOREA, REPUBLIC OF",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:30Z",
+          "sha256": "639a2393887f70a7b4f73aa146d0fd909420441eccf87933ad8433cc7567cb21"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-2-us-ca",
+    "claim_type": "FACT",
+    "statement": "ISO 3166-2 lists California, of subdivision category 'state', with the code US-CA.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-033",
+        "locator": "screenshot of the subdivision table, the row for US-CA",
+        "anchor": "state US-CA California",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:26Z",
+          "sha256": "d247a0bf3d4e92ee22b5b16366f2da11526190619595d104461333652c045a9d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-2-us-de",
+    "claim_type": "FACT",
+    "statement": "ISO 3166-2 lists Delaware, of subdivision category 'state', with the code US-DE.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-033",
+        "locator": "screenshot of the subdivision table, the row for US-DE",
+        "anchor": "state US-DE Delaware",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:26Z",
+          "sha256": "d247a0bf3d4e92ee22b5b16366f2da11526190619595d104461333652c045a9d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-2-us-id",
+    "claim_type": "FACT",
+    "statement": "ISO 3166-2 lists Idaho, of subdivision category 'state', with the code US-ID.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-033",
+        "locator": "screenshot of the subdivision table, the row for US-ID",
+        "anchor": "state US-ID Idaho",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:26Z",
+          "sha256": "d247a0bf3d4e92ee22b5b16366f2da11526190619595d104461333652c045a9d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-2-us-va",
+    "claim_type": "FACT",
+    "statement": "ISO 3166-2 lists Virginia, of subdivision category 'state', with the code US-VA.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-034",
+        "locator": "screenshot of the subdivision table, the row for US-VA",
+        "anchor": "state US-VA Virginia",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:26Z",
+          "sha256": "6825089a17a0758f864082577ffe219557c0991199c759f3b02bb1e96731f5b7"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-2-us-wa",
+    "claim_type": "FACT",
+    "statement": "ISO 3166-2 lists Washington, of subdivision category 'state', with the code US-WA.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-034",
+        "locator": "screenshot of the subdivision table, the row for US-WA",
+        "anchor": "state US-WA Washington",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:26Z",
+          "sha256": "6825089a17a0758f864082577ffe219557c0991199c759f3b02bb1e96731f5b7"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-2-kr-41",
+    "claim_type": "FACT",
+    "statement": "ISO 3166-2 lists Gyeonggi-do, of subdivision category 'province', with the code KR-41.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-037",
+        "locator": "screenshot of the subdivision table, the row for KR-41",
+        "anchor": "province KR-41 Gyeonggi-do Gyeonggi",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:26Z",
+          "sha256": "e81ab0ff68a4abb36414a2be4381d9e23836651e58a893abe37afd2aeca97fa8"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-nvidia-incorporated-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "NVIDIA's jurisdiction of incorporation, since April 1993, is in the country with ISO 3166 code US (California, then Delaware).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nvidia-incorporation-history",
+      "claim-iso-3166-2-us-ca",
+      "claim-iso-3166-2-us-de",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-nvidia-incorporation-history). ISO 3166-2 lists it as US-CA and US-DE. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-nvidia-headquartered-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "NVIDIA's headquarters is in the country with ISO 3166 code US (Santa Clara, California).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nvidia-headquarters-santa-clara",
+      "claim-iso-3166-2-us-ca",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-nvidia-headquarters-santa-clara). ISO 3166-2 lists it as US-CA. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-micron-incorporated-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Micron Technology, Inc.'s jurisdiction of incorporation is in the country with ISO 3166 code US (Delaware).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-micron-incorporation-state",
+      "claim-iso-3166-2-us-de",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-micron-incorporation-state). ISO 3166-2 lists it as US-DE. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-micron-headquartered-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Micron's headquarters is in the country with ISO 3166 code US (Boise, Idaho).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-micron-headquarters-boise",
+      "claim-iso-3166-2-us-id",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-micron-headquarters-boise). ISO 3166-2 lists it as US-ID. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amkor-incorporated-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Amkor Technology, Inc.'s jurisdiction of incorporation is in the country with ISO 3166 code US (Delaware).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-amkor-incorporation-state",
+      "claim-iso-3166-2-us-de",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-amkor-incorporation-state). ISO 3166-2 lists it as US-DE. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-synopsys-incorporated-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Synopsys, Inc.'s jurisdiction of incorporation is in the country with ISO 3166 code US (Delaware).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-synopsys-incorporation-state",
+      "claim-iso-3166-2-us-de",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-synopsys-incorporation-state). ISO 3166-2 lists it as US-DE. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-synopsys-headquartered-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Synopsys's headquarters is in the country with ISO 3166 code US (Sunnyvale, California).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-synopsys-headquarters-sunnyvale",
+      "claim-iso-3166-2-us-ca",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-synopsys-headquarters-sunnyvale). ISO 3166-2 lists it as US-CA. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-incorporated-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Amazon.com, Inc.'s jurisdiction of incorporation is in the country with ISO 3166 code US (Delaware).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-amazon-incorporation-state",
+      "claim-iso-3166-2-us-de",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-amazon-incorporation-state). ISO 3166-2 lists it as US-DE. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-amazon-headquartered-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Amazon's corporate headquarters is in the country with ISO 3166 code US (Washington's Puget Sound region and Arlington, Virginia).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-amazon-headquarters-washington-virginia",
+      "claim-iso-3166-2-us-wa",
+      "claim-iso-3166-2-us-va",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-amazon-headquarters-washington-virginia). ISO 3166-2 lists it as US-WA and US-VA. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is US (claim-iso-3166-1-us). So the country is the one coded US. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-sk-hynix-headquartered-in-kr",
+    "claim_type": "DERIVATION",
+    "statement": "SK hynix's head office is in the country with ISO 3166 code KR (경기도, which ISO lists as Gyeonggi-do; the romanisation is part of this step).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-sk-hynix-head-office-gyeonggi",
+      "claim-iso-3166-2-kr-41",
+      "claim-iso-3166-1-kr"
+    ],
+    "reasoning": "The filing names a subdivision, not the country (claim-sk-hynix-head-office-gyeonggi). ISO 3166-2 lists it as KR-41. An ISO 3166-2 code begins with the alpha-2 code of the country it subdivides, and the table is the subdivision table of the ISO 3166 entry whose alpha-2 code is KR (claim-iso-3166-1-kr). So the country is the one coded KR. The step is the Atlas's, not the filing's (D-057).",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-iso-3166-1-tw",
+    "claim_type": "FACT",
+    "statement": "ISO 3166 assigns the alpha-2 code TW to the entry with the short name “TAIWAN, PROVINCE OF CHINA” (its Full name row is empty), with status 'Officially assigned'.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-038",
+        "locator": "screenshot of the OBP entry, below 'Standard: ISO 3166', rows 'Alpha-2 code' and 'Short name'",
+        "anchor": "Alpha-2 code TW Short name TAIWAN, PROVINCE OF CHINA",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T14:30Z",
+          "sha256": "506e72caa98ef136479a2530204364f63a761b9ac1ff658c2ec47b9b0f7291b8"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-tsmc-legal-name",
+    "claim_type": "FACT",
+    "statement": "TSMC's Articles of Incorporation give its name as 台灣積體電路製造股份有限公司 in the Chinese language and Taiwan Semiconductor Manufacturing Company Limited in the English language. The 20-F cover gives the Chinese name as the exact name in its charter, and the English name as its translation.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-031",
+        "locator": "p.179, Exhibit 1.1, Articles of Incorporation, Article 1",
+        "anchor": "its name shall be 台灣積體電路製造股份有限公司 in the Chinese language, and Taiwan Semiconductor Manufacturing Company Limited in the English language",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      },
+      {
+        "source_id": "src-031",
+        "locator": "p.20, Item 4, 'Our History and Structure', the first sentence",
+        "anchor": "Our legal and commercial name is 台灣積體電路製造股份有限公司 (Taiwan Semiconductor Manufacturing Company Limited)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      },
+      {
+        "source_id": "src-031",
+        "locator": "p.1, cover page, the name printed above the label '(Exact Name of Registrant as Specified in Its Charter)'",
+        "anchor": "台灣積體電路製造股份有限公司 (Exact Name of Registrant as Specified in Its Charter)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      },
+      {
+        "source_id": "src-031",
+        "locator": "p.1, cover page, the English name and its label; the text runs on into the jurisdiction field beside it",
+        "anchor": "Taiwan Semiconductor Manufacturing Company Limited Republic of China (Translation of Registrant’s Name Into English)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-tsmc-incorporated-roc",
+    "claim_type": "FACT",
+    "statement": "TSMC was incorporated in the R.O.C. (Republic of China) as a company limited by shares on February 21, 1987, under the Company Law of the Republic of China.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-031",
+        "locator": "p.179, Exhibit 1.1, Articles of Incorporation, Article 1",
+        "anchor": "The Corporation shall be incorporated, as a company limited by shares, under the Company Law of the Republic of China",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      },
+      {
+        "source_id": "src-031",
+        "locator": "p.20, Item 4, 'Our History and Structure', the second sentence",
+        "anchor": "were incorporated in the R.O.C. as a company limited by shares on February 21, 1987",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      },
+      {
+        "source_id": "src-031",
+        "locator": "p.108, Note 1 'General', the first sentence",
+        "anchor": "Taiwan Semiconductor Manufacturing Company Limited (TSMC), a Republic of China (R.O.C.) corporation, was incorporated on February 21, 1987",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-tsmc-head-office-taiwan",
+    "claim_type": "FACT",
+    "statement": "TSMC's Articles of Incorporation place its head office in Hsinchu Science Park, Taiwan, Republic of China, and its corporate headquarters are located in the Hsinchu Science Park.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-031",
+        "locator": "p.180, Exhibit 1.1, Articles of Incorporation, Article 3",
+        "anchor": "The Corporation shall have its head office in Hsinchu Science Park, Taiwan, Republic of China",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      },
+      {
+        "source_id": "src-031",
+        "locator": "p.21, Item 4, 'Our Semiconductor Facilities', the second sentence",
+        "anchor": "Our corporate headquarters and nine of our fabs are located in the Hsinchu Science Park",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-tsmc-foundry",
+    "claim_type": "FACT",
+    "statement": "As a foundry, TSMC manufactures semiconductors with its own manufacturing processes for its customers, based on proprietary integrated circuit designs that the customers provide.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-031",
+        "locator": "p.21, Item 4, 'Business Overview of the Company', the first sentence",
+        "anchor": "As a foundry, we manufacture semiconductors using our manufacturing processes for our customers based on proprietary integrated circuit designs provided by them",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-01T14:44Z",
+          "sha256": "923117acae9536fa30629f87573e6f976fb6e678ad46070c1e68520eb375de29"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  },
+  {
+    "id": "claim-tsmc-incorporated-in-tw",
+    "claim_type": "DERIVATION",
+    "statement": "TSMC's jurisdiction of incorporation is recorded as the ISO 3166 entry with code TW.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-tsmc-incorporated-roc",
+      "claim-tsmc-head-office-taiwan",
+      "claim-iso-3166-1-tw"
+    ],
+    "reasoning": "The filing names the jurisdiction of incorporation as the R.O.C. (claim-tsmc-incorporated-roc). The same filing writes the head office's place as 'Taiwan, Republic of China', using both names for one place (claim-tsmc-head-office-taiwan). ISO 3166 assigns the code TW to the entry whose short name is 'TAIWAN, PROVINCE OF CHINA' (claim-iso-3166-1-tw). So the Atlas records the entry TW. The code is an identifier and states no position on sovereignty (entity-taxonomy.md §3.6); the filing's own name for the jurisdiction stays in its claim. The step is the Atlas's (D-057).",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-01",
+      "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+    },
+    "verified_on": "2026-10-01"
+  }
+]

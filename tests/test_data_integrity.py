@@ -18,7 +18,9 @@ tests; tools/ stays standard library (D-026). The checks, by ID (claim-model.md 
 - VD-10 a FACT cites at least one source whose class is sufficient for some matrix row
         (source-policy.md §7);
 - VD-11 every anchor is verbatim in its machine-checkable home: the domain map for
-        register sources, source-policy.md §8.3 for S05 retrievals;
+        register sources, source-policy.md §8.3 for S05 retrievals. From S07 (H-6), an
+        anchor read on or after company-dataset.md §7's date is Verifier-attested instead,
+        and its bytes read must be the registered bytes, hashed in full;
 - VD-12 dates are in order: bytes were read after the source was registered, and the claim
         was verified on or after the day the bytes were read;
 - VD-13 a search record lists each class once, and each source under its own class.
@@ -44,6 +46,7 @@ CANONICAL_FILE = DATA / "claims.json"
 POLICY = (REPO_ROOT / "docs/research/source-policy.md").read_text(encoding="utf-8")
 REGISTER = (REPO_ROOT / "docs/research/source-register.md").read_text(encoding="utf-8")
 DOMAIN_MAP = (REPO_ROOT / "docs/research/domain-map.md").read_text(encoding="utf-8")
+DATASET = (REPO_ROOT / "docs/architecture/company-dataset.md").read_text(encoding="utf-8")
 COMPANY_CLASSES = {"company_filing", "company_technical_documentation", "company_press_release", "company_marketing"}
 
 # One register row whose publisher cell names two organisations. source-policy.md §2 and
@@ -292,13 +295,29 @@ def check_fact_classes(sources, staging, canonical) -> list[str]:
     return errors
 
 
+def attested_from() -> str:
+    """company-dataset.md §7 (H-6): reads from this UTC minute on are Verifier-attested."""
+    body = section(DATASET, "\n## 7. ", "\n## 8. ")
+    (stamp,) = set(re.findall(r"\*\*Verifier-attested from:\*\* `([0-9T:Z-]+)`", body))
+    return stamp
+
+
 def check_anchors(sources, staging, canonical) -> list[str]:
-    """VD-11."""
+    """VD-11. A read before the H-6 date is machine-checked against the anchor's home. A read
+    from that date on is Verifier-attested: it must be of the registered bytes, hashed in full."""
     labels = {s["id"]: s.get("migrated_from", "") for s in sources}
+    registered = {s["id"]: s["retrieval"]["sha256"] for s in sources}
     homes = {"SRC": flat(DOMAIN_MAP), "S05": flat(section(POLICY, "### 8.3 ", "\n## 9. "))}
+    cutoff = attested_from()
     errors = []
     for claim in all_claims(staging, canonical):
         for citation in claim.get("citations", []):
+            read = citation.get("read")
+            if read and read["accessed_at"] >= cutoff:
+                want = registered.get(citation["source_id"], "")
+                if len(read["sha256"]) != 64 or not read["sha256"].startswith(want):
+                    errors.append(f"{claim['id']}: attested anchor in {citation['source_id']} was not read from the registered bytes, hashed in full")
+                continue
             home = homes.get(labels.get(citation["source_id"], "")[:3])
             if home is None:
                 errors.append(f"{claim['id']}: no machine-checkable home for anchors of {citation['source_id']}")
