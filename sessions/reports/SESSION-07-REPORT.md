@@ -81,6 +81,16 @@ claims accepted and moved to `data/claims.json`; 7 companies in `data/companies.
 - **H-6 sample:** the human did not name which claims they opened. *Open:* asked again with
   sheet 2.
 
+## Addendum — the human's spot-check of attested anchors (H-6, 2026-10-01)
+
+- **Asked:** whether the human opened three claims at their locators: `claim-micron-registrant-name`
+  (src-025 p.1), `claim-nvidia-fabless-strategy` (src-024 p.8) and
+  `claim-asml-incorporated-netherlands` (src-029 p.309).
+- **The human's words, verbatim:** "check all the three fines"
+- **Recorded as:** the human opened all three at their locators, and found each anchor and
+  sentence as the claim states. This is the H-6 sample for review sheet 1: 3 of 27 claims,
+  one each of a cover-page identity, a role and an incorporation sentence.
+
 ### Review sheet 1 (as given to the human)
 
 For each claim: open the URL, go to the locator, find the anchor, read the **whole sentence**, and answer: **does it say this, and no more?** Then give a verdict: **accept**, **reject**, or **wording too strong**.
