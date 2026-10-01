@@ -1,0 +1,248 @@
+[
+  {
+    "id": "company-nvidia",
+    "type": "company",
+    "name": "NVIDIA",
+    "aliases": [
+      "NVIDIA CORPORATION"
+    ],
+    "identity_claim_ids": [
+      "claim-nvidia-registrant-name"
+    ],
+    "legal_name": [
+      {
+        "value": "NVIDIA CORPORATION",
+        "claim_ids": [
+          "claim-nvidia-registrant-name"
+        ]
+      }
+    ],
+    "incorporated_in": {
+      "state": "not_researched"
+    },
+    "headquartered_in": {
+      "state": "not_researched"
+    },
+    "roles": [
+      {
+        "value": "fabless_designer",
+        "claim_ids": [
+          "claim-nvidia-fabless-strategy"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "company-micron-technology",
+    "type": "company",
+    "name": "Micron Technology",
+    "aliases": [
+      "Micron",
+      "Micron Technology, Inc."
+    ],
+    "identity_claim_ids": [
+      "claim-micron-registrant-name"
+    ],
+    "legal_name": [
+      {
+        "value": "Micron Technology, Inc.",
+        "claim_ids": [
+          "claim-micron-registrant-name"
+        ]
+      }
+    ],
+    "incorporated_in": {
+      "state": "not_researched"
+    },
+    "headquartered_in": {
+      "state": "not_researched"
+    },
+    "roles": [
+      {
+        "value": "memory_manufacturer",
+        "claim_ids": [
+          "claim-micron-manufactures-memory"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "company-amkor-technology",
+    "type": "company",
+    "name": "Amkor Technology",
+    "aliases": [
+      "Amkor",
+      "Amkor Technology, Inc."
+    ],
+    "identity_claim_ids": [
+      "claim-amkor-registrant-name"
+    ],
+    "legal_name": [
+      {
+        "value": "Amkor Technology, Inc.",
+        "claim_ids": [
+          "claim-amkor-registrant-name"
+        ]
+      }
+    ],
+    "incorporated_in": {
+      "state": "not_researched"
+    },
+    "headquartered_in": {
+      "state": "not_researched"
+    },
+    "roles": [
+      {
+        "value": "osat",
+        "claim_ids": [
+          "claim-amkor-us-headquartered-osat"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "company-synopsys",
+    "type": "company",
+    "name": "Synopsys",
+    "aliases": [
+      "SYNOPSYS, INC.",
+      "Synopsys, Inc."
+    ],
+    "identity_claim_ids": [
+      "claim-synopsys-registrant-name"
+    ],
+    "legal_name": [
+      {
+        "value": "SYNOPSYS, INC.",
+        "claim_ids": [
+          "claim-synopsys-registrant-name"
+        ]
+      }
+    ],
+    "incorporated_in": {
+      "state": "not_researched"
+    },
+    "headquartered_in": {
+      "state": "not_researched"
+    },
+    "roles": [
+      {
+        "value": "eda_vendor",
+        "claim_ids": [
+          "claim-synopsys-sells-eda"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "company-amazon-com",
+    "type": "company",
+    "name": "Amazon",
+    "aliases": [
+      "AMAZON.COM, INC.",
+      "Amazon.com, Inc.",
+      "Amazon Web Services",
+      "AWS"
+    ],
+    "identity_claim_ids": [
+      "claim-amazon-registrant-name"
+    ],
+    "legal_name": [
+      {
+        "value": "AMAZON.COM, INC.",
+        "claim_ids": [
+          "claim-amazon-registrant-name"
+        ]
+      }
+    ],
+    "incorporated_in": {
+      "state": "not_researched"
+    },
+    "headquartered_in": {
+      "state": "not_researched"
+    },
+    "roles": [
+      {
+        "value": "cloud_provider",
+        "claim_ids": [
+          "claim-amazon-provides-cloud-services",
+          "claim-amazon-operates-data-centers"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "company-asml-holding",
+    "type": "company",
+    "name": "ASML",
+    "aliases": [
+      "ASML Holding N.V."
+    ],
+    "identity_claim_ids": [
+      "claim-asml-holding-nv-company"
+    ],
+    "legal_name": [
+      {
+        "value": "ASML Holding N.V.",
+        "claim_ids": [
+          "claim-asml-holding-nv-company"
+        ]
+      }
+    ],
+    "incorporated_in": {
+      "state": "not_researched"
+    },
+    "headquartered_in": {
+      "state": "not_researched"
+    },
+    "roles": [
+      {
+        "value": "equipment_maker",
+        "claim_ids": [
+          "claim-asml-semiconductor-equipment"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "company-sk-hynix",
+    "type": "company",
+    "name": "SK hynix",
+    "aliases": [
+      "SK hynix Inc.",
+      "에스케이하이닉스 주식회사",
+      "SK하이닉스"
+    ],
+    "identity_claim_ids": [
+      "claim-sk-hynix-legal-name"
+    ],
+    "legal_name": [
+      {
+        "value": "에스케이하이닉스 주식회사",
+        "claim_ids": [
+          "claim-sk-hynix-legal-name"
+        ]
+      },
+      {
+        "value": "SK hynix Inc.",
+        "claim_ids": [
+          "claim-sk-hynix-legal-name"
+        ]
+      }
+    ],
+    "incorporated_in": {
+      "state": "not_researched"
+    },
+    "headquartered_in": {
+      "state": "not_researched"
+    },
+    "roles": [
+      {
+        "value": "memory_manufacturer",
+        "claim_ids": [
+          "claim-sk-hynix-memory-products"
+        ]
+      }
+    ]
+  }
+]

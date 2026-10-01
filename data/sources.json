@@ -563,9 +563,7 @@
     "source_class": "company_filing",
     "title": "Annual Report on Form 10-K for the fiscal year ended January 25, 2026",
     "publisher": "NVIDIA Corporation",
-    "publisher_entity": {
-      "state": "not_researched"
-    },
+    "publisher_entity": "company-nvidia",
     "authors": {
       "state": "not_researched"
     },
@@ -588,9 +586,7 @@
     "source_class": "company_filing",
     "title": "Annual Report on Form 10-K for the fiscal year ended August 28, 2025",
     "publisher": "Micron Technology, Inc.",
-    "publisher_entity": {
-      "state": "not_researched"
-    },
+    "publisher_entity": "company-micron-technology",
     "authors": {
       "state": "not_researched"
     },
@@ -613,9 +609,7 @@
     "source_class": "company_filing",
     "title": "Annual Report on Form 10-K for the fiscal year ended December 31, 2025",
     "publisher": "Amkor Technology, Inc.",
-    "publisher_entity": {
-      "state": "not_researched"
-    },
+    "publisher_entity": "company-amkor-technology",
     "authors": {
       "state": "not_researched"
     },
@@ -638,9 +632,7 @@
     "source_class": "company_filing",
     "title": "Annual Report on Form 10-K for the fiscal year ended October 31, 2025",
     "publisher": "Synopsys, Inc.",
-    "publisher_entity": {
-      "state": "not_researched"
-    },
+    "publisher_entity": "company-synopsys",
     "authors": {
       "state": "not_researched"
     },
@@ -663,9 +655,7 @@
     "source_class": "company_filing",
     "title": "2025 Annual Report (including the Annual Report on Form 10-K for the fiscal year ended December 31, 2025)",
     "publisher": "Amazon.com, Inc.",
-    "publisher_entity": {
-      "state": "not_researched"
-    },
+    "publisher_entity": "company-amazon-com",
     "authors": {
       "state": "not_researched"
     },
@@ -688,9 +678,7 @@
     "source_class": "company_filing",
     "title": "2025 Annual Report based on US GAAP (Annual Report on Form 20-F for the year ended December 31, 2025)",
     "publisher": "ASML Holding N.V.",
-    "publisher_entity": {
-      "state": "not_researched"
-    },
+    "publisher_entity": "company-asml-holding",
     "authors": {
       "state": "not_researched"
     },
@@ -713,9 +701,7 @@
     "source_class": "company_filing",
     "title": "Annual Report for fiscal year 2025 (제78기), section I.1 'Company overview' (English DART)",
     "publisher": "SK hynix Inc.",
-    "publisher_entity": {
-      "state": "not_researched"
-    },
+    "publisher_entity": "company-sk-hynix",
     "authors": {
       "state": "not_researched"
     },

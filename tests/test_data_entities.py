@@ -310,6 +310,11 @@ class EntityDataTests(unittest.TestCase):
             with self.subTest(kind=kind):
                 self.assertTrue(canonical.exists() or staging.exists(), f"no {kind} file")
 
+    def test_s07_gate_canonical_companies_exist(self) -> None:
+        # Roadmap S07 gate: "Every canonical company record has identity evidence and stable
+        # IDs". The schema requires identity_claim_ids; CE-1, V-10 and ID-1 check the rest.
+        self.assertTrue(self.entities["canonical"]["companies"], "no canonical company")
+
     def test_v1_references_resolve(self) -> None:
         self.assertEqual(check_references(self.entities, self.sources, self.staging, self.canonical), [])
 
