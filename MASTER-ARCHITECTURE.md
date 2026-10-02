@@ -822,12 +822,18 @@ No domain product may publish canonical output unless all applicable gates pass.
 - date sensitivity checked
 - outdated claims surfaced
 
-### Gate 6 — UI
+### Gate 6 — UI and visual communication
 
 - navigation works
 - no broken routes
 - responsive behaviour checked
 - accessibility basics pass
+- chart/visual encoding matches the underlying analytical question
+- visual hierarchy and labeling are unambiguous
+- typography, spacing, composition and annotation are consistent with the design system
+- mobile layouts remain readable without relying on hover
+- source/provenance treatment remains visible where the evidence is material
+- decorative styling never changes the meaning or apparent magnitude of data
 
 ### Gate 7 — Browser regression
 
@@ -888,7 +894,16 @@ CANONICAL DATA
 DERIVATIONS
       |
       v
+ANALYTICAL INSIGHTS
+      |
+      v
 INDEX / GRAPH
+      |
+      v
+VISUAL INTELLIGENCE
+      |
+      v
+EDITORIAL COMPOSITION
       |
       v
 PRESENTATION
@@ -901,6 +916,80 @@ PUBLISH
 ```
 
 Never allow a language model to directly rewrite a canonical published dataset from unreviewed web text.
+
+### 16.1 Visual intelligence and editorial design
+
+The presentation layer must be treated as an evidence-aware **visual intelligence and data-storytelling layer**, not as generic dashboard decoration.
+
+The system should transform:
+
+`validated data -> derivation -> analytical insight -> visual specification -> editorial composition -> rendered presentation`
+
+The visual layer must answer the analytical question with the clearest appropriate form. It must not default to a chart merely because a chart is technically possible.
+
+#### Visualisation grammar
+
+Use the visual form that best matches the question, for example:
+
+- ranking / magnitude -> bars or dot plots;
+- change over time -> line charts or annotated timelines;
+- composition -> stacked bars, treemaps or limited donut charts where part-to-whole reading is genuinely useful;
+- geography -> maps;
+- flows / dependencies -> flow diagrams, Sankey-like views or relationship graphs;
+- networks -> relationship diagrams;
+- headline indicators -> KPI blocks;
+- multidimensional comparison -> small multiples or matrices;
+- concentration / intensity -> heatmaps.
+
+Do not prescribe a single chart library or visual type across the whole product. Selection is analytical, not decorative.
+
+#### Editorial composition
+
+An infographic is a composed evidence object, not a pile of charts. A reusable composition should support:
+
+- headline / analytical question;
+- primary visual;
+- secondary signal or comparison;
+- key figures / context;
+- concise annotation and takeaway;
+- source, date and methodology metadata;
+- visible limitations where material.
+
+The visual system should establish consistent typography, spacing, grid, label conventions, number formatting, card treatment, annotation, iconography and responsive behaviour while allowing different layouts for different analytical questions.
+
+#### Institutional data-storytelling benchmark
+
+The visual ambition is **professional institutional / think-tank / data-journalism quality**: clear, restrained, information-dense where justified, and visually polished without becoming ornamental.
+
+Use leading institutional and think-tank data products as quality references for hierarchy, clarity, annotation and composition. Do not reproduce another organisation's branding or visual identity.
+
+#### Evidence-aware visualisation
+
+Every substantive visual should be traceable through:
+
+`visual -> visual specification -> derived metric / canonical record -> claim / relationship -> source`
+
+Derived metrics must remain reproducible. A visual may simplify presentation, but it may not simplify away material uncertainty, evidence status or scope conditions.
+
+#### Visual quality gate
+
+Before publication, ask:
+
+1. Is the underlying number/relationship correct?
+2. Is the visual encoding correct for the analytical question?
+3. Can the main comparison be understood at a glance?
+4. Are labels, units, dates and denominators clear?
+5. Is the visual readable on mobile?
+6. Is the provenance discoverable?
+7. Could styling or scale cause a materially misleading interpretation?
+
+A visually attractive but analytically misleading graphic fails the gate.
+
+#### Implementation principle
+
+Start with standard HTML/CSS/JS and SVG where appropriate. Add charting libraries only where they materially reduce implementation risk or improve accessibility, interaction or reproducibility.
+
+The project should first prove 2-3 high-quality end-to-end infographic compositions before turning recurring patterns into reusable components or generation rules.
 
 ---
 
