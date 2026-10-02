@@ -1308,7 +1308,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-070 — SME-03 becomes two records: EUV lithography and DUV lithography
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed (not approved at the S08 review; left open at the H-0 answer, 2026-10-02: "All except D-070, D-076 (Recommended)")
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, S09 final review of the open S08 rulings: "Approve both (Recommended)"); earlier: not approved at the S08 review, left open at H-0
 - **Context:** §5 maps SME-03 "EUV and DUV lithography" to one technology record and leaves
   scanner equipment classes to S08. Part B §06 q2 names EUV vs DUV as a pair to keep apart.
 - **Decision** (`concept-dataset.md` §2, §3): two technology records, both with
@@ -1384,7 +1384,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-076 — Class rulings for the new sources
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed (not approved at the S08 review; left open at the H-0 answer, 2026-10-02: "All except D-070, D-076 (Recommended)")
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, S09 final review of the open S08 rulings: "Approve both (Recommended)"); earlier: not approved at the S08 review, left open at H-0
 - **Context:** `source-policy.md` §2 assigns each source one class.
 - **Decision** (`concept-dataset.md` §6): the IEEE EPS Heterogeneous Integration Roadmap
   chapter (`src-039`) is a `research_report`, and the NIST news article (`src-041`) is a
@@ -1414,7 +1414,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-078 — Facility scope: filing-named sites; plans as events; ASML a gap (H-1)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)")
 - **Context:** H-1 ("Filings' fabs + packaging (Recommended)"). The registered filings were
   re-retrieved (H-4). At the start of S09 the human answered the ASML stop condition with
   "Gap + proposal (Recommended)" and agreed to re-supply TSMC's 20-F ("I'll re-supply it
@@ -1431,7 +1431,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-079 — Facility ID rule (FI-1)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)")
 - **Context:** `entity-taxonomy.md` §3.2: one site at one location; the ID survives a change
   of owner or operator.
 - **Decision** (`facility-dataset.md` §2): `facility-`, the alpha-2 code of the one
@@ -1444,7 +1444,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-080 — Facility location rests on site sentences only (HQ-1)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed; its flagged ruling (clause-only anchors that leave out a head-office clause or phrase) approved at the S09 review (2026-10-02: "pick your recommendations"; Claude's recommendation was to approve)
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)"); its flagged ruling (clause-only anchors that leave out a head-office clause or phrase) approved at the S09 review (2026-10-02: "pick your recommendations"; Claude's recommendation was to approve)
 - **Context:** R-5; `source-policy.md` §7 rows `attr:facility.located_in`, `.locality`.
 - **Decision** (`facility-dataset.md` §3): `located_in` and `locality` rest on a sentence
   placing the site; a subdivision reaches the country by the D-057 `DERIVATION`; `locality`
@@ -1456,7 +1456,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-081 — Facility kinds rest on basis rows and listed words (FK-1)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed; its flagged ruling ("fab"
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)"); its flagged ruling ("fab"
   and "fabrication plant" read as `wafer_fab`) approved at the S09 review (2026-10-02: "pick
   your recommendations"; Claude's recommendation was to approve)
 - **Context:** `facility_kinds` has no claim field; IO-1 (`concept-dataset.md` §7) is the
@@ -1467,7 +1467,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-082 — Ownership, operation and production evidence for S10 (H-3)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)")
 - **Context:** H-3 ("Claims now, edges in S10 (Recommended)"); `relationship-taxonomy.md`
   §4.3, §4.4, §5.
 - **Decision** (`facility-dataset.md` §5): the candidate sentences are staging claims, each
@@ -1509,7 +1509,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-085 — Facility status is derived by a tested function
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)")
 - **Context:** MA §5.6; R-8; Part B §06 q5.
 - **Decision** (`facility-dataset.md` §7): `tools/facility_status.py` derives `opened`,
   `closed`, `not_yet_opened`, `indeterminate` or `no_recorded_opening` on a date from the
@@ -1521,7 +1521,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-086 — Capacity and data centres (CAP-1)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)")
 - **Context:** TQ-10; the schema's `nameplate_it_capacity_mw`.
 - **Decision** (`facility-dataset.md` §8): `not_applicable` on any site that is not a data
   centre; on a data centre, a value needs an anchor carrying a §8 marker. No data-centre
@@ -1530,7 +1530,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-087 — Layout, review and validate-data for facilities and events (H-5, H-6)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)")
 - **Context:** H-5 ("One file per kind (Recommended)"), H-6 ("Review inside S09
   (Recommended)").
 - **Decision** (`facility-dataset.md` §9 to §11): `data/facilities.json` and
@@ -1542,8 +1542,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-088 — Proposal: a facility kind for equipment manufacturing (not applied)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed (for a later session; the
-  human chose "Gap + proposal (Recommended)")
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)"): the gap stands and the proposal goes to a later session; no schema
+  is changed (at the start of S09 the human chose "Gap + proposal (Recommended)")
 - **Context:** ASML's manufacturing sites (`claim-asml-manufacturing-sites`) assemble and
   test lithography systems; `vocab_facility_kind` has no fitting value.
 - **Proposal:** a later session adds a kind for sites that manufacture semiconductor

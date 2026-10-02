@@ -36,7 +36,7 @@ repository are logged in [`decisions.md`](./decisions.md).
 | Relationship schema | yes, accepted (S04): `schemas/relationships.schema.json`, `relationship-taxonomy.md` | S04 |
 | Source/evidence policy | yes, accepted (S05 review): `docs/research/source-policy.md`, and the class vocabulary in `schemas/sources.schema.json` | S05 |
 | Claim/provenance implementation | yes, accepted (S06 review): `docs/architecture/claim-model.md`, `schemas/claims.schema.json`, the source record in `schemas/sources.schema.json`, `tools/trace.py` | S06 |
-| Canonical data | yes (S07 to S09, accepted by the human in the session): 50 source records (`data/sources.json`), 105 claims (`data/claims.json`), 8 companies, 4 jurisdictions, 7 components, 4 technologies, 3 products, 2 facilities and 4 events (`data/events.json`, schema `schemas/events.schema.json`), as measured at the S09 final commit. Staging holds 9 claims and 5 technology records waiting on D-070 and D-076. Relationships: no | S06 to S09; S10 |
+| Canonical data | yes (S07 to S09, accepted by the human in the session): 50 source records (`data/sources.json`), 114 claims (`data/claims.json`), 8 companies, 4 jurisdictions, 7 components, 9 technologies, 3 products, 2 facilities and 4 events (`data/events.json`, schema `schemas/events.schema.json`), as measured at the S09 final commit. Staging is empty. Relationships: no | S06 to S09; S10 |
 | Presentation / UI | no | S11 |
 | DuckDB / SQL layer | no | S14 |
 
@@ -83,7 +83,7 @@ claim types and evidence status are MA §10. The entity schema was accepted in S
 (`relationship-taxonomy.md`, D-028 to D-033); its §6 reconciles MA §6.2, the relationship
 list in `SESSION-ROADMAP.md` S04 and the verbs in `domain-map.md` §3. The source policy was accepted at the S05 review (`source-policy.md`, D-034 to
 D-043): source classes, a preference matrix read from both schemas, and evidence, conflict,
-retrieval and freshness rules. The claim and source records were accepted at the S06 review (`claim-model.md`, D-044 to D-053). The first company and jurisdiction records follow `company-dataset.md` (S07, D-054 to D-066, accepted at the S07 review); technology, component and product records follow `concept-dataset.md` (S08, D-067 to D-077, accepted at the S08 review except D-070 and D-076); facility and event records follow `facility-dataset.md` (S09, D-078 to D-088; D-083 and D-084 accepted at the S09 review).
+retrieval and freshness rules. The claim and source records were accepted at the S06 review (`claim-model.md`, D-044 to D-053). The first company and jurisdiction records follow `company-dataset.md` (S07, D-054 to D-066, accepted at the S07 review); technology, component and product records follow `concept-dataset.md` (S08, D-067 to D-077, accepted at the S08 review; D-070 and D-076 at the end of S09); facility and event records follow `facility-dataset.md` (S09, D-078 to D-088, accepted at the S09 reviews).
 
 ## 5. Quality gates
 

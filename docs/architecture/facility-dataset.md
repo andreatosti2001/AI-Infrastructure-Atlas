@@ -1,9 +1,9 @@
 # Facility dataset — sites, their location, and the events that date them
 
-**Status:** PROPOSED (S09): D-078 to D-082 and D-085 to D-088, for the human's review.
-D-083 (the event schema) and D-084 (the event rows) were accepted at the S09 review
-(2026-10-02: "Approve both (Recommended)"), and the flagged rulings of D-080, D-081 and D-083
-were approved ("pick your recommendations"). The records are canonical (§10).
+**Status:** ACCEPTED (S09 reviews, 2026-10-02): D-083 and D-084 ("Approve both
+(Recommended)"), the flagged rulings of D-080, D-081 and D-083 ("pick your
+recommendations"), and D-078 to D-082 and D-085 to D-088 ("Approve all (Recommended)"). D-088
+accepts the gap and the proposal; no schema is changed. The records are canonical (§10).
 **Session:** S09 · **Date:** 2026-10-02
 **Inputs:**
 - `entity-taxonomy.md` §3.2 (facility), §4.2 (company vs facility), §4.4 (a plan is not an
@@ -359,6 +359,6 @@ python -m unittest discover -s tests -p "test_freshness.py" -v   # validate-fres
 | `owns` and `operates` edges from the §5 claims | S10 | most candidates fail §5 |
 | A facility kind for equipment manufacturing (ASML) | a later session, by decision | D-088 |
 | Micron's Japan and Taiwan sites; SK hynix's Cheongju plants and M15; Amkor's factories | the session that registers JP and the needed subdivisions, or reads site-level sources | §1 |
-| TSMC's fabs and advanced-backend sites | the session that receives the 20-F (RA-4) | §1, §9 |
+| TSMC's fabs and advanced-backend sites | S10: the human asked to carry the RA-4 request into S10 ("Carry into S10 (Recommended)") | §1, §9 |
 | A `construction_started` type, and MA §5.5's other types | the session that needs them | §12 |
 | Data-centre sites | the session that finds a first-hand site sentence | §8 |

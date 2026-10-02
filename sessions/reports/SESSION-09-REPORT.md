@@ -38,7 +38,7 @@ has its first physical sites and its first dated records:
 
 | Deliverable | Where | Status |
 |---|---|---|
-| Facility-dataset design: scope, ID rule, location rule, kind words, ownership/operation evidence, events, status derivation, capacity, checks | `docs/architecture/facility-dataset.md` | proposed (D-078 to D-082, D-085 to D-088); D-083, D-084 accepted |
+| Facility-dataset design: scope, ID rule, location rule, kind words, ownership/operation evidence, events, status derivation, capacity, checks | `docs/architecture/facility-dataset.md` | accepted (D-078 to D-088; second addendum) |
 | Event schema | `schemas/events.schema.json` | accepted (D-083) |
 | Event rows in the preference matrix | `docs/research/source-policy.md` §7 | accepted (D-084) |
 | Status derivation | `tools/facility_status.py` | tested (ST-1) |
@@ -108,12 +108,12 @@ As measured at the final commit (produced by script, L-04):
 | Measure | Count |
 |---|---|
 | source records | 50 (5 new: `company_filing` 3, `company_press_release` 2; all `automated`) |
-| canonical claims | 105: `FACT` 52, `ATTRIBUTION` 26, `DERIVATION` 14, `INTERPRETATION` 12, `IMPLICATION` 1 |
+| canonical claims | 105 at the S09 review: `FACT` 52, `ATTRIBUTION` 26, `DERIVATION` 14, `INTERPRETATION` 12, `IMPLICATION` 1. 114 after the second addendum (the 9 S08 claims: `ATTRIBUTION` 4, `INTERPRETATION` 5) |
 | claims created and accepted in S09 | 10 (`FACT` 5, `ATTRIBUTION` 3, `DERIVATION` 2), with 8 citations |
-| staging claims | 9 (unchanged: the S08 claims waiting on D-070 and D-076) |
+| staging claims | 9 at the S09 review (the S08 claims waiting on D-070 and D-076); 0 after the second addendum |
 | facilities | 2 canonical (`wafer_fab` 2), 0 staging |
 | events | 4 canonical (`opened` 1, `announced` 3), 0 staging |
-| other entity records | unchanged: 8 companies, 4 jurisdictions, 7 components, 4 technologies (5 staging), 3 products |
+| other entity records | 8 companies, 4 jurisdictions, 7 components, 3 products; technologies 4 canonical and 5 staging at the S09 review, 9 canonical after the second addendum |
 
 **Data model:** the entity schema is unchanged. One new schema (events) and four new matrix
 rows, both approved by the human.
@@ -180,22 +180,23 @@ property section).
 
 ## Decisions made
 
-All appended to `decisions.md`. D-083 and D-084 were accepted at the review; the flagged
-rulings inside D-080, D-081 and D-083 were approved; the rest stay `proposed`.
+All appended to `decisions.md`. D-083 and D-084 were accepted at the review, with the flagged
+rulings inside D-080, D-081 and D-083; the rest were accepted after the report (second
+addendum). The table shows the status at the end of the session.
 
 | Decision | Subject | Status |
 |---|---|---|
-| D-078 | facility scope (H-1): records, plans as events, gaps | proposed |
-| D-079 | facility ID rule (FI-1) | proposed |
-| D-080 | location from site sentences only (HQ-1) | proposed; clause-only anchors approved |
-| D-081 | facility kinds from basis rows and listed words (FK-1) | proposed; "fab" = `wafer_fab` approved |
-| D-082 | ownership, operation and production evidence for S10 (H-3) | proposed |
+| D-078 | facility scope (H-1): records, plans as events, gaps | accepted |
+| D-079 | facility ID rule (FI-1) | accepted |
+| D-080 | location from site sentences only (HQ-1) | accepted |
+| D-081 | facility kinds from basis rows and listed words (FK-1) | accepted |
+| D-082 | ownership, operation and production evidence for S10 (H-3) | accepted |
 | D-083 | the event schema (H-2) | **accepted** |
 | D-084 | event rows in the preference matrix | **accepted** |
-| D-085 | status derived by `tools/facility_status.py` | proposed |
-| D-086 | capacity and data centres (CAP-1) | proposed |
-| D-087 | layout, review and validate-data for facilities and events (H-5, H-6) | proposed |
-| D-088 | proposal: a facility kind for equipment manufacturing (not applied) | proposed |
+| D-085 | status derived by `tools/facility_status.py` | accepted |
+| D-086 | capacity and data centres (CAP-1) | accepted |
+| D-087 | layout, review and validate-data for facilities and events (H-5, H-6) | accepted |
+| D-088 | proposal: a facility kind for equipment manufacturing (not applied) | accepted: the gap stands; the proposal is for a later session |
 
 **Rejected alternatives** (in each decision and `facility-dataset.md` §12). The main ones:
 
@@ -243,7 +244,6 @@ plans that have not become sites: Amkor Arizona, Micron Boise and Clay, SK hynix
 - No `owns` evidence for any facility; `operates` only partly for M16.
 - The trace prints events like other records, but not an event's subject or a facility's
   derived status (the prompt allowed only default-file changes).
-- D-078 to D-082 and D-085 to D-088 are proposed.
 
 **Resolved:**
 
@@ -253,9 +253,9 @@ plans that have not become sites: Amkor Arizona, Micron Boise and Clay, SK hynix
 
 ## Unresolved issues
 
-- **The human's approval of D-078 to D-082 and D-085 to D-088**, above all D-079 (facility
-  IDs), because S10's edges will point to facilities.
-- **D-070 and D-076** (from S08) with their 5 staging technology records and 9 claims.
+- **TSMC's 20-F** (RA-4): carried into S10 at the human's request.
+- **Resolved after the report** (second addendum): D-078 to D-082 and D-085 to D-088, and
+  S08's D-070 and D-076.
 - **The AWS legal entity** (`company-dataset.md` §14), for S10.
 - **Inherited:** S01's weekly gate; S05 debt (the class table vs the matrix; SRC-023 not
   re-read).
@@ -288,10 +288,14 @@ S10 — First supply-chain edges ("Create the first auditable relationships"; hu
   - `fabricates`, `packages`, `designs`, `supplies` from the S07 filings and S08 products;
     the S08 "requires"/"part of" statements (HBM and TSVs; 2.5D and the interposer).
   - the relationship rules V-2, V-3 and V-5 to V-8, which arrive with edges.
-- **Open issues:** the approvals above; D-070 and D-076; the AWS legal entity; TSMC's 20-F
-  (RA-4); S01's weekly gate; S05 debt.
-- **Recommended next decision:** the human confirms the facility ID rule (D-079) and the
-  remaining S09 decisions before S10, because edges will point to facilities.
+- **Open issues:** TSMC's 20-F, to be requested again at the start of S10 (RA-4; the human:
+  "Carry into S10 (Recommended)"); the AWS legal entity; S01's weekly gate; S05 debt.
+- **Now available to S10:** every S09 decision is accepted, so facility IDs are stable; the 5
+  technologies (advanced packaging, 2.5D, 3D die stacking, EUV, DUV) are canonical and can be
+  edge endpoints.
+- **Recommended next decision:** the human decides, at S10's start, which edge types S10
+  instantiates first (`operates` for M16, `fabricates`/`packages`/`incorporates` for the S08
+  products, the class-level `requires`/`has_part`), so that the 10-edge review is scoped.
 - **Files for S10 to read first:** this report; `facility-dataset.md`; `relationship-taxonomy.md`
   §4, §5, §10, §15; `concept-dataset.md`; `company-dataset.md`; D-028 to D-033 and D-078 to
   D-088.
@@ -312,6 +316,22 @@ questions. The human's answers, verbatim:
 **Applied:** 10 claims accepted and moved to `data/claims.json`, with `review` recording this
 report; 2 facilities and 4 events promoted; D-083 and D-084 accepted; the rulings of D-080,
 D-081 and D-083 recorded as approved; TSMC recorded as a gap.
+
+## Addendum 2 — the remaining approvals (2026-10-02)
+
+Asked after the report was written, at the human's request ("ask me if you have unresolved
+issues"). The answers, verbatim:
+
+| Question | Answer (verbatim) | Applied |
+|---|---|---|
+| S09's proposed decisions (D-078 to D-082, D-085 to D-088) | "Approve all (Recommended)" | status lines accepted; `facility-dataset.md` accepted. D-088 accepts the gap and the proposal; no schema change |
+| S08's open D-070 and D-076 | "Approve both (Recommended)" | both accepted; the 9 staging claims (accepted by the human at the S08 review, held by VD-8) moved to `data/claims.json` with `review` recording this report; the 5 staging technology records moved to `data/technologies.json` |
+| TSMC's 20-F | "Carry into S10 (Recommended)" | an open RA-4 item for S10 (`facility-dataset.md` §13) |
+| When to apply | "Apply now (Recommended)" | applied in this session |
+
+After applying, measured by script: 114 canonical claims, 0 staging claims; 9 canonical
+technologies, 0 staging; staging is empty. `python -m unittest discover -s tests`: OK (221
+tests); `tools/validate_repo.py`: OK.
 
 ## Review sheet
 

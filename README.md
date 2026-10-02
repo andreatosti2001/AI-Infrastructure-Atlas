@@ -9,9 +9,9 @@ schema (S03), the accepted relationship schema (S04), the accepted source policy
 source-class vocabulary (S05), the accepted claim model (S06), and the first canonical
 entities (S07, M2): 8 companies and 4 jurisdictions, each traceable to the companies' own
 filings and to ISO 3166, with record-level `validate-data` and a first `validate-freshness`
-rule; and (S08) 7 components, 4 technologies and 3 products, each concept defined by an
-`INTERPRETATION` over government, research and policy-research sources, with 5 more
-technology records held in staging until the human rules on two open decisions; and (S09) 2
+rule; and (S08) 7 components, 9 technologies and 3 products, each concept defined by an
+`INTERPRETATION` over government, research and policy-research sources (5 of the technologies
+became canonical at the end of S09, when the human approved the last two S08 rulings); and (S09) 2
 facilities, each placed by a site sentence and never by a headquarters one, with 4 dated
 events in a new event schema, from which a facility's status is derived, never stored. It contains **no relationship records and no UI yet**. See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is

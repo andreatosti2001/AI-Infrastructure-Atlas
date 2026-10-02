@@ -335,6 +335,13 @@ Asked as H-0 of the S09 prompt, after this report was written. The answer, verba
   `src-041`). The 9 staging claims and the 5 staging technology records stay where they
   are, and S09 inherits them as open items.
 
+## Addendum — D-070 and D-076 approved (2026-10-02, end of S09)
+
+Asked at the end of S09. The answer, verbatim: "Approve both (Recommended)". D-070 and D-076
+are accepted. The 9 claims held in staging (their verdicts were given at the S08 review) and
+the 5 technology records (advanced packaging, 2.5D packaging, 3D die stacking, EUV and DUV
+lithography) are canonical. The details are in `SESSION-09-REPORT.md`, addendum 2.
+
 ## Review sheets
 
 The sheet as sent to the human (headings demoted one level).
