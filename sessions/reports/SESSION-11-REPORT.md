@@ -420,4 +420,7 @@ architecture grounds, with the gaps section restyled as remediation.**
 Claude then assembled [`S12-PROMPT.md`](../prompts/S12-PROMPT.md): Part A is S11's operating contract
 with S12's roadmap entry; Part B records this answer as H-1 and leaves H-0 (the S11 review), H-2 (the
 schema for the candidate records), H-3 (where the audit lives) and Part A's confirmation to be asked
-at the start of S12. The prompt is not yet on `main`.
+at the start of S12.
+
+The human then confirmed Part A and asked for the merge, verbatim: "I confirm part A and tell u to
+pull to main". The prompt records the answer, and S11 with the S12 prompt is merged to `main`.

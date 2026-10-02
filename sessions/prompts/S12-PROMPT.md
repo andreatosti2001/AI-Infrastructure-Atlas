@@ -88,8 +88,10 @@ Commit only verified work.
 > - Part B adds detail only. **If the two ever conflict, Part A governs.** The higher-level
 >   documents (`CLAUDE.md`, `MASTER-ARCHITECTURE.md`) govern both.
 > - The prompt becomes immutable once S12 begins (D-011).
-> - **Answered before S12:** H-1 only (§16). **Not yet answered:** H-0, H-2, H-3, and Part A
->   itself. Ask them at the start of S12, before any audit finding is acted on.
+> - **Answered before S12:** H-1 and Part A (§16). The human confirmed Part A as assembled and asked
+>   for the merge to `main` ("I confirm part A and tell u to pull to main", 2026-10-02).
+>   **Not yet answered:** H-0, H-2, H-3. Ask them at the start of S12, before any audit finding is
+>   acted on.
 
 ## 01 — Session identity
 
@@ -349,6 +351,8 @@ Stop and report, rather than improvise, when:
     audit (PEF §4) and S12's architecture audit, as S07's M1 audit did (D-066);
   - a separate S12 audit file, with M2's milestone audit left to S13.
 - **Part A:** confirm as assembled, or amend; and where S12 runs.
+  - *Answer:* "I confirm part A and tell u to pull to main" (2026-10-02): Part A confirmed; S11 and
+    this prompt merged to `main`; S12 starts from `main`.
 
 ## 17 — Deliverables
 
