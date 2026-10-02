@@ -888,5 +888,173 @@
       "accessed_at": "2026-10-01T14:30Z",
       "sha256": "506e72caa98ef136479a2530204364f63a761b9ac1ff658c2ec47b9b0f7291b8"
     }
+  },
+  {
+    "id": "src-039",
+    "source_class": "research_report",
+    "title": "Heterogeneous Integration Roadmap, 2020 Edition, Chapter 22: Interconnects for 2D and 3D Architectures",
+    "publisher": "IEEE Electronics Packaging Society (EPS)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://eps.ieee.org/wp-content/uploads/2025/11/ch22_2D-3D-2020.pdf",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2020-12"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-01T20:46Z",
+      "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16"
+    }
+  },
+  {
+    "id": "src-040",
+    "source_class": "research_report",
+    "title": "Milestone M1 Report: HBM2/3 Evaluation on Many-core CPU (ECP Milestone ECP-MT-1000; SAND2018-6370R)",
+    "publisher": "Sandia National Laboratories, for the DOE Exascale Computing Project (ECP), via OSTI",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "G. Voskuilen, A. Gimenez, I. Peng, S. Moore, M. Gokhale",
+    "url": "https://www.osti.gov/servlets/purl/1455354/",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2018-06-08"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-01T20:51Z",
+      "sha256": "8a9e0dd19680df611754313dade196f95ca80c945fa3e0dc011c1c63801e8be8"
+    }
+  },
+  {
+    "id": "src-041",
+    "source_class": "government_publication",
+    "title": "UV Lithography: Taking Extreme Measures (news article)",
+    "publisher": "NIST",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.nist.gov/news-events/news/2011/12/uv-lithography-taking-extreme-measures",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2011-12-09"
+      },
+      {
+        "kind": "last_updated",
+        "date": "2025-02-03"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-01T20:46Z",
+      "sha256": "4483140a773ab6c24971acedaa530c7e4d9d7823510e6d16277512b121bd362d"
+    }
+  },
+  {
+    "id": "src-042",
+    "source_class": "company_technical_documentation",
+    "title": "NVIDIA Hopper Architecture In-Depth (retrieval of 2026-10-01; earlier bytes: src-006)",
+    "publisher": "NVIDIA (NVIDIA Technical Blog)",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2022-03-22"
+      },
+      {
+        "kind": "modified",
+        "date": "2025-07-22"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-01T20:44Z",
+      "sha256": "c509a2dc0ff25905818e630dfea548d1fc3a7df4d2d697706129cbfaf868244c"
+    }
+  },
+  {
+    "id": "src-043",
+    "source_class": "company_technical_documentation",
+    "title": "Trainium2 Architecture (retrieval of 2026-10-01; earlier bytes: src-010)",
+    "publisher": "Amazon Web Services (AWS Neuron documentation)",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-01T20:44Z",
+      "sha256": "746c25212873fd403894481c62b4cd1535b02ebf4f7439ae98b507fe47400cbf"
+    }
+  },
+  {
+    "id": "src-044",
+    "source_class": "company_marketing",
+    "title": "High-bandwidth memory (HBM) (product page; retrieval of 2026-10-01; earlier bytes: src-015)",
+    "publisher": "Micron Technology",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://www.micron.com/products/memory/hbm",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-01T20:44Z",
+      "sha256": "bb6d6d8f798080ec8c5faee25233cc4d51b126f82cae78d9dc673d8201aba50c"
+    }
+  },
+  {
+    "id": "src-045",
+    "source_class": "company_marketing",
+    "title": "Semiconductor Back-end Process 4: Packages, Part 2 (retrieval of 2026-10-01; earlier bytes: src-013)",
+    "publisher": "SK hynix Newsroom",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://news.skhynix.com/semiconductor-back-end-process-episode-4-packages-part-2/",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2023-06-27"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-01T20:54Z",
+      "sha256": "660a781f4882d74424ad4fdd7f28dfba9ff11ed1a3b23264be683e6b809235c9"
+    }
   }
 ]

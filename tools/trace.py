@@ -12,8 +12,9 @@ Usage:
     --data     directory holding sources.json, staging/claims.json and, once a claim is
                accepted, claims.json (default: the repository's data/)
     --records  a JSON array of records that cite claims (entities, relationships); repeatable.
-               The entity files of --data (companies.json, jurisdictions.json and their
-               staging copies, S07) are always read when they exist
+               The entity files of --data (companies, jurisdictions (S07), technologies,
+               components and products (S08), canonical and staging) are always read
+               when they exist
 
 Exit status: 0 when every reference resolves, 1 when one does not, 2 when ID is unknown.
 Standard library only (D-003, D-026).
@@ -28,7 +29,8 @@ from pathlib import Path
 
 DEFAULT_DATA = Path(__file__).resolve().parent.parent / "data"
 # The entity data files (S07, H-2 layout), canonical then staging.
-ENTITY_FILES = ("companies.json", "jurisdictions.json", "staging/companies.json", "staging/jurisdictions.json")
+ENTITY_KINDS = ("companies", "jurisdictions", "technologies", "components", "products")
+ENTITY_FILES = tuple(f"{kind}.json" for kind in ENTITY_KINDS) + tuple(f"staging/{kind}.json" for kind in ENTITY_KINDS)
 
 
 class Store:
@@ -194,6 +196,13 @@ class Printer:
             summary = record.get("name", "")
         self.out(0, f"{record['id']} · {kind} · {origin}")
         self.out(1, summary)
+        for key in ("vendor", "instance_of", "broader"):  # S08: references that cite no claim
+            for target in [record[key]] if isinstance(record.get(key), str) else record.get(key, []):
+                found = self.store.records.get(target)
+                if found:
+                    self.out(1, f"/{key}: {target} · {found[0].get('name', '')} · {found[1]}")
+                else:
+                    self.missing(1, f"/{key}: {target}")
         for pointer, claim_id, value in claim_paths(record):
             self.out(1, f"{pointer}:" + (f" {value}" if value is not None and pointer.endswith("/claim_ids") else ""))
             self.claim(2, claim_id)

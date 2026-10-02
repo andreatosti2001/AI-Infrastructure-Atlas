@@ -1265,3 +1265,149 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 - **Rejected:** deferring the audit to S12 (H-5's alternative); activating the Portfolio
   Reviewer role with a contract for one document (D-052's reason: a contract for work no
   session does regularly yet).
+
+## D-067 — Concept scope: 15 of 17 concepts recorded; HBM-03 and HBM-04 are gaps (H-1)
+
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
+- **Context:** H-1 ("All v1 concepts (Recommended)"): every concept that `entity-taxonomy.md`
+  §5 maps to a technology or component, unless no definitional source of a sufficient class
+  exists. The only sentences on the HBM base die and on TSVs as such come from vendors'
+  marketing pages. JEDEC JESD238 was requested under RA-4 and had not arrived.
+- **Decision** (`concept-dataset.md` §1, §3): 16 records for 15 concepts. HBM-03 and HBM-04
+  are gaps, listed in the concept table with no record; CI-1 fails if a record appears for a
+  gap without the table changing.
+- **Rejected:** defining the base die or TSV from Micron's or SK hynix's pages (marketing
+  never defines a class); a stub record with a `not_researched` definition (a record with no
+  definitional evidence would still be an endpoint S10 could use).
+
+## D-068 — Technology and component IDs (CI-1)
+
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
+- **Context:** S07's ID rule slugs a claim-backed legal name. A concept's name is editorial
+  (Part B §06 q4).
+- **Decision** (`concept-dataset.md` §3): the ID is the record type plus the slug of the
+  concept's name in `entity-taxonomy.md` §5, an accepted document; a split concept's terms
+  use only words of that name and cite a decision. `tests/test_data_entities.py` (CI-1)
+  checks the concept table against §5, the schema's `x-concepts` and the records.
+- **Rejected:** the S01 concept ID (opaque); a defining standard's term (most concepts have
+  none, and HIR says the "2.x" names have no technical basis); the display name (editorial).
+
+## D-069 — Working definitions are always an INTERPRETATION (H-4; DEF-1, DEF-2)
+
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
+- **Context:** H-4 ("Reuse TQ answers (Recommended)"): each working definition is an
+  `INTERPRETATION` citing every side of its CON conflict. Part B §06 q3 asks what applies
+  where no conflict exists.
+- **Decision** (`concept-dataset.md` §4): every technology and component definition cites
+  exactly one `INTERPRETATION`, whose inputs are the source positions (`ATTRIBUTION`) and,
+  where the record narrows a broader one, that record's working definition. The identity
+  claims are `ATTRIBUTION` claims among those inputs (DEF-1). No definition claim serves two
+  records, and no concept is in two records unless the concept table lists it twice (DEF-2).
+- **Rejected:** citing a single source's `ATTRIBUTION` directly where no conflict exists
+  (two kinds of definition in one field).
+
+## D-070 — SME-03 becomes two records: EUV lithography and DUV lithography
+
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed (not approved at the S08 review; left open at the H-0 answer, 2026-10-02: "All except D-070, D-076 (Recommended)")
+- **Context:** §5 maps SME-03 "EUV and DUV lithography" to one technology record and leaves
+  scanner equipment classes to S08. Part B §06 q2 names EUV vs DUV as a pair to keep apart.
+- **Decision** (`concept-dataset.md` §2, §3): two technology records, both with
+  `concept_refs` SME-03, each with its own working definition from NIST (wavelengths) and
+  CSET (separate grades). No equipment class for scanners in v1.
+- **Rejected:** one record (it would hold two distinct processes); scanner classes (no v1
+  concept asks for them).
+- **Review (2026-10-01):** not approved at the S08 review. The two records stay staging
+  (they also rest on `src-041`, D-076).
+
+## D-071 — `broader` assignments and acyclicity (B-1)
+
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
+- **Context:** `entity-taxonomy.md` §3.3, §3.4 and §9: `broader` is taxonomy only, may have
+  several parents, and must be acyclic.
+- **Decision** (`concept-dataset.md` §5): data-centre GPU and AI ASIC under AI accelerator;
+  assembly and packaging tools under SME; 2.5D packaging and 3D die stacking under advanced
+  packaging. The multi-die package has no parent. V-1, CE-1 and B-1 check the references and
+  the absence of cycles.
+- **Rejected:** multi-die package under advanced packaging (not always high-density); a
+  lithography parent (SME-02 has no record).
+
+## D-072 — Products: three records, their IDs (PI-1) and the `instance_of` basis (IO-1) (H-2)
+
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
+- **Context:** H-2 ("Few, from sources (Recommended)"): H100, Trainium2, Micron HBM, an ASML
+  EUV system. `instance_of` has no claim field in the schema.
+- **Decision** (`concept-dataset.md` §7): NVIDIA H100, AWS Trainium2 and Micron HBM4 36GB
+  12H. No ASML product: its page names only families. A product ID is `product-`, the
+  vendor's ID without `company-`, and the slug of the anchored product name (PI-1). Each
+  `instance_of` value has a basis row naming its claim (IO-1).
+- **Rejected:** an ASML system from the families page; a schema field for the basis (a
+  schema change the human has not approved).
+
+## D-073 — The GH100 ruling
+
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
+- **Context:** the canonical claim `claim-h100-gh100-process-name` is about the GH100 die
+  that powers the H100 (S06 finding). Part B §06 q6 asks whether it supports the H100's
+  `vendor_process_name`.
+- **Decision** (`concept-dataset.md` §7): it does not. The re-retrieved page has a sentence
+  about the H100 itself ("Using the TSMC 4N fabrication process enables H100…"), and the
+  value "TSMC 4N" rests on that new claim. The GH100 claim stays about the die; its anchor
+  was re-checked in the new bytes and is still at its locator.
+- **Rejected:** reusing the GH100 claim (ER-9's logic: a statement about one thing does not
+  support another); `not_researched` (a sentence about the H100 was found).
+
+## D-074 — Trainium2's vendor is `company-amazon-com`
+
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human ruling at the S08 review: "Trainium2 vendor = Amazon")
+- **Context:** Part B §16 makes an unclear vendor legal entity a stop condition. AWS's page
+  says Trainium2 is "from AWS". The canonical record `company-amazon-com` carries "AWS" and
+  "Amazon Web Services" as aliases, accepted at the S07 review (the 10-K names AWS as a
+  segment).
+- **Decision** (`concept-dataset.md` §7): the vendor is `company-amazon-com`; the record
+  stays staging until the human rules on this question. Which legal entity publishes the
+  page stays open for S10. The human approved the ruling at the S08 review, together with
+  reading Trainium2 as an AI ASIC (`claim-atlas-trainium2-ai-asic`).
+- **Rejected:** a new AWS company record (no filing of a separate AWS legal entity has been
+  read); leaving Trainium2 out (H-2 names it).
+
+## D-075 — A re-retrieval with changed bytes is a new source record
+
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
+- **Context:** VD-11 (D-062) requires an attested read to be of the registered bytes.
+  `src-006`, `src-010`, `src-013` and `src-015` returned changed bytes; their existing
+  records are the home of S06 reads.
+- **Decision** (`concept-dataset.md` §6): each changed retrieval S08 cites is a new record
+  (`src-042` to `src-045`), with the same URL, a title marked with the retrieval date and the
+  earlier record's ID, and its own full hash. The old record stays unchanged.
+- **Rejected:** rewriting the old record's hash (it would orphan the S06 reads, VD-12); a
+  schema field linking the two records (a schema change).
+
+## D-076 — Class rulings for the new sources
+
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed (not approved at the S08 review; left open at the H-0 answer, 2026-10-02: "All except D-070, D-076 (Recommended)")
+- **Context:** `source-policy.md` §2 assigns each source one class.
+- **Decision** (`concept-dataset.md` §6): the IEEE EPS Heterogeneous Integration Roadmap
+  chapter (`src-039`) is a `research_report`, and the NIST news article (`src-041`) is a
+  `government_publication`. The ECP milestone report (`src-040`), a national-laboratory
+  report, is a `research_report` as the LBNL reports `src-021` and `src-022` already are;
+  that follows precedent and is not a ruling.
+- **Review (2026-10-01):** the human did not approve the two rulings at the S08 review.
+  They stay proposed, and the claims citing `src-039` and `src-041`, with the working
+  definitions and records resting on them, stay staging.
+- **Rejected:** `standard_specification` for the roadmap (no standards body adopted it);
+  `news_media` for the NIST article (the agency is its originator, writing about its own
+  work).
+
+## D-077 — Layout, review and validate-data for concept and product records (H-3, H-6)
+
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
+- **Context:** H-3 ("One file per type (Recommended)") and H-6 ("Review inside S08
+  (Recommended)").
+- **Decision** (`concept-dataset.md` §8, §9): `data/technologies.json`,
+  `data/components.json` and `data/products.json`, each with a staging copy; promotion as
+  D-061, on the human's verdicts. `tests/test_data_entities.py` extends V-1, CE-1, V-9, V-4
+  and V-10 to the new kinds and adds CI-1, DEF-1, DEF-2, B-1, PI-1 and IO-1, with fixtures and
+  planted faults. `tools/trace.py` reads the new files and prints `vendor`, `instance_of` and
+  `broader`.
+- **Rejected:** one combined concepts file (H-3's alternative); a `tools/validate_data.py`
+  (D-051).

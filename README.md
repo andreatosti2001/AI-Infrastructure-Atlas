@@ -3,13 +3,15 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 
 ## Status
 
-**M2 — Canonical Dataset (S07 complete; S08–S10 to come).** The repository contains governance documents, the
+**M2 — Canonical Dataset (S07 and S08 complete; S09–S10 to come).** The repository contains governance documents, the
 session system, a repository-integrity check, the S01 domain map, the accepted entity
 schema (S03), the accepted relationship schema (S04), the accepted source policy with its
 source-class vocabulary (S05), the accepted claim model (S06), and the first canonical
 entities (S07, M2): 8 companies and 4 jurisdictions, each traceable to the companies' own
 filings and to ISO 3166, with record-level `validate-data` and a first `validate-freshness`
-rule. It contains **no relationship records and no UI yet**. See
+rule; and (S08) 7 components, 4 technologies and 3 products, each concept defined by an
+`INTERPRETATION` over government, research and policy-research sources, with 5 more
+technology records held in staging until the human rules on two open decisions. It contains **no relationship records and no UI yet**. See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is
 planned.
 
@@ -20,7 +22,7 @@ This is an independent repository. It shares no code, data or runtime with
 
 ```text
 CLAUDE.md, MASTER-ARCHITECTURE.md, ...   constitutional documents (see docs/README.md)
-data/            source records, canonical claims, companies and jurisdictions; staging/ holds records awaiting the human's review
+data/            source records, canonical claims, companies, jurisdictions, technologies, components and products; staging/ holds records awaiting the human's review
 docs/            documentation map, baseline, decision log, entity and relationship taxonomies, claim model, company dataset, milestone audits, agent roles and contracts, research, source policy
 schemas/         JSON Schema for entity records (accepted, S03), relationship records (accepted, S04), source records around the accepted source-class vocabulary (S05, S06) and claims (S06)
 sessions/        session prompts, prompt registry and session reports

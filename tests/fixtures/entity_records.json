@@ -1,5 +1,5 @@
 {
-  "_about": "Fictional entity world for tests/test_data_entities.py and tests/test_freshness.py (S07). Every name, code and URL is invented; jurisdiction-xa uses an ISO 3166-1 user-assigned code. 'valid' is one consistent data set: sources, canonical and staging claims, canonical and staging entity records. Each fault is one change to it that one check must catch, with the text its error must contain.",
+  "_about": "Fictional entity world for tests/test_data_entities.py and tests/test_freshness.py (S07; S08 adds technologies, components and products). Every name, code and URL is invented; jurisdiction-xa uses an ISO 3166-1 user-assigned code. 'valid' is one consistent data set: sources, canonical and staging claims, canonical and staging entity records. Each fault is one change to it that one check must catch, with the text its error must contain.",
   "valid": {
     "sources": [
       {
@@ -70,6 +70,30 @@
           "sha256": "abababababababababababababababababababababababababababababababab"
         },
         "filing_copy": "filer_hosted_not_checked"
+      },
+      {
+        "id": "src-915",
+        "source_class": "research_report",
+        "title": "Example laboratory report on fictional chips",
+        "publisher": "Example National Laboratory",
+        "publisher_entity": {
+          "state": "not_applicable"
+        },
+        "authors": {
+          "state": "not_researched"
+        },
+        "url": "https://example.com/src-915",
+        "stated_dates": [
+          {
+            "kind": "published",
+            "date": "2025-01"
+          }
+        ],
+        "retrieval": {
+          "method": "automated",
+          "accessed_at": "2026-09-29T09:00Z",
+          "sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+        }
       }
     ],
     "canonical_claims": [
@@ -202,6 +226,124 @@
           "reviewed_on": "2026-09-30",
           "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
         }
+      },
+      {
+        "id": "claim-fixture-321",
+        "claim_type": "ATTRIBUTION",
+        "statement": "The example laboratory defines an example accelerator as a chip for example workloads.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-915",
+            "locator": "p.2, glossary",
+            "anchor": "An example accelerator is a chip for example workloads",
+            "standing": "originator",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-09-30",
+          "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+        }
+      },
+      {
+        "id": "claim-fixture-322",
+        "claim_type": "ATTRIBUTION",
+        "statement": "The example laboratory defines example stacking as placing example dies on top of one another.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-915",
+            "locator": "p.2, glossary",
+            "anchor": "Example stacking places example dies on top of one another",
+            "standing": "originator",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-09-30",
+          "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+        }
+      },
+      {
+        "id": "claim-fixture-323",
+        "claim_type": "INTERPRETATION",
+        "statement": "For the fixtures, an example accelerator is a chip for example workloads.",
+        "evidence_status": "supported",
+        "input_claim_ids": [
+          "claim-fixture-321"
+        ],
+        "reasoning": "A fictional working definition built from one fictional source position.",
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-09-30",
+          "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+        }
+      },
+      {
+        "id": "claim-fixture-324",
+        "claim_type": "INTERPRETATION",
+        "statement": "For the fixtures, example stacking places example dies on top of one another.",
+        "evidence_status": "supported",
+        "input_claim_ids": [
+          "claim-fixture-322"
+        ],
+        "reasoning": "A fictional working definition built from one fictional source position.",
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-09-30",
+          "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+        }
+      },
+      {
+        "id": "claim-fixture-325",
+        "claim_type": "FACT",
+        "statement": "Example Designer offers a product it names “Chip One”.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-911",
+            "locator": "p.3, products",
+            "anchor": "Our Chip One is an example accelerator",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "abababababababababababababababababababababababababababababababab"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-09-30",
+          "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
+        }
       }
     ],
     "staging_claims": [
@@ -250,6 +392,46 @@
         "as_of": {
           "state": "not_stated"
         },
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-326",
+        "claim_type": "ATTRIBUTION",
+        "statement": "The example laboratory defines an example GPU as an example accelerator for parallel work.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-915",
+            "locator": "p.2, glossary",
+            "anchor": "An example GPU is an example accelerator for parallel work",
+            "standing": "originator",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-327",
+        "claim_type": "INTERPRETATION",
+        "statement": "For the fixtures, an example GPU is an example accelerator for parallel work.",
+        "evidence_status": "supported",
+        "input_claim_ids": [
+          "claim-fixture-326",
+          "claim-fixture-323"
+        ],
+        "reasoning": "A fictional working definition built from one fictional source position.",
         "verified_on": "2026-09-30",
         "review": {
           "state": "not_reviewed"
@@ -310,6 +492,85 @@
             ],
             "jurisdiction_kind": "country"
           }
+        ],
+        "technologies": [
+          {
+            "id": "technology-example-stacking",
+            "type": "technology",
+            "name": "Example stacking",
+            "aliases": [],
+            "identity_claim_ids": [
+              "claim-fixture-322"
+            ],
+            "technology_kind": "process",
+            "broader": [],
+            "concept_refs": [
+              "PKG-91"
+            ],
+            "definition": [
+              {
+                "value": "Placing example dies on top of one another.",
+                "claim_ids": [
+                  "claim-fixture-324"
+                ]
+              }
+            ]
+          }
+        ],
+        "components": [
+          {
+            "id": "component-example-accelerator",
+            "type": "component",
+            "name": "Example accelerator",
+            "aliases": [],
+            "identity_claim_ids": [
+              "claim-fixture-321"
+            ],
+            "use_class": "constituent",
+            "broader": [],
+            "concept_refs": [
+              "ACC-91"
+            ],
+            "definition": [
+              {
+                "value": "A chip for example workloads.",
+                "claim_ids": [
+                  "claim-fixture-323"
+                ]
+              }
+            ]
+          }
+        ],
+        "products": [
+          {
+            "id": "product-example-designer-chip-one",
+            "type": "product",
+            "name": "Chip One",
+            "aliases": [],
+            "identity_claim_ids": [
+              "claim-fixture-325"
+            ],
+            "vendor": "company-example-designer",
+            "product_kind": "hardware",
+            "instance_of": [
+              "component-example-accelerator"
+            ],
+            "vendor_process_name": {
+              "state": "not_researched"
+            },
+            "tdp_w": {
+              "state": "not_researched"
+            },
+            "rated_power_w": {
+              "state": "not_applicable"
+            },
+            "rack_scale": {
+              "state": "not_applicable"
+            },
+            "cooling_method": {
+              "state": "not_applicable"
+            }
+          }
         ]
       },
       "staging": {
@@ -348,7 +609,35 @@
             ]
           }
         ],
-        "jurisdictions": []
+        "jurisdictions": [],
+        "technologies": [],
+        "components": [
+          {
+            "id": "component-example-gpu",
+            "type": "component",
+            "name": "Example GPU",
+            "aliases": [],
+            "identity_claim_ids": [
+              "claim-fixture-326"
+            ],
+            "use_class": "constituent",
+            "broader": [
+              "component-example-accelerator"
+            ],
+            "concept_refs": [
+              "ACC-92"
+            ],
+            "definition": [
+              {
+                "value": "An example accelerator for parallel work.",
+                "claim_ids": [
+                  "claim-fixture-327"
+                ]
+              }
+            ]
+          }
+        ],
+        "products": []
       }
     }
   },
@@ -467,6 +756,179 @@
       "action": "drop_jurisdiction",
       "where": "canonical",
       "expect": "non-canonical jurisdiction-xa"
+    },
+    {
+      "name": "product vendor that does not exist",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "products",
+      "index": 0,
+      "field": "vendor",
+      "value": "company-example-missing",
+      "expect": "vendor points to company-example-missing, which is not a canonical company"
+    },
+    {
+      "name": "product vendor that is a staging company",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "products",
+      "index": 0,
+      "field": "vendor",
+      "value": "company-example-foundry",
+      "expect": "vendor points to company-example-foundry, which is not a canonical company"
+    },
+    {
+      "name": "product instance_of pointing to a missing class",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "products",
+      "index": 0,
+      "field": "instance_of",
+      "value": [
+        "component-example-missing"
+      ],
+      "expect": "instance_of points to missing class component-example-missing"
+    },
+    {
+      "name": "product attribute asserted with no claim",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "products",
+      "index": 0,
+      "field": "tdp_w",
+      "value": [
+        {
+          "value": 700,
+          "claim_ids": []
+        }
+      ],
+      "expect": "tdp_w = 700: no citation"
+    },
+    {
+      "name": "canonical product instance_of a staging class",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "products",
+      "index": 0,
+      "field": "instance_of",
+      "value": [
+        "component-example-gpu"
+      ],
+      "expect": "points to non-canonical component-example-gpu"
+    },
+    {
+      "name": "broader pointing to a missing record",
+      "action": "set_record_field",
+      "where": "staging",
+      "kind": "components",
+      "index": 0,
+      "field": "broader",
+      "value": [
+        "component-example-missing"
+      ],
+      "expect": "broader points to missing component component-example-missing"
+    },
+    {
+      "name": "broader pointing to a record of another type",
+      "action": "set_record_field",
+      "where": "staging",
+      "kind": "components",
+      "index": 0,
+      "field": "broader",
+      "value": [
+        "technology-example-stacking"
+      ],
+      "expect": "broader points to missing component technology-example-stacking"
+    },
+    {
+      "name": "canonical broader pointing to a staging record",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "components",
+      "index": 0,
+      "field": "broader",
+      "value": [
+        "component-example-gpu"
+      ],
+      "expect": "points to non-canonical component-example-gpu"
+    },
+    {
+      "name": "broader cycle",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "technologies",
+      "index": 0,
+      "field": "broader",
+      "value": [
+        "technology-example-stacking"
+      ],
+      "expect": "broader cycle: technology-example-stacking -> technology-example-stacking"
+    },
+    {
+      "name": "definition citing an ATTRIBUTION, not a working definition",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "components",
+      "index": 0,
+      "field": "definition",
+      "value": [
+        {
+          "value": "A chip.",
+          "claim_ids": [
+            "claim-fixture-321"
+          ]
+        }
+      ],
+      "expect": "not exactly one INTERPRETATION claim"
+    },
+    {
+      "name": "identity claim that is not an input of the working definition",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "technologies",
+      "index": 0,
+      "field": "identity_claim_ids",
+      "value": [
+        "claim-fixture-321"
+      ],
+      "expect": "are not inputs of its working definition claim-fixture-324"
+    },
+    {
+      "name": "two records with one definition",
+      "action": "set_record_field",
+      "where": "staging",
+      "kind": "components",
+      "index": 0,
+      "field": "definition",
+      "value": [
+        {
+          "value": "A chip.",
+          "claim_ids": [
+            "claim-fixture-323"
+          ]
+        }
+      ],
+      "expect": "definition claim claim-fixture-323 serves several records"
+    },
+    {
+      "name": "one concept in two records",
+      "action": "set_record_field",
+      "where": "staging",
+      "kind": "components",
+      "index": 0,
+      "field": "concept_refs",
+      "value": [
+        "ACC-91"
+      ],
+      "expect": "concept ACC-91 is in several records"
+    },
+    {
+      "name": "definition resting only on marketing",
+      "action": "set_source_field",
+      "source": "src-915",
+      "field": "source_class",
+      "value": "company_marketing",
+      "expect": "component-example-accelerator.definition = A chip for example workloads.: no citation"
     }
   ]
 }

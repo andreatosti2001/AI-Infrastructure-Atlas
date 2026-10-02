@@ -1,1 +1,179 @@
-[]
+[
+  {
+    "id": "claim-atlas-2-5d-packaging-with-an-interposer-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, 2.5D packaging with an interposer is the process of placing two or more active dies side by side on an interposer (silicon, glass or ceramic) that carries the dense interconnect between them, inside one package.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-hir-2d-architecture-definition",
+      "claim-hir-2x-names-no-technical-basis"
+    ],
+    "reasoning": "HIR calls this architecture 2DS and says the '2.x' names have no technical basis. The Atlas keeps the taxonomy's term '2.5D' as its working label (TQ-03), and narrows HIR's 2DS to the interposer case: HIR's 2DS also covers bridges. The naming dispute is recorded; the technical content is HIR's.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-3d-die-stacking-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, 3D die stacking is the process of stacking two or more active dies and interconnecting them directly, not through the package. In v1 it covers HBM stacking only.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-hir-3d-architecture-definition",
+      "claim-ecp-hbm-definition"
+    ],
+    "reasoning": "HIR's 3D architecture gives the definition; the ECP report gives HBM as a case (DRAM dies stacked and connected by TSVs). The v1 scope (HBM only) is the taxonomy's (entity-taxonomy §5, PKG-05).",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-advanced-packaging-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, advanced packaging is packaging that integrates multiple dies at high interconnect density. In v1 it means two things: 2.5D interposer integration of logic and HBM, and HBM die stacking.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nist-advanced-packaging-scope",
+      "claim-sia-advanced-packaging-breadth",
+      "claim-hir-2d-architecture-definition",
+      "claim-hir-3d-architecture-definition"
+    ],
+    "reasoning": "CON-04: NIST ties the term to high-density integration that blurs chip and package; SIA/BCG say it covers a wide range of technologies. TQ-03 chose the narrow working definition for v1. HIR's 2DS and 3D definitions are the technical anchors of the two v1 cases. The choice is the human's, not a resolution of the dispute; both breadths stay as ATTRIBUTION claims.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-duv-lithography-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, dUV lithography is photolithography that patterns chips with deep ultraviolet light, typically at 193 nm. CSET's DUV grade includes ArF immersion, ArF and KrF tools.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nist-euv-duv-wavelengths",
+      "claim-cset-photolithography-grades"
+    ],
+    "reasoning": "As for EUV lithography. 'Typically at 193 nm' is NIST's wording; KrF tools use another wavelength, which no retrieved source states, so the definition does not give one.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-atlas-euv-lithography-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, eUV lithography is photolithography that patterns chips with extreme ultraviolet light at a wavelength of 13.5 nm. It is a different grade of lithography from DUV.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nist-euv-duv-wavelengths",
+      "claim-cset-photolithography-grades"
+    ],
+    "reasoning": "NIST gives the wavelength; CSET lists EUV and DUV as separate grades. SME-03 is split into two records (D-070) so that the two processes are not merged. No vendor source is used.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-hir-2d-architecture-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "The IEEE EPS Heterogeneous Integration Roadmap defines a 2D architecture as two or more active silicon devices placed side by side on a package and interconnected on it, and calls it 2DS when its enhanced interconnect uses an inorganic medium such as a silicon, glass or ceramic interposer or bridge.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-039",
+        "locator": "p.4 (chapter page 2), §3 'Converged Nomenclature Framework for 2D & 3D Architectures', item a",
+        "anchor": "A 2D architecture is defined as an architecture where two or more active silicon devices are placed side-by-side on a package and are interconnected on the package. If the interconnect is “enhanced”, i.e., has higher interconnect density than mainstream organic packages, and is accomplished using an organic medium, the architecture is further sub-categorized as a 2DO (2D Organic) architecture and similarly, if the enhanced architecture uses an inorganic medium (e.g. a silicon/glass/ceramic interposer or bridge) the architecture is further sub-categorized as a 2DS architecture",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:46Z",
+          "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-hir-2x-names-no-technical-basis",
+    "claim_type": "ATTRIBUTION",
+    "statement": "The IEEE EPS Heterogeneous Integration Roadmap says the “2.x” names for enhanced 2D architectures do not have any particular technical basis.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-039",
+        "locator": "p.4 (chapter page 2), §3, item a, the sentences after the 2DS definition",
+        "anchor": "Architectures that include enhancements over and above traditional 2D architectures (typically 2 or more die flip-chip attached on a traditional organic package) are variously referred to as 2.x architectures to emphasize their specialness. These nomenclatures do not have any particular technical basis",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:46Z",
+          "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-hir-3d-architecture-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "The IEEE EPS Heterogeneous Integration Roadmap defines a 3D architecture as two or more active silicon devices stacked and interconnected without the agency of the package.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-039",
+        "locator": "p.4 (chapter page 2), §3, item b",
+        "anchor": "A 3D architecture is defined as an architecture where two or more active silicon devices are stacked and interconnected without the agency of the package",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:46Z",
+          "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-nist-euv-duv-wavelengths",
+    "claim_type": "ATTRIBUTION",
+    "statement": "NIST wrote in 2011 that the smallest features were typically made with deep ultraviolet light at 193 nm, and that lithography was shifting to extreme ultraviolet (EUV) at 13.5 nm.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-041",
+        "locator": "article body, the paragraph beginning 'In general, feature size is proportional to the wavelength'",
+        "anchor": "Today's super-small features are typically made with \"deep\" ultraviolet light at 193 nm. \"But now we're trying to make a dramatic shift by dropping more than an order of magnitude, down to extreme ultraviolet (EUV) at 13.5 nm,\"",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:46Z",
+          "sha256": "4483140a773ab6c24971acedaa530c7e4d9d7823510e6d16277512b121bd362d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "state": "not_reviewed"
+    }
+  }
+]
