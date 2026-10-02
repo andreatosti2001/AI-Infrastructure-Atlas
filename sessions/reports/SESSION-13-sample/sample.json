@@ -1,0 +1,195 @@
+{
+  "rule": "draw_sample.py docstring; seed S13-content-audit",
+  "inputs": {
+    "data/claims.json": "27ee74b9f41d23769022567943d277127d90475a02bc3dbaa07c064b98b6c228",
+    "data/relationships.json": "5d8d7c60065cc317095575cbfc144a9af8f91e210f3f4c7ed068a38ba4f08a09"
+  },
+  "canonical_claims": 120,
+  "weight_bearing": [
+    {
+      "id": "claim-h100-hbm-stacks",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-trainium2-hbm-capacity",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-hbm-requires-3d-die-stacking",
+      "claim_type": "DERIVATION"
+    },
+    {
+      "id": "claim-tsmc-fabricates-h100",
+      "claim_type": "DERIVATION"
+    },
+    {
+      "id": "claim-aws-designed-trainium2",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-sk-hynix-operates-m16",
+      "claim_type": "DERIVATION"
+    },
+    {
+      "id": "claim-ecp-hbm-definition",
+      "claim_type": "ATTRIBUTION"
+    },
+    {
+      "id": "claim-atlas-3d-die-stacking-working-definition",
+      "claim_type": "INTERPRETATION"
+    },
+    {
+      "id": "claim-atlas-high-bandwidth-memory-working-definition",
+      "claim_type": "INTERPRETATION"
+    },
+    {
+      "id": "claim-h100-process-name",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-sk-hynix-production-plants-icheon-cheongju",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-sk-hynix-m16-completed-icheon",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-sk-hynix-m16-fabrication-plant",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-hir-3d-architecture-definition",
+      "claim_type": "ATTRIBUTION"
+    }
+  ],
+  "drawn_pool_by_type": {
+    "FACT": 48,
+    "ATTRIBUTION": 28,
+    "DERIVATION": 14,
+    "INTERPRETATION": 15,
+    "IMPLICATION": 1
+  },
+  "drawn_quota_by_type": {
+    "FACT": 9,
+    "ATTRIBUTION": 5,
+    "DERIVATION": 3,
+    "INTERPRETATION": 3,
+    "IMPLICATION": 0
+  },
+  "drawn": [
+    {
+      "id": "claim-asml-holding-nv-company",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-aws-availability-zone-data-centers",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-asml-incorporated-netherlands",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-tsmc-legal-name",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-micron-manassas-fab",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-nvidia-incorporation-history",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-asml-headquarters-veldhoven",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-iso-3166-1-tw",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-amazon-incorporation-state",
+      "claim_type": "FACT"
+    },
+    {
+      "id": "claim-lbnl-gpu-definition",
+      "claim_type": "ATTRIBUTION"
+    },
+    {
+      "id": "claim-sia-advanced-packaging-breadth",
+      "claim_type": "ATTRIBUTION"
+    },
+    {
+      "id": "claim-cset-sme-definition",
+      "claim_type": "ATTRIBUTION"
+    },
+    {
+      "id": "claim-nist-cloud-location-independence",
+      "claim_type": "ATTRIBUTION"
+    },
+    {
+      "id": "claim-lbnl-asic-definition",
+      "claim_type": "ATTRIBUTION"
+    },
+    {
+      "id": "claim-tsmc-incorporated-in-tw",
+      "claim_type": "DERIVATION"
+    },
+    {
+      "id": "claim-micron-headquartered-in-us",
+      "claim_type": "DERIVATION"
+    },
+    {
+      "id": "claim-nvidia-headquartered-in-us",
+      "claim_type": "DERIVATION"
+    },
+    {
+      "id": "claim-atlas-advanced-packaging-working-definition",
+      "claim_type": "INTERPRETATION"
+    },
+    {
+      "id": "claim-atlas-ai-asic-working-definition",
+      "claim_type": "INTERPRETATION"
+    },
+    {
+      "id": "claim-atlas-ai-accelerator-working-definition",
+      "claim_type": "INTERPRETATION"
+    }
+  ],
+  "edges": [
+    {
+      "id": "rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-memory",
+      "claim_ids": [
+        "claim-h100-hbm-stacks"
+      ]
+    },
+    {
+      "id": "rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memory",
+      "claim_ids": [
+        "claim-trainium2-hbm-capacity"
+      ]
+    },
+    {
+      "id": "rel-company-amazon-com-designs-product-amazon-com-trainium2",
+      "claim_ids": [
+        "claim-aws-designed-trainium2"
+      ]
+    },
+    {
+      "id": "rel-company-sk-hynix-operates-facility-kr-m16",
+      "claim_ids": [
+        "claim-sk-hynix-operates-m16"
+      ]
+    },
+    {
+      "id": "rel-component-high-bandwidth-memory-requires-technology-3d-die-stacking",
+      "claim_ids": [
+        "claim-hbm-requires-3d-die-stacking"
+      ]
+    }
+  ],
+  "drawn_gap": "claim-tsmc-fabricates-h100"
+}
