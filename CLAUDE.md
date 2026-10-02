@@ -312,9 +312,33 @@ Technical reference
 D-xxx / Sxx / affected files.
 ```
 
-Where an interactive question tool limits the length of the question, put the full explanation in the message immediately before it; the tool's option labels may then be short, but each option's description must still say what that option changes.
-
 Write the request in the language the human is using in the conversation.
+
+### Interactive questions (pop-ups with clickable options)
+
+The human often sees an interactive question **on its own**: on a phone the pop-up covers the conversation, so the explanation written in the message before it is not visible when the choice is made. An explanation placed only before the pop-up does not count. The pop-up must pass the final test by itself.
+
+- **Question text:** a plain-language question that names the concrete thing being decided. No decision number, session code, `H-x`, `D-xxx` or schema name in the question text or in its short header.
+- **Option labels:** each label names the **outcome for the project** (what the page, data, files or rules will be afterwards), not an action on the request. Labels such as "Accept all", "Approve", "Accept with named changes", "Reject named rules", "Keep current", "Option A" or "Proceed" are not allowed on their own.
+- **Option descriptions:** one or two sentences saying what concretely changes if that option is chosen (files, data, page, behaviour) and what it costs or limits. A technical reference may follow at the end, after the explanation.
+- **Recommendation:** mark the recommended option in its label and say why in its description.
+- **Too much to fit:** if the decision cannot be made understandable within the pop-up, do not use a pop-up. Ask in an ordinary message in the full format above and let the human answer in text.
+
+Insufficient (what actually happened on 2026-10-02):
+
+> H-0 — the S11 page rules (D-100 to D-108)
+> A — Accept all (recommended) · B — Accept with named changes · C — Reject named rules
+
+Sufficient:
+
+> Should the nine design rules used to build the HBM memory page become binding for all future pages?
+> A — Make the rules binding, page unchanged (recommended): the rules are marked accepted; no data or page changes; every future page must follow them (e.g. every word must come from a record or a marked framing box).
+> B — Change some rules first: you name the rules; Claude rewrites them, and the page and its checks where affected, before the audit starts.
+> C — Drop some rules and what depends on them: you name the rules; what was built on them is removed or rebuilt (e.g. dropping the side-lane rule removes SK hynix's M16 plant and Micron's HBM4 from the page).
+
+### Approving several items at once
+
+When several items (decisions, records, rules) are put to the human together, the request lists **each item with one plain sentence saying what it fixes or changes**, in the request itself, not only in a linked report. "Accept all" of a list of identifiers is never a valid request. If the list is too long to read in one sitting, split it, or ask first about the items with real consequences and group the consequence-free ones in one line.
 
 ### Additional rules
 
@@ -336,7 +360,7 @@ Before asking, answer the question:
 
 > "If the human answers A instead of B, what will be concretely different in the project?"
 
-If the answer is not immediately understandable from the request itself, the request is badly formulated and must be rewritten before the human is asked to choose.
+If the answer is not immediately understandable from the request itself, the request is badly formulated and must be rewritten before the human is asked to choose. For a pop-up, apply the test to what the pop-up alone shows.
 
 ## 10. Implementation strategy
 
@@ -516,7 +540,7 @@ Never:
 - silently collapse disagreement;
 - mix facts and interpretation in the same field;
 - create a single giant AI chatbot as the project interface;
-- ask the human to approve an ID, acronym or schema name instead of an explained consequence (§9A);
+- ask the human to approve an ID, acronym or schema name instead of an explained consequence, including in a pop-up's question or option labels (§9A);
 - add complexity without a user/research justification;
 - optimise the portfolio for screenshots rather than capability.
 

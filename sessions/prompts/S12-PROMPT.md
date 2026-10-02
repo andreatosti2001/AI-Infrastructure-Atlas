@@ -332,8 +332,10 @@ Stop and report, rather than improvise, when:
 - a candidate's sentence would enter the data without the Verifier;
 - any condition in SESSION-PROMPT-SPEC §2.16 or CLAUDE.md §18 applies.
 
-**Human decisions.** Open questions follow `CLAUDE.md` §9A (merged to `main` during S11's close, PR #19):
-each says what concretely changes under each answer. Answers taken are kept verbatim.
+**Human decisions.** Open questions follow `CLAUDE.md` §9A (merged to `main` during S11's close, PR #19;
+tightened for interactive questions before S12 started): each says what concretely changes under each
+answer. When asked in a pop-up, the question text carries no `H-x` or `D-xxx`, and the option titles
+below are the labels. Answers taken are kept verbatim.
 
 - **H-0 — Human decision required: keep the rules S11 used to build the page** (not yet answered;
   ask first).
@@ -349,15 +351,34 @@ each says what concretely changes under each answer. Answers taken are kept verb
   - *Why:* S12 audits the data model and the page; auditing against rules that are still proposals
     would mean auditing a moving target.
   - *What stays the same:* the records, the page and its checks.
-  - *Options:*
-    - **A — Accept all (recommended).** The nine rules, the design document and the two roles become
-      accepted as written; S12 audits against them.
-    - **B — Accept with named changes.** Claude changes the named rules first, and the page and its
-      checks if a change affects them, then S12 starts the audit.
-    - **C — Reject named rules.** What was built on a rejected rule is removed or rebuilt first: for
-      example, rejecting the separate-lane rule (D-104) removes SK hynix's M16 plant and Micron's HBM4
-      from the page.
-  - *Decision requested:* "Choose A, B or C", naming the rules for B or C.
+  - *The nine rules, one sentence each* (so the human can name any of them under B or C):
+    1. the page answers one question, about the memory used by the H100 and Trainium2 chips, and
+       shows SK hynix's M16 plant and Micron's HBM4 off to the side, as not linked to them (D-100);
+    2. the navigation and trace tools can also print their answers as data, which the page build
+       reads; their normal text output does not change (D-101);
+    3. the page is one generated file with no script; it carries a fingerprint of its inputs, so any
+       change to an input means rebuilding the page, and CI fails until it is rebuilt (D-102);
+    4. the diagram's visual code: boxes for records, solid lines for stated relations, dashed lines for
+       inferred ones, amber labels for unknowns; nothing on the diagram encodes a quantity (D-103);
+    5. unknown suppliers and the missing TSMC link are drawn and named as gaps, and the build refuses
+       to draw the side lane if any record links it to the chips (D-104);
+    6. every word on the page comes from a record, a fixed label, a computed value or a marked framing
+       box, and a test in CI enforces it (D-105);
+    7. browser checks are done by hand outside the repository and written in the session report, not
+       run in CI (D-106);
+    8. two new agent roles with written limits: Editorial writes only the page's framing text, its
+       style and documentation status rows; QA writes only browser findings (D-107);
+    9. the seven readability fixes from the new-user review stay as built (D-108).
+  - *Options* (outcome titles, reusable as the labels of an interactive question):
+    - **A — Make the nine rules binding; the page stays as it is (recommended).** The rules, the
+      design document and the two roles are marked accepted; no data, code or page changes; S12
+      audits against them and every future page must follow them.
+    - **B — Rewrite some rules first.** The human names the rules (by number above); Claude rewrites
+      them, and the page and its checks where a change affects them, before the audit starts.
+    - **C — Drop some rules and what was built on them.** The human names the rules; what depends on
+      them is removed or rebuilt first: for example, dropping rule 5 (the separate side lane) removes
+      SK hynix's M16 plant and Micron's HBM4 from the page.
+  - *Decision requested:* "Choose A, B or C"; for B or C, name the rules by number.
   - *Technical reference:* D-100 to D-108; `vertical-slice.md`; `contracts.md`, `roles.md`.
 - **H-1 — the refused candidates:**
   - *(recommended)* records with their own home and checks, decided in S12 on architecture grounds;
@@ -381,8 +402,11 @@ each says what concretely changes under each answer. Answers taken are kept verb
     refusal for an edge. B keeps one file, but every tool that reads edges (navigation, the trace, the
     checks, the page) must filter refusals out, and one that forgets would show a refused link as real;
     it also needs a stored "refused" status, which the relationship rules forbid (RR-6).
-  - *Options:* **A — A separate file and schema (recommended)**; **B — Extra fields in the relationship
-    file.**
+  - *Options* (outcome titles):
+    - **A — Refused links get their own file; the relationship file keeps only real links
+      (recommended).** One more file and schema to maintain; no tool can show a refusal as a link.
+    - **B — Refused links sit in the relationship file, flagged.** One file fewer; every tool that
+      reads links must filter them out, and the relationship rules (RR-6) would need an exception.
   - *Decision requested:* "Choose A or B."
   - *Technical reference:* H-1; RR-6; D-098 (the review path A would reuse).
 - **H-3 — Human decision required: whether S12's audit also counts as the overdue audit of the
@@ -401,8 +425,11 @@ each says what concretely changes under each answer. Answers taken are kept verb
     them are the same either way; only the scope and the file differ.
   - *Future consequences:* A makes S12 larger but closes the gap now; B keeps S12 focused and makes
     S13 larger.
-  - *Options:* **A — One audit covering both (recommended)**; **B — A data-model audit only, M2 audit
-    in S13.**
+  - *Options* (outcome titles):
+    - **A — S12 also audits how the data sessions S07 to S10 were run; nothing left owed
+      (recommended).** A larger S12, one audit file, the milestone gap closed now.
+    - **B — S12 audits only the data model; the data-sessions audit moves to S13.** A focused S12;
+      S13 inherits the owed audit.
   - *Decision requested:* "Choose A or B."
   - *Technical reference:* PEF §4; D-066; `M1-audit.md` (the previous milestone audit).
 - **Part A:** confirm as assembled, or amend; and where S12 runs.
