@@ -1,7 +1,7 @@
 # Agent contracts
 
 **Status:** ACCEPTED (human review of S06, 2026-09-30; D-052, D-010). **Session:** S06.
-Paths updated in S07 (Editorial, paths only, Part B §10): the staging entity files, `company-dataset.md` and the S07 test modules. Paths updated in S08 likewise: the staging technology, component and product files, `concept-dataset.md` and the S08 checks. Paths updated in S09 likewise: the staging facility and event files, `facility-dataset.md`, the proposed event schema, the S09 checks and `tools/facility_status.py`. Paths updated in S10 likewise: the staging relationship file, `edge-dataset.md`, the S10 checks and `tools/navigate.py`. S11 added the Editorial and QA contracts (D-107; accepted at the S12 opening review, 2026-10-02) and updated paths likewise: `vertical-slice.md`, the page checks, the build step and the generated page.
+Paths updated in S07 (Editorial, paths only, Part B §10): the staging entity files, `company-dataset.md` and the S07 test modules. Paths updated in S08 likewise: the staging technology, component and product files, `concept-dataset.md` and the S08 checks. Paths updated in S09 likewise: the staging facility and event files, `facility-dataset.md`, the proposed event schema, the S09 checks and `tools/facility_status.py`. Paths updated in S10 likewise: the staging relationship file, `edge-dataset.md`, the S10 checks and `tools/navigate.py`. S11 added the Editorial and QA contracts (D-107; accepted at the S12 opening review, 2026-10-02) and updated paths likewise: `vertical-slice.md`, the page checks, the build step and the generated page. Paths updated in S12 likewise: the staging candidate file and the audit report.
 
 MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. The Editorial and QA contracts were added in S11 (D-107) and accepted at the S12 opening review (H-0). Each contract has
 MA's nine fields, in MA's order.
@@ -35,7 +35,7 @@ MA's nine fields, in MA's order.
 | ROLE | Extractor |
 | INPUTS | a retrieved source (bytes, access time, hash) or a manual retrieval by the human (RA-4); the claim model and the schemas |
 | OUTPUTS | a source record; candidate claims with citations (locator, verbatim anchor, standing, originator for a chain) or input claims with reasoning; all with `evidence_status: unverified` and `review: not_reviewed` |
-| ALLOWED_WRITES | `data/sources.json` (new records; `publisher_entity` per D-065); `data/staging/claims.json` (new claims); `data/staging/companies.json`, `data/staging/jurisdictions.json` (staging entity records, S07, D-055); `data/staging/technologies.json`, `data/staging/components.json`, `data/staging/products.json` (S08, D-077); `data/staging/facilities.json`, `data/staging/events.json` (S09, D-087); `data/staging/relationships.json` (S10, D-098) |
+| ALLOWED_WRITES | `data/sources.json` (new records; `publisher_entity` per D-065); `data/staging/claims.json` (new claims); `data/staging/companies.json`, `data/staging/jurisdictions.json` (staging entity records, S07, D-055); `data/staging/technologies.json`, `data/staging/components.json`, `data/staging/products.json` (S08, D-077); `data/staging/facilities.json`, `data/staging/events.json` (S09, D-087); `data/staging/relationships.json` (S10, D-098); `data/staging/refused_candidates.json` (S12, D-109) |
 | FORBIDDEN_WRITES | `data/claims.json`; a claim's `review`; `evidence_status` other than `unverified`; `verified_on` or a citation's `read`; migrated source values (a change needs a decision, VD-9) |
 | EVIDENCE_REQUIREMENTS | every candidate keeps its provenance (MA §11.3); the anchor is copied verbatim; the type follows `claim-model.md` §2 and ER-1 to ER-10; unknowns are explicit states, never null or zero |
 | HANDOFF_FORMAT | the records themselves, plus a report list of new IDs for the Verifier |
@@ -49,7 +49,7 @@ MA's nine fields, in MA's order.
 | ROLE | Verifier |
 | INPUTS | staged claims with `evidence_status: unverified`; the cited sources, re-retrieved or supplied by the human |
 | OUTPUTS | per claim: a status (`supported`, `partial`, `context_only`, or `disputed` with the competing claims), `verified_on`, and each citation's `read`; findings for the report |
-| ALLOWED_WRITES | `data/staging/claims.json`: only `evidence_status`, `verified_on`, `disputed_with` and each citation's `read`; `sessions/reports/` |
+| ALLOWED_WRITES | `data/staging/claims.json`: only `evidence_status`, `verified_on`, `disputed_with` and each citation's `read`; `data/staging/refused_candidates.json`: only each considered sentence's `read` (S12, D-109); `sessions/reports/` |
 | FORBIDDEN_WRITES | a claim's `statement`, `claim_type`, citations' anchors or locators (a change is a new claim from the Extractor); a claim's `review`; `data/claims.json`; source records |
 | EVIDENCE_REQUIREMENTS | read the whole sentence at each locator and judge whether the statement exceeds it (`claim-model.md` §6); a class is never a verification (ER-10); record the bytes read; re-check anchors when a hash has changed (`source-policy.md` §12) |
 | HANDOFF_FORMAT | the updated claims, plus a report table: claim, status, what was read, and any wording that exceeds its evidence |
@@ -63,7 +63,7 @@ MA's nine fields, in MA's order.
 | ROLE | Knowledge Architect |
 | INPUTS | the session prompt; the schemas; the taxonomies, the source policy and the claim model; the decision log |
 | OUTPUTS | schema and vocabulary changes, each with a decision; one-home rulings; ID formats |
-| ALLOWED_WRITES | `schemas/`; `docs/architecture/claim-model.md`; `docs/architecture/company-dataset.md` (S07); `docs/architecture/concept-dataset.md` (S08); `docs/architecture/facility-dataset.md` (S09); `docs/architecture/edge-dataset.md` (S10); `docs/architecture/vertical-slice.md` (S11); `docs/architecture/decisions.md` (append only) |
+| ALLOWED_WRITES | `schemas/`; `docs/architecture/claim-model.md`; `docs/architecture/company-dataset.md` (S07); `docs/architecture/concept-dataset.md` (S08); `docs/architecture/facility-dataset.md` (S09); `docs/architecture/edge-dataset.md` (S10); `docs/architecture/vertical-slice.md` (S11); `docs/architecture/milestone-audits/` (S12, the audit report); `docs/architecture/decisions.md` (append only) |
 | FORBIDDEN_WRITES | any file in `data/`; a claim's `review`; an accepted vocabulary value or field without a decision the human approves first; the root constitutional documents |
 | EVIDENCE_REQUIREMENTS | a vocabulary value needs a used case (M0 audit A-1, L-09); where a choice rests on the domain, it cites the concept or source that shows it |
 | HANDOFF_FORMAT | a decision record (`proposed`) and the changed schema, with fixtures |

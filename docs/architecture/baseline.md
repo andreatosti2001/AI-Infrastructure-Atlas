@@ -32,11 +32,12 @@ repository are logged in [`decisions.md`](./decisions.md).
 | Repository integrity validator + CI | yes | S00 |
 | Domain map / source register | yes, draft (S01) | S01 |
 | M0 milestone audit + EU-DP process benchmark | yes, draft (S02) | S02 |
+| M2 milestone audit + data architecture audit | yes, proposed (S12): `docs/architecture/milestone-audits/M2-audit.md`; one blocking finding remediated (D-109), debt with owners | S12 |
 | Entity schema | yes, accepted (S03): `schemas/entities.schema.json`, `entity-taxonomy.md` | S03 |
 | Relationship schema | yes, accepted (S04): `schemas/relationships.schema.json`, `relationship-taxonomy.md` | S04 |
 | Source/evidence policy | yes, accepted (S05 review): `docs/research/source-policy.md`, and the class vocabulary in `schemas/sources.schema.json` | S05 |
 | Claim/provenance implementation | yes, accepted (S06 review): `docs/architecture/claim-model.md`, `schemas/claims.schema.json`, the source record in `schemas/sources.schema.json`, `tools/trace.py` | S06 |
-| Canonical data | yes (S07 to S10, accepted by the human in the session): 52 source records (`data/sources.json`), 120 claims (`data/claims.json`), 8 companies, 4 jurisdictions, 7 components, 9 technologies, 3 products, 2 facilities, 4 events (`data/events.json`, schema `schemas/events.schema.json`) and 5 relationships (`data/relationships.json`), as measured at the S10 final commit. Staging is empty | S06 to S10 |
+| Canonical data | yes (S07 to S10, accepted by the human in the session): 52 source records (`data/sources.json`), 120 claims (`data/claims.json`), 8 companies, 4 jurisdictions, 7 components, 9 technologies, 3 products, 2 facilities, 4 events (`data/events.json`, schema `schemas/events.schema.json`) and 5 relationships (`data/relationships.json`), as measured at the S10 final commit; and (S12) 12 refused candidates (`data/refused_candidates.json`, schema `schemas/refused_candidates.schema.json`, D-109): relations the Atlas considered and refused, never edges. Staging is empty | S06 to S10 |
 | Presentation / UI | yes, accepted (S11; S12 opening review): one generated page, `site/hbm-chain/index.html`, built by `tools/build_page.py` from `data/` (`vertical-slice.md`, D-100 to D-107); not published (NG-13) | S11 |
 | DuckDB / SQL layer | no | S14 |
 
@@ -92,7 +93,7 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 | Gate (MA §14) | Status in this repository |
 |---|---|
 | 0 — Repository integrity | **Partial, automated.** `tools/validate_repo.py` checks required docs and session prompt/report conventions; runs in CI. It does not check branch or unexpected generated changes. |
-| 1 — Schema | **Partial, automated.** CI tests every schema's behaviour against fictional fixtures (S03 to S06; D-026), and validates every source, claim and entity record in `data/` (VD-2, S06 to S08), from S09 every event, and from S10 every relationship. |
+| 1 — Schema | **Partial, automated.** CI tests every schema's behaviour against fictional fixtures (S03 to S06; D-026), and validates every source, claim and entity record in `data/` (VD-2, S06 to S08), from S09 every event, from S10 every relationship, and from S12 every refused candidate (RC-1). |
 | 2 — Provenance | **Partial, automated** (S06). Every claim's sources, inputs, anchors, statuses and review state are checked in CI (VD-3 to VD-13, `claim-model.md` §11). From S07, entity records are checked too: references, placeholder IDs, the matrix row of every field (V-10), canonical-only support (CE-1), the ID rule and ISO codes (`company-dataset.md` §8); from S08, working definitions, concept uniqueness, `broader` acyclicity and the concept and product tables (`concept-dataset.md` §9); from S09, the facility ID rule, location without headquarters evidence, kind words, capacity, and the event rules (`facility-dataset.md` §11); from S10, the edge rules V-1 to V-10, CE-1, the edge ID rule and four evidence guards (`edge-dataset.md` §10) |
 | 3 — Semantic integrity | **Partial, automated** (S10): impossible edges fail in CI (V-2 kind constraints, V-3 self-edges, V-5 duplicates, V-6 `broader` restated as an edge); role and edge conflicts (RW-1 to RW-3) are reported as warnings, never corrected (D-033; `edge-dataset.md` §10) |
 | 4 — Derivation | not applicable yet |
@@ -103,7 +104,7 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 
 | Command (MA §15) | Status |
 |---|---|
-| `validate-data` | **built for sources, claims, entity, event and relationship records** (S06 to S10; D-051, D-063, D-077, D-087, D-096): `python -m unittest discover -s tests -p "test_data*.py"`, run in CI; V-7 and V-8 report warnings |
+| `validate-data` | **built for sources, claims, entity, event, relationship and refused-candidate records** (S06 to S10, S12; D-051, D-063, D-077, D-087, D-096, D-109): `python -m unittest discover -s tests -p "test_data*.py"`, run in CI; V-7 and V-8 report warnings |
 | `validate-i18n` | not applicable in v1.0 (NG-10: English only) |
 | `validate-design` | **built for the S11 page** (D-105): `python -m unittest discover -s tests -p "test_page.py"`, run in CI; `python tools/build_page.py --check` compares the committed page with a rebuild |
 | `validate-freshness` | **first rule built** (S07, D-064): F-1, the 12-month horizon for `time_sensitive` fields, `python -m unittest discover -s tests -p "test_freshness.py"`, run in CI. Scheduled re-checks wait for the Change Detector |

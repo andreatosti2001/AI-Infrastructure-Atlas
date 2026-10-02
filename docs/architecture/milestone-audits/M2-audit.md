@@ -496,6 +496,15 @@ are debt (DT-1).
 |---|---|---|---|
 | B-1 | The refused candidates are values about named records held in a Markdown table, read by two parsers and resolved to records by display name; one cell is stale (N-2, I-5, V-2) | records, checks, page (q1, q6) | D-109, with H-2 |
 
+**Remediation outcome** (S12, 2026-10-02). The human approved the design and the layout ("Own
+file, separate from real links (Recommended)") and the twelve migrated records ("Approve all").
+B-1 is remediated: `data/refused_candidates.json` holds the twelve candidates; RC-1 to RC-8 run in
+CI (`tests/test_data_candidates.py`); the page reads the records and no longer reads
+`edge-dataset.md` (which left its inputs); the build and `tests/test_page.py` no longer parse a
+Markdown table, so two of M-4's three table parsers are gone; endpoints are IDs, so renaming every
+company's display name no longer stops the build (before S12 it refused: "'TSMC' does not name one
+record"). Evidence in `sessions/reports/SESSION-12-REPORT.md`.
+
 **Debt** (each with an owner; not remediated in S12):
 
 | ID | Finding | Owner | By |
