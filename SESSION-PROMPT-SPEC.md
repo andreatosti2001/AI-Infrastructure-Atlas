@@ -173,6 +173,8 @@ Opus must stop implementation and report instead of improvising when:
 - the architecture would need a different foundational decision;
 - the expected user value is no longer clear.
 
+When a stop needs a human decision, the question is written as a `CLAUDE.md` §9A human decision request (see §9 below).
+
 ### 17 — Deliverables
 
 List exact artifacts expected at session end.
@@ -184,7 +186,7 @@ State exactly what the next session should receive:
 - completed work;
 - open issues;
 - audit findings;
-- recommended next decision;
+- recommended next decision, explained per `CLAUDE.md` §9A if it needs the human;
 - files to read first.
 
 ---
@@ -261,6 +263,8 @@ Minimum fields:
 
 A session is incomplete without a report, even if the implementation itself works.
 
+Any human approval or choice the report asks for (typically under unresolved issues) is written as a `CLAUDE.md` §9A human decision request. A list of decision IDs with short titles is not sufficient (§9).
+
 ---
 
 ## 6. Prompt revision policy
@@ -314,3 +318,25 @@ Every substantial session should contribute to at least one demonstrable capabil
 - professional communication.
 
 If a sequence of sessions produces implementation but no new capability signal, the roadmap must be revisited.
+
+---
+
+## 9. Human decision requests
+
+The rule lives in `CLAUDE.md` §9A; this section only says where it applies in the session system.
+
+Every request for a human decision made during or about a session must follow `CLAUDE.md` §9A. This covers:
+
+- questions asked during the session, in conversation or through an interactive question tool;
+- the human-approvals part of a session report (§5);
+- open questions written into a session prompt for the human to answer before or during the session;
+- decision records in `docs/architecture/decisions.md` that are `proposed` and await the human's review: the review request lists, for each record, what changes in plain language, not only its ID and title.
+
+In practice:
+
+- lead with what will be different in the project, then give `D-xxx`, `Sxx`, `H-x`, schema or file names as the technical reference;
+- give every option a descriptive title and a concrete consequence;
+- group several small, consequence-free confirmations into one short line rather than inflating each into a full request;
+- if the session cannot say what A changes compared with B, it is not ready to ask; it reports the gap instead.
+
+When a decision has already been taken, the record of the answer (for example a session prompt's "human decisions taken" list) keeps the human's words verbatim; the §9A format applies to the question, not to rewriting the answer.
