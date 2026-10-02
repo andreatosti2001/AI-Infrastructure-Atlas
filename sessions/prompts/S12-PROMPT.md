@@ -332,24 +332,79 @@ Stop and report, rather than improvise, when:
 - a candidate's sentence would enter the data without the Verifier;
 - any condition in SESSION-PROMPT-SPEC §2.16 or CLAUDE.md §18 applies.
 
-**Human decisions** (Claude's recommendation first in each list):
+**Human decisions.** Open questions follow `CLAUDE.md` §9A (merged to `main` during S11's close, PR #19):
+each says what concretely changes under each answer. Answers taken are kept verbatim.
 
-- **H-0 — the S11 review** (not yet answered; ask first):
-  - *(recommended)* accept D-100 to D-108, `vertical-slice.md` and the Editorial and QA contracts;
-  - accept with changes; or reject named items.
+- **H-0 — Human decision required: keep the rules S11 used to build the page** (not yet answered;
+  ask first).
+  - *What we are deciding:* whether the design rules behind the S11 page become accepted project
+    rules, or are changed first.
+  - *What will concretely change:* if accepted, nine decision records in `decisions.md` and the page's
+    design document (`vertical-slice.md`) change from "proposed" to "accepted", and the two new agent
+    roles (Editorial: may write only the page's framing text and style, and documentation status rows;
+    QA: may write only browser findings in reports) become accepted in `docs/agents/contracts.md`. No
+    data, code or page content changes. Later sessions must then follow these rules: for example,
+    every word on a page must come from a record, a fixed label, a computed value or a marked framing
+    box, and the page must be rebuilt whenever its inputs change.
+  - *Why:* S12 audits the data model and the page; auditing against rules that are still proposals
+    would mean auditing a moving target.
+  - *What stays the same:* the records, the page and its checks.
+  - *Options:*
+    - **A — Accept all (recommended).** The nine rules, the design document and the two roles become
+      accepted as written; S12 audits against them.
+    - **B — Accept with named changes.** Claude changes the named rules first, and the page and its
+      checks if a change affects them, then S12 starts the audit.
+    - **C — Reject named rules.** What was built on a rejected rule is removed or rebuilt first: for
+      example, rejecting the separate-lane rule (D-104) removes SK hynix's M16 plant and Micron's HBM4
+      from the page.
+  - *Decision requested:* "Choose A, B or C", naming the rules for B or C.
+  - *Technical reference:* D-100 to D-108; `vertical-slice.md`; `contracts.md`, `roles.md`.
 - **H-1 — the refused candidates:**
   - *(recommended)* records with their own home and checks, decided in S12 on architecture grounds;
     the gaps section restyled as cards, grouped by reason, as remediation;
   - stay design text the page quotes.
   - *Answer:* "Pick the recommended" (2026-10-02, at the end of S11, to the recommendation above).
-- **H-2 — the schema for the candidate records** (not yet answered; ask after the design, before
-  any build):
-  - *(recommended)* a new record kind in its own schema and file, reviewed like edges (D-098);
-  - fields added to the relationship schema (rejected in advance by RR-6 if it means a status).
-- **H-3 — where the audit lives** (not yet answered):
-  - *(recommended)* `docs/architecture/milestone-audits/M2-audit.md`, serving as the M2 milestone
-    audit (PEF §4) and S12's architecture audit, as S07's M1 audit did (D-066);
-  - a separate S12 audit file, with M2's milestone audit left to S13.
+- **H-2 — Human decision required: where the rejected candidates are stored** (not yet answered;
+  ask after S12 has designed the record and can show its fields, before anything is built).
+  - *What we are deciding:* the file and format that hold the twelve relationships the Atlas
+    considered and refused (for example "SK hynix and Micron supply memory to NVIDIA"), now that they
+    become data (H-1).
+  - *What will concretely change:* under A, a new data file (with a staging copy) and a new schema
+    file are added, with new checks in `tests/`; `edge-dataset.md` §1 keeps only the reasoning; the
+    page's build reads the new file instead of the Markdown table. Under B, the relationship schema
+    gains fields for refused candidates, and `data/relationships.json` holds both real edges and
+    refusals.
+  - *Why:* H-1 moved the candidates out of a document; they need one home with checks.
+  - *What stays the same:* under either option, no candidate becomes a relationship, and no new fact
+    enters the data. The five existing edges are unchanged.
+  - *Future consequences:* A adds one more file and schema to maintain, but no tool can mistake a
+    refusal for an edge. B keeps one file, but every tool that reads edges (navigation, the trace, the
+    checks, the page) must filter refusals out, and one that forgets would show a refused link as real;
+    it also needs a stored "refused" status, which the relationship rules forbid (RR-6).
+  - *Options:* **A — A separate file and schema (recommended)**; **B — Extra fields in the relationship
+    file.**
+  - *Decision requested:* "Choose A or B."
+  - *Technical reference:* H-1; RR-6; D-098 (the review path A would reuse).
+- **H-3 — Human decision required: whether S12's audit also counts as the overdue audit of the
+  data-collection phase** (not yet answered).
+  - *What we are deciding:* the project's evaluation framework asks for an audit at the end of every
+    milestone. The phase that built the canonical data (sessions S07 to S10, "M2") ended without one.
+    Should S12's audit cover it too?
+  - *What will concretely change:* under A, S12 writes one file,
+    `docs/architecture/milestone-audits/M2-audit.md`, covering both the data model (S12's own scope)
+    and how S07 to S10 were run (process ratings, rework, shortcuts); `docs/quality/audit-history.md`
+    gets one row. Under B, S12 writes a narrower file on the data model only, and the M2 audit stays
+    owed, added to S13's work.
+  - *Why:* the framework requires the milestone audit (PEF §4); S07 did the same for the previous
+    phase (D-066).
+  - *What stays the same:* the audit's findings, the remediation process and the human's rulings on
+    them are the same either way; only the scope and the file differ.
+  - *Future consequences:* A makes S12 larger but closes the gap now; B keeps S12 focused and makes
+    S13 larger.
+  - *Options:* **A — One audit covering both (recommended)**; **B — A data-model audit only, M2 audit
+    in S13.**
+  - *Decision requested:* "Choose A or B."
+  - *Technical reference:* PEF §4; D-066; `M1-audit.md` (the previous milestone audit).
 - **Part A:** confirm as assembled, or amend; and where S12 runs.
   - *Answer:* "I confirm part A and tell u to pull to main" (2026-10-02): Part A confirmed; S11 and
     this prompt merged to `main`; S12 starts from `main`.

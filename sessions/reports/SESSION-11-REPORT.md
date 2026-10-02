@@ -279,9 +279,34 @@ All appended to `decisions.md` as `proposed`, for the human's review.
 
 ## Unresolved issues
 
-- **For the human:** D-100 to D-108, `vertical-slice.md` and the Editorial and QA contracts are
-  `proposed`. Public deployment stays a decision for later (NG-13): it needs this slice to pass its
-  gates and the human's choice.
+- **Human decision required: keep the rules S11 used to build the page** (`CLAUDE.md` §9A; asked
+  as H-0 at the start of S12).
+  - *What we are deciding:* whether S11's design rules become accepted project rules.
+  - *What will concretely change:* if accepted, these records change from "proposed" to "accepted";
+    no data, code or page content changes. What each rule fixes:
+    - the page answers one question, about the memory of the H100 and Trainium2, and shows SK
+      hynix's M16 plant and Micron's HBM4 apart, as not linked (D-100);
+    - `tools/navigate.py` and `tools/trace.py` can print their answers as data, which the page build
+      reads; their text output is unchanged (D-101);
+    - the page is one generated file with no script; it states a fingerprint of its inputs instead of
+      a commit, so any change to an input means rebuilding it, and CI fails until then (D-102);
+    - the diagram's encoding: boxes for records, solid lines for stated relations, dashed for inferred
+      ones, amber pills for unknowns; nothing encodes a quantity (D-103);
+    - unknown suppliers and the TSMC gap are drawn and named, and the build refuses to draw the side
+      lane if any record links it to the accelerators (D-104);
+    - every word on the page comes from a record, a fixed label, a computed value or a marked framing
+      box, enforced by `tests/test_page.py` in CI (D-105);
+    - browser checks run by hand outside the repository, with results in the report, not in CI (D-106);
+    - two new agent roles with written limits: Editorial writes only the page's framing and style and
+      documentation status rows; QA writes only browser findings (D-107);
+    - the seven readability changes from the new-user review (D-108).
+  - *Why:* S12 audits against these rules; they should not be proposals while being audited.
+  - *Options:* **A — Accept all (recommended)**; **B — Accept with named changes** (made before the
+    audit); **C — Reject named rules** (what was built on them is removed or rebuilt first).
+  - *Decision requested:* "Choose A, B or C", naming the rules for B or C.
+  - *Technical reference:* D-100 to D-108; `vertical-slice.md`; `contracts.md`, `roles.md`.
+- **Not asked now:** public deployment (NG-13). It needs this slice to pass its gates first; the page
+  stays unpublished until the human decides.
 - **Inherited, unchanged:** TSMC → H100 `fabricates` (D-092); the HBM supplier of each product
   (`not_researched`, D-094); the AWS legal entity (D-093); `supplies` items with no record; subsidiary
   records (D-095); TSMC's 20-F; S01's weekly gate; S05 debt.
