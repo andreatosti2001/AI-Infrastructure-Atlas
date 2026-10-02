@@ -401,3 +401,23 @@ The prompt's nine required breaks are 1 (a mark with no record), 2 (a hand-edite
 gap removed or drawn as zero), 5 (a staging edge), 6 (a DERIVATION as a FACT), 7 (a changed
 statement not rebuilt), 8 (an anchor), 9 and 10 (a panel unreachable by keyboard) and 11 (a page that
 does not rebuild identically).
+
+## Addendum — the S12 question and prompt (2026-10-02)
+
+After the report, Claude recommended S12's first audit question: should the candidates of
+`edge-dataset.md` §1, which the page reads as data, become records or stay design text the page
+quotes? The human's messages, verbatim:
+
+1. "What’s more graphically pleasant"
+2. "Pick the recommended"
+
+Claude answered the first: records give the better page (cards grouped by reason, names linked to
+their records), but the choice belongs to S12 on architecture grounds (checkable endpoints, a
+controlled list of reasons, one parser instead of two), and rejected candidates must never be drawn
+as lines on the chain. The recommendation the human picked: **records, decided in S12 on
+architecture grounds, with the gaps section restyled as remediation.**
+
+Claude then assembled [`S12-PROMPT.md`](../prompts/S12-PROMPT.md): Part A is S11's operating contract
+with S12's roadmap entry; Part B records this answer as H-1 and leaves H-0 (the S11 review), H-2 (the
+schema for the candidate records), H-3 (where the audit lives) and Part A's confirmation to be asked
+at the start of S12. The prompt is not yet on `main`.
