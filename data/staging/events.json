@@ -1,0 +1,38 @@
+[
+  {
+    "id": "event-kr-m16-opened-2021-02",
+    "event_type": "opened",
+    "subject": "facility-kr-m16",
+    "date": "2021-02",
+    "claim_ids": [
+      "claim-sk-hynix-m16-completed-icheon"
+    ]
+  },
+  {
+    "id": "event-sk-hynix-announced-2022-09-06",
+    "event_type": "announced",
+    "subject": "company-sk-hynix",
+    "date": "2022-09-06",
+    "claim_ids": [
+      "claim-sk-hynix-m15x-plan-disclosed"
+    ]
+  },
+  {
+    "id": "event-micron-technology-announced-2025-06",
+    "event_type": "announced",
+    "subject": "company-micron-technology",
+    "date": "2025-06",
+    "claim_ids": [
+      "claim-micron-second-idaho-fab-announced"
+    ]
+  },
+  {
+    "id": "event-amkor-technology-announced-2026-09-08",
+    "event_type": "announced",
+    "subject": "company-amkor-technology",
+    "date": "2026-09-08",
+    "claim_ids": [
+      "claim-amkor-arizona-phase-2-announced"
+    ]
+  }
+]

@@ -1411,3 +1411,138 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   `broader`.
 - **Rejected:** one combined concepts file (H-3's alternative); a `tools/validate_data.py`
   (D-051).
+
+## D-078 — Facility scope: filing-named sites; plans as events; ASML a gap (H-1)
+
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** H-1 ("Filings' fabs + packaging (Recommended)"). The registered filings were
+  re-retrieved (H-4). At the start of S09 the human answered the ASML stop condition with
+  "Gap + proposal (Recommended)" and agreed to re-supply TSMC's 20-F ("I'll re-supply it
+  (Recommended)").
+- **Decision** (`facility-dataset.md` §1): a facility record needs a sentence, from a source
+  its rows accept, that names one site, places it, and gives its kind. Records: Micron's fab
+  in Manassas, Virginia and SK hynix's M16; TSMC's sites when the file arrives. Sites known
+  only from plans (Micron Boise and Clay, SK hynix M15X, Amkor Arizona) are events (ER-8). No
+  site sentence (Micron's and Amkor's country tables), no jurisdiction record (Japan), or
+  no kind evidence (SK hynix Cheongju) means no record. No data centre is named.
+- **Rejected:** Micron or Amkor country rows as sites; facility records for sites under
+  construction; ASML sites forced into an existing kind.
+
+## D-079 — Facility ID rule (FI-1)
+
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** `entity-taxonomy.md` §3.2: one site at one location; the ID survives a change
+  of owner or operator.
+- **Decision** (`facility-dataset.md` §2): `facility-`, the alpha-2 code of the one
+  `located_in` value, and the slug of the term: the site's own name in an identity anchor,
+  or, for an unnamed site, its locality as the anchor gives it. The facility table holds
+  the terms; FI-1 recomputes each ID and finds the term in an identity anchor. A collision
+  needs a decision.
+- **Rejected:** an owner prefix (wrong after a sale); the display name (editorial); a
+  record for a group of plants named only by town.
+
+## D-080 — Facility location rests on site sentences only (HQ-1)
+
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** R-5; `source-policy.md` §7 rows `attr:facility.located_in`, `.locality`.
+- **Decision** (`facility-dataset.md` §3): `located_in` and `locality` rest on a sentence
+  placing the site; a subdivision reaches the country by the D-057 `DERIVATION`; `locality`
+  is in the source's script. HQ-1 fails a location that reaches a claim serving a company's
+  headquarters or incorporation (ISO claims aside), or an anchor carrying an excluded word
+  of §3's table.
+- **Rejected:** M16's location from SK hynix's release phrase "at headquarter located in
+  Icheon"; the head-office address as the bridge from 이천 to 경기도.
+
+## D-081 — Facility kinds rest on basis rows and listed words (FK-1)
+
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed; **flagged ruling**: "fab"
+  and "fabrication plant" read as `wafer_fab`
+- **Context:** `facility_kinds` has no claim field; IO-1 (`concept-dataset.md` §7) is the
+  precedent for a basis table.
+- **Decision** (`facility-dataset.md` §4): each kind of each record has a basis row naming an
+  identity claim and a word in its anchor; the word must be one §4 lists for the kind.
+- **Rejected:** a kind read from the company's role (R-3); a kind without a named word.
+
+## D-082 — Ownership, operation and production evidence for S10 (H-3)
+
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** H-3 ("Claims now, edges in S10 (Recommended)"); `relationship-taxonomy.md`
+  §4.3, §4.4, §5.
+- **Decision** (`facility-dataset.md` §5): the candidate sentences are staging claims, each
+  marked against §5. Micron's "our fab" fails both `owns` and `operates`. SK hynix's
+  "생산공장을 설치ㆍ가동" partly meets `operates` (the site is named by its town), as a
+  `DERIVATION` with the M16 row; it fails `owns`. No edge is created. No v1 type holds
+  site-level production; nothing is proposed.
+- **Rejected:** "our" read as controlling ownership; an operator inferred from the filer.
+
+## D-083 — The event schema (H-2)
+
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed (H-2: "Minimal event schema
+  (Recommended)", with the schema for the human's review)
+- **Context:** D-022 assigns the event schema to S09; MA §5.5, §5.6; ER-8.
+- **Decision** (`schemas/events.schema.json`; `facility-dataset.md` §6): fields `id`,
+  `event_type`, `subject`, `date`, `claim_ids`. Types `announced`, `opened`, `expanded`,
+  `closed`. Occurrences have a facility subject and rest on a `FACT` or `DERIVATION`; an
+  announcement rests on `ATTRIBUTION` claims and its subject is the facility, or, for a
+  planned site, the announcing company. No event is dated after a source stating it (EV-3).
+  ID rule EI-1. Files `data/events.json` and `data/staging/events.json` (H-5).
+- **Rejected:** a status or planned-date field; an `announces` field; a facility record for
+  a plan; events as edge endpoints; a `construction_started` type.
+
+## D-084 — Event rows in the preference matrix
+
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed (adding rows approved by the
+  human at the start of S09: "Add the rows (Recommended)"; the rows' content is for review)
+- **Context:** `source-policy.md` §7 and §16 left event rows to S09; the S09 prompt did not
+  list the policy as modifiable, so the human was asked first.
+- **Decision:** one row per event type (`event:announced`, `event:opened`,
+  `event:expanded`, `event:closed`). Announcements: press releases and filings preferred,
+  government publications acceptable, standing `party`. Occurrences: filings and government
+  publications preferred, press releases acceptable, standing `party or originator`. All
+  `stable`. `tests/test_source_policy.py` reads the rows from the event schema; EV-4 applies
+  them.
+- **Rejected:** marketing pages as evidence of an event (undated); waiting for a later session.
+
+## D-085 — Facility status is derived by a tested function
+
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** MA §5.6; R-8; Part B §06 q5.
+- **Decision** (`facility-dataset.md` §7): `tools/facility_status.py` derives `opened`,
+  `closed`, `not_yet_opened`, `indeterminate` or `no_recorded_opening` on a date from the
+  occurrence events, reading partial dates as periods. Plans and expansions never move it.
+  Tested by `tests/test_facility_status.py` (ST-1). The tool is a Data Auditor write
+  (`docs/agents/contracts.md`).
+- **Rejected:** a stored status; "operating" as a state (an `opened` event says completed or
+  began operating on a date, not today).
+
+## D-086 — Capacity and data centres (CAP-1)
+
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** TQ-10; the schema's `nameplate_it_capacity_mw`.
+- **Decision** (`facility-dataset.md` §8): `not_applicable` on any site that is not a data
+  centre; on a data centre, a value needs an anchor carrying a §8 marker. No data-centre
+  record in S09.
+- **Rejected:** a power or interconnection figure as capacity.
+
+## D-087 — Layout, review and validate-data for facilities and events (H-5, H-6)
+
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** H-5 ("One file per kind (Recommended)"), H-6 ("Review inside S09
+  (Recommended)").
+- **Decision** (`facility-dataset.md` §9 to §11): `data/facilities.json` and
+  `data/events.json` with staging copies; promotion as D-061 on the human's verdicts.
+  Checks FI-1, HQ-1, FK-1, CAP-1 in `tests/test_data_entities.py`; EV-1 to EV-4 and EI-1 in
+  `tests/test_data_events.py`; VD-2 for events; ST-1. Each English DART section is its own
+  source record (`src-046` to `src-048`), as `src-030` is.
+- **Rejected:** one combined file; a separate validator script (D-051).
+
+## D-088 — Proposal: a facility kind for equipment manufacturing (not applied)
+
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed (for a later session; the
+  human chose "Gap + proposal (Recommended)")
+- **Context:** ASML's manufacturing sites (`claim-asml-manufacturing-sites`) assemble and
+  test lithography systems; `vocab_facility_kind` has no fitting value.
+- **Proposal:** a later session adds a kind for sites that manufacture semiconductor
+  manufacturing equipment (the `production_equipment` use class), with its definition and
+  words for FK-1, by an approved schema change. Until then ASML's sites have no record.
+- **Rejected for S09:** any schema change (Part B §08).

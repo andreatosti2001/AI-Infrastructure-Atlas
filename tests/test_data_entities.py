@@ -1,6 +1,7 @@
-"""validate-data, part 3: entity records (S07; company-dataset.md §8; S08: concept-dataset.md §9).
+"""validate-data, part 3: entity records (S07; company-dataset.md §8; S08: concept-dataset.md §9;
+S09: facility-dataset.md §11).
 
-Checks the company, jurisdiction, technology, component and product records in data/
+Checks the company, jurisdiction, technology, component, product and facility records in data/
 (canonical) and data/staging/ (staging) against each other, the claims and the sources. Standard library only; schema
 validity of the records is part 2 (tests/test_data_schema.py). The checks, by ID:
 
@@ -31,7 +32,16 @@ validity of the records is part 2 (tests/test_data_schema.py). The checks, by ID
 - PI-1 a product ID is `product-`, the vendor's ID without `company-`, and the slug of the
        product's term in concept-dataset.md §7, found verbatim in an identity anchor;
 - IO-1 every `instance_of` value has a basis row in concept-dataset.md §7, and every row a
-       value.
+       value;
+- FI-1 (S09) a facility ID is `facility-`, the code of its one `located_in` value, and the
+       slug of its term in facility-dataset.md §2, found verbatim in an identity anchor;
+- HQ-1 (S09) a facility's `located_in` and `locality` never rest on a claim that also serves a
+       company's headquarters or incorporation (ISO claims aside), and none of their anchors
+       carries an excluded word of facility-dataset.md §3;
+- FK-1 (S09) every facility kind has a basis row in facility-dataset.md §4 naming an identity
+       claim whose anchor carries a word the kind's row accepts;
+- CAP-1 (S09) `nameplate_it_capacity_mw` is not_applicable on a site that is not a data
+       centre, and a data centre's value rests on an anchor that says it is IT capacity.
 
 The check functions take record lists, so the same checks run on the fictional fixtures.
 """
@@ -50,11 +60,12 @@ from test_source_policy import column_classes, matrix_rows
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATASET = (REPO_ROOT / "docs/architecture/company-dataset.md").read_text(encoding="utf-8")
 CONCEPTS = (REPO_ROOT / "docs/architecture/concept-dataset.md").read_text(encoding="utf-8")
+FACILITIES = (REPO_ROOT / "docs/architecture/facility-dataset.md").read_text(encoding="utf-8")
 ENTITY_SCHEMA = json.loads((REPO_ROOT / "schemas/entities.schema.json").read_text(encoding="utf-8"))
 REL_SCHEMA = json.loads((REPO_ROOT / "schemas/relationships.schema.json").read_text(encoding="utf-8"))
 FIXTURES = json.loads((REPO_ROOT / "tests/fixtures/entity_records.json").read_text(encoding="utf-8"))
 
-ENTITY_KINDS = ("companies", "jurisdictions", "technologies", "components", "products")
+ENTITY_KINDS = ("companies", "jurisdictions", "technologies", "components", "products", "facilities")
 REF_FIELDS = {"incorporated_in", "headquartered_in", "located_in"}
 CONCEPT_TYPES = ("technology", "component")
 KIND_FIELD = {"technology": ("technology_kind", "vocab_technology_kind"), "component": ("use_class", "vocab_component_use_class")}
@@ -173,6 +184,65 @@ def product_table() -> list[tuple[str, str, str, str]]:
 def x_concepts(vocab: str) -> dict[str, set[str]]:
     """The schema's vocabulary value -> the concepts it serves (`x-concepts`)."""
     return {v["const"]: set(v.get("x-concepts", [])) for v in ENTITY_SCHEMA["$defs"][vocab]["oneOf"]}
+
+
+def facility_terms() -> list[tuple[str, str, str]]:
+    """facility-dataset.md §2: (facility ID, term, what the term is)."""
+    body = section(FACILITIES, "\n## 2. ", "\n## 3. ")
+    rows = []
+    for line in body.splitlines():
+        row = cells(line)
+        if len(row) == 4 and re.fullmatch(r"`facility-[a-z0-9-]+`", row[0]):
+            assert row[2] in ("site name", "locality"), f"{row[0]}: term is {row[2]!r}"
+            rows.append((row[0].strip("`"), row[1], row[2]))
+    assert rows, "no facility table in facility-dataset.md §2"
+    return rows
+
+
+def excluded_words() -> list[str]:
+    """facility-dataset.md §3: words no location anchor may carry."""
+    body = section(FACILITIES, "\n## 3. ", "\n## 4. ")
+    rows = [cells(line) for line in body.splitlines()]
+    words = [r[0] for r in rows if len(r) == 2 and r[0] != "Excluded word" and not set(r[0]) <= {"-"}]
+    assert words, "no excluded-word table in facility-dataset.md §3"
+    return words
+
+
+def kind_words() -> dict[str, list[str]]:
+    """facility-dataset.md §4: facility kind -> the words that establish it."""
+    body = section(FACILITIES, "\n## 4. ", "\n## 5. ")
+    result = {}
+    for line in body.splitlines():
+        row = cells(line)
+        if len(row) == 2 and re.fullmatch(r"`[a-z_]+`", row[0]):
+            result[row[0].strip("`")] = [w.strip() for w in row[1].split(";")]
+    assert result, "no kind-word table in facility-dataset.md §4"
+    return result
+
+
+def kind_basis() -> list[tuple[str, str, str, str]]:
+    """facility-dataset.md §4: (facility ID, kind, basis claim, word)."""
+    body = section(FACILITIES, "\n## 4. ", "\n## 5. ")
+    rows = []
+    for line in body.splitlines():
+        row = cells(line)
+        if len(row) == 4 and re.fullmatch(r"`facility-[a-z0-9-]+`", row[0]):
+            rows.append((row[0].strip("`"), row[1].strip("`"), row[2].strip("`"), row[3]))
+    assert rows, "no kind-basis table in facility-dataset.md §4"
+    return rows
+
+
+def capacity_markers() -> list[str]:
+    """facility-dataset.md §8: the phrases that show a figure is IT capacity (TQ-10)."""
+    body = section(FACILITIES, "\n## 8. ", "\n## 9. ")
+    sentence = body[body.index("matched by one of:") : body.index("A power")]
+    markers = backticked(sentence)
+    assert markers, "no capacity markers in facility-dataset.md §8"
+    return markers
+
+
+def backticked(text: str) -> list[str]:
+    return re.findall(r"`([^`]+)`", text)
 
 
 # --- walking records --------------------------------------------------------------------------
@@ -450,6 +520,118 @@ def check_concept_table(entities, rows) -> list[str]:
     return errors
 
 
+def facilities(entities) -> list[dict]:
+    return [r for where in ("canonical", "staging") for r in entities[where]["facilities"]]
+
+
+def reachable(claim_ids, claims: dict) -> set[str]:
+    """The claims cited and every claim reached from them through input_claim_ids."""
+    seen, todo = set(), list(claim_ids)
+    while todo:
+        cid = todo.pop()
+        if cid in seen or cid not in claims:
+            continue
+        seen.add(cid)
+        todo += claims[cid].get("input_claim_ids", [])
+    return seen
+
+
+def identity_anchors(record: dict, claims: dict) -> list[str]:
+    return [c["anchor"] for cid in record["identity_claim_ids"] for c in claims.get(cid, {}).get("citations", [])]
+
+
+def check_facility_ids(entities, staging_claims, canonical_claims, rows) -> list[str]:
+    """FI-1."""
+    claims = {c["id"]: c for c in staging_claims + canonical_claims}
+    records = {r["id"]: r for r in facilities(entities)}
+    errors = [f"{fid}: in the facility table but no such record" for fid in sorted({row[0] for row in rows}) if fid not in records]
+    for fid, record in sorted(records.items()):
+        terms = {row[1] for row in rows if row[0] == fid}
+        if len(terms) != 1:
+            errors.append(f"{fid}: needs exactly one term in the facility table, has {sorted(terms)}")
+            continue
+        (term,) = terms
+        located = record["located_in"]
+        if not isinstance(located, list) or len(located) != 1:
+            errors.append(f"{fid}: needs exactly one located_in value (a site is at one location)")
+            continue
+        code = located[0]["value"].removeprefix("jurisdiction-")
+        if fid != f"facility-{code}-{term_slug(term)}":
+            errors.append(f"{fid}: not facility- plus the located_in code and the slug of its term (expected facility-{code}-{term_slug(term)})")
+        if not any(term in anchor for anchor in identity_anchors(record, claims)):
+            errors.append(f"{fid}: term {term!r} is not in any identity anchor")
+    return errors
+
+
+def check_locations(entities, sources, staging_claims, canonical_claims, words) -> list[str]:
+    """HQ-1."""
+    classes = {s["id"]: s["source_class"] for s in sources}
+    claims = {c["id"]: c for c in staging_claims + canonical_claims}
+    forbidden = set()
+    for _, record in all_records(entities):
+        if record["type"] == "company":
+            for field in ("headquartered_in", "incorporated_in"):
+                if isinstance(record[field], list):
+                    for assertion in record[field]:
+                        forbidden |= reachable(assertion["claim_ids"], claims)
+    iso_only = {cid for cid in forbidden if claims[cid].get("citations") and all(classes.get(c["source_id"]) == "standard_specification" for c in claims[cid]["citations"])}
+    forbidden -= iso_only
+    errors = []
+    for record in facilities(entities):
+        for field in ("located_in", "locality"):
+            if not isinstance(record[field], list):
+                continue
+            for assertion in record[field]:
+                support = reachable(assertion["claim_ids"], claims)
+                errors += [f"{record['id']}.{field} rests on a headquarters or incorporation claim {cid}" for cid in sorted(support & forbidden)]
+                for cid in sorted(support):
+                    for citation in claims[cid].get("citations", []):
+                        for word in words:
+                            if word.lower() in citation["anchor"].lower():
+                                errors.append(f"{record['id']}.{field}: anchor of {cid} carries the excluded word {word!r}")
+    return errors
+
+
+def check_kinds(entities, staging_claims, canonical_claims, words, rows) -> list[str]:
+    """FK-1."""
+    claims = {c["id"]: c for c in staging_claims + canonical_claims}
+    records = {r["id"]: r for r in facilities(entities)}
+    errors = [f"{row[0]}: in the kind-basis table but no such record" for row in rows if row[0] not in records]
+    for fid, record in sorted(records.items()):
+        mine = [row for row in rows if row[0] == fid]
+        errors += [f"{fid}: kind {k} has no basis row" for k in record["facility_kinds"] if k not in {row[1] for row in mine}]
+        errors += [f"{fid}: basis row for kind {row[1]}, which the record does not have" for row in mine if row[1] not in record["facility_kinds"]]
+        for _, kind, claim_id, word in mine:
+            if claim_id not in record["identity_claim_ids"]:
+                errors.append(f"{fid}: basis claim {claim_id} is not an identity claim of the record")
+            anchors = [c["anchor"] for c in claims.get(claim_id, {}).get("citations", [])]
+            if not any(re.search(rf"\b{re.escape(word)}\b", a, re.IGNORECASE) for a in anchors):
+                errors.append(f"{fid}: word {word!r} is not in an anchor of {claim_id}")
+            if word not in words.get(kind, []):
+                errors.append(f"{fid}: word {word!r} is not a word facility-dataset.md §4 accepts for {kind}")
+    return errors
+
+
+def check_capacity(entities, staging_claims, canonical_claims, markers) -> list[str]:
+    """CAP-1."""
+    claims = {c["id"]: c for c in staging_claims + canonical_claims}
+    errors = []
+    for record in facilities(entities):
+        value = record["nameplate_it_capacity_mw"]
+        if "data_centre" not in record["facility_kinds"]:
+            if value != {"state": "not_applicable"}:
+                errors.append(f"{record['id']}: not a data centre, so nameplate_it_capacity_mw must be not_applicable")
+            continue
+        if value == {"state": "not_applicable"}:
+            errors.append(f"{record['id']}: a data centre, so nameplate_it_capacity_mw cannot be not_applicable")
+        if isinstance(value, list):
+            for assertion in value:
+                anchors = [c["anchor"] for cid in assertion["claim_ids"] for _, c in leaf_citations(cid, claims)]
+                if not any(m in a for m in markers for a in anchors):
+                    errors.append(f"{record['id']}.nameplate_it_capacity_mw = {assertion['value']}: the evidence does not say the figure is IT capacity (TQ-10)")
+    return errors
+
+
 def check_products(entities, staging_claims, canonical_claims, rows) -> list[str]:
     """PI-1 and IO-1."""
     claims = {c["id"]: c for c in staging_claims + canonical_claims}
@@ -486,6 +668,8 @@ def entity_errors(entities, sources, staging_claims, canonical_claims) -> list[s
     errors += check_definitions(entities, staging_claims, canonical_claims)
     errors += check_distinct(entities, split_concepts())
     errors += check_broader_cycles(entities)
+    errors += check_locations(entities, sources, staging_claims, canonical_claims, excluded_words())
+    errors += check_capacity(entities, staging_claims, canonical_claims, capacity_markers())
     return errors
 
 
@@ -493,6 +677,21 @@ def fixture_world():
     """The fictional sources, claims and entity records of tests/fixtures/entity_records.json."""
     world = copy.deepcopy(FIXTURES["valid"])
     return world["entities"], world["sources"], world["staging_claims"], world["canonical_claims"]
+
+
+def fixture_tables():
+    """The fixture world's own facility tables (S09): (terms, kind basis)."""
+    valid = FIXTURES["valid"]
+    return [tuple(r) for r in valid["facility_terms"]], [tuple(r) for r in valid["kind_basis"]]
+
+
+def fixture_errors(entities, sources, staging_claims, canonical_claims) -> list[str]:
+    """Every check that runs on the fixture world, the table-driven facility checks included."""
+    terms, basis = fixture_tables()
+    errors = entity_errors(entities, sources, staging_claims, canonical_claims)
+    errors += check_facility_ids(entities, staging_claims, canonical_claims, terms)
+    errors += check_kinds(entities, staging_claims, canonical_claims, kind_words(), basis)
+    return errors
 
 
 # --- tests ------------------------------------------------------------------------------------
@@ -532,6 +731,30 @@ class RuleSourceTests(unittest.TestCase):
         self.assertEqual(term_slug("2.5D packaging with an interposer"), "2-5d-packaging-with-an-interposer")
         self.assertEqual(term_slug("Assembly, packaging and wafer-level packaging tools"), "assembly-packaging-and-wafer-level-packaging-tools")
         self.assertEqual(term_slug("HBM4 36GB 12H"), "hbm4-36gb-12h")
+
+    def test_facility_tables_are_read(self) -> None:
+        self.assertTrue(facility_terms())
+        self.assertTrue(excluded_words())
+        self.assertTrue(kind_words())
+        self.assertTrue(kind_basis())
+        self.assertTrue(capacity_markers())
+
+    def test_kind_words_cover_the_schema_vocabulary(self) -> None:
+        # facility-dataset.md §4: every facility kind in the schema has words, and no other.
+        schema_kinds = {v["const"] for v in ENTITY_SCHEMA["$defs"]["vocab_facility_kind"]["oneOf"]}
+        self.assertEqual(set(kind_words()), schema_kinds)
+
+    def test_display_name_does_not_move_a_facility_id(self) -> None:
+        # FI-1 reads the term and located_in, never the display name.
+        entities = load_entities()
+        sources, staging, canonical = load_data()
+        for record in facilities(entities):
+            record["name"] = "A Completely Different Display Name"
+        self.assertEqual(check_facility_ids(entities, staging, canonical, facility_terms()), [])
+        entities, sources, staging, canonical = fixture_world()
+        for record in facilities(entities):
+            record["name"] = "A Completely Different Display Name"
+        self.assertEqual(check_facility_ids(entities, staging, canonical, fixture_tables()[0]), [])
 
     def test_display_name_does_not_move_a_concept_or_product_id(self) -> None:
         # CI-1 and PI-1 read the taxonomy name and the anchored term, never the display name.
@@ -605,12 +828,29 @@ class EntityDataTests(unittest.TestCase):
     def test_pi1_io1_product_ids_and_instance_of_basis(self) -> None:
         self.assertEqual(check_products(self.entities, self.staging, self.canonical, product_table()), [])
 
+    def test_s09_gate_facility_records_exist(self) -> None:
+        # Roadmap S09 gate: "temporal facility model". FI-1, HQ-1, FK-1, CAP-1, V-10 and the
+        # event checks (test_data_events.py) check the records; this checks there are some.
+        self.assertTrue(facilities(self.entities), "no facility record")
+
+    def test_fi1_facility_ids_follow_the_rule(self) -> None:
+        self.assertEqual(check_facility_ids(self.entities, self.staging, self.canonical, facility_terms()), [])
+
+    def test_hq1_locations_never_rest_on_headquarters_evidence(self) -> None:
+        self.assertEqual(check_locations(self.entities, self.sources, self.staging, self.canonical, excluded_words()), [])
+
+    def test_fk1_facility_kinds_have_a_basis(self) -> None:
+        self.assertEqual(check_kinds(self.entities, self.staging, self.canonical, kind_words(), kind_basis()), [])
+
+    def test_cap1_capacity_only_as_nameplate_it_capacity(self) -> None:
+        self.assertEqual(check_capacity(self.entities, self.staging, self.canonical, capacity_markers()), [])
+
 
 class EntityFixtureTests(unittest.TestCase):
     """The checks accept the fictional set and catch a planted fault of each kind."""
 
     def test_fixture_world_is_clean(self) -> None:
-        self.assertEqual(entity_errors(*fixture_world()), [])
+        self.assertEqual(fixture_errors(*fixture_world()), [])
 
     def test_planted_faults_are_caught(self) -> None:
         def company(entities, where="staging"):
@@ -633,16 +873,21 @@ class EntityFixtureTests(unittest.TestCase):
             with self.subTest(fault=fault["name"]):
                 world = list(fixture_world())
                 actions[fault["action"]](world, fault)
-                errors = entity_errors(*world)
+                errors = fixture_errors(*world)
                 self.assertTrue(any(fault["expect"] in e for e in errors), f"{fault['name']}: {errors}")
 
 
 class DocumentReferenceTests(unittest.TestCase):
-    """Every decision, source, claim and record cited in the S07 and S08 documents exists (S07
+    """Every decision, source, claim and record cited in the S07, S08 and S09 documents exists (S07
     Part B §07 task 11). Records and claims in either file count: the documents name staging
     ones too."""
 
-    DOCS = ("docs/architecture/company-dataset.md", "docs/architecture/milestone-audits/M1-audit.md", "docs/architecture/concept-dataset.md")
+    DOCS = (
+        "docs/architecture/company-dataset.md",
+        "docs/architecture/milestone-audits/M1-audit.md",
+        "docs/architecture/concept-dataset.md",
+        "docs/architecture/facility-dataset.md",
+    )
 
     def text(self) -> str:
         return "\n".join((REPO_ROOT / d).read_text(encoding="utf-8") for d in self.DOCS)
@@ -657,13 +902,14 @@ class DocumentReferenceTests(unittest.TestCase):
         entities = load_entities()
         known = {s["id"] for s in sources} | {c["id"] for c in staging + canonical}
         known |= {r["id"] for _, r in all_records(entities)}
-        text = DATASET + CONCEPTS
+        known |= {e["id"] for path in (DATA / "events.json", DATA / "staging" / "events.json") if path.exists() for e in load_records(path)}
+        text = DATASET + CONCEPTS + FACILITIES
         for span in re.findall(r"`src-(\d{3})` to `src-(\d{3})`", text):
             known_range = {f"src-{n:03d}" for n in range(int(span[0]), int(span[1]) + 1)}
             for ref in sorted(known_range):
                 with self.subTest(ref=ref):
                     self.assertTrue(ref in known, f"{ref} is cited but does not exist")
-        for ref in sorted(set(re.findall(r"`((?:src|claim|company|jurisdiction|technology|component|product)-[a-z0-9-]+)`", text))):
+        for ref in sorted(set(re.findall(r"`((?:src|claim|company|jurisdiction|technology|component|product|facility|event)-[a-z0-9-]+)`", text))):
             with self.subTest(ref=ref):
                 self.assertTrue(ref in known, f"{ref} is cited but does not exist")
 

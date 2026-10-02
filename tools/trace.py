@@ -13,8 +13,8 @@ Usage:
                accepted, claims.json (default: the repository's data/)
     --records  a JSON array of records that cite claims (entities, relationships); repeatable.
                The entity files of --data (companies, jurisdictions (S07), technologies,
-               components and products (S08), canonical and staging) are always read
-               when they exist
+               components and products (S08), facilities and events (S09), canonical and
+               staging) are always read when they exist
 
 Exit status: 0 when every reference resolves, 1 when one does not, 2 when ID is unknown.
 Standard library only (D-003, D-026).
@@ -28,8 +28,9 @@ import sys
 from pathlib import Path
 
 DEFAULT_DATA = Path(__file__).resolve().parent.parent / "data"
-# The entity data files (S07, H-2 layout), canonical then staging.
-ENTITY_KINDS = ("companies", "jurisdictions", "technologies", "components", "products")
+# The entity data files (S07, H-2 layout), canonical then staging; S09 adds facilities and the
+# event files, whose records cite claims the same way.
+ENTITY_KINDS = ("companies", "jurisdictions", "technologies", "components", "products", "facilities", "events")
 ENTITY_FILES = tuple(f"{kind}.json" for kind in ENTITY_KINDS) + tuple(f"staging/{kind}.json" for kind in ENTITY_KINDS)
 
 

@@ -1056,5 +1056,122 @@
       "accessed_at": "2026-10-01T20:54Z",
       "sha256": "660a781f4882d74424ad4fdd7f28dfba9ff11ed1a3b23264be683e6b809235c9"
     }
+  },
+  {
+    "id": "src-046",
+    "source_class": "company_filing",
+    "title": "Annual Report for fiscal year 2025 (제78기), section I.2 'Company history' (English DART)",
+    "publisher": "SK hynix Inc.",
+    "publisher_entity": "company-sk-hynix",
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://englishdart.fss.or.kr/report/eng/viewer.do?rcpNo=20260317000635&dcmNo=11132576&eleId=5&offset=72814&length=24617&dtd=dart4.xsd",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2026-03-17"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-02T12:23Z",
+      "sha256": "da06078ebf59de1cbda03b62a98c05ef35b6bf4b175965cd46d53c74ca8ec2cb"
+    },
+    "filing_copy": "regulator_hosted"
+  },
+  {
+    "id": "src-047",
+    "source_class": "company_filing",
+    "title": "Annual Report for fiscal year 2025 (제78기), notes to the separate financial statements, note 1 'Company overview' (English DART)",
+    "publisher": "SK hynix Inc.",
+    "publisher_entity": "company-sk-hynix",
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://englishdart.fss.or.kr/report/eng/viewer.do?rcpNo=20260317000635&dcmNo=11132576&eleId=66&offset=3650620&length=2897&dtd=dart4.xsd",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2026-03-17"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-02T12:23Z",
+      "sha256": "5d9519c006af94430a23b38451251cc351987c6d449e7ba55d8de3d27e472c42"
+    },
+    "filing_copy": "regulator_hosted"
+  },
+  {
+    "id": "src-048",
+    "source_class": "company_filing",
+    "title": "Annual Report for fiscal year 2025 (제78기), section XI.1 'Progress and changes of disclosure information' (English DART)",
+    "publisher": "SK hynix Inc.",
+    "publisher_entity": "company-sk-hynix",
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://englishdart.fss.or.kr/report/eng/viewer.do?rcpNo=20260317000635&dcmNo=11132576&eleId=126&offset=7831228&length=4080&dtd=dart4.xsd",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2026-03-17"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-02T12:23Z",
+      "sha256": "9471557596770c666a7715c5d62e205cb910bb27fc38adbd6d83596490ddaadd"
+    },
+    "filing_copy": "regulator_hosted"
+  },
+  {
+    "id": "src-049",
+    "source_class": "company_press_release",
+    "title": "SK hynix Announces the Completion of M16 Plant Construction",
+    "publisher": "SK hynix Newsroom",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://news.skhynix.com/en/sk-hynix-announces-the-completion-of-m16-plant-construction/",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2021-02-01"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-02T12:23Z",
+      "sha256": "c9eb052b836cb62eafc3487ac4829ea90548300913b5358c235bd8d4ec1b3881"
+    }
+  },
+  {
+    "id": "src-050",
+    "source_class": "company_press_release",
+    "title": "Amkor Technology Announces Phase 2 of Arizona Advanced Packaging and Test Campus; Expands Investment to $12 Billion",
+    "publisher": "Amkor Technology (investor relations site)",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://ir.amkor.com/news-releases/news-release-details/amkor-technology-announces-phase-2-arizona-advanced-packaging",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2026-09-08"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-02T12:23Z",
+      "sha256": "2b1d929edb4fa3e170fab7b2bfc8f198c551ec92049093adb58bec9fc35dc365"
+    }
   }
 ]

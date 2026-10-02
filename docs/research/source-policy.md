@@ -2,6 +2,9 @@
 
 **Status:** ACCEPTED (human review of S05, 2026-09-30): D-034 to D-041; with D-042 and D-043.
 **Week-2 gate:** passed (human decision, 2026-09-30, after reading §14: "Accetto s14").
+**Amended in S09:** §7 gains one row per event type (D-084; the human approved adding
+them at the start of S09, 2026-10-02: "Add the rows (Recommended)"; the rows' content is
+proposed with D-084).
 **Session:** S05 · **Date:** 2026-09-30
 **Inputs:**
 - `../architecture/relationship-taxonomy.md` §5 (evidence expectations), §9 (unknown and
@@ -191,9 +194,10 @@ fails the tests until it has a row:
 - every attribute field in `entities.schema.json`, i.e. every field whose shape is an
   `attr_…` definition (`attr:<type>.<field>`). This includes the `definition` field of
   technology and component.
+- every event type in `events.schema.json` (`event:<type>`), added in S09 (D-084).
 
-The matrix has 32 rows: 11 relation types, 1 edge qualifier, 6 identity rows and 14
-attribute rows.
+The matrix has 36 rows: 11 relation types, 1 edge qualifier, 6 identity rows, 14
+attribute rows and 4 event rows.
 
 **How to read a row.**
 
@@ -244,11 +248,16 @@ attribute rows.
 | `attr:product.rated_power_w` | `company_technical_documentation` | `company_marketing`, `company_filing`, `company_press_release` | `standard_specification`, `government_publication`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party | stable | `entities.schema.json` `rated_power_w` |
 | `attr:product.rack_scale` | `company_technical_documentation`, `company_marketing` | `company_press_release`, `company_filing` | `standard_specification`, `government_publication`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party | stable | `entities.schema.json` `rack_scale` ("whether the vendor describes") |
 | `attr:product.cooling_method` | `company_technical_documentation`, `company_marketing` | `company_press_release`, `company_filing` | `standard_specification`, `government_publication`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party | stable | `entities.schema.json` `cooling_method` |
+| `event:announced` | `company_press_release`, `company_filing` | `government_publication` | `company_marketing`, `company_technical_documentation`, `standard_specification`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party | stable | `events.schema.json` `announced`; ER-8: supports only the announcement and an `ATTRIBUTION` of intent, never the state planned |
+| `event:opened` | `company_filing`, `government_publication` | `company_press_release` | `company_marketing`, `company_technical_documentation`, `standard_specification`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party or originator | stable | `events.schema.json` `opened`; ER-8: a statement that a site will open is `announced` |
+| `event:expanded` | `company_filing`, `government_publication` | `company_press_release` | `company_marketing`, `company_technical_documentation`, `standard_specification`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party or originator | stable | `events.schema.json` `expanded`; a planned expansion is `announced` |
+| `event:closed` | `company_filing`, `government_publication` | `company_press_release` | `company_marketing`, `company_technical_documentation`, `standard_specification`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party or originator | stable | `events.schema.json` `closed` |
 
 **What the matrix does not cover.**
 
-- **Events** (announcements, plans, openings) have no rows yet. Their types are S09's.
-  Until then, ER-8 governs every plan, and S09 adds rows when it defines event types.
+- **Events** had no rows until S09, which added one per event type (D-084, approved by
+  the human at the start of S09: "Add the rows (Recommended)"). An event's claims are
+  judged against its type's row. ER-8 still governs every plan.
 - **Quantities outside the schema** (volumes, market shares, deployment counts) have no
   rows, because no field holds them (NG-11). They are mostly `not_publicly_determinable`
   (domain map §8).
@@ -669,6 +678,6 @@ process customized for NVIDIA" (SRC-006, quoted in FAB-05).
 | Migrating the register: each row's class from §8.1; S05-R1 from §8.3 | S06 | the register is then frozen |
 | A class for announcements by standards bodies or associations, if one is retrieved | S06 | §2 |
 | `validate-freshness`: hash-change re-checks, supersession, the 12-month horizon | S06+ | §12; L-01 |
-| Event rows in the matrix | S09 | §7 |
+| Event rows in the matrix | S09 | §7. Done in S09 (D-084) |
 | Filings only available from the SEC | the session that needs them; a new decision if EDGAR's policy is to be read (D-042) | §11 |
 | ISO 3166-1 as a registered source for jurisdiction identity | S07 or the first session that creates a jurisdiction record | §7 |
