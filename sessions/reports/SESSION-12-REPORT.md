@@ -369,3 +369,16 @@ question above.
 
 **S12 gate** ("data model passes audit"): **met, subject to the human's acceptance of the audit.**
 The one blocking finding is remediated and checked; every other finding is debt with an owner.
+
+## Addendum — the S13 prompt and the merge (2026-10-02)
+
+The human's message after the report, verbatim: "send me the .md file of prompt 13 and then merge
+everything to main".
+
+- Claude assembled [`S13-PROMPT.md`](../prompts/S13-PROMPT.md): Part A is S12's operating contract
+  with the operational roadmap's week-5 entry for S13, verbatim; Part B elaborates it into SPEC §2's
+  18 sections. It carries the unanswered acceptance of this audit as H-0, and asks H-1 (the sample)
+  and H-2 (the human's own reading first) at the start of S13. Part A's confirmation is also open.
+- The message did not answer the decision request above (accept the S12 audit), so D-109, D-110,
+  `M2-audit.md` and the candidate schema stay `proposed` on `main`.
+- S12 and the S13 prompt were merged to `main` through a pull request, as for S11 and S12.
