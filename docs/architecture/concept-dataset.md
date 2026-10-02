@@ -1,8 +1,9 @@
 # Concept dataset — technologies, components and the first products
 
-**Status:** ACCEPTED except D-070 and D-076 (human review of S08, 2026-10-02: "All except
-D-070, D-076 (Recommended)"): D-067 to D-069, D-071 to D-075 and D-077 accepted. D-070 and
-D-076 stay proposed, with the records that rest on them in staging (§8).
+**Status:** ACCEPTED (human review of S08, 2026-10-02: "All except D-070, D-076
+(Recommended)"; D-070 and D-076 accepted at the end of S09, 2026-10-02: "Approve both
+(Recommended)"). D-067 to D-077 are accepted, and every record of this document is
+canonical (§8).
 **Session:** S08 · **Date:** 2026-10-01
 **Inputs:**
 - `entity-taxonomy.md` §3.3 (technology), §3.4 (component), §3.5 (product), §4.2 (the
@@ -286,6 +287,10 @@ and `src-041`). Every claim citing those two sources stays staging, with the wor
 definitions that rest on them. So do the five records they support: advanced packaging,
 2.5D packaging, 3D die stacking, and EUV and DUV lithography. They become canonical when
 the human approves the open rulings, or after new sources replace them.
+
+**Resolved at the end of S09** (2026-10-02, "Approve both (Recommended)"). The human approved
+D-070 and D-076. The 9 claims, whose verdicts the human had given at the S08 review, and the 5
+records moved to the canonical files; the S09 report's addendum records it.
 
 ## 9. validate-data for concept and product records
 

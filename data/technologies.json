@@ -88,5 +88,123 @@
         ]
       }
     ]
+  },
+  {
+    "id": "technology-advanced-packaging",
+    "type": "technology",
+    "name": "Advanced packaging",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-nist-advanced-packaging-scope",
+      "claim-hir-2d-architecture-definition",
+      "claim-hir-3d-architecture-definition"
+    ],
+    "technology_kind": "process",
+    "broader": [],
+    "concept_refs": [
+      "PKG-03"
+    ],
+    "definition": [
+      {
+        "value": "Advanced packaging is packaging that integrates multiple dies at high interconnect density. In v1 it means two things: 2.5D interposer integration of logic and HBM, and HBM die stacking.",
+        "claim_ids": [
+          "claim-atlas-advanced-packaging-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-2-5d-packaging-with-an-interposer",
+    "type": "technology",
+    "name": "2.5D packaging with an interposer",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-hir-2d-architecture-definition"
+    ],
+    "technology_kind": "process",
+    "broader": [
+      "technology-advanced-packaging"
+    ],
+    "concept_refs": [
+      "PKG-04"
+    ],
+    "definition": [
+      {
+        "value": "2.5D packaging with an interposer is the process of placing two or more active dies side by side on an interposer (silicon, glass or ceramic) that carries the dense interconnect between them, inside one package.",
+        "claim_ids": [
+          "claim-atlas-2-5d-packaging-with-an-interposer-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-3d-die-stacking",
+    "type": "technology",
+    "name": "3D die stacking",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-hir-3d-architecture-definition"
+    ],
+    "technology_kind": "process",
+    "broader": [
+      "technology-advanced-packaging"
+    ],
+    "concept_refs": [
+      "PKG-05"
+    ],
+    "definition": [
+      {
+        "value": "3D die stacking is the process of stacking two or more active dies and interconnecting them directly, not through the package. In v1 it covers HBM stacking only.",
+        "claim_ids": [
+          "claim-atlas-3d-die-stacking-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-euv-lithography",
+    "type": "technology",
+    "name": "EUV lithography",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-nist-euv-duv-wavelengths",
+      "claim-cset-photolithography-grades"
+    ],
+    "technology_kind": "process",
+    "broader": [],
+    "concept_refs": [
+      "SME-03"
+    ],
+    "definition": [
+      {
+        "value": "EUV lithography is photolithography that patterns chips with extreme ultraviolet light at a wavelength of 13.5 nm. It is a different grade of lithography from DUV.",
+        "claim_ids": [
+          "claim-atlas-euv-lithography-working-definition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "technology-duv-lithography",
+    "type": "technology",
+    "name": "DUV lithography",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-nist-euv-duv-wavelengths",
+      "claim-cset-photolithography-grades"
+    ],
+    "technology_kind": "process",
+    "broader": [],
+    "concept_refs": [
+      "SME-03"
+    ],
+    "definition": [
+      {
+        "value": "DUV lithography is photolithography that patterns chips with deep ultraviolet light, typically at 193 nm. CSET's DUV grade includes ArF immersion, ArF and KrF tools.",
+        "claim_ids": [
+          "claim-atlas-duv-lithography-working-definition"
+        ]
+      }
+    ]
   }
 ]

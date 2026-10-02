@@ -1,5 +1,5 @@
 {
-  "_about": "Fictional entity world for tests/test_data_entities.py and tests/test_freshness.py (S07; S08 adds technologies, components and products). Every name, code and URL is invented; jurisdiction-xa uses an ISO 3166-1 user-assigned code. 'valid' is one consistent data set: sources, canonical and staging claims, canonical and staging entity records. Each fault is one change to it that one check must catch, with the text its error must contain.",
+  "_about": "Fictional entity world for tests/test_data_entities.py and tests/test_freshness.py (S07; S08 adds technologies, components and products; S09 adds facilities, events and their tables). Every name, code and URL is invented; jurisdiction-xa uses an ISO 3166-1 user-assigned code. 'valid' is one consistent data set: sources, canonical and staging claims, canonical and staging entity records. Each fault is one change to it that one check must catch, with the text its error must contain.",
   "valid": {
     "sources": [
       {
@@ -94,13 +94,37 @@
           "accessed_at": "2026-09-29T09:00Z",
           "sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
         }
+      },
+      {
+        "id": "src-916",
+        "source_class": "company_press_release",
+        "title": "Example Foundry press release",
+        "publisher": "Example Foundry Corporation",
+        "publisher_entity": {
+          "state": "not_researched"
+        },
+        "authors": {
+          "state": "not_researched"
+        },
+        "url": "https://example.com/src-916",
+        "stated_dates": [
+          {
+            "kind": "published",
+            "date": "2026-04-01"
+          }
+        ],
+        "retrieval": {
+          "method": "automated",
+          "accessed_at": "2026-09-29T09:00Z",
+          "sha256": "efefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef"
+        }
       }
     ],
     "canonical_claims": [
       {
         "id": "claim-fixture-301",
         "claim_type": "FACT",
-        "statement": "The registrant's exact name is “Example Designer Inc.”.",
+        "statement": "The registrant's exact name is \u201cExample Designer Inc.\u201d.",
         "evidence_status": "supported",
         "citations": [
           {
@@ -320,7 +344,7 @@
       {
         "id": "claim-fixture-325",
         "claim_type": "FACT",
-        "statement": "Example Designer offers a product it names “Chip One”.",
+        "statement": "Example Designer offers a product it names \u201cChip One\u201d.",
         "evidence_status": "supported",
         "citations": [
           {
@@ -344,13 +368,85 @@
           "reviewed_on": "2026-09-30",
           "recorded_in": "sessions/reports/SESSION-07-REPORT.md"
         }
+      },
+      {
+        "id": "claim-fixture-331",
+        "claim_type": "FACT",
+        "statement": "Example Designer names its Example Fab 1 in Example City, Example Country.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-911",
+            "locator": "p.9, properties",
+            "anchor": "our Example Fab 1 in Example City, Example Country",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "abababababababababababababababababababababababababababababababab"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-10-02",
+          "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+        }
+      },
+      {
+        "id": "claim-fixture-333",
+        "claim_type": "DERIVATION",
+        "statement": "Example Fab 1 is in Example Country.",
+        "evidence_status": "supported",
+        "input_claim_ids": [
+          "claim-fixture-331",
+          "claim-fixture-303"
+        ],
+        "reasoning": "Example City is in Example Country in the code list, so the site is in Example Country.",
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-10-02",
+          "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+        }
+      },
+      {
+        "id": "claim-fixture-341",
+        "claim_type": "FACT",
+        "statement": "Example Fab 1 began operations in March 2025.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-911",
+            "locator": "p.9, properties",
+            "anchor": "Example Fab 1 began operations in March 2025",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "abababababababababababababababababababababababababababababababab"
+            }
+          }
+        ],
+        "as_of": "2025-03",
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-10-02",
+          "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+        }
       }
     ],
     "staging_claims": [
       {
         "id": "claim-fixture-311",
         "claim_type": "FACT",
-        "statement": "The registrant's exact name is “Example Foundry Corporation”.",
+        "statement": "The registrant's exact name is \u201cExample Foundry Corporation\u201d.",
         "evidence_status": "supported",
         "citations": [
           {
@@ -432,6 +528,92 @@
           "claim-fixture-323"
         ],
         "reasoning": "A fictional working definition built from one fictional source position.",
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-334",
+        "claim_type": "FACT",
+        "statement": "Example Foundry opened the Example Data Hall data center in Example City in March 2026.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-916",
+            "locator": "first paragraph",
+            "anchor": "We opened the Example Data Hall data center in Example City in March 2026",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "efefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef"
+            }
+          }
+        ],
+        "as_of": "2026-03",
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-335",
+        "claim_type": "FACT",
+        "statement": "Example Data Hall has a nameplate IT capacity of 40 MW.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-916",
+            "locator": "first paragraph",
+            "anchor": "Example Data Hall has a nameplate IT capacity of 40 MW",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "efefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-336",
+        "claim_type": "DERIVATION",
+        "statement": "Example Data Hall is in Example Country.",
+        "evidence_status": "supported",
+        "input_claim_ids": [
+          "claim-fixture-334",
+          "claim-fixture-303"
+        ],
+        "reasoning": "Example City is in Example Country in the code list, so the site is in Example Country.",
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-342",
+        "claim_type": "ATTRIBUTION",
+        "statement": "Example Foundry announced on 2026-04-01 its plan to build Example Fab 2.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-916",
+            "locator": "first paragraph",
+            "anchor": "Example Foundry today announced plans to build Example Fab 2",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "efefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef"
+            }
+          }
+        ],
+        "as_of": "2026-04-01",
         "verified_on": "2026-09-30",
         "review": {
           "state": "not_reviewed"
@@ -571,6 +753,39 @@
               "state": "not_applicable"
             }
           }
+        ],
+        "facilities": [
+          {
+            "id": "facility-xa-example-fab-1",
+            "type": "facility",
+            "name": "Example Fab 1",
+            "aliases": [],
+            "identity_claim_ids": [
+              "claim-fixture-331"
+            ],
+            "facility_kinds": [
+              "wafer_fab"
+            ],
+            "located_in": [
+              {
+                "value": "jurisdiction-xa",
+                "claim_ids": [
+                  "claim-fixture-333"
+                ]
+              }
+            ],
+            "locality": [
+              {
+                "value": "Example City",
+                "claim_ids": [
+                  "claim-fixture-331"
+                ]
+              }
+            ],
+            "nameplate_it_capacity_mw": {
+              "state": "not_applicable"
+            }
+          }
         ]
       },
       "staging": {
@@ -637,9 +852,106 @@
             ]
           }
         ],
-        "products": []
+        "products": [],
+        "facilities": [
+          {
+            "id": "facility-xa-example-data-hall",
+            "type": "facility",
+            "name": "Example Data Hall",
+            "aliases": [],
+            "identity_claim_ids": [
+              "claim-fixture-334"
+            ],
+            "facility_kinds": [
+              "data_centre"
+            ],
+            "located_in": [
+              {
+                "value": "jurisdiction-xa",
+                "claim_ids": [
+                  "claim-fixture-336"
+                ]
+              }
+            ],
+            "locality": [
+              {
+                "value": "Example City",
+                "claim_ids": [
+                  "claim-fixture-334"
+                ]
+              }
+            ],
+            "nameplate_it_capacity_mw": [
+              {
+                "value": 40,
+                "claim_ids": [
+                  "claim-fixture-335"
+                ]
+              }
+            ]
+          }
+        ]
       }
-    }
+    },
+    "events": {
+      "canonical": [
+        {
+          "id": "event-xa-example-fab-1-opened-2025-03",
+          "event_type": "opened",
+          "subject": "facility-xa-example-fab-1",
+          "date": "2025-03",
+          "claim_ids": [
+            "claim-fixture-341"
+          ]
+        }
+      ],
+      "staging": [
+        {
+          "id": "event-xa-example-data-hall-opened-2026-03",
+          "event_type": "opened",
+          "subject": "facility-xa-example-data-hall",
+          "date": "2026-03",
+          "claim_ids": [
+            "claim-fixture-334"
+          ]
+        },
+        {
+          "id": "event-example-foundry-announced-2026-04-01",
+          "event_type": "announced",
+          "subject": "company-example-foundry",
+          "date": "2026-04-01",
+          "claim_ids": [
+            "claim-fixture-342"
+          ]
+        }
+      ]
+    },
+    "facility_terms": [
+      [
+        "facility-xa-example-fab-1",
+        "Example Fab 1",
+        "site name"
+      ],
+      [
+        "facility-xa-example-data-hall",
+        "Example Data Hall",
+        "site name"
+      ]
+    ],
+    "kind_basis": [
+      [
+        "facility-xa-example-fab-1",
+        "wafer_fab",
+        "claim-fixture-331",
+        "fab"
+      ],
+      [
+        "facility-xa-example-data-hall",
+        "data_centre",
+        "claim-fixture-334",
+        "data center"
+      ]
+    ]
   },
   "faults": [
     {
@@ -929,6 +1241,191 @@
       "field": "source_class",
       "value": "company_marketing",
       "expect": "component-example-accelerator.definition = A chip for example workloads.: no citation"
+    },
+    {
+      "name": "facility located from an incorporation claim",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "facilities",
+      "field": "located_in",
+      "value": [
+        {
+          "value": "jurisdiction-xa",
+          "claim_ids": [
+            "claim-fixture-304"
+          ]
+        }
+      ],
+      "expect": "rests on a headquarters or incorporation claim claim-fixture-304"
+    },
+    {
+      "name": "facility located by a headquarters sentence",
+      "action": "set_citation_field",
+      "claim": "claim-fixture-331",
+      "field": "anchor",
+      "value": "our Example Fab 1 at our headquarters in Example City, Example Country",
+      "expect": "excluded word 'headquarter'"
+    },
+    {
+      "name": "facility ID built from the display name",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "facilities",
+      "field": "id",
+      "value": "facility-example-fab-1",
+      "expect": "facility-xa-example-fab-1: in the facility table but no such record"
+    },
+    {
+      "name": "facility term not in any identity anchor",
+      "action": "set_citation_field",
+      "claim": "claim-fixture-331",
+      "field": "anchor",
+      "value": "our fab in Example City, Example Country",
+      "expect": "term 'Example Fab 1' is not in any identity anchor"
+    },
+    {
+      "name": "facility kind with no basis row",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "facilities",
+      "field": "facility_kinds",
+      "value": [
+        "wafer_fab",
+        "packaging_facility"
+      ],
+      "expect": "kind packaging_facility has no basis row"
+    },
+    {
+      "name": "facility kind word not in its anchor",
+      "action": "set_citation_field",
+      "claim": "claim-fixture-334",
+      "field": "anchor",
+      "value": "We opened the Example Data Hall in Example City in March 2026",
+      "expect": "word 'data center' is not in an anchor of claim-fixture-334"
+    },
+    {
+      "name": "capacity on a wafer fab",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "facilities",
+      "field": "nameplate_it_capacity_mw",
+      "value": [
+        {
+          "value": 12,
+          "claim_ids": [
+            "claim-fixture-331"
+          ]
+        }
+      ],
+      "expect": "nameplate_it_capacity_mw must be not_applicable"
+    },
+    {
+      "name": "data-centre capacity that is not nameplate IT capacity",
+      "action": "set_citation_field",
+      "claim": "claim-fixture-335",
+      "field": "anchor",
+      "value": "Example Data Hall draws 40 MW from the grid",
+      "expect": "does not say the figure is IT capacity"
+    },
+    {
+      "name": "facility with two locations",
+      "action": "set_record_field",
+      "where": "canonical",
+      "kind": "facilities",
+      "field": "located_in",
+      "value": [
+        {
+          "value": "jurisdiction-xa",
+          "claim_ids": [
+            "claim-fixture-333"
+          ]
+        },
+        {
+          "value": "jurisdiction-xa",
+          "claim_ids": [
+            "claim-fixture-333"
+          ]
+        }
+      ],
+      "expect": "needs exactly one located_in value"
+    }
+  ],
+  "event_faults": [
+    {
+      "name": "a plan recorded as an opened event",
+      "where": "staging",
+      "index": 1,
+      "field": "event_type",
+      "value": "opened",
+      "expect": "rests on no FACT or DERIVATION"
+    },
+    {
+      "name": "an occurrence whose subject is a company",
+      "where": "staging",
+      "index": 1,
+      "field": "event_type",
+      "value": "closed",
+      "expect": "an occurrence needs a facility subject"
+    },
+    {
+      "name": "an announced event citing a FACT",
+      "where": "staging",
+      "index": 1,
+      "field": "claim_ids",
+      "value": [
+        "claim-fixture-334"
+      ],
+      "expect": "announced event cites claim-fixture-334, which is not an ATTRIBUTION"
+    },
+    {
+      "name": "an event dated after its source",
+      "where": "canonical",
+      "index": 0,
+      "field": "date",
+      "value": "2026-05",
+      "expect": "after src-911"
+    },
+    {
+      "name": "an event whose subject is missing",
+      "where": "staging",
+      "index": 0,
+      "field": "subject",
+      "value": "facility-xa-missing",
+      "expect": "subject facility-xa-missing does not exist"
+    },
+    {
+      "name": "a canonical event citing a staging claim",
+      "where": "canonical",
+      "index": 0,
+      "field": "claim_ids",
+      "value": [
+        "claim-fixture-334"
+      ],
+      "expect": "canonical event-xa-example-fab-1-opened-2025-03 cites staging claim claim-fixture-334"
+    },
+    {
+      "name": "a canonical event whose subject is staging",
+      "where": "canonical",
+      "index": 0,
+      "field": "subject",
+      "value": "facility-xa-example-data-hall",
+      "expect": "has non-canonical subject facility-xa-example-data-hall"
+    },
+    {
+      "name": "an event ID that does not follow EI-1",
+      "where": "canonical",
+      "index": 0,
+      "field": "id",
+      "value": "event-example-fab-opening",
+      "expect": "not event- plus the subject, type and date"
+    },
+    {
+      "name": "an event resting on a class its row never allows",
+      "where": "source",
+      "source": "src-916",
+      "field": "source_class",
+      "value": "company_marketing",
+      "expect": "no citation with a class and standing that event:opened allows"
     }
   ]
 }

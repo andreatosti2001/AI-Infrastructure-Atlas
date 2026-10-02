@@ -5,8 +5,8 @@ drifting apart:
 
 - every class in schemas/sources.schema.json has a definition, exactly one row in the class
   table and at least one neighbour test, and the four pairs Part B §07 names are tested;
-- the preference matrix has exactly one row per material claim type, read from the entity
-  and relationship schemas at test time, and every row assigns all classes to exactly one
+- the preference matrix has exactly one row per material claim type, read from the entity,
+  relationship and (S09) event schemas at test time, and every row assigns all classes to exactly one
   column;
 - the matrix points to relationship-taxonomy.md §5 and never copies its text (one home);
 - every source in source-register.md has exactly one class, parsed from the register itself
@@ -41,6 +41,7 @@ REL_TAXONOMY = read("docs/architecture/relationship-taxonomy.md")
 SOURCE_SCHEMA = json.loads(read("schemas/sources.schema.json"))
 ENTITY_DEFS = json.loads(read("schemas/entities.schema.json"))["$defs"]
 REL_DEFS = json.loads(read("schemas/relationships.schema.json"))["$defs"]
+EVENT_DEFS = json.loads(read("schemas/events.schema.json"))["$defs"]
 
 CLASS_ITEMS = SOURCE_SCHEMA["$defs"]["vocab_source_class"]["oneOf"]
 CLASSES = {item["const"] for item in CLASS_ITEMS}
@@ -90,7 +91,7 @@ def pair_rows() -> list[list[str]]:
 
 
 def matrix_rows() -> list[list[str]]:
-    return table(policy_section("7", "8"), 7, r"`(?:rel|identity|attr):[a-z_.]+`")
+    return table(policy_section("7", "8"), 7, r"`(?:rel|identity|attr|event):[a-z_.]+`")
 
 
 def mapping_rows() -> list[list[str]]:
@@ -161,6 +162,7 @@ def material_claim_types() -> set[str]:
         for field, shape in properties.items():
             if shape.get("$ref", "").startswith("#/$defs/attr_"):
                 keys.add(f"attr:{entity}.{field}")
+    keys |= {f"event:{item['const']}" for item in EVENT_DEFS["vocab_event_type"]["oneOf"]}  # S09, D-084
     return keys
 
 
@@ -241,6 +243,8 @@ class MatrixTests(unittest.TestCase):
                     self.assertIn(f"taxonomy §5 `{name.split('.')[0]}`", row[6])
                 elif kind == "attr":
                     self.assertIn(f"`entities.schema.json` `{name.split('.')[1]}`", row[6])
+                elif kind == "event":
+                    self.assertIn(f"`events.schema.json` `{name}`", row[6])
                 elif name not in {"jurisdiction"}:
                     self.assertIn("§7", row[6])
 
@@ -261,7 +265,7 @@ class MatrixTests(unittest.TestCase):
     def test_row_counts_in_prose_match_the_table(self) -> None:
         match = re.search(
             r"The matrix has (\d+) rows: (\d+) relation types, (\d+) edge qualifiers?, "
-            r"(\d+) identity rows and (\d+)\s+attribute rows",
+            r"(\d+) identity rows, (\d+)\s+attribute rows and (\d+) event rows",
             POLICY,
         )
         self.assertIsNotNone(match, "matrix count sentence not found")
@@ -273,6 +277,7 @@ class MatrixTests(unittest.TestCase):
             sum("." in k for k in rel),
             sum(k.startswith("identity:") for k in kinds),
             sum(k.startswith("attr:") for k in kinds),
+            sum(k.startswith("event:") for k in kinds),
         )
         self.assertEqual(tuple(map(int, match.groups())), expected)
 

@@ -2548,5 +2548,464 @@
       "reviewed_on": "2026-10-01",
       "recorded_in": "sessions/reports/SESSION-08-REPORT.md"
     }
+  },
+  {
+    "id": "claim-micron-manassas-fab",
+    "claim_type": "FACT",
+    "statement": "Micron has a fab in Manassas, Virginia: its 10-K calls it “our fab in Manassas, Virginia”.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-025",
+        "locator": "p.48, Item 2 'Properties', the sentence beginning 'On June 11, 2025, we also entered into a direct funding agreement'",
+        "anchor": "to expand and modernize our fab in Manassas, Virginia",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T11:12Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-micron-manassas-fab-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Micron's fab in Manassas, Virginia is in the country with ISO 3166 code US (Virginia, which ISO 3166-2 lists as US-VA).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-micron-manassas-fab",
+      "claim-iso-3166-2-us-va",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The site sentence names a US state, not the country (claim-micron-manassas-fab). ISO 3166-2 lists Virginia as US-VA (claim-iso-3166-2-us-va), and an ISO 3166-2 code begins with the alpha-2 code of the country it subdivides (claim-iso-3166-1-us). So the site is in the country coded US. The step is the Atlas's (D-057, D-080); no headquarters or incorporation sentence is an input.",
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-micron-second-idaho-fab-announced",
+    "claim_type": "ATTRIBUTION",
+    "statement": "Micron states that in June 2025 it announced plans for a second leading-edge memory manufacturing fab in Idaho.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-025",
+        "locator": "p.47, Item 2 'Properties', the sentence beginning 'In June 2025, in connection with certain amendments'",
+        "anchor": "In June 2025, in connection with certain amendments to our CHIPS Act agreements, we announced plans for a second leading-edge memory manufacturing fab in Idaho",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T11:12Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      }
+    ],
+    "as_of": "2025-06",
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-sk-hynix-m16-completed-icheon",
+    "claim_type": "FACT",
+    "statement": "SK hynix's annual report lists, among the changes in its production facilities, the completion (준공) of its new plant M16 in 이천 (Icheon) in February 2021 (the Atlas's translation).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-046",
+        "locator": "I.2 'Company history', item (3) 생산설비의 변동 (changes in production facilities), the row dated 2021. 02",
+        "anchor": "(3) 생산설비의 변동 2021. 02 이천 신규 공장 M16 준공",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T12:23Z",
+          "sha256": "da06078ebf59de1cbda03b62a98c05ef35b6bf4b175965cd46d53c74ca8ec2cb"
+        }
+      }
+    ],
+    "as_of": "2021-02",
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-sk-hynix-production-plants-icheon-cheongju",
+    "claim_type": "FACT",
+    "statement": "SK hynix Inc. states that it has installed and operates production plants in 경기도 이천시 (Icheon-si, Gyeonggi-do) and 충청북도 청주시 (Cheongju-si, Chungcheongbuk-do) (the Atlas's translation).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-047",
+        "locator": "notes to the separate financial statements, note 1 'Company overview', the first sentence, its last clause (the clause before it names the head office, and is not used)",
+        "anchor": "경기도 이천시와 충청북도 청주시에 생산공장을 설치ㆍ가동하고 있습니다",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T12:23Z",
+          "sha256": "5d9519c006af94430a23b38451251cc351987c6d449e7ba55d8de3d27e472c42"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-sk-hynix-m16-fabrication-plant",
+    "claim_type": "FACT",
+    "statement": "SK hynix describes M16 as its new fabrication plant, for which it held a completion ceremony.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-049",
+        "locator": "body, first paragraph, the sentence beginning 'SK hynix Inc. (or ‘the Company’' (its last words, a head-office phrase, are not used)",
+        "anchor": "held a completion ceremony for its new fabrication plant M16",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T12:23Z",
+          "sha256": "c9eb052b836cb62eafc3487ac4829ea90548300913b5358c235bd8d4ec1b3881"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-sk-hynix-m16-in-kr",
+    "claim_type": "DERIVATION",
+    "statement": "SK hynix's M16 plant is in the country with ISO 3166 code KR (in 이천, which SK hynix places in 경기도, which ISO 3166-2 lists as Gyeonggi-do, KR-41).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-sk-hynix-m16-completed-icheon",
+      "claim-sk-hynix-production-plants-icheon-cheongju",
+      "claim-iso-3166-2-kr-41",
+      "claim-iso-3166-1-kr"
+    ],
+    "reasoning": "The filing places M16 in 이천 (claim-sk-hynix-m16-completed-icheon) and the company's production plants in 경기도 이천시 (claim-sk-hynix-production-plants-icheon-cheongju), so the 이천 of the M16 row is 경기도 이천시. ISO 3166-2 lists 경기도 as Gyeonggi-do, KR-41 (claim-iso-3166-2-kr-41); the romanisation is part of this step, as in D-057. An ISO 3166-2 code begins with the alpha-2 code of its country (claim-iso-3166-1-kr). No head-office sentence is an input (D-080).",
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-sk-hynix-m15x-plan-disclosed",
+    "claim_type": "ATTRIBUTION",
+    "statement": "SK hynix disclosed on 2022-09-06 its plan to build M15X, an extension fab of M15, from October 2022 on land it had already secured in the Cheongju Technopolis industrial complex (the Atlas's translation).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-048",
+        "locator": "XI.1 'Progress and changes of disclosure information', table 가, the row whose 신고일자 (filing date) is 2022.09.06; cells read in order, table-cell boundaries as whitespace",
+        "anchor": "2022.09.06 장래사업ㆍ경영 계획 (공정공시) 1. 제목: 생산기반 확충을 위한 투자계획 2. 내용: 2022년 10월부터 청주 테크노폴리스 산업단지 내 기존 확보된 부지에 M15의 확장 팹인 M15X(eXtension)를 건설할 계획입니다",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T12:23Z",
+          "sha256": "9471557596770c666a7715c5d62e205cb910bb27fc38adbd6d83596490ddaadd"
+        }
+      }
+    ],
+    "as_of": "2022-09-06",
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-amkor-arizona-phase-2-announced",
+    "claim_type": "ATTRIBUTION",
+    "statement": "Amkor announced on 2026-09-08 phase 2 of its Arizona advanced packaging and test campus.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-050",
+        "locator": "first paragraph after the dateline 'TEMPE, Ariz.--(BUSINESS WIRE)--Sep. 8, 2026--'",
+        "anchor": "today announced phase 2 of its Arizona Advanced packaging and test campus",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T12:23Z",
+          "sha256": "2b1d929edb4fa3e170fab7b2bfc8f198c551ec92049093adb58bec9fc35dc365"
+        }
+      }
+    ],
+    "as_of": "2026-09-08",
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-asml-manufacturing-sites",
+    "claim_type": "FACT",
+    "statement": "ASML states that all of its manufacturing activities, including subassembly, final assembly and system testing, take place in cleanroom facilities in Veldhoven, Eindhoven, Oirschot (the Netherlands), Berlin (Germany), Wilton, San Diego (US), Pyeongtaek (South Korea), and Linkou and Tainan (Taiwan).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-029",
+        "locator": "p.69, the paragraph on manufacturing, the sentence beginning 'All of our manufacturing activities'",
+        "anchor": "All of our manufacturing activities, including subassembly, final assembly and system testing, take place in (cleanroom) facilities in Veldhoven, Eindhoven, Oirschot (the Netherlands), Berlin (Germany), Wilton, San Diego (US), Pyeongtaek (South Korea) and Linkou and Tainan (Taiwan)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T11:12Z",
+          "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-atlas-2-5d-packaging-with-an-interposer-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, 2.5D packaging with an interposer is the process of placing two or more active dies side by side on an interposer (silicon, glass or ceramic) that carries the dense interconnect between them, inside one package.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-hir-2d-architecture-definition",
+      "claim-hir-2x-names-no-technical-basis"
+    ],
+    "reasoning": "HIR calls this architecture 2DS and says the '2.x' names have no technical basis. The Atlas keeps the taxonomy's term '2.5D' as its working label (TQ-03), and narrows HIR's 2DS to the interposer case: HIR's 2DS also covers bridges. The naming dispute is recorded; the technical content is HIR's.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-atlas-3d-die-stacking-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, 3D die stacking is the process of stacking two or more active dies and interconnecting them directly, not through the package. In v1 it covers HBM stacking only.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-hir-3d-architecture-definition",
+      "claim-ecp-hbm-definition"
+    ],
+    "reasoning": "HIR's 3D architecture gives the definition; the ECP report gives HBM as a case (DRAM dies stacked and connected by TSVs). The v1 scope (HBM only) is the taxonomy's (entity-taxonomy §5, PKG-05).",
+    "verified_on": "2026-10-01",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-atlas-advanced-packaging-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, advanced packaging is packaging that integrates multiple dies at high interconnect density. In v1 it means two things: 2.5D interposer integration of logic and HBM, and HBM die stacking.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nist-advanced-packaging-scope",
+      "claim-sia-advanced-packaging-breadth",
+      "claim-hir-2d-architecture-definition",
+      "claim-hir-3d-architecture-definition"
+    ],
+    "reasoning": "CON-04: NIST ties the term to high-density integration that blurs chip and package; SIA/BCG say it covers a wide range of technologies. TQ-03 chose the narrow working definition for v1. HIR's 2DS and 3D definitions are the technical anchors of the two v1 cases. The choice is the human's, not a resolution of the dispute; both breadths stay as ATTRIBUTION claims.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-atlas-duv-lithography-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, dUV lithography is photolithography that patterns chips with deep ultraviolet light, typically at 193 nm. CSET's DUV grade includes ArF immersion, ArF and KrF tools.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nist-euv-duv-wavelengths",
+      "claim-cset-photolithography-grades"
+    ],
+    "reasoning": "As for EUV lithography. 'Typically at 193 nm' is NIST's wording; KrF tools use another wavelength, which no retrieved source states, so the definition does not give one.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-atlas-euv-lithography-working-definition",
+    "claim_type": "INTERPRETATION",
+    "statement": "For the Atlas, eUV lithography is photolithography that patterns chips with extreme ultraviolet light at a wavelength of 13.5 nm. It is a different grade of lithography from DUV.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-nist-euv-duv-wavelengths",
+      "claim-cset-photolithography-grades"
+    ],
+    "reasoning": "NIST gives the wavelength; CSET lists EUV and DUV as separate grades. SME-03 is split into two records (D-070) so that the two processes are not merged. No vendor source is used.",
+    "verified_on": "2026-10-01",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-hir-2d-architecture-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "The IEEE EPS Heterogeneous Integration Roadmap defines a 2D architecture as two or more active silicon devices placed side by side on a package and interconnected on it, and calls it 2DS when its enhanced interconnect uses an inorganic medium such as a silicon, glass or ceramic interposer or bridge.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-039",
+        "locator": "p.4 (chapter page 2), §3 'Converged Nomenclature Framework for 2D & 3D Architectures', item a",
+        "anchor": "A 2D architecture is defined as an architecture where two or more active silicon devices are placed side-by-side on a package and are interconnected on the package. If the interconnect is “enhanced”, i.e., has higher interconnect density than mainstream organic packages, and is accomplished using an organic medium, the architecture is further sub-categorized as a 2DO (2D Organic) architecture and similarly, if the enhanced architecture uses an inorganic medium (e.g. a silicon/glass/ceramic interposer or bridge) the architecture is further sub-categorized as a 2DS architecture",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:46Z",
+          "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-hir-2x-names-no-technical-basis",
+    "claim_type": "ATTRIBUTION",
+    "statement": "The IEEE EPS Heterogeneous Integration Roadmap says the “2.x” names for enhanced 2D architectures do not have any particular technical basis.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-039",
+        "locator": "p.4 (chapter page 2), §3, item a, the sentences after the 2DS definition",
+        "anchor": "Architectures that include enhancements over and above traditional 2D architectures (typically 2 or more die flip-chip attached on a traditional organic package) are variously referred to as 2.x architectures to emphasize their specialness. These nomenclatures do not have any particular technical basis",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:46Z",
+          "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-hir-3d-architecture-definition",
+    "claim_type": "ATTRIBUTION",
+    "statement": "The IEEE EPS Heterogeneous Integration Roadmap defines a 3D architecture as two or more active silicon devices stacked and interconnected without the agency of the package.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-039",
+        "locator": "p.4 (chapter page 2), §3, item b",
+        "anchor": "A 3D architecture is defined as an architecture where two or more active silicon devices are stacked and interconnected without the agency of the package",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:46Z",
+          "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-nist-euv-duv-wavelengths",
+    "claim_type": "ATTRIBUTION",
+    "statement": "NIST wrote in 2011 that the smallest features were typically made with deep ultraviolet light at 193 nm, and that lithography was shifting to extreme ultraviolet (EUV) at 13.5 nm.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-041",
+        "locator": "article body, the paragraph beginning 'In general, feature size is proportional to the wavelength'",
+        "anchor": "Today's super-small features are typically made with \"deep\" ultraviolet light at 193 nm. \"But now we're trying to make a dramatic shift by dropping more than an order of magnitude, down to extreme ultraviolet (EUV) at 13.5 nm,\"",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-01T20:46Z",
+          "sha256": "4483140a773ab6c24971acedaa530c7e4d9d7823510e6d16277512b121bd362d"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-01",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
   }
 ]
