@@ -240,6 +240,104 @@ Never automate silently:
 
 When uncertain, use the stricter class.
 
+## 9A. Human decision requests
+
+The human approves **concrete consequences for the project**, not identifiers. A request for a human decision (approval, choice between options, confirmation, review verdict) is valid only if a reader who does not know the repository's internal vocabulary can tell what will actually be different depending on the answer.
+
+This rule applies wherever a human decision is requested: in conversation, in an interactive question, in a session report's human-approvals section, in a session prompt's open questions, and in a decision record marked `proposed`.
+
+### Required content
+
+Every request must state, in plain language:
+
+1. **What is being decided** — one ordinary sentence.
+2. **What will concretely change** — explicitly:
+   - which files will be modified or created;
+   - which data, schema fields or relationships will change;
+   - which system behaviour (validators, tools, agents, build) will change;
+   - which part of the interface or output will change;
+   - or, if no code or data changes and only an architectural rule is adopted, which future behaviour the rule will constrain.
+3. **Why it is needed** — the concrete problem the decision solves.
+4. **What will not change** — the boundaries of the change, especially when an important component is involved.
+5. **Future consequences** — what the choice enables, what it limits, and whether it makes something harder to change later.
+6. **Options** — each one explained in natural language: what it means, and its practical or technical consequence. An option is never only an ID, a schema name or a slogan.
+7. **The exact decision requested** — the precise action expected from the human (for example "Choose A, B or C", "Approve or reject the proposed change").
+
+### IDs and internal terminology
+
+`D-xxx`, `Sxx`, `MA §x`, `H-x`, schema names, vocabulary values, agent names and other internal terms may be used, but only as **supporting metadata** after the plain-language explanation. They are never the explanation itself.
+
+Insufficient:
+
+> Human decision: D-103 — accept relationship ownership model.
+
+Sufficient:
+
+> Human decision required: choose which dataset owns the canonical definition of this relationship. If option A is approved, the relationship type is defined in dataset X and the other datasets can only reference it. This prevents the same relationship from being defined in two places.
+>
+> Technical reference: D-103.
+
+### Preferred format
+
+```text
+Human decision required: [understandable title]
+
+What we are deciding
+...
+
+What will concretely change
+...
+
+Why
+...
+
+What stays the same
+...
+
+Options
+A — [descriptive title]
+    Concrete explanation.
+    Practical/technical consequence.
+B — [descriptive title]
+    Concrete explanation.
+    Practical/technical consequence.
+C — [descriptive title]
+    Concrete explanation.
+    Practical/technical consequence.
+
+Decision requested
+"Choose A, B or C" / "Approve or reject the proposed change" / other precise action.
+
+Technical reference
+D-xxx / Sxx / affected files.
+```
+
+Where an interactive question tool limits the length of the question, put the full explanation in the message immediately before it; the tool's option labels may then be short, but each option's description must still say what that option changes.
+
+Write the request in the language the human is using in the conversation.
+
+### Additional rules
+
+- Never ask the human to approve something that has not first been explained.
+- Never use an abbreviation as a substitute for the explanation.
+- Never assume the human knows what an internal project name means; say what it is.
+- If two options are technically similar, explain the real difference instead of presenting artificial alternatives.
+- **Schema decision:** describe conceptually what enters, leaves or changes in the schema.
+- **Relationship decision:** say which entities will be linked, by what kind of link, and why.
+- **UI decision:** describe what the user will concretely see.
+- **Agent-workflow decision:** say which agent does what, before and after.
+- **Data decision:** say what the new source of truth will be.
+- **Documentation-only decision:** say explicitly that only documentation changes.
+- If a decision has no substantive consequence, do not inflate it into a long approval request; one clear sentence is enough.
+
+### Final test
+
+Before asking, answer the question:
+
+> "If the human answers A instead of B, what will be concretely different in the project?"
+
+If the answer is not immediately understandable from the request itself, the request is badly formulated and must be rewritten before the human is asked to choose.
+
 ## 10. Implementation strategy
 
 Do not build the entire roadmap in one pass.
@@ -384,7 +482,7 @@ At the end of a work session, report:
 - evidence gaps;
 - technical debt;
 - known limitations;
-- decisions requiring human approval.
+- decisions requiring human approval, each written as a §9A human decision request.
 
 ### Next recommended milestone
 
@@ -404,6 +502,8 @@ Stop and report rather than improvising when:
 
 Do not hide the problem by making a best-guess patch.
 
+When stopping requires a human decision, ask for it in the §9A format.
+
 ## 19. Anti-patterns
 
 Never:
@@ -416,6 +516,7 @@ Never:
 - silently collapse disagreement;
 - mix facts and interpretation in the same field;
 - create a single giant AI chatbot as the project interface;
+- ask the human to approve an ID, acronym or schema name instead of an explained consequence (§9A);
 - add complexity without a user/research justification;
 - optimise the portfolio for screenshots rather than capability.
 
