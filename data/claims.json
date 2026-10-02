@@ -2548,5 +2548,260 @@
       "reviewed_on": "2026-10-01",
       "recorded_in": "sessions/reports/SESSION-08-REPORT.md"
     }
+  },
+  {
+    "id": "claim-micron-manassas-fab",
+    "claim_type": "FACT",
+    "statement": "Micron has a fab in Manassas, Virginia: its 10-K calls it “our fab in Manassas, Virginia”.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-025",
+        "locator": "p.48, Item 2 'Properties', the sentence beginning 'On June 11, 2025, we also entered into a direct funding agreement'",
+        "anchor": "to expand and modernize our fab in Manassas, Virginia",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T11:12Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-micron-manassas-fab-in-us",
+    "claim_type": "DERIVATION",
+    "statement": "Micron's fab in Manassas, Virginia is in the country with ISO 3166 code US (Virginia, which ISO 3166-2 lists as US-VA).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-micron-manassas-fab",
+      "claim-iso-3166-2-us-va",
+      "claim-iso-3166-1-us"
+    ],
+    "reasoning": "The site sentence names a US state, not the country (claim-micron-manassas-fab). ISO 3166-2 lists Virginia as US-VA (claim-iso-3166-2-us-va), and an ISO 3166-2 code begins with the alpha-2 code of the country it subdivides (claim-iso-3166-1-us). So the site is in the country coded US. The step is the Atlas's (D-057, D-080); no headquarters or incorporation sentence is an input.",
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-micron-second-idaho-fab-announced",
+    "claim_type": "ATTRIBUTION",
+    "statement": "Micron states that in June 2025 it announced plans for a second leading-edge memory manufacturing fab in Idaho.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-025",
+        "locator": "p.47, Item 2 'Properties', the sentence beginning 'In June 2025, in connection with certain amendments'",
+        "anchor": "In June 2025, in connection with certain amendments to our CHIPS Act agreements, we announced plans for a second leading-edge memory manufacturing fab in Idaho",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T11:12Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      }
+    ],
+    "as_of": "2025-06",
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-sk-hynix-m16-completed-icheon",
+    "claim_type": "FACT",
+    "statement": "SK hynix's annual report lists, among the changes in its production facilities, the completion (준공) of its new plant M16 in 이천 (Icheon) in February 2021 (the Atlas's translation).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-046",
+        "locator": "I.2 'Company history', item (3) 생산설비의 변동 (changes in production facilities), the row dated 2021. 02",
+        "anchor": "(3) 생산설비의 변동 2021. 02 이천 신규 공장 M16 준공",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T12:23Z",
+          "sha256": "da06078ebf59de1cbda03b62a98c05ef35b6bf4b175965cd46d53c74ca8ec2cb"
+        }
+      }
+    ],
+    "as_of": "2021-02",
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-sk-hynix-production-plants-icheon-cheongju",
+    "claim_type": "FACT",
+    "statement": "SK hynix Inc. states that it has installed and operates production plants in 경기도 이천시 (Icheon-si, Gyeonggi-do) and 충청북도 청주시 (Cheongju-si, Chungcheongbuk-do) (the Atlas's translation).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-047",
+        "locator": "notes to the separate financial statements, note 1 'Company overview', the first sentence, its last clause (the clause before it names the head office, and is not used)",
+        "anchor": "경기도 이천시와 충청북도 청주시에 생산공장을 설치ㆍ가동하고 있습니다",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T12:23Z",
+          "sha256": "5d9519c006af94430a23b38451251cc351987c6d449e7ba55d8de3d27e472c42"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-sk-hynix-m16-fabrication-plant",
+    "claim_type": "FACT",
+    "statement": "SK hynix describes M16 as its new fabrication plant, for which it held a completion ceremony.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-049",
+        "locator": "body, first paragraph, the sentence beginning 'SK hynix Inc. (or ‘the Company’' (its last words, a head-office phrase, are not used)",
+        "anchor": "held a completion ceremony for its new fabrication plant M16",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T12:23Z",
+          "sha256": "c9eb052b836cb62eafc3487ac4829ea90548300913b5358c235bd8d4ec1b3881"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-sk-hynix-m16-in-kr",
+    "claim_type": "DERIVATION",
+    "statement": "SK hynix's M16 plant is in the country with ISO 3166 code KR (in 이천, which SK hynix places in 경기도, which ISO 3166-2 lists as Gyeonggi-do, KR-41).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-sk-hynix-m16-completed-icheon",
+      "claim-sk-hynix-production-plants-icheon-cheongju",
+      "claim-iso-3166-2-kr-41",
+      "claim-iso-3166-1-kr"
+    ],
+    "reasoning": "The filing places M16 in 이천 (claim-sk-hynix-m16-completed-icheon) and the company's production plants in 경기도 이천시 (claim-sk-hynix-production-plants-icheon-cheongju), so the 이천 of the M16 row is 경기도 이천시. ISO 3166-2 lists 경기도 as Gyeonggi-do, KR-41 (claim-iso-3166-2-kr-41); the romanisation is part of this step, as in D-057. An ISO 3166-2 code begins with the alpha-2 code of its country (claim-iso-3166-1-kr). No head-office sentence is an input (D-080).",
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-sk-hynix-m15x-plan-disclosed",
+    "claim_type": "ATTRIBUTION",
+    "statement": "SK hynix disclosed on 2022-09-06 its plan to build M15X, an extension fab of M15, from October 2022 on land it had already secured in the Cheongju Technopolis industrial complex (the Atlas's translation).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-048",
+        "locator": "XI.1 'Progress and changes of disclosure information', table 가, the row whose 신고일자 (filing date) is 2022.09.06; cells read in order, table-cell boundaries as whitespace",
+        "anchor": "2022.09.06 장래사업ㆍ경영 계획 (공정공시) 1. 제목: 생산기반 확충을 위한 투자계획 2. 내용: 2022년 10월부터 청주 테크노폴리스 산업단지 내 기존 확보된 부지에 M15의 확장 팹인 M15X(eXtension)를 건설할 계획입니다",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T12:23Z",
+          "sha256": "9471557596770c666a7715c5d62e205cb910bb27fc38adbd6d83596490ddaadd"
+        }
+      }
+    ],
+    "as_of": "2022-09-06",
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-amkor-arizona-phase-2-announced",
+    "claim_type": "ATTRIBUTION",
+    "statement": "Amkor announced on 2026-09-08 phase 2 of its Arizona advanced packaging and test campus.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-050",
+        "locator": "first paragraph after the dateline 'TEMPE, Ariz.--(BUSINESS WIRE)--Sep. 8, 2026--'",
+        "anchor": "today announced phase 2 of its Arizona Advanced packaging and test campus",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T12:23Z",
+          "sha256": "2b1d929edb4fa3e170fab7b2bfc8f198c551ec92049093adb58bec9fc35dc365"
+        }
+      }
+    ],
+    "as_of": "2026-09-08",
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
+  },
+  {
+    "id": "claim-asml-manufacturing-sites",
+    "claim_type": "FACT",
+    "statement": "ASML states that all of its manufacturing activities, including subassembly, final assembly and system testing, take place in cleanroom facilities in Veldhoven, Eindhoven, Oirschot (the Netherlands), Berlin (Germany), Wilton, San Diego (US), Pyeongtaek (South Korea), and Linkou and Tainan (Taiwan).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-029",
+        "locator": "p.69, the paragraph on manufacturing, the sentence beginning 'All of our manufacturing activities'",
+        "anchor": "All of our manufacturing activities, including subassembly, final assembly and system testing, take place in (cleanroom) facilities in Veldhoven, Eindhoven, Oirschot (the Netherlands), Berlin (Germany), Wilton, San Diego (US), Pyeongtaek (South Korea) and Linkou and Tainan (Taiwan)",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T11:12Z",
+          "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "verified_on": "2026-10-02",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-02",
+      "recorded_in": "sessions/reports/SESSION-09-REPORT.md"
+    }
   }
 ]

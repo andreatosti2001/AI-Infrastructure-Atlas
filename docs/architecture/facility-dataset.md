@@ -1,6 +1,9 @@
 # Facility dataset — sites, their location, and the events that date them
 
-**Status:** PROPOSED (S09): D-078 to D-088, for the human's review.
+**Status:** PROPOSED (S09): D-078 to D-082 and D-085 to D-088, for the human's review.
+D-083 (the event schema) and D-084 (the event rows) were accepted at the S09 review
+(2026-10-02: "Approve both (Recommended)"), and the flagged rulings of D-080, D-081 and D-083
+were approved ("pick your recommendations"). The records are canonical (§10).
 **Session:** S09 · **Date:** 2026-10-02
 **Inputs:**
 - `entity-taxonomy.md` §3.2 (facility), §4.2 (company vs facility), §4.4 (a plan is not an
@@ -64,7 +67,7 @@ facility kinds. A site known only from a plan is an event, not a facility (ER-8;
 | Amkor, Arizona | under construction (10-K); the IR release of 2026-09-08 announces phase 2 (`src-050`) | event `event-amkor-technology-announced-2026-09-08`; no facility record (ER-8) |
 | Amkor, other factories | the 10-K's properties table gives country totals, not sites | no record |
 | ASML, Veldhoven and other sites | the 20-F names its manufacturing sites (`src-029`), but they make lithography systems, and no facility kind fits | **stop condition; gap** (D-088) |
-| TSMC | the 20-F lists fabs; its host refuses automated requests | waiting on the human's re-supply (RA-4) |
+| TSMC | the 20-F lists fabs; its host refuses automated requests, and the file was not re-supplied during S09 | **gap**: the human chose "Close as a gap (Recommended)"; the RA-4 request stays open |
 | Data centres | the Amazon and NVIDIA filings name no data-centre site | no record (§8) |
 
 **ASML** (D-088, the human's answer "Gap + proposal (Recommended)"). The schema's facility
@@ -264,8 +267,9 @@ and a region or availability zone is never a facility (D-022). The canonical fin
 ## 9. Sources and access
 
 **Re-retrievals** (D-075, H-4). On 2026-10-02, `src-024` to `src-030` returned their
-registered bytes. `src-031` (TSMC's 20-F) is behind a challenge page (HTTP 403), as in S07;
-the human agreed to re-supply it (RA-4).
+registered bytes. `src-031` (TSMC's 20-F) is behind a challenge page (HTTP 403), as in S07.
+The human agreed to re-supply it (RA-4), but it did not arrive during S09, so the human closed
+TSMC's sites as a gap; `src-031` was not cited again (D-075).
 
 **New sources** (`src-046` onward), retrieved automatically on 2026-10-02 with full hashes;
 texts stay outside the repository (RA-4(4)):
@@ -291,6 +295,9 @@ As D-061 and D-077 (D-087): `data/facilities.json` and `data/events.json`, each 
 staging copy. A record becomes canonical only on the human's verdict, and only if every
 claim it cites is canonical. CE-1 extends to facilities, and EV-1 to events: a canonical
 event cites canonical claims and has a canonical subject.
+
+**What the S09 review promoted** (2026-10-02, "Accept all (Recommended)"): all 10 claims, both
+facilities and all four events. Nothing S09 created stays in staging.
 
 **Review.** For each claim on the sheet in the S09 report:
 
@@ -352,5 +359,6 @@ python -m unittest discover -s tests -p "test_freshness.py" -v   # validate-fres
 | `owns` and `operates` edges from the §5 claims | S10 | most candidates fail §5 |
 | A facility kind for equipment manufacturing (ASML) | a later session, by decision | D-088 |
 | Micron's Japan and Taiwan sites; SK hynix's Cheongju plants and M15; Amkor's factories | the session that registers JP and the needed subdivisions, or reads site-level sources | §1 |
+| TSMC's fabs and advanced-backend sites | the session that receives the 20-F (RA-4) | §1, §9 |
 | A `construction_started` type, and MA §5.5's other types | the session that needs them | §12 |
 | Data-centre sites | the session that finds a first-hand site sentence | §8 |

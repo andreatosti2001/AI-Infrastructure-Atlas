@@ -1421,7 +1421,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   (Recommended)").
 - **Decision** (`facility-dataset.md` §1): a facility record needs a sentence, from a source
   its rows accept, that names one site, places it, and gives its kind. Records: Micron's fab
-  in Manassas, Virginia and SK hynix's M16; TSMC's sites when the file arrives. Sites known
+  in Manassas, Virginia and SK hynix's M16. TSMC's sites are a gap: its 20-F was not
+  re-supplied during S09, and the human chose "Close as a gap (Recommended)". Sites known
   only from plans (Micron Boise and Clay, SK hynix M15X, Amkor Arizona) are events (ER-8). No
   site sentence (Micron's and Amkor's country tables), no jurisdiction record (Japan), or
   no kind evidence (SK hynix Cheongju) means no record. No data centre is named.
@@ -1443,7 +1444,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-080 — Facility location rests on site sentences only (HQ-1)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed; its flagged ruling (clause-only anchors that leave out a head-office clause or phrase) approved at the S09 review (2026-10-02: "pick your recommendations"; Claude's recommendation was to approve)
 - **Context:** R-5; `source-policy.md` §7 rows `attr:facility.located_in`, `.locality`.
 - **Decision** (`facility-dataset.md` §3): `located_in` and `locality` rest on a sentence
   placing the site; a subdivision reaches the country by the D-057 `DERIVATION`; `locality`
@@ -1455,8 +1456,9 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-081 — Facility kinds rest on basis rows and listed words (FK-1)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed; **flagged ruling**: "fab"
-  and "fabrication plant" read as `wafer_fab`
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed; its flagged ruling ("fab"
+  and "fabrication plant" read as `wafer_fab`) approved at the S09 review (2026-10-02: "pick
+  your recommendations"; Claude's recommendation was to approve)
 - **Context:** `facility_kinds` has no claim field; IO-1 (`concept-dataset.md` §7) is the
   precedent for a basis table.
 - **Decision** (`facility-dataset.md` §4): each kind of each record has a basis row naming an
@@ -1477,8 +1479,9 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-083 — The event schema (H-2)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed (H-2: "Minimal event schema
-  (Recommended)", with the schema for the human's review)
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 review: "Approve
+  both (Recommended)"; its two flagged rulings, 준공 recorded as `opened` and the company as the
+  subject of a planned site's announcement, approved: "pick your recommendations")
 - **Context:** D-022 assigns the event schema to S09; MA §5.5, §5.6; ER-8.
 - **Decision** (`schemas/events.schema.json`; `facility-dataset.md` §6): fields `id`,
   `event_type`, `subject`, `date`, `claim_ids`. Types `announced`, `opened`, `expanded`,
@@ -1491,8 +1494,9 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-084 — Event rows in the preference matrix
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** proposed (adding rows approved by the
-  human at the start of S09: "Add the rows (Recommended)"; the rows' content is for review)
+- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (adding rows approved at the
+  start of S09: "Add the rows (Recommended)"; the rows' content at the S09 review, 2026-10-02:
+  "Approve both (Recommended)")
 - **Context:** `source-policy.md` §7 and §16 left event rows to S09; the S09 prompt did not
   list the policy as modifiable, so the human was asked first.
 - **Decision:** one row per event type (`event:announced`, `event:opened`,
