@@ -337,6 +337,10 @@ In practice:
 - lead with what will be different in the project, then give `D-xxx`, `Sxx`, `H-x`, schema or file names as the technical reference;
 - give every option a descriptive title and a concrete consequence;
 - group several small, consequence-free confirmations into one short line rather than inflating each into a full request;
-- if the session cannot say what A changes compared with B, it is not ready to ask; it reports the gap instead.
+- if the session cannot say what A changes compared with B, it is not ready to ask; it reports the gap instead;
+- in a session prompt, an open question's options carry outcome titles (what the project will be afterwards), never "Accept all", "Accept with changes" or "Reject", because the session will reuse them as the labels of an interactive question (`CLAUDE.md` §9A, interactive questions);
+- a bundled approval lists each item with one plain sentence of what it changes, in the question itself.
+
+A session loads `CLAUDE.md` when it starts and does not see later changes on its own. When a session merges the base branch, or otherwise pulls in new commits, it checks whether `CLAUDE.md`, `MASTER-ARCHITECTURE.md` or this file changed (`git diff --stat` over the merge) and, if so, re-reads them before asking the human anything further.
 
 When a decision has already been taken, the record of the answer (for example a session prompt's "human decisions taken" list) keeps the human's words verbatim; the §9A format applies to the question, not to rewriting the answer.
