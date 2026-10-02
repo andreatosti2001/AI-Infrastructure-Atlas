@@ -44,8 +44,11 @@ import navigate  # noqa: E402
 # design records the page quotes, the template and the three tools that compute it.
 INPUT_GLOBS = ("data/*.json", "data/staging/*.json", "schemas/*.json")
 INPUT_FILES = (
+    "docs/architecture/company-dataset.md",
     "docs/architecture/decisions.md",
     "docs/architecture/edge-dataset.md",
+    "docs/architecture/relationship-taxonomy.md",
+    "docs/research/source-policy.md",
     "tools/build_page.py",
     "tools/navigate.py",
     "tools/page_template.html",
@@ -164,6 +167,15 @@ class Homes:
         self.row_header, self.rows = rows[0], {row[0]: row for row in rows[2:]}
         decisions = (root / "docs/architecture/decisions.md").read_text(encoding="utf-8")
         self.decisions = {m.group(1): m.group(2).strip() for m in re.finditer(r"^## (D-\d{3}) — (.+)$", decisions, re.M)}
+        # a rule code's one-line home: the bold rule of its table row, or the **Rule** paragraph of the
+        # section titled with it (vertical-slice.md §5; D-108)
+        self.rules: dict[str, str] = {}
+        for path in ("docs/research/source-policy.md", "docs/architecture/relationship-taxonomy.md", "docs/architecture/company-dataset.md"):
+            text = (root / path).read_text(encoding="utf-8")
+            for m in re.finditer(r"^\| ((?:ER|RR|F)-\d+) \| \*\*(.+?)\*\*", text, re.M):
+                self.rules[m.group(1)] = m.group(2).replace("`", "")
+            for m in re.finditer(r"^## [^\n]*\(((?:ER|RR|F)-\d+)\)\n\n\*\*Rule\*\* \([^)]*\)\. (.+?)\n\n", text, re.M | re.S):
+                self.rules[m.group(1)] = " ".join(m.group(2).split()).replace("`", "")
         self.names: set[str] = set()
         for record in self.canonical.values():
             if "type" in record and "name" in record:
@@ -187,6 +199,12 @@ class Homes:
         if ref.startswith("doc:edge-dataset#"):
             row = self.rows[ref[len("doc:edge-dataset#") :]]
             return row[self.row_header.index(field)].replace("`", "")
+        if ref.startswith("doc:rules#"):
+            code = ref[len("doc:rules#") :]
+            if field == "code":
+                return code if code in self.rules else self.rules[code]
+            assert field == "rule", field
+            return self.rules[code]
         if ref.startswith("doc:decisions#"):
             key = ref[len("doc:decisions#") :]
             if field == "id":
@@ -348,7 +366,7 @@ class PageTests(unittest.TestCase):
     def test_pg2_derived_values(self) -> None:
         derived = [n for n in self.nodes if "data-derived" in n.attrs]
         kinds = {n.attrs["data-derived"] for n in derived}
-        self.assertLessEqual(kinds, {"input-file", "input-digest", "verified-first", "verified-last", "accessed-first", "accessed-last", "pointer", "bytes-match", "no-activity-edge", "lane-unlinked"})
+        self.assertLessEqual(kinds, {"input-file", "input-digest", "verified-first", "verified-last", "accessed-first", "accessed-last", "pointer", "bytes-match", "no-activity-edge", "lane-unlinked", "rule-home"})
         files = [n.text() for n in derived if n.attrs["data-derived"] == "input-file"]
         self.assertEqual(sorted(files), input_paths())
         digests = [n.text() for n in derived if n.attrs["data-derived"] == "input-digest"]
@@ -378,6 +396,9 @@ class PageTests(unittest.TestCase):
                 elif kind == "no-activity-edge":
                     self.assertEqual(self.atlas.actors_list(node.attrs["data-target"]), [])
                     self.assertEqual(node.text(), "no recorded relationship")
+                elif kind == "rule-home":
+                    home = (REPO_ROOT / node.text()).read_text(encoding="utf-8")
+                    self.assertRegex(home, rf"(\| {re.escape(node.attrs['data-target'])} \||\({re.escape(node.attrs['data-target'])}\)\n)", "the rule is not defined where the page says")
                 elif kind == "lane-unlinked":
                     self.assertEqual(node.text(), "not linked to any accelerator on this chain")
 
@@ -636,6 +657,11 @@ class PageTests(unittest.TestCase):
                 found = [rid for rid, r in self.homes.canonical.items() if "type" in r and (r["name"] in ends or set(r.get("aliases", [])) & set(ends))]
                 mark = next(m for m in self.marks if m.attrs["data-mark"] == "gap" and m.attrs["data-target"] == gap["claim"])
                 self.assertEqual(sorted(found), sorted([mark.attrs.get("data-from"), mark.attrs.get("data-to")]))
+        # every rule code quoted from the design record is listed with its home (D-108)
+        quoted = " ".join(n.text() for n in self.refs() if n.attrs["data-ref"].startswith("doc:edge-dataset#"))
+        listed = {n.attrs["data-ref"].split("#")[1] for n in self.refs() if n.attrs["data-ref"].startswith(("doc:rules#", "doc:decisions#"))}
+        for code in set(re.findall(r"\b(?:ER|RR|F)-\d+\b|\bD-\d{3}\b", quoted)):
+            self.assertIn(code, listed, f"rule {code} is quoted with no definition on the page")
         for decision in journey["decisions"]:
             self.assertIn(decision, self.homes.decisions)
             self.assertTrue(any(n.attrs.get("data-ref") == f"doc:decisions#{decision}" for n in self.nodes), f"{decision} not shown")

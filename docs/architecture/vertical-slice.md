@@ -1,6 +1,6 @@
 # Vertical slice — the HBM dependency journey
 
-**Status:** PROPOSED (S11, 2026-10-02): D-100 to D-107. Four rulings were taken by the human at
+**Status:** PROPOSED (S11, 2026-10-02): D-100 to D-108 (D-108: the changes from the human's new-user test). Four rulings were taken by the human at
 the start of S11 (2026-10-02, §1): M16 in a separate lane, Micron's HBM4 in the same lane, an
 input digest instead of a data commit, and the two test files outside the prompt's lists.
 **Session:** S11 · **Date:** 2026-10-02
@@ -117,7 +117,7 @@ points to what it depends on. So "downwards" always reads "depends on" or "acts 
 | 2 — products | AWS Trainium2; NVIDIA H100 |
 | 3 — component class | High Bandwidth Memory, with one supplier gap marker on each `incorporates` arrow |
 | 4 — technology class | 3D die stacking |
-| lane | a boxed area under a rule: "Also recorded — not linked to either accelerator": SK hynix → M16 (`operates`), and Micron HBM4 36GB 12H ("instance of" HBM, an entity field) |
+| lane | a dashed-outline area: "Also recorded in the Atlas — not linked to any accelerator on this chain": SK hynix → M16 (`operates`), and Micron HBM4 36GB 12H ("recorded as a kind of" HBM: a property of its record, not a supply link) |
 
 **Encoding** (each channel encodes one thing):
 
@@ -142,9 +142,11 @@ never the only carrier: "inferred" and "gap" are written, and the line styles di
 
 In MA §19's order, as sections of one page:
 
-1. **Headline:** the question (framing).
-2. **Short answer:** generated sentences, one per edge on the chain and one per supplier state,
-   each with its basis (stated / inferred). No framing sentence depends on the data.
+1. **Headline:** the question, and a "Jump to" bar of the sections (D-108).
+2. **Short answer:** one sentence composed from the records (the products, the part they share,
+   what it requires, who makes it; omitted when the products do not share one relation type and
+   one supplier state), then one line per edge on the chain and per supplier state, each with its
+   basis (stated / inferred). No framing sentence depends on the data.
 3. **Why it matters:** framing (it states no fact and names no record).
 4. **The visual**, its legend, and "The chain in words" (the text equivalent).
 5. **Key context:** what each product's maker states about its memory (the `incorporates`
@@ -174,9 +176,10 @@ Punctuation and arrows between annotated elements are allowed bare. A sentence s
 
 | Gap | Drawn | Text |
 |---|---|---|
-| HBM maker of each product: `not_researched` | an amber pill on each `incorporates` arrow, "maker of this part: not researched" | the state's schema definition, and D-094's title |
-| TSMC → H100 `fabricates`: a recorded gap (D-092) | TSMC's box, joined to H100 by a dotted amber line with no arrowhead and the pill "gap: no edge" | the canonical `DERIVATION` `claim-tsmc-fabricates-h100` in its own panel, labelled inferred, with D-092's title |
-| No recorded relationship (RR-7) | — | for each product with no activity edge, "no recorded relationship"; for the lane, "no recorded relationship to either accelerator" |
+| HBM maker of each product: `not_researched` | an amber pill on each `incorporates` arrow, "supplier (who makes it): not researched" | the state's schema definition, and D-094's title |
+| TSMC → H100 `fabricates`: a recorded gap (D-092) | TSMC's box, joined to H100 by a dotted amber line with no arrowhead and the pill "gap: no edge"; the legend and the lists say "a claim the Atlas holds, not an edge" (D-108) | the canonical `DERIVATION` `claim-tsmc-fabricates-h100` in its own panel, labelled inferred, with D-092's title |
+| No recorded relationship (RR-7) | — | for each product with no activity edge, "no recorded relationship"; for the lane, "not linked to any accelerator on this chain" (recomputed by the check) |
+| Rule codes in the quoted reasons | — | "Rules cited above": each ER-, RR-, F- or D- code with its one-line home (D-108). A section mark (§) gets one framing sentence pointing to the design record, not a guessed definition |
 | Candidates that are not edges | — | four `edge-dataset.md` §1 rows: TSMC → H100 (with the drawn gap, above), and in a table SK hynix, Micron → NVIDIA; NVIDIA → H100; Micron → HBM4 36GB 12H. Their candidate, type and "why not" cells, attributed to the design record. The "sentence" cell is not shown: where it is not a claim, it is not canonical evidence |
 
 **Never "none", never zero, never absence.** A gap has a mark and a word. The page never prints
@@ -193,10 +196,13 @@ product's fabricator. The other eight rows concern records off the page.
 
 - the record: its ID, type, name, and for an edge the sentence `<source> <type> <target>`, its
   level, its period ("no period in the claims" when it has none) and its `supplier`;
-- each claim it cites, under the JSON path that cites it: type, status, `verified_on`, review
-  state, statement, `as_of`;
-- each citation: source title, publisher, class, standing, URL, each stated date, access time,
-  locator, the anchor (quoted) and the Verifier's read;
+- each claim it cites, under the JSON path that cites it: type, status and statement first, then
+  `as_of`, the citations, the reasoning, and last the claim ID, `verified_on` and review state
+  (D-108). The claims of `legal_name`, `incorporated_in`, `headquartered_in`, `located_in` and
+  `locality` sit in a closed disclosure: they say what a record is legally or where it is, which
+  the question does not ask;
+- each citation: the anchor (quoted) first, then source title, publisher, locator, class,
+  standing, each stated date, access time, URL and the Verifier's read;
 - for a `DERIVATION` (or `INTERPRETATION`): the reasoning, shown open, and its input claims in a
   disclosure ("Inputs to this inference"), recursively.
 
@@ -241,7 +247,7 @@ of access times over the claims and sources on the page (derived, recomputed by 
 | PG-7 | a rebuild that differs from the committed page, or two builds that differ |
 | PG-8 | accessibility basics: `lang`, title, one `h1`, heading order, SVG title and description, a focusable link per mark, no `tabindex="-1"` on a mark, hover rules without focus, colours outside the palette, palette contrast |
 | PG-9 | a link to a file that does not exist, or a fragment with no target; any `http(s)` resource loaded by the page (scripts, styles, images, fonts) |
-| PG-10 | the build specification out of step with its homes: a §1 row, a decision or a lane record that no longer exists |
+| PG-10 | the build specification out of step with its homes: a §1 row, a decision or a lane record that no longer exists; a rule code quoted with no definition on the page |
 
 **Browser QA (H-3):** a scratch Playwright run with the pre-installed Chromium, outside the
 repository: desktop (1280 px) and 375 px screenshots; no horizontal scroll at 375 px; the Tab

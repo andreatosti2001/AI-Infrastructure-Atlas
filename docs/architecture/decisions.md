@@ -1781,3 +1781,29 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   checked by `tests/test_page.py`. `tests/test_agent_contracts.py`'s expected active set gains the
   two roles.
 - **Rejected:** leaving both inactive with the work under the Data Auditor (H-5's alternative).
+
+## D-108 — Changes from the human's new-user test
+
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** the human's new-user test. Asked for suggestions ("Gimme suggestions"), Claude
+  proposed seven changes; the human answered "I agree, follow the principle of “not
+  overreachment”" (2026-10-02).
+- **Decision** (`vertical-slice.md` §4 to §6): (1) the rule codes quoted from `edge-dataset.md` §1
+  (ER-, RR-, F-, D-) are listed under "Rules cited above", each with its one-line home (the bold
+  rule of its table row, the **Rule** paragraph of the section titled with it, or the decision
+  title); section marks get one framing sentence, not a guessed definition; (2) a drawn gap says
+  "a claim the Atlas holds, not an edge", in the legend, the words and the gaps list; (3) the short
+  answer opens with one sentence composed from the records, omitted when the products do not share
+  one relation type and one supplier state; (4) a record panel puts the claims of
+  `legal_name`, `incorporated_in`, `headquartered_in`, `located_in` and `locality` in a closed
+  disclosure; (5) a claim card leads with its type, status and statement, and a citation with its
+  anchor; the claim ID, verification and review follow; (6) "supplier (who makes this part)"
+  replaces "maker of this part", and "recorded as a kind of … a property of its record, not a
+  supply link" replaces "instance of … an entity field, not an edge" in the lane; (7) a "Jump to"
+  bar under the title. The build reads three more documents (the rule homes), so they join its
+  inputs. PG-10 checks that every quoted rule code is listed.
+- **Not done** (the human's "not overreachment"): no plain-language rewrite of the design record's
+  reasons (they stay quoted verbatim); no definition for a bare section mark; no further cut of the
+  evidence panels (each mark still opens its full evidence in one click).
+- **Rejected:** rewriting the "why not" cells in plain words (a second home for the reasons);
+  collapsing claim cards (the evidence would sit two clicks from its mark).
