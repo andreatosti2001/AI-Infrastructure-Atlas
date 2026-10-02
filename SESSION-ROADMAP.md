@@ -40,6 +40,57 @@ M7 Final Audits + Release
 
 ---
 
+# Cross-cutting capability — Visual Intelligence & Data Storytelling
+
+This is a cross-cutting product capability, not a separate decorative frontend track.
+
+### Objective
+
+Produce infographics and analytical views that combine:
+
+`validated evidence -> derived insight -> appropriate visual grammar -> editorial composition -> auditable presentation`
+
+The benchmark is the level of clarity, hierarchy and polish expected from serious institutional, think-tank and data-journalism products.
+
+### Required visual forms
+
+The Atlas should be able to use, where analytically appropriate:
+
+- ranked bars / dot plots;
+- timelines and annotated time series;
+- maps;
+- KPI / indicator blocks;
+- composition views such as stacked bars and selective donut/treemap use;
+- dependency / flow diagrams;
+- relationship/network diagrams;
+- heatmaps or matrices;
+- small multiples for structured comparison.
+
+### Cross-session placement
+
+- **S11:** first end-to-end infographic-quality vertical slice;
+- **S12:** visual/data-model integrity audit;
+- **S13:** evidence/provenance and content-to-visual audit;
+- **S14-S16:** metrics and derivations must expose lineage suitable for visualisation;
+- **S20:** researcher-facing data-storytelling UX;
+- **S22:** visual regression, responsive and accessibility audit;
+- **S25:** release with a documented set of representative analytical visualisations.
+
+### Design rule
+
+The Atlas should not become a generic dashboard generator. Visuals exist to make evidence and relationships easier to understand. Reusable templates should emerge only after real infographic compositions demonstrate which patterns are worth standardising.
+
+### Visual QA questions
+
+Every major visual should survive four checks:
+
+1. **Truth:** does it faithfully encode the underlying data?
+2. **Clarity:** can the intended comparison or relationship be understood quickly?
+3. **Context:** are dates, denominators, scope, uncertainty and provenance sufficiently visible?
+4. **Presentation:** is the composition polished, consistent and usable across screen sizes?
+
+---
+
 # M0 — Project Constitution
 
 ## S00 — Repository bootstrap
@@ -244,6 +295,9 @@ Trace one AI compute dependency chain upstream.
 ### Gate
 The journey is usable by a person who did not build the dataset.
 
+### Visual requirement
+The vertical slice must include at least one editorial-quality analytical visual, not only a raw chart or graph. The visual must connect visibly to the evidence chain.
+
 ---
 
 ## S12 — Data architecture audit
@@ -260,7 +314,9 @@ Independently challenge the canonical data model and the first vertical slice.
 - temporal correctness;
 - provenance completeness;
 - queryability;
-- migration risk.
+- migration risk;
+- whether visual outputs are derived from canonical/derived data rather than duplicated presentation data;
+- whether the visual model preserves scope, units and temporal semantics.
 
 ### Required output
 Architecture Audit Report + remediation decisions.
@@ -279,7 +335,9 @@ Sample claims and relationships and test whether the content layer is stronger t
 - evidence overreach;
 - stale claims;
 - conflicting sources;
-- interpretation/fact boundary.
+- interpretation/fact boundary;
+- whether visual annotations and takeaways remain supported by the underlying evidence;
+- whether the visual removes material caveats or uncertainty.
 
 ### Gate
 No scaling until evidence weaknesses are corrected or explicitly documented.
@@ -405,10 +463,14 @@ Turn the knowledge system into a product that answers concrete investigation que
 - investigate a company;
 - investigate a country;
 - inspect evidence;
-- compare layers.
+- compare layers;
+- understand a quantitative or temporal relationship through an editorial-quality visual.
 
 ### Gate
 Each major UI feature maps to a documented user question.
+
+### Visual UX requirement
+The interface should favour analytical storytelling over dashboard clutter: clear hierarchy, appropriately selected charts, annotations, contextual figures and visible evidence/provenance.
 
 ---
 
@@ -448,7 +510,10 @@ Audit the complete repository as an engineered software system.
 - accessibility;
 - performance;
 - security basics;
-- complexity.
+- complexity;
+- visual regression and rendering consistency;
+- responsive behaviour of major infographics;
+- chart/data binding correctness.
 
 ---
 
@@ -504,7 +569,8 @@ Freeze a coherent v1.0, document what was learned, and establish the evidence ba
 - known limitations;
 - future research backlog;
 - portfolio case study;
-- demonstration dataset and user journey.
+- demonstration dataset and user journey;
+- representative infographic set showing the visual language and evidence-aware storytelling capability.
 
 ### Exit condition
 The project is considered complete only when another person can understand:

@@ -87,6 +87,32 @@ Never rewrite an interpretation as a fact merely to make prose sound authoritati
 
 When evidence is incomplete, make the limitation visible.
 
+## 6A. Visual intelligence and editorial design
+
+The public product is not only a data interface. It must communicate validated evidence through professional, evidence-aware data storytelling.
+
+Treat visualisation as a first-class layer between analysis and presentation:
+
+`validated data -> derivation -> insight -> visual specification -> editorial composition -> presentation`
+
+Use an analytical visual grammar: choose bars, timelines, maps, relationship diagrams, KPI blocks, small multiples, matrices or other forms according to the question being answered.
+
+Target the clarity and polish of professional institutional, think-tank and data-journalism products. Benchmark hierarchy, composition, annotation, typography, spacing and information density, but never copy another organisation's branding or visual identity.
+
+Every substantive visual must preserve provenance and analytical scope. A chart that is numerically correct can still fail if its encoding, scale, labels or composition are misleading.
+
+Before declaring a visual feature done, check:
+
+- analytical question is explicit;
+- visual form is appropriate to that question;
+- hierarchy and comparison are immediately legible;
+- labels, units, dates and denominators are clear;
+- mobile and accessibility behaviour are acceptable;
+- source/provenance treatment is available;
+- styling does not distort or overstate the evidence.
+
+Prefer a small number of high-quality end-to-end infographic compositions before abstracting recurring visual patterns into reusable systems.
+
 ## 7. Data architecture rules
 
 Use one home per fact.
