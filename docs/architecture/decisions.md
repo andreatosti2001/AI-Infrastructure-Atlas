@@ -1553,7 +1553,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-089 — Edge scope: five edges, and the candidates that fail §5 (H-1)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
 - **Context:** H-1 ("I agree", 2026-10-02, to product and company edges first, then `operates`
   for M16, then class edges; about 10–12 edges). The registered filings and product pages were
   re-read (H-4, D-075).
@@ -1569,7 +1569,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-090 — Edge ID rule (RI-1)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
 - **Context:** Part B §06 q2: a stable, non-editorial rule from the type and endpoints, with
   `item` where the type has one, machine-checked as FI-1 and EI-1 are.
 - **Decision** (`edge-dataset.md` §2): `rel-<source_entity>-<type, _ as ->-<target_entity>`, and
@@ -1580,8 +1580,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-091 — A class edge read out of a definition (the human's ruling)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** proposed; the ruling itself was given
-  at the start of S10 (2026-10-02, a §16 stop condition: "Allow, as DERIVATION (Recommended)")
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)"; the edge approved as a
+  flagged ruling: "E5: HBM requires 3D die stacking (D-091)"); the ruling itself was given at the start of S10 (2026-10-02, a §16 stop condition: "Allow, as DERIVATION (Recommended)")
 - **Context:** `requires` needs necessity stated for the class (§5). The ECP report defines HBM
   as vertically stacked DRAM dies directly connected by TSVs; no source states "HBM requires 3D
   die stacking" in words, and ER-1 does not cover the step.
@@ -1593,7 +1593,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-092 — TSMC → H100 `fabricates` is a gap until fresh evidence (the human's ruling)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** proposed; the ruling was given at the
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)"); the ruling was given at the
   start of S10 (2026-10-02: "Gap until fresh evidence (Recommended)")
 - **Context:** the edge meets §5 only as an ER-1 `DERIVATION` from "Using the TSMC 4N fabrication
   process enables H100" (`claim-h100-process-name`), whose source was last modified 2025-07-22.
@@ -1606,7 +1606,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-093 — "AWS-designed" gives a `designs` edge from `company-amazon-com` (the human's ruling)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** proposed; the ruling was given at the
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)"); the ruling was given at the
   start of S10 (2026-10-02: "company-amazon-com, as D-074 (Recommended)")
 - **Context:** Amazon's release (`src-052`) names "Amazon Web Services, Inc. (AWS), an
   Amazon.com, Inc. company" announcing "two AWS-designed chip families—AWS Graviton4 and AWS
@@ -1619,7 +1619,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-094 — Unknown HBM suppliers are `not_researched`
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
 - **Context:** `incorporates` requires `supplier` (D-031); ER-3 and D-049 set when
   `not_publicly_determinable` may be claimed.
 - **Decision** (`edge-dataset.md` §5): both `incorporates` edges carry `not_researched`; no
@@ -1631,7 +1631,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-095 — No new company records in S10 (H-3)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
 - **Context:** H-3 ("Only when an edge needs it (Recommended)").
 - **Decision** (`edge-dataset.md` §6): none is created. A subsidiary named in a parent's filing
   cannot meet D-057 (the filer's own statement of its legal name), and no supplier has a
@@ -1640,7 +1640,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-096 — validate-data and validate-freshness for edges
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
 - **Context:** `relationship-taxonomy.md` §15 (V-1 to V-9), D-033, L-05, L-09; Part B §06 q8.
 - **Decision** (`edge-dataset.md` §7, §10): `tests/test_data_relationships.py` runs V-1 to V-6,
   V-9, V-10 (with the ER-3 search coverage), CE-1, RI-1 and four evidence guards (PL-1, EP-1,
@@ -1653,7 +1653,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-097 — Navigation from the JSON files (H-5)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
 - **Context:** H-5 ("Re-retrieve + RA-4; nav tool (Recommended)"); the roadmap gate "Graph-like
   navigation is possible using relational data without introducing a graph database".
 - **Decision** (`edge-dataset.md` §8): `tools/navigate.py`, standard library, answers
@@ -1664,7 +1664,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-098 — Layout, review and promotion for edges (H-2, H-6)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
 - **Context:** H-2 and H-6 ("One file, review in S10 (Recommended)").
 - **Decision** (`edge-dataset.md` §9): `data/relationships.json` and
   `data/staging/relationships.json`, the relation type as a field. Promotion as D-061, on the
@@ -1674,7 +1674,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-099 — SK hynix `operates` M16 as a `DERIVATION` (flagged for the review)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)"; the edge approved as a flagged ruling: "E4: SK hynix operates M16 (D-099)")
 - **Context:** D-082 left to S10 whether SK hynix's "생산공장을 설치ㆍ가동" (it operates its
   production plants in 경기도 이천시), with M16 listed as its plant in 이천, meets `operates`.
 - **Decision:** the edge rests on `claim-sk-hynix-operates-m16`, a `DERIVATION` from those

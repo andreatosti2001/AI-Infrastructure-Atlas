@@ -3,7 +3,7 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 
 ## Status
 
-**M2 — Canonical Dataset (S07 to S09 complete; S10 to come).** The repository contains governance documents, the
+**M2 — Canonical Dataset (complete with S10; M3 next).** The repository contains governance documents, the
 session system, a repository-integrity check, the S01 domain map, the accepted entity
 schema (S03), the accepted relationship schema (S04), the accepted source policy with its
 source-class vocabulary (S05), the accepted claim model (S06), and the first canonical
@@ -13,7 +13,9 @@ rule; and (S08) 7 components, 9 technologies and 3 products, each concept define
 `INTERPRETATION` over government, research and policy-research sources (5 of the technologies
 became canonical at the end of S09, when the human approved the last two S08 rulings); and (S09) 2
 facilities, each placed by a site sentence and never by a headquarters one, with 4 dated
-events in a new event schema, from which a facility's status is derived, never stored. It contains **no relationship records and no UI yet**. See
+events in a new event schema, from which a facility's status is derived, never stored; and (S10) the first 5
+relationship records, each resting on claims that meet the taxonomy's evidence expectation for
+its type, navigable from the JSON files by `tools/navigate.py` without a graph database. It contains **no UI yet**. See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is
 planned.
 
@@ -24,11 +26,11 @@ This is an independent repository. It shares no code, data or runtime with
 
 ```text
 CLAUDE.md, MASTER-ARCHITECTURE.md, ...   constitutional documents (see docs/README.md)
-data/            source records, canonical claims, companies, jurisdictions, technologies, components, products, facilities and events; staging/ holds records awaiting the human's review
-docs/            documentation map, baseline, decision log, entity and relationship taxonomies, claim model, company, concept and facility datasets, milestone audits, agent roles and contracts, research, source policy
+data/            source records, canonical claims, companies, jurisdictions, technologies, components, products, facilities, events and relationships; staging/ holds records awaiting the human's review
+docs/            documentation map, baseline, decision log, entity and relationship taxonomies, claim model, company, concept, facility and edge datasets, milestone audits, agent roles and contracts, research, source policy
 schemas/         JSON Schema for entity records (accepted, S03), relationship records (accepted, S04), source records around the accepted source-class vocabulary (S05, S06), claims (S06) and facility events (S09)
 sessions/        session prompts, prompt registry and session reports
-tools/           Gate 0 validator, the trace command and the facility status derivation
+tools/           Gate 0 validator, the trace command, the facility status derivation and edge navigation
 tests/           unit tests for tools/, schemas/ and data/ (validate-data), with fictional fixtures
 .github/         CI
 ```
@@ -46,6 +48,7 @@ python -m unittest discover -s tests -p "test_data*.py" -v   # validate-data
 python -m unittest discover -s tests -p "test_freshness.py" -v   # validate-freshness
 python tools/trace.py company-nvidia                         # what supports a record or claim
 python tools/facility_status.py facility-kr-m16 --on 2026-10-02   # a facility's derived status
+python tools/navigate.py depends-on technology-3d-die-stacking   # what depends on a record (S10)
 ```
 
 CI runs both on every push and pull request.

@@ -1,8 +1,9 @@
 # Edge dataset — the first relationship records
 
-**Status:** PROPOSED (S10): D-089 to D-099. Four rulings were taken by the human at the start of
-S10 (2026-10-02, §1): the class edge from a definition (D-091), the TSMC → H100 gap (D-092), the
-AWS designer endpoint (D-093) and the RA-4 request for TSMC's 20-F (§11).
+**Status:** ACCEPTED (S10 review, 2026-10-02): D-089 to D-099 ("Approve all (Recommended)"). Four
+rulings were taken by the human at the start of S10 (2026-10-02, §1): the class edge from a
+definition (D-091), the TSMC → H100 gap (D-092), the AWS designer endpoint (D-093) and the RA-4
+request for TSMC's 20-F (§11, closed as a gap at the review). The five edges are canonical (§9).
 **Session:** S10 · **Date:** 2026-10-02
 **Inputs:**
 - `relationship-taxonomy.md` §1 (RR-1 to RR-10), §2 (types, kind constraints), §4, §5
@@ -61,7 +62,7 @@ then class edges.
 | TSMC → H100 `fabricates` fails F-1 | "Gap until fresh evidence (Recommended)" | D-092 |
 | Which endpoint for "AWS-designed"? | "company-amazon-com, as D-074 (Recommended)" | D-093 |
 
-**Edges** (staging until the human's review, §9):
+**Edges** (canonical since the S10 review, §9):
 
 | Edge | Type | Claim | §5 met as | Note |
 |---|---|---|---|---|
@@ -253,6 +254,11 @@ canonical. CE-1 extends to edges. The human's verdicts go verbatim into
 The flagged rulings (`operates` for M16; the class edge) are asked as separate questions. An
 unticked box leaves that edge in staging.
 
+**What the S10 review promoted** (2026-10-02): the batch ("Accept all (Recommended)"), both flagged
+edges ("E4: SK hynix operates M16 (D-099),E5: HBM requires 3D die stacking (D-091)") and the
+decisions ("Approve all (Recommended)"). All five edges and all six S10 claims are canonical,
+including `claim-tsmc-fabricates-h100`, which supports no edge (D-092). Staging is empty.
+
 ## 10. validate-data for edges
 
 | Check | What it checks | Where |
@@ -308,8 +314,9 @@ architecture page; the H100 PCIe product brief (2022); AWS's Trainium page.
 2026-10-02). English DART's report index page did not return its section list on 2026-10-02,
 so SK hynix's report was not searched for named customers in S10.
 
-**RA-4.** The human agreed to re-supply TSMC's 20-F ("Re-supply it (Recommended)"). Until it
-arrives `src-031` is not cited again (D-075).
+**RA-4.** The human agreed to re-supply TSMC's 20-F ("Re-supply it (Recommended)"). It did not
+reach the session, and at the review the human chose "Close as a gap (Recommended)". `src-031` was
+not cited again (D-075); TSMC's supplier sentences are a recorded gap.
 
 ## 12. Candidates considered and rejected
 
