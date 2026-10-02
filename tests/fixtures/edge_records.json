@@ -1,0 +1,544 @@
+{
+  "_about": "Fictional edges over the fictional entity world of tests/fixtures/entity_records.json (S10; edge-dataset.md §10). They assert nothing about the world. 'sources' and the claims are added to that world; 'product_overrides' sets fields of its products (Chip One's process name, for EP-1); 'product_terms' is this world's product table (PL-1). Each fault is one change that one check must catch; each warning one record that must raise a warning and no error of its kind.",
+  "valid": {
+    "sources": [
+      {
+        "id": "src-917",
+        "source_class": "company_technical_documentation",
+        "title": "Example Designer Chip One architecture page",
+        "publisher": "Example Designer Inc.",
+        "publisher_entity": {
+          "state": "not_researched"
+        },
+        "authors": {
+          "state": "not_researched"
+        },
+        "url": "https://example.com/src-917",
+        "stated_dates": {
+          "state": "undated"
+        },
+        "retrieval": {
+          "method": "automated",
+          "accessed_at": "2026-09-29T09:00Z",
+          "sha256": "1212121212121212121212121212121212121212121212121212121212121212"
+        }
+      }
+    ],
+    "canonical_claims": [
+      {
+        "id": "claim-fixture-401",
+        "claim_type": "FACT",
+        "statement": "Example Designer states that it designed Chip One in its own design centres.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-911",
+            "locator": "p.4, products",
+            "anchor": "We designed Chip One in our own design centres",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "abababababababababababababababababababababababababababababababab"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-09-30",
+          "recorded_in": "sessions/reports/SESSION-10-REPORT.md"
+        }
+      },
+      {
+        "id": "claim-fixture-403",
+        "claim_type": "FACT",
+        "statement": "Example Designer names the fabrication process of Chip One “Example Foundry 3X”.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-917",
+            "locator": "section 'Process'",
+            "anchor": "Chip One is fabricated using the Example Foundry 3X process",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "1212121212121212121212121212121212121212121212121212121212121212"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-09-30",
+          "recorded_in": "sessions/reports/SESSION-10-REPORT.md"
+        }
+      },
+      {
+        "id": "claim-fixture-406",
+        "claim_type": "FACT",
+        "statement": "An example research report states that every example accelerator needs example stacking to be made.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-915",
+            "locator": "p.7",
+            "anchor": "every example accelerator needs example stacking to be made",
+            "standing": "originator",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "verdict": "accepted",
+          "reviewer": "human",
+          "reviewed_on": "2026-09-30",
+          "recorded_in": "sessions/reports/SESSION-10-REPORT.md"
+        }
+      }
+    ],
+    "staging_claims": [
+      {
+        "id": "claim-fixture-402",
+        "claim_type": "FACT",
+        "statement": "Example Designer states that Chip One contains example GPU memory stacks.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-917",
+            "locator": "section 'Memory'",
+            "anchor": "Chip One contains example GPU memory stacks",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "1212121212121212121212121212121212121212121212121212121212121212"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-404",
+        "claim_type": "DERIVATION",
+        "statement": "Example Foundry performs the wafer fabrication of Chip One.",
+        "evidence_status": "supported",
+        "input_claim_ids": [
+          "claim-fixture-403"
+        ],
+        "reasoning": "ER-1: Example Foundry is named only inside the process name the vendor gives for Chip One.",
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-405",
+        "claim_type": "FACT",
+        "statement": "Example Foundry states that it operates Example Fab 1.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-914",
+            "locator": "p.5, properties",
+            "anchor": "Example Foundry operates Example Fab 1 since March 2025",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "abababababababababababababababababababababababababababababababab"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-407",
+        "claim_type": "FACT",
+        "statement": "Example Foundry states that it supplies example GPUs to Example Designer Inc.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-914",
+            "locator": "p.6, customers",
+            "anchor": "We supply example GPUs to Example Designer Inc.",
+            "standing": "party",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "abababababababababababababababababababababababababababababababab"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-408",
+        "claim_type": "DERIVATION",
+        "statement": "Which company supplies the example GPU memory stacks in Chip One is not publicly determinable from the preferred classes searched.",
+        "evidence_status": "supported",
+        "search": {
+          "question": "Which company supplies the example GPU memory stacks in Chip One?",
+          "searched_on": "2026-09-30",
+          "classes": [
+            {
+              "source_class": "company_technical_documentation",
+              "outcome": "no_answer",
+              "source_ids": [
+                "src-917"
+              ]
+            },
+            {
+              "source_class": "company_filing",
+              "outcome": "no_answer",
+              "source_ids": [
+                "src-911",
+                "src-914"
+              ]
+            }
+          ],
+          "conclusion": "not_publicly_determinable"
+        },
+        "reasoning": "ER-3: every preferred class of rel:incorporates.supplier was searched for this product, and none names the maker.",
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      }
+    ],
+    "product_overrides": {
+      "product-example-designer-chip-one": {
+        "vendor_process_name": [
+          {
+            "value": "Example Foundry 3X",
+            "claim_ids": [
+              "claim-fixture-403"
+            ]
+          }
+        ]
+      }
+    },
+    "product_terms": [
+      [
+        "product-example-designer-chip-one",
+        "Chip One"
+      ]
+    ],
+    "relationships": {
+      "canonical": [
+        {
+          "id": "rel-company-example-designer-designs-product-example-designer-chip-one",
+          "relation_type": "designs",
+          "source_entity": "company-example-designer",
+          "target_entity": "product-example-designer-chip-one",
+          "claim_ids": [
+            "claim-fixture-401"
+          ]
+        },
+        {
+          "id": "rel-component-example-accelerator-requires-technology-example-stacking",
+          "relation_type": "requires",
+          "source_entity": "component-example-accelerator",
+          "target_entity": "technology-example-stacking",
+          "claim_ids": [
+            "claim-fixture-406"
+          ]
+        }
+      ],
+      "staging": [
+        {
+          "id": "rel-product-example-designer-chip-one-incorporates-component-example-gpu",
+          "relation_type": "incorporates",
+          "source_entity": "product-example-designer-chip-one",
+          "target_entity": "component-example-gpu",
+          "claim_ids": [
+            "claim-fixture-402"
+          ],
+          "supplier": {
+            "state": "not_publicly_determinable",
+            "claim_ids": [
+              "claim-fixture-408"
+            ]
+          }
+        },
+        {
+          "id": "rel-company-example-foundry-fabricates-product-example-designer-chip-one",
+          "relation_type": "fabricates",
+          "source_entity": "company-example-foundry",
+          "target_entity": "product-example-designer-chip-one",
+          "claim_ids": [
+            "claim-fixture-404"
+          ]
+        },
+        {
+          "id": "rel-company-example-foundry-operates-facility-xa-example-fab-1",
+          "relation_type": "operates",
+          "source_entity": "company-example-foundry",
+          "target_entity": "facility-xa-example-fab-1",
+          "claim_ids": [
+            "claim-fixture-405"
+          ],
+          "valid_from": "2025-03"
+        },
+        {
+          "id": "rel-company-example-foundry-supplies-company-example-designer-component-example-gpu",
+          "relation_type": "supplies",
+          "source_entity": "company-example-foundry",
+          "target_entity": "company-example-designer",
+          "claim_ids": [
+            "claim-fixture-407"
+          ],
+          "item": "component-example-gpu"
+        }
+      ]
+    }
+  },
+  "faults": [
+    {
+      "name": "an endpoint that does not exist (V-1)",
+      "action": "set_edge_field",
+      "where": "staging",
+      "index": 0,
+      "field": "target_entity",
+      "expect": "does not exist",
+      "value": "component-example-missing"
+    },
+    {
+      "name": "an edge citing a claim that does not exist (V-1)",
+      "action": "set_edge_field",
+      "where": "canonical",
+      "index": 0,
+      "field": "claim_ids",
+      "expect": "cites missing claim claim-fixture-499",
+      "value": [
+        "claim-fixture-499"
+      ]
+    },
+    {
+      "name": "a houses edge from a wafer fab (V-2)",
+      "action": "add_edge",
+      "where": "staging",
+      "record": {
+        "id": "rel-facility-xa-example-fab-1-houses-product-example-designer-chip-one",
+        "relation_type": "houses",
+        "source_entity": "facility-xa-example-fab-1",
+        "target_entity": "product-example-designer-chip-one",
+        "claim_ids": [
+          "claim-fixture-402"
+        ]
+      },
+      "expect": "is not a data_centre"
+    },
+    {
+      "name": "an edge from a record to itself (V-3)",
+      "action": "add_edge",
+      "where": "canonical",
+      "record": {
+        "id": "rel-component-example-accelerator-requires-component-example-accelerator",
+        "relation_type": "requires",
+        "source_entity": "component-example-accelerator",
+        "target_entity": "component-example-accelerator",
+        "claim_ids": [
+          "claim-fixture-406"
+        ]
+      },
+      "expect": "from a record to itself"
+    },
+    {
+      "name": "valid_from after valid_to (V-4)",
+      "action": "set_edge_field",
+      "where": "staging",
+      "index": 2,
+      "field": "valid_to",
+      "expect": "is after valid_to",
+      "value": "2024-01"
+    },
+    {
+      "name": "two edges for one relation over overlapping periods (V-5)",
+      "action": "add_edge",
+      "where": "staging",
+      "record": {
+        "id": "rel-company-example-foundry-operates-facility-xa-example-fab-1-again",
+        "relation_type": "operates",
+        "source_entity": "company-example-foundry",
+        "target_entity": "facility-xa-example-fab-1",
+        "claim_ids": [
+          "claim-fixture-405"
+        ]
+      },
+      "expect": "same type, endpoints and item"
+    },
+    {
+      "name": "a requires edge restating broader (V-6)",
+      "action": "add_edge",
+      "where": "staging",
+      "record": {
+        "id": "rel-component-example-gpu-requires-component-example-accelerator",
+        "relation_type": "requires",
+        "source_entity": "component-example-gpu",
+        "target_entity": "component-example-accelerator",
+        "claim_ids": [
+          "claim-fixture-406"
+        ]
+      },
+      "expect": "restates broader"
+    },
+    {
+      "name": "a placeholder endpoint (V-9)",
+      "action": "set_edge_field",
+      "where": "staging",
+      "index": 0,
+      "field": "target_entity",
+      "expect": "placeholder",
+      "value": "component-unknown-memory"
+    },
+    {
+      "name": "operates resting only on a class the row never accepts (V-10)",
+      "action": "set_citation_field",
+      "claim": "claim-fixture-405",
+      "field": "source_id",
+      "value": "src-915",
+      "expect": "no citation with a class and standing that rel:operates allows"
+    },
+    {
+      "name": "designs resting on reporter standing (V-10)",
+      "action": "set_citation_field",
+      "claim": "claim-fixture-401",
+      "field": "standing",
+      "value": "reporter",
+      "expect": "no citation with a class and standing that rel:designs allows"
+    },
+    {
+      "name": "a not_publicly_determinable supplier whose search skipped a preferred class (V-10, ER-3)",
+      "action": "drop_search_class",
+      "claim": "claim-fixture-408",
+      "source_class": "company_filing",
+      "expect": "did not search the preferred class company_filing"
+    },
+    {
+      "name": "a canonical edge citing a staging claim (CE-1)",
+      "action": "set_edge_field",
+      "where": "canonical",
+      "index": 0,
+      "field": "claim_ids",
+      "expect": "cites staging claim claim-fixture-402",
+      "value": [
+        "claim-fixture-402"
+      ]
+    },
+    {
+      "name": "a canonical edge with a staging endpoint (CE-1)",
+      "action": "move_edge",
+      "from": "staging",
+      "index": 2,
+      "expect": "points to non-canonical company-example-foundry"
+    },
+    {
+      "name": "an edge ID that does not follow the rule (RI-1)",
+      "action": "set_edge_field",
+      "where": "canonical",
+      "index": 0,
+      "field": "id",
+      "expect": "not rel- plus",
+      "value": "rel-designer-designs-chip-one"
+    },
+    {
+      "name": "a product edge resting on a company-level sentence (PL-1, ER-9)",
+      "action": "set_edge_field",
+      "where": "staging",
+      "index": 0,
+      "field": "claim_ids",
+      "expect": "never names the product",
+      "value": [
+        "claim-fixture-407"
+      ]
+    },
+    {
+      "name": "fabricates resting directly on a process name (EP-1, ER-1)",
+      "action": "set_edge_field",
+      "where": "staging",
+      "index": 1,
+      "field": "claim_ids",
+      "expect": "process name",
+      "value": [
+        "claim-fixture-403"
+      ]
+    },
+    {
+      "name": "an edge resting on an announcement (PE-1, ER-8)",
+      "action": "set_edge_field",
+      "where": "staging",
+      "index": 2,
+      "field": "claim_ids",
+      "expect": "announced",
+      "value": [
+        "claim-fixture-342"
+      ]
+    },
+    {
+      "name": "a class edge from co-mention (RV-1, RR-1)",
+      "action": "set_citation_field",
+      "claim": "claim-fixture-406",
+      "field": "anchor",
+      "value": "example accelerators and example stacking are listed in the glossary",
+      "expect": "no relation word"
+    }
+  ],
+  "warnings": [
+    {
+      "name": "a supplied product whose vendor is not the supplier (V-7)",
+      "record": {
+        "id": "rel-company-example-foundry-supplies-company-example-designer-product-example-designer-chip-one",
+        "relation_type": "supplies",
+        "source_entity": "company-example-foundry",
+        "target_entity": "company-example-designer",
+        "claim_ids": [
+          "claim-fixture-407"
+        ],
+        "item": "product-example-designer-chip-one"
+      },
+      "expect": "vendor"
+    },
+    {
+      "name": "a fabless designer that fabricates (V-8, RW-2)",
+      "record": {
+        "id": "rel-company-example-designer-fabricates-product-example-designer-chip-one",
+        "relation_type": "fabricates",
+        "source_entity": "company-example-designer",
+        "target_entity": "product-example-designer-chip-one",
+        "claim_ids": [
+          "claim-fixture-404"
+        ]
+      },
+      "expect": "RW-2"
+    }
+  ]
+}

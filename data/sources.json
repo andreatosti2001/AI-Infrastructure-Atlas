@@ -1173,5 +1173,57 @@
       "accessed_at": "2026-10-02T12:23Z",
       "sha256": "2b1d929edb4fa3e170fab7b2bfc8f198c551ec92049093adb58bec9fc35dc365"
     }
+  },
+  {
+    "id": "src-051",
+    "source_class": "company_technical_documentation",
+    "title": "NVIDIA Hopper Architecture In-Depth (retrieval of 2026-10-02; earlier bytes: src-006, src-042)",
+    "publisher": "NVIDIA (NVIDIA Technical Blog)",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2022-03-22"
+      },
+      {
+        "kind": "modified",
+        "date": "2025-07-22"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-02T16:17Z",
+      "sha256": "6d0f13b0975671d77b406913c54f076a7a26381fcc4c609b7ca93cde4916a347"
+    }
+  },
+  {
+    "id": "src-052",
+    "source_class": "company_press_release",
+    "title": "AWS Unveils Next Generation AWS-Designed Chips",
+    "publisher": "Amazon (US Press Center)",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://press.aboutamazon.com/2023/11/aws-unveils-next-generation-aws-designed-chips",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2023-11-28"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-02T16:17Z",
+      "sha256": "6a6c3fe30012dc67d0a3724e70d781e7021e8d32a3f585d6d946a6aa8e533ef3"
+    }
   }
 ]

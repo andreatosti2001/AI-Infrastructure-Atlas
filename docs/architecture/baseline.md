@@ -1,7 +1,7 @@
 # Baseline Architecture Record
 
 **Status:** APPROVED by the human on 2026-09-29 (S02 gate, `SESSION-ROADMAP.md` S02; see §8).
-Created in S00, revised and approved in S02. S03 to S09 updated only the dated state rows (§1 table, §3, §4, §5). The S05 review added NG-14 to §6 through D-043, as D-021 requires, and updated the open items in §7 and §8.
+Created in S00, revised and approved in S02. S03 to S10 updated only the dated state rows (§1 table, §3, §4, §5). The S05 review added NG-14 to §6 through D-043, as D-021 requires, and updated the open items in §7 and §8.
 **Date:** 2026-09-29 (S00); revised 2026-09-29 (S02)
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` §4 ("At project start").
 
@@ -23,7 +23,7 @@ repository are logged in [`decisions.md`](./decisions.md).
   DuckDB + SQL for analysis, vanilla HTML/CSS/JS, GitHub Actions — MA §17, CLAUDE.md §11.
   No database server, graph database or frontend framework — MA §18.
 
-### State at end of S00, updated at S02, S03, S04, S05, S06, S07, S08 and S09
+### State at end of S00, updated at S02, S03, S04, S05, S06, S07, S08, S09 and S10
 
 | Layer | Exists? | Introduced by (per `SESSION-ROADMAP.md`) |
 |---|---|---|
@@ -36,7 +36,7 @@ repository are logged in [`decisions.md`](./decisions.md).
 | Relationship schema | yes, accepted (S04): `schemas/relationships.schema.json`, `relationship-taxonomy.md` | S04 |
 | Source/evidence policy | yes, accepted (S05 review): `docs/research/source-policy.md`, and the class vocabulary in `schemas/sources.schema.json` | S05 |
 | Claim/provenance implementation | yes, accepted (S06 review): `docs/architecture/claim-model.md`, `schemas/claims.schema.json`, the source record in `schemas/sources.schema.json`, `tools/trace.py` | S06 |
-| Canonical data | yes (S07 to S09, accepted by the human in the session): 50 source records (`data/sources.json`), 114 claims (`data/claims.json`), 8 companies, 4 jurisdictions, 7 components, 9 technologies, 3 products, 2 facilities and 4 events (`data/events.json`, schema `schemas/events.schema.json`), as measured at the S09 final commit. Staging is empty. Relationships: no | S06 to S09; S10 |
+| Canonical data | yes (S07 to S10, accepted by the human in the session): 52 source records (`data/sources.json`), 120 claims (`data/claims.json`), 8 companies, 4 jurisdictions, 7 components, 9 technologies, 3 products, 2 facilities, 4 events (`data/events.json`, schema `schemas/events.schema.json`) and 5 relationships (`data/relationships.json`), as measured at the S10 final commit. Staging is empty | S06 to S10 |
 | Presentation / UI | no | S11 |
 | DuckDB / SQL layer | no | S14 |
 
@@ -92,9 +92,9 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 | Gate (MA §14) | Status in this repository |
 |---|---|
 | 0 — Repository integrity | **Partial, automated.** `tools/validate_repo.py` checks required docs and session prompt/report conventions; runs in CI. It does not check branch or unexpected generated changes. |
-| 1 — Schema | **Partial, automated.** CI tests every schema's behaviour against fictional fixtures (S03 to S06; D-026), and validates every source, claim and entity record in `data/` (VD-2, S06 to S08), and from S09 every event. No relationship record exists yet. |
-| 2 — Provenance | **Partial, automated** (S06). Every claim's sources, inputs, anchors, statuses and review state are checked in CI (VD-3 to VD-13, `claim-model.md` §11). From S07, entity records are checked too: references, placeholder IDs, the matrix row of every field (V-10), canonical-only support (CE-1), the ID rule and ISO codes (`company-dataset.md` §8); from S08, working definitions, concept uniqueness, `broader` acyclicity and the concept and product tables (`concept-dataset.md` §9); from S09, the facility ID rule, location without headquarters evidence, kind words, capacity, and the event rules (`facility-dataset.md` §11) |
-| 3 — Semantic integrity | not applicable yet |
+| 1 — Schema | **Partial, automated.** CI tests every schema's behaviour against fictional fixtures (S03 to S06; D-026), and validates every source, claim and entity record in `data/` (VD-2, S06 to S08), from S09 every event, and from S10 every relationship. |
+| 2 — Provenance | **Partial, automated** (S06). Every claim's sources, inputs, anchors, statuses and review state are checked in CI (VD-3 to VD-13, `claim-model.md` §11). From S07, entity records are checked too: references, placeholder IDs, the matrix row of every field (V-10), canonical-only support (CE-1), the ID rule and ISO codes (`company-dataset.md` §8); from S08, working definitions, concept uniqueness, `broader` acyclicity and the concept and product tables (`concept-dataset.md` §9); from S09, the facility ID rule, location without headquarters evidence, kind words, capacity, and the event rules (`facility-dataset.md` §11); from S10, the edge rules V-1 to V-10, CE-1, the edge ID rule and four evidence guards (`edge-dataset.md` §10) |
+| 3 — Semantic integrity | **Partial, automated** (S10): impossible edges fail in CI (V-2 kind constraints, V-3 self-edges, V-5 duplicates, V-6 `broader` restated as an edge); role and edge conflicts (RW-1 to RW-3) are reported as warnings, never corrected (D-033; `edge-dataset.md` §10) |
 | 4 — Derivation | not applicable yet |
 | 5 — Content | not applicable yet |
 | 6 — UI | not applicable yet (no UI) |
@@ -103,7 +103,7 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 
 | Command (MA §15) | Status |
 |---|---|
-| `validate-data` | **built for sources, claims, entity and event records** (S06 to S09; D-051, D-063, D-077, D-087): `python -m unittest discover -s tests -p "test_data*.py"`, run in CI. The relationship rules V-2, V-3 and V-5 to V-8 arrive with S10 |
+| `validate-data` | **built for sources, claims, entity, event and relationship records** (S06 to S10; D-051, D-063, D-077, D-087, D-096): `python -m unittest discover -s tests -p "test_data*.py"`, run in CI; V-7 and V-8 report warnings |
 | `validate-i18n` | not applicable in v1.0 (NG-10: English only) |
 | `validate-design` | not built — needs UI (S11+) |
 | `validate-freshness` | **first rule built** (S07, D-064): F-1, the 12-month horizon for `time_sensitive` fields, `python -m unittest discover -s tests -p "test_freshness.py"`, run in CI. Scheduled re-checks wait for the Change Detector |

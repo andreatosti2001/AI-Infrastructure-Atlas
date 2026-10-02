@@ -1550,3 +1550,134 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   manufacturing equipment (the `production_equipment` use class), with its definition and
   words for FK-1, by an approved schema change. Until then ASML's sites have no record.
 - **Rejected for S09:** any schema change (Part B §08).
+
+## D-089 — Edge scope: five edges, and the candidates that fail §5 (H-1)
+
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
+- **Context:** H-1 ("I agree", 2026-10-02, to product and company edges first, then `operates`
+  for M16, then class edges; about 10–12 edges). The registered filings and product pages were
+  re-read (H-4, D-075).
+- **Decision** (`edge-dataset.md` §1): an edge needs claims meeting `relationship-taxonomy.md` §5
+  for its type, as `FACT` or as a `DERIVATION` covered by ER-1 or an approved ruling, endpoints
+  that are records, and the §10 checks. Five edges: H100 and Trainium2 `incorporates` HBM; Amazon
+  `designs` Trainium2; SK hynix `operates` M16 (D-099); HBM `requires` 3D die stacking (D-091).
+  Every `supplies` candidate from the filings fails (an item with no record, ER-9; a
+  manufacturing service; co-mention), NVIDIA `designs` H100 fails ER-2, and `owns` waits on
+  company records (D-095).
+- **Rejected:** widening an `item` to a record that exists ("memory" as HBM); creating component
+  records for items; recording a candidate that fails §5 to reach the expected count.
+
+## D-090 — Edge ID rule (RI-1)
+
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
+- **Context:** Part B §06 q2: a stable, non-editorial rule from the type and endpoints, with
+  `item` where the type has one, machine-checked as FI-1 and EI-1 are.
+- **Decision** (`edge-dataset.md` §2): `rel-<source_entity>-<type, _ as ->-<target_entity>`, and
+  `-<item>` for `supplies`. Entity IDs keep their type prefixes. A second record for the same
+  relation (another period, V-5) would collide and needs a decision.
+- **Rejected:** IDs without type prefixes (a technology and a component with one slug would
+  collide); a counter (not recomputable); a claim or display name in the ID.
+
+## D-091 — A class edge read out of a definition (the human's ruling)
+
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)"; the edge approved as a
+  flagged ruling: "E5: HBM requires 3D die stacking (D-091)"); the ruling itself was given at the start of S10 (2026-10-02, a §16 stop condition: "Allow, as DERIVATION (Recommended)")
+- **Context:** `requires` needs necessity stated for the class (§5). The ECP report defines HBM
+  as vertically stacked DRAM dies directly connected by TSVs; no source states "HBM requires 3D
+  die stacking" in words, and ER-1 does not cover the step.
+- **Decision:** HBM `requires` 3D die stacking rests on `claim-hbm-requires-3d-die-stacking`, a
+  `DERIVATION` from the ECP definition and the two working definitions. RV-1's `requires` row
+  carries "stacks" for this case. It is flagged on the review sheet.
+- **Rejected:** no class edge (the human's alternative); HBM `requires` TSV (TSV is a gap,
+  `concept-dataset.md` §1).
+
+## D-092 — TSMC → H100 `fabricates` is a gap until fresh evidence (the human's ruling)
+
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)"); the ruling was given at the
+  start of S10 (2026-10-02: "Gap until fresh evidence (Recommended)")
+- **Context:** the edge meets §5 only as an ER-1 `DERIVATION` from "Using the TSMC 4N fabrication
+  process enables H100" (`claim-h100-process-name`), whose source was last modified 2025-07-22.
+  `rel:fabricates` is `time_sensitive`, so F-1 (extended to edges, D-096) fails. NVIDIA's live
+  Hopper page names TSMC 4N for the architecture, not the product.
+- **Decision:** no edge. The derivation `claim-tsmc-fabricates-h100` is staged for review; the
+  edge waits for product-level evidence dated within the horizon.
+- **Rejected:** the Hopper page as fresh input (architecture, not product: D-073 logic); waiving
+  F-1 for edges.
+
+## D-093 — "AWS-designed" gives a `designs` edge from `company-amazon-com` (the human's ruling)
+
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)"); the ruling was given at the
+  start of S10 (2026-10-02: "company-amazon-com, as D-074 (Recommended)")
+- **Context:** Amazon's release (`src-052`) names "Amazon Web Services, Inc. (AWS), an
+  Amazon.com, Inc. company" announcing "two AWS-designed chip families—AWS Graviton4 and AWS
+  Trainium2". There is no AWS company record; AWS is an accepted alias of `company-amazon-com`
+  (D-074).
+- **Decision:** the edge's source is `company-amazon-com`; the claim keeps the release's wording,
+  including the AWS legal entity's name. The AWS legal-entity question stays open.
+- **Rejected:** waiting for an AWS record (the human's alternative); Amazon's "our custom AI
+  silicon" (not a statement of design work, ER-2).
+
+## D-094 — Unknown HBM suppliers are `not_researched`
+
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
+- **Context:** `incorporates` requires `supplier` (D-031); ER-3 and D-049 set when
+  `not_publicly_determinable` may be claimed.
+- **Decision** (`edge-dataset.md` §5): both `incorporates` edges carry `not_researched`; no
+  preferred class was fully searched for either product. No search claim is created. V-10
+  checks a `not_publicly_determinable` search against every preferred class of
+  `rel:incorporates.supplier` (the S06 handoff, `claim-model.md` §8).
+- **Rejected:** `not_publicly_determinable` from one page's silence; a supplier from NVIDIA's
+  company-level list (ER-9).
+
+## D-095 — No new company records in S10 (H-3)
+
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
+- **Context:** H-3 ("Only when an edge needs it (Recommended)").
+- **Decision** (`edge-dataset.md` §6): none is created. A subsidiary named in a parent's filing
+  cannot meet D-057 (the filer's own statement of its legal name), and no supplier has a
+  `supplies` edge whose item is a record. `owns` edges wait.
+- **Rejected:** a subsidiary record from Amkor's Exhibit 21.1; an AWS record from the release.
+
+## D-096 — validate-data and validate-freshness for edges
+
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
+- **Context:** `relationship-taxonomy.md` §15 (V-1 to V-9), D-033, L-05, L-09; Part B §06 q8.
+- **Decision** (`edge-dataset.md` §7, §10): `tests/test_data_relationships.py` runs V-1 to V-6,
+  V-9, V-10 (with the ER-3 search coverage), CE-1, RI-1 and four evidence guards (PL-1, EP-1,
+  PE-1, RV-1, with RV-1's words in a table of the design document); V-7 and V-8 are warnings.
+  VD-2 covers the relationship files; F-1 extends to edges on `time_sensitive` rows and to
+  `supplier` assertions, not to explicit states. Each check is shown on fictional fixtures with
+  a planted fault (`tests/fixtures/edge_records.json`).
+- **Rejected:** a hand-written JSON Schema validator; V-7 and V-8 as failures (D-033); checks
+  hard-coding the real edges.
+
+## D-097 — Navigation from the JSON files (H-5)
+
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
+- **Context:** H-5 ("Re-retrieve + RA-4; nav tool (Recommended)"); the roadmap gate "Graph-like
+  navigation is possible using relational data without introducing a graph database".
+- **Decision** (`edge-dataset.md` §8): `tools/navigate.py`, standard library, answers
+  `depends-on`, `suppliers`, `actors`, `edges` and `evidence` (through the trace), canonical by
+  default, never printing "none" for a missing edge. Tested by `tests/test_navigate.py`. A Data
+  Auditor write.
+- **Rejected:** DuckDB now; extending `tools/trace.py` only; a stored adjacency list.
+
+## D-098 — Layout, review and promotion for edges (H-2, H-6)
+
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
+- **Context:** H-2 and H-6 ("One file, review in S10 (Recommended)").
+- **Decision** (`edge-dataset.md` §9): `data/relationships.json` and
+  `data/staging/relationships.json`, the relation type as a field. Promotion as D-061, on the
+  human's verdicts, when every cited claim, endpoint, item and supplier company is canonical.
+  The Extractor's writes extend to the staging relationship file.
+- **Rejected:** one file per relation type (H-2's alternative); promotion after the session.
+
+## D-099 — SK hynix `operates` M16 as a `DERIVATION` (flagged for the review)
+
+- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)"; the edge approved as a flagged ruling: "E4: SK hynix operates M16 (D-099)")
+- **Context:** D-082 left to S10 whether SK hynix's "생산공장을 설치ㆍ가동" (it operates its
+  production plants in 경기도 이천시), with M16 listed as its plant in 이천, meets `operates`.
+- **Decision:** the edge rests on `claim-sk-hynix-operates-m16`, a `DERIVATION` from those
+  claims and the M16 release; it has no period. It is asked as a separate question at the
+  review, and an unticked box leaves it in staging.
+- **Rejected:** `valid_from: 2021-02` (construction, not operation); `owns` from 설치 (D-082).
