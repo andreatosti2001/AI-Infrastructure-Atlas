@@ -31,7 +31,7 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 | [`architecture/milestone-audits/M1-audit.md`](./architecture/milestone-audits/M1-audit.md) | accepted (S07 review, 2026-10-01; H-5): M1 audit over S03–S06, findings, maturity ratings | S07 (D-066) |
 | [`research/source-policy.md`](./research/source-policy.md) (source classes, preference matrix, evidence, conflict, retrieval and freshness rules; class of every registered source) with [`../schemas/sources.schema.json`](../schemas/sources.schema.json) (the source-class vocabulary) | accepted (S05 review, 2026-09-30; D-034 to D-043) | S05 |
 | `research/content-review-log.md` | planned | first session that records claims |
-| [`agents/roles.md`](./agents/roles.md), [`agents/contracts.md`](./agents/contracts.md) (every CLAUDE.md §8 role; MA §12 contracts for the roles active through S11) | accepted (S06 review, 2026-09-30; D-052); Editorial and QA contracts proposed (S11, D-107) | S06 (D-010); S11 |
+| [`agents/roles.md`](./agents/roles.md), [`agents/contracts.md`](./agents/contracts.md) (every CLAUDE.md §8 role; MA §12 contracts for the roles active through S11) | accepted (S06 review, 2026-09-30; D-052); Editorial and QA contracts accepted (S12 opening review, 2026-10-02; D-107) | S06 (D-010); S11 |
 | `quality/evaluation-framework.md` | satisfied by root `PROJECT-EVALUATION-FRAMEWORK.md` (not duplicated) | — |
 | [`quality/audit-history.md`](./quality/audit-history.md) | active | every audit |
 
@@ -50,7 +50,7 @@ Supporting: [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) (prompt/report
 | [`architecture/facility-dataset.md`](./architecture/facility-dataset.md) (facility scope, the facility ID rule, location without headquarters evidence, kind words, ownership and operation evidence for S10, events, the status derivation, capacity, record checks) with [`../schemas/events.schema.json`](../schemas/events.schema.json) (event shape and types) and [`../tools/facility_status.py`](../tools/facility_status.py) | accepted (S09 reviews, 2026-10-02; D-078 to D-088) | S09 |
 | Event schema | done: `schemas/events.schema.json`, accepted at the S09 review (D-083) | S09 (D-022) |
 | [`architecture/edge-dataset.md`](./architecture/edge-dataset.md) (which candidates became edges and why the others did not, the edge ID rule, evidence guards and relation words, navigation, edge checks) with [`../tools/navigate.py`](../tools/navigate.py) | accepted (S10 review, 2026-10-02; D-089 to D-099) | S10 |
-| [`architecture/vertical-slice.md`](./architecture/vertical-slice.md) (the HBM journey: question and scope, the walk, the visual specification, the text provenance rule, gaps, evidence panels, accessibility, the page checks, the new-user test) with [`../tools/build_page.py`](../tools/build_page.py), [`../tools/page_template.html`](../tools/page_template.html) and the generated [`../site/hbm-chain/index.html`](../site/hbm-chain/index.html) | proposed (S11, 2026-10-02; D-100 to D-107) | S11 |
+| [`architecture/vertical-slice.md`](./architecture/vertical-slice.md) (the HBM journey: question and scope, the walk, the visual specification, the text provenance rule, gaps, evidence panels, accessibility, the page checks, the new-user test) with [`../tools/build_page.py`](../tools/build_page.py), [`../tools/page_template.html`](../tools/page_template.html) and the generated [`../site/hbm-chain/index.html`](../site/hbm-chain/index.html) | accepted (S12 opening review, 2026-10-02; D-100 to D-108) | S11 |
 
 ## Research outputs
 

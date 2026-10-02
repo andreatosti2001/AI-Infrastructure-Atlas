@@ -1,6 +1,6 @@
 # Vertical slice — the HBM dependency journey
 
-**Status:** PROPOSED (S11, 2026-10-02): D-100 to D-108 (D-108: the changes from the human's new-user test). Four rulings were taken by the human at
+**Status:** ACCEPTED (S12 opening review, 2026-10-02, H-0: "Rules binding, page unchanged (Recommended)"). Proposed in S11: D-100 to D-108 (D-108: the changes from the human's new-user test). Four rulings were taken by the human at
 the start of S11 (2026-10-02, §1): M16 in a separate lane, Micron's HBM4 in the same lane, an
 input digest instead of a data commit, and the two test files outside the prompt's lists.
 **Session:** S11 · **Date:** 2026-10-02

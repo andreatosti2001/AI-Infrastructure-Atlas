@@ -1684,7 +1684,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-100 — The first journey: the HBM dependency chain (H-1)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** H-1 ("yes and merge into main", 2026-10-02, to the recommended HBM chain). At the
   start of S11 the human ruled on two records the chain does not link: "Separate lane
   (Recommended)" for SK hynix's M16, and "Yes, not-connected lane (Recommended)" for Micron's
@@ -1698,7 +1698,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-101 — Structured output for the walk and the trace (H-4)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** H-4 (Claude's recommendation, as part of H-1); the S10 debt "the navigation tool
   prints text only".
 - **Decision** (`vertical-slice.md` §2): `tools/navigate.py` computes each answer as data
@@ -1711,7 +1711,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-102 — The build step and its stamp (H-2)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** H-2 ("Static, stdlib build, inline SVG (Recommended)"). Part B §11 asks the page to
   state the data commit; the human ruled "Input digest (Recommended)".
 - **Decision:** `tools/build_page.py` (standard library) writes one self-contained file,
@@ -1725,7 +1725,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-103 — The visual form and its encoding
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** MA §16.1 (the grammar: flows and dependencies → flow diagrams); Part B §06 q3.
 - **Decision** (`vertical-slice.md` §3): a fixed vertical dependency diagram in inline SVG.
   Box fill and rule encode level (instance or class); the line style encodes the basis (solid:
@@ -1736,7 +1736,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-104 — Gap encoding and the lane
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** RR-7; D-092, D-094; the human's lane rulings (D-100).
 - **Decision** (`vertical-slice.md` §5): each `not_researched` supplier is a pill on its
   `incorporates` arrow; TSMC → H100 is a dotted line with no arrowhead and the pill "gap: no
@@ -1749,7 +1749,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-105 — The text provenance rule and validate-design for the page
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** Part B §02 (five things the page must make impossible), §07 task 6; MA §15
   (`validate-design`).
 - **Decision** (`vertical-slice.md` §4, §8): every text node sits inside a record value
@@ -1761,7 +1761,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-106 — Browser QA in a scratch environment (H-3)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** H-3 ("Scratch Playwright, no repo dep (Recommended)").
 - **Decision:** browser checks run with the pre-installed Chromium and Playwright outside the
   repository: desktop and 375 px screenshots, overflow, the keyboard path to every panel, console
@@ -1771,7 +1771,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-107 — Editorial and QA contracts (H-5)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** H-5 ("Contracts in S11, proposed (Recommended)"); the human's ruling "Yes, both
   (Recommended)" on `tests/test_agent_contracts.py` and `tests/test_page.py`.
 - **Decision:** `docs/agents/contracts.md` gains Editorial and QA contracts with MA §12's fields;
@@ -1784,7 +1784,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-108 — Changes from the human's new-user test
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** the human's new-user test. Asked for suggestions ("Gimme suggestions"), Claude
   proposed seven changes; the human answered "I agree, follow the principle of “not
   overreachment”" (2026-10-02).

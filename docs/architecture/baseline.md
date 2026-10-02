@@ -37,7 +37,7 @@ repository are logged in [`decisions.md`](./decisions.md).
 | Source/evidence policy | yes, accepted (S05 review): `docs/research/source-policy.md`, and the class vocabulary in `schemas/sources.schema.json` | S05 |
 | Claim/provenance implementation | yes, accepted (S06 review): `docs/architecture/claim-model.md`, `schemas/claims.schema.json`, the source record in `schemas/sources.schema.json`, `tools/trace.py` | S06 |
 | Canonical data | yes (S07 to S10, accepted by the human in the session): 52 source records (`data/sources.json`), 120 claims (`data/claims.json`), 8 companies, 4 jurisdictions, 7 components, 9 technologies, 3 products, 2 facilities, 4 events (`data/events.json`, schema `schemas/events.schema.json`) and 5 relationships (`data/relationships.json`), as measured at the S10 final commit. Staging is empty | S06 to S10 |
-| Presentation / UI | yes, proposed (S11): one generated page, `site/hbm-chain/index.html`, built by `tools/build_page.py` from `data/` (`vertical-slice.md`, D-100 to D-107); not published (NG-13) | S11 |
+| Presentation / UI | yes, accepted (S11; S12 opening review): one generated page, `site/hbm-chain/index.html`, built by `tools/build_page.py` from `data/` (`vertical-slice.md`, D-100 to D-107); not published (NG-13) | S11 |
 | DuckDB / SQL layer | no | S14 |
 
 Directories for data, schemas, analysis and UI are **not** created until the session that
@@ -70,7 +70,7 @@ the boundaries; the sources it cites keep their own wording.
 
 Roles and the contract format are defined in CLAUDE.md §8 and MA §11–12. S06 wrote
 `docs/agents/roles.md` and `docs/agents/contracts.md` (accepted at the S06 review, D-052): the roles active
-through S11 have contracts (Editorial and QA proposed in S11, D-107), and the others name the session that first activates them. There is no root `AGENTS.md`
+through S11 have contracts (Editorial and QA added in S11, D-107, accepted at the S12 opening review), and the others name the session that first activates them. There is no root `AGENTS.md`
 (decision D-010). Until S19 finds a manual workflow that needs one, agents are contracts
 plus deterministic validators, with no agent runtime (D-018 L-01; NG-08).
 

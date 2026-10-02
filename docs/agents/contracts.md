@@ -1,9 +1,9 @@
 # Agent contracts
 
 **Status:** ACCEPTED (human review of S06, 2026-09-30; D-052, D-010). **Session:** S06.
-Paths updated in S07 (Editorial, paths only, Part B §10): the staging entity files, `company-dataset.md` and the S07 test modules. Paths updated in S08 likewise: the staging technology, component and product files, `concept-dataset.md` and the S08 checks. Paths updated in S09 likewise: the staging facility and event files, `facility-dataset.md`, the proposed event schema, the S09 checks and `tools/facility_status.py`. Paths updated in S10 likewise: the staging relationship file, `edge-dataset.md`, the S10 checks and `tools/navigate.py`. S11 added the Editorial and QA contracts (D-107, `proposed`) and updated paths likewise: `vertical-slice.md`, the page checks, the build step and the generated page.
+Paths updated in S07 (Editorial, paths only, Part B §10): the staging entity files, `company-dataset.md` and the S07 test modules. Paths updated in S08 likewise: the staging technology, component and product files, `concept-dataset.md` and the S08 checks. Paths updated in S09 likewise: the staging facility and event files, `facility-dataset.md`, the proposed event schema, the S09 checks and `tools/facility_status.py`. Paths updated in S10 likewise: the staging relationship file, `edge-dataset.md`, the S10 checks and `tools/navigate.py`. S11 added the Editorial and QA contracts (D-107; accepted at the S12 opening review, 2026-10-02) and updated paths likewise: `vertical-slice.md`, the page checks, the build step and the generated page.
 
-MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. The Editorial and QA contracts are `proposed` (S11, D-107) until the human's review. Each contract has
+MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. The Editorial and QA contracts were added in S11 (D-107) and accepted at the S12 opening review (H-0). Each contract has
 MA's nine fields, in MA's order.
 
 - **Paths are repository paths.** A role writes only its allowed paths. A session report
