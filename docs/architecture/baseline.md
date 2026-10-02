@@ -1,7 +1,7 @@
 # Baseline Architecture Record
 
 **Status:** APPROVED by the human on 2026-09-29 (S02 gate, `SESSION-ROADMAP.md` S02; see §8).
-Created in S00, revised and approved in S02. S03 to S10 updated only the dated state rows (§1 table, §3, §4, §5). The S05 review added NG-14 to §6 through D-043, as D-021 requires, and updated the open items in §7 and §8.
+Created in S00, revised and approved in S02. S03 to S11 updated only the dated state rows (§1 table, §3, §4, §5). The S05 review added NG-14 to §6 through D-043, as D-021 requires, and updated the open items in §7 and §8.
 **Date:** 2026-09-29 (S00); revised 2026-09-29 (S02)
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` §4 ("At project start").
 
@@ -23,7 +23,7 @@ repository are logged in [`decisions.md`](./decisions.md).
   DuckDB + SQL for analysis, vanilla HTML/CSS/JS, GitHub Actions — MA §17, CLAUDE.md §11.
   No database server, graph database or frontend framework — MA §18.
 
-### State at end of S00, updated at S02, S03, S04, S05, S06, S07, S08, S09 and S10
+### State at end of S00, updated at S02, S03, S04, S05, S06, S07, S08, S09, S10 and S11
 
 | Layer | Exists? | Introduced by (per `SESSION-ROADMAP.md`) |
 |---|---|---|
@@ -37,7 +37,7 @@ repository are logged in [`decisions.md`](./decisions.md).
 | Source/evidence policy | yes, accepted (S05 review): `docs/research/source-policy.md`, and the class vocabulary in `schemas/sources.schema.json` | S05 |
 | Claim/provenance implementation | yes, accepted (S06 review): `docs/architecture/claim-model.md`, `schemas/claims.schema.json`, the source record in `schemas/sources.schema.json`, `tools/trace.py` | S06 |
 | Canonical data | yes (S07 to S10, accepted by the human in the session): 52 source records (`data/sources.json`), 120 claims (`data/claims.json`), 8 companies, 4 jurisdictions, 7 components, 9 technologies, 3 products, 2 facilities, 4 events (`data/events.json`, schema `schemas/events.schema.json`) and 5 relationships (`data/relationships.json`), as measured at the S10 final commit. Staging is empty | S06 to S10 |
-| Presentation / UI | no | S11 |
+| Presentation / UI | yes, proposed (S11): one generated page, `site/hbm-chain/index.html`, built by `tools/build_page.py` from `data/` (`vertical-slice.md`, D-100 to D-107); not published (NG-13) | S11 |
 | DuckDB / SQL layer | no | S14 |
 
 Directories for data, schemas, analysis and UI are **not** created until the session that
@@ -70,7 +70,7 @@ the boundaries; the sources it cites keep their own wording.
 
 Roles and the contract format are defined in CLAUDE.md §8 and MA §11–12. S06 wrote
 `docs/agents/roles.md` and `docs/agents/contracts.md` (accepted at the S06 review, D-052): the roles active
-through S10 have contracts, and the others name the session that first activates them. There is no root `AGENTS.md`
+through S11 have contracts (Editorial and QA proposed in S11, D-107), and the others name the session that first activates them. There is no root `AGENTS.md`
 (decision D-010). Until S19 finds a manual workflow that needs one, agents are contracts
 plus deterministic validators, with no agent runtime (D-018 L-01; NG-08).
 
@@ -97,17 +97,17 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 | 3 — Semantic integrity | **Partial, automated** (S10): impossible edges fail in CI (V-2 kind constraints, V-3 self-edges, V-5 duplicates, V-6 `broader` restated as an edge); role and edge conflicts (RW-1 to RW-3) are reported as warnings, never corrected (D-033; `edge-dataset.md` §10) |
 | 4 — Derivation | not applicable yet |
 | 5 — Content | not applicable yet |
-| 6 — UI | not applicable yet (no UI) |
-| 7 — Browser regression | not applicable yet |
+| 6 — UI | **Partial, automated** (S11): the page checks PG-1 to PG-10 (`tests/test_page.py`, `vertical-slice.md` §8) run in CI: text provenance, marks, inference labels, gaps, framing, byte-identical rebuild, accessibility basics, palette contrast, links. Visual judgement is the human's new-user test |
+| 7 — Browser regression | **Manual, scripted** (S11, H-3, D-106): a scratch Playwright run at 1280 px and 375 px (keyboard path, console and network logs, measured contrast), recorded in the session report; not in CI |
 | 8 — Portfolio quality | human review at each session |
 
 | Command (MA §15) | Status |
 |---|---|
 | `validate-data` | **built for sources, claims, entity, event and relationship records** (S06 to S10; D-051, D-063, D-077, D-087, D-096): `python -m unittest discover -s tests -p "test_data*.py"`, run in CI; V-7 and V-8 report warnings |
 | `validate-i18n` | not applicable in v1.0 (NG-10: English only) |
-| `validate-design` | not built — needs UI (S11+) |
+| `validate-design` | **built for the S11 page** (D-105): `python -m unittest discover -s tests -p "test_page.py"`, run in CI; `python tools/build_page.py --check` compares the committed page with a rebuild |
 | `validate-freshness` | **first rule built** (S07, D-064): F-1, the 12-month horizon for `time_sensitive` fields, `python -m unittest discover -s tests -p "test_freshness.py"`, run in CI. Scheduled re-checks wait for the Change Detector |
-| `qa-browser` | not built — needs UI (S11+) |
+| `qa-browser` | **scripted, outside the repository** (S11, D-106): the run and its results are in `sessions/reports/SESSION-11-REPORT.md`; a pinned, CI-run version waits for a decision (H-3's alternative) |
 
 ## 6. Explicit non-goals — frozen for v1.0 (D-021)
 

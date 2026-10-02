@@ -8,9 +8,15 @@ The trace must answer "what supports this record?" (the S06 gate):
 - for every register label, which must resolve to its source record (D-050);
 
 and it must fail (exit 1) when a reference does not resolve, including an input cycle.
+
+S11 (D-101): `trace_data` is the same trace as data. For every ID the text can trace, the data
+names the same claims and sources, reports the same unresolved references and has the same status.
 """
 
+import contextlib
+import io
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -151,6 +157,67 @@ class RealDataTraceTests(unittest.TestCase):
                 lines, status = trace.trace(identifier, self.store)
                 self.assertEqual(status, 0)
                 self.assertIn("· source record", lines[0])
+
+
+CLAIM_LINE = re.compile(r"^\s*(claim-[A-Za-z0-9-]+) · ")
+SOURCE_LINE = re.compile(r"^\s*(?:citation \d+ · (src-\d+)|(src-\d+) · source record)")
+
+
+def text_and_data(identifier: str, store) -> tuple[list[str], int, dict, int, list[str]]:
+    lines, status = trace.trace(identifier, store)
+    text_missing = list(store.missing)
+    data, data_status = trace.trace_data(identifier, store)
+    return lines, status, data, data_status, text_missing
+
+
+class TraceDataTests(unittest.TestCase):
+    def check(self, identifier: str, store) -> None:
+        lines, status, data, data_status, text_missing = text_and_data(identifier, store)
+        self.assertEqual(status, data_status)
+        if status == 2:
+            return
+        json.dumps(data)
+        claims = {m.group(1) for m in map(CLAIM_LINE.match, lines) if m}
+        self.assertEqual(claims, set(data["claims"]))
+        sources = {m.group(1) or m.group(2) for m in map(SOURCE_LINE.match, lines) if m}
+        searched = {s for c in data["claims"].values() for e in c["claim"].get("search", {}).get("classes", []) for s in e.get("source_ids", [])}
+        self.assertEqual(sources | (searched & set(store.sources)), set(data["sources"]))
+        self.assertEqual(sorted(text_missing), sorted(data["missing"]))
+
+    def test_every_real_id(self) -> None:
+        store = trace.Store(REPO_ROOT / "data", [])
+        for identifier in sorted(store.records) + sorted(store.claims) + sorted(store.sources):
+            with self.subTest(id=identifier):
+                self.check(identifier, store)
+
+    def test_fixture_ids_including_failures(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_data(root, *fixture_set())
+            records = root / "relationships.json"
+            records.write_text(json.dumps(list(RELATIONSHIPS.values())), encoding="utf-8")
+            store = trace.Store(root, [records])
+            for identifier in sorted(store.records) + sorted(store.claims) + ["rel-example-nothing"]:
+                with self.subTest(id=identifier):
+                    self.check(identifier, store)
+            # the cycle of test_input_cycle_fails, as data
+            sources, staging, canonical = fixture_set()
+            for claim in staging:
+                if claim["id"] == "claim-fixture-204":
+                    claim["input_claim_ids"] = ["claim-fixture-206"]
+            write_data(root, sources, staging, canonical)
+            data, status = trace.trace_data("claim-fixture-206", trace.Store(root, []))
+            self.assertEqual(status, 1)
+            self.assertIn("input cycle claim-fixture-206 -> claim-fixture-204 -> claim-fixture-206", data["missing"])
+
+    def test_json_flag(self) -> None:
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            status = trace.main(["trace.py", "rel-component-high-bandwidth-memory-requires-technology-3d-die-stacking", "--json"])
+        self.assertEqual(status, 0)
+        data = json.loads(out.getvalue())
+        self.assertEqual(data["kind"], "record")
+        self.assertIn("claim-ecp-hbm-definition", data["claims"])
 
 
 if __name__ == "__main__":

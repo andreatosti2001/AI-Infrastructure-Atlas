@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>${title}</title>
+<!--
+  Template of the S11 vertical-slice page (vertical-slice.md; D-102). The Editorial's file
+  (contracts.md): framing and style only. Framing states no fact and names no record (PG-6);
+  every value comes from tools/build_page.py through a named slot. The page this produces,
+  site/hbm-chain/index.html, is generated: never edit it by hand.
+-->
+<style>
+:root { ${palette} }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--surface-page); color: var(--ink-body); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+a { color: var(--ink-link); text-underline-offset: 2px; }
+a:focus-visible { outline: 3px solid var(--line-focus); outline-offset: 2px; }
+a:hover, a:focus-visible { text-decoration-thickness: 2px; }
+code, .digest { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.86em; overflow-wrap: anywhere; }
+.skip { position: absolute; left: 8px; top: -48px; background: var(--surface-page); padding: 8px 12px; border: 2px solid var(--line-focus); }
+.skip:focus-visible { top: 8px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+header.masthead { padding: 28px 0 6px; }
+.kicker { margin: 0 0 10px; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+.kicker span + span::before { content: " · "; }
+h1, h2, h3 { color: var(--ink-strong); font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; line-height: 1.2; }
+h1 { font-size: clamp(1.7rem, 4.2vw, 2.6rem); margin: 0 0 14px; max-width: 28ch; }
+h2 { font-size: 1.45rem; margin: 44px 0 12px; padding-top: 14px; border-top: 2px solid var(--line-ink); }
+h3 { font-size: 1.12rem; margin: 26px 0 8px; }
+section { scroll-margin-top: 12px; }
+.framing { background: var(--surface-framing); border-left: 4px solid var(--line-rule); padding: 10px 16px 12px; margin: 14px 0; max-width: 72ch; }
+.framing p { margin: 6px 0; }
+.framing .framing-tag { margin: 0 0 4px; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+.dek { font-size: 1.1rem; }
+ul.answer { list-style: none; padding: 0; margin: 12px 0; max-width: 72ch; }
+ul.answer li { padding: 8px 0; border-bottom: 1px solid var(--line-rule); }
+.rel { font-weight: 600; font-style: italic; color: var(--ink-strong); }
+.basis { display: inline-block; font-size: 0.78rem; padding: 0 8px; border-radius: 10px; border: 1px solid var(--line-ink); color: var(--ink-strong); }
+.basis.inferred { border-style: dashed; }
+.basis.gap { background: var(--surface-gap); border: 1px dashed var(--line-gap); color: var(--ink-gap); font-weight: 600; }
+.ev-link { font-size: 0.85rem; white-space: nowrap; }
+.chain-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px 40px; align-items: start; }
+@media (min-width: 900px) { .chain-grid { grid-template-columns: minmax(0, 470px) minmax(0, 1fr); } }
+figure { margin: 0; }
+svg.chain { width: 100%; height: auto; display: block; max-width: 470px; }
+svg .box { fill: var(--surface-page); stroke: var(--line-ink); stroke-width: 1.5; }
+.class-level .box { fill: var(--surface-class); }
+svg .class-rule { fill: var(--line-ink); }
+svg .node-type { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--ink-muted); }
+svg .node-name { font-size: 13.5px; font-weight: 700; fill: var(--ink-strong); }
+svg .line { stroke: var(--line-ink); stroke-width: 2; fill: none; }
+.inferred .line { stroke-dasharray: 6 4; }
+.gap .line { stroke: var(--line-gap); stroke-dasharray: 2 4; stroke-linecap: round; }
+svg .arrowhead { fill: var(--line-ink); }
+svg .edge-type { font-size: 12px; font-style: italic; font-weight: 600; fill: var(--ink-strong); }
+svg .edge-basis { font-size: 11.5px; fill: var(--ink-muted); }
+svg .pill { fill: var(--surface-gap); stroke: var(--line-gap); stroke-width: 1.5; stroke-dasharray: 4 3; }
+svg .pill-head { font-size: 11px; fill: var(--ink-gap); }
+svg .pill-text { font-size: 11.5px; font-weight: 700; fill: var(--ink-gap); }
+svg .class-level .pill-text { fill: var(--ink-muted); font-weight: 600; font-size: 11px; }
+svg .hit { fill: transparent; }
+svg .lane-box { fill: none; stroke: var(--line-rule); stroke-width: 1.5; stroke-dasharray: 6 5; }
+svg .lane-head { font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--ink-muted); }
+svg .lane-note { font-size: 11.5px; font-weight: 700; fill: var(--ink-strong); }
+svg .lane-ref { font-size: 12px; font-style: italic; fill: var(--ink-strong); }
+svg .halo { paint-order: stroke; stroke: var(--surface-page); stroke-width: 5px; stroke-linejoin: round; }
+svg a.mark { cursor: pointer; }
+svg a.mark:hover .box, svg a.mark:focus-visible .box, svg a.mark:hover .pill, svg a.mark:focus-visible .pill { stroke: var(--line-focus); stroke-width: 3; }
+svg a.mark:hover .line, svg a.mark:focus-visible .line { stroke: var(--line-focus); stroke-width: 3.5; }
+svg a.mark:focus-visible { outline: none; }
+ul.legend { list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 6px; font-size: 0.9rem; }
+ul.legend li { display: flex; align-items: center; gap: 10px; }
+svg.swatch { width: 36px; height: 26px; flex: none; }
+ol.words, ul.words { padding-left: 1.3em; margin: 8px 0; }
+ol.words li, ul.words li { margin: 6px 0; }
+.lane-words { margin: 14px 0 0; font-size: 0.92rem; }
+ul.quotes, ul.gaps, ul.rulings { padding-left: 1.2em; max-width: 80ch; }
+ul.quotes li, ul.gaps li, ul.rulings li { margin: 8px 0; }
+ul.quotes q { display: block; margin: 2px 0; }
+.who { font-weight: 600; }
+.type-tag, .tag, .status { font-size: 0.74rem; letter-spacing: 0.04em; padding: 1px 6px; border-radius: 3px; border: 1px solid var(--line-rule); color: var(--ink-strong); white-space: nowrap; }
+.type-derivation, .type-interpretation, .type-implication { border-style: dashed; }
+dl.defs .def, dl.terms div, dl.facts div { margin: 8px 0; }
+dl.defs dt, dl.terms dt { font-weight: 600; color: var(--ink-strong); }
+dl.defs dd, dl.terms dd { margin: 2px 0 0 0; max-width: 80ch; }
+.cite { font-size: 0.85rem; color: var(--ink-muted); }
+.meaning { font-size: 0.92rem; max-width: 80ch; }
+.table-wrap { overflow-x: auto; max-width: 100%; }
+table { border-collapse: collapse; font-size: 0.92rem; min-width: 560px; max-width: 980px; }
+caption { text-align: left; padding: 4px 0 8px; color: var(--ink-muted); font-size: 0.85rem; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line-rule); }
+thead th { color: var(--ink-strong); border-bottom: 2px solid var(--line-ink); }
+article.panel { background: var(--surface-panel); border: 1px solid var(--line-rule); border-radius: 6px; padding: 4px 18px 12px; margin: 18px 0; scroll-margin-top: 12px; }
+article.panel:target { border: 2px solid var(--line-focus); }
+article.panel h3 { margin-top: 14px; }
+dl.facts { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 24px; margin: 6px 0 10px; font-size: 0.92rem; }
+@media (min-width: 700px) { dl.facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+dl.facts dt { color: var(--ink-muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+dl.facts dd { margin: 0; overflow-wrap: anywhere; }
+.cited-at { margin: 14px 0 4px; font-size: 0.8rem; color: var(--ink-muted); }
+.claim { background: var(--surface-page); border: 1px solid var(--line-rule); border-radius: 4px; padding: 6px 14px; margin: 6px 0 10px; }
+.claim .claim { margin-left: 0; }
+.claim p { margin: 6px 0; overflow-wrap: anywhere; }
+.claim-head code { font-weight: 600; }
+.review, .meta { font-size: 0.86rem; color: var(--ink-muted); }
+.k { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-muted); margin-right: 4px; }
+.statement { font-size: 1rem; color: var(--ink-strong); }
+.reasoning { font-size: 0.93rem; border-left: 3px dashed var(--line-ink); padding-left: 10px; }
+ol.citations { padding-left: 1.2em; margin: 6px 0; }
+li.citation { margin: 8px 0 12px; }
+.src cite { font-style: normal; font-weight: 600; }
+blockquote.anchor { margin: 6px 0; padding: 6px 12px; border-left: 3px solid var(--line-ink); background: var(--surface-panel); color: var(--ink-strong); overflow-wrap: anywhere; }
+details.inputs { margin: 8px 0; }
+details.inputs summary { cursor: pointer; font-weight: 600; color: var(--ink-link); padding: 4px 0; }
+details.inputs summary:focus-visible { outline: 3px solid var(--line-focus); outline-offset: 2px; }
+.back { font-size: 0.85rem; margin: 10px 0 4px; }
+pre { background: var(--surface-panel); border: 1px solid var(--line-rule); padding: 12px 14px; overflow-x: auto; font-size: 0.86rem; line-height: 1.7; }
+pre code { overflow-wrap: normal; }
+ul.files { columns: 2 260px; padding-left: 1.2em; }
+footer { margin-top: 48px; border-top: 1px solid var(--line-rule); padding-top: 12px; font-size: 0.85rem; color: var(--ink-muted); }
+</style>
+</head>
+<body>
+<a class="skip" href="#evidence"><span data-label>Skip to the evidence</span></a>
+<div class="wrap">
+<header class="masthead">
+<p class="kicker"><span data-label>AI Infrastructure Atlas</span><span data-label>Dependency journey</span></p>
+<h1>${question}</h1>
+<div class="framing dek" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>This page follows one dependency chain through the Atlas’s records: from accelerators, to the memory inside them, to the process that memory needs. It shows what the records state, what the Atlas infers, and where the records stop.</p>
+</div>
+</header>
+
+<main>
+<section id="answer" aria-labelledby="answer-h">
+<h2 id="answer-h" data-label>Short answer</h2>
+${short_answer}
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<h3 data-label>How to read this page</h3>
+<p>Every name, relation, state and date on this page comes from a record in the Atlas’s data, and each links to the evidence behind it. A relation marked “stated” rests on a source speaking first-hand; one marked “inferred” is the Atlas’s own step, and its reasoning is shown. Text in a box like this one is the Atlas’s own explanation: it states no fact about the world.</p>
+</div>
+</section>
+
+<section id="why" aria-labelledby="why-h">
+<h2 id="why-h" data-label>Why it matters</h2>
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>A product depends on the parts it contains, and each part depends on the processes that make it. Following that chain shows which capabilities stand behind a product. Saying who provides each step needs evidence about named parties. Where the Atlas has not gathered that evidence, the chain ends at a visible gap rather than at a guess, so that an unknown is never read as an absence.</p>
+</div>
+</section>
+
+<section id="chain" aria-labelledby="chain-h">
+<h2 id="chain-h" data-label>The chain</h2>
+<div class="chain-grid">
+<figure>
+${figure}
+</figure>
+<div>
+<h3 data-label>How to read the diagram</h3>
+${legend}
+<h3 data-label>The chain in words</h3>
+${words}
+</div>
+</div>
+</section>
+
+<section id="context" aria-labelledby="context-h">
+<h2 id="context-h" data-label>Key context</h2>
+${context_quotes}
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>Each statement is quoted as its source gives it. The page does not compare them: they describe different products, in the units each source uses.</p>
+</div>
+${context_definitions}
+</section>
+
+<section id="gaps" aria-labelledby="gaps-h">
+<h2 id="gaps-h" data-label>What the Atlas does not know</h2>
+${gaps}
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>The records in the lane under the diagram sit near this chain in the Atlas, but no recorded edge links them to the accelerators on it. They are drawn apart so that their absence from the chain is visible, not to suggest a link. A missing line means the Atlas has not recorded a relationship; it never means that no relationship exists.</p>
+</div>
+</section>
+
+<section id="evidence" aria-labelledby="evidence-h" tabindex="-1">
+<h2 id="evidence-h" data-label>Evidence</h2>
+${evidence}
+</section>
+
+<section id="method" aria-labelledby="method-h">
+<h2 id="method-h" data-label>Method and limitations</h2>
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>The page is generated from the Atlas’s data files by a tested build step; nothing on it is typed by hand. The chain is walked from the relationship records each time the page is built, and is not stored. Only canonical records appear: records awaiting review are left out. The page shows no shares, counts, rankings or scores, and no confidence values: each claim carries its type and evidence status instead.</p>
+<p>The rulings below shape what the records hold. The digest identifies the exact inputs; rebuilding from the same inputs gives the same page, byte for byte.</p>
+</div>
+${method}
+</section>
+
+<section id="terms" aria-labelledby="terms-h">
+<h2 id="terms-h" data-label>Terms</h2>
+${terms}
+</section>
+</main>
+</div>
+</body>
+</html>

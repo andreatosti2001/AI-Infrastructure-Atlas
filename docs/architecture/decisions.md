@@ -1681,3 +1681,103 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   claims and the M16 release; it has no period. It is asked as a separate question at the
   review, and an unticked box leaves it in staging.
 - **Rejected:** `valid_from: 2021-02` (construction, not operation); `owns` from 설치 (D-082).
+
+## D-100 — The first journey: the HBM dependency chain (H-1)
+
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** H-1 ("yes and merge into main", 2026-10-02, to the recommended HBM chain). At the
+  start of S11 the human ruled on two records the chain does not link: "Separate lane
+  (Recommended)" for SK hynix's M16, and "Yes, not-connected lane (Recommended)" for Micron's
+  HBM4 36GB 12H.
+- **Decision** (`vertical-slice.md` §1): the journey answers "What does an AI accelerator's memory
+  depend on, and who is known to make it?" over H100 and Trainium2 → HBM → 3D die stacking, with
+  Amazon's `designs` edge, both `not_researched` suppliers and the TSMC → H100 gap. M16 and
+  Micron's HBM4 are shown in a separate lane, "not linked to either accelerator".
+- **Rejected:** a company profile (H-1's alternative); M16 drawn beside HBM (would imply supply);
+  M16 only in the limitations (the human's alternative); Micron left off.
+
+## D-101 — Structured output for the walk and the trace (H-4)
+
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** H-4 (Claude's recommendation, as part of H-1); the S10 debt "the navigation tool
+  prints text only".
+- **Decision** (`vertical-slice.md` §2): `tools/navigate.py` computes each answer as data
+  (`depends_on_tree`, `supplier_rows`, `actors_list`, `edges_at`) and renders its text from it;
+  `tools/trace.py` gains `trace_data`, the trace as a normalised structure (record, claim paths,
+  claims, sources, missing references). Both print JSON with `--json`. The build imports the same
+  functions. Tests check that the JSON and the text name the same edges, claims and sources.
+- **Rejected:** the build walking the files itself (a second walk to keep in step); re-parsing the
+  text output.
+
+## D-102 — The build step and its stamp (H-2)
+
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** H-2 ("Static, stdlib build, inline SVG (Recommended)"). Part B §11 asks the page to
+  state the data commit; the human ruled "Input digest (Recommended)".
+- **Decision:** `tools/build_page.py` (standard library) writes one self-contained file,
+  `site/hbm-chain/index.html`, with inline CSS and SVG and no script, from `data/`, the schemas,
+  `edge-dataset.md` §1, `decisions.md` and `tools/page_template.html`. Output is deterministic
+  (sorted inputs, no clock, no environment). The page carries a SHA-256 over its input files;
+  `--check` rebuilds and compares bytes. The commit is recorded in the session report.
+- **Rejected:** a page reading the JSON at run time and a charting library (H-2's alternatives); a
+  commit stamp (a committed page cannot carry its own commit; CI's shallow clone); a separate
+  stylesheet file (one self-contained file is what H-2 named).
+
+## D-103 — The visual form and its encoding
+
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** MA §16.1 (the grammar: flows and dependencies → flow diagrams); Part B §06 q3.
+- **Decision** (`vertical-slice.md` §3): a fixed vertical dependency diagram in inline SVG.
+  Box fill and rule encode level (instance or class); the line style encodes the basis (solid:
+  a `FACT` is cited; dashed and labelled "inferred": only `DERIVATION`s); amber hatched pills
+  encode gaps. No visual channel encodes a magnitude, a confidence or time.
+- **Rejected:** a table as the primary visual (kept as the text equivalent); a force-directed
+  network (position would carry no meaning); colour alone for "inferred".
+
+## D-104 — Gap encoding and the lane
+
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** RR-7; D-092, D-094; the human's lane rulings (D-100).
+- **Decision** (`vertical-slice.md` §5): each `not_researched` supplier is a pill on its
+  `incorporates` arrow; TSMC → H100 is a dotted line with no arrowhead and the pill "gap: no
+  edge", opening the canonical `claim-tsmc-fabricates-h100`; "no recorded relationship" is
+  written wherever a walk finds nothing. Four `edge-dataset.md` §1 rows are shown as text. The
+  build refuses to render the lane if any edge or `supplier` assertion links a lane record to
+  either accelerator.
+- **Rejected:** omitting unknowns from the visual; a placeholder "unknown supplier" node (RR-7);
+  the §1 "sentence" cells (not all are canonical claims).
+
+## D-105 — The text provenance rule and validate-design for the page
+
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** Part B §02 (five things the page must make impossible), §07 task 6; MA §15
+  (`validate-design`).
+- **Decision** (`vertical-slice.md` §4, §8): every text node sits inside a record value
+  (`data-ref`, `data-field`), an absent value, a fixed label, a derived value or a visibly marked
+  framing block that names no record. `tests/test_page.py` (PG-1 to PG-10) is `validate-design`
+  for this page; it runs in CI with every test module.
+- **Rejected:** checking only that the page builds (would miss a hand edit); snapshot tests of
+  the HTML (would freeze presentation, not provenance); hard-coded record values in tests.
+
+## D-106 — Browser QA in a scratch environment (H-3)
+
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** H-3 ("Scratch Playwright, no repo dep (Recommended)").
+- **Decision:** browser checks run with the pre-installed Chromium and Playwright outside the
+  repository: desktop and 375 px screenshots, overflow, the keyboard path to every panel, console
+  and network logs, measured contrast. The script and results are recorded in the report. Static
+  accessibility checks run in CI (PG-8).
+- **Rejected:** Playwright pinned and run in CI (H-3's alternative; a new dependency for one page).
+
+## D-107 — Editorial and QA contracts (H-5)
+
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** H-5 ("Contracts in S11, proposed (Recommended)"); the human's ruling "Yes, both
+  (Recommended)" on `tests/test_agent_contracts.py` and `tests/test_page.py`.
+- **Decision:** `docs/agents/contracts.md` gains Editorial and QA contracts with MA §12's fields;
+  `roles.md` marks both active. Editorial writes the framing and style in
+  `tools/page_template.html` and the state rows of `README.md`, `docs/README.md` and
+  `baseline.md`; QA writes browser findings and screenshots in `sessions/reports/`. Both are
+  checked by `tests/test_page.py`. `tests/test_agent_contracts.py`'s expected active set gains the
+  two roles.
+- **Rejected:** leaving both inactive with the work under the Data Auditor (H-5's alternative).

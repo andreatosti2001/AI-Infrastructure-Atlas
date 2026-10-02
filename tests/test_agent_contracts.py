@@ -79,7 +79,8 @@ class RoleTests(unittest.TestCase):
     def test_active_roles_are_exactly_the_contracted_roles(self) -> None:
         active = {row[0] for row in role_rows() if row[1] == "active"}
         self.assertEqual(active, set(contracts()))
-        self.assertEqual(active, {"Source Scout", "Extractor", "Verifier", "Knowledge Architect", "Data Auditor"})
+        # S11 (D-107; the human's ruling "Yes, both (Recommended)"): Editorial and QA join the five.
+        self.assertEqual(active, {"Source Scout", "Extractor", "Verifier", "Knowledge Architect", "Data Auditor", "Editorial", "QA"})
 
     def test_inactive_roles_name_their_first_session(self) -> None:
         for row in role_rows():
