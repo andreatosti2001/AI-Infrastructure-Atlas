@@ -31,7 +31,11 @@
     ],
     "source_entities": [
       "company-sk-hynix",
-      "company-micron-technology"
+      "company-micron-technology",
+      {
+        "state": "no_record",
+        "name": "Samsung"
+      }
     ],
     "target_entities": [
       "company-nvidia"
@@ -52,10 +56,11 @@
       }
     ],
     "reasons": [
+      "endpoint_has_no_record",
       "item_has_no_record"
     ],
     "ruling": "D-089",
-    "reasoning": "the item is \"memory\" (ER-9: exactly as broad as the source), and no memory component record exists. HBM would be narrower than the sentence"
+    "reasoning": "the item is \"memory\" (ER-9: exactly as broad as the source), and no memory component record exists. HBM would be narrower than the sentence. Samsung, the third firm the sentence names, has no company record (D-111)"
   },
   {
     "id": "cand-003",

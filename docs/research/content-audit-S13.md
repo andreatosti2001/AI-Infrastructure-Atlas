@@ -1,8 +1,8 @@
 # S13 Content and Evidence Depth Audit
 
-**Status:** PROPOSED (S13, 2026-10-02). Every finding is the Atlas's assessment
-(`INTERPRETATION`), never a new fact. The human rules on each finding (H-3); the rulings and the
-remediation are recorded in Part 7 and in `sessions/reports/SESSION-13-REPORT.md`.
+**Status:** FINDINGS RULED (S13, 2026-10-02): the human ruled on every finding at H-3 (Part 7).
+The maturity ratings (Part 8) stay proposed until the human accepts them. Every finding is the
+Atlas's assessment (`INTERPRETATION`), never a new fact.
 **Required by:** `SESSION-ROADMAP.md` S13 ("Sample claims and relationships and test whether the
 content layer is stronger than the presentation layer"; gate: "No scaling until evidence
 weaknesses are corrected or explicitly documented"); `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §6
@@ -95,7 +95,7 @@ source", the opposite. Read as "each claim holds":
 So the first independent reading found nothing Claude did not, and did not record the reasoning
 that would show whether the same questions were asked. DT-11 is **partly** closed: the human did
 read before Claude's view; the reading's granularity is not enough to test agreement question by
-question (debt DT-S13-8).
+question (debt DT-S13-10, F-11).
 
 ## Part 3 — The re-reads: every sampled claim
 
@@ -266,7 +266,48 @@ D-099 and the TSMC derivation follow from their inputs as stated; marketing evid
 
 ## Part 7 — Rulings and remediation
 
-*Filled after H-3.*
+**The human's rulings at H-3** (verbatim; each question as asked):
+
+| Question | Answer | Effect |
+|---|---|---|
+| NVIDIA's 10-K says it buys memory from SK hynix, Micron and Samsung, but the page's card (a relation the Atlas refused to draw) lists only SK hynix and Micron. Should the card name all three firms before the SQL session? | "Card names all three firms (Recommended)" | F-1 blocking, remediated (D-111) |
+| The H100 memory figures (80 GB of HBM3, five stacks) come from NVIDIA's 2022 launch blog, which labels its H100 specifications 'preliminary, subject to change'. What should happen to that claim? | "Claim stays, caveat logged (Recommended)" | F-3 debt (D-112) |
+| Should the other nine weaknesses (findings 2 and 4 to 11 …) be recorded as known weaknesses, each with an owner and a deadline, with no data change now? | "Record all nine with owners (Recommended)" | F-2, F-4 to F-11 debt (D-113) |
+
+Every ruling again followed the recommendation (P-3); the human's own reading came first (Part 2).
+
+**Remediation of F-1** (D-111). `data/refused_candidates.json`, `cand-002` only:
+
+- `source_entities` gains `{"state": "no_record", "name": "Samsung"}`, the word the quoted sentence
+  uses;
+- `reasons` gains `endpoint_has_no_record` (RC-5 requires it for a party with no record);
+- `reasoning` gains "Samsung, the third firm the sentence names, has no company record (D-111)";
+- the ruling stays D-089; the quote, locator and `read` are unchanged (the sentence was re-read in
+  S13, in bytes equal to the registered ones).
+
+No claim, source, edge or entity record changed; no Samsung record was created. The page was
+rebuilt: the card reads "SK hynix, Micron Technology, Samsung (no record in the Atlas) → NVIDIA ·
+supplies · item: memory" under both "endpoint has no record" and "item has no record", and D-111
+joins the rules cited. Checks, breaks and browser QA: `SESSION-13-REPORT.md`.
+
+**No check was added.** The missing check is "a refused candidate names every party its quote
+names"; telling which words of a sentence are firms needs a reader, not a pattern. It stays a
+Verifier's reading (F-10's debt covers the same gap).
+
+**Debt register** (D-112, D-113):
+
+| ID | From | What | Owner | Due |
+|---|---|---|---|---|
+| DT-S13-1 | F-2 | `party` standing unchecked on 14 citations; DT-10 re-owned | Knowledge Architect (a rule for who publishes a web page; AWS sources with DT-6) | before client output relies on standing (M6) |
+| DT-S13-2 | F-3 | H100 figures from a source that calls them preliminary | S14 (no computation over them); the session that next researches product attributes (a current source) | S14 |
+| DT-S13-3 | F-4 | "Amazon designs" drawn from the parent's record; alias not shown | DT-6's owner (the session that creates the AWS record) | with DT-6 |
+| DT-S13-4 | F-5 | evidence ageing past the horizon is unreported (Micron: 2026-10-03) | S01's weekly gate / Change Detector: a report, not a clock-reading test | before S14 presents any value as current |
+| DT-S13-5 | F-6 | dynamic HTML bytes change on every request | Data Auditor: a text hash beside the byte hash | before the next re-read of an HTML source |
+| DT-S13-6 | F-7 | TSMC 20-F and ISO OBP refuse automated re-reads | Verifier, with the human's file (RA-4) | when either claim next supports a new record |
+| DT-S13-7 | F-8 | D-091 restates a definition; D-099 rests on continuity | S14: not counted as independent evidence; D-099's evidence date shown | S14 |
+| DT-S13-8 | F-9 | Trainium2 edge anchored on a table row | Extractor (a new claim ID citing the "consists of" sentence) | when the claim is next revised |
+| DT-S13-9 | F-10 | a refused candidate's quote may elide a named party (`cand-003`) | Verifier, by reading | every candidate review |
+| DT-S13-10 | F-11 | the human's reading too brief to compare | each session prompt asks one answer per question | next human reading |
 
 ## Part 8 — Maturity (PEF §3, §6) and the S13 gate
 
@@ -292,5 +333,6 @@ strong as the page says, and the page is careful with gaps and inferences. The p
 its records in three places (F-1, F-3, F-4); the records are not weaker than the page anywhere.
 
 **The S13 gate** ("No scaling until evidence weaknesses are corrected or explicitly documented"):
-met when F-1 is remediated (or the human rules it debt) and F-2 to F-11 are accepted as documented
-debt with their owners. Recorded in Part 7.
+**met.** The one blocking finding (F-1) is corrected with the human's ruling; F-2 to F-11 are
+documented debt with owners (Part 7). With S12's B-1 remediated, M3's blocking findings are all
+remediated.
