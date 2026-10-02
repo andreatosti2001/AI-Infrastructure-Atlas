@@ -83,7 +83,7 @@ claim types and evidence status are MA §10. The entity schema was accepted in S
 (`relationship-taxonomy.md`, D-028 to D-033); its §6 reconciles MA §6.2, the relationship
 list in `SESSION-ROADMAP.md` S04 and the verbs in `domain-map.md` §3. The source policy was accepted at the S05 review (`source-policy.md`, D-034 to
 D-043): source classes, a preference matrix read from both schemas, and evidence, conflict,
-retrieval and freshness rules. The claim and source records were accepted at the S06 review (`claim-model.md`, D-044 to D-053). The first company and jurisdiction records follow `company-dataset.md` (S07, D-054 to D-066, accepted at the S07 review); technology, component and product records follow `concept-dataset.md` (S08, D-067 to D-077, proposed).
+retrieval and freshness rules. The claim and source records were accepted at the S06 review (`claim-model.md`, D-044 to D-053). The first company and jurisdiction records follow `company-dataset.md` (S07, D-054 to D-066, accepted at the S07 review); technology, component and product records follow `concept-dataset.md` (S08, D-067 to D-077, accepted at the S08 review except D-070 and D-076).
 
 ## 5. Quality gates
 

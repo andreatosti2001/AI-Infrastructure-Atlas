@@ -1,7 +1,8 @@
 # Concept dataset — technologies, components and the first products
 
-**Status:** PROPOSED (S08): D-067 to D-077. At the S08 review the human accepted both
-batches of claims and approved D-074; D-070 and D-076 were not approved and stay open (§8).
+**Status:** ACCEPTED except D-070 and D-076 (human review of S08, 2026-10-02: "All except
+D-070, D-076 (Recommended)"): D-067 to D-069, D-071 to D-075 and D-077 accepted. D-070 and
+D-076 stay proposed, with the records that rest on them in staging (§8).
 **Session:** S08 · **Date:** 2026-10-01
 **Inputs:**
 - `entity-taxonomy.md` §3.3 (technology), §3.4 (component), §3.5 (product), §4.2 (the

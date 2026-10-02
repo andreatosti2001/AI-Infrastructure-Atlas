@@ -323,6 +323,18 @@ The review sheet below was sent before the questions. The human's answers, verba
 - 9 claims and 5 records held in staging, as the question stated for unticked rulings.
 - HBM-03 and HBM-04 recorded as gaps.
 
+## Addendum — human review outcome of S08 (2026-10-02)
+
+Asked as H-0 of the S09 prompt, after this report was written. The answer, verbatim:
+"All except D-070, D-076 (Recommended)".
+
+- **Accepted:** D-067 to D-069, D-071 to D-073, D-075 and D-077 (D-074 was already
+  accepted at the review above). The status lines in `decisions.md` and the status of
+  `concept-dataset.md` record it.
+- **Still proposed:** D-070 (the EUV/DUV split) and D-076 (the classes of `src-039` and
+  `src-041`). The 9 staging claims and the 5 staging technology records stay where they
+  are, and S09 inherits them as open items.
+
 ## Review sheets
 
 The sheet as sent to the human (headings demoted one level).

@@ -1268,7 +1268,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-067 — Concept scope: 15 of 17 concepts recorded; HBM-03 and HBM-04 are gaps (H-1)
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
 - **Context:** H-1 ("All v1 concepts (Recommended)"): every concept that `entity-taxonomy.md`
   §5 maps to a technology or component, unless no definitional source of a sufficient class
   exists. The only sentences on the HBM base die and on TSVs as such come from vendors'
@@ -1282,7 +1282,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-068 — Technology and component IDs (CI-1)
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
 - **Context:** S07's ID rule slugs a claim-backed legal name. A concept's name is editorial
   (Part B §06 q4).
 - **Decision** (`concept-dataset.md` §3): the ID is the record type plus the slug of the
@@ -1294,7 +1294,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-069 — Working definitions are always an INTERPRETATION (H-4; DEF-1, DEF-2)
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
 - **Context:** H-4 ("Reuse TQ answers (Recommended)"): each working definition is an
   `INTERPRETATION` citing every side of its CON conflict. Part B §06 q3 asks what applies
   where no conflict exists.
@@ -1308,7 +1308,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-070 — SME-03 becomes two records: EUV lithography and DUV lithography
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed (not approved at the S08 review; left open at the H-0 answer, 2026-10-02: "All except D-070, D-076 (Recommended)")
 - **Context:** §5 maps SME-03 "EUV and DUV lithography" to one technology record and leaves
   scanner equipment classes to S08. Part B §06 q2 names EUV vs DUV as a pair to keep apart.
 - **Decision** (`concept-dataset.md` §2, §3): two technology records, both with
@@ -1321,7 +1321,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-071 — `broader` assignments and acyclicity (B-1)
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
 - **Context:** `entity-taxonomy.md` §3.3, §3.4 and §9: `broader` is taxonomy only, may have
   several parents, and must be acyclic.
 - **Decision** (`concept-dataset.md` §5): data-centre GPU and AI ASIC under AI accelerator;
@@ -1333,7 +1333,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-072 — Products: three records, their IDs (PI-1) and the `instance_of` basis (IO-1) (H-2)
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
 - **Context:** H-2 ("Few, from sources (Recommended)"): H100, Trainium2, Micron HBM, an ASML
   EUV system. `instance_of` has no claim field in the schema.
 - **Decision** (`concept-dataset.md` §7): NVIDIA H100, AWS Trainium2 and Micron HBM4 36GB
@@ -1345,7 +1345,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-073 — The GH100 ruling
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
 - **Context:** the canonical claim `claim-h100-gh100-process-name` is about the GH100 die
   that powers the H100 (S06 finding). Part B §06 q6 asks whether it supports the H100's
   `vendor_process_name`.
@@ -1372,7 +1372,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-075 — A re-retrieval with changed bytes is a new source record
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
 - **Context:** VD-11 (D-062) requires an attested read to be of the registered bytes.
   `src-006`, `src-010`, `src-013` and `src-015` returned changed bytes; their existing
   records are the home of S06 reads.
@@ -1384,7 +1384,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-076 — Class rulings for the new sources
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed (not approved at the S08 review; left open at the H-0 answer, 2026-10-02: "All except D-070, D-076 (Recommended)")
 - **Context:** `source-policy.md` §2 assigns each source one class.
 - **Decision** (`concept-dataset.md` §6): the IEEE EPS Heterogeneous Integration Roadmap
   chapter (`src-039`) is a `research_report`, and the NIST news article (`src-041`) is a
@@ -1400,7 +1400,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-077 — Layout, review and validate-data for concept and product records (H-3, H-6)
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** proposed
+- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
 - **Context:** H-3 ("One file per type (Recommended)") and H-6 ("Review inside S08
   (Recommended)").
 - **Decision** (`concept-dataset.md` §8, §9): `data/technologies.json`,
