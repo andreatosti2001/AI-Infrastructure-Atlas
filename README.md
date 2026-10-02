@@ -3,7 +3,7 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 
 ## Status
 
-**M2 — Canonical Dataset (complete with S10; M3 next).** The repository contains governance documents, the
+**M3 — Vertical Slice + Audit (S11 under review; S12 and S13 next).** The repository contains governance documents, the
 session system, a repository-integrity check, the S01 domain map, the accepted entity
 schema (S03), the accepted relationship schema (S04), the accepted source policy with its
 source-class vocabulary (S05), the accepted claim model (S06), and the first canonical
@@ -15,7 +15,11 @@ became canonical at the end of S09, when the human approved the last two S08 rul
 facilities, each placed by a site sentence and never by a headquarters one, with 4 dated
 events in a new event schema, from which a facility's status is derived, never stored; and (S10) the first 5
 relationship records, each resting on claims that meet the taxonomy's evidence expectation for
-its type, navigable from the JSON files by `tools/navigate.py` without a graph database. It contains **no UI yet**. See
+its type, navigable from the JSON files by `tools/navigate.py` without a graph database; and (S11) the first
+page, [`site/hbm-chain/index.html`](site/hbm-chain/index.html): one journey, "What does an AI accelerator's
+memory depend on, and who is known to make it?", generated from the records by a tested standard-library
+build step, in which every mark opens its evidence and every unknown is drawn as a named gap. The page is
+not published (NG-13). See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is
 planned.
 
@@ -30,7 +34,8 @@ data/            source records, canonical claims, companies, jurisdictions, tec
 docs/            documentation map, baseline, decision log, entity and relationship taxonomies, claim model, company, concept, facility and edge datasets, milestone audits, agent roles and contracts, research, source policy
 schemas/         JSON Schema for entity records (accepted, S03), relationship records (accepted, S04), source records around the accepted source-class vocabulary (S05, S06), claims (S06) and facility events (S09)
 sessions/        session prompts, prompt registry and session reports
-tools/           Gate 0 validator, the trace command, the facility status derivation and edge navigation
+tools/           Gate 0 validator, the trace command, the facility status derivation, edge navigation, and the page build with its template
+site/            generated pages (never edited by hand): hbm-chain/index.html (S11)
 tests/           unit tests for tools/, schemas/ and data/ (validate-data), with fictional fixtures
 .github/         CI
 ```
@@ -48,7 +53,8 @@ python -m unittest discover -s tests -p "test_data*.py" -v   # validate-data
 python -m unittest discover -s tests -p "test_freshness.py" -v   # validate-freshness
 python tools/trace.py company-nvidia                         # what supports a record or claim
 python tools/facility_status.py facility-kr-m16 --on 2026-10-02   # a facility's derived status
-python tools/navigate.py depends-on technology-3d-die-stacking   # what depends on a record (S10)
+python tools/navigate.py depends-on technology-3d-die-stacking   # what depends on a record (S10); --json for data (S11)
+python tools/build_page.py --check                               # the S11 page equals a rebuild (validate-design: tests/test_page.py)
 ```
 
-CI runs both on every push and pull request.
+CI runs the unit tests (including the page checks) and Gate 0 on every push and pull request.

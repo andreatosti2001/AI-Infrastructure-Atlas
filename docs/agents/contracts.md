@@ -1,9 +1,9 @@
 # Agent contracts
 
 **Status:** ACCEPTED (human review of S06, 2026-09-30; D-052, D-010). **Session:** S06.
-Paths updated in S07 (Editorial, paths only, Part B §10): the staging entity files, `company-dataset.md` and the S07 test modules. Paths updated in S08 likewise: the staging technology, component and product files, `concept-dataset.md` and the S08 checks. Paths updated in S09 likewise: the staging facility and event files, `facility-dataset.md`, the proposed event schema, the S09 checks and `tools/facility_status.py`. Paths updated in S10 likewise: the staging relationship file, `edge-dataset.md`, the S10 checks and `tools/navigate.py`.
+Paths updated in S07 (Editorial, paths only, Part B §10): the staging entity files, `company-dataset.md` and the S07 test modules. Paths updated in S08 likewise: the staging technology, component and product files, `concept-dataset.md` and the S08 checks. Paths updated in S09 likewise: the staging facility and event files, `facility-dataset.md`, the proposed event schema, the S09 checks and `tools/facility_status.py`. Paths updated in S10 likewise: the staging relationship file, `edge-dataset.md`, the S10 checks and `tools/navigate.py`. S11 added the Editorial and QA contracts (D-107, `proposed`) and updated paths likewise: `vertical-slice.md`, the page checks, the build step and the generated page.
 
-MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. Each contract has
+MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. The Editorial and QA contracts are `proposed` (S11, D-107) until the human's review. Each contract has
 MA's nine fields, in MA's order.
 
 - **Paths are repository paths.** A role writes only its allowed paths. A session report
@@ -63,7 +63,7 @@ MA's nine fields, in MA's order.
 | ROLE | Knowledge Architect |
 | INPUTS | the session prompt; the schemas; the taxonomies, the source policy and the claim model; the decision log |
 | OUTPUTS | schema and vocabulary changes, each with a decision; one-home rulings; ID formats |
-| ALLOWED_WRITES | `schemas/`; `docs/architecture/claim-model.md`; `docs/architecture/company-dataset.md` (S07); `docs/architecture/concept-dataset.md` (S08); `docs/architecture/facility-dataset.md` (S09); `docs/architecture/edge-dataset.md` (S10); `docs/architecture/decisions.md` (append only) |
+| ALLOWED_WRITES | `schemas/`; `docs/architecture/claim-model.md`; `docs/architecture/company-dataset.md` (S07); `docs/architecture/concept-dataset.md` (S08); `docs/architecture/facility-dataset.md` (S09); `docs/architecture/edge-dataset.md` (S10); `docs/architecture/vertical-slice.md` (S11); `docs/architecture/decisions.md` (append only) |
 | FORBIDDEN_WRITES | any file in `data/`; a claim's `review`; an accepted vocabulary value or field without a decision the human approves first; the root constitutional documents |
 | EVIDENCE_REQUIREMENTS | a vocabulary value needs a used case (M0 audit A-1, L-09); where a choice rests on the domain, it cites the concept or source that shows it |
 | HANDOFF_FORMAT | a decision record (`proposed`) and the changed schema, with fixtures |
@@ -77,9 +77,37 @@ MA's nine fields, in MA's order.
 | ROLE | Data Auditor |
 | INPUTS | `data/`, the schemas, the claim model's §4 tables, the source policy's matrix |
 | OUTPUTS | the `validate-data` checks and their results; findings of broken references, duplicates, impossible dates and missing provenance (MA §11.7) |
-| ALLOWED_WRITES | `tests/`; `tests/fixtures/`; `tools/` (standard library only, D-026) |
+| ALLOWED_WRITES | `tests/`; `tests/fixtures/`; `tools/` (standard library only, D-026), except the framing and style in `tools/page_template.html` (Editorial); `site/hbm-chain/index.html`, written only by the build step `tools/build_page.py` (S11, D-102) |
 | FORBIDDEN_WRITES | any file in `data/`: the Auditor reports, and the Extractor or Verifier fixes; a claim's `review`; a check weakened to make data pass |
 | EVIDENCE_REQUIREMENTS | each check is shown to catch a planted fault before it is trusted (deliberate breaks); prose counts are tested or labelled as measured (L-04) |
 | HANDOFF_FORMAT | failing test output naming the record and the rule, in the session report |
-| VALIDATION_GATE | `tests/test_data_integrity.py`, `tests/test_data_schema.py`, `tests/test_data_entities.py`, `tests/test_freshness.py`, `tests/test_trace.py`, `tests/test_agent_contracts.py`; from S09, `tests/test_data_events.py` and `tests/test_facility_status.py`; from S10, `tests/test_data_relationships.py` and `tests/test_navigate.py` |
+| VALIDATION_GATE | `tests/test_data_integrity.py`, `tests/test_data_schema.py`, `tests/test_data_entities.py`, `tests/test_freshness.py`, `tests/test_trace.py`, `tests/test_agent_contracts.py`; from S09, `tests/test_data_events.py` and `tests/test_facility_status.py`; from S10, `tests/test_data_relationships.py` and `tests/test_navigate.py`; from S11, `tests/test_page.py` |
 | FAILURE_BEHAVIOUR | a failure that cannot be explained stops the session (CLAUDE.md §18); no test is skipped or loosened to get green |
+
+## Editorial
+
+| Field | Value |
+|---|---|
+| ROLE | Editorial |
+| INPUTS | the page as built from canonical records; `docs/architecture/vertical-slice.md` (the composition, the text provenance rule); `claim-model.md` §13 (how claims are displayed); the schema definitions the page's terms render |
+| OUTPUTS | the page's framing (prose that states no fact and names no record) and its style; the state rows of the documentation, as each session prompt lists them |
+| ALLOWED_WRITES | `tools/page_template.html` (framing and style only); `README.md`, `docs/README.md` and `docs/architecture/baseline.md` (state rows); `sessions/reports/` |
+| FORBIDDEN_WRITES | any file in `data/`; a claim's `review`; `site/hbm-chain/index.html` (generated, never edited by hand); a name, value, date, count or relation typed into the template; framing that names a record, holds a digit, or says "none" for a missing relationship; the labels and journey specification in `tools/build_page.py` (the Data Auditor's) |
+| EVIDENCE_REQUIREMENTS | framing adds no fact (NG-09, `claim-model.md` §13); every value reaches the page through the build from its home (D-105); a missing edge is "no recorded relationship" (RR-7); no "critical", "concentrated", share, rank or score (NG-11) |
+| HANDOFF_FORMAT | the template change and the rebuilt page in one commit, with the framing changes listed in the session report |
+| VALIDATION_GATE | `tests/test_page.py` (PG-1 every text node has a home, PG-6 framing marked and naming no record, PG-7 rebuild, PG-8 style and contrast) |
+| FAILURE_BEHAVIOUR | a sentence that needs a fact becomes a gap on the page or a question to the human, never framing; a failing check is reported, never loosened |
+
+## QA
+
+| Field | Value |
+|---|---|
+| ROLE | QA |
+| INPUTS | the generated page `site/hbm-chain/index.html`; `docs/architecture/vertical-slice.md` §7, §8; MA §14 (Gate 6, Gate 7) and the roadmap's four visual QA questions |
+| OUTPUTS | browser findings: screenshots at desktop and 375 px, the keyboard path to every panel, console and network logs, contrast measured on rendered text; the answers to the visual QA questions (truth, clarity, context, presentation) |
+| ALLOWED_WRITES | `sessions/reports/` (findings and screenshots) |
+| FORBIDDEN_WRITES | any file in `data/`; a claim's `review`; the page, the template or the build (a finding goes to the Editorial or the Data Auditor); a repository dependency for the browser run (D-106) |
+| EVIDENCE_REQUIREMENTS | every finding cites a screenshot, a log line or a measured value; no session is declared complete from visual inspection alone (MA §15); a browser run states the browser, the widths and the page's input digest |
+| HANDOFF_FORMAT | a report table: check, width, result, evidence |
+| VALIDATION_GATE | `tests/test_page.py` (PG-8 accessibility basics, PG-9 links and no network resource), run in CI; the browser run is recorded in the report, outside CI (H-3) |
+| FAILURE_BEHAVIOUR | a failure is reported with its log and screenshot; a page that fails a check is not shown to the human as done, and never published (NG-13) |

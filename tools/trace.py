@@ -15,6 +15,7 @@ Usage:
                The entity files of --data (companies, jurisdictions (S07), technologies,
                components and products (S08), facilities and events (S09), relationships
                (S10), canonical and staging) are always read when they exist
+    --json     print the trace as data (S11, D-101): the structure the page build reads
 
 Exit status: 0 when every reference resolves, 1 when one does not, 2 when ID is unknown.
 Standard library only (D-003, D-026).
@@ -238,12 +239,100 @@ def trace(identifier: str, store: Store) -> tuple[list[str], int]:
     return printer.lines, 1 if store.missing else 0
 
 
+class Collector:
+    """The trace as data (S11, D-101): the same walk as Printer, kept as a normalised structure.
+
+    Claims and sources are keyed by ID, each held once; a claim's inputs are read from the claim
+    itself. Unresolved references are listed in `missing`, exactly as Printer reports them.
+    """
+
+    def __init__(self, store: Store) -> None:
+        self.store = store
+        self.claims: dict[str, dict] = {}
+        self.sources: dict[str, dict] = {}
+        self.missing: list[str] = []
+
+    def source(self, source_id: str) -> None:
+        source = self.store.sources.get(source_id)
+        if source is None:
+            self.missing.append(f"source {source_id}")
+        else:
+            self.sources[source_id] = source
+
+    def claim(self, claim_id: str, path: tuple[str, ...] = ()) -> None:
+        if claim_id in path:
+            self.missing.append(f"input cycle {' -> '.join(path + (claim_id,))}")
+            return
+        claim = self.store.claims.get(claim_id)
+        if claim is None:
+            self.missing.append(f"claim {claim_id}")
+            return
+        if claim_id in self.claims:
+            return
+        self.claims[claim_id] = {"claim": claim, "where": self.store.where[claim_id]}
+        for citation in claim.get("citations", []):
+            self.source(citation["source_id"])
+        for entry in claim.get("search", {}).get("classes", []):
+            for source_id in entry.get("source_ids", []):
+                self.source(source_id)
+        for other in claim.get("disputed_with", []):
+            if other not in self.store.claims:
+                self.missing.append(f"competing claim {other}")
+        for input_id in claim.get("input_claim_ids", []):
+            self.claim(input_id, path + (claim_id,))
+
+
+def trace_data(identifier: str, store: Store) -> tuple[dict, int]:
+    """What `trace` prints, as data: the record (or claim, or source), the JSON paths that cite
+    claims, the explicit states, the referenced records, every claim reached and every source."""
+    collector = Collector(store)
+    source_id = store.labels.get(identifier, identifier)
+    result: dict = {"id": identifier}
+    if identifier in store.records:
+        record, origin = store.records[identifier]
+        result.update(kind="record", record=record, origin=origin, references=[], states=[])
+        for key in ("vendor", "instance_of", "broader"):
+            for target in [record[key]] if isinstance(record.get(key), str) else record.get(key, []):
+                found = store.records.get(target)
+                result["references"].append({"field": key, "target": target, "found": bool(found)})
+                if not found:
+                    collector.missing.append(f"/{key}: {target}")
+        result["paths"] = [{"pointer": pointer, "claim_id": claim_id, "value": value} for pointer, claim_id, value in claim_paths(record)]
+        for item in result["paths"]:
+            collector.claim(item["claim_id"])
+        for key, value in record.items():
+            if isinstance(value, dict) and "state" in value and "claim_ids" not in value:
+                result["states"].append({"pointer": f"/{key}", "state": value["state"]})
+    elif identifier in store.claims:
+        result["kind"] = "claim"
+        collector.claim(identifier)
+    elif source_id in store.sources:
+        result.update(kind="source", source_id=source_id)
+        collector.source(source_id)
+        citing = []
+        for claim in store.claims.values():
+            ids = [c["source_id"] for c in claim.get("citations", [])]
+            ids += [s for e in claim.get("search", {}).get("classes", []) for s in e.get("source_ids", [])]
+            if source_id in ids:
+                citing.append(claim["id"])
+        result["cited_by"] = sorted(citing)
+    else:
+        return {"id": identifier, "error": "unknown ID"}, 2
+    result.update(claims=collector.claims, sources=collector.sources, missing=collector.missing)
+    return result, 1 if collector.missing else 0
+
+
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(description="Trace what supports a record, a claim or a source.")
     parser.add_argument("id")
     parser.add_argument("--data", type=Path, default=DEFAULT_DATA)
     parser.add_argument("--records", type=Path, action="append", default=[])
+    parser.add_argument("--json", action="store_true", help="print the trace as data (S11, D-101)")
     args = parser.parse_args(argv[1:])
+    if args.json:
+        data, status = trace_data(args.id, Store(args.data, args.records))
+        print(json.dumps(data, ensure_ascii=False, indent=1, sort_keys=True))
+        return status
     lines, status = trace(args.id, Store(args.data, args.records))
     print("\n".join(lines))
     return status

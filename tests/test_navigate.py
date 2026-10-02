@@ -9,9 +9,15 @@ graph database." The tool must answer MA §18's questions from the JSON files:
   activity edge by `actors`, each edge by `edges` from both ends, and `evidence` traces it;
 
 and it must never print "none" for a missing edge (RR-7).
+
+S11 (D-101): every answer also exists as data (`navigate_data`, `--json`), and the data and the
+text must name the same edges, with the same status.
 """
 
+import contextlib
+import io
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -129,6 +135,60 @@ class RealNavigationTests(unittest.TestCase):
                         self.assertIn(edge["id"], self.ask("edges", end)[0])
                     text, status = self.ask("evidence", edge["id"])
                     self.assertEqual(status, 0, text)
+
+
+def edge_ids_in(node) -> set[str]:
+    """Every edge ID in a navigate_data answer, at any depth."""
+    if isinstance(node, dict):
+        found = {node["edge"]["id"]} if isinstance(node.get("edge"), dict) else set()
+        for value in node.values():
+            found |= edge_ids_in(value)
+        return found
+    if isinstance(node, list):
+        return set().union(*(edge_ids_in(value) for value in node)) if node else set()
+    return set()
+
+
+class StructuredOutputTests(unittest.TestCase):
+    """D-101: the data and the text are one answer."""
+
+    def check_world(self, root: Path, staging: bool) -> None:
+        atlas = navigate.Atlas(root, staging)
+        ids = sorted(set(atlas.records) | {e["id"] for e, _ in atlas.edges})
+        edge_ids = {e["id"] for e, _ in atlas.edges}
+        for command in ("depends-on", "suppliers", "actors", "edges"):
+            for ref in ids:
+                with self.subTest(command=command, ref=ref, staging=staging):
+                    lines, status = navigate.navigate(command, ref, atlas)
+                    data, data_status = navigate.navigate_data(command, ref, atlas)
+                    self.assertEqual(status, data_status)
+                    json.dumps(data)  # serialisable as it stands
+                    named = {i for i in re.findall(r"\b(rel-[a-z0-9-]+)\b", "\n".join(lines[1:])) if i in edge_ids and i != ref}  # the question and "no recorded relationship" lines name ref itself
+                    self.assertEqual(named, edge_ids_in(data["answer"]))
+
+    def test_fixture_world(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            write_world(Path(tmp))
+            for staging in (False, True):
+                self.check_world(Path(tmp), staging)
+
+    def test_real_data(self) -> None:
+        for staging in (False, True):
+            self.check_world(REPO_ROOT / "data", staging)
+
+    def test_unknown_id_as_data(self) -> None:
+        data, status = navigate.navigate_data("actors", "product-example-nothing", navigate.Atlas(REPO_ROOT / "data", False))
+        self.assertEqual(status, 2)
+        self.assertIn("error", data)
+
+    def test_json_flag(self) -> None:
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            status = navigate.main(["navigate.py", "depends-on", "technology-3d-die-stacking", "--json"])
+        self.assertEqual(status, 0)
+        data = json.loads(out.getvalue())
+        self.assertEqual(data["command"], "depends-on")
+        self.assertTrue(data["answer"])
 
 
 if __name__ == "__main__":
