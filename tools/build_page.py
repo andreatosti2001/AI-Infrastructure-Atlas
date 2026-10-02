@@ -1,7 +1,8 @@
 """Build the S11 vertical-slice page from the Atlas's records (vertical-slice.md; D-102).
 
 Writes site/hbm-chain/index.html: one self-contained file with inline CSS and SVG and no script,
-generated from data/, the schemas, edge-dataset.md §1, decisions.md and the template
+generated from data/ (the refused candidates included, D-109), the schemas, the rule documents,
+decisions.md and the template
 tools/page_template.html. The page answers one question: "What does an AI accelerator's memory
 depend on, and who is known to make it?"
 
@@ -38,7 +39,6 @@ INPUT_GLOBS = ("data/*.json", "data/staging/*.json", "schemas/*.json")
 INPUT_FILES = (
     "docs/architecture/company-dataset.md",
     "docs/architecture/decisions.md",
-    "docs/architecture/edge-dataset.md",
     "docs/architecture/relationship-taxonomy.md",
     "docs/research/source-policy.md",
     "tools/build_page.py",
@@ -53,11 +53,12 @@ JOURNEY = {
     "walk_root": "technology-3d-die-stacking",
     # recorded nearby, not linked to the chain (H-1; the human's lane rulings, D-100)
     "lane_edges": ["rel-company-sk-hynix-operates-facility-kr-m16"],
-    # a recorded gap drawn on the diagram: an edge-dataset.md §1 row, its canonical claim, its ruling
-    "drawn_gaps": [{"row": "TSMC → H100", "claim": "claim-tsmc-fabricates-h100", "decision": "D-092"}],
-    # further edge-dataset.md §1 rows that answer "who makes it?" for records on the page (vertical-slice.md §5)
-    # (the drawn gap's own row is shown with it, under "Recorded gaps")
-    "text_rows": ["SK hynix, Micron → NVIDIA", "NVIDIA → H100", "Micron → HBM4 36GB 12H"],
+    # a recorded gap drawn on the diagram: a refused candidate and the canonical claim it opens (D-092, D-109)
+    "drawn_gaps": [{"candidate": "cand-001", "claim": "claim-tsmc-fabricates-h100"}],
+    # further refused candidates that answer "who makes it?" for records on the page (vertical-slice.md §5),
+    # shown as cards grouped by reason, never in the diagram (D-109)
+    # (the drawn gap's own candidate is shown with it, under "Recorded gaps")
+    "candidates": ["cand-002", "cand-007", "cand-011"],
     # rulings the page states as limitations
     "decisions": ["D-091", "D-092", "D-093", "D-094", "D-099"],
 }
@@ -87,7 +88,7 @@ LABELS = frozenset(
         "also recorded in the Atlas", "not linked to any accelerator on this chain", "instance of",
         "recorded as a kind of", "a property of its record,", "not a supply link", "a property of its record, not a supply link",
         "recorded gap", "a claim the Atlas holds, not an edge", "recorded gap: a claim the Atlas holds, not an edge",
-        "ruling", "candidate", "type", "why not",
+        "ruling", "candidate", "type", "why not", "item", "no record in the Atlas", "the rule that refuses candidates:",
         "and", "each", "which", "Who makes that memory:", "in each", "Jump to", "Rules cited above", "defined in",
         "claim", "other claims in this record’s trace",
         "from the edge design record", "edge design record", "activity edges into this record:",
@@ -133,10 +134,8 @@ def esc(value) -> str:
     return html.escape(str(value), quote=True)
 
 
-def cells(line: str) -> list[str]:
-    if not (line.startswith("|") and line.rstrip().endswith("|")):
-        return []
-    return [cell.strip() for cell in line.strip()[1:-1].split("|")]
+def load_json(path: Path) -> list:
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
 
 
 def input_paths() -> list[str]:
@@ -160,10 +159,6 @@ class Page:
         self.atlas = navigate.Atlas(data, False)
         self.store = trace.Store(data, [])
         self.schemas = {p.name.split(".")[0]: json.loads(p.read_text(encoding="utf-8")) for p in sorted((REPO_ROOT / "schemas").glob("*.json"))}
-        edge_doc = (REPO_ROOT / "docs/architecture/edge-dataset.md").read_text(encoding="utf-8")
-        table = edge_doc[edge_doc.index("**Candidates that are not edges**") : edge_doc.index("**Count.**")]
-        rows = [cells(line) for line in table.splitlines() if cells(line)]
-        self.row_header, self.rows = rows[0], {row[0]: row for row in rows[2:]}
         decisions = (REPO_ROOT / "docs/architecture/decisions.md").read_text(encoding="utf-8")
         self.decisions = {m.group(1): m.group(2).strip() for m in re.finditer(r"^## (D-\d{3}) — (.+)$", decisions, re.M)}
         self.rules: dict[str, str] = {}
@@ -182,6 +177,9 @@ class Page:
             if self.store.where[claim_id] == "canonical":
                 self.homes[claim_id] = claim
         self.homes.update(self.store.sources)
+        # refused candidates (D-109): canonical only; never read as edges or records by the walk
+        self.candidates = {c["id"]: c for c in load_json(data / "refused_candidates.json")}
+        self.homes.update(self.candidates)
         self.terms: dict[str, set[str]] = {}
         self.claims_shown: set[str] = set()
         self.sources_shown: set[str] = set()
@@ -196,8 +194,6 @@ class Page:
             node = self.schemas[stem]["$defs"][name]
             if const:
                 node = next(item for item in node["oneOf"] if item.get("const") == const)
-        elif ref.startswith("doc:edge-dataset#"):
-            return self.rows[ref[len("doc:edge-dataset#") :]][self.row_header.index(field)].replace("`", "")
         elif ref.startswith("doc:decisions#"):
             key = ref[len("doc:decisions#") :]
             return key if field == "id" else self.decisions[key].replace("`", "")
@@ -305,17 +301,18 @@ class Page:
                 raise BuildError(f"{edge['id']} links the lane to the chain: the lane's text would be false")
         return {"root": root_edge, "component": component, "columns": columns, "lane_edges": lane_edges, "lane_products": lane_products}
 
+    def candidate(self, cand_id: str) -> dict:
+        if cand_id not in self.candidates:
+            raise BuildError(f"refused candidate {cand_id} is not canonical")
+        return self.candidates[cand_id]
+
     def gap_ends(self, gap: dict) -> tuple[str, str]:
-        if gap["row"] not in self.rows:
-            raise BuildError(f"no edge-dataset.md §1 row {gap['row']!r}")
-        ends = [part.strip() for part in gap["row"].split("→")]
-        found = []
-        for end in ends:
-            match = [r["id"] for r, _ in self.atlas.records.values() if r.get("name") == end or end in r.get("aliases", [])]
-            if len(match) != 1:
-                raise BuildError(f"{end!r} does not name one record")
-            found += match
-        return found[0], found[1]
+        """The drawn gap's two records: its candidate's endpoints, by ID (D-109), never by name."""
+        cand = self.candidate(gap["candidate"])
+        ends = cand["source_entities"] + cand["target_entities"]
+        if len(ends) != 2 or len(cand["relation_types"]) != 1 or not all(isinstance(e, str) and e in self.homes for e in ends):
+            raise BuildError(f"the drawn gap {gap['candidate']} needs one relation type between two records")
+        return ends[0], ends[1]
 
     @staticmethod
     def basis(item: dict) -> str:
@@ -410,11 +407,13 @@ class Page:
                 gap = col["gap"]
                 source, target = self.gap_ends(gap)
                 out.append(self.box(source, left, actor_y, col_w, 46))
-                relation = self.value(f"doc:edge-dataset#{gap['row']}", "Type")
+                relation = self.candidate(gap["candidate"])["relation_types"][0]
                 if relation not in navigate.VOCAB:
                     raise BuildError(f"the drawn gap's type {relation!r} is not a relation type")
-                self.term("Relation types", f"schema:relationships#vocab_relation_type/{relation}")
-                out.append(self.arrow({}, cx, actor_y + 46, product_y, relation_ref=(f"doc:edge-dataset#{gap['row']}", "Type"), kind="gap", target=gap["claim"], ends=(source, target)))
+                vocab_ref = f"schema:relationships#vocab_relation_type/{relation}"
+                self.term("Relation types", vocab_ref)
+                # the label is the vocabulary term, so no candidate reference sits in the diagram (D-109)
+                out.append(self.arrow({}, cx, actor_y + 46, product_y, relation_ref=(vocab_ref, "/const"), kind="gap", target=gap["claim"], ends=(source, target)))
             out.append(self.box(col["product"], left, product_y, col_w, 52))
             item = col["item"]
             out.append(self.arrow(item, cx, product_y + 52, component_y))
@@ -484,9 +483,9 @@ class Page:
             if col["gap"]:
                 gap = col["gap"]
                 source, target = self.gap_ends(gap)
-                row, basis = f"doc:edge-dataset#{gap['row']}", self.claim_basis(gap["claim"])
+                basis = self.claim_basis(gap["claim"])
                 items.append(
-                    f'<li>{self.name(source)} → {self.name(target)}: {self.ref(row, "Type", cls="rel")} · '
+                    f'<li>{self.name(source)} → {self.name(target)}: {self.ref(gap["candidate"], "/relation_types/0", cls="rel")} · '
                     f'{self.label("recorded gap: a claim the Atlas holds, not an edge", cls="basis gap")} · {self.label(basis, cls="basis " + basis)} {self.evidence_link(gap["claim"])}</li>'
                 )
         for col in j["columns"]:
@@ -602,20 +601,16 @@ class Page:
         ruling = self.decision("D-094")
         drawn = []
         for gap in JOURNEY["drawn_gaps"]:
-            row = f"doc:edge-dataset#{gap['row']}"
+            cand_id = gap["candidate"]
+            source, target = self.gap_ends(gap)
             drawn.append(
-                f'<li>{self.ref(row, "Candidate", tag="strong")} · {self.ref(row, "Type", cls="rel")} · {self.label("a claim the Atlas holds, not an edge", cls="basis gap")} '
-                f'{self.evidence_link(gap["claim"])}<br>{self.ref(row, "Why not")}<br>{self.label("ruling")}: {self.decision(gap["decision"])}</li>'
+                f'<li><strong>{self.name(source)} → {self.name(target)}</strong> · {self.ref(cand_id, "/relation_types/0", cls="rel")} · '
+                f'{self.label("a claim the Atlas holds, not an edge", cls="basis gap")} {self.evidence_link(gap["claim"])}<br>'
+                f'{self.ref(cand_id, "/reasoning")}<br>{self.label("ruling")}: {self.decision(self.candidate(cand_id)["ruling"])}</li>'
             )
-        rows = []
-        for key in JOURNEY["text_rows"]:
-            row = f"doc:edge-dataset#{key}"
-            rows.append(f'<tr><th scope="row">{self.ref(row, "Candidate")}</th><td>{self.ref(row, "Type")}</td><td>{self.ref(row, "Why not")}</td></tr>')
         table = (
-            f'<div class="table-wrap"><table><caption>{self.label("from the edge design record")} · '
-            f'<a href="{TO_ROOT}docs/architecture/edge-dataset.md">{self.label("edge design record")}</a></caption>'
-            f'<thead><tr><th scope="col">{self.label("candidate")}</th><th scope="col">{self.label("type")}</th><th scope="col">{self.label("why not")}</th></tr></thead>'
-            f'<tbody>{"".join(rows)}</tbody></table></div>'
+            f'<p class="cite">{self.label("the rule that refuses candidates:")} '
+            f'<a href="{TO_ROOT}docs/architecture/edge-dataset.md">{self.label("edge design record")}</a></p>{self.candidate_cards(j)}'
         )
         none_recorded = []
         for col in j["columns"]:
@@ -631,10 +626,47 @@ class Page:
             f'{self.label("No recorded relationship", tag="h3")}<ul class="gaps">{"".join(none_recorded)}</ul>'
         )
 
+    def endpoint(self, cand_id: str, pointer: str, value, panels: set[str]) -> str:
+        """A candidate's party or item: a record's name (linked to its panel where the page has one),
+        or the name the candidate records for a party with no record (D-109)."""
+        if isinstance(value, str):
+            name = self.name(value)
+            return f'<a href="#ev-{esc(value)}">{name}</a>' if value in panels else name
+        return f'{self.ref(cand_id, f"{pointer}/name")} <span class="cite">({self.label("no record in the Atlas")})</span>'
+
+    def candidate_cards(self, j: dict) -> str:
+        """The journey's refused candidates as cards, one group per reason, in the schema's order (D-109)."""
+        panels = set(self.panel_nodes(j))
+        cards = {cand_id: self.candidate(cand_id) for cand_id in JOURNEY["candidates"]}
+        groups = []
+        for reason in [item["const"] for item in self.schemas["refused_candidates"]["$defs"]["vocab_reason"]["oneOf"]]:
+            members = [cid for cid, c in cards.items() if reason in c["reasons"]]
+            if not members:
+                continue
+            vocab_ref = f"schema:refused_candidates#vocab_reason/{reason}"
+            items = []
+            for cid in members:
+                cand = cards[cid]
+                sources = ", ".join(self.endpoint(cid, f"/source_entities/{i}", v, panels) for i, v in enumerate(cand["source_entities"]))
+                targets = ", ".join(self.endpoint(cid, f"/target_entities/{i}", v, panels) for i, v in enumerate(cand["target_entities"]))
+                types = ", ".join(self.ref(cid, f"/relation_types/{i}", cls="rel") for i in range(len(cand["relation_types"])))
+                for relation in cand["relation_types"]:
+                    self.term("Relation types", f"schema:relationships#vocab_relation_type/{relation}")
+                item = f' · {self.label("item")}: {self.endpoint(cid, "/item", cand["item"], panels)}' if "item" in cand else ""
+                items.append(
+                    f'<li class="card" data-candidate="{esc(cid)}"><p class="card-head">{sources} → {targets} · {types}{item}</p>'
+                    f'<p>{self.ref(cid, "/reasoning")}</p><p class="cite">{self.label("ruling")}: {self.decision(cand["ruling"])}</p></li>'
+                )
+            groups.append(
+                f'<section class="reason" data-reason="{esc(reason)}"><h4>{self.ref(vocab_ref, "/const", fmt="state")}</h4>'
+                f'<p class="meaning">{self.ref(vocab_ref, "/description")}</p><ul class="cards">{"".join(items)}</ul></section>'
+            )
+        return "".join(groups)
+
     def rules_cited(self) -> str:
         """Each rule code quoted from the design record, with its one-line home (D-108)."""
-        texts = [self.value(f"doc:edge-dataset#{g['row']}", "Why not") for g in JOURNEY["drawn_gaps"]]
-        texts += [self.value(f"doc:edge-dataset#{key}", "Why not") for key in JOURNEY["text_rows"]]
+        texts = [self.candidate(g["candidate"])["reasoning"] for g in JOURNEY["drawn_gaps"]]
+        texts += [self.candidate(cand_id)["reasoning"] for cand_id in JOURNEY["candidates"]]
         codes = sorted({c for text in texts for c in RULE_CODE.findall(text)}, key=lambda c: (c.split("-")[0], int(c.split("-")[1])))
         items = []
         for code in codes:
@@ -797,30 +829,39 @@ class Page:
         return self.panel(record_id, self.name(record_id), details)
 
     def gap_panel(self, gap: dict) -> str:
-        row = f"doc:edge-dataset#{gap['row']}"
-        heading = f'{self.ref(row, "Candidate")} · {self.label("recorded gap")}'
-        details = [("type", self.ref(row, "Type")), ("why not", self.ref(row, "Why not")), ("ruling", self.decision(gap["decision"]))]
+        cand_id = gap["candidate"]
+        source, target = self.gap_ends(gap)
+        heading = f'{self.name(source)} → {self.name(target)} · {self.label("recorded gap")}'
+        details = [("type", self.ref(cand_id, "/relation_types/0")), ("why not", self.ref(cand_id, "/reasoning")), ("ruling", self.decision(self.candidate(cand_id)["ruling"]))]
         return self.panel(gap["claim"], heading, details)
 
-    def evidence(self, j: dict) -> str:
-        panels = []
+    def panel_nodes(self, j: dict) -> list[str]:
+        """The records that get a node panel, in panel order."""
         nodes: list[str] = []
         for col in j["columns"]:
             if col["actor"]:
-                panels.append(self.edge_panel(col["actor"]))
                 nodes.append(col["actor"]["edge"]["source_entity"])
             if col["gap"]:
-                panels.append(self.gap_panel(col["gap"]))
                 nodes.append(self.gap_ends(col["gap"])[0])
+        nodes += [c["product"] for c in j["columns"]] + [j["component"], JOURNEY["walk_root"]]
+        for item in j["lane_edges"]:
+            nodes += [item["edge"]["source_entity"], item["edge"]["target_entity"]]
+        nodes += j["lane_products"]
+        return list(dict.fromkeys(nodes))
+
+    def evidence(self, j: dict) -> str:
+        panels = []
+        for col in j["columns"]:
+            if col["actor"]:
+                panels.append(self.edge_panel(col["actor"]))
+            if col["gap"]:
+                panels.append(self.gap_panel(col["gap"]))
         for col in j["columns"]:
             panels.append(self.edge_panel(col["item"]))
         panels.append(self.edge_panel(j["root"]))
-        nodes += [c["product"] for c in j["columns"]] + [j["component"], JOURNEY["walk_root"]]
         for item in j["lane_edges"]:
             panels.append(self.edge_panel(item))
-            nodes += [item["edge"]["source_entity"], item["edge"]["target_entity"]]
-        nodes += j["lane_products"]
-        for record_id in dict.fromkeys(nodes):
+        for record_id in self.panel_nodes(j):
             panels.append(self.node_panel(record_id))
         return "".join(panels)
 
@@ -866,11 +907,13 @@ class Page:
     def render(self) -> str:
         j = self.journey()
         for gap in JOURNEY["drawn_gaps"]:
-            if gap["claim"] not in self.homes or gap["decision"] not in self.decisions:
-                raise BuildError(f"the drawn gap {gap['row']} has no canonical claim or ruling")
-        for key in JOURNEY["text_rows"]:
-            if key not in self.rows:
-                raise BuildError(f"no edge-dataset.md §1 row {key!r}")
+            cand = self.candidate(gap["candidate"])
+            if gap["claim"] not in self.homes or cand["ruling"] not in self.decisions:
+                raise BuildError(f"the drawn gap {gap['candidate']} has no canonical claim or ruling")
+            if gap["claim"] not in [c.get("claim_id") for c in cand["considered"]]:
+                raise BuildError(f"the drawn gap's claim {gap['claim']} is not one its candidate considered")
+        for cand_id in JOURNEY["candidates"]:
+            self.candidate(cand_id)
         figure = self.figure(j)
         quotes, definitions = self.context(j)
         parts = {

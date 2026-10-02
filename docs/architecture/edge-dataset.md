@@ -72,25 +72,24 @@ then class edges.
 | `rel-company-sk-hynix-operates-facility-kr-m16` | `operates` | `claim-sk-hynix-operates-m16` | `DERIVATION` (D-082, D-099) | **flagged ruling**: SK hynix states it operates its production plants in 이천; M16 is its plant in 이천. The plants are not listed one by one |
 | `rel-component-high-bandwidth-memory-requires-technology-3d-die-stacking` | `requires` | `claim-hbm-requires-3d-die-stacking` | `DERIVATION` (D-091) | **flagged ruling**: necessity read out of the ECP definition of HBM, approved for S10 by the human at the start |
 
-**Candidates that are not edges** (the sentences were read; IDs are the claims or sources):
+**Candidates that are not edges** are records since S12 (D-109): one record per candidate in
+[`data/refused_candidates.json`](../../data/refused_candidates.json), against
+[`schemas/refused_candidates.schema.json`](../../schemas/refused_candidates.schema.json). Each holds
+its endpoints (record IDs, or an explicit `no_record` state with the name the table wrote), the
+relation type, what was read (claims, or a source sentence with the Verifier's read state), reason
+codes whose definitions live in the schema, the "why not" text that stood in this table, and the
+ruling. Twelve were migrated from this table, values unchanged
+([`SESSION-12-migration/`](../../sessions/reports/SESSION-12-migration/)), and accepted by the human
+("Approve all", 2026-10-02). This section keeps the rule above; the records keep the values. Checked
+by `tests/test_data_candidates.py` (RC-1 to RC-8).
 
-| Candidate | Type | Sentence | Why not |
-|---|---|---|---|
-| TSMC → H100 | `fabricates` | `claim-h100-process-name`, via the staged `claim-tsmc-fabricates-h100` (ER-1) | meets §5 only as a `DERIVATION`, but `rel:fabricates` is `time_sensitive` and the product-level evidence is dated 2025-07-22 (`src-042`, `src-051`), more than the §12 horizon before its use. F-1 fails. The human chose a gap (D-092). NVIDIA's live Hopper page names TSMC 4N for the architecture, not the product (D-073 logic) |
-| SK hynix, Micron → NVIDIA | `supplies` | `src-024` p.8: "We purchase memory from SK Hynix Inc., Micron Technology, Inc., and Samsung" | the `item` is "memory" (ER-9: exactly as broad as the source), and no memory component record exists. HBM would be narrower than the sentence |
-| TSMC → NVIDIA | `supplies` | `src-024` p.8: "We utilize foundries, such as … TSMC … to produce our semiconductor wafers" | a manufacturing service on the customer's own product is `fabricates`, not `supplies` (`relationship-taxonomy.md` §4.9), and the sentence is company-level (ER-9) |
-| Carl Zeiss SMT GmbH → ASML | `supplies` | `src-029` p.322: "Carl Zeiss SMT GmbH is our single supplier, and we are their single customer, of optical columns for lithography systems" | no "optical column" component record, and no Zeiss company record (§6) |
-| ASML → TSMC | `supplies` | `src-029` p.173: "we were honored to receive the TSMC Supplier ‘Excellence in Green Manufacturing’ Award" | no item is named; an award is not a stated supply relation (RR-1) |
-| ASML → Micron | `supplies` | `src-029` p.118: Micron Technology in ASML's remuneration reference group | co-mention (RR-1) |
-| NVIDIA → H100 | `designs` | `claim-h100-identity`: "our ninth-generation data center GPU designed to deliver …" | states what the GPU is designed for, not who designed it (ER-2). NVIDIA's H100 product page and the 2022 H100 PCIe product brief name no designer either |
-| Amazon → Trainium2 | `designs` (second sentence) | `src-028` p.5: "Our second version of our custom AI silicon (Trainium2)" | "custom" is not a statement of design work (ER-2); not used. The release sentence suffices |
-| Amkor → its subsidiaries | `owns` | `src-026` p.117, Exhibit 21.1 "List of subsidiaries" | `owns` meets §5, but each subsidiary needs a company record, and D-057 requires the filer's own statement of its legal name. A parent's exhibit is not that. H-3: the edge waits (§6) |
-| Amazon → Amazon Web Services, Inc. | `owns` | `src-052`: "Amazon Web Services, Inc. (AWS), an Amazon.com, Inc. company" | "an … company" is group text (§5 `owns`: not enough on its own); `rel:owns` is `time_sensitive` and the release is dated 2023-11-28; no AWS record (§6) |
-| Micron → HBM4 36GB 12H | `fabricates` | `claim-micron-hbm4-identity` ("in high-volume production"); `src-025` p.7 "We manufacture our products at wholly-owned facilities" | production is not stated as wafer fabrication by Micron for this product; the 10-K sentence is company-level (ER-9) |
-| Micron → Manassas | `owns`, `operates` | `claim-micron-manassas-fab` | fails both (`facility-dataset.md` §5) |
+**Section marks in the reasons.** The "why not" texts were written in this table. In them, a bare
+§5 means `relationship-taxonomy.md` §5 (the evidence expectations) and §12 means
+`source-policy.md` §12 (the freshness horizon), as the rule above uses them; §6 means §6 of this
+document (company records).
 
 **Count.** 5 edges. The human's 10-edge review therefore covers the 5 edges, the staged
-TSMC → H100 derivation, and the refused candidates above, each traced from its sentence
+TSMC → H100 derivation, and the refused candidates (now records, above), each traced from its sentence
 (`SESSION-10-REPORT.md`). Fewer than 10 edges exist because the evidence supports fewer: see
 the report's deviations.
 

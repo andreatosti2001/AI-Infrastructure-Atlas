@@ -30,7 +30,7 @@ with it (H-5, "Contracts in S11, proposed (Recommended)"; D-107).
 | Knowledge Architect | active | Keep IDs, vocabularies, ownership and one home per fact | [contracts.md](./contracts.md#knowledge-architect) | S06 (the S03 to S05 designs) |
 | Data Auditor | active | Check schemas, references, duplicates, dates and missing provenance | [contracts.md](./contracts.md#data-auditor) | S06 |
 | Analyst | inactive | Produce reproducible derived analysis | none | S14 (SQL layer); S15 (metrics, NG-11) |
-| Editorial | active | Turn validated material into readable pages, keeping claim boundaries | [contracts.md](./contracts.md#editorial) | S11 (the first page; contract `proposed`, D-107). Before S11 its session work was limited to recording state rows |
+| Editorial | active | Turn validated material into readable pages, keeping claim boundaries | [contracts.md](./contracts.md#editorial) | S11 (the first page; contract accepted at the S12 opening review, D-107). Before S11 its session work was limited to recording state rows |
 | Client Output | inactive | Produce briefs and exports from validated data | none | S21 (client briefs) |
-| QA | active | Test rendering, links, accessibility and browser behaviour | [contracts.md](./contracts.md#qa) | S11 (the first UI; contract `proposed`, D-107). Data and code checks stay the Data Auditor's |
+| QA | active | Test rendering, links, accessibility and browser behaviour | [contracts.md](./contracts.md#qa) | S11 (the first UI; contract accepted at the S12 opening review, D-107). Data and code checks stay the Data Auditor's |
 | Portfolio Reviewer | inactive | Judge whether a feature shows a real capability | none | S24 (capability audit). Until then, the human's review at each session (baseline §5, Gate 8) |

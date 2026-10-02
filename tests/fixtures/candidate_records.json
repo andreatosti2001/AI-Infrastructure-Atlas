@@ -1,0 +1,79 @@
+{
+  "description": "Fictional refused candidates for tests/test_data_candidates.py (S12, D-109). They live in the edge fixture world (tests/fixtures/edge_records.json, tests/fixtures/entity_records.json): every ID they cite is one of that world's records, claims or sources. Each fault is one change that a named check must catch, for the reason in 'expect'.",
+  "valid": {
+    "canonical": [
+      {
+        "id": "cand-001",
+        "relation_types": ["designs"],
+        "source_entities": ["company-example-designer"],
+        "target_entities": ["product-example-designer-chip-one"],
+        "considered": [{ "claim_id": "claim-fixture-301" }],
+        "reasons": ["relation_not_stated"],
+        "reasoning": "says what the chip is for, not who designed it (ER-2). The edge rests on another sentence.",
+        "ruling": "D-089"
+      },
+      {
+        "id": "cand-002",
+        "relation_types": ["supplies"],
+        "source_entities": [{ "state": "no_record", "name": "Example Optics GmbH" }],
+        "target_entities": ["company-example-designer"],
+        "item": { "state": "no_record", "name": "lens assembly" },
+        "considered": [
+          { "source_id": "src-911", "locator": "p.3", "anchor": "Example Optics GmbH is our single supplier of lens assemblies", "read": { "state": "not_re_read" } }
+        ],
+        "reasons": ["endpoint_has_no_record", "item_has_no_record"],
+        "reasoning": "no lens component record and no Example Optics company record (D-095)",
+        "ruling": "D-089"
+      },
+      {
+        "id": "cand-003",
+        "relation_types": ["fabricates"],
+        "source_entities": ["company-example-designer"],
+        "target_entities": ["product-example-designer-chip-one"],
+        "considered": [{ "claim_id": "claim-fixture-303" }, { "source_id": "src-912", "locator": { "state": "not_recorded" }, "read": { "state": "not_re_read" } }],
+        "reasons": ["evidence_not_fresh"],
+        "reasoning": "rel:fabricates is time_sensitive and the evidence is older than the horizon. F-1 fails.",
+        "ruling": "D-092"
+      }
+    ],
+    "staging": [
+      {
+        "id": "cand-004",
+        "relation_types": ["supplies"],
+        "source_entities": ["company-example-foundry"],
+        "target_entities": ["company-example-designer"],
+        "considered": [{ "claim_id": "claim-fixture-311" }],
+        "reasons": ["company_level_only", "wrong_relation_type"],
+        "reasoning": "a manufacturing service is fabricates, not supplies, and the sentence is company-level (ER-9)",
+        "ruling": "D-089"
+      }
+    ]
+  },
+  "faults": [
+    { "name": "an endpoint that does not exist", "check": "RC-2", "action": "set", "where": "canonical", "index": 0, "field": "source_entities", "value": ["company-example-nobody"], "expect": "company-example-nobody does not exist" },
+    { "name": "a considered claim that does not exist", "check": "RC-2", "action": "set", "where": "canonical", "index": 0, "field": "considered", "value": [{ "claim_id": "claim-fixture-999" }], "expect": "claim-fixture-999 does not exist" },
+    { "name": "a considered source that does not exist", "check": "RC-2", "action": "set", "where": "canonical", "index": 1, "field": "considered", "value": [{ "source_id": "src-999", "locator": "p.1", "read": { "state": "not_re_read" } }], "expect": "src-999 does not exist" },
+    { "name": "a ruling that is not a decision", "check": "RC-2", "action": "set", "where": "canonical", "index": 0, "field": "ruling", "value": "D-999", "expect": "D-999 is not a decision" },
+    { "name": "a canonical candidate that cites a staging claim", "check": "RC-3", "action": "set", "where": "canonical", "index": 0, "field": "considered", "value": [{ "claim_id": "claim-fixture-311" }], "expect": "canonical cand-001 cites staging claim-fixture-311" },
+    { "name": "a canonical candidate whose endpoint is a staging record", "check": "RC-3", "action": "set", "where": "canonical", "index": 0, "field": "source_entities", "value": ["company-example-foundry"], "expect": "canonical cand-001 points to staging company-example-foundry" },
+    { "name": "one ID in both files", "check": "RC-3", "action": "set", "where": "staging", "index": 0, "field": "id", "value": "cand-001", "expect": "cand-001 is both staging and canonical" },
+    { "name": "a no-record name that is a record's alias", "check": "RC-4", "action": "set", "where": "canonical", "index": 1, "field": "source_entities", "value": [{ "state": "no_record", "name": "Example Designer Inc." }], "expect": "names a record (company-example-designer)" },
+    { "name": "a no-record name that is a placeholder word", "check": "RC-4", "action": "set", "where": "canonical", "index": 1, "field": "item", "value": { "state": "no_record", "name": "unknown" }, "expect": "is a placeholder" },
+    { "name": "no-record endpoint given as a reason with every endpoint recorded", "check": "RC-5", "action": "set", "where": "canonical", "index": 0, "field": "reasons", "value": ["relation_not_stated", "endpoint_has_no_record"], "expect": "endpoint_has_no_record, but every endpoint has a record" },
+    { "name": "a no-record endpoint without its reason", "check": "RC-5", "action": "set", "where": "canonical", "index": 1, "field": "reasons", "value": ["item_has_no_record"], "expect": "an endpoint has no record, but endpoint_has_no_record is not a reason" },
+    { "name": "a no-record item without its reason", "check": "RC-5", "action": "set", "where": "canonical", "index": 1, "field": "reasons", "value": ["endpoint_has_no_record"], "expect": "the item has no record, but item_has_no_record is not a reason" },
+    { "name": "stale evidence on a type that is not time-sensitive", "check": "RC-5", "action": "set", "where": "canonical", "index": 0, "field": "reasons", "value": ["evidence_not_fresh"], "expect": "evidence_not_fresh, but no type is time_sensitive (designs)" },
+    { "name": "a sentence both used by an edge and refused for the same relation", "check": "RC-6", "action": "set", "where": "canonical", "index": 0, "field": "considered", "value": [{ "claim_id": "claim-fixture-401" }], "expect": "claim-fixture-401 supports rel-company-example-designer-designs-product-example-designer-chip-one" },
+    { "name": "a rule code with no home in the reasoning", "check": "RC-7", "action": "set", "where": "canonical", "index": 0, "field": "reasoning", "value": "fails ER-99", "expect": "ER-99 has no home" }
+  ],
+  "schema_faults": [
+    { "name": "a stored status (RR-6)", "base": 0, "set": { "status": "refused" } },
+    { "name": "an edge field", "base": 0, "set": { "claim_ids": ["claim-fixture-301"] } },
+    { "name": "a reason outside the list", "base": 0, "set": { "reasons": ["too_vague"] } },
+    { "name": "a placeholder endpoint ID", "base": 0, "set": { "target_entities": ["product-unknown-chip"] } },
+    { "name": "an ID off the pattern", "base": 0, "set": { "id": "cand-1" } },
+    { "name": "a considered sentence with no read state", "base": 1, "set": { "considered": [{ "source_id": "src-911", "locator": "p.3" }] } },
+    { "name": "a no-record endpoint with no name", "base": 1, "set": { "source_entities": [{ "state": "no_record" }] } },
+    { "name": "no reasoning", "base": 0, "remove": ["reasoning"] }
+  ]
+}

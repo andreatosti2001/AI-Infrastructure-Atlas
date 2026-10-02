@@ -3,7 +3,7 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 
 ## Status
 
-**M3 — Vertical Slice + Audit (S11 under review; S12 and S13 next).** The repository contains governance documents, the
+**M3 — Vertical Slice + Audit (S12 audit under review; S13 next).** The repository contains governance documents, the
 session system, a repository-integrity check, the S01 domain map, the accepted entity
 schema (S03), the accepted relationship schema (S04), the accepted source policy with its
 source-class vocabulary (S05), the accepted claim model (S06), and the first canonical
@@ -19,7 +19,10 @@ its type, navigable from the JSON files by `tools/navigate.py` without a graph d
 page, [`site/hbm-chain/index.html`](site/hbm-chain/index.html): one journey, "What does an AI accelerator's
 memory depend on, and who is known to make it?", generated from the records by a tested standard-library
 build step, in which every mark opens its evidence and every unknown is drawn as a named gap. The page is
-not published (NG-13). See
+not published (NG-13). S12 audited the data model and the page (the overdue M2 audit,
+[`docs/architecture/milestone-audits/M2-audit.md`](docs/architecture/milestone-audits/M2-audit.md)):
+its one blocking finding is remediated, so the 12 relations the Atlas considered and refused are now
+records with their own checks, which the page shows as cards grouped by reason. See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is
 planned.
 
@@ -30,9 +33,9 @@ This is an independent repository. It shares no code, data or runtime with
 
 ```text
 CLAUDE.md, MASTER-ARCHITECTURE.md, ...   constitutional documents (see docs/README.md)
-data/            source records, canonical claims, companies, jurisdictions, technologies, components, products, facilities, events and relationships; staging/ holds records awaiting the human's review
+data/            source records, canonical claims, companies, jurisdictions, technologies, components, products, facilities, events, relationships and refused candidates; staging/ holds records awaiting the human's review
 docs/            documentation map, baseline, decision log, entity and relationship taxonomies, claim model, company, concept, facility and edge datasets, milestone audits, agent roles and contracts, research, source policy
-schemas/         JSON Schema for entity records (accepted, S03), relationship records (accepted, S04), source records around the accepted source-class vocabulary (S05, S06), claims (S06) and facility events (S09)
+schemas/         JSON Schema for entity records (accepted, S03), relationship records (accepted, S04), refused candidates (S12), source records around the accepted source-class vocabulary (S05, S06), claims (S06) and facility events (S09)
 sessions/        session prompts, prompt registry and session reports
 tools/           Gate 0 validator, the trace command, the facility status derivation, edge navigation, and the page build with its template
 site/            generated pages (never edited by hand): hbm-chain/index.html (S11)

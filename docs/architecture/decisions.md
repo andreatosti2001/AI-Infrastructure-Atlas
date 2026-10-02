@@ -1684,7 +1684,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-100 — The first journey: the HBM dependency chain (H-1)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** H-1 ("yes and merge into main", 2026-10-02, to the recommended HBM chain). At the
   start of S11 the human ruled on two records the chain does not link: "Separate lane
   (Recommended)" for SK hynix's M16, and "Yes, not-connected lane (Recommended)" for Micron's
@@ -1698,7 +1698,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-101 — Structured output for the walk and the trace (H-4)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** H-4 (Claude's recommendation, as part of H-1); the S10 debt "the navigation tool
   prints text only".
 - **Decision** (`vertical-slice.md` §2): `tools/navigate.py` computes each answer as data
@@ -1711,7 +1711,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-102 — The build step and its stamp (H-2)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** H-2 ("Static, stdlib build, inline SVG (Recommended)"). Part B §11 asks the page to
   state the data commit; the human ruled "Input digest (Recommended)".
 - **Decision:** `tools/build_page.py` (standard library) writes one self-contained file,
@@ -1725,7 +1725,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-103 — The visual form and its encoding
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** MA §16.1 (the grammar: flows and dependencies → flow diagrams); Part B §06 q3.
 - **Decision** (`vertical-slice.md` §3): a fixed vertical dependency diagram in inline SVG.
   Box fill and rule encode level (instance or class); the line style encodes the basis (solid:
@@ -1736,7 +1736,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-104 — Gap encoding and the lane
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** RR-7; D-092, D-094; the human's lane rulings (D-100).
 - **Decision** (`vertical-slice.md` §5): each `not_researched` supplier is a pill on its
   `incorporates` arrow; TSMC → H100 is a dotted line with no arrowhead and the pill "gap: no
@@ -1749,7 +1749,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-105 — The text provenance rule and validate-design for the page
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** Part B §02 (five things the page must make impossible), §07 task 6; MA §15
   (`validate-design`).
 - **Decision** (`vertical-slice.md` §4, §8): every text node sits inside a record value
@@ -1761,7 +1761,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-106 — Browser QA in a scratch environment (H-3)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** H-3 ("Scratch Playwright, no repo dep (Recommended)").
 - **Decision:** browser checks run with the pre-installed Chromium and Playwright outside the
   repository: desktop and 375 px screenshots, overflow, the keyboard path to every panel, console
@@ -1771,7 +1771,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-107 — Editorial and QA contracts (H-5)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** H-5 ("Contracts in S11, proposed (Recommended)"); the human's ruling "Yes, both
   (Recommended)" on `tests/test_agent_contracts.py` and `tests/test_page.py`.
 - **Decision:** `docs/agents/contracts.md` gains Editorial and QA contracts with MA §12's fields;
@@ -1784,7 +1784,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-108 — Changes from the human's new-user test
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
 - **Context:** the human's new-user test. Asked for suggestions ("Gimme suggestions"), Claude
   proposed seven changes; the human answered "I agree, follow the principle of “not
   overreachment”" (2026-10-02).
@@ -1807,3 +1807,45 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   evidence panels (each mark still opens its full evidence in one click).
 - **Rejected:** rewriting the "why not" cells in plain words (a second home for the reasons);
   collapsing claim cards (the evidence would sit two clicks from its mark).
+
+## D-109 — The refused candidates become records (H-1, H-2)
+
+- **Session:** S12 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** H-1 ("Pick the recommended", end of S11: records); the S12 audit's blocking finding
+  B-1 (`milestone-audits/M2-audit.md` Part 2 N-2, I-5; Part 3 q1). The human's answer at S12, to
+  "Where should the 12 relationships the Atlas considered and refused … be stored": "Own file,
+  separate from real links (Recommended)".
+- **Decision** (M2 audit, Part 3 q1 and q6): one record per `edge-dataset.md` §1 candidate row, in
+  `data/refused_candidates.json` and `data/staging/refused_candidates.json`, against
+  `schemas/refused_candidates.schema.json`. A record holds `id` (`cand-NNN` in row order, never
+  reused), `relation_types`, `source_entities` and `target_entities` (entity IDs, or
+  `{"state": "no_record", "name"}`), an optional `item`, `considered` (claim IDs, or a source,
+  locator, quoted anchor and a `read` state), `reasons` (codes from the schema's list),
+  `reasoning` (the row's "why not", verbatim) and `ruling` (a decision ID). No status field
+  (RR-6), no edge fields. Values are copied by a script that asserts each equals its §1 cell; the
+  Verifier re-reads quoted sentences where the registered bytes can be retrieved; the human
+  reviews the reason codes; accepted records are promoted (D-061 pattern) and the rows leave §1,
+  which keeps the rule. Checks RC-1 to RC-7 in `tests/test_data_candidates.py`. The page reads the
+  records, shows the same four candidates as cards grouped by reason, never in the diagram, and
+  `edge-dataset.md` leaves the page's inputs.
+- **Rejected:** extra fields in `data/relationships.json` (H-2's alternative: every edge reader
+  would have to filter refusals, and a stored "refused" status breaks RR-6); rule-made IDs like
+  RI-1 (impossible with unrecorded or plural endpoints); keeping the "why not" text in §1 (the page
+  would still parse the table); splitting two-source rows into two records (an improvement on the
+  row, not a copy).
+
+## D-110 — Values about named records live in data; rules live in their documents
+
+- **Session:** S12 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** S12 Part B §06 q2; the M2 audit's N-2 and N-3. The human's answers at S12: "Rules
+  stay in documents (Recommended)" and, for the other document tables, "Later, before the SQL
+  layer (S14) (Recommended)".
+- **Decision:** a value or evidence pointer about a named record is data and lives in `data/`; a
+  rule that governs records (a vocabulary's word table, a matrix, a horizon, a rule line) lives in
+  its design document, and code may read it. The rule lines and decision titles the page quotes
+  stay where they are. The four other tables that hold per-record values (the CI-1, PI-1 and FI-1
+  terms; the IO-1 and FK-1 basis rows) and the two unchecked restatements (legal entities,
+  `broader`) are debt DT-1, owned by the Knowledge Architect and the Data Auditor, due before S14.
+- **Rejected:** a rules data file (the human's alternative: a second set of files for ~25 rule
+  lines, with every defining document pointing at it); migrating the four tables in S12 (a schema
+  change to entities; the human chose later).
