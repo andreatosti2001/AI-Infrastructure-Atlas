@@ -1,1 +1,141 @@
-[]
+[
+  {
+    "id": "claim-h100-hbm-stacks",
+    "claim_type": "FACT",
+    "statement": "NVIDIA states that the H100 SXM5 GPU supports 80 GB (five stacks) of HBM3 memory, and that the PCIe H100 provides 80 GB of HBM2e.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-051",
+        "locator": "section 'H100 HBM3 and HBM2e DRAM subsystems', the sentence beginning 'The H100 SXM5 GPU raises the bar'",
+        "anchor": "The H100 SXM5 GPU raises the bar considerably by supporting 80 GB (five stacks) of fast HBM3 memory",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T16:17Z",
+          "sha256": "6d0f13b0975671d77b406913c54f076a7a26381fcc4c609b7ca93cde4916a347"
+        }
+      },
+      {
+        "source_id": "src-051",
+        "locator": "section 'H100 HBM3 and HBM2e DRAM subsystems', the sentence beginning 'The PCIe H100 provides'",
+        "anchor": "The PCIe H100 provides 80 GB of fast HBM2e",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T16:17Z",
+          "sha256": "6d0f13b0975671d77b406913c54f076a7a26381fcc4c609b7ca93cde4916a347"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-02"
+  },
+  {
+    "id": "claim-trainium2-hbm-capacity",
+    "claim_type": "FACT",
+    "statement": "AWS's Trainium2 architecture page gives Trainium2 an HBM capacity of 96 GiB, against 32 GiB for the first Trainium.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-043",
+        "locator": "section 'Trainium2 performance improvements', subsection 'Memory', the table's header row and its row 'HBM Capacity (GiB)'; cells read in order, table-cell boundaries as whitespace",
+        "anchor": "Trainium Trainium2 Improvement factor HBM Capacity (GiB) 32 96 3x",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T16:00Z",
+          "sha256": "746c25212873fd403894481c62b4cd1535b02ebf4f7439ae98b507fe47400cbf"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-02"
+  },
+  {
+    "id": "claim-aws-designed-trainium2",
+    "claim_type": "FACT",
+    "statement": "Amazon Web Services, Inc. (AWS), which the release calls an Amazon.com, Inc. company, announced Trainium2 on 2023-11-28 as one of two AWS-designed chip families, and calls Graviton4 and Trainium2 the latest innovations in chip design from AWS.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-052",
+        "locator": "first paragraph after the dateline 'LAS VEGAS--(BUSINESS WIRE)--'",
+        "anchor": "Amazon Web Services, Inc. (AWS), an Amazon.com, Inc. company (NASDAQ: AMZN), today announced the next generation of two AWS-designed chip families—AWS Graviton4 and AWS Trainium2",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T16:17Z",
+          "sha256": "6a6c3fe30012dc67d0a3724e70d781e7021e8d32a3f585d6d946a6aa8e533ef3"
+        }
+      },
+      {
+        "source_id": "src-052",
+        "locator": "first paragraph after the dateline, the sentence beginning 'Graviton4 and Trainium2 mark'",
+        "anchor": "Graviton4 and Trainium2 mark the latest innovations in chip design from AWS",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-02T16:17Z",
+          "sha256": "6a6c3fe30012dc67d0a3724e70d781e7021e8d32a3f585d6d946a6aa8e533ef3"
+        }
+      }
+    ],
+    "as_of": "2023-11-28",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-02"
+  },
+  {
+    "id": "claim-sk-hynix-operates-m16",
+    "claim_type": "DERIVATION",
+    "statement": "SK hynix Inc. operates its plant M16 in 이천 (Icheon).",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-sk-hynix-production-plants-icheon-cheongju",
+      "claim-sk-hynix-m16-completed-icheon",
+      "claim-sk-hynix-m16-fabrication-plant"
+    ],
+    "reasoning": "SK hynix Inc., the entity of its separate financial statements, states that it has installed and operates (설치ㆍ가동) production plants in 경기도 이천시 (claim-sk-hynix-production-plants-icheon-cheongju). Its annual report lists M16 among the changes in its own production facilities, as a new plant (공장) in 이천 completed in 2021-02 (claim-sk-hynix-m16-completed-icheon), and its release calls M16 its new fabrication plant (claim-sk-hynix-m16-fabrication-plant). So M16 is one of SK hynix's production plants in 이천, which SK hynix Inc. states it operates. The step is the Atlas's (D-082, D-099): the filing does not list the 이천 plants one by one, and neither source names an operator other than SK hynix. Ownership is not read from it (설치 is not ownership), and no period is: the 2021-02 completion dates construction, not the start of operation.",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-02"
+  },
+  {
+    "id": "claim-hbm-requires-3d-die-stacking",
+    "claim_type": "DERIVATION",
+    "statement": "Making any High Bandwidth Memory stack requires 3D die stacking.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-ecp-hbm-definition",
+      "claim-atlas-3d-die-stacking-working-definition",
+      "claim-atlas-high-bandwidth-memory-working-definition"
+    ],
+    "reasoning": "The ECP report, a research report and the originator of its definition, defines HBM as a DRAM stacking technology that vertically stacks multiple DRAM dies and directly connects them with TSVs (claim-ecp-hbm-definition); the Atlas's HBM is that stack (claim-atlas-high-bandwidth-memory-working-definition). Stacking active dies and interconnecting them directly, not through the package, is what the Atlas calls 3D die stacking (claim-atlas-3d-die-stacking-working-definition). Since every HBM stack is stacked dies by definition, no HBM stack can be made without 3D die stacking: necessity read out of a definition, not stated in words. ER-1 does not cover this step; the human allowed it for S10 as a DERIVATION (D-091, 2026-10-02: \"Allow, as DERIVATION (Recommended)\"). The 3D die stacking record covers HBM stacking only in v1, so the edge says nothing about other stacked products.",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-02"
+  },
+  {
+    "id": "claim-tsmc-fabricates-h100",
+    "claim_type": "DERIVATION",
+    "statement": "TSMC performs the wafer fabrication of the NVIDIA H100.",
+    "evidence_status": "supported",
+    "input_claim_ids": [
+      "claim-h100-process-name"
+    ],
+    "reasoning": "ER-1: TSMC is named only inside the process name NVIDIA gives the H100, “TSMC 4N” (claim-h100-process-name), so fabrication by TSMC is read out of that name; no retrieved source names the manufacturer of the H100 directly. NVIDIA's 10-K names TSMC among its foundries at company level only (src-024 p.8, ER-9). The H100's HBM stacks are separate parts (the incorporates edge), whose maker is not researched. Not an edge in S10: rel:fabricates is time_sensitive, and this input's evidence is dated 2025-07-22, beyond the horizon of source-policy.md §12 (F-1); the human chose a gap (D-092).",
+    "review": {
+      "state": "not_reviewed"
+    },
+    "verified_on": "2026-10-02"
+  }
+]

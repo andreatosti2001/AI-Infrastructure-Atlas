@@ -12,6 +12,11 @@ date is no more than the horizon of source-policy.md §12 before its use.
   evidence, because re-reading an old document does not make its content newer.
 - `stable` rows have no age limit.
 
+S10 (edge-dataset.md §4, D-096): F-1 extends to edges. An edge on a `time_sensitive` `rel:*` row,
+and each `supplier` assertion on `rel:incorporates.supplier`, needs such a citation. An explicit
+state (`not_researched`, `not_publicly_determinable`) is not a value: its search carries its own
+date, so F-1 does not apply to it.
+
 Run alone: python -m unittest discover -s tests -p "test_freshness.py" -v
 """
 
@@ -20,6 +25,7 @@ import re
 import unittest
 
 from test_data_entities import fields, fixture_world, leaf_citations, load_entities, matrix
+from test_data_relationships import edge_fixture_world, load_edges
 from test_data_integrity import POLICY, load_data
 from test_entity_taxonomy import section
 
@@ -50,6 +56,38 @@ def evidence_date(claim: dict, source: dict) -> str:
     if isinstance(dates, list):
         return max(start_of(d["date"]) for d in dates)
     return source["retrieval"]["accessed_at"][:10]
+
+
+def fresh_support(ids, row, months, by_id, claims) -> bool:
+    """At least one citation the row accepts, within the horizon of its claim's verification."""
+    for claim, citation in (lc for cid in ids for lc in leaf_citations(cid, claims)):
+        source = by_id.get(citation["source_id"])
+        if source is None or source["source_class"] not in row["sufficient"] or citation["standing"] not in row["standings"]:
+            continue
+        if "verified_on" in claim and evidence_date(claim, source) >= months_before(claim["verified_on"], months):
+            return True
+    return False
+
+
+def check_edge_freshness(edges, sources, staging_claims, canonical_claims) -> list[str]:
+    """F-1, on every edge, staging and canonical (S10)."""
+    rows = matrix()
+    months = horizon_months()
+    by_id = {s["id"]: s for s in sources}
+    claims = {c["id"]: c for c in staging_claims + canonical_claims}
+    errors = []
+    for where in ("canonical", "staging"):
+        for edge in edges[where]:
+            row_key = f"rel:{edge['relation_type']}"
+            if rows[row_key]["freshness"] == "time_sensitive" and not fresh_support(edge["claim_ids"], rows[row_key], months, by_id, claims):
+                errors.append(f"{edge['id']}: no accepted evidence within {months} months of its verification ({row_key} is time_sensitive)")
+            qualifier = f"{row_key}.supplier"
+            supplier = edge.get("supplier")
+            if qualifier in rows and rows[qualifier]["freshness"] == "time_sensitive" and isinstance(supplier, list):
+                for assertion in supplier:
+                    if not fresh_support(assertion["claim_ids"], rows[qualifier], months, by_id, claims):
+                        errors.append(f"{edge['id']}.supplier = {assertion['value']}: no accepted evidence within {months} months of its verification ({qualifier} is time_sensitive)")
+    return errors
 
 
 def check_freshness(entities, sources, staging_claims, canonical_claims) -> list[str]:
@@ -117,6 +155,29 @@ class FreshnessTests(unittest.TestCase):
                 claim["as_of"] = "2024-12"
         errors = check_freshness(entities, sources, staging, canonical)
         self.assertTrue(any("company-example-foundry.roles = foundry_operator" in e for e in errors), errors)
+
+
+class EdgeFreshnessTests(unittest.TestCase):
+    """F-1 on edges (S10; edge-dataset.md §4)."""
+
+    def test_f1_real_edges_rest_on_fresh_evidence(self) -> None:
+        sources, staging, canonical = load_data()
+        self.assertEqual(check_edge_freshness(load_edges(), sources, staging, canonical), [])
+
+    def test_f1_fixture_edges_are_fresh(self) -> None:
+        edges, _, _, sources, staging, canonical, _ = edge_fixture_world()
+        self.assertEqual(check_edge_freshness(edges, sources, staging, canonical), [])
+
+    def test_f1_stale_edge_evidence_is_caught(self) -> None:
+        # The fictional operates edge rests on a filing signed 2026-03-01 with as_of 2025-03;
+        # an as_of more than 12 months before its verification makes it stale.
+        edges, _, _, sources, staging, canonical, _ = edge_fixture_world()
+        for claim in staging:
+            if claim["id"] == "claim-fixture-405":
+                claim["as_of"] = "2024-12"
+        errors = check_edge_freshness(edges, sources, staging, canonical)
+        self.assertTrue(any("operates-facility-xa-example-fab-1" in e for e in errors), errors)
+        self.assertFalse(any("designs" in e for e in errors), "rel:designs is stable")
 
 
 if __name__ == "__main__":

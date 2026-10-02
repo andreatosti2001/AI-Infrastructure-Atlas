@@ -4,7 +4,8 @@ VD-2: every source record is valid against schemas/sources.schema.json, every cl
 (staging and canonical) against schemas/claims.schema.json, and, from S07, every company
 and jurisdiction record (staging and canonical) against schemas/entities.schema.json, with
 cross-file references resolved. From S09, facility records against the same schema, and every
-event (staging and canonical) against schemas/events.schema.json (proposed, D-083). Uses the
+event (staging and canonical) against schemas/events.schema.json (proposed, D-083). From S10,
+every edge (staging and canonical) against the unchanged schemas/relationships.schema.json. Uses the
 pinned jsonschema (D-026); tools/ stays standard library (H-4).
 
 Requires the pinned test dependencies: pip install -r requirements-test.txt
@@ -18,9 +19,11 @@ from pathlib import Path
 from test_data_entities import FIXTURES as ENTITY_FIXTURES, ENTITY_KINDS, entity_files
 from test_data_integrity import CANONICAL_FILE, SOURCES_FILE, STAGING_FILE, load_records
 from test_data_events import event_files
+from test_data_relationships import EDGE_FIXTURES, edge_files
 from test_source_record_schema import CLAIM_SCHEMA, ENTITY_SCHEMA, SOURCE_SCHEMA, validator
 
 EVENT_SCHEMA = json.loads((Path(__file__).resolve().parent.parent / "schemas/events.schema.json").read_text(encoding="utf-8"))
+REL_SCHEMA = json.loads((Path(__file__).resolve().parent.parent / "schemas/relationships.schema.json").read_text(encoding="utf-8"))
 
 
 class DataSchemaTests(unittest.TestCase):
@@ -31,6 +34,7 @@ class DataSchemaTests(unittest.TestCase):
         for kind in ENTITY_KINDS:  # S07: company and jurisdiction records (L-05)
             files += [(path, ENTITY_SCHEMA) for path in entity_files(kind) if path.exists()]
         files += [(path, EVENT_SCHEMA) for path in event_files() if path.exists()]  # S09
+        files += [(path, REL_SCHEMA) for path in edge_files() if path.exists()]  # S10
         for path, schema in files:
             check = validator(schema)
             for record in load_records(path):
@@ -43,6 +47,18 @@ class DataSchemaTests(unittest.TestCase):
         groups = [("sources", SOURCE_SCHEMA, world["sources"]), ("claims", CLAIM_SCHEMA, world["staging_claims"] + world["canonical_claims"])]
         groups += [(f"{where} {kind}", ENTITY_SCHEMA, world["entities"][where][kind]) for where in ("canonical", "staging") for kind in ENTITY_KINDS]
         groups += [(f"{where} events", EVENT_SCHEMA, world["events"][where]) for where in ("canonical", "staging")]
+        for name, schema, records in groups:
+            check = validator(schema)
+            for record in records:
+                with self.subTest(group=name, record=record.get("id")):
+                    self.assertEqual([f"{list(e.absolute_path)}: {e.message}" for e in check.iter_errors(record)], [])
+
+    def test_edge_fixture_world_is_valid(self) -> None:
+        # The fictional edges, and the sources and claims they add, are valid records (S10).
+        valid = EDGE_FIXTURES["valid"]
+        groups = [("sources", SOURCE_SCHEMA, valid["sources"]), ("claims", CLAIM_SCHEMA, valid["staging_claims"] + valid["canonical_claims"])]
+        groups += [(f"{where} edges", REL_SCHEMA, valid["relationships"][where]) for where in ("canonical", "staging")]
+        groups += [(f"warning {case['name']}", REL_SCHEMA, [case["record"]]) for case in EDGE_FIXTURES["warnings"]]
         for name, schema, records in groups:
             check = validator(schema)
             for record in records:

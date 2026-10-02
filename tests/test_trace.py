@@ -131,6 +131,19 @@ class RealDataTraceTests(unittest.TestCase):
                 for input_id in claim.get("input_claim_ids", []):
                     self.assertIn(f"{input_id} · ", text)
 
+    def test_every_edge_traces_to_its_evidence(self) -> None:
+        # S10 (edge-dataset.md §8): "What evidence supports the edge?" for every real edge.
+        edges = [e for name in ("relationships.json", "staging/relationships.json") if (REPO_ROOT / "data" / name).exists() for e in json.loads((REPO_ROOT / "data" / name).read_text(encoding="utf-8"))]
+        for edge in edges:
+            with self.subTest(edge=edge["id"]):
+                lines, status = trace.trace(edge["id"], self.store)
+                text = "\n".join(lines)
+                self.assertEqual(status, 0, text)
+                self.assertIn("relationship record", lines[0])
+                self.assertIn(f"{edge['source_entity']} {edge['relation_type']} {edge['target_entity']}", text)
+                for claim_id in edge["claim_ids"]:
+                    self.assertIn(f"{claim_id} · ", text)
+
     def test_every_source_and_register_label_resolves(self) -> None:
         sources, _, _ = load_data()
         for identifier in [s["id"] for s in sources] + [row[0] for row in register_rows()] + ["S05-R1"]:

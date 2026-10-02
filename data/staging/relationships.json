@@ -1,0 +1,53 @@
+[
+  {
+    "id": "rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-memory",
+    "relation_type": "incorporates",
+    "source_entity": "product-nvidia-h100-tensor-core-gpu",
+    "target_entity": "component-high-bandwidth-memory",
+    "claim_ids": [
+      "claim-h100-hbm-stacks"
+    ],
+    "supplier": {
+      "state": "not_researched"
+    }
+  },
+  {
+    "id": "rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memory",
+    "relation_type": "incorporates",
+    "source_entity": "product-amazon-com-trainium2",
+    "target_entity": "component-high-bandwidth-memory",
+    "claim_ids": [
+      "claim-trainium2-hbm-capacity"
+    ],
+    "supplier": {
+      "state": "not_researched"
+    }
+  },
+  {
+    "id": "rel-company-amazon-com-designs-product-amazon-com-trainium2",
+    "relation_type": "designs",
+    "source_entity": "company-amazon-com",
+    "target_entity": "product-amazon-com-trainium2",
+    "claim_ids": [
+      "claim-aws-designed-trainium2"
+    ]
+  },
+  {
+    "id": "rel-company-sk-hynix-operates-facility-kr-m16",
+    "relation_type": "operates",
+    "source_entity": "company-sk-hynix",
+    "target_entity": "facility-kr-m16",
+    "claim_ids": [
+      "claim-sk-hynix-operates-m16"
+    ]
+  },
+  {
+    "id": "rel-component-high-bandwidth-memory-requires-technology-3d-die-stacking",
+    "relation_type": "requires",
+    "source_entity": "component-high-bandwidth-memory",
+    "target_entity": "technology-3d-die-stacking",
+    "claim_ids": [
+      "claim-hbm-requires-3d-die-stacking"
+    ]
+  }
+]
