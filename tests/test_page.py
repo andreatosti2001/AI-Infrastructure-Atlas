@@ -8,14 +8,15 @@ never the build's, and recompute every value the page shows:
 
 PG-1  every text node sits inside a record value, an absent value, a fixed label, a derived value
       or a framing block;
-PG-2  every record value equals its home in data/, the schemas, edge-dataset.md §1 or
-      decisions.md; every claim card and source shows its type, status, dates and citations;
+PG-2  every record value equals its home in data/ (the refused candidates included, S12), the
+      schemas, the rule documents or decisions.md; every claim card and source shows its type, status, dates and citations;
 PG-3  every mark targets a canonical record, edge or claim and links to its evidence panel; no
       staging ID appears;
 PG-4  an edge is drawn as inferred exactly when no cited claim is a FACT, says so, and its panel
       shows the reasoning;
 PG-5  every chain edge is drawn; every unknown supplier and recorded gap is drawn with its state;
-      "none" never appears;
+      "none" never appears; no refused candidate is drawn in the diagram, and each candidate the
+      journey names is a card under each of its reasons (S12, D-109);
 PG-6  framing is visibly marked and names no record;
 PG-7  the committed page equals a rebuild, and two builds are identical;
 PG-8  accessibility basics, the palette and its contrast;
@@ -40,13 +41,13 @@ sys.path.insert(0, str(REPO_ROOT / "tools"))
 
 import navigate  # noqa: E402
 
-# The build's inputs, as vertical-slice.md §6 defines them: every data file, every schema, the two
-# design records the page quotes, the template and the three tools that compute it.
+# The build's inputs, as vertical-slice.md §6 defines them: every data file (the refused candidates
+# included), every schema, the documents the page quotes rules and rulings from, the template and the
+# three tools that compute it. edge-dataset.md left the list in S12 (D-109).
 INPUT_GLOBS = ("data/*.json", "data/staging/*.json", "schemas/*.json")
 INPUT_FILES = (
     "docs/architecture/company-dataset.md",
     "docs/architecture/decisions.md",
-    "docs/architecture/edge-dataset.md",
     "docs/architecture/relationship-taxonomy.md",
     "docs/research/source-policy.md",
     "tools/build_page.py",
@@ -144,12 +145,6 @@ def load(path: Path) -> list:
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
 
 
-def cells(line: str) -> list[str]:
-    if not (line.startswith("|") and line.rstrip().endswith("|")):
-        return []
-    return [cell.strip() for cell in line.strip()[1:-1].split("|")]
-
-
 class Homes:
     def __init__(self, data: Path = DATA, root: Path = REPO_ROOT) -> None:
         self.canonical: dict[str, dict] = {}
@@ -161,10 +156,6 @@ class Homes:
             for record in load(path):
                 self.staging[record["id"]] = record
         self.schemas = {p.name.split(".")[0]: json.loads(p.read_text(encoding="utf-8")) for p in (root / "schemas").glob("*.json")}
-        edge_doc = (root / "docs/architecture/edge-dataset.md").read_text(encoding="utf-8")
-        table = edge_doc[edge_doc.index("**Candidates that are not edges**") : edge_doc.index("**Count.**")]
-        rows = [cells(line) for line in table.splitlines() if cells(line)]
-        self.row_header, self.rows = rows[0], {row[0]: row for row in rows[2:]}
         decisions = (root / "docs/architecture/decisions.md").read_text(encoding="utf-8")
         self.decisions = {m.group(1): m.group(2).strip() for m in re.finditer(r"^## (D-\d{3}) — (.+)$", decisions, re.M)}
         # a rule code's one-line home: the bold rule of its table row, or the **Rule** paragraph of the
@@ -196,9 +187,6 @@ class Homes:
             if const:
                 node = next(item for item in node["oneOf"] if item.get("const") == const)
             return self.pointer(node, field)
-        if ref.startswith("doc:edge-dataset#"):
-            row = self.rows[ref[len("doc:edge-dataset#") :]]
-            return row[self.row_header.index(field)].replace("`", "")
         if ref.startswith("doc:rules#"):
             code = ref[len("doc:rules#") :]
             if field == "code":
@@ -486,7 +474,7 @@ class PageTests(unittest.TestCase):
                     states = [n for n in gap.walk() if n.attrs.get("data-field") == "/supplier/state"]
                     self.assertEqual(len(states), 1, "an unknown supplier drawn without its state")
         for gap in journey["drawn_gaps"]:
-            with self.subTest(gap=gap["row"]):
+            with self.subTest(gap=gap["candidate"]):
                 marks = [m for m in self.marks if m.attrs["data-mark"] == "gap" and m.attrs["data-target"] == gap["claim"]]
                 self.assertEqual(len(marks), 1, "a recorded gap is not drawn")
                 lines = [n for n in marks[0].walk() if "line" in n.attrs.get("class", "").split()]
@@ -499,6 +487,30 @@ class PageTests(unittest.TestCase):
         for mark in self.marks:
             if mark.attrs["data-mark"] in ("gap", "supplier-gap"):
                 self.assertNotRegex(mark.text(), r"(?<![\w.])0(?![\w.])", "a gap drawn as zero")
+
+    def test_pg5_candidates_are_cards_never_lines(self) -> None:
+        # D-109: a refused candidate is never drawn in the diagram; each one the journey names is a
+        # card in the gaps section, under a heading for each of its reasons.
+        figures = [n for n in self.nodes if "data-figure" in n.attrs]
+        self.assertEqual(len(figures), 1)
+        for node in figures[0].walk():
+            self.assertFalse(node.attrs.get("data-ref", "").startswith("cand-"), "a refused candidate drawn in the diagram")
+        journey = build_module().JOURNEY
+        cards = [n for n in self.nodes if "data-candidate" in n.attrs]
+        for cand_id in journey["candidates"]:
+            with self.subTest(candidate=cand_id):
+                record = self.homes.canonical[cand_id]
+                mine = [c for c in cards if c.attrs["data-candidate"] == cand_id]
+                groups = sorted(next(a for a in c.ancestors() if "data-reason" in a.attrs).attrs["data-reason"] for c in mine)
+                self.assertEqual(groups, sorted(record["reasons"]), "a card missing from a reason group, or in a wrong one")
+                for card in mine:
+                    fields = {n.attrs.get("data-field") for n in card.walk() if n.attrs.get("data-ref") == cand_id}
+                    self.assertIn("/reasoning", fields)
+                    self.assertTrue(any(f.startswith("/relation_types/") for f in fields if f))
+        for group in (n for n in self.nodes if "data-reason" in n.attrs):
+            heads = [n for n in group.walk() if n.attrs.get("data-ref") == f"schema:refused_candidates#vocab_reason/{group.attrs['data-reason']}" and n.attrs.get("data-field") == "/description"]
+            self.assertEqual(len(heads), 1, "a reason group without its definition")
+        self.assertEqual({c.attrs["data-candidate"] for c in cards}, set(journey["candidates"]))
 
     def test_pg5_the_lane_is_not_linked(self) -> None:
         journey = build_module().JOURNEY
@@ -645,20 +657,19 @@ class PageTests(unittest.TestCase):
         self.assertIn(journey["walk_root"], self.homes.canonical)
         for edge_id in journey["lane_edges"]:
             self.assertIn(edge_id, self.homes.canonical)
-        for row in journey["text_rows"]:
-            self.assertIn(row, self.homes.rows)
+        for cand_id in journey["candidates"]:
+            self.assertIn(cand_id, self.homes.canonical, "a journey candidate is not canonical")
+            self.assertNotIn(cand_id, self.homes.staging)
         for gap in journey["drawn_gaps"]:
-            with self.subTest(gap=gap["row"]):
-                row = self.homes.rows[gap["row"]]
-                self.assertIn(gap["claim"], row[self.homes.row_header.index("Sentence")], "the drawn gap's claim is not the row's")
+            with self.subTest(gap=gap["candidate"]):
+                cand = self.homes.canonical[gap["candidate"]]
+                self.assertIn(gap["claim"], [c.get("claim_id") for c in cand["considered"]], "the drawn gap's claim is not the candidate's")
                 self.assertIn(gap["claim"], self.homes.canonical)
-                self.assertIn(gap["decision"], self.homes.decisions)
-                ends = [part.strip() for part in gap["row"].split("→")]
-                found = [rid for rid, r in self.homes.canonical.items() if "type" in r and (r["name"] in ends or set(r.get("aliases", [])) & set(ends))]
+                self.assertIn(cand["ruling"], self.homes.decisions)
                 mark = next(m for m in self.marks if m.attrs["data-mark"] == "gap" and m.attrs["data-target"] == gap["claim"])
-                self.assertEqual(sorted(found), sorted([mark.attrs.get("data-from"), mark.attrs.get("data-to")]))
-        # every rule code quoted from the design record is listed with its home (D-108)
-        quoted = " ".join(n.text() for n in self.refs() if n.attrs["data-ref"].startswith("doc:edge-dataset#"))
+                self.assertEqual([cand["source_entities"][0], cand["target_entities"][0]], [mark.attrs.get("data-from"), mark.attrs.get("data-to")])
+        # every rule code quoted in a candidate's reasoning is listed with its home (D-108)
+        quoted = " ".join(n.text() for n in self.refs() if n.attrs["data-ref"].startswith("cand-") and n.attrs.get("data-field") == "/reasoning")
         listed = {n.attrs["data-ref"].split("#")[1] for n in self.refs() if n.attrs["data-ref"].startswith(("doc:rules#", "doc:decisions#"))}
         for code in set(re.findall(r"\b(?:ER|RR|F)-\d+\b|\bD-\d{3}\b", quoted)):
             self.assertIn(code, listed, f"rule {code} is quoted with no definition on the page")
@@ -707,6 +718,17 @@ class BuildRefusalTests(unittest.TestCase):
             moved = [c for c in claims if c["id"] == "claim-hbm-requires-3d-die-stacking"]
             self.rewrite(data / "claims.json", lambda r: r.remove(moved[0]))
             self.rewrite(data / "staging" / "claims.json", lambda r: r.extend(moved))
+
+        message = self.build_with(stage)
+        self.assertIn("not canonical", message)
+
+    def test_a_journey_candidate_in_staging(self) -> None:
+        # D-109: the page shows canonical candidates only.
+        def stage(data: Path) -> None:
+            cands = load(data / "refused_candidates.json")
+            moved = [c for c in cands if c["id"] == build_module().JOURNEY["candidates"][0]]
+            self.rewrite(data / "refused_candidates.json", lambda r: r.remove(moved[0]))
+            self.rewrite(data / "staging" / "refused_candidates.json", lambda r: r.extend(moved))
 
         message = self.build_with(stage)
         self.assertIn("not canonical", message)

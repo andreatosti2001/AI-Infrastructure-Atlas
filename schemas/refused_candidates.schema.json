@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/andreatosti2001/AI-Infrastructure-Atlas/schemas/refused_candidates.schema.json",
+  "title": "Atlas refused candidate record",
+  "description": "A relation the Atlas considered and refused: what was read, which rule refused it and why. It is the Atlas's design ruling, never a fact about the world and never an edge. Being in data/refused_candidates.json is the ruling: there is no status field (RR-6). Status: proposed (S12, D-109). This file is the one home of the record shape and of the reason vocabulary's definitions. The rule that refuses candidates is edge-dataset.md §1 (D-089). Shared shapes (relation types, entity endpoints, claim and source IDs, the Verifier's read) are referenced, never copied.",
+  "type": "object",
+  "required": ["id", "relation_types", "source_entities", "target_entities", "considered", "reasons", "reasoning", "ruling"],
+  "properties": {
+    "id": {
+      "description": "cand- plus three digits, assigned in the order of edge-dataset.md §1's rows at the migration (S12), then in order of creation; never reused. A rule-made ID like RI-1 is not possible: an endpoint may have no record, and a row may name two parties (D-109).",
+      "type": "string",
+      "pattern": "^cand-[0-9]{3}$"
+    },
+    "relation_types": {
+      "description": "The relation type or types the candidate would have had.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "relationships.schema.json#/$defs/vocab_relation_type" }
+    },
+    "source_entities": {
+      "description": "The subject or subjects of the sentence '<source> <type> <target>' the candidate would have stated.",
+      "$ref": "#/$defs/endpoints"
+    },
+    "target_entities": {
+      "description": "The object or objects of that sentence.",
+      "$ref": "#/$defs/endpoints"
+    },
+    "item": {
+      "description": "supplies only: the item named, as the row names it. Left out when none is named.",
+      "$ref": "#/$defs/endpoint"
+    },
+    "considered": {
+      "description": "What was read: a claim, or a sentence that is not a claim. Never evidence for anything (D-109).",
+      "type": "array",
+      "minItems": 1,
+      "items": { "oneOf": [{ "$ref": "#/$defs/considered_claim" }, { "$ref": "#/$defs/considered_sentence" }] }
+    },
+    "reasons": {
+      "description": "Why it is not an edge, as codes. The Extractor codes them from the reasoning; the human reviews them.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/vocab_reason" }
+    },
+    "reasoning": {
+      "description": "The Atlas's explanation (INTERPRETATION), verbatim from the edge-dataset.md §1 row it was migrated from.",
+      "$ref": "sources.schema.json#/$defs/text"
+    },
+    "ruling": {
+      "description": "The decision in decisions.md that refused the candidate.",
+      "type": "string",
+      "pattern": "^D-[0-9]{3}$"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "endpoints": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/endpoint" }
+    },
+    "endpoint": {
+      "description": "An entity record's ID, or an explicit state for a party or item with no record. Never a placeholder ID (RR-7, V-9).",
+      "oneOf": [
+        { "$ref": "relationships.schema.json#/$defs/endpoint_any" },
+        { "$ref": "#/$defs/no_record" }
+      ]
+    },
+    "no_record": {
+      "description": "A party or item the Atlas has no record for. The name is as the candidate row wrote it; it identifies nothing and asserts nothing. A check fails if it is the name or an alias of an existing record (RC-4).",
+      "type": "object",
+      "required": ["state", "name"],
+      "properties": {
+        "state": { "const": "no_record" },
+        "name": { "$ref": "sources.schema.json#/$defs/text" }
+      },
+      "additionalProperties": false
+    },
+    "considered_claim": {
+      "type": "object",
+      "required": ["claim_id"],
+      "properties": { "claim_id": { "$ref": "entities.schema.json#/$defs/claim_ids/items" } },
+      "additionalProperties": false
+    },
+    "considered_sentence": {
+      "description": "A sentence that is not a claim: its source, where it is, the quoted words (left out when the row quotes none) and whether the Verifier re-read it.",
+      "type": "object",
+      "required": ["source_id", "locator", "read"],
+      "properties": {
+        "source_id": { "$ref": "sources.schema.json#/$defs/source_id" },
+        "locator": {
+          "oneOf": [
+            { "$ref": "sources.schema.json#/$defs/text" },
+            { "$ref": "#/$defs/state_not_recorded" }
+          ]
+        },
+        "anchor": { "$ref": "sources.schema.json#/$defs/text", "description": "As the row quoted it; an ellipsis marks words the row left out." },
+        "read": {
+          "description": "The Verifier's re-read, as on a claim's citation, or an explicit state.",
+          "oneOf": [
+            { "$ref": "claims.schema.json#/$defs/read" },
+            { "$ref": "#/$defs/state_not_re_read" }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "state_not_recorded": {
+      "description": "The row gave no locator, and none has been recorded since.",
+      "type": "object",
+      "required": ["state"],
+      "properties": { "state": { "const": "not_recorded" } },
+      "additionalProperties": false
+    },
+    "state_not_re_read": {
+      "description": "The Verifier has not re-read this sentence in the registered bytes. The quote is the Atlas's record of what was considered, not checked evidence.",
+      "type": "object",
+      "required": ["state"],
+      "properties": { "state": { "const": "not_re_read" } },
+      "additionalProperties": false
+    },
+    "vocab_reason": {
+      "oneOf": [
+        { "const": "relation_not_stated", "description": "The sentence does not state this relation itself: it names the parties together, says what a thing is for, or states possession, production or group membership, which the type's evidence expectation does not accept (RR-1, ER-2)." },
+        { "const": "wrong_relation_type", "description": "The sentence states a relation of another type." },
+        { "const": "company_level_only", "description": "The sentence is about a company in general, not the product or item the edge would name (ER-9)." },
+        { "const": "endpoint_has_no_record", "description": "A party has no record, and this evidence cannot create one." },
+        { "const": "item_has_no_record", "description": "The item has no record, and the Atlas does not stretch it to one that exists (ER-9)." },
+        { "const": "evidence_not_fresh", "description": "The relation type is time-sensitive and the evidence is older than the freshness horizon (F-1)." }
+      ]
+    }
+  }
+}

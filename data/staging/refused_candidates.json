@@ -1,0 +1,350 @@
+[
+  {
+    "id": "cand-001",
+    "relation_types": [
+      "fabricates"
+    ],
+    "source_entities": [
+      "company-taiwan-semiconductor-manufacturing-company"
+    ],
+    "target_entities": [
+      "product-nvidia-h100-tensor-core-gpu"
+    ],
+    "considered": [
+      {
+        "claim_id": "claim-h100-process-name"
+      },
+      {
+        "claim_id": "claim-tsmc-fabricates-h100"
+      }
+    ],
+    "reasons": [
+      "evidence_not_fresh"
+    ],
+    "ruling": "D-092",
+    "reasoning": "meets §5 only as a DERIVATION, but rel:fabricates is time_sensitive and the product-level evidence is dated 2025-07-22 (src-042, src-051), more than the §12 horizon before its use. F-1 fails. The human chose a gap (D-092). NVIDIA's live Hopper page names TSMC 4N for the architecture, not the product (D-073 logic)"
+  },
+  {
+    "id": "cand-002",
+    "relation_types": [
+      "supplies"
+    ],
+    "source_entities": [
+      "company-sk-hynix",
+      "company-micron-technology"
+    ],
+    "target_entities": [
+      "company-nvidia"
+    ],
+    "item": {
+      "state": "no_record",
+      "name": "memory"
+    },
+    "considered": [
+      {
+        "source_id": "src-024",
+        "locator": "p.8",
+        "anchor": "We purchase memory from SK Hynix Inc., Micron Technology, Inc., and Samsung",
+        "read": {
+          "accessed_at": "2026-10-02T21:18Z",
+          "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396"
+        }
+      }
+    ],
+    "reasons": [
+      "item_has_no_record"
+    ],
+    "ruling": "D-089",
+    "reasoning": "the item is \"memory\" (ER-9: exactly as broad as the source), and no memory component record exists. HBM would be narrower than the sentence"
+  },
+  {
+    "id": "cand-003",
+    "relation_types": [
+      "supplies"
+    ],
+    "source_entities": [
+      "company-taiwan-semiconductor-manufacturing-company"
+    ],
+    "target_entities": [
+      "company-nvidia"
+    ],
+    "considered": [
+      {
+        "source_id": "src-024",
+        "locator": "p.8",
+        "anchor": "We utilize foundries, such as … TSMC … to produce our semiconductor wafers",
+        "read": {
+          "accessed_at": "2026-10-02T21:18Z",
+          "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396"
+        }
+      }
+    ],
+    "reasons": [
+      "wrong_relation_type",
+      "company_level_only"
+    ],
+    "ruling": "D-089",
+    "reasoning": "a manufacturing service on the customer's own product is fabricates, not supplies (relationship-taxonomy.md §4.9), and the sentence is company-level (ER-9)"
+  },
+  {
+    "id": "cand-004",
+    "relation_types": [
+      "supplies"
+    ],
+    "source_entities": [
+      {
+        "state": "no_record",
+        "name": "Carl Zeiss SMT GmbH"
+      }
+    ],
+    "target_entities": [
+      "company-asml-holding"
+    ],
+    "item": {
+      "state": "no_record",
+      "name": "optical column"
+    },
+    "considered": [
+      {
+        "source_id": "src-029",
+        "locator": "p.322",
+        "anchor": "Carl Zeiss SMT GmbH is our single supplier, and we are their single customer, of optical columns for lithography systems",
+        "read": {
+          "accessed_at": "2026-10-02T21:18Z",
+          "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+        }
+      }
+    ],
+    "reasons": [
+      "endpoint_has_no_record",
+      "item_has_no_record"
+    ],
+    "ruling": "D-089",
+    "reasoning": "no \"optical column\" component record, and no Zeiss company record (§6)"
+  },
+  {
+    "id": "cand-005",
+    "relation_types": [
+      "supplies"
+    ],
+    "source_entities": [
+      "company-asml-holding"
+    ],
+    "target_entities": [
+      "company-taiwan-semiconductor-manufacturing-company"
+    ],
+    "considered": [
+      {
+        "source_id": "src-029",
+        "locator": "p.173",
+        "anchor": "we were honored to receive the TSMC Supplier ‘Excellence in Green Manufacturing’ Award",
+        "read": {
+          "accessed_at": "2026-10-02T21:18Z",
+          "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+        }
+      }
+    ],
+    "reasons": [
+      "relation_not_stated"
+    ],
+    "ruling": "D-089",
+    "reasoning": "no item is named; an award is not a stated supply relation (RR-1)"
+  },
+  {
+    "id": "cand-006",
+    "relation_types": [
+      "supplies"
+    ],
+    "source_entities": [
+      "company-asml-holding"
+    ],
+    "target_entities": [
+      "company-micron-technology"
+    ],
+    "considered": [
+      {
+        "source_id": "src-029",
+        "locator": "p.118, Micron Technology in ASML's remuneration reference group",
+        "read": {
+          "accessed_at": "2026-10-02T21:18Z",
+          "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c"
+        }
+      }
+    ],
+    "reasons": [
+      "relation_not_stated"
+    ],
+    "ruling": "D-089",
+    "reasoning": "co-mention (RR-1)"
+  },
+  {
+    "id": "cand-007",
+    "relation_types": [
+      "designs"
+    ],
+    "source_entities": [
+      "company-nvidia"
+    ],
+    "target_entities": [
+      "product-nvidia-h100-tensor-core-gpu"
+    ],
+    "considered": [
+      {
+        "claim_id": "claim-h100-identity"
+      }
+    ],
+    "reasons": [
+      "relation_not_stated"
+    ],
+    "ruling": "D-089",
+    "reasoning": "states what the GPU is designed for, not who designed it (ER-2). NVIDIA's H100 product page and the 2022 H100 PCIe product brief name no designer either"
+  },
+  {
+    "id": "cand-008",
+    "relation_types": [
+      "designs"
+    ],
+    "source_entities": [
+      "company-amazon-com"
+    ],
+    "target_entities": [
+      "product-amazon-com-trainium2"
+    ],
+    "considered": [
+      {
+        "source_id": "src-028",
+        "locator": "p.5",
+        "anchor": "Our second version of our custom AI silicon (Trainium2)",
+        "read": {
+          "accessed_at": "2026-10-02T21:18Z",
+          "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc"
+        }
+      }
+    ],
+    "reasons": [
+      "relation_not_stated"
+    ],
+    "ruling": "D-089",
+    "reasoning": "\"custom\" is not a statement of design work (ER-2); not used. The release sentence suffices"
+  },
+  {
+    "id": "cand-009",
+    "relation_types": [
+      "owns"
+    ],
+    "source_entities": [
+      "company-amkor-technology"
+    ],
+    "target_entities": [
+      {
+        "state": "no_record",
+        "name": "its subsidiaries"
+      }
+    ],
+    "considered": [
+      {
+        "source_id": "src-026",
+        "locator": "p.117, Exhibit 21.1",
+        "anchor": "List of subsidiaries",
+        "read": {
+          "state": "not_re_read"
+        }
+      }
+    ],
+    "reasons": [
+      "endpoint_has_no_record"
+    ],
+    "ruling": "D-089",
+    "reasoning": "owns meets §5, but each subsidiary needs a company record, and D-057 requires the filer's own statement of its legal name. A parent's exhibit is not that. H-3: the edge waits (§6)"
+  },
+  {
+    "id": "cand-010",
+    "relation_types": [
+      "owns"
+    ],
+    "source_entities": [
+      "company-amazon-com"
+    ],
+    "target_entities": [
+      {
+        "state": "no_record",
+        "name": "Amazon Web Services, Inc."
+      }
+    ],
+    "considered": [
+      {
+        "source_id": "src-052",
+        "locator": {
+          "state": "not_recorded"
+        },
+        "anchor": "Amazon Web Services, Inc. (AWS), an Amazon.com, Inc. company",
+        "read": {
+          "accessed_at": "2026-10-02T21:18Z",
+          "sha256": "6a6c3fe30012dc67d0a3724e70d781e7021e8d32a3f585d6d946a6aa8e533ef3"
+        }
+      }
+    ],
+    "reasons": [
+      "relation_not_stated",
+      "evidence_not_fresh",
+      "endpoint_has_no_record"
+    ],
+    "ruling": "D-089",
+    "reasoning": "\"an … company\" is group text (§5 owns: not enough on its own); rel:owns is time_sensitive and the release is dated 2023-11-28; no AWS record (§6)"
+  },
+  {
+    "id": "cand-011",
+    "relation_types": [
+      "fabricates"
+    ],
+    "source_entities": [
+      "company-micron-technology"
+    ],
+    "target_entities": [
+      "product-micron-technology-hbm4-36gb-12h"
+    ],
+    "considered": [
+      {
+        "claim_id": "claim-micron-hbm4-identity"
+      },
+      {
+        "source_id": "src-025",
+        "locator": "p.7",
+        "anchor": "We manufacture our products at wholly-owned facilities",
+        "read": {
+          "accessed_at": "2026-10-02T21:18Z",
+          "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9"
+        }
+      }
+    ],
+    "reasons": [
+      "relation_not_stated",
+      "company_level_only"
+    ],
+    "ruling": "D-089",
+    "reasoning": "production is not stated as wafer fabrication by Micron for this product; the 10-K sentence is company-level (ER-9)"
+  },
+  {
+    "id": "cand-012",
+    "relation_types": [
+      "owns",
+      "operates"
+    ],
+    "source_entities": [
+      "company-micron-technology"
+    ],
+    "target_entities": [
+      "facility-us-manassas-virginia"
+    ],
+    "considered": [
+      {
+        "claim_id": "claim-micron-manassas-fab"
+      }
+    ],
+    "reasons": [
+      "relation_not_stated"
+    ],
+    "ruling": "D-089",
+    "reasoning": "fails both (facility-dataset.md §5)"
+  }
+]

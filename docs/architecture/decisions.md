@@ -1807,3 +1807,45 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   evidence panels (each mark still opens its full evidence in one click).
 - **Rejected:** rewriting the "why not" cells in plain words (a second home for the reasons);
   collapsing claim cards (the evidence would sit two clicks from its mark).
+
+## D-109 — The refused candidates become records (H-1, H-2)
+
+- **Session:** S12 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** H-1 ("Pick the recommended", end of S11: records); the S12 audit's blocking finding
+  B-1 (`milestone-audits/M2-audit.md` Part 2 N-2, I-5; Part 3 q1). The human's answer at S12, to
+  "Where should the 12 relationships the Atlas considered and refused … be stored": "Own file,
+  separate from real links (Recommended)".
+- **Decision** (M2 audit, Part 3 q1 and q6): one record per `edge-dataset.md` §1 candidate row, in
+  `data/refused_candidates.json` and `data/staging/refused_candidates.json`, against
+  `schemas/refused_candidates.schema.json`. A record holds `id` (`cand-NNN` in row order, never
+  reused), `relation_types`, `source_entities` and `target_entities` (entity IDs, or
+  `{"state": "no_record", "name"}`), an optional `item`, `considered` (claim IDs, or a source,
+  locator, quoted anchor and a `read` state), `reasons` (codes from the schema's list),
+  `reasoning` (the row's "why not", verbatim) and `ruling` (a decision ID). No status field
+  (RR-6), no edge fields. Values are copied by a script that asserts each equals its §1 cell; the
+  Verifier re-reads quoted sentences where the registered bytes can be retrieved; the human
+  reviews the reason codes; accepted records are promoted (D-061 pattern) and the rows leave §1,
+  which keeps the rule. Checks RC-1 to RC-7 in `tests/test_data_candidates.py`. The page reads the
+  records, shows the same four candidates as cards grouped by reason, never in the diagram, and
+  `edge-dataset.md` leaves the page's inputs.
+- **Rejected:** extra fields in `data/relationships.json` (H-2's alternative: every edge reader
+  would have to filter refusals, and a stored "refused" status breaks RR-6); rule-made IDs like
+  RI-1 (impossible with unrecorded or plural endpoints); keeping the "why not" text in §1 (the page
+  would still parse the table); splitting two-source rows into two records (an improvement on the
+  row, not a copy).
+
+## D-110 — Values about named records live in data; rules live in their documents
+
+- **Session:** S12 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** S12 Part B §06 q2; the M2 audit's N-2 and N-3. The human's answers at S12: "Rules
+  stay in documents (Recommended)" and, for the other document tables, "Later, before the SQL
+  layer (S14) (Recommended)".
+- **Decision:** a value or evidence pointer about a named record is data and lives in `data/`; a
+  rule that governs records (a vocabulary's word table, a matrix, a horizon, a rule line) lives in
+  its design document, and code may read it. The rule lines and decision titles the page quotes
+  stay where they are. The four other tables that hold per-record values (the CI-1, PI-1 and FI-1
+  terms; the IO-1 and FK-1 basis rows) and the two unchecked restatements (legal entities,
+  `broader`) are debt DT-1, owned by the Knowledge Architect and the Data Auditor, due before S14.
+- **Rejected:** a rules data file (the human's alternative: a second set of files for ~25 rule
+  lines, with every defining document pointing at it); migrating the four tables in S12 (a schema
+  change to entities; the human chose later).
