@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/andreatosti2001/AI-Infrastructure-Atlas/schemas/refused_candidates.schema.json",
   "title": "Atlas refused candidate record",
-  "description": "A relation the Atlas considered and refused: what was read, which rule refused it and why. It is the Atlas's design ruling, never a fact about the world and never an edge. Being in data/refused_candidates.json is the ruling: there is no status field (RR-6). Status: proposed (S12, D-109). This file is the one home of the record shape and of the reason vocabulary's definitions. The rule that refuses candidates is edge-dataset.md §1 (D-089). Shared shapes (relation types, entity endpoints, claim and source IDs, the Verifier's read) are referenced, never copied.",
+  "description": "A relation the Atlas considered and refused: what was read, which rule refused it and why. It is the Atlas's design ruling, never a fact about the world and never an edge. Being in data/refused_candidates.json is the ruling: there is no status field (RR-6). Status: accepted (S13 opening review, 2026-10-02; D-109). This file is the one home of the record shape and of the reason vocabulary's definitions. The rule that refuses candidates is edge-dataset.md §1 (D-089). Shared shapes (relation types, entity endpoints, claim and source IDs, the Verifier's read) are referenced, never copied.",
   "type": "object",
   "required": ["id", "relation_types", "source_entities", "target_entities", "considered", "reasons", "reasoning", "ruling"],
   "properties": {

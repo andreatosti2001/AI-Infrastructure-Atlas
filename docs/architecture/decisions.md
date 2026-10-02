@@ -1810,7 +1810,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-109 — The refused candidates become records (H-1, H-2)
 
-- **Session:** S12 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S12 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S13 opening review, H-0: "Accept audit and both rules, no other change (Recommended)")
 - **Context:** H-1 ("Pick the recommended", end of S11: records); the S12 audit's blocking finding
   B-1 (`milestone-audits/M2-audit.md` Part 2 N-2, I-5; Part 3 q1). The human's answer at S12, to
   "Where should the 12 relationships the Atlas considered and refused … be stored": "Own file,
@@ -1836,7 +1836,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-110 — Values about named records live in data; rules live in their documents
 
-- **Session:** S12 · **Date:** 2026-10-02 · **Status:** proposed
+- **Session:** S12 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S13 opening review, H-0: "Accept audit and both rules, no other change (Recommended)")
 - **Context:** S12 Part B §06 q2; the M2 audit's N-2 and N-3. The human's answers at S12: "Rules
   stay in documents (Recommended)" and, for the other document tables, "Later, before the SQL
   layer (S14) (Recommended)".

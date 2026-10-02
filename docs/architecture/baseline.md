@@ -32,7 +32,7 @@ repository are logged in [`decisions.md`](./decisions.md).
 | Repository integrity validator + CI | yes | S00 |
 | Domain map / source register | yes, draft (S01) | S01 |
 | M0 milestone audit + EU-DP process benchmark | yes, draft (S02) | S02 |
-| M2 milestone audit + data architecture audit | yes, proposed (S12): `docs/architecture/milestone-audits/M2-audit.md`; one blocking finding remediated (D-109), debt with owners | S12 |
+| M2 milestone audit + data architecture audit | yes, accepted (S12; accepted at the S13 opening): `docs/architecture/milestone-audits/M2-audit.md`; one blocking finding remediated (D-109), debt with owners | S12 |
 | Entity schema | yes, accepted (S03): `schemas/entities.schema.json`, `entity-taxonomy.md` | S03 |
 | Relationship schema | yes, accepted (S04): `schemas/relationships.schema.json`, `relationship-taxonomy.md` | S04 |
 | Source/evidence policy | yes, accepted (S05 review): `docs/research/source-policy.md`, and the class vocabulary in `schemas/sources.schema.json` | S05 |
