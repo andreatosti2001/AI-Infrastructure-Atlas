@@ -1849,3 +1849,50 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 - **Rejected:** a rules data file (the human's alternative: a second set of files for ~25 rule
   lines, with every defining document pointing at it); migrating the four tables in S12 (a schema
   change to entities; the human chose later).
+
+## D-111 — A refused candidate names every party its quoted sentence names (`cand-002` and Samsung)
+
+- **Session:** S13 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** content audit F-1 (`docs/research/content-audit-S13.md`). `cand-002` refuses
+  "SK hynix and Micron supply memory to NVIDIA" from NVIDIA's 10-K (`src-024` p.8), whose quoted
+  sentence is "We purchase memory from SK Hynix Inc., Micron Technology, Inc., and Samsung". The
+  record and the page's card name two of the three firms. Samsung has no company record. S12 kept
+  the §1 row's two parties because the copy rule forbade improving the row (S12 Deviation 4).
+- **Decision (proposed):** `cand-002` lists Samsung as a third party with no record
+  (`{"state": "no_record", "name": "Samsung"}`, the sentence's own word, as `cand-004` records
+  Zeiss), adds the reason `endpoint_has_no_record` (RC-5 requires it), and appends one sentence to
+  its reasoning; the ruling stays D-089. The page is rebuilt: the card names three firms and also
+  appears under "a party has no record". No claim, source, edge or entity changes; no Samsung
+  record is created (D-095).
+- **Rejected:** a Samsung company record (no filing of Samsung's has been read; D-057); removing
+  the card (the refusal is right, only its parties are short); leaving it as debt (the page's
+  question is "who is known to make it", and the card answers it short of the source).
+
+## D-112 — The H100 memory figures keep their claim; the source's "preliminary" note is debt
+
+- **Session:** S13 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** content audit F-3. `claim-h100-hbm-stacks` reproduces NVIDIA's sentences on the
+  H100's 80 GB of HBM3 (five stacks) and 80 GB of HBM2e. The source, NVIDIA's 2022 Hopper
+  architecture blog (`src-051`), notes under its H100 specification table "Preliminary
+  specifications for H100 based on current expectations and are subject to change in the shipping
+  products". The `incorporates` edge rests on the H100 containing HBM, not on the figures.
+- **Decision (proposed):** the claim and the edge stay; the note is recorded as debt. S14 does not
+  compute over the H100's capacity figures; when product attributes are next researched, a current
+  product source is sought for them.
+- **Rejected:** narrowing the claim to drop the figures (a new claim ID and a rebuilt page for a
+  figure no record uses as a value); adding the note to the page (it would need a place in the data
+  for a citation's caveat, a model change).
+
+## D-113 — The S13 audit's debt and owners (DT-10 re-owned)
+
+- **Session:** S13 · **Date:** 2026-10-02 · **Status:** proposed
+- **Context:** content audit Part 6, findings F-2 and F-4 to F-11. DT-10 (`publisher_entity`
+  `not_researched` on 23 sources) was owned by S13.
+- **Decision (proposed):** each finding is documented debt with the owner Part 6 names. DT-10 is
+  re-owned by the Knowledge Architect: linking a web page's publisher to a company record first
+  needs a rule for what shows who publishes a page (a filing names its filer; a blog or newsroom
+  does not), and the three AWS sources wait on DT-6. Due before any client output relies on
+  `party` standing (M6).
+- **Rejected:** linking the ten cited sources' publishers in S13 (a value about the world the
+  sources do not state as a claim, without a rule; the S13 prompt admits no new fact); a freshness
+  test that reads the clock (CI would turn red on a date, not a change).

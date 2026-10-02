@@ -1,0 +1,416 @@
+[
+  {
+    "claim": "claim-h100-hbm-stacks",
+    "citation": 1,
+    "source_id": "src-051",
+    "locator": "section 'H100 HBM3 and HBM2e DRAM subsystems', the sentence beginning 'The H100 SXM5 GPU raises the bar'",
+    "sha256": "96c7f96679b127e724d77a258890bf09292969de1c4f75e3837d117365d17d30",
+    "equals_registered": false,
+    "equals_read": false,
+    "anchor": "exact",
+    "found_on": [
+      "html",
+      true
+    ]
+  },
+  {
+    "claim": "claim-h100-hbm-stacks",
+    "citation": 2,
+    "source_id": "src-051",
+    "locator": "section 'H100 HBM3 and HBM2e DRAM subsystems', the sentence beginning 'The PCIe H100 provides'",
+    "sha256": "96c7f96679b127e724d77a258890bf09292969de1c4f75e3837d117365d17d30",
+    "equals_registered": false,
+    "equals_read": false,
+    "anchor": "exact",
+    "found_on": [
+      "html",
+      true
+    ]
+  },
+  {
+    "claim": "claim-trainium2-hbm-capacity",
+    "citation": 1,
+    "source_id": "src-043",
+    "locator": "section 'Trainium2 performance improvements', subsection 'Memory', the table's header row and its row 'HBM Capacity (GiB)'; cells read in order, table-cell boundaries as whitespace",
+    "sha256": "746c25212873fd403894481c62b4cd1535b02ebf4f7439ae98b507fe47400cbf",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "html",
+      true
+    ]
+  },
+  {
+    "claim": "claim-aws-designed-trainium2",
+    "citation": 1,
+    "source_id": "src-052",
+    "locator": "first paragraph after the dateline 'LAS VEGAS--(BUSINESS WIRE)--'",
+    "sha256": "6a6c3fe30012dc67d0a3724e70d781e7021e8d32a3f585d6d946a6aa8e533ef3",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "html",
+      true
+    ]
+  },
+  {
+    "claim": "claim-aws-designed-trainium2",
+    "citation": 2,
+    "source_id": "src-052",
+    "locator": "first paragraph after the dateline, the sentence beginning 'Graviton4 and Trainium2 mark'",
+    "sha256": "6a6c3fe30012dc67d0a3724e70d781e7021e8d32a3f585d6d946a6aa8e533ef3",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "html",
+      true
+    ]
+  },
+  {
+    "claim": "claim-ecp-hbm-definition",
+    "citation": 1,
+    "source_id": "src-040",
+    "locator": "p.5 (printed p.1), §1 'Introduction', second sentence",
+    "sha256": "8a9e0dd19680df611754313dade196f95ca80c945fa3e0dc011c1c63801e8be8",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "pdf_pages",
+      [
+        5
+      ]
+    ],
+    "locator_page_matches": true
+  },
+  {
+    "claim": "claim-h100-process-name",
+    "citation": 1,
+    "source_id": "src-042",
+    "locator": "after the GH100 specification list, the sentence beginning 'Using the TSMC 4N fabrication process'",
+    "sha256": "96c7f96679b127e724d77a258890bf09292969de1c4f75e3837d117365d17d30",
+    "equals_registered": false,
+    "equals_read": false,
+    "anchor": "exact",
+    "found_on": [
+      "html",
+      true
+    ]
+  },
+  {
+    "claim": "claim-sk-hynix-production-plants-icheon-cheongju",
+    "citation": 1,
+    "source_id": "src-047",
+    "locator": "notes to the separate financial statements, note 1 'Company overview', the first sentence, its last clause (the clause before it names the head office, and is not used)",
+    "sha256": "5d9519c006af94430a23b38451251cc351987c6d449e7ba55d8de3d27e472c42",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "html",
+      true
+    ]
+  },
+  {
+    "claim": "claim-sk-hynix-m16-completed-icheon",
+    "citation": 1,
+    "source_id": "src-046",
+    "locator": "I.2 'Company history', item (3) 생산설비의 변동 (changes in production facilities), the row dated 2021. 02",
+    "sha256": "da06078ebf59de1cbda03b62a98c05ef35b6bf4b175965cd46d53c74ca8ec2cb",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "html",
+      true
+    ]
+  },
+  {
+    "claim": "claim-sk-hynix-m16-fabrication-plant",
+    "citation": 1,
+    "source_id": "src-049",
+    "locator": "body, first paragraph, the sentence beginning 'SK hynix Inc. (or ‘the Company’' (its last words, a head-office phrase, are not used)",
+    "sha256": "c9eb052b836cb62eafc3487ac4829ea90548300913b5358c235bd8d4ec1b3881",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "html",
+      true
+    ]
+  },
+  {
+    "claim": "claim-hir-3d-architecture-definition",
+    "citation": 1,
+    "source_id": "src-039",
+    "locator": "p.4 (chapter page 2), §3, item b",
+    "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "pdf_pages",
+      [
+        4
+      ]
+    ],
+    "locator_page_matches": true
+  },
+  {
+    "claim": "claim-asml-holding-nv-company",
+    "citation": 1,
+    "source_id": "src-029",
+    "locator": "p.76, 'Corporate governance', the sentence beginning 'ASML Holding N.V. is a public limited liability company'",
+    "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "pdf_pages",
+      [
+        76
+      ]
+    ],
+    "locator_page_matches": true
+  },
+  {
+    "claim": "claim-aws-availability-zone-data-centers",
+    "citation": 1,
+    "source_id": "src-020",
+    "locator": "section 'Availability Zones', the sentence beginning 'Each Availability Zone consists of'",
+    "sha256": "1f172d6e220c740279a04165d30d6de3ac639c642b8cda575832c57a085abb87",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "html",
+      true
+    ]
+  },
+  {
+    "claim": "claim-asml-incorporated-netherlands",
+    "citation": 1,
+    "source_id": "src-029",
+    "locator": "p.309, Note on income taxes, 'Global Minimum Tax', the first sentence",
+    "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "pdf_pages",
+      [
+        309
+      ]
+    ],
+    "locator_page_matches": true
+  },
+  {
+    "claim": "claim-tsmc-legal-name",
+    "citation": 1,
+    "source_id": "src-031",
+    "locator": "p.179, Exhibit 1.1, Articles of Incorporation, Article 1",
+    "sha256": "fb796f0d570ff7f0cee7fea79baadfcf93412b863d092398fcae428277ff23c5",
+    "equals_registered": false,
+    "equals_read": false,
+    "anchor": "access_gap: HTTP 403 challenge page"
+  },
+  {
+    "claim": "claim-tsmc-legal-name",
+    "citation": 2,
+    "source_id": "src-031",
+    "locator": "p.20, Item 4, 'Our History and Structure', the first sentence",
+    "sha256": "fb796f0d570ff7f0cee7fea79baadfcf93412b863d092398fcae428277ff23c5",
+    "equals_registered": false,
+    "equals_read": false,
+    "anchor": "access_gap: HTTP 403 challenge page"
+  },
+  {
+    "claim": "claim-tsmc-legal-name",
+    "citation": 3,
+    "source_id": "src-031",
+    "locator": "p.1, cover page, the name printed above the label '(Exact Name of Registrant as Specified in Its Charter)'",
+    "sha256": "fb796f0d570ff7f0cee7fea79baadfcf93412b863d092398fcae428277ff23c5",
+    "equals_registered": false,
+    "equals_read": false,
+    "anchor": "access_gap: HTTP 403 challenge page"
+  },
+  {
+    "claim": "claim-tsmc-legal-name",
+    "citation": 4,
+    "source_id": "src-031",
+    "locator": "p.1, cover page, the English name and its label; the text runs on into the jurisdiction field beside it",
+    "sha256": "fb796f0d570ff7f0cee7fea79baadfcf93412b863d092398fcae428277ff23c5",
+    "equals_registered": false,
+    "equals_read": false,
+    "anchor": "access_gap: HTTP 403 challenge page"
+  },
+  {
+    "claim": "claim-micron-manassas-fab",
+    "citation": 1,
+    "source_id": "src-025",
+    "locator": "p.48, Item 2 'Properties', the sentence beginning 'On June 11, 2025, we also entered into a direct funding agreement'",
+    "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "pdf_pages",
+      [
+        48,
+        56
+      ]
+    ],
+    "locator_page_matches": true
+  },
+  {
+    "claim": "claim-nvidia-incorporation-history",
+    "citation": 1,
+    "source_id": "src-024",
+    "locator": "p.5, Item 1 'Business', the sentence beginning 'Headquartered in Santa Clara, California'",
+    "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "pdf_pages",
+      [
+        5,
+        36,
+        56
+      ]
+    ],
+    "locator_page_matches": true
+  },
+  {
+    "claim": "claim-asml-headquarters-veldhoven",
+    "citation": 1,
+    "source_id": "src-029",
+    "locator": "p.327, 'Facilities in EMEA', the first sentence",
+    "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "pdf_pages",
+      [
+        327
+      ]
+    ],
+    "locator_page_matches": true
+  },
+  {
+    "claim": "claim-iso-3166-1-tw",
+    "citation": 1,
+    "source_id": "src-038",
+    "locator": "screenshot of the OBP entry, below 'Standard: ISO 3166', rows 'Alpha-2 code' and 'Short name'",
+    "sha256": "0fbc0be2f1fff8a12191a7eaae6815283d75214fe3062e9110ae4f8de8b10c1d",
+    "equals_registered": false,
+    "equals_read": false,
+    "anchor": "access_gap: HTTP 403 challenge page"
+  },
+  {
+    "claim": "claim-amazon-incorporation-state",
+    "citation": 1,
+    "source_id": "src-028",
+    "locator": "p.12 (the Form 10-K's cover page), the field labelled '(State or other jurisdiction of incorporation or organization)', whose value is 'Delaware'; the number printed beside it is the I.R.S. Employer Identification No.",
+    "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "pdf_pages",
+      [
+        12
+      ]
+    ],
+    "locator_page_matches": true
+  },
+  {
+    "claim": "claim-lbnl-gpu-definition",
+    "citation": 1,
+    "source_id": "src-021",
+    "locator": "p.7, glossary, entry 'GPU (Graphics Processing Unit)'",
+    "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "pdf_pages",
+      [
+        7
+      ]
+    ],
+    "locator_page_matches": true
+  },
+  {
+    "claim": "claim-sia-advanced-packaging-breadth",
+    "citation": 1,
+    "source_id": "src-005",
+    "locator": "p.21, 'SIDEBAR: Chiplets', first sentence",
+    "sha256": "27040f69e8e036c927a193a8477e7d975a2ae35fb7e7cf37f759553fc14ff9cf",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "pdf_pages",
+      [
+        21
+      ]
+    ],
+    "locator_page_matches": true
+  },
+  {
+    "claim": "claim-cset-sme-definition",
+    "citation": 1,
+    "source_id": "src-002",
+    "locator": "p.67, Appendix B: Glossary, entry 'Semiconductor manufacturing equipment'",
+    "sha256": "319d942ba53468a6d5af97c9e46f6134fda2bf03958237e966bdc8c9cc8098ff",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "pdf_pages",
+      [
+        67
+      ]
+    ],
+    "locator_page_matches": true
+  },
+  {
+    "claim": "claim-nist-cloud-location-independence",
+    "citation": 1,
+    "source_id": "src-001",
+    "locator": "p.6, essential characteristic 'Resource pooling', the sentence beginning 'There is a sense of location independence'",
+    "sha256": "7b0c1a9fdfc67218b8ba2098f448c100c27070db91736b3c87fed63bfa21d418",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "pdf_pages",
+      [
+        6
+      ]
+    ],
+    "locator_page_matches": true
+  },
+  {
+    "claim": "claim-lbnl-asic-definition",
+    "citation": 1,
+    "source_id": "src-021",
+    "locator": "p.6, glossary, entry 'ASIC (Application-Specific Integrated Circuit)'",
+    "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012",
+    "equals_registered": true,
+    "equals_read": true,
+    "anchor": "exact",
+    "found_on": [
+      "pdf_pages",
+      [
+        6
+      ]
+    ],
+    "locator_page_matches": true
+  }
+]
