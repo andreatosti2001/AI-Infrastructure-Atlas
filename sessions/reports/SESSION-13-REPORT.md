@@ -243,6 +243,13 @@ breaks; the remaining three need scripting when the page next changes.
 only the audit's status line and its row in the audit history. They are: content-and-review
 process 3, outcome 2, both unchanged from M2.
 
+**Root-document wording for D-114 to D-116:** approved by the human on 2026-10-03 and applied
+(`CLAUDE.md` §12 and §17; `SESSION-PROMPT-SPEC.md` §9).
+
+**Maturity ratings.** The audit's PEF ratings (audit Part 8) stay proposed. Accepting them changes
+only the audit's status line and its row in the audit history. They are: content-and-review
+process 3, outcome 2, both unchanged from M2.
+
 **Human decision required: the wording of three new project rules in the root documents**
 
 - *What we are deciding:* whether the drafted sentences for D-114, D-115 and D-116 go into
@@ -336,6 +343,6 @@ After the report, the human set three standing rules, recorded as D-114 to D-116
 - **D-116, meaning before mechanism.** Pages and documents read in plain language first, with
   technical detail behind it.
 
-The root-document wording waits for the human's approval (Unresolved issues above). For S14, the
+The root-document wording was approved by the human and applied on 2026-10-03. For S14, the
 prompt carries all three rules, and the lineage table recommended above gets its SQL tutorial.
 

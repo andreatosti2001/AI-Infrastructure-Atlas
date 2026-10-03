@@ -1909,7 +1909,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   record still names the decision it settles, so who decided what stays traceable. S13's files were
   cleaned on 2026-10-03; earlier sessions' files and pushed commit messages stay as they are. Commit
   messages follow the same rule from now on.
-- **Root documents** (draft, applied only after the human approves the wording; D-116):
+- **Root documents** (wording approved by the human and applied on 2026-10-03):
   `SESSION-PROMPT-SPEC.md` §9, last paragraph, becomes: "When a decision has already been taken,
   the record states its outcome in project terms and its date, and names the decision it settles.
   It does not copy the question as asked, quote the human's messages, or comment on how the human
@@ -1929,7 +1929,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   reachable by keyboard, works at phone width, and is generated from the same query file the
   result is computed from, so the tutorial can never show a different query. S14 builds the first
   one. Nothing appears where no SQL is used.
-- **Root documents** (draft, after approval): `CLAUDE.md` §12 gains: "Where a page shows a result
+- **Root documents** (wording approved by the human and applied on 2026-10-03): `CLAUDE.md` §12 gains: "Where a page shows a result
   computed with SQL, a 'How this was computed' control opens a short tutorial of that query: the
   question, the query, what each part does, how to read the result."
 - **Rejected:** explanations in the working sessions only, or in both places (the human chose the
@@ -1944,9 +1944,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   it opens with what the reader needs to know in plain language, and keeps codes, IDs, rule
   references and technical detail behind it (a link, a disclosure, a later section), present but
   never in the way. Where a choice is between more machinery and a clearer reading, the clearer
-  reading wins unless evidence or traceability would be lost. Root-document edits wait for the
-  human's approval of their wording (this decision and D-114, D-115 are recorded here first).
-- **Root documents** (draft, after approval): `CLAUDE.md` §12 gains: "Pages and documents make sense
+  reading wins unless evidence or traceability would be lost.
+- **Root documents** (wording approved by the human and applied on 2026-10-03): `CLAUDE.md` §12 gains: "Pages and documents make sense
   in the order they are read: plain-language meaning first, codes and technical detail behind it.
   The reader's experience takes priority over additional complexity, provided no evidence or
   traceability is lost."

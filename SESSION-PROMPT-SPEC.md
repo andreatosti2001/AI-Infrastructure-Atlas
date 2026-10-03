@@ -343,4 +343,4 @@ In practice:
 
 A session loads `CLAUDE.md` when it starts and does not see later changes on its own. When a session merges the base branch, or otherwise pulls in new commits, it checks whether `CLAUDE.md`, `MASTER-ARCHITECTURE.md` or this file changed (`git diff --stat` over the merge) and, if so, re-reads them before asking the human anything further.
 
-When a decision has already been taken, the record of the answer (for example a session prompt's "human decisions taken" list) keeps the human's words verbatim; the §9A format applies to the question, not to rewriting the answer.
+When a decision has already been taken, the record states its outcome in project terms and its date, and names the decision it settles. It does not copy the question as asked, quote the human's messages, or comment on how the human answered.
