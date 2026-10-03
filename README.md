@@ -3,7 +3,7 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 
 ## Status
 
-**M3 — Vertical Slice + Audit (complete: S12 and S13 audits done, blocking findings remediated; S14 next).** The repository contains governance documents, the
+**M4 — Analytical Intelligence (S14 in review: the SQL layer; S15 next).** The repository contains governance documents, the
 session system, a repository-integrity check, the S01 domain map, the accepted entity
 schema (S03), the accepted relationship schema (S04), the accepted source policy with its
 source-class vocabulary (S05), the accepted claim model (S06), and the first canonical
@@ -26,7 +26,10 @@ records with their own checks, which the page shows as cards grouped by reason. 
 content ([`docs/research/content-audit-S13.md`](docs/research/content-audit-S13.md)): 34 sampled claims
 re-read in their sources, none overreaching; its one blocking finding is remediated, so the card for
 NVIDIA's memory suppliers now names all three firms NVIDIA names, and ten weaknesses are recorded with
-owners. See
+owners. S14 added the SQL layer ([`docs/architecture/sql-layer.md`](docs/architecture/sql-layer.md)): the records are
+loaded into a DuckDB database rebuilt from `data/` on every run and never stored, and the first query lists, for
+each accelerator on the page, every link the Atlas records with its basis and evidence dates. The page shows the
+result as "The chain as a table", with a "How this was computed" tutorial generated from the query file. See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is
 planned.
 
@@ -37,11 +40,12 @@ This is an independent repository. It shares no code, data or runtime with
 
 ```text
 CLAUDE.md, MASTER-ARCHITECTURE.md, ...   constitutional documents (see docs/README.md)
-data/            source records, canonical claims, companies, jurisdictions, technologies, components, products, facilities, events, relationships and refused candidates; staging/ holds records awaiting the human's review
+data/            source records, canonical claims, companies, jurisdictions, technologies, components, products, facilities, events, relationships, refused candidates and identity-basis rows; staging/ holds records awaiting the human's review
 docs/            documentation map, baseline, decision log, entity and relationship taxonomies, claim model, company, concept, facility and edge datasets, milestone audits, agent roles and contracts, research, source policy
 schemas/         JSON Schema for entity records (accepted, S03), relationship records (accepted, S04), refused candidates (S12), source records around the accepted source-class vocabulary (S05, S06), claims (S06) and facility events (S09)
 sessions/        session prompts, prompt registry and session reports
-tools/           Gate 0 validator, the trace command, the facility status derivation, edge navigation, and the page build with its template
+tools/           Gate 0 validator, the trace command, the facility status derivation, edge navigation, the page build with its template, and the SQL warehouse (S14)
+sql/             SQL queries, each also its own tutorial; results/ holds their generated results (never edited by hand)
 site/            generated pages (never edited by hand): hbm-chain/index.html (S11)
 tests/           unit tests for tools/, schemas/ and data/ (validate-data), with fictional fixtures
 .github/         CI
@@ -49,11 +53,11 @@ tests/           unit tests for tools/, schemas/ and data/ (validate-data), with
 
 ## Validate
 
-Requires Python 3.11+. The tools use the standard library only. The tests also need
-the pinned test dependencies (decision D-026).
+Requires Python 3.11+. The tools use the standard library only, except the SQL warehouse, which needs
+the pinned DuckDB (decision D-118). The tests also need the pinned test dependencies (decision D-026).
 
 ```bash
-python -m pip install -r requirements-test.txt
+python -m pip install -r requirements-test.txt -r requirements-analysis.txt
 python -m unittest discover -s tests -v   # unit tests
 python tools/validate_repo.py             # Gate 0: repository integrity
 python -m unittest discover -s tests -p "test_data*.py" -v   # validate-data
@@ -61,6 +65,7 @@ python -m unittest discover -s tests -p "test_freshness.py" -v   # validate-fres
 python tools/trace.py company-nvidia                         # what supports a record or claim
 python tools/facility_status.py facility-kr-m16 --on 2026-10-02   # a facility's derived status
 python tools/navigate.py depends-on technology-3d-die-stacking   # what depends on a record (S10); --json for data (S11)
+python tools/warehouse.py --check                                # every SQL result equals a fresh run from data/ (S14)
 python tools/build_page.py --check                               # the S11 page equals a rebuild (validate-design: tests/test_page.py)
 ```
 
