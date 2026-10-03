@@ -130,6 +130,27 @@ details.inputs summary:focus-visible { outline: 3px solid var(--line-focus); out
 pre { background: var(--surface-panel); border: 1px solid var(--line-rule); padding: 12px 14px; overflow-x: auto; font-size: 0.86rem; line-height: 1.7; }
 pre code { overflow-wrap: normal; }
 ul.files { columns: 2 260px; padding-left: 1.2em; }
+table.sql { min-width: 0; width: 100%; max-width: none; }
+table.sql td { overflow-wrap: break-word; }
+table.sql .who { font-weight: 600; color: var(--ink-strong); }
+table.sql .cell-k { display: none; }
+details.ids summary, details.sql-tutorial summary { cursor: pointer; font-weight: 600; color: var(--ink-link); padding: 4px 0; }
+details.ids summary:focus-visible, details.sql-tutorial summary:focus-visible { outline: 3px solid var(--line-focus); outline-offset: 2px; }
+details.ids p { margin: 4px 0; font-size: 0.85rem; }
+details.sql-tutorial { margin: 14px 0; border: 1px solid var(--line-rule); border-radius: 6px; padding: 6px 16px; max-width: 980px; }
+details.sql-tutorial[open] { background: var(--surface-panel); }
+.tutorial ol.steps { padding-left: 1.3em; }
+.tutorial ol.steps h4 { margin: 18px 0 4px; font-size: 1rem; color: var(--ink-strong); }
+.tutorial p { max-width: 80ch; }
+.tutorial pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface-page); }
+@media (max-width: 760px) {
+  table.sql thead { display: none; }
+  table.sql td.empty { display: none; }
+  table.sql, table.sql tbody, table.sql tr, table.sql td { display: block; width: 100%; }
+  table.sql tr { border: 1px solid var(--line-rule); border-radius: 6px; margin: 12px 0; padding: 6px 12px; }
+  table.sql td { border-bottom: 0; padding: 4px 0; }
+  table.sql .cell-k { display: block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-muted); }
+}
 footer { margin-top: 48px; border-top: 1px solid var(--line-rule); padding-top: 12px; font-size: 0.85rem; color: var(--ink-muted); }
 </style>
 </head>
@@ -146,6 +167,7 @@ footer { margin-top: 48px; border-top: 1px solid var(--line-rule); padding-top: 
 <nav class="jump" aria-label="Sections"><span class="k" data-label>Jump to</span>
 <a href="#answer"><span data-label>Short answer</span></a>
 <a href="#chain"><span data-label>The chain</span></a>
+<a href="#table"><span data-label>The chain as a table</span></a>
 <a href="#gaps"><span data-label>What the Atlas does not know</span></a>
 <a href="#evidence"><span data-label>Evidence</span></a>
 <a href="#method"><span data-label>Method and limitations</span></a>
@@ -187,6 +209,15 @@ ${words}
 </div>
 </section>
 
+<section id="table" aria-labelledby="table-h">
+<h2 id="table-h" data-label>The chain as a table</h2>
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>This table restates the chain above as one line per link, for each accelerator. It is computed with SQL from the same records, not drawn by hand, so each line can be checked against the diagram. Each line says how the Atlas knows the link, how old its evidence is, who published that evidence, and which records it comes from.</p>
+<p>The dates are dates, not ages: the table does not say whether a value is still current. A web page that states no date of its own is dated by the day it was read. One publisher behind a line is one voice, not a confirmation, and a gap is never a zero.</p>
+</div>
+${sql_table}
+</section>
 <section id="context" aria-labelledby="context-h">
 <h2 id="context-h" data-label>Key context</h2>
 ${context_quotes}

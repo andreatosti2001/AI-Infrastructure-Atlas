@@ -21,7 +21,10 @@ PG-6  framing is visibly marked and names no record;
 PG-7  the committed page equals a rebuild, and two builds are identical;
 PG-8  accessibility basics, the palette and its contrast;
 PG-9  links resolve and the page loads nothing from the network;
-PG-10 the journey specification matches its homes.
+PG-10 the journey specification matches its homes;
+PG-11 (S14, D-115, D-121) the SQL table equals its committed result cell by cell, every result row is
+      shown, its caveats appear exactly where the result has them, and its "How this was computed"
+      tutorial, beside it and closed by default, is the query file the result records.
 """
 
 from __future__ import annotations
@@ -44,7 +47,7 @@ import navigate  # noqa: E402
 # The build's inputs, as vertical-slice.md §6 defines them: every data file (the refused candidates
 # included), every schema, the documents the page quotes rules and rulings from, the template and the
 # three tools that compute it. edge-dataset.md left the list in S12 (D-109).
-INPUT_GLOBS = ("data/*.json", "data/staging/*.json", "schemas/*.json")
+INPUT_GLOBS = ("data/*.json", "data/staging/*.json", "schemas/*.json", "sql/*.sql", "sql/results/*.json")
 INPUT_FILES = (
     "docs/architecture/company-dataset.md",
     "docs/architecture/decisions.md",
@@ -56,6 +59,11 @@ INPUT_FILES = (
     "tools/trace.py",
 )
 ANNOTATIONS = ("data-ref", "data-label", "data-derived", "data-framing")
+# The first SQL result on the page (S14, H-3) and the fixed words of its caveat flags (PG-11).
+SQL_QUERY = "accelerator_dependencies"
+SQL_FLAGS = {"rests_on_atlas_interpretation": "rests on the Atlas’s own definitions", "publishers": "one publisher only"}
+SQL_SHOWN = ("accelerator", "from_name", "relation", "to_name", "basis", "evidence_dated_from", "record_id", "reached_through", "accelerator_class_claim")
+SQL_LISTS = ("claim_ids", "source_ids", "publishers", "party_standing_unchecked")
 BARE = re.compile(r"^[\s·→←↓,.;:()\[\]/—–\-\"“”'‘’…+#?!]*$")
 FORMATS = {None: lambda value: value, "state": lambda value: value.replace("_", " ")}
 FRAMING_MARK = "Atlas framing"
@@ -145,14 +153,18 @@ def load(path: Path) -> list:
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
 
 
+# Data files whose rows are about records and have no ID of their own (S14, DT-1, D-117): never a home.
+NOT_HOMES = frozenset({"identity_basis.json"})
+
+
 class Homes:
     def __init__(self, data: Path = DATA, root: Path = REPO_ROOT) -> None:
         self.canonical: dict[str, dict] = {}
         self.staging: dict[str, dict] = {}
-        for path in sorted(data.glob("*.json")):
+        for path in sorted(p for p in data.glob("*.json") if p.name not in NOT_HOMES):
             for record in load(path):
                 self.canonical[record["id"]] = record
-        for path in sorted((data / "staging").glob("*.json")):
+        for path in sorted(p for p in (data / "staging").glob("*.json") if p.name not in NOT_HOMES):
             for record in load(path):
                 self.staging[record["id"]] = record
         self.schemas = {p.name.split(".")[0]: json.loads(p.read_text(encoding="utf-8")) for p in (root / "schemas").glob("*.json")}
@@ -354,7 +366,7 @@ class PageTests(unittest.TestCase):
     def test_pg2_derived_values(self) -> None:
         derived = [n for n in self.nodes if "data-derived" in n.attrs]
         kinds = {n.attrs["data-derived"] for n in derived}
-        self.assertLessEqual(kinds, {"input-file", "input-digest", "verified-first", "verified-last", "accessed-first", "accessed-last", "pointer", "bytes-match", "no-activity-edge", "lane-unlinked", "rule-home"})
+        self.assertLessEqual(kinds, {"input-file", "input-digest", "verified-first", "verified-last", "accessed-first", "accessed-last", "pointer", "bytes-match", "no-activity-edge", "lane-unlinked", "rule-home", "sql-cell", "sql-flag", "sql-question", "sql-reading", "sql-step-title", "sql-step-text", "sql-step-code", "sql-file", "sql-digest"})
         files = [n.text() for n in derived if n.attrs["data-derived"] == "input-file"]
         self.assertEqual(sorted(files), input_paths())
         digests = [n.text() for n in derived if n.attrs["data-derived"] == "input-digest"]
@@ -389,6 +401,70 @@ class PageTests(unittest.TestCase):
                     self.assertRegex(home, rf"(\| {re.escape(node.attrs['data-target'])} \||\({re.escape(node.attrs['data-target'])}\)\n)", "the rule is not defined where the page says")
                 elif kind == "lane-unlinked":
                     self.assertEqual(node.text(), "not linked to any accelerator on this chain")
+
+    # PG-11
+    def sql_result(self) -> dict:
+        return json.loads((REPO_ROOT / "sql" / "results" / f"{SQL_QUERY}.json").read_text(encoding="utf-8"))
+
+    def test_pg11_the_sql_table_equals_its_result(self) -> None:
+        rows = self.sql_result()["rows"]
+        cells = [n for n in self.nodes if n.attrs.get("data-derived") == "sql-cell"]
+        self.assertTrue(cells, "no SQL table on the page")
+        shown: dict[int, dict[str, set]] = {}
+        for node in cells:
+            self.assertEqual(node.attrs.get("data-query"), SQL_QUERY)
+            index, column = int(node.attrs["data-row"]), node.attrs["data-column"]
+            value = rows[index][column]
+            if "data-item" in node.attrs:
+                value = value[int(node.attrs["data-item"])]
+            text = str(value).replace("_", " ") if node.attrs.get("data-format") == "state" else str(value)
+            with self.subTest(row=index, column=column):
+                self.assertEqual(node.text(), norm(text))
+            shown.setdefault(index, {}).setdefault(column, set()).add(node.attrs.get("data-item"))
+        self.assertEqual(set(shown), set(range(len(rows))), "a result row is missing from the table, or the table has a row the result lacks")
+        for index, row in enumerate(rows):
+            with self.subTest(row=index):
+                for column in SQL_SHOWN:
+                    self.assertIn(column, shown[index], f"{column} is not shown")
+                self.assertEqual("gap_reason" in shown[index], row["basis"] == "gap", "a gap's reason is shown exactly on a gap")
+                self.assertEqual("evidence_dated_to" in shown[index], row["evidence_dated_to"] != row["evidence_dated_from"], "the second date is shown exactly when it differs")
+                for column in SQL_LISTS:
+                    self.assertEqual(shown[index].get(column, set()), {str(i) for i in range(len(row[column]))}, f"{column}: every item is shown once")
+        flags = [n for n in self.nodes if n.attrs.get("data-derived") == "sql-flag"]
+        got = sorted((int(n.attrs["data-row"]), n.attrs["data-column"], n.text()) for n in flags)
+        want = sorted(
+            [(i, "rests_on_atlas_interpretation", SQL_FLAGS["rests_on_atlas_interpretation"]) for i, r in enumerate(rows) if r["rests_on_atlas_interpretation"]]
+            + [(i, "publishers", SQL_FLAGS["publishers"]) for i, r in enumerate(rows) if len(r["publishers"]) == 1]
+        )
+        self.assertEqual(got, want, "a caveat flag missing, or shown where the result does not have it")
+
+    def test_pg11_the_tutorial_is_its_query_file(self) -> None:
+        from test_warehouse import tutorial  # noqa: PLC0415 (the format's reader; standard library only)
+
+        query = REPO_ROOT / "sql" / f"{SQL_QUERY}.sql"
+        result = self.sql_result()
+        self.assertEqual(result["query_sha256"], hashlib.sha256(query.read_bytes()).hexdigest(), "the result was computed from another version of the query file")
+        t = tutorial(query.read_text(encoding="utf-8"))
+        tutorials = [n for n in self.nodes if n.tag == "details" and "sql-tutorial" in n.attrs.get("class", "").split()]
+        self.assertEqual(len(tutorials), 1)
+        box = tutorials[0]
+        self.assertNotIn("open", box.attrs, "the tutorial is closed by default")
+        summary = [n for n in box.walk() if n.tag == "summary"]
+        self.assertTrue(summary and summary[0].text() == "How this was computed")
+        section = next(a for a in box.ancestors() if a.tag == "section")
+        self.assertTrue(any(n.attrs.get("data-derived") == "sql-cell" for n in section.walk()), "the tutorial is not beside its table")
+
+        def of(kind: str, raw: bool = False) -> list[str]:
+            nodes = [n for n in box.walk() if n.attrs.get("data-derived") == kind]
+            return ["".join(text for text, _ in n.texts()) if raw else n.text() for n in nodes]
+
+        self.assertEqual(of("sql-question"), [norm(t["header"]["question"])])
+        self.assertEqual(of("sql-reading"), [norm(t["header"]["reading"])])
+        self.assertEqual(of("sql-step-title"), [norm(s["title"]) for s in t["steps"]])
+        self.assertEqual(of("sql-step-text"), [norm(s["explanation"]) for s in t["steps"]])
+        self.assertEqual(of("sql-step-code", raw=True), [s["code"] for s in t["steps"]], "the code shown is not the query file's, character for character")
+        self.assertEqual(of("sql-file"), [f"sql/{SQL_QUERY}.sql", f"sql/results/{SQL_QUERY}.json"])
+        self.assertEqual(of("sql-digest"), [result["input_digest"]])
 
     # PG-3
     def test_pg3_marks_target_canonical_records_and_open_their_panel(self) -> None:

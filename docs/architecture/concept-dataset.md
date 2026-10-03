@@ -97,32 +97,14 @@ one `-`.
   can disagree with the Atlas's working term.
 - **The display name** is free. A test changes one and checks that no ID error appears.
 
-`tests/test_data_entities.py` reads this table. It checks that every §5 concept mapped to
+The rows (concept, term, record or gap, note) are data: `data/identity_basis.json`, kind
+`concept_term` (S14, DT-1, D-117). `tests/test_data_entities.py` reads them. It checks that every §5 concept mapped to
 `type:technology` or `type:component` has at least one row; that each row's record type is
 the §5 target; that each record exists, with `concept_refs` naming exactly that concept,
 and with the `technology_kind` or `use_class` whose `x-concepts` list the concept; and that
 no record exists for a gap.
 
-| Concept | Term | Record | Note |
-|---|---|---|---|
-| ACC-01 | AI accelerator | `component-ai-accelerator` | TQ-01 |
-| ACC-02 | Data-centre GPU | `component-data-centre-gpu` | |
-| ACC-03 | AI ASIC | `component-ai-asic` | |
-| ACC-05 | Multi-die accelerator | `technology-multi-die-accelerator` | TQ-09 |
-| HBM-02 | High Bandwidth Memory | `component-high-bandwidth-memory` | |
-| HBM-03 | HBM base die | — | gap: no definitional source of a sufficient class (§1) |
-| HBM-04 | Through-silicon via | — | gap: no definitional source of a sufficient class (§1) |
-| PKG-03 | Advanced packaging | `technology-advanced-packaging` | TQ-03 |
-| PKG-04 | 2.5D packaging with an interposer | `technology-2-5d-packaging-with-an-interposer` | |
-| PKG-05 | 3D die stacking | `technology-3d-die-stacking` | |
-| PKG-06 | Multi-die package | `technology-multi-die-package` | TQ-09 |
-| SME-01 | Semiconductor manufacturing equipment | `component-semiconductor-manufacturing-equipment` | |
-| SME-03 | EUV lithography | `technology-euv-lithography` | split, D-070 |
-| SME-03 | DUV lithography | `technology-duv-lithography` | split, D-070 |
-| SME-06 | Assembly, packaging and wafer-level packaging tools | `component-assembly-packaging-and-wafer-level-packaging-tools` | |
-| EDA-01 | Electronic design automation | `technology-electronic-design-automation` | |
-| DC-02 | Cloud computing | `technology-cloud-computing` | |
-| DC-05 | Accelerated server | `component-accelerated-server` | TQ-11 |
+To list them: `python -m json.tool data/identity_basis.json`.
 
 ## 4. Working definitions (DEF-1, DEF-2, machine-checked)
 
@@ -168,11 +150,13 @@ is, not where it sits. Placement is an S10 `incorporates` edge.
 **Rule** (D-071). `broader` records "is a kind of" only where a working definition makes it
 so:
 
-| Record | `broader` | Why |
-|---|---|---|
-| `component-data-centre-gpu`, `component-ai-asic` | `component-ai-accelerator` | TQ-01: an AI accelerator is a GPU or an AI ASIC |
-| `component-assembly-packaging-and-wafer-level-packaging-tools` | `component-semiconductor-manufacturing-equipment` | CSET's SME definition includes tools to "assemble, test, and package" |
-| `technology-2-5d-packaging-with-an-interposer`, `technology-3d-die-stacking` | `technology-advanced-packaging` | TQ-03's narrow definition names both |
+Each value is in its record's `broader` field (S14, DT-1, D-117); this table keeps why it holds.
+
+| Record | Why it is a kind of its `broader` value |
+|---|---|
+| `component-data-centre-gpu`, `component-ai-asic` | TQ-01: an AI accelerator is a GPU or an AI ASIC |
+| `component-assembly-packaging-and-wafer-level-packaging-tools` | CSET's SME definition includes tools to "assemble, test, and package" |
+| `technology-2-5d-packaging-with-an-interposer`, `technology-3d-die-stacking` | TQ-03's narrow definition names both kinds of advanced packaging |
 
 **Not `broader`:**
 
@@ -234,18 +218,15 @@ its anchor is still at its locator.
 **ID rule (PI-1).** `product-`, the vendor's company ID without `company-`, `-`, then the
 slug of the product's **term**: the product name as the vendor writes it in an identity
 anchor, without the vendor's own name. The check recomputes the ID from the record's
-`vendor` and this table, and finds the term verbatim in an identity claim's anchor.
+`vendor` and its `product_term` row in `data/identity_basis.json`, and finds the term verbatim in an identity claim's anchor.
 
 **`instance_of` basis (IO-1).** `instance_of` has no claim field in the schema. So each
-class a product is an instance of has one row here, naming the claim that supports it. The
+class a product is an instance of has one `instance_of_basis` row in `data/identity_basis.json`
+(S14, DT-1, D-117), naming the claim that supports it. The
 check requires a row for every `instance_of` value and a record value for every row. The
 record stays the home of the value; the row is its evidence.
 
-| Record | Term | Class | Basis claim |
-|---|---|---|---|
-| `product-nvidia-h100-tensor-core-gpu` | H100 Tensor Core GPU | `component-data-centre-gpu` | `claim-h100-identity` |
-| `product-amazon-com-trainium2` | Trainium2 | `component-ai-asic` | `claim-atlas-trainium2-ai-asic` |
-| `product-micron-technology-hbm4-36gb-12h` | HBM4 36GB 12H | `component-high-bandwidth-memory` | `claim-micron-hbm4-identity` |
+The three products' terms and basis claims are rows of `data/identity_basis.json`.
 
 **Rulings for the human:**
 

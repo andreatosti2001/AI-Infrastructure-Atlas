@@ -1951,3 +1951,133 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   traceability is lost."
 - **Rejected:** writing the three rules into `CLAUDE.md` directly (the human chose to review the
   wording first).
+
+## D-117 — The document tables of per-record values become identity-basis rows in data (DT-1)
+
+- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted (the move decided by the human on
+  2026-10-03 at the S14 opening, H-1; the row shape accepted by the human on 2026-10-03, at the S14 review)
+- **Context:** D-110 puts values about named records in `data/` and rules in documents. Four
+  document tables still held such values, read by checks that parsed Markdown (DT-1, DT-9;
+  `M2-audit.md` N-2, M-2, M-4): the terms that CI-1, PI-1 and FI-1 build IDs from, and the claim
+  (and word) behind each `instance_of` value (IO-1) and each facility kind (FK-1). Two more
+  tables restated record values with no check: each company's legal name, each `broader` value.
+  The SQL layer must not read Markdown.
+- **Decision:**
+  - The rows move to `data/identity_basis.json` (staging: `data/staging/identity_basis.json`),
+    shape `schemas/identity_basis.schema.json`. One flat row per table row, with a `kind`:
+    `concept_term`, `product_term`, `instance_of_basis`, `facility_term`, `facility_kind_basis`.
+    A gap concept's record is the state `no_record`. 28 rows; staging empty.
+  - Moved by a script, kept with the session report
+    (`sessions/reports/SESSION-14-migration/migrate_tables.py`). Before editing any document, it
+    asserts that the new loaders return exactly the tuples the Markdown parsers returned.
+  - The checks keep their logic. CI-1, PI-1, IO-1, FI-1 and FK-1 now read the rows from data.
+    New checks IB-1 to IB-4 (`tests/test_data_identity_basis.py`): each row is valid; there is one
+    row per key; a row sits in its record's layer; and the documents never hold the rows again.
+  - The documents keep their rules and point to the rows. The legal-entity and `broader` tables
+    lose the column that restated the record's value and keep their rulings and reasons.
+  - The rule tables stay in their documents (D-110): the words that establish each facility
+    kind, the excluded location words, and the capacity markers.
+- **Rejected:**
+  - New fields on the entity records: reshaping `instance_of` into `{value, claim_ids}` would
+    change `tools/trace.py` and `tools/navigate.py`, which S14 may not edit, and add a second
+    shape for one field.
+  - Keeping the two restating tables and checking them: that adds two Markdown parsers, against
+    DT-9.
+  - One data file per table: four file pairs for 28 rows.
+
+## D-118 — The SQL layer: DuckDB rebuilt in memory from the canonical files, results committed, page build unchanged
+
+- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted (the engine and its place decided by
+  the human on 2026-10-03 at the S14 opening, H-2; the rest accepted by the human on 2026-10-03, at the S14 review)
+- **Context:** the roadmap's S14 gate: "All published metrics can be regenerated from versioned
+  inputs"; `MASTER-ARCHITECTURE.md` §17 names DuckDB. D-003 allows a new dependency only with a
+  recorded reason.
+- **Decision** (`docs/architecture/sql-layer.md` §1, §2, §5):
+  - `tools/warehouse.py` loads the canonical files of `data/` (never `data/staging/`) into a fresh
+    in-memory DuckDB on every run. It runs every query in `sql/` and writes each result to
+    `sql/results/<query>.json`, recording the digests of its inputs, its query and the engine
+    version.
+  - The database is never committed and never written back. The runner refuses to save a database
+    file inside the repository.
+  - `requirements-analysis.txt` pins `duckdb==1.5.6`, which has no transitive dependencies. CI
+    installs it. This amends D-003 and D-026: `tools/warehouse.py` and `tests/test_warehouse.py`
+    may import DuckDB; every other tool stays standard library.
+  - `tools/build_page.py` reads the result and the query file as files and never imports DuckDB, so
+    the page still rebuilds byte-identically without it (PG-7). The order is: data, then results
+    (`tools/warehouse.py`), then the page.
+  - Checks WH-1 to WH-10 (`tests/test_warehouse.py`) and the page's PG-11.
+- **Rejected:** a committed database file; DuckDB inside the page build (H-2 B); SQLite (H-2 C);
+  DuckDB's own JSON reader (it infers types and turns state objects into structs); loading staging;
+  CSV results.
+
+## D-119 — Explicit states in SQL: value and state columns; NULL only beside a state
+
+- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted by the human on 2026-10-03, at the S14 review
+- **Context:** `MASTER-ARCHITECTURE.md` §5.7; `CLAUDE.md` §7 ("Unknown is never zero"); DT-4
+  (`data/` needs flattening for SQL). The records never use JSON `null`.
+- **Decision** (`sql-layer.md` §3, §8):
+  - A field that holds a value or a state becomes `<field>_value` and `<field>_state`. The state is
+    `value`, the record's own state word unchanged, or `absent` when the record has no such key.
+  - NULL appears only in a `_value` column whose `_state` is not `value` (WH-4). No result cell is
+    NULL. A row with nothing to date says `not_applicable`; an unknown link names its state in
+    `gap_reason`.
+  - Lists become rows with their position. Assertions become `field_values` rows with their claims
+    in `field_value_claims`; an attribute held as a state becomes one `field_values` row carrying
+    that state.
+  - The loader lists every key of every record kind and refuses an unknown one (WH-3), so nothing
+    is dropped silently.
+- **Rejected:** NULL for unknowns, with the state in a comment; one generic table of JSON
+  documents (every query would have to unpack the states itself).
+
+## D-120 — The first query: each accelerator's links, their basis and their evidence dates
+
+- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted by the human on 2026-10-03, at the S14 review
+- **Context:** S13's recommended first question; its weaknesses that a query must show (content
+  audit Part 5; DT-S13-1, -2, -4, -7).
+- **Decision** (`sql/accelerator_dependencies.sql`; `sql-layer.md` §7):
+  - **An accelerator** is a product that is an instance of the AI accelerator class, or of a class
+    recorded as a kind of it. The claim behind that membership comes from its `instance_of_basis`
+    row (D-117).
+  - **A link** is one of:
+    - an edge into or out of the accelerator;
+    - an edge reached by walking `incorporates` and `requires` outward from what the accelerator
+      incorporates;
+    - an unknown on such an edge (its state becomes the row's gap reason);
+    - a recorded gap: a refused candidate about the accelerator whose only reason is
+      `evidence_not_fresh`.
+  - **The basis** is `stated` if a cited claim is a FACT, `inferred` if none is (D-103), and `gap`
+    otherwise.
+  - **The evidence dates** are the earliest and latest F-1 evidence dates over the citations the row
+    rests on, following input claims.
+  - **Caveats** (the S13 weaknesses):
+    - `publishers`, so a single voice shows and nothing reads as corroborated;
+    - `rests_on_atlas_interpretation` (D-091's definition step);
+    - `party_standing_unchecked` (DT-S13-1).
+  - No age is computed, because an age needs today's date (DT-S13-4). No capacity figure is read
+    (DT-S13-2). No count, share or score is computed (S15).
+  - Result: 8 rows, 4 per accelerator, matching the diagram's chain. `tests/test_warehouse.py`
+    WH-10 recomputes the result in plain Python and requires the same rows.
+- **Rejected:**
+  - Every refused candidate about an accelerator as a gap row: those refused as "relation not
+    stated" have no evidence stating them.
+  - Including the lane (SK hynix's M16): it is not linked to an accelerator.
+  - Counting publishers (a metric, S15).
+
+## D-121 — The SQL tutorial lives in the query file; the table is a section of the HBM page
+
+- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted (the placement decided by the human
+  on 2026-10-03 at the S14 opening, H-3; the tutorial format accepted by the human on 2026-10-03, at the S14 review)
+- **Context:** D-115 (a "How this was computed" tutorial beside every SQL result, generated from the
+  same query file); D-116 (meaning before mechanism).
+- **Decision** (`sql-layer.md` §6):
+  - The query file opens with `-- question:` and `-- reading:` paragraphs. Each part of the query
+    follows a `-- step:` title and its plain-language lines.
+  - The page build splits the file at `-- step:` and shows each part's explanation and its SQL,
+    character for character.
+  - The section "The chain as a table" follows "The chain". It opens with a framing box in plain
+    words, then the table: one line per link, with the IDs behind an "IDs" disclosure, stacked into
+    cards at phone width. Then a closed "How this was computed" disclosure.
+  - PG-11 checks every cell against the result and the tutorial against the file. WH-9 checks that
+    the file's parts rebuild it exactly and that no explanation names a record.
+- **Rejected:** tutorial text in a separate file (it could drift from the query); a new page (H-3 B);
+  showing the whole query once without steps (harder to follow, D-116).

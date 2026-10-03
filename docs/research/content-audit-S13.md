@@ -1,8 +1,8 @@
 # S13 Content and Evidence Depth Audit
 
-**Status:** FINDINGS RULED (S13, 2026-10-02): the human ruled on every finding at H-3 (Part 7).
-The maturity ratings (Part 8) stay proposed until the human accepts them. Every finding is the
-Atlas's assessment (`INTERPRETATION`), never a new fact.
+**Status:** ACCEPTED. Findings ruled by the human on 2026-10-02 (S13, H-3; Part 7); the maturity
+ratings (Part 8) accepted by the human on 2026-10-03, unchanged (S14 opening, H-0). Every finding is
+the Atlas's assessment (`INTERPRETATION`), never a new fact.
 **Required by:** `SESSION-ROADMAP.md` S13 ("Sample claims and relationships and test whether the
 content layer is stronger than the presentation layer"; gate: "No scaling until evidence
 weaknesses are corrected or explicitly documented"); `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §6

@@ -27,23 +27,24 @@ validity of the records is part 2 (tests/test_data_schema.py). The checks, by ID
 - DEF-2 no definition claim serves two records, and no concept is in two records unless
        the concept table lists it twice (a split);
 - B-1  `broader` has no cycle;
-- CI-1 concept-dataset.md §3: the concept table against entity-taxonomy.md §5, the schema's
+- CI-1 concept-dataset.md §3: the concept_term rows against entity-taxonomy.md §5, the schema's
        `x-concepts` and the records; IDs are the type plus the slug of the row's term;
 - PI-1 a product ID is `product-`, the vendor's ID without `company-`, and the slug of the
-       product's term in concept-dataset.md §7, found verbatim in an identity anchor;
-- IO-1 every `instance_of` value has a basis row in concept-dataset.md §7, and every row a
-       value;
+       product's term (its product_term row), found verbatim in an identity anchor;
+- IO-1 every `instance_of` value has an instance_of_basis row, and every row a value;
 - FI-1 (S09) a facility ID is `facility-`, the code of its one `located_in` value, and the
-       slug of its term in facility-dataset.md §2, found verbatim in an identity anchor;
+       slug of its term (its facility_term row), found verbatim in an identity anchor;
 - HQ-1 (S09) a facility's `located_in` and `locality` never rest on a claim that also serves a
        company's headquarters or incorporation (ISO claims aside), and none of their anchors
        carries an excluded word of facility-dataset.md §3;
-- FK-1 (S09) every facility kind has a basis row in facility-dataset.md §4 naming an identity
+- FK-1 (S09) every facility kind has a facility_kind_basis row naming an identity
        claim whose anchor carries a word the kind's row accepts;
 - CAP-1 (S09) `nameplate_it_capacity_mw` is not_applicable on a site that is not a data
        centre, and a data centre's value rests on an anchor that says it is IT capacity.
 
-The check functions take record lists, so the same checks run on the fictional fixtures.
+The rows CI-1, PI-1, IO-1, FI-1 and FK-1 read are data/identity_basis.json (S14, DT-1, D-117; until
+S14 they were tables in the documents named above, which keep the rules). The check functions take
+record lists, so the same checks run on the fictional fixtures.
 """
 
 import copy
@@ -150,16 +151,22 @@ def taxonomy_concepts() -> dict[str, tuple[str, list[str]]]:
     return rows
 
 
-def concept_table() -> list[tuple[str, str, str | None, str]]:
-    """concept-dataset.md §3: (concept, term, record ID or None for a gap, note)."""
-    body = section(CONCEPTS, "\n## 3. ", "\n## 4. ")
+def identity_rows(kind: str) -> list[dict]:
+    """data/identity_basis.json and its staging copy (S14, DT-1, D-117): the rows of one kind."""
     rows = []
-    for line in body.splitlines():
-        row = cells(line)
-        if len(row) == 4 and re.fullmatch(CONCEPT, row[0]):
-            ids = re.findall(r"`([^`]+)`", row[2])
-            rows.append((row[0], row[1], ids[0] if ids else None, row[3]))
-    assert rows, "no concept table in concept-dataset.md §3"
+    for path in (DATA / "identity_basis.json", DATA / "staging" / "identity_basis.json"):
+        if path.exists():
+            rows += [r for r in load_records(path) if r["kind"] == kind]
+    return rows
+
+
+def concept_table() -> list[tuple[str, str, str | None, str]]:
+    """CI-1 rows (concept-dataset.md §3's rule): (concept, term, record ID or None for a gap, note)."""
+    rows = [
+        (r["concept"], r["term"], r["record"] if isinstance(r["record"], str) else None, r.get("note", ""))
+        for r in identity_rows("concept_term")
+    ]
+    assert rows, "no concept_term rows in data/identity_basis.json"
     return rows
 
 
@@ -170,14 +177,17 @@ def split_concepts() -> set[str]:
 
 
 def product_table() -> list[tuple[str, str, str, str]]:
-    """concept-dataset.md §7: (product ID, term, class, basis claim)."""
-    body = section(CONCEPTS, "\n## 7. ", "\n## 8. ")
+    """PI-1 and IO-1 rows (concept-dataset.md §7's rules): (product ID, term, class, basis claim)."""
+    terms = {}
+    for r in identity_rows("product_term"):
+        terms.setdefault(r["record"], []).append(r["term"])
     rows = []
-    for line in body.splitlines():
-        row = cells(line)
-        if len(row) == 4 and re.fullmatch(r"`product-[a-z0-9-]+`", row[0]):
-            rows.append((row[0].strip("`"), row[1], row[2].strip("`"), row[3].strip("`")))
-    assert rows, "no product table in concept-dataset.md §7"
+    for r in identity_rows("instance_of_basis"):
+        # a basis row whose product has no term is reported by IB-2 (tests/test_data_identity_basis.py)
+        rows += [(r["record"], term, r["class"], r["claim_id"]) for term in terms.get(r["record"], [])]
+    # a term with no basis row still reaches check_products, which reports the missing basis
+    rows += [(pid, term, None, None) for pid, ts in terms.items() for term in ts if not any(row[0] == pid for row in rows)]
+    assert rows, "no product rows in data/identity_basis.json"
     return rows
 
 
@@ -187,15 +197,9 @@ def x_concepts(vocab: str) -> dict[str, set[str]]:
 
 
 def facility_terms() -> list[tuple[str, str, str]]:
-    """facility-dataset.md §2: (facility ID, term, what the term is)."""
-    body = section(FACILITIES, "\n## 2. ", "\n## 3. ")
-    rows = []
-    for line in body.splitlines():
-        row = cells(line)
-        if len(row) == 4 and re.fullmatch(r"`facility-[a-z0-9-]+`", row[0]):
-            assert row[2] in ("site name", "locality"), f"{row[0]}: term is {row[2]!r}"
-            rows.append((row[0].strip("`"), row[1], row[2]))
-    assert rows, "no facility table in facility-dataset.md §2"
+    """FI-1 rows (facility-dataset.md §2's rule): (facility ID, term, what the term is)."""
+    rows = [(r["record"], r["term"], r["term_is"]) for r in identity_rows("facility_term")]
+    assert rows, "no facility_term rows in data/identity_basis.json"
     return rows
 
 
@@ -221,14 +225,9 @@ def kind_words() -> dict[str, list[str]]:
 
 
 def kind_basis() -> list[tuple[str, str, str, str]]:
-    """facility-dataset.md §4: (facility ID, kind, basis claim, word)."""
-    body = section(FACILITIES, "\n## 4. ", "\n## 5. ")
-    rows = []
-    for line in body.splitlines():
-        row = cells(line)
-        if len(row) == 4 and re.fullmatch(r"`facility-[a-z0-9-]+`", row[0]):
-            rows.append((row[0].strip("`"), row[1].strip("`"), row[2].strip("`"), row[3]))
-    assert rows, "no kind-basis table in facility-dataset.md §4"
+    """FK-1 rows (facility-dataset.md §4's rule): (facility ID, kind, basis claim, word)."""
+    rows = [(r["record"], r["facility_kind"], r["claim_id"], r["word"]) for r in identity_rows("facility_kind_basis")]
+    assert rows, "no facility_kind_basis rows in data/identity_basis.json"
     return rows
 
 
