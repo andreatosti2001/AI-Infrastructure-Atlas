@@ -346,3 +346,11 @@ After the report, the human set three standing rules, recorded as D-114 to D-116
 The root-document wording was approved by the human and applied on 2026-10-03. For S14, the
 prompt carries all three rules, and the lineage table recommended above gets its SQL tutorial.
 
+
+## Addendum — the S14 prompt and the merge (2026-10-03)
+
+Approved by the human on 2026-10-03: write the S14 prompt and merge S13 to `main` through a pull
+request. Claude assembled [`S14-PROMPT.md`](../prompts/S14-PROMPT.md): Part A is S13's operating
+contract with the operational roadmap's week-6 S14 entry; Part B elaborates it, carrying D-114 to
+D-116 and asking, at the start of S14, the maturity ratings (H-0), when DT-1 is done (H-1), the SQL
+engine (H-2) and where the first SQL result appears (H-3). The maturity ratings stay proposed.
