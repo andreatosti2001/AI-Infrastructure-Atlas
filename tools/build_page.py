@@ -2,7 +2,8 @@
 
 Writes site/hbm-chain/index.html: one self-contained file with inline CSS and SVG and no script,
 generated from data/ (the refused candidates included, D-109), the schemas, the rule documents,
-decisions.md and the template
+decisions.md, the first SQL query and its committed result (S14: sql/, read as files; DuckDB is never
+imported here, D-118) and the template
 tools/page_template.html. The page answers one question: "What does an AI accelerator's memory
 depend on, and who is known to make it?"
 
@@ -35,7 +36,7 @@ DATA = REPO_ROOT / "data"
 TEMPLATE = REPO_ROOT / "tools" / "page_template.html"
 PAGE = REPO_ROOT / "site" / "hbm-chain" / "index.html"
 TO_ROOT = "../../"  # from the page's directory to the repository root
-INPUT_GLOBS = ("data/*.json", "data/staging/*.json", "schemas/*.json")
+INPUT_GLOBS = ("data/*.json", "data/staging/*.json", "schemas/*.json", "sql/*.sql", "sql/results/*.json")
 INPUT_FILES = (
     "docs/architecture/company-dataset.md",
     "docs/architecture/decisions.md",
@@ -62,6 +63,11 @@ JOURNEY = {
     # rulings the page states as limitations
     "decisions": ["D-091", "D-092", "D-093", "D-094", "D-099"],
 }
+
+# The first SQL result on the page and its tutorial (S14, H-3, D-115, D-121): the query file and the
+# result tools/warehouse.py wrote from it. The page reads both as files.
+SQL_QUERY = "accelerator_dependencies"
+SQL_FLAGS = {"rests_on_atlas_interpretation": "rests on the Atlas’s own definitions", "publishers": "one publisher only"}
 
 # Where each rule code the page quotes is defined (the new-user test, D-108): a code's one-line home.
 RULE_HOMES = {
@@ -103,6 +109,12 @@ LABELS = frozenset(
         "Relation types", "Claim types", "Evidence status", "Standing", "Unknown and unstated values", "Source classes",
         "python tools/navigate.py depends-on", "python tools/trace.py", "python tools/build_page.py --check",
         "the walk:", "the evidence for one edge:", "rebuild and compare:",
+        "The chain as a table", "How this was computed", "Accelerator", "Link", "How the Atlas knows",
+        "Evidence dated", "Published by", "Caveats", "Traced to", "gap", "IDs", "no source cited",
+        "why it counts as an accelerator:", "edge or candidate:", "reached through:", "claims:", "sources:",
+        "publisher not linked to a company record:", "The question", "The query, step by step",
+        "How to read the result", "query file", "result file", "check the result:",
+        "python tools/warehouse.py --check",
     }
 )
 
@@ -148,6 +160,39 @@ def input_digest(paths: list[str]) -> str:
     for path in sorted(paths):
         digest.update(path.encode("utf-8") + b"\0" + hashlib.sha256((REPO_ROOT / path).read_bytes()).hexdigest().encode("ascii") + b"\n")
     return digest.hexdigest()
+
+
+def sql_tutorial(text: str) -> dict:
+    """A query file read as its tutorial (sql-layer.md §6): the -- question: and -- reading: paragraphs,
+    then each -- step: with its explanation lines and its SQL, exactly as the file has them."""
+    lines = text.split("\n")
+    header, steps, field, i = {}, [], None, 0
+    while i < len(lines) and not lines[i].startswith("-- step:"):
+        m = re.match(r"^-- (question|reading): (.*)$", lines[i])
+        if m:
+            field = m.group(1)
+            header[field] = m.group(2).strip()
+        elif lines[i].startswith("--   ") and field:
+            header[field] += " " + lines[i][5:].strip()
+        elif lines[i] in ("--", ""):
+            field = None
+        else:
+            raise BuildError(f"sql/{SQL_QUERY}.sql line {i + 1} is not part of the tutorial header")
+        i += 1
+    while i < len(lines):
+        title = lines[i].removeprefix("-- step:").strip()
+        i += 1
+        explanation, code = [], []
+        while i < len(lines) and lines[i].startswith("-- ") and not lines[i].startswith("-- step:"):
+            explanation.append(lines[i][3:].strip())
+            i += 1
+        while i < len(lines) and not lines[i].startswith("-- step:"):
+            code.append(lines[i])
+            i += 1
+        steps.append({"title": title, "explanation": " ".join(explanation), "code": "\n".join(code).strip("\n")})
+    if not header.get("question") or not header.get("reading") or not steps:
+        raise BuildError(f"sql/{SQL_QUERY}.sql has no question, reading or steps for its tutorial")
+    return {"header": header, "steps": steps}
 
 
 class BuildError(Exception):
@@ -865,6 +910,86 @@ class Page:
             panels.append(self.node_panel(record_id))
         return "".join(panels)
 
+    # --- the chain as a table (S14) --------------------------------------------------------------
+
+    def sql_cell(self, row: int, column: str, value, item: int | None = None, fmt: str | None = None, tag: str = "span", cls: str | None = None) -> str:
+        """One value of the committed SQL result; tests/test_page.py PG-11 compares it with the result."""
+        text = str(value).replace("_", " ") if fmt == "state" else str(value)
+        extra = {"data_query": SQL_QUERY, "data_row": str(row), "data_column": column, "data_item": None if item is None else str(item), "data_format": fmt}
+        return self.derived("sql-cell", text, tag=tag, cls=cls, **{k: v for k, v in extra.items() if v is not None})
+
+    def sql_list(self, row: int, column: str, values: list, tag: str = "code", sep: str = ", ") -> str:
+        return sep.join(self.sql_cell(row, column, v, item=i, tag=tag) for i, v in enumerate(values))
+
+    def sql_section(self) -> str:
+        query = REPO_ROOT / "sql" / f"{SQL_QUERY}.sql"
+        result = json.loads((REPO_ROOT / "sql" / "results" / f"{SQL_QUERY}.json").read_text(encoding="utf-8"))
+        if result["query_sha256"] != hashlib.sha256(query.read_bytes()).hexdigest():
+            raise BuildError(f"sql/results/{SQL_QUERY}.json was computed from another version of its query (python tools/warehouse.py)")
+        heads = ("Accelerator", "Link", "How the Atlas knows", "Evidence dated", "Published by", "Caveats", "Traced to")
+        k = {h: self.label(h, cls="cell-k") for h in heads}
+        body = []
+        for i, r in enumerate(result["rows"]):
+            state_end = r["from_id"] not in self.homes
+            if r["relation"] not in self.atlas_relation_types():
+                # a field of an edge (the supplier of a part): the part, then the field and its value or state
+                link = (
+                    f'{self.sql_cell(i, "to_name", r["to_name"])} · {self.sql_cell(i, "relation", r["relation"], cls="rel")}: '
+                    f'{self.sql_cell(i, "from_name", r["from_name"], fmt="state" if state_end else None)}'
+                )
+            else:
+                link = f'{self.sql_cell(i, "from_name", r["from_name"])} {self.sql_cell(i, "relation", r["relation"], cls="rel")} {self.sql_cell(i, "to_name", r["to_name"])}'
+            basis = self.sql_cell(i, "basis", r["basis"], cls=f'basis {r["basis"]}')
+            if r["basis"] == "gap":
+                basis += f' · {self.sql_cell(i, "gap_reason", r["gap_reason"], fmt="state")}'
+            dated = self.sql_cell(i, "evidence_dated_from", r["evidence_dated_from"], fmt="state" if r["evidence_dated_from"] == "not_applicable" else None)
+            if r["evidence_dated_to"] != r["evidence_dated_from"]:
+                dated += f' {self.label("to")} {self.sql_cell(i, "evidence_dated_to", r["evidence_dated_to"])}'
+            published = self.sql_list(i, "publishers", r["publishers"], tag="span", sep="; ") if r["publishers"] else self.label("no source cited")
+            caveats = []
+            if r["rests_on_atlas_interpretation"]:
+                caveats.append(self.derived("sql-flag", SQL_FLAGS["rests_on_atlas_interpretation"], data_row=str(i), data_column="rests_on_atlas_interpretation"))
+            if len(r["publishers"]) == 1:
+                caveats.append(self.derived("sql-flag", SQL_FLAGS["publishers"], data_row=str(i), data_column="publishers"))
+            if r["party_standing_unchecked"]:
+                caveats.append(f'{self.label("publisher not linked to a company record:")} {self.sql_list(i, "party_standing_unchecked", r["party_standing_unchecked"])}')
+            ids = (
+                f'<p>{self.label("edge or candidate:")} {self.sql_cell(i, "record_id", r["record_id"], tag="code")}</p>'
+                f'<p>{self.label("reached through:")} {self.sql_cell(i, "reached_through", r["reached_through"], tag="code")}</p>'
+                f'<p>{self.label("why it counts as an accelerator:")} {self.sql_cell(i, "accelerator_class_claim", r["accelerator_class_claim"], tag="code")}</p>'
+                + (f'<p>{self.label("claims:")} {self.sql_list(i, "claim_ids", r["claim_ids"])}</p>' if r["claim_ids"] else "")
+                + (f'<p>{self.label("sources:")} {self.sql_list(i, "source_ids", r["source_ids"])}</p>' if r["source_ids"] else "")
+            )
+            cells = (
+                self.sql_cell(i, "accelerator", r["accelerator"], cls="who"), link, basis, dated, published,
+                "<br>".join(f"<span>{c}</span>" for c in caveats),
+                f'<details class="ids"><summary>{self.label("IDs")}</summary>{ids}</details>',
+            )
+            empty = ' class="empty"'  # a cell with nothing to show, hidden at phone width
+            body.append("<tr>" + "".join(f"<td{'' if c else empty}>{k[h]}{c}</td>" for h, c in zip(heads, cells)) + "</tr>")
+        head = "".join(f'<th scope="col">{self.label(h)}</th>' for h in heads)
+        t = sql_tutorial(query.read_text(encoding="utf-8"))
+        steps = "".join(
+            f'<li>{self.derived("sql-step-title", s["title"], tag="h4")}{self.derived("sql-step-text", s["explanation"], tag="p")}'
+            f'<pre><code data-derived="sql-step-code">{esc(s["code"])}</code></pre></li>'
+            for s in t["steps"]
+        )
+        tutorial = (
+            f'<details class="sql-tutorial"><summary>{self.label("How this was computed")}</summary><div class="tutorial">'
+            f'{self.label("The question", tag="h3")}{self.derived("sql-question", t["header"]["question"], tag="p")}'
+            f'{self.label("The query, step by step", tag="h3")}<ol class="steps">{steps}</ol>'
+            f'{self.label("How to read the result", tag="h3")}{self.derived("sql-reading", t["header"]["reading"], tag="p")}'
+            f'<p class="meta">{self.label("query file", cls="k")} {self.derived("sql-file", f"sql/{SQL_QUERY}.sql", tag="code")} · '
+            f'{self.label("result file", cls="k")} {self.derived("sql-file", f"sql/results/{SQL_QUERY}.json", tag="code")} · '
+            f'{self.label("input digest", cls="k")} {self.derived("sql-digest", result["input_digest"], tag="code", cls="digest")}</p>'
+            f'<pre><code>{self.label("check the result:")}\n{self.label("python tools/warehouse.py --check")}</code></pre>'
+            "</div></details>"
+        )
+        return f'<div class="table-wrap"><table class="sql"><thead><tr>{head}</tr></thead><tbody>{"".join(body)}</tbody></table></div>{tutorial}'
+
+    def atlas_relation_types(self) -> set[str]:
+        return {c["const"] for c in self.schemas["relationships"]["$defs"]["vocab_relation_type"]["oneOf"]}
+
     # --- method and terms ------------------------------------------------------------------------
 
     def method(self) -> str:
@@ -927,6 +1052,7 @@ class Page:
             "gaps": self.gaps(j),
             "rules": self.rules_cited(),
             "evidence": self.evidence(j),
+            "sql_table": self.sql_section(),
         }
         parts["method"] = self.method()  # after the panels: its date ranges cover the claims they show
         parts["terms"] = self.glossary()

@@ -1,0 +1,4 @@
+# The SQL layer's engine (D-118, amends D-003 and D-026). Exact pin: the queries' results are committed
+# and checked byte for byte, so CI and local runs must use the same DuckDB. It has no transitive
+# dependencies. Only tools/warehouse.py and tests/test_warehouse.py import it; the page build never does.
+duckdb==1.5.6
