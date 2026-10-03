@@ -83,16 +83,19 @@ company's own filing names as the registrant or filer. A brand stays a `name` or
 A parent and a subsidiary are two records only when the evidence needs both, and no S07
 field does.
 
-| Record | Legal entity (as the filing names it) | Ruling |
-|---|---|---|
-| `company-nvidia` | NVIDIA CORPORATION | the 10-K registrant. "NVIDIA Technical Blog" (`src-006`) is a channel, not an entity |
-| `company-micron-technology` | Micron Technology, Inc. | the 10-K registrant |
-| `company-amkor-technology` | Amkor Technology, Inc. | the 10-K registrant |
-| `company-synopsys` | SYNOPSYS, INC. | the 10-K registrant |
-| `company-amazon-com` | AMAZON.COM, INC. | the 10-K registrant. "Amazon Web Services" is one of its three segments (p.14), so it is an alias here. Whether a separate legal entity publishes the AWS documentation (`src-010`, `src-020`) is open (§14) |
-| `company-asml-holding` | ASML Holding N.V. | the 20-F registrant. The filing says it "operates through its subsidiaries" (p.89). Which subsidiary operates which site is S09/S10's |
-| `company-sk-hynix` | 에스케이하이닉스 주식회사, in English SK hynix Inc. | the filer of the annual report. "SK hynix Newsroom" (`src-011` to `src-014`) is a channel |
-| `company-taiwan-semiconductor-manufacturing-company` | 台灣積體電路製造股份有限公司, in English Taiwan Semiconductor Manufacturing Company Limited | the 20-F registrant. Its Articles of Incorporation (Exhibit 1.1, Article 1) give both names; the 20-F cover calls the Chinese name the charter name and the English its translation. "TSMC" is the display name |
+The legal entity's name is the record's `legal_name` value, with its claims (S14, DT-1, D-117); this table
+keeps the ruling.
+
+| Record | Ruling |
+|---|---|
+| `company-nvidia` | the 10-K registrant. "NVIDIA Technical Blog" (`src-006`) is a channel, not an entity |
+| `company-micron-technology` | the 10-K registrant |
+| `company-amkor-technology` | the 10-K registrant |
+| `company-synopsys` | the 10-K registrant |
+| `company-amazon-com` | the 10-K registrant. "Amazon Web Services" is one of its three segments (p.14), so it is an alias here. Whether a separate legal entity publishes the AWS documentation (`src-010`, `src-020`) is open (§14) |
+| `company-asml-holding` | the 20-F registrant. The filing says it "operates through its subsidiaries" (p.89). Which subsidiary operates which site is S09/S10's |
+| `company-sk-hynix` | the filer of the annual report. "SK hynix Newsroom" (`src-011` to `src-014`) is a channel |
+| `company-taiwan-semiconductor-manufacturing-company` | the 20-F registrant. Its Articles of Incorporation (Exhibit 1.1, Article 1) give both names; the 20-F cover calls the Chinese name the charter name and the English its translation. "TSMC" is the display name |
 
 **Display names are editorial** (`entity-taxonomy.md` §7). "Amazon", "ASML" or "TSMC" can
 change without any ID or claim changing (§3).

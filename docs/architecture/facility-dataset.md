@@ -103,14 +103,12 @@ a sale. The code and the term are claim-backed and do not change while the site 
 **The display name** is free and editorial. A test changes it and checks that no ID error
 appears.
 
-`tests/test_data_entities.py` reads this table. It recomputes each ID from the record's
+The rows (facility, term, what the term is) are data: `data/identity_basis.json`, kind
+`facility_term` (S14, DT-1, D-117). `tests/test_data_entities.py` reads them. It recomputes each ID from the record's
 `located_in` and the term, checks that the term is verbatim in an identity anchor, and that
 every facility record has a row.
 
-| Facility | Term | Term is | Note |
-|---|---|---|---|
-| `facility-us-manassas-virginia` | Manassas, Virginia | locality | Micron gives the fab no name |
-| `facility-kr-m16` | M16 | site name | |
+To list them: `python -m json.tool data/identity_basis.json`.
 
 ## 3. Location (HQ-1, machine-checked)
 
@@ -170,10 +168,8 @@ row, by decision:
 SK hynix's English wording. Reading either as `wafer_fab` is the Atlas's ruling, flagged for
 the human (D-081).
 
-| Facility | Kind | Basis claim | Word |
-|---|---|---|---|
-| `facility-us-manassas-virginia` | `wafer_fab` | `claim-micron-manassas-fab` | fab |
-| `facility-kr-m16` | `wafer_fab` | `claim-sk-hynix-m16-fabrication-plant` | fabrication plant |
+Each record's basis rows are data: `data/identity_basis.json`, kind `facility_kind_basis`
+(S14, DT-1, D-117).
 
 The check requires a row for every kind on every record and a kind for every row; the
 basis claim among the record's identity claims; the word in one of its anchors; and the word

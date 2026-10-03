@@ -145,14 +145,18 @@ def load(path: Path) -> list:
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
 
 
+# Data files whose rows are about records and have no ID of their own (S14, DT-1, D-117): never a home.
+NOT_HOMES = frozenset({"identity_basis.json"})
+
+
 class Homes:
     def __init__(self, data: Path = DATA, root: Path = REPO_ROOT) -> None:
         self.canonical: dict[str, dict] = {}
         self.staging: dict[str, dict] = {}
-        for path in sorted(data.glob("*.json")):
+        for path in sorted(p for p in data.glob("*.json") if p.name not in NOT_HOMES):
             for record in load(path):
                 self.canonical[record["id"]] = record
-        for path in sorted((data / "staging").glob("*.json")):
+        for path in sorted(p for p in (data / "staging").glob("*.json") if p.name not in NOT_HOMES):
             for record in load(path):
                 self.staging[record["id"]] = record
         self.schemas = {p.name.split(".")[0]: json.loads(p.read_text(encoding="utf-8")) for p in (root / "schemas").glob("*.json")}

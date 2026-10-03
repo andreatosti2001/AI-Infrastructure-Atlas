@@ -1,0 +1,183 @@
+[
+  {
+    "kind": "concept_term",
+    "concept": "ACC-01",
+    "term": "AI accelerator",
+    "record": "component-ai-accelerator",
+    "note": "TQ-01"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "ACC-02",
+    "term": "Data-centre GPU",
+    "record": "component-data-centre-gpu"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "ACC-03",
+    "term": "AI ASIC",
+    "record": "component-ai-asic"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "ACC-05",
+    "term": "Multi-die accelerator",
+    "record": "technology-multi-die-accelerator",
+    "note": "TQ-09"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "HBM-02",
+    "term": "High Bandwidth Memory",
+    "record": "component-high-bandwidth-memory"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "HBM-03",
+    "term": "HBM base die",
+    "record": {
+      "state": "no_record"
+    },
+    "note": "gap: no definitional source of a sufficient class (§1)"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "HBM-04",
+    "term": "Through-silicon via",
+    "record": {
+      "state": "no_record"
+    },
+    "note": "gap: no definitional source of a sufficient class (§1)"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "PKG-03",
+    "term": "Advanced packaging",
+    "record": "technology-advanced-packaging",
+    "note": "TQ-03"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "PKG-04",
+    "term": "2.5D packaging with an interposer",
+    "record": "technology-2-5d-packaging-with-an-interposer"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "PKG-05",
+    "term": "3D die stacking",
+    "record": "technology-3d-die-stacking"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "PKG-06",
+    "term": "Multi-die package",
+    "record": "technology-multi-die-package",
+    "note": "TQ-09"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "SME-01",
+    "term": "Semiconductor manufacturing equipment",
+    "record": "component-semiconductor-manufacturing-equipment"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "SME-03",
+    "term": "EUV lithography",
+    "record": "technology-euv-lithography",
+    "note": "split, D-070"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "SME-03",
+    "term": "DUV lithography",
+    "record": "technology-duv-lithography",
+    "note": "split, D-070"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "SME-06",
+    "term": "Assembly, packaging and wafer-level packaging tools",
+    "record": "component-assembly-packaging-and-wafer-level-packaging-tools"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "EDA-01",
+    "term": "Electronic design automation",
+    "record": "technology-electronic-design-automation"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "DC-02",
+    "term": "Cloud computing",
+    "record": "technology-cloud-computing"
+  },
+  {
+    "kind": "concept_term",
+    "concept": "DC-05",
+    "term": "Accelerated server",
+    "record": "component-accelerated-server",
+    "note": "TQ-11"
+  },
+  {
+    "kind": "product_term",
+    "record": "product-nvidia-h100-tensor-core-gpu",
+    "term": "H100 Tensor Core GPU"
+  },
+  {
+    "kind": "instance_of_basis",
+    "record": "product-nvidia-h100-tensor-core-gpu",
+    "class": "component-data-centre-gpu",
+    "claim_id": "claim-h100-identity"
+  },
+  {
+    "kind": "product_term",
+    "record": "product-amazon-com-trainium2",
+    "term": "Trainium2"
+  },
+  {
+    "kind": "instance_of_basis",
+    "record": "product-amazon-com-trainium2",
+    "class": "component-ai-asic",
+    "claim_id": "claim-atlas-trainium2-ai-asic"
+  },
+  {
+    "kind": "product_term",
+    "record": "product-micron-technology-hbm4-36gb-12h",
+    "term": "HBM4 36GB 12H"
+  },
+  {
+    "kind": "instance_of_basis",
+    "record": "product-micron-technology-hbm4-36gb-12h",
+    "class": "component-high-bandwidth-memory",
+    "claim_id": "claim-micron-hbm4-identity"
+  },
+  {
+    "kind": "facility_term",
+    "record": "facility-us-manassas-virginia",
+    "term": "Manassas, Virginia",
+    "term_is": "locality",
+    "note": "Micron gives the fab no name"
+  },
+  {
+    "kind": "facility_term",
+    "record": "facility-kr-m16",
+    "term": "M16",
+    "term_is": "site_name"
+  },
+  {
+    "kind": "facility_kind_basis",
+    "record": "facility-us-manassas-virginia",
+    "facility_kind": "wafer_fab",
+    "claim_id": "claim-micron-manassas-fab",
+    "word": "fab"
+  },
+  {
+    "kind": "facility_kind_basis",
+    "record": "facility-kr-m16",
+    "facility_kind": "wafer_fab",
+    "claim_id": "claim-sk-hynix-m16-fabrication-plant",
+    "word": "fabrication plant"
+  }
+]

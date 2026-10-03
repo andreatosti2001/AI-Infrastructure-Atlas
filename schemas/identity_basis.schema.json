@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/andreatosti2001/AI-Infrastructure-Atlas/schemas/identity_basis.schema.json",
+  "title": "Atlas identity-basis row",
+  "description": "One value about a named record that its record has no field for: the term a rule-made ID is built from, or the claim (and word) that supports one value of an identity field with no claim field (instance_of, facility_kinds). Moved from four design-document tables in S14 (DT-1, D-110, D-117): concept-dataset.md §3 and §7, facility-dataset.md §2 and §4. The rules that use these rows stay in those documents (CI-1, PI-1, IO-1, FI-1, FK-1); the checks are tests/test_data_entities.py and tests/test_data_identity_basis.py. A row is flat (one value per field) so SQL can load it without unnesting. Status: proposed (S14, D-117).",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/concept_term" },
+    { "$ref": "#/$defs/product_term" },
+    { "$ref": "#/$defs/instance_of_basis" },
+    { "$ref": "#/$defs/facility_term" },
+    { "$ref": "#/$defs/facility_kind_basis" }
+  ],
+  "$defs": {
+    "concept_term": {
+      "description": "CI-1 (concept-dataset.md §3): a taxonomy concept mapped to a technology or component, the term its record's ID is built from, and its record, or the state no_record for a concept the Atlas holds as a gap.",
+      "type": "object",
+      "required": ["kind", "concept", "term", "record"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "const": "concept_term" },
+        "concept": { "type": "string", "pattern": "^[A-Z]{1,3}-[0-9]{2}$" },
+        "term": { "type": "string", "minLength": 1 },
+        "record": {
+          "oneOf": [
+            { "type": "string", "pattern": "^(technology|component)-[a-z0-9]+(-[a-z0-9]+)*$" },
+            {
+              "type": "object",
+              "required": ["state"],
+              "additionalProperties": false,
+              "properties": { "state": { "const": "no_record" } }
+            }
+          ]
+        },
+        "note": { "description": "The table's note, verbatim: a term question, a split's decision, or why a concept is a gap.", "type": "string", "minLength": 1 }
+      }
+    },
+    "product_term": {
+      "description": "PI-1 (concept-dataset.md §7): the product name as the vendor writes it in an identity anchor, without the vendor's own name.",
+      "type": "object",
+      "required": ["kind", "record", "term"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "const": "product_term" },
+        "record": { "type": "string", "pattern": "^product-[a-z0-9]+(-[a-z0-9]+)*$" },
+        "term": { "type": "string", "minLength": 1 }
+      }
+    },
+    "instance_of_basis": {
+      "description": "IO-1 (concept-dataset.md §7): the claim that supports one instance_of value of a product. The record stays the home of the value; this row is its evidence.",
+      "type": "object",
+      "required": ["kind", "record", "class", "claim_id"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "const": "instance_of_basis" },
+        "record": { "type": "string", "pattern": "^product-[a-z0-9]+(-[a-z0-9]+)*$" },
+        "class": { "type": "string", "pattern": "^(technology|component)-[a-z0-9]+(-[a-z0-9]+)*$" },
+        "claim_id": { "type": "string", "pattern": "^claim-[a-z0-9]+(-[a-z0-9]+)*$" }
+      }
+    },
+    "facility_term": {
+      "description": "FI-1 (facility-dataset.md §2): the site's own name as an identity anchor gives it, or, where the source names no site, its locality.",
+      "type": "object",
+      "required": ["kind", "record", "term", "term_is"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "const": "facility_term" },
+        "record": { "type": "string", "pattern": "^facility-[a-z0-9]+(-[a-z0-9]+)*$" },
+        "term": { "type": "string", "minLength": 1 },
+        "term_is": { "enum": ["site_name", "locality"] },
+        "note": { "type": "string", "minLength": 1 }
+      }
+    },
+    "facility_kind_basis": {
+      "description": "FK-1 (facility-dataset.md §4): the identity claim and the word in its anchor that give one facility kind. The words each kind accepts are a rule and stay in facility-dataset.md §4.",
+      "type": "object",
+      "required": ["kind", "record", "facility_kind", "claim_id", "word"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "const": "facility_kind_basis" },
+        "record": { "type": "string", "pattern": "^facility-[a-z0-9]+(-[a-z0-9]+)*$" },
+        "facility_kind": { "$ref": "entities.schema.json#/$defs/vocab_facility_kind" },
+        "claim_id": { "type": "string", "pattern": "^claim-[a-z0-9]+(-[a-z0-9]+)*$" },
+        "word": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

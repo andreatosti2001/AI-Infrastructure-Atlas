@@ -1951,3 +1951,36 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   traceability is lost."
 - **Rejected:** writing the three rules into `CLAUDE.md` directly (the human chose to review the
   wording first).
+
+## D-117 — The document tables of per-record values become identity-basis rows in data (DT-1)
+
+- **Session:** S14 · **Date:** 2026-10-03 · **Status:** proposed (the move approved by the human on
+  2026-10-03 at the S14 opening, H-1: done first, inside S14; the row shape below awaits review)
+- **Context:** D-110 puts values about named records in `data/` and rules in documents. Four
+  document tables still held such values, read by checks that parsed Markdown (DT-1, DT-9;
+  `M2-audit.md` N-2, M-2, M-4): the terms that CI-1, PI-1 and FI-1 build IDs from, and the claim
+  (and word) behind each `instance_of` value (IO-1) and each facility kind (FK-1). Two more
+  tables restated record values with no check: each company's legal name, each `broader` value.
+  The SQL layer must not read Markdown.
+- **Decision:**
+  - The rows move to `data/identity_basis.json` (staging: `data/staging/identity_basis.json`),
+    shape `schemas/identity_basis.schema.json`. One flat row per table row, with a `kind`:
+    `concept_term`, `product_term`, `instance_of_basis`, `facility_term`, `facility_kind_basis`.
+    A gap concept's record is the state `no_record`. 28 rows; staging empty.
+  - Moved by a script, kept with the session report
+    (`sessions/reports/SESSION-14-migration/migrate_tables.py`). Before editing any document, it
+    asserts that the new loaders return exactly the tuples the Markdown parsers returned.
+  - The checks keep their logic. CI-1, PI-1, IO-1, FI-1 and FK-1 now read the rows from data.
+    New checks IB-1 to IB-4 (`tests/test_data_identity_basis.py`): each row is valid; there is one
+    row per key; a row sits in its record's layer; and the documents never hold the rows again.
+  - The documents keep their rules and point to the rows. The legal-entity and `broader` tables
+    lose the column that restated the record's value and keep their rulings and reasons.
+  - The rule tables stay in their documents (D-110): the words that establish each facility
+    kind, the excluded location words, and the capacity markers.
+- **Rejected:**
+  - New fields on the entity records: reshaping `instance_of` into `{value, claim_ids}` would
+    change `tools/trace.py` and `tools/navigate.py`, which S14 may not edit, and add a second
+    shape for one field.
+  - Keeping the two restating tables and checking them: that adds two Markdown parsers, against
+    DT-9.
+  - One data file per table: four file pairs for 28 rows.
