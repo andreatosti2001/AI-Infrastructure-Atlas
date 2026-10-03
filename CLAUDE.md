@@ -417,6 +417,10 @@ Every substantive result should expose:
 - date/freshness;
 - limitations.
 
+Where a page shows a result computed with SQL, a 'How this was computed' control opens a short tutorial of that query: the question, the query, what each part does, how to read the result.
+
+Pages and documents make sense in the order they are read: plain-language meaning first, codes and technical detail behind it. The reader's experience takes priority over additional complexity, provided no evidence or traceability is lost.
+
 ## 13. Client-mode principle
 
 The system is a research and decision-support product, not a legal-advice engine.
@@ -507,6 +511,8 @@ At the end of a work session, report:
 - technical debt;
 - known limitations;
 - decisions requiring human approval, each written as a §9A human decision request.
+
+Decisions already taken are recorded as outcomes and dates, never as transcripts.
 
 ### Next recommended milestone
 

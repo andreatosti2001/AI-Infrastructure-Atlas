@@ -3,7 +3,7 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 
 ## Status
 
-**M3 — Vertical Slice + Audit (S12 audit under review; S13 next).** The repository contains governance documents, the
+**M3 — Vertical Slice + Audit (complete: S12 and S13 audits done, blocking findings remediated; S14 next).** The repository contains governance documents, the
 session system, a repository-integrity check, the S01 domain map, the accepted entity
 schema (S03), the accepted relationship schema (S04), the accepted source policy with its
 source-class vocabulary (S05), the accepted claim model (S06), and the first canonical
@@ -22,7 +22,11 @@ build step, in which every mark opens its evidence and every unknown is drawn as
 not published (NG-13). S12 audited the data model and the page (the overdue M2 audit,
 [`docs/architecture/milestone-audits/M2-audit.md`](docs/architecture/milestone-audits/M2-audit.md)):
 its one blocking finding is remediated, so the 12 relations the Atlas considered and refused are now
-records with their own checks, which the page shows as cards grouped by reason. See
+records with their own checks, which the page shows as cards grouped by reason. S13 audited the
+content ([`docs/research/content-audit-S13.md`](docs/research/content-audit-S13.md)): 34 sampled claims
+re-read in their sources, none overreaching; its one blocking finding is remediated, so the card for
+NVIDIA's memory suppliers now names all three firms NVIDIA names, and ten weaknesses are recorded with
+owners. See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is
 planned.
 
