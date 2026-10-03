@@ -3,7 +3,7 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 
 ## Status
 
-**M4 — Analytical Intelligence (S14 in review: the SQL layer; S15 next).** The repository contains governance documents, the
+**M4 — Analytical Intelligence (S14 done: the SQL layer, accepted 2026-10-03; S15 next).** The repository contains governance documents, the
 session system, a repository-integrity check, the S01 domain map, the accepted entity
 schema (S03), the accepted relationship schema (S04), the accepted source policy with its
 source-class vocabulary (S05), the accepted claim model (S06), and the first canonical

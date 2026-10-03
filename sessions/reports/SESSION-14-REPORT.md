@@ -372,6 +372,12 @@ built?**
 
 **Not asked now:** merging this branch to `main`; public deployment (NG-13).
 
+## Addendum: the S14 review (2026-10-03)
+
+Accepted by the human on 2026-10-03: D-117 to D-121 bind as built, with `sql-layer.md` and
+`schemas/identity_basis.schema.json`. Only status lines changed, and the page's digest line
+followed. No data, result or check changed.
+
 ## Process lessons
 
 - **A second implementation is a cheap oracle.** The plain-Python recomputation (WH-10) caught both

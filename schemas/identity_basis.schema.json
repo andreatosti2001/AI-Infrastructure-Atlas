@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/andreatosti2001/AI-Infrastructure-Atlas/schemas/identity_basis.schema.json",
   "title": "Atlas identity-basis row",
-  "description": "One value about a named record that its record has no field for: the term a rule-made ID is built from, or the claim (and word) that supports one value of an identity field with no claim field (instance_of, facility_kinds). Moved from four design-document tables in S14 (DT-1, D-110, D-117): concept-dataset.md §3 and §7, facility-dataset.md §2 and §4. The rules that use these rows stay in those documents (CI-1, PI-1, IO-1, FI-1, FK-1); the checks are tests/test_data_entities.py and tests/test_data_identity_basis.py. A row is flat (one value per field) so SQL can load it without unnesting. Status: proposed (S14, D-117).",
+  "description": "One value about a named record that its record has no field for: the term a rule-made ID is built from, or the claim (and word) that supports one value of an identity field with no claim field (instance_of, facility_kinds). Moved from four design-document tables in S14 (DT-1, D-110, D-117): concept-dataset.md §3 and §7, facility-dataset.md §2 and §4. The rules that use these rows stay in those documents (CI-1, PI-1, IO-1, FI-1, FK-1); the checks are tests/test_data_entities.py and tests/test_data_identity_basis.py. A row is flat (one value per field) so SQL can load it without unnesting. Status: accepted (S14 review, 2026-10-03; D-117).",
   "type": "object",
   "oneOf": [
     { "$ref": "#/$defs/concept_term" },

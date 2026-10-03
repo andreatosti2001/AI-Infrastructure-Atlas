@@ -1954,8 +1954,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-117 — The document tables of per-record values become identity-basis rows in data (DT-1)
 
-- **Session:** S14 · **Date:** 2026-10-03 · **Status:** proposed (the move approved by the human on
-  2026-10-03 at the S14 opening, H-1: done first, inside S14; the row shape below awaits review)
+- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted (the move decided by the human on
+  2026-10-03 at the S14 opening, H-1; the row shape accepted by the human on 2026-10-03, at the S14 review)
 - **Context:** D-110 puts values about named records in `data/` and rules in documents. Four
   document tables still held such values, read by checks that parsed Markdown (DT-1, DT-9;
   `M2-audit.md` N-2, M-2, M-4): the terms that CI-1, PI-1 and FI-1 build IDs from, and the claim
@@ -1987,9 +1987,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-118 — The SQL layer: DuckDB rebuilt in memory from the canonical files, results committed, page build unchanged
 
-- **Session:** S14 · **Date:** 2026-10-03 · **Status:** proposed (the engine and its place approved by
-  the human on 2026-10-03 at the S14 opening, H-2: DuckDB for queries, the page reads saved results;
-  the rest awaits review)
+- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted (the engine and its place decided by
+  the human on 2026-10-03 at the S14 opening, H-2; the rest accepted by the human on 2026-10-03, at the S14 review)
 - **Context:** the roadmap's S14 gate: "All published metrics can be regenerated from versioned
   inputs"; `MASTER-ARCHITECTURE.md` §17 names DuckDB. D-003 allows a new dependency only with a
   recorded reason.
@@ -2013,7 +2012,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-119 — Explicit states in SQL: value and state columns; NULL only beside a state
 
-- **Session:** S14 · **Date:** 2026-10-03 · **Status:** proposed
+- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted by the human on 2026-10-03, at the S14 review
 - **Context:** `MASTER-ARCHITECTURE.md` §5.7; `CLAUDE.md` §7 ("Unknown is never zero"); DT-4
   (`data/` needs flattening for SQL). The records never use JSON `null`.
 - **Decision** (`sql-layer.md` §3, §8):
@@ -2032,7 +2031,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-120 — The first query: each accelerator's links, their basis and their evidence dates
 
-- **Session:** S14 · **Date:** 2026-10-03 · **Status:** proposed
+- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted by the human on 2026-10-03, at the S14 review
 - **Context:** S13's recommended first question; its weaknesses that a query must show (content
   audit Part 5; DT-S13-1, -2, -4, -7).
 - **Decision** (`sql/accelerator_dependencies.sql`; `sql-layer.md` §7):
@@ -2066,8 +2065,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-121 — The SQL tutorial lives in the query file; the table is a section of the HBM page
 
-- **Session:** S14 · **Date:** 2026-10-03 · **Status:** proposed (the placement approved by the human
-  on 2026-10-03 at the S14 opening, H-3: a section of the existing page)
+- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted (the placement decided by the human
+  on 2026-10-03 at the S14 opening, H-3; the tutorial format accepted by the human on 2026-10-03, at the S14 review)
 - **Context:** D-115 (a "How this was computed" tutorial beside every SQL result, generated from the
   same query file); D-116 (meaning before mechanism).
 - **Decision** (`sql-layer.md` §6):

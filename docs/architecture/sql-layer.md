@@ -1,6 +1,6 @@
 # The SQL layer
 
-**Status:** PROPOSED (S14, 2026-10-03; D-118 to D-121). The human decided on 2026-10-03 at the S14
+**Status:** ACCEPTED by the human on 2026-10-03 at the S14 review (D-117 to D-121). The human decided on 2026-10-03 at the S14
 opening: DuckDB runs the queries, and the page reads saved results (H-2); the first result appears
 as a section of the HBM page (H-3); the per-record document tables moved into `data/` first (H-1,
 D-117).
