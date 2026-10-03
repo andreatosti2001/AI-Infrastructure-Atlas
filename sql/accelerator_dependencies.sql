@@ -50,7 +50,8 @@ direct_links AS (
 -- edges outward, one step per round, and repeats until a round finds no new edge. The first half
 -- (above UNION ALL) takes the first step; the second half takes each next step from the last one.
 -- reached_through keeps the accelerator's own edge, so every row says how it was reached. The depth
--- limit stops the walk even if the data ever held a loop.
+-- limit stops the walk even if the data ever held a loop. It finds what the parts need, not who makes
+-- them: who supplies a part is a field of its edge, and becomes a row of its own two steps below.
 walked_links AS (
     SELECT d.accelerator_id, r.id AS record_id, d.record_id AS reached_through, 2 AS depth,
            r.target_entity AS frontier
@@ -158,7 +159,9 @@ reached AS (
 -- step: Date each piece of evidence
 -- The freshness rule defines a citation's evidence date: the claim's as-of date if it has one;
 -- otherwise the latest date the source states for itself; otherwise the day the source was accessed.
--- A partial date such as 2021-02 is kept as written and sorts at the start of its period.
+-- A partial date such as 2021-02 is kept as written and sorts at the start of its period. This part
+-- lists sources; nothing here counts them. Sources listed together for an inferred row back different
+-- steps of its reasoning: they do not confirm one another.
 evidence AS (
     SELECT x.row_key, ct.source_id, ct.standing, s.publisher, s.publisher_entity_state,
            CASE WHEN cl.as_of_state = 'value' THEN cl.as_of_value
