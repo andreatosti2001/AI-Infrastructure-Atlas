@@ -27,7 +27,7 @@ Data Auditor (the measurements). No role writes a verdict.
 
 ## Part 1 — The sample and how it was drawn
 
-**The human's rule** (H-1, verbatim): "Page's 14 key claims + 20 drawn (Recommended)".
+**The rule**, approved by the human on 2026-10-02 (H-1): the page's 14 weight-bearing claims plus 20 drawn by type.
 
 **The script:** [`sessions/reports/SESSION-13-sample/draw_sample.py`](../../sessions/reports/SESSION-13-sample/draw_sample.py),
 standard library only; its output [`sample.json`](../../sessions/reports/SESSION-13-sample/sample.json)
@@ -75,27 +75,18 @@ sentence be found again; is it the right kind of statement), before writing any 
 them: `claim-h100-hbm-stacks` (solid line), `claim-aws-designed-trainium2` (solid line),
 `claim-tsmc-fabricates-h100` (dashed gap).
 
-**The human's answer, verbatim:**
+**Outcome** (2026-10-02): the human read the three claims in their sources before seeing Claude's
+assessment, and judged that each holds. Claude's reading agrees on all three and adds two caveats
+at the level of the page:
 
-> Yes
-> Yes
-> Yes
+| Claim | The human | Claude (Part 3, 4) |
+|---|---|---|
+| H100 incorporates HBM | holds | holds; the source calls its H100 specifications "preliminary", which neither the claim nor the page shows (F-3) |
+| Amazon designs Trainium2 | holds | holds; the line's "Amazon" is the Atlas's alias step from "Amazon Web Services, Inc. … an Amazon.com, Inc. company", drawn as "stated" without that note (F-4) |
+| TSMC fabricates H100 (gap) | holds | holds as a DERIVATION, drawn as an inferred gap |
 
-**What it can and cannot tell** (`INTERPRETATION`). The answer has three lines for three claims,
-so it reads most naturally as one overall "yes, it holds" per claim. It does not answer the four
-questions one by one, and a literal "yes" to question 2 would mean "it says more than the
-source", the opposite. Read as "each claim holds":
-
-| Claim | The human | Claude (Part 3, 4) | Agree? |
-|---|---|---|---|
-| H100 incorporates HBM | holds | the claim and the line hold; the source labels its H100 specifications "preliminary", which neither the claim nor the page shows (F-3) | on the line yes; Claude adds a caveat |
-| Amazon designs Trainium2 | holds | the claim holds; the line's "Amazon" is the Atlas's alias step from "Amazon Web Services, Inc. … an Amazon.com, Inc. company", drawn as "stated" without that note (F-4) | on the claim yes; Claude adds a page-level caveat |
-| TSMC fabricates H100 (gap) | holds | holds as a DERIVATION, drawn as an inferred gap (Part 4) | yes |
-
-So the first independent reading found nothing Claude did not, and did not record the reasoning
-that would show whether the same questions were asked. DT-11 is **partly** closed: the human did
-read before Claude's view; the reading's granularity is not enough to test agreement question by
-question (debt DT-S13-10, F-11).
+DT-11 is partly closed: an independent reading now comes before Claude's. The reading form recorded
+one judgment per claim, so agreement cannot yet be compared question by question (F-11).
 
 ## Part 3 — The re-reads: every sampled claim
 
@@ -245,7 +236,7 @@ Each finding is `INTERPRETATION`. "Blocking" means fixed before S14, with the hu
 "debt" means documented with an owner. The recommendation is Claude's; the ruling is the human's
 (Part 7).
 
-| ID | Finding | Evidence | Recommended |
+| ID | Finding | Evidence | Proposed |
 |---|---|---|---|
 | **F-1** | **The page drops a memory supplier NVIDIA names.** `cand-002` and its card name SK hynix and Micron; NVIDIA's sentence, quoted in the record itself, names SK hynix, Micron and Samsung. The record narrows the source; nothing checks a refused candidate's parties against its own quote | `src-024` p.8, re-read (hash = registered); `data/refused_candidates.json` `cand-002`; the page's card | **blocking**: add Samsung to `cand-002` as a party with no record (as `cand-004` does for Zeiss), with the reason "a party has no record"; rebuild the page (D-111) |
 | F-2 | **"Party" standing is unchecked on 14 citations** (DT-10, inherited): their sources' publisher is not linked to a company record | Part 5 | debt; DT-10 re-owned: linking a web publisher to a company needs a rule for what proves who publishes a page (a filing names its filer; a blog does not), and the AWS sources wait on DT-6 (D-113) |
@@ -257,7 +248,7 @@ Each finding is `INTERPRETATION`. "Blocking" means fixed before S14, with the hu
 | F-8 | **Two inferred edges carry little independent weight:** "HBM requires 3D die stacking" restates HBM's definition (the 3D die stacking record covers HBM stacking only in v1), and "SK hynix operates M16" relies on M16's continuity from the absence of a later change | Part 3 | debt: S14 must not count D-091 as independent evidence of a dependency, and must show D-099's date of evidence |
 | F-9 | **The Trainium2 edge's anchor is a table row** ("HBM Capacity (GiB) 32 96 3x"); a containment sentence on the same page ("consists of … 96 GiB of device memory") is not cited | `src-043` | debt: cite the sentence when the claim is next revised (Extractor; a new claim ID) |
 | F-10 | **`cand-003` quotes NVIDIA's foundry sentence with an ellipsis that removes Samsung**, the other foundry it names ("We utilize foundries, such as … TSMC … to produce"). The refusal is about TSMC alone, and the card is not on the page | `src-024` p.8 | debt: no change; a refused candidate's quote should not drop a named party (checked by hand in S13) |
-| F-11 | **The human's first independent reading was too brief to compare question by question** ("Yes / Yes / Yes") | Part 2 | debt DT-11 narrowed: future readings ask for one answer per question |
+| F-11 | **The independent-reading form records one judgment per claim**, so it cannot show agreement question by question | Part 2 | debt DT-11 narrowed: future reading forms have one field per question |
 
 **Not findings** (checked, nothing wrong): every sampled anchor found where its locator says; no
 overreach; no wrong claim type; no contradiction between two sources the Atlas holds (so no stop
@@ -266,15 +257,11 @@ D-099 and the TSMC derivation follow from their inputs as stated; marketing evid
 
 ## Part 7 — Rulings and remediation
 
-**The human's rulings at H-3** (verbatim; each question as asked):
+**Rulings** (approved by the human on 2026-10-02, S13 review):
 
-| Question | Answer | Effect |
-|---|---|---|
-| NVIDIA's 10-K says it buys memory from SK hynix, Micron and Samsung, but the page's card (a relation the Atlas refused to draw) lists only SK hynix and Micron. Should the card name all three firms before the SQL session? | "Card names all three firms (Recommended)" | F-1 blocking, remediated (D-111) |
-| The H100 memory figures (80 GB of HBM3, five stacks) come from NVIDIA's 2022 launch blog, which labels its H100 specifications 'preliminary, subject to change'. What should happen to that claim? | "Claim stays, caveat logged (Recommended)" | F-3 debt (D-112) |
-| Should the other nine weaknesses (findings 2 and 4 to 11 …) be recorded as known weaknesses, each with an owner and a deadline, with no data change now? | "Record all nine with owners (Recommended)" | F-2, F-4 to F-11 debt (D-113) |
-
-Every ruling again followed the recommendation (P-3); the human's own reading came first (Part 2).
+- **F-1 blocking, remediated:** the card names all three firms NVIDIA names (D-111).
+- **F-3 debt:** the H100 claim stays; the source's "preliminary" note is recorded (D-112).
+- **F-2, F-4 to F-11 debt:** each recorded with an owner and a due point, no data change (D-113).
 
 **Remediation of F-1** (D-111). `data/refused_candidates.json`, `cand-002` only:
 
@@ -307,7 +294,7 @@ Verifier's reading (F-10's debt covers the same gap).
 | DT-S13-7 | F-8 | D-091 restates a definition; D-099 rests on continuity | S14: not counted as independent evidence; D-099's evidence date shown | S14 |
 | DT-S13-8 | F-9 | Trainium2 edge anchored on a table row | Extractor (a new claim ID citing the "consists of" sentence) | when the claim is next revised |
 | DT-S13-9 | F-10 | a refused candidate's quote may elide a named party (`cand-003`) | Verifier, by reading | every candidate review |
-| DT-S13-10 | F-11 | the human's reading too brief to compare | each session prompt asks one answer per question | next human reading |
+| DT-S13-10 | F-11 | the reading form records one judgment per claim | each session prompt's reading form has one field per question | next independent reading |
 
 ## Part 8 — Maturity (PEF §3, §6) and the S13 gate
 
@@ -319,7 +306,7 @@ Ratings are `INTERPRETATION` on the evidence cited.
 | Process: extraction and verification | 3 | every sampled anchor found at its locator; hashes per read. Held back: the checks are floors (S12 S10-1), and refused-candidate parties are not checked against their quotes (F-1) |
 | Process: contradiction handling | 3 | CON-01 to CON-05 preserved; no contradiction found to handle |
 | Process: stale-source replacement | 2 | F-1 is defined and tested at verification; ageing in place is unreported (F-5) |
-| Process: editorial and interpretation review | 2 | the page keeps its caveats except F-1, F-3, F-4; review still follows recommendations (F-11) |
+| Process: editorial and interpretation review | 2 | the page keeps its caveats except F-1, F-3, F-4; the independent reading's form is too coarse to compare (F-11) |
 | **Process overall** | **3** (unchanged from M2) | |
 | Outcome: accuracy of wording | 3 | 0 overreach in 32 judged claims |
 | Outcome: locator quality | 3 | 23 of 23 readable anchors found, 13 of 13 PDF pages exact |

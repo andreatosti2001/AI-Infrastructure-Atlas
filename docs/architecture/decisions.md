@@ -1810,7 +1810,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-109 — The refused candidates become records (H-1, H-2)
 
-- **Session:** S12 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S13 opening review, H-0: "Accept audit and both rules, no other change (Recommended)")
+- **Session:** S12 · **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02, at the S13 opening)
 - **Context:** H-1 ("Pick the recommended", end of S11: records); the S12 audit's blocking finding
   B-1 (`milestone-audits/M2-audit.md` Part 2 N-2, I-5; Part 3 q1). The human's answer at S12, to
   "Where should the 12 relationships the Atlas considered and refused … be stored": "Own file,
@@ -1836,7 +1836,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-110 — Values about named records live in data; rules live in their documents
 
-- **Session:** S12 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S13 opening review, H-0: "Accept audit and both rules, no other change (Recommended)")
+- **Session:** S12 · **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02, at the S13 opening)
 - **Context:** S12 Part B §06 q2; the M2 audit's N-2 and N-3. The human's answers at S12: "Rules
   stay in documents (Recommended)" and, for the other document tables, "Later, before the SQL
   layer (S14) (Recommended)".
@@ -1852,7 +1852,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-111 — A refused candidate names every party its quoted sentence names (`cand-002` and Samsung)
 
-- **Session:** S13 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S13 review, H-3: "Card names all three firms (Recommended)")
+- **Session:** S13 · **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02, S13 review)
 - **Context:** content audit F-1 (`docs/research/content-audit-S13.md`). `cand-002` refuses
   "SK hynix and Micron supply memory to NVIDIA" from NVIDIA's 10-K (`src-024` p.8), whose quoted
   sentence is "We purchase memory from SK Hynix Inc., Micron Technology, Inc., and Samsung". The
@@ -1870,7 +1870,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-112 — The H100 memory figures keep their claim; the source's "preliminary" note is debt
 
-- **Session:** S13 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S13 review, H-3: "Claim stays, caveat logged (Recommended)")
+- **Session:** S13 · **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02, S13 review)
 - **Context:** content audit F-3. `claim-h100-hbm-stacks` reproduces NVIDIA's sentences on the
   H100's 80 GB of HBM3 (five stacks) and 80 GB of HBM2e. The source, NVIDIA's 2022 Hopper
   architecture blog (`src-051`), notes under its H100 specification table "Preliminary
@@ -1885,7 +1885,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-113 — The S13 audit's debt and owners (DT-10 re-owned)
 
-- **Session:** S13 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S13 review, H-3: "Record all nine with owners (Recommended)")
+- **Session:** S13 · **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02, S13 review)
 - **Context:** content audit Part 6, findings F-2 and F-4 to F-11. DT-10 (`publisher_entity`
   `not_researched` on 23 sources) was owned by S13.
 - **Decision:** each finding is documented debt with the owner Part 6 names. DT-10 is
@@ -1896,3 +1896,59 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 - **Rejected:** linking the ten cited sources' publishers in S13 (a value about the world the
   sources do not state as a claim, without a rule; the S13 prompt admits no new fact); a freshness
   test that reads the clock (CI would turn red on a date, not a change).
+
+## D-114 — The repository records the outcome of a human decision, never the conversation
+
+- **Session:** S13 · **Date:** 2026-10-03 · **Status:** accepted (the human's direction, 2026-10-03)
+- **Context:** reports, audits, decision statuses and session prompts have copied each question as
+  asked and the human's answer word for word (`SESSION-PROMPT-SPEC.md` §9, last paragraph). The
+  human does not want conversation content in the repository.
+- **Decision:** a record of a human decision states the outcome in project terms and the date, for
+  example "approved by the human on 2026-10-02: the card names all three firms". It does not copy
+  the question's wording, quote the human's messages, or comment on how the human answered. The
+  record still names the decision it settles, so who decided what stays traceable. S13's files were
+  cleaned on 2026-10-03; earlier sessions' files and pushed commit messages stay as they are. Commit
+  messages follow the same rule from now on.
+- **Root documents** (draft, applied only after the human approves the wording; D-116):
+  `SESSION-PROMPT-SPEC.md` §9, last paragraph, becomes: "When a decision has already been taken,
+  the record states its outcome in project terms and its date, and names the decision it settles.
+  It does not copy the question as asked, quote the human's messages, or comment on how the human
+  answered." `CLAUDE.md` §17, "Unresolved", gains: "Decisions already taken are recorded as
+  outcomes and dates, never as transcripts."
+- **Rejected:** cleaning S00 to S12 as well, and rewriting this branch's commit messages (the
+  human chose S13's files only).
+
+## D-115 — Every result a page computes with SQL carries a short SQL tutorial
+
+- **Session:** S13 · **Date:** 2026-10-03 · **Status:** accepted (the human's direction, 2026-10-03)
+- **Context:** S14 introduces SQL (DuckDB). The project is also a learning instrument for its owner
+  (`CLAUDE.md` §1).
+- **Decision:** wherever a page shows a result computed with SQL, a small control next to it ("How
+  this was computed") opens a short tutorial for that specific task: the question in plain words,
+  the query, what each part of the query does, and how to read the result. It is closed by default,
+  reachable by keyboard, works at phone width, and is generated from the same query file the
+  result is computed from, so the tutorial can never show a different query. S14 builds the first
+  one. Nothing appears where no SQL is used.
+- **Root documents** (draft, after approval): `CLAUDE.md` §12 gains: "Where a page shows a result
+  computed with SQL, a 'How this was computed' control opens a short tutorial of that query: the
+  question, the query, what each part does, how to read the result."
+- **Rejected:** explanations in the working sessions only, or in both places (the human chose the
+  pages).
+
+## D-116 — Reader experience first: meaning before mechanism
+
+- **Session:** S13 · **Date:** 2026-10-03 · **Status:** accepted (the human's direction, 2026-10-03)
+- **Context:** the page and the session documents have grown dense with rule codes and internal
+  terms. The human prioritises a reader's experience over complexity.
+- **Decision:** every page and every document a person reads makes sense in the order it is read:
+  it opens with what the reader needs to know in plain language, and keeps codes, IDs, rule
+  references and technical detail behind it (a link, a disclosure, a later section), present but
+  never in the way. Where a choice is between more machinery and a clearer reading, the clearer
+  reading wins unless evidence or traceability would be lost. Root-document edits wait for the
+  human's approval of their wording (this decision and D-114, D-115 are recorded here first).
+- **Root documents** (draft, after approval): `CLAUDE.md` §12 gains: "Pages and documents make sense
+  in the order they are read: plain-language meaning first, codes and technical detail behind it.
+  The reader's experience takes priority over additional complexity, provided no evidence or
+  traceability is lost."
+- **Rejected:** writing the three rules into `CLAUDE.md` directly (the human chose to review the
+  wording first).

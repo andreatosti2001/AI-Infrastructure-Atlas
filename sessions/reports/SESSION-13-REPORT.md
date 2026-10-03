@@ -54,18 +54,17 @@ remediated. M3 is complete.**
   audit and D-111 onward; H-3; only the approved remediation; checks, breaks, browser QA;
   documents; report. The plan held.
 
-**Rulings the human took** (verbatim):
+**Approved by the human** (2026-10-02; outcomes only, D-114):
 
-| Question (as asked) | Answer | Effect |
+| Decision point | Outcome | Effect |
 |---|---|---|
-| Should this session follow the S13 prompt exactly as it was written at the end of S12 … on branch claude/new-session-4kuwvw? (Part A) | "Follow the prompt as written (Recommended)" | prompt unchanged |
-| Should last session's data-structure audit and its two rules become accepted …? (H-0) | "Accept audit and both rules, no other change (Recommended)" | D-109, D-110, `M2-audit.md`, the candidate schema accepted (`99f1c4e`) |
-| How many of the 120 claims should the audit re-read in their original sources? (H-1) | "Page's 14 key claims + 20 drawn (Recommended)" | the sample |
-| Before you see Claude's assessment, will you re-read three of the page's key claims in their sources yourself? (H-2) | "You read three claims first (Recommended)" | the human's reading |
-| The human's reading of the three claims (H-2) | "Yes" / "Yes" / "Yes" | audit Part 2 |
-| NVIDIA's 10-K says it buys memory from SK hynix, Micron and Samsung, but the page's card … lists only SK hynix and Micron. Should the card name all three firms before the SQL session? (H-3) | "Card names all three firms (Recommended)" | D-111; `cand-002`; page rebuilt |
-| The H100 memory figures … come from NVIDIA's 2022 launch blog, which labels its H100 specifications 'preliminary, subject to change'. What should happen to that claim? (H-3) | "Claim stays, caveat logged (Recommended)" | D-112 |
-| Should the other nine weaknesses … be recorded as known weaknesses, each with an owner and a deadline, with no data change now? (H-3) | "Record all nine with owners (Recommended)" | D-113; audit Part 7 |
+| The session prompt (Part A) | followed as written | prompt unchanged |
+| The S12 audit and its two rules (H-0) | accepted, no other change | D-109, D-110, `M2-audit.md`, the candidate schema accepted (`99f1c4e`) |
+| The sample (H-1) | the page's 14 weight-bearing claims plus 20 drawn by type | the sample |
+| An independent reading first (H-2) | three claims read by the human before Claude's assessment; each judged to hold | audit Part 2 |
+| F-1, the card for NVIDIA's memory suppliers (H-3) | the card names all three firms | D-111; `cand-002`; page rebuilt |
+| F-3, the H100 figures (H-3) | the claim stays; the caveat is recorded | D-112 |
+| F-2, F-4 to F-11 (H-3) | recorded as debt with owners, no data change | D-113; audit Part 7 |
 
 ## Files changed
 
@@ -209,8 +208,7 @@ red on a date, not a change); a generic "parties in the quote" check (needs a re
 
 1. **`data/refused_candidates.json` is outside Part B §12's "May modify" list**, which names
    `data/claims.json` and records resting on a downgraded or removed claim. F-1 is about a refused
-   candidate, not a claim. The human's H-3 question named the change ("The refused-relation record
-   gains Samsung …"), so it was made on that ruling.
+   candidate, not a claim. The human's H-3 ruling named this change, so it was made on that ruling.
 2. **The re-read script and the breaks script live in `sessions/reports/`**, not `tools/`: the first
    needs `pypdf` (not a repository dependency) and network bytes kept outside the repository; the
    second is a session harness (DT-8's pattern).
@@ -225,7 +223,7 @@ red on a date, not a change); a generic "parties in the quote" check (needs a re
 - Part B §06 counted the weight-bearing set as "the six claims of §03, their input claims": it is
   14 claims, because one input (`claim-atlas-3d-die-stacking-working-definition`) has an input of
   its own.
-- H-2 assumed a reading answered question by question; the answer was one word per claim.
+- H-2 assumed a reading recorded question by question; the form recorded one judgment per claim.
 
 ## Debt introduced/resolved
 
@@ -244,6 +242,25 @@ breaks; the remaining three need scripting when the page next changes.
 **Maturity ratings.** The audit's PEF ratings (audit Part 8) stay proposed. Accepting them changes
 only the audit's status line and its row in the audit history. They are: content-and-review
 process 3, outcome 2, both unchanged from M2.
+
+**Human decision required: the wording of three new project rules in the root documents**
+
+- *What we are deciding:* whether the drafted sentences for D-114, D-115 and D-116 go into
+  `CLAUDE.md` and `SESSION-PROMPT-SPEC.md` as written.
+- *What will concretely change:* if approved, `SESSION-PROMPT-SPEC.md` §9's last paragraph is
+  replaced (decisions recorded as outcomes and dates, not transcripts), and `CLAUDE.md` §12 and §17
+  gain three sentences (the SQL tutorial next to every SQL result; meaning before mechanism;
+  outcomes, not transcripts). The drafts are in each decision's "Root documents" line. No data, page
+  or check changes.
+- *Why:* every future session loads these two files first. Until they change, each new session prompt
+  must restate the three rules by hand.
+- *What stays the same:* the decisions themselves are already in force (accepted 2026-10-03).
+- *Options:* **A, approve the drafts as written:** the two files are edited. **B, change named
+  sentences first:** Claude redrafts them before any edit.
+- *Decision requested:* "Approve A, or name the sentences to change."
+
+**Maturity ratings.** The audit's ratings (Part 8) stay proposed. Accepting them changes only the
+audit's status line and its audit-history row.
 
 **Not asked now:** public deployment (NG-13); merging this branch to `main` (not requested this
 session).
@@ -267,10 +284,8 @@ session).
   its own quote. Audits should sample every record kind that quotes a source, not only claims.
 - **A byte hash is no signal on a dynamic page.** Three hashes in one evening, same text. Measure
   before trusting a "same bytes" line.
-- **Ask for the reading in the shape it will be compared.** One-word answers per claim cannot be
-  set against four questions. The next reading should be a table with one cell per question.
-- **The human again chose every recommended option** (P-3). The independent reading came first
-  this time, and agreed.
+- **Give the reading a form shaped like the comparison.** One field per question, so the
+  independent reading can be set against Claude's question by question.
 
 ## Implications for the next session
 
@@ -306,3 +321,21 @@ S14 — DuckDB / SQL analytical layer:
 
 **S13 gate** ("No scaling until evidence weaknesses are corrected or explicitly documented"):
 **met.**
+
+## Addendum — three new project rules (2026-10-03)
+
+After the report, the human set three standing rules, recorded as D-114 to D-116 (accepted):
+
+- **D-114, outcomes, not transcripts.** Records of human decisions state the outcome and the date,
+  never the question as asked or the human's words. S13's report, audit, decision statuses, audit
+  history and sample script were rewritten that way the same day. This supersedes the S13
+  prompt's requirement to keep answers verbatim (Part B §11, §14, §16; `SESSION-PROMPT-SPEC.md`
+  §9) for S13 and after. Earlier sessions' files and the commit messages already pushed are
+  unchanged.
+- **D-115, a SQL tutorial next to every SQL result** on the Atlas pages: S14 builds the first.
+- **D-116, meaning before mechanism.** Pages and documents read in plain language first, with
+  technical detail behind it.
+
+The root-document wording waits for the human's approval (Unresolved issues above). For S14, the
+prompt carries all three rules, and the lineage table recommended above gets its SQL tutorial.
+

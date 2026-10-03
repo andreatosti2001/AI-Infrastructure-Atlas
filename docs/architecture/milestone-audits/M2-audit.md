@@ -1,7 +1,6 @@
 # M2 Milestone Audit and S12 Data Architecture Audit
 
-**Status:** ACCEPTED (2026-10-02, S13 opening review, H-0: "Accept audit and both rules, no other
-change (Recommended)"). Proposed in S12; the remediation of Part 4's blocking finding was ruled in S12.
+**Status:** ACCEPTED (approved by the human on 2026-10-02, at the S13 opening). Proposed in S12; the remediation of Part 4's blocking finding was ruled in S12.
 **Date:** 2026-10-02
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §4 ("At every major milestone"), §5 (data
 architecture audit), §3 (maturity per dimension); `SESSION-ROADMAP.md` S12 ("Architecture Audit

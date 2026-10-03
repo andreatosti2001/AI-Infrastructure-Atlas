@@ -1,6 +1,6 @@
 """S13 sample: the claims the content audit re-reads (H-1, answered at the S13 opening).
 
-The human's answer, verbatim: "Page's 14 key claims + 20 drawn (Recommended)".
+Approved by the human on 2026-10-02: the page's 14 weight-bearing claims plus 20 drawn by type.
 
 The rule, so a second run draws the same list:
 
