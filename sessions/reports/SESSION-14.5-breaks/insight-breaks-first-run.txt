@@ -1,0 +1,15 @@
+T1  caught                   a tally hand-edited on the page (H100: 1 of 4 stated -> 2 of 4) | FAILED (failures=2)
+T2  caught                   a tally's denominator removed from its block | FAILED (failures=3)
+T3  caught                   the build computes a share (a metric) beside a tally, rebuilt | FAILED (failures=1)
+V1  caught                   a strip line drawn as stated when its row is inferred | FAILED (failures=2)
+V2  NOT CAUGHT as named (missing ['a gap without its reason in words']) a gap's reason dropped from the marks, rebuilt | FAILED (failures=1, errors=7)
+V3  caught                   a unit square opens the wrong row | FAILED (failures=2)
+E1  caught                   an evidence link to a panel the HBM page does not have | FAILED (failures=3)
+F1  caught                   framing names a record, rebuilt | FAILED (failures=1)
+S1  caught                   a colour outside the palette, rebuilt | FAILED (failures=1)
+S2  caught                   the filter fades instead of outlining, rebuilt | FAILED (failures=1)
+L1  caught                   a label in the headline hand-edited ('each' -> 'both') | FAILED (failures=3)
+D1  caught                   data changed (a display name), results and HBM page rebuilt, prototype not | FAILED (failures=16)
+D2  caught                   a decision appended, the HBM page rebuilt, the prototype not | FAILED (failures=2)
+C1  passes, as it must       control: a framing sentence reworded, prototype rebuilt | OK
+C2  passes, as it must       control: High Bandwidth Memory's display name edited, everything rebuilt in order | OK
