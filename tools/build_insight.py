@@ -94,7 +94,7 @@ LABELS = build_page.LABELS | frozenset(
         "Evidence coverage", "Source age", "Supplier metrics", "links stated", "gaps", "rows drawn from",
         "records, of which shared with another accelerator:", "Evidence age", "as of",
         "dated links: newest evidence older than twelve months", "dated links: dated only by the day a page was read",
-        "Cannot be computed yet", "parts: supplier", "needs:", "see how this was computed", "access date",
+        "Cannot be computed yet", "incorporated parts, one per accelerator:", "with supplier", "needs:", "see how this was computed", "access date",
         "Evidence age, link by link", "Newest evidence", "Where the date comes from", "Age in days",
         "Beyond twelve months", "How each measure was computed", "inferred,", "stated,",
     }
@@ -355,7 +355,8 @@ class Insight(build_page.Page):
             blocks.append(
                 f'<div class="indicator state" data-metric="supplier_metrics" data-row="{j}"><h4>{m("metric")}</h4>'
                 f'<p class="value">{m("status", fmt="state", cls="basis gap")}</p>'
-                f'<p class="den">{m("parts_supplier_unknown")} {self.label("of")} {m("parts")} {self.label("parts: supplier")} {m("unknown_state", fmt="state")}</p>'
+                f'<p class="den">{self.label("incorporated parts, one per accelerator:")} {m("parts_supplier_unknown")} {self.label("of")} {m("parts")} '
+                f'{self.label("with supplier")} {m("unknown_state", fmt="state")}</p>'
                 f'<p class="how">{self.label("needs:")} {m("needs")} {self.how("supplier_metrics")}</p></div>'
             )
         return (
