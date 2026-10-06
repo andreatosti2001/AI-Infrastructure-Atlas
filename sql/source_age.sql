@@ -11,8 +11,9 @@
 --   web page that states no date is dated by the day it was read, and its row says so.
 -- missing data: Fourteen sources state no date of their own. Where one of them is the newest evidence,
 --   the age measures the reading, not the content.
--- reproduce: python tools/warehouse.py rebuilds this result; the page's checks recompute every age in
---   plain Python, and moving the reference date changes the ages and nothing else.
+-- reproduce: python tools/warehouse.py rebuilds this result; the warehouse's checks recompute every age
+--   independently, in plain Python, and check that moving the reference date changes the ages and
+--   nothing else.
 -- sensitivity: Each age moves one day for each day the reference date moves. A link crosses the
 --   horizon on a known date, which the reference date makes visible rather than hiding.
 -- does not prove: An old date does not make a statement false, and a recent date does not make it true.

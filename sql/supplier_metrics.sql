@@ -11,8 +11,8 @@
 --   separate column and are never read as the supplier of a part.
 -- missing data: Who supplies each part. No source the Atlas holds states it, and the research has not
 --   been done.
--- reproduce: python tools/warehouse.py rebuilds this result; the page's checks recompute each count in
---   plain Python from the records.
+-- reproduce: python tools/warehouse.py rebuilds this result; the warehouse's checks recompute each count
+--   independently, in plain Python, from the records.
 -- sensitivity: The first named supplier changes the status of all three metrics; until then nothing a
 --   reader could vary changes the answer.
 -- does not prove: That a part has no supplier, one supplier or many. An unknown is not a zero, and the

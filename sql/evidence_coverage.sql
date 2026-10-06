@@ -12,8 +12,8 @@
 --   first query's definitions, used unchanged. Every link weighs the same.
 -- missing data: The suppliers of the memory are not researched, so each accelerator has a gap that a
 --   piece of research could turn into a stated link. Links nobody has looked for are not counted at all.
--- reproduce: python tools/warehouse.py rebuilds this result from the records; the page's checks
---   recompute it in plain Python from the table of links.
+-- reproduce: python tools/warehouse.py rebuilds this result from the records; the warehouse's checks
+--   recompute it independently, in plain Python and without SQL.
 -- sensitivity: With four links per accelerator, one new link or one gap resolved moves the split by a
 --   quarter. Small counts: read the numbers, not a proportion.
 -- does not prove: It does not measure how dependent an accelerator is, how risky its supply is, or how
