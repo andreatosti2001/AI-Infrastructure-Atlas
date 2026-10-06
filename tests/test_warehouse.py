@@ -426,6 +426,19 @@ class WarehouseTests(unittest.TestCase):
         self.assertEqual(len(keys), len(set(keys)), "two rows share a key")
 
 
+    def test_wh10_a_tied_date_reports_its_weakest_kind(self) -> None:
+        """The data has no tie today, so the rule is planted (S15 break M12 found it unexercised): one claim's
+        as_of equals another source's stated date on the same row; the newest date must say 'stated'."""
+        root = copy_repo()
+        claims = load_json(root / "data/claims.json")
+        next(c for c in claims if c["id"] == "claim-ecp-hbm-definition")["as_of"] = "2020-12"
+        (root / "data/claims.json").write_text(json.dumps(claims), encoding="utf-8")
+        rows = json.loads(self.wh.build_results(root / "data")[f"sql/results/{FIRST}.json"])["rows"]
+        self.assertEqual(comparable(rows), Records(root / "data").rows())
+        tied = [r for r in rows if r["relation"] == "requires"]
+        self.assertTrue(tied)
+        self.assertEqual({(r["evidence_dated_to"], r["evidence_dated_to_basis"]) for r in tied}, {("2020-12", "stated")}, "a tie between an as-of date and a stated date must report the weaker kind")
+
     # WH-11
     def test_wh11_a_query_reads_an_earlier_result_and_records_it(self) -> None:
         for stem in METRICS:
@@ -444,11 +457,11 @@ class WarehouseTests(unittest.TestCase):
     # WH-12
     def test_wh12_evidence_coverage_equals_an_independent_computation(self) -> None:
         rows = json.loads(self.fresh[f"sql/results/{COVERAGE}.json"])["rows"]
-        got = {r["accelerator_id"]: (r["links"], r["stated"], r["inferred"], r["gap"], r["records"], r["shared"]) for r in rows}
-        self.assertEqual(got, independent_coverage(Records(DATA).rows()))
-        for r in rows:
+        for r in rows:  # first, so a wrong split reports this reason (S15 break M5)
             with self.subTest(accelerator=r["accelerator_id"]):
                 self.assertEqual(r["stated"] + r["inferred"] + r["gap"], r["links"], "the parts do not add up to the denominator")
+        got = {r["accelerator_id"]: (r["links"], r["stated"], r["inferred"], r["gap"], r["records"], r["shared"]) for r in rows}
+        self.assertEqual(got, independent_coverage(Records(DATA).rows()))
 
     # WH-13
     def test_wh13_source_age_equals_an_independent_computation(self) -> None:

@@ -231,10 +231,12 @@ class InsightTests(unittest.TestCase):
         pairs = {"one-pub-count": "sourced-count", "age-beyond": "age-dated", "age-accessed": "age-dated"}
         for numerator, denominator in pairs.items():
             for node in self.derived(numerator):
-                block = next((a for a in node.ancestors() if "indicator" in a.attrs.get("class", "").split() or a.tag == "li"), None)
+                # the denominator sits beside its own count, in the same line: two counts in one block may not
+                # share one denominator (S15 break S14.5-T2 found the looser rule let one go missing)
+                line = node.parent
                 with self.subTest(tally=numerator):
-                    self.assertIsNotNone(block, "a tally outside an indicator block or list item")
-                    self.assertTrue(any(n.attrs.get("data-derived") == denominator for n in block.walk()), "a tally whose denominator is not in the same block")
+                    self.assertTrue(any("indicator" in a.attrs.get("class", "").split() for a in node.ancestors()), "a tally outside an indicator block")
+                    self.assertTrue(any(n.attrs.get("data-derived") == denominator for n in line.walk()), "a tally whose denominator is not in the same block")
 
     def test_in3_the_headline_and_the_comparison(self) -> None:
         h1 = [n for n in self.nodes if n.tag == "h1"][0]

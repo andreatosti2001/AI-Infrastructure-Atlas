@@ -103,7 +103,9 @@ REPLACED = {
                  ["test_in3_derived_values_are_recomputed", "test_in8_rebuild_is_byte_identical"]),
     "S14.5-T2": ("S14.5-T2", "a tally's denominator removed from its block (the age block)",
                  edit(INSIGHT, f' <span data-label>of</span> <span data-derived="age-dated" data-accelerator="{H100}">3</span></span>', "</span>"), [],
-                 ["an age tally without its denominator"]),
+                 # expected first as "an age tally without its denominator" (IN-3's set check), which could not see a
+                 # second count losing its denominator; IN-3's line rule now names the fault (S15, first full run)
+                 ["a tally whose denominator is not in the same block"]),
     "S14.5-T3": ("S14.5-T3", "the build computes a share (a metric) beside a tally, rebuilt",
                  edit(INSIGHT_BUILD, '{self.label("links stated")}</span>', '{self.label("links stated")}</span>{self.derived("share", "50%")}'), [INSIGHT_BUILD],
                  ["a derived value the checks do not recompute"]),
