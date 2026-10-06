@@ -19,6 +19,7 @@ Each prompt is an executable session contract for Opus 5.5. Do not edit a prompt
 | S12 | AUDIT | M3 — Vertical Slice + Audit | [`S12-PROMPT.md`](./S12-PROMPT.md) | data model passes audit |
 | S13 | AUDIT | M3 — Vertical Slice + Audit | [`S13-PROMPT.md`](./S13-PROMPT.md) | content passes audit |
 | S14 | ARCHITECTURE / IMPLEMENTATION | M4 — Analytical Intelligence | [`S14-PROMPT.md`](./S14-PROMPT.md) | reproducible SQL layer |
+| S14.5 | RESEARCH / ARCHITECTURE / LIMITED IMPLEMENTATION | M4 — Analytical Intelligence | [`S14.5-PROMPT.md`](./S14.5-PROMPT.md) | traceable research experience |
 | S15 | ANALYSIS | M4 — Analytical Intelligence | [`S15-PROMPT.md`](./S15-PROMPT.md) | transparent metrics |
 | S16 | AUDIT | M4 — Analytical Intelligence | [`S16-PROMPT.md`](./S16-PROMPT.md) | analytical validity |
 | S17 | RESEARCH / ARCHITECTURE | M5 — Policy / Geopolitical Layer | [`S17-PROMPT.md`](./S17-PROMPT.md) | bounded policy layer |

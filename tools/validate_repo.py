@@ -34,8 +34,9 @@ PROMPTS_DIR = "sessions/prompts"
 REPORTS_DIR = "sessions/reports"
 REGISTRY_NAME = "PROMPT-REGISTRY.md"
 
-PROMPT_RE = re.compile(r"^S(\d{2})-PROMPT\.md$")
-REPORT_RE = re.compile(r"^SESSION-(\d{2})-REPORT\.md$")
+# A session inserted between two others carries a one-digit suffix: S14.5-PROMPT.md, SESSION-14.5-REPORT.md (D-126).
+PROMPT_RE = re.compile(r"^S(\d{2}(?:\.\d)?)-PROMPT\.md$")
+REPORT_RE = re.compile(r"^SESSION-(\d{2}(?:\.\d)?)-REPORT\.md$")
 
 # Minimum report fields, SESSION-PROMPT-SPEC.md §5. Each must appear as a
 # level-2 heading ("## Mission outcome"); matching is case-insensitive.
