@@ -65,7 +65,10 @@ SLOTS = {1: "actor", 2: "part", 3: "supplier", 4: "process"}
 SLOT_TITLES = {"actor": "Acts on it", "part": "The part", "supplier": "The part’s maker", "process": "The part’s process"}
 SLOT_KICKERS = {"actor": "acts on it", "part": "it incorporates", "process": "that part requires"}
 # Rulings the page states as limitations (their titles are read from decisions.md).
-DECISIONS = ("D-091", "D-092", "D-094", "D-120", "D-124")
+DECISIONS = ("D-091", "D-092", "D-094", "D-120", "D-124", "D-128", "D-129", "D-130")
+# The S15 metrics (metrics.md; D-128 to D-130), each a query in sql/ built on the first result, shown in the
+# indicator blocks (H-4) with its own "How this was computed" in the method layer.
+METRICS = {"evidence_coverage": "Evidence coverage", "source_age": "Source age", "supplier_metrics": "Supplier metrics"}
 BASES = ("stated", "inferred", "gap")
 
 # Every fixed word this page adds to the S11 page's labels (PG-1, IN-1): none names a record or holds a digit.
@@ -87,6 +90,13 @@ LABELS = build_page.LABELS | frozenset(
         "the full dependency journey", "The links as a table", "Method and limitations", "What the counts count",
         "Built from", "Rulings this page depends on", "Reproduce", "rebuild the result:", "rebuild this page:",
         "python tools/build_insight.py --check",
+        # S15 (D-128 to D-130): the metric blocks, the age table, the method layer
+        "Evidence coverage", "Source age", "Supplier metrics", "links stated", "gaps", "rows drawn from",
+        "records, of which shared with another accelerator:", "Evidence age", "as of",
+        "dated links: newest evidence older than twelve months", "dated links: dated only by the day a page was read",
+        "Cannot be computed yet", "parts: supplier", "needs:", "see how this was computed", "access date",
+        "Evidence age, link by link", "Newest evidence", "Where the date comes from", "Age in days",
+        "Beyond twelve months", "How each measure was computed", "inferred,", "stated,",
     }
 )
 
@@ -107,6 +117,7 @@ class Insight(build_page.Page):
         if self.result["query_sha256"] != hashlib.sha256(QUERY.read_bytes()).hexdigest():
             raise BuildError(f"{result_path.name} was computed from another version of its query (python tools/warehouse.py)")
         self.rows = self.result["rows"]
+        self.metrics = {stem: load_result(REPO_ROOT / "sql" / "results" / f"{stem}.json") for stem in METRICS}
         self.panels = set(re.findall(r'\bid="([^"]+)"', chain_page.read_text(encoding="utf-8")))
 
     @staticmethod
@@ -120,6 +131,13 @@ class Insight(build_page.Page):
     def cell(self, i: int, column: str, fmt: str | None = None, cls: str | None = None, tag: str = "span") -> str:
         value = self.rows[i][column]
         return self.sql_cell(i, column, value, fmt=fmt, tag=tag, cls=cls)
+
+    def mcell(self, stem: str, i: int, column: str, fmt: str | None = None, cls: str | None = None, tag: str = "span") -> str:
+        """One cell of a metric's committed result (S15); the checks compare it with that result."""
+        return self.sql_cell(i, column, self.metrics[stem]["rows"][i][column], fmt=fmt, tag=tag, cls=cls, query=stem)
+
+    def how(self, stem: str) -> str:
+        return f'<a class="how-link" href="#how-{stem}">{self.label("see how this was computed")}</a>'
 
     def accelerators(self) -> list[str]:
         seen: list[str] = []
@@ -175,8 +193,12 @@ class Insight(build_page.Page):
     def dated(self, i: int) -> str:
         r = self.rows[i]
         text = self.cell(i, "evidence_dated_from", fmt="state" if r["evidence_dated_from"] == "not_applicable" else None)
+        if r["evidence_dated_from_basis"] == "accessed":
+            text += f" ({self.label('access date', cls='accessed', data_column='evidence_dated_from_basis', data_row=str(i))})"
         if r["evidence_dated_to"] != r["evidence_dated_from"]:
             text += f" {self.label('to')} {self.cell(i, 'evidence_dated_to')}"
+            if r["evidence_dated_to_basis"] == "accessed":
+                text += f" ({self.label('access date', cls='accessed', data_column='evidence_dated_to_basis', data_row=str(i))})"
         return text
 
     def phrase(self, i: int) -> str:
@@ -264,65 +286,82 @@ class Insight(build_page.Page):
         return f'<div class="comparison">{out}</div>'
 
     def indicators(self, chains: dict) -> str:
-        n_acc = str(len(chains))
+        """The INSIGHT layer's blocks (visual-architecture.md §7.5; S15, H-4): each metric from its SQL result,
+        with its denominator in the same block and a link to its tutorial; the publishers tally kept as
+        presentation (D-124); the three supplier metrics as "cannot be computed yet" (H-1)."""
         rows = self.rows
-        # who makes the memory: one state, n of n accelerators
-        suppliers = [chains[a]["supplier"] for a in chains if "supplier" in chains[a]]
-        states = {rows[i]["gap_reason"] for i in suppliers}
-        if len(states) == 1:
-            value = self.cell(suppliers[0], "gap_reason", fmt="state", cls="basis gap")
-        else:
-            value = "<br>".join(f"{self.cell(i, 'accelerator')}: {self.cell(i, 'gap_reason', fmt='state', cls='basis gap')}" for i in suppliers)
-        gaps = str(len({rows[i]["accelerator_id"] for i in suppliers if rows[i]["basis"] == "gap"}))
-        k1 = (
-            f'<div class="indicator state">{self.label("Who makes the memory", tag="h4")}<p class="value">{value}</p>'
-            f'<p class="den">{self.derived("supplier-gap-count", gaps)} {self.label("of")} {self.derived("acc-count", n_acc)} {self.label("accelerators")}</p>'
-            f'<p class="how">{self.label("Counted from the table’s rows at the step “who makes that part”.")}</p></div>'
-        )
-        # links on stated evidence: a tally per accelerator over its rows, with one unit square per row
+        # evidence coverage: every cell from sql/results/evidence_coverage.json (H-2)
+        cov = self.metrics["evidence_coverage"]["rows"]
         lines = []
-        for acc, slots in chains.items():
-            mine = sorted(i for i, r in enumerate(rows) if r["accelerator_id"] == acc)
-            stated = str(sum(rows[i]["basis"] == "stated" for i in mine))
+        for j, c in enumerate(cov):
+            mine = sorted(i for i, r in enumerate(rows) if r["accelerator_id"] == c["accelerator_id"])
             units = "".join(
                 f'<a class="unit {rows[i]["basis"]}" data-mark="unit" data-row="{i}" data-basis="{rows[i]["basis"]}" href="#row-{i}">'
                 f'{self.cell(i, "basis", cls="vh")}</a>'
                 for i in mine
             )
+            m = lambda col: self.mcell("evidence_coverage", j, col)  # noqa: E731
             lines.append(
-                f'<li>{self.cell(slots["part"], "accelerator", cls="who")} '
-                f'<span class="tally">{self.derived("stated-count", stated, data_accelerator=acc)} {self.label("of")} '
-                f'{self.derived("acc-rows", str(len(mine)), data_accelerator=acc)} {self.label("links")}</span>'
-                f'<span class="units">{units}</span></li>'
+                f'<li data-coverage="{esc(c["accelerator_id"])}">{self.mcell("evidence_coverage", j, "accelerator", cls="who")} '
+                f'<span class="tally">{m("stated")} {self.label("of")} {m("links")} {self.label("links stated")}</span>'
+                f'<span class="units">{units}</span>'
+                f'<span class="split">{m("inferred")} {self.label("inferred,")} {m("gap")} {self.label("gap" if c["gap"] == 1 else "gaps")}</span>'
+                f'<span class="recs">{self.label("rows drawn from")} {m("records")} {self.label("records, of which shared with another accelerator:")} {m("shared")}</span></li>'
+            )
+        k1 = (
+            f'<div class="indicator" data-metric="evidence_coverage">{self.label("Evidence coverage", tag="h4")}'
+            f'<ul class="tallies">{"".join(lines)}</ul><p class="how">{self.how("evidence_coverage")}</p></div>'
+        )
+        # evidence age: tallies of the drawn rows of sql/results/source_age.json (D-124 rule b), per accelerator
+        age = self.metrics["source_age"]["rows"]
+        ref = 0
+        lines = []
+        for acc in self.accelerators():
+            mine = [r for r in age if r["accelerator_id"] == acc]
+            dated = [r for r in mine if r["age_days"] != "not_applicable"]
+            name = next(i for i, r in enumerate(age) if r["accelerator_id"] == acc)
+            lines.append(
+                f'<li>{self.mcell("source_age", name, "accelerator", cls="who")} '
+                f'<span class="tally">{self.derived("age-beyond", str(sum(r["beyond_horizon"] == "yes" for r in dated)), data_accelerator=acc)} {self.label("of")} '
+                f'{self.derived("age-dated", str(len(dated)), data_accelerator=acc)}</span>'
+                f'<span class="split">{self.label("dated links: newest evidence older than twelve months")}</span>'
+                f'<span class="recs">{self.derived("age-accessed", str(sum(r["newest_evidence_basis"] == "accessed" for r in dated)), data_accelerator=acc)} {self.label("of")} '
+                f'{self.derived("age-dated", str(len(dated)), data_accelerator=acc)} {self.label("dated links: dated only by the day a page was read")}</span></li>'
             )
         k2 = (
-            f'<div class="indicator">{self.label("Links on stated evidence", tag="h4")}<ul class="tallies">{"".join(lines)}</ul>'
-            f'<p class="how">{self.derived("row-count", str(len(rows)))} {self.label("rows in the table show")} '
-            f'{self.derived("record-count", str(len({r["record_id"] for r in rows})))} '
-            f'{self.label("records: one record can appear under more than one accelerator, and an unknown supplier sits on the link it qualifies.")}</p></div>'
+            f'<div class="indicator" data-metric="source_age">{self.label("Evidence age", tag="h4")}'
+            f'<p class="den">{self.label("as of")} {self.mcell("source_age", ref, "reference_date")}</p>'
+            f'<ul class="tallies">{"".join(lines)}</ul>'
+            f'<p class="how">{self.label("Dates, not ages: an undated web page is dated by the day it was read.")} {self.how("source_age")}</p></div>'
         )
-        # evidence dated: first and last date of the columns the table shows
-        first, last = self.dates()
-        undated = str(sum(r["evidence_dated_from"] == "not_applicable" for r in rows))
-        k3 = (
-            f'<div class="indicator">{self.label("Evidence dated", tag="h4")}'
-            f'<p class="value range">{self.derived("date-first", first)} {self.label("to")} {self.derived("date-last", last)}</p>'
-            f'<p class="den">{self.derived("undated-count", undated)} {self.label("of")} {self.derived("row-count", str(len(rows)))} {self.label("rows have nothing to date")}</p>'
-            f'<p class="how">{self.label("Dates, not ages: an undated web page is dated by the day it was read.")}</p></div>'
-        )
-        # publishers behind a sourced link: a range, and how many rest on one
+        # publishers behind a sourced link: a presentation tally of the first result's rows, kept (S15)
         sourced = [r for r in rows if r["publishers"]]
         counts = sorted(len(r["publishers"]) for r in sourced)
         rng = self.derived("pub-min", str(counts[0]))
         if counts[-1] != counts[0]:
             rng += f" {self.label('to')} {self.derived('pub-max', str(counts[-1]))}"
-        k4 = (
+        k3 = (
             f'<div class="indicator">{self.label("Publishers behind a sourced link", tag="h4")}<p class="value range">{rng}</p>'
             f'<p class="den">{self.derived("one-pub-count", str(sum(len(r["publishers"]) == 1 for r in sourced)))} {self.label("of")} '
             f'{self.derived("sourced-count", str(len(sourced)))} {self.label("sourced rows rest on one publisher")}</p>'
             f'<p class="how">{self.label("Listed, never counted as confirmation.")}</p></div>'
         )
-        return f'{self.label("Indicators", tag="h3", cls="indicators-h")}<div class="indicators">{k1}{k2}{k3}{k4}</div>'
+        # the three supplier metrics: no number, the reason, what evidence would make each computable (H-1)
+        blocks = []
+        for j, r in enumerate(self.metrics["supplier_metrics"]["rows"]):
+            if r["status"] != "cannot_be_computed_yet":
+                raise BuildError(f"{r['metric']}: a supplier metric became computable; its presentation is not defined yet (S15 stop condition)")
+            m = lambda col, **kw: self.mcell("supplier_metrics", j, col, **kw)  # noqa: E731
+            blocks.append(
+                f'<div class="indicator state" data-metric="supplier_metrics" data-row="{j}"><h4>{m("metric")}</h4>'
+                f'<p class="value">{m("status", fmt="state", cls="basis gap")}</p>'
+                f'<p class="den">{m("parts_supplier_unknown")} {self.label("of")} {m("parts")} {self.label("parts: supplier")} {m("unknown_state", fmt="state")}</p>'
+                f'<p class="how">{self.label("needs:")} {m("needs")} {self.how("supplier_metrics")}</p></div>'
+            )
+        return (
+            f'{self.label("Indicators", tag="h3", cls="indicators-h")}<div class="indicators">{k1}{k2}{k3}</div>'
+            f'{self.label("Cannot be computed yet", tag="h3", cls="indicators-h")}<div class="indicators">{"".join(blocks)}</div>'
+        )
 
     # --- layer 3 and 4: the visual and its filter ----------------------------------------------------
 
@@ -431,11 +470,39 @@ class Insight(build_page.Page):
             raise BuildError("the table does not show every row of the result")
         return head + sep + tbody + sep2 + tail
 
+    def age_table(self) -> str:
+        """Every row of sql/results/source_age.json, cell for cell (the rows the age block tallies)."""
+        heads = ("Accelerator", "Link", "Newest evidence", "Where the date comes from", "Age in days", "Beyond twelve months")
+        k = {h: self.label(h, cls="cell-k") for h in heads}
+        body = []
+        for i, r in enumerate(self.metrics["source_age"]["rows"]):
+            m = lambda col, **kw: self.mcell("source_age", i, col, **kw)  # noqa: E731
+            state = lambda col: "state" if r[col] in ("not_applicable",) or "_" in str(r[col]) else None  # noqa: E731
+            link = (f'{m("to_name")} · {m("relation", cls="rel")}: {m("from_name", fmt="state")}' if r["relation"] == "supplier"
+                    else f'{m("from_name")} {m("relation", cls="rel")} {m("to_name")}')
+            cells = (m("accelerator", cls="who"), link, m("newest_evidence", fmt=state("newest_evidence")),
+                     m("newest_evidence_basis", fmt=state("newest_evidence_basis")), m("age_days", fmt=state("age_days")), m("beyond_horizon", fmt=state("beyond_horizon")))
+            body.append(f'<tr id="age-{i}" data-basis="{esc(r["basis"])}">' + "".join(f"<td>{k[h]}{c}</td>" for h, c in zip(heads, cells)) + "</tr>")
+        head = "".join(f'<th scope="col">{self.label(h)}</th>' for h in heads)
+        return (
+            f'{self.label("Evidence age, link by link", tag="h3")}'
+            f'<p class="den">{self.label("as of")} {self.mcell("source_age", 0, "reference_date")}</p>'
+            f'<div class="table-wrap"><table class="sql age"><thead><tr>{head}</tr></thead><tbody>{"".join(body)}</tbody></table></div>'
+        )
+
+    def tutorials(self) -> str:
+        return f'{self.label("How each measure was computed", tag="h3")}' + "".join(
+            f'<section class="metric-how" aria-label="{esc(title)}">{self.label(title, tag="h4")}'
+            f'{self.sql_tutorial_block(stem, self.metrics[stem], box_id=f"how-{stem}", heading="h5")}</section>'
+            for stem, title in METRICS.items()
+        )
+
     def method(self) -> str:
         paths = input_paths()
         files = "".join(f'<li><a href="{TO_ROOT}{esc(p)}">{self.derived("input-file", p, tag="code")}</a></li>' for p in paths)
         rulings = "".join(f"<li>{self.decision(key)}</li>" for key in DECISIONS)
         return (
+            f'{self.tutorials()}'
             f'{self.label("Rulings this page depends on", tag="h3")}<ul class="rulings">{rulings}</ul>'
             f'{self.label("Built from", tag="h3")}'
             f'<p>{self.label("input digest", cls="k")} {self.derived("input-digest", input_digest(paths), tag="code", cls="digest")}</p>'
@@ -469,7 +536,7 @@ class Insight(build_page.Page):
             "explore": self.explore(),
             "strips": "".join(self.strip(acc, slots) for acc, slots in chains.items()),
             "evidence": self.evidence_index(),
-            "table": self.table(),
+            "table": self.table() + self.age_table(),
             "method": self.method(),
         }
         parts["title"] = esc(html.unescape(re.sub(r"<[^>]+>", "", headline)))

@@ -21,7 +21,13 @@ IN-7  accessibility basics: lang, title equal to the h1, one h1, no skipped head
       a labelled radio group, the palette and its contrast, hover rules shared with focus;
 IN-8  the committed page equals a rebuild, and two builds are identical;
 IN-9  the page loads nothing, runs no script, is marked as a prototype, and the build refuses rows its
-      visual specification does not fit.
+      visual specification does not fit;
+IN-10 (S15, D-128 to D-130, D-132) every metric value in the indicator blocks is a cell of its committed
+      result; evidence coverage gives the same numbers as a count of the drawn links; every row of the
+      coverage, age and supplier results is drawn; a supplier metric shows "cannot be computed yet" and
+      never its named-supplier or supply-link count; access dates are flagged where the result has them;
+IN-11 (S15, D-131) every metric has its own "How this was computed", closed by default, which is its
+      query file: question, the eight PEF §8 answers, steps and reading; each metric block links to it.
 """
 
 from __future__ import annotations
@@ -63,13 +69,21 @@ INPUT_FILES = (
 SLOTS = {1: "actor", 2: "part", 3: "supplier", 4: "process"}
 DERIVED_KINDS = {
     "sql-cell", "sql-flag", "sql-question", "sql-reading", "sql-step-title", "sql-step-text", "sql-step-code", "sql-file", "sql-digest",
-    "input-file", "input-digest", "acc-count", "row-count", "record-count", "supplier-gap-count", "stated-count", "acc-rows",
-    "date-first", "date-last", "undated-count", "pub-min", "pub-max", "one-pub-count", "sourced-count", "shown-in",
+    "sql-header", "input-file", "input-digest", "acc-count", "date-first", "date-last", "pub-min", "pub-max", "one-pub-count",
+    "sourced-count", "shown-in", "age-beyond", "age-dated", "age-accessed",
 }
+# S15: the metric results the page shows (metrics.md; D-128 to D-130), and the PEF §8 fields each answers.
+METRICS = ("evidence_coverage", "source_age", "supplier_metrics")
+PEF_FIELDS = ("population", "denominator", "assumptions", "missing data", "reproduce", "sensitivity", "does not prove")
 
 
 def result() -> dict:
     return json.loads(RESULT.read_text(encoding="utf-8"))
+
+
+def results() -> dict[str, dict]:
+    """Every committed result the page reads, by query stem."""
+    return {stem: json.loads((REPO_ROOT / "sql" / "results" / f"{stem}.json").read_text(encoding="utf-8")) for stem in (SQL_QUERY, *METRICS)}
 
 
 def input_paths() -> list[str]:
@@ -110,6 +124,7 @@ class InsightTests(unittest.TestCase):
         cls.body = body[0] if body else tp.Node("body", {}, None)
         cls.result = result()
         cls.rows = cls.result["rows"]
+        cls.results = results()
         chain = tp.parse(CHAIN_PAGE.read_text(encoding="utf-8"))
         cls.chain_ids = {n.attrs["id"] for n in chain.walk() if "id" in n.attrs}
 
@@ -167,8 +182,8 @@ class InsightTests(unittest.TestCase):
         self.assertTrue(cells)
         for node in cells:
             index, column = int(node.attrs["data-row"]), node.attrs["data-column"]
-            self.assertEqual(node.attrs.get("data-query"), SQL_QUERY)
-            value = self.rows[index][column]
+            self.assertIn(node.attrs.get("data-query"), self.results, "a cell of a result the page does not read")
+            value = self.results[node.attrs["data-query"]]["rows"][index][column]
             if "data-item" in node.attrs:
                 value = value[int(node.attrs["data-item"])]
             text = str(value).replace("_", " ") if node.attrs.get("data-format") == "state" else str(value)
@@ -183,15 +198,10 @@ class InsightTests(unittest.TestCase):
         sourced = [r for r in rows if r["publishers"]]
         dates = sorted({d for r in rows for d in (r["evidence_dated_from"], r["evidence_dated_to"]) if d != "not_applicable"})
         pubs = sorted(len(r["publishers"]) for r in sourced)
-        supplier = [r for r in rows if r["position"] == 3]
         expected = {
             "acc-count": str(len(self.accelerators())),
-            "row-count": str(len(rows)),
-            "record-count": str(len({r["record_id"] for r in rows})),
-            "supplier-gap-count": str(len({r["accelerator_id"] for r in supplier if r["basis"] == "gap"})),
             "date-first": dates[0],
             "date-last": dates[-1],
-            "undated-count": str(sum(r["evidence_dated_from"] == "not_applicable" for r in rows)),
             "pub-min": str(pubs[0]),
             "pub-max": str(pubs[-1]),
             "one-pub-count": str(sum(len(r["publishers"]) == 1 for r in sourced)),
@@ -201,13 +211,15 @@ class InsightTests(unittest.TestCase):
             for node in self.derived(kind):
                 with self.subTest(kind=kind):
                     self.assertEqual(node.text(), want)
-        for kind in ("acc-count", "supplier-gap-count", "date-first", "date-last", "pub-min", "sourced-count"):
+        for kind in ("acc-count", "date-first", "date-last", "pub-min", "sourced-count", "age-beyond", "age-dated", "age-accessed"):
             self.assertTrue(self.derived(kind), f"{kind} is not shown")
+        ages = self.results["source_age"]["rows"]
         for acc in self.accelerators():
-            mine = [r for r in rows if r["accelerator_id"] == acc]
+            dated = [r for r in ages if r["accelerator_id"] == acc and r["age_days"] != "not_applicable"]
             with self.subTest(accelerator=acc):
-                self.assertEqual([n.text() for n in self.derived("stated-count", accelerator=acc)], [str(sum(r["basis"] == "stated" for r in mine))])
-                self.assertEqual([n.text() for n in self.derived("acc-rows", accelerator=acc)], [str(len(mine))], "a tally without its denominator")
+                self.assertEqual([n.text() for n in self.derived("age-beyond", accelerator=acc)], [str(sum(r["beyond_horizon"] == "yes" for r in dated))])
+                self.assertEqual([n.text() for n in self.derived("age-accessed", accelerator=acc)], [str(sum(r["newest_evidence_basis"] == "accessed" for r in dated))])
+                self.assertEqual({n.text() for n in self.derived("age-dated", accelerator=acc)}, {str(len(dated))}, "an age tally without its denominator")
         for record in {r["record_id"] for r in rows}:
             with self.subTest(record=record):
                 self.assertEqual([n.text() for n in self.derived("shown-in", record=record)], [str(sum(r["record_id"] == record for r in rows))])
@@ -216,7 +228,7 @@ class InsightTests(unittest.TestCase):
         self.assertEqual([n.text() for n in self.derived("input-digest")], [input_digest(input_paths())])
 
     def test_in3_every_tally_has_its_denominator_in_its_block(self) -> None:
-        pairs = {"stated-count": "acc-rows", "supplier-gap-count": "acc-count", "one-pub-count": "sourced-count", "undated-count": "row-count"}
+        pairs = {"one-pub-count": "sourced-count", "age-beyond": "age-dated", "age-accessed": "age-dated"}
         for numerator, denominator in pairs.items():
             for node in self.derived(numerator):
                 block = next((a for a in node.ancestors() if "indicator" in a.attrs.get("class", "").split() or a.tag == "li"), None)
@@ -340,8 +352,9 @@ class InsightTests(unittest.TestCase):
         self.assertEqual(sum("checked" in r.attrs for r in radios), 1, "exactly one filter is on at load")
         self.assertEqual([r for r in radios if "checked" in r.attrs][0].attrs.get("value"), "all", "everything is shown at load")
         tutorials = [n for n in self.nodes if n.tag == "details" and "sql-tutorial" in n.attrs.get("class", "").split()]
-        self.assertEqual(len(tutorials), 1)
-        self.assertNotIn("open", tutorials[0].attrs)
+        self.assertEqual(sorted(t.attrs.get("data-query") for t in tutorials), sorted((SQL_QUERY, *METRICS)), "one tutorial per query the page shows")
+        for t in tutorials:
+            self.assertNotIn("open", t.attrs, "a tutorial open by default")
 
     def test_in7_palette_and_contrast(self) -> None:
         css = "".join("".join(t for t, _ in n.texts()) for n in self.nodes if n.tag == "style")
@@ -375,6 +388,60 @@ class InsightTests(unittest.TestCase):
         for rule in re.findall(r"([^{}]+)\{", body):
             if ":hover" in rule:
                 self.assertIn(":focus-visible", rule, f"a hover rule without focus: {rule.strip()}")
+
+    # IN-10
+    def test_in10_metric_blocks_are_their_results(self) -> None:
+        blocks = {stem: [n for n in self.nodes if n.attrs.get("data-metric") == stem] for stem in METRICS}
+        for stem in METRICS:
+            self.assertTrue(blocks[stem], f"no block for {stem}")
+        # every row of the coverage and supplier results is drawn in its blocks
+        for stem in ("evidence_coverage", "supplier_metrics"):
+            drawn = {int(n.attrs["data-row"]) for b in blocks[stem] for n in b.walk() if n.attrs.get("data-derived") == "sql-cell" and n.attrs.get("data-query") == stem}
+            self.assertEqual(drawn, set(range(len(self.results[stem]["rows"]))), f"a row of {stem} is not drawn")
+        # coverage equals a count of the drawn links (it replaced the prototype's hand count, D-132)
+        for r in self.results["evidence_coverage"]["rows"]:
+            mine = [x for x in self.rows if x["accelerator_id"] == r["accelerator_id"]]
+            with self.subTest(accelerator=r["accelerator_id"]):
+                self.assertEqual((r["links"], r["stated"], r["inferred"], r["gap"], r["records"]), (len(mine), sum(x["basis"] == "stated" for x in mine), sum(x["basis"] == "inferred" for x in mine), sum(x["basis"] == "gap" for x in mine), len({x["record_id"] for x in mine})))
+                units = [n for n in self.nodes if n.attrs.get("data-coverage") == r["accelerator_id"]]
+                self.assertEqual(len(units), 1)
+                cols = {n.attrs["data-column"] for n in units[0].walk() if n.attrs.get("data-query") == "evidence_coverage"}
+                self.assertLessEqual({"links", "stated", "inferred", "gap", "records", "shared"}, cols, "a coverage block without its parts or its denominator")
+        # a supplier metric: its status in words, its reason, never a named-supplier or supply-link count
+        for b in blocks["supplier_metrics"]:
+            cols = {n.attrs["data-column"] for n in b.walk() if n.attrs.get("data-query") == "supplier_metrics"}
+            with self.subTest(block=b.attrs.get("data-row")):
+                self.assertNotIn("parts_supplier_named", cols, "a zero beside a supplier metric reads as 'no suppliers'")
+                self.assertNotIn("supplies_links", cols)
+                self.assertLessEqual({"metric", "status", "parts", "parts_supplier_unknown", "unknown_state", "needs"}, cols)
+                self.assertIn("cannot be computed yet", b.text())
+        # every row of the age result is drawn in the age table, and every access date is flagged
+        age_rows = [n for n in self.nodes if n.tag == "tr" and n.attrs.get("id", "").startswith("age-")]
+        self.assertEqual([n.attrs["id"] for n in age_rows], [f"age-{i}" for i in range(len(self.results["source_age"]["rows"]))])
+        flags = sorted((int(n.attrs["data-row"]), n.attrs["data-column"]) for n in self.nodes if "accessed" in n.attrs.get("class", "").split() and "data-label" in n.attrs)
+        want = sorted((i, c) for i, r in enumerate(self.rows) for c in ("evidence_dated_from_basis", "evidence_dated_to_basis")
+                      if r[c] == "accessed" and (c == "evidence_dated_from_basis" or r["evidence_dated_to"] != r["evidence_dated_from"]))
+        self.assertEqual(flags, want, "an access date unflagged on the chain, or a flag where the result has none")
+
+    # IN-11
+    def test_in11_every_metric_has_its_tutorial(self) -> None:
+        from test_warehouse import tutorial  # noqa: PLC0415 (the format's reader; standard library only)
+
+        for stem in METRICS:
+            box = self.by_id.get(f"how-{stem}")
+            with self.subTest(metric=stem):
+                self.assertIsNotNone(box, "no tutorial for this metric")
+                self.assertEqual(box.tag, "details")
+                self.assertNotIn("open", box.attrs)
+                t = tutorial((REPO_ROOT / "sql" / f"{stem}.sql").read_text(encoding="utf-8"))
+                of = lambda kind, **a: [n for n in box.walk() if n.attrs.get("data-derived") == kind and all(n.attrs.get(f"data-{k}") == v for k, v in a.items())]  # noqa: E731
+                self.assertEqual([n.text() for n in of("sql-question")], [tp.norm(t["header"]["question"])])
+                for field in PEF_FIELDS:
+                    self.assertEqual([n.text() for n in of("sql-header", field=field)], [tp.norm(t["header"][field])], f"'{field}' is not the query file's answer")
+                self.assertEqual(["".join(x for x, _ in n.texts()) for n in of("sql-step-code")], [s["code"] for s in t["steps"]])
+                self.assertEqual(self.results[stem]["query_sha256"], hashlib.sha256((REPO_ROOT / "sql" / f"{stem}.sql").read_bytes()).hexdigest())
+                links = [n for n in self.nodes if n.tag == "a" and n.attrs.get("href") == f"#how-{stem}"]
+                self.assertTrue(links and all(any(a.attrs.get("data-metric") == stem for a in n.ancestors()) for n in links), "a metric block without a link to its tutorial")
 
     # IN-8
     def test_in8_rebuild_is_byte_identical(self) -> None:

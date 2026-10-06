@@ -22,7 +22,7 @@ PG-7  the committed page equals a rebuild, and two builds are identical;
 PG-8  accessibility basics, the palette and its contrast;
 PG-9  links resolve and the page loads nothing from the network;
 PG-10 the journey specification matches its homes;
-PG-11 (S14, D-115, D-121) the SQL table equals its committed result cell by cell, every result row is
+PG-11 (S14, D-115, D-121; S15, D-129) the SQL table equals its committed result cell by cell, every result row is
       shown, its caveats appear exactly where the result has them, and its "How this was computed"
       tutorial, beside it and closed by default, is the query file the result records.
 """
@@ -61,7 +61,11 @@ INPUT_FILES = (
 ANNOTATIONS = ("data-ref", "data-label", "data-derived", "data-framing")
 # The first SQL result on the page (S14, H-3) and the fixed words of its caveat flags (PG-11).
 SQL_QUERY = "accelerator_dependencies"
-SQL_FLAGS = {"rests_on_atlas_interpretation": "rests on the Atlas’s own definitions", "publishers": "one publisher only"}
+SQL_FLAGS = {
+    "rests_on_atlas_interpretation": "rests on the Atlas’s own definitions",
+    "publishers": "one publisher only",
+    "accessed": "dated by the day the page was read",  # S15, D-129
+}
 SQL_SHOWN = ("accelerator", "from_name", "relation", "to_name", "basis", "evidence_dated_from", "record_id", "reached_through", "accelerator_class_claim")
 SQL_LISTS = ("claim_ids", "source_ids", "publishers", "party_standing_unchecked")
 BARE = re.compile(r"^[\s·→←↓,.;:()\[\]/—–\-\"“”'‘’…+#?!]*$")
@@ -366,7 +370,7 @@ class PageTests(unittest.TestCase):
     def test_pg2_derived_values(self) -> None:
         derived = [n for n in self.nodes if "data-derived" in n.attrs]
         kinds = {n.attrs["data-derived"] for n in derived}
-        self.assertLessEqual(kinds, {"input-file", "input-digest", "verified-first", "verified-last", "accessed-first", "accessed-last", "pointer", "bytes-match", "no-activity-edge", "lane-unlinked", "rule-home", "sql-cell", "sql-flag", "sql-question", "sql-reading", "sql-step-title", "sql-step-text", "sql-step-code", "sql-file", "sql-digest"})
+        self.assertLessEqual(kinds, {"input-file", "input-digest", "verified-first", "verified-last", "accessed-first", "accessed-last", "pointer", "bytes-match", "no-activity-edge", "lane-unlinked", "rule-home", "sql-cell", "sql-flag", "sql-question", "sql-reading", "sql-step-title", "sql-step-text", "sql-step-code", "sql-file", "sql-digest", "sql-header"})
         files = [n.text() for n in derived if n.attrs["data-derived"] == "input-file"]
         self.assertEqual(sorted(files), input_paths())
         digests = [n.text() for n in derived if n.attrs["data-derived"] == "input-digest"]
@@ -435,6 +439,9 @@ class PageTests(unittest.TestCase):
         want = sorted(
             [(i, "rests_on_atlas_interpretation", SQL_FLAGS["rests_on_atlas_interpretation"]) for i, r in enumerate(rows) if r["rests_on_atlas_interpretation"]]
             + [(i, "publishers", SQL_FLAGS["publishers"]) for i, r in enumerate(rows) if len(r["publishers"]) == 1]
+            # S15 (D-129): one flag when a date is only the day a page was read, on the newest date first
+            + [(i, next(c for c in ("evidence_dated_to_basis", "evidence_dated_from_basis") if r[c] == "accessed"), SQL_FLAGS["accessed"])
+               for i, r in enumerate(rows) if "accessed" in (r["evidence_dated_to_basis"], r["evidence_dated_from_basis"])]
         )
         self.assertEqual(got, want, "a caveat flag missing, or shown where the result does not have it")
 

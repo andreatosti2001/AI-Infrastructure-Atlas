@@ -1,6 +1,6 @@
 # The SQL layer
 
-**Status:** ACCEPTED by the human on 2026-10-03 at the S14 review (D-117 to D-121). The human decided on 2026-10-03 at the S14
+**Status:** ACCEPTED by the human on 2026-10-03 at the S14 review (D-117 to D-121). §7's publisher sentence corrected on 2026-10-06, as the human confirmed at the S15 opening (D-127). The human decided on 2026-10-03 at the S14
 opening: DuckDB runs the queries, and the page reads saved results (H-2); the first result appears
 as a section of the HBM page (H-3); the per-record document tables moved into `data/` first (H-1,
 D-117).
@@ -167,7 +167,7 @@ and what evidence date? (S13's recommended first question.)
 
 | Weakness | How the result shows it |
 |---|---|
-| No value is corroborated by a second publisher | `publishers` lists the distinct publishers behind each row; every row today has one. The table never says "confirmed" or "corroborated" |
+| No value is corroborated by a second publisher | `publishers` lists the distinct publishers behind each row. Every stated row and every recorded gap today has one; each inferred row has two, behind different steps of one reasoning, which do not confirm one another. The table never says "confirmed" or "corroborated" |
 | "HBM requires 3D die stacking" restates a definition (D-091, DT-S13-7) | `rests_on_atlas_interpretation` is true when any claim in the row's chain of reasoning is the Atlas's own `INTERPRETATION` (here the working definitions). The page marks it |
 | "Party" standing unchecked on 14 citations (DT-S13-1) | `party_standing_unchecked` lists the sources cited with `party` standing whose publisher is not linked to a company record |
 | Evidence ages in place (DT-S13-4) | each row shows its evidence dates. The result does **not** compute an age or call any value current: an age needs today's date, which would make the result change with the calendar. The page says so |

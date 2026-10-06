@@ -17,8 +17,17 @@ WH-6  every ID in a result row resolves to a canonical record; each row's source
 WH-7  staging records are never loaded
 WH-8  every query ends in ORDER BY; no database file is written inside the repository
 WH-9  each query file is a tutorial: a question, a reading guide and steps, and the steps rebuild the
-      file exactly
-WH-10 the first result equals an independent computation of the same definitions in plain Python
+      file exactly; a metric's file also answers the eight questions of PROJECT-EVALUATION-FRAMEWORK.md
+      §8 in its header (S15, D-131)
+WH-10 the first result equals an independent computation of the same definitions in plain Python,
+      including where each evidence date comes from (S15, D-129)
+WH-11 (S15) a query may read an earlier query's result as a view; a result records the query files it
+      builds on, and a changed upstream query makes the dependent result stale
+WH-12 (S15) evidence coverage equals an independent computation over the independent first result
+WH-13 (S15) source age equals an independent computation; moving the reference date changes the ages
+      and nothing else
+WH-14 (S15) the supplier metrics equal an independent computation; with no supplier named, all three are
+      "cannot be computed yet", and a planted unknown keeps its own word
 
 Uses the pinned DuckDB (requirements-analysis.txt, D-118) through tools/warehouse.py.
 Run alone: python -m unittest discover -s tests -p "test_warehouse.py" -v
@@ -41,6 +50,11 @@ DATA = REPO_ROOT / "data"
 SQL = REPO_ROOT / "sql"
 RESULTS = SQL / "results"
 FIRST = "accelerator_dependencies"
+# S15: the metrics, each built on the first result, and the eight header fields every metric answers (PEF §8).
+COVERAGE, AGE, SUPPLIERS = "evidence_coverage", "source_age", "supplier_metrics"
+METRICS = (COVERAGE, AGE, SUPPLIERS)
+PEF_FIELDS = ("question", "population", "denominator", "assumptions", "missing data", "reproduce", "sensitivity", "does not prove")
+HEADER_FIELDS = PEF_FIELDS + ("reading",)
 sys.path.insert(0, str(REPO_ROOT / "tools"))
 
 STATE_WORDS = {"not_researched", "not_publicly_determinable", "not_applicable", "not_stated", "undated", "no_record", "not_re_read", "not_recorded", "absent"}
@@ -70,7 +84,7 @@ def tutorial(text: str) -> dict:
     i = 0
     while i < len(lines) and not lines[i].startswith("-- step:"):
         line = lines[i]
-        m = re.match(r"^-- (question|reading): (.*)$", line)
+        m = re.match(r"^-- (" + "|".join(HEADER_FIELDS) + r"): (.*)$", line)
         if m:
             field = m.group(1)
             header[field] = m.group(2).strip()
@@ -121,16 +135,27 @@ class Records:
 
     def evidence_date(self, claim: dict, source: dict) -> str:
         """F-1 (company-dataset.md §9)."""
+        return self.dated(claim, source)[0]
+
+    @staticmethod
+    def dated(claim: dict, source: dict) -> tuple[str, str]:
+        """F-1's evidence date and where it comes from: as_of, stated or accessed (S15, D-129)."""
         if isinstance(claim.get("as_of"), str):
-            return claim["as_of"]
+            return claim["as_of"], "as_of"
         if isinstance(source["stated_dates"], list):
-            return max(d["date"] for d in source["stated_dates"])
-        return source["retrieval"]["accessed_at"][:10]
+            return max(d["date"] for d in source["stated_dates"]), "stated"
+        return source["retrieval"]["accessed_at"][:10], "accessed"
 
     def evidence(self, claim_ids) -> dict:
         reached = self.reached(claim_ids)
         cites = [(self.claims[c], cit) for c in reached for cit in self.claims[c].get("citations", [])]
-        dates = sorted(self.evidence_date(c, self.sources[cit["source_id"]]) for c, cit in cites)
+        dated = [self.dated(c, self.sources[cit["source_id"]]) for c, cit in cites]
+        dates = sorted(d for d, _ in dated)
+        weakest = ("accessed", "stated", "as_of")  # when kinds share a date, the weakest is reported
+
+        def basis_of(date: str) -> str:
+            kinds = {k for d, k in dated if d == date}
+            return next(k for k in weakest if k in kinds)
         sources = sorted({cit["source_id"] for _, cit in cites})
         unchecked = sorted({cit["source_id"] for _, cit in cites if cit["standing"] == "party" and isinstance(self.sources[cit["source_id"]]["publisher_entity"], dict)})
         return {
@@ -138,6 +163,8 @@ class Records:
             "publishers": sorted({self.sources[s]["publisher"] for s in sources}),
             "evidence_dated_from": dates[0] if dates else "not_applicable",
             "evidence_dated_to": dates[-1] if dates else "not_applicable",
+            "evidence_dated_from_basis": basis_of(dates[0]) if dates else "not_applicable",
+            "evidence_dated_to_basis": basis_of(dates[-1]) if dates else "not_applicable",
             "party_standing_unchecked": unchecked,
             "rests_on_atlas_interpretation": any(self.claims[c]["claim_type"] == "INTERPRETATION" for c in reached),
         }
@@ -169,28 +196,83 @@ class Records:
             for edge, via in links:
                 stated = any(self.claims[c]["claim_type"] == "FACT" for c in edge["claim_ids"])
                 ev = self.evidence(edge["claim_ids"])
-                out.add((acc, cls, cls_claim, edge["id"], via, "stated" if stated else "inferred", "not_applicable", tuple(sorted(edge["claim_ids"])), tuple(ev["source_ids"]), ev["evidence_dated_from"], ev["evidence_dated_to"], tuple(ev["publishers"]), tuple(ev["party_standing_unchecked"]), ev["rests_on_atlas_interpretation"]))
+                out.add((acc, cls, cls_claim, edge["id"], via, "stated" if stated else "inferred", "not_applicable", tuple(sorted(edge["claim_ids"])), tuple(ev["source_ids"]), ev["evidence_dated_from"], ev["evidence_dated_to"], ev["evidence_dated_from_basis"], ev["evidence_dated_to_basis"], tuple(ev["publishers"]), tuple(ev["party_standing_unchecked"]), ev["rests_on_atlas_interpretation"]))
                 supplier = edge.get("supplier")
                 if isinstance(supplier, dict):
-                    out.add((acc, cls, cls_claim, edge["id"], via, "gap", supplier["state"], (), (), "not_applicable", "not_applicable", (), (), False))
+                    out.add((acc, cls, cls_claim, edge["id"], via, "gap", supplier["state"], (), (), "not_applicable", "not_applicable", "not_applicable", "not_applicable", (), (), False))
                 for assertion in supplier if isinstance(supplier, list) else []:
                     claims = tuple(sorted(assertion["claim_ids"]))
                     basis = "stated" if any(self.claims[c]["claim_type"] == "FACT" for c in claims) else "inferred"
                     ev = self.evidence(claims)
-                    out.add((acc, cls, cls_claim, edge["id"], via, basis, "not_applicable", claims, tuple(ev["source_ids"]), ev["evidence_dated_from"], ev["evidence_dated_to"], tuple(ev["publishers"]), tuple(ev["party_standing_unchecked"]), ev["rests_on_atlas_interpretation"]))
+                    out.add((acc, cls, cls_claim, edge["id"], via, basis, "not_applicable", claims, tuple(ev["source_ids"]), ev["evidence_dated_from"], ev["evidence_dated_to"], ev["evidence_dated_from_basis"], ev["evidence_dated_to_basis"], tuple(ev["publishers"]), tuple(ev["party_standing_unchecked"]), ev["rests_on_atlas_interpretation"]))
             for cand in self.candidates:
                 if acc in cand["target_entities"] and cand["reasons"] == ["evidence_not_fresh"]:
                     claims = sorted(k["claim_id"] for k in cand["considered"] if "claim_id" in k)
                     ev = self.evidence(claims)
-                    out.add((acc, cls, cls_claim, cand["id"], "direct", "gap", "evidence_not_fresh", tuple(claims), tuple(ev["source_ids"]), ev["evidence_dated_from"], ev["evidence_dated_to"], tuple(ev["publishers"]), tuple(ev["party_standing_unchecked"]), ev["rests_on_atlas_interpretation"]))
+                    out.add((acc, cls, cls_claim, cand["id"], "direct", "gap", "evidence_not_fresh", tuple(claims), tuple(ev["source_ids"]), ev["evidence_dated_from"], ev["evidence_dated_to"], ev["evidence_dated_from_basis"], ev["evidence_dated_to_basis"], tuple(ev["publishers"]), tuple(ev["party_standing_unchecked"]), ev["rests_on_atlas_interpretation"]))
         return out
 
 
-COMPARED = ("accelerator_id", "accelerator_class", "accelerator_class_claim", "record_id", "reached_through", "basis", "gap_reason", "claim_ids", "source_ids", "evidence_dated_from", "evidence_dated_to", "publishers", "party_standing_unchecked", "rests_on_atlas_interpretation")
+COMPARED = ("accelerator_id", "accelerator_class", "accelerator_class_claim", "record_id", "reached_through", "basis", "gap_reason", "claim_ids", "source_ids", "evidence_dated_from", "evidence_dated_to", "evidence_dated_from_basis", "evidence_dated_to_basis", "publishers", "party_standing_unchecked", "rests_on_atlas_interpretation")
 
 
 def comparable(rows: list[dict]) -> set[tuple]:
     return {tuple(tuple(r[k]) if isinstance(r[k], list) else r[k] for k in COMPARED) for r in rows}
+
+
+# --- independent computations of the S15 metrics (WH-12 to WH-14), from Records.rows(), never from SQL ---
+
+IDX = {k: i for i, k in enumerate(COMPARED)}
+
+
+def independent_coverage(rows: set[tuple]) -> dict[str, tuple]:
+    """accelerator_id -> (links, stated, inferred, gap, records, shared)."""
+    by_record: dict[str, set[str]] = {}
+    for r in rows:
+        by_record.setdefault(r[IDX["record_id"]], set()).add(r[IDX["accelerator_id"]])
+    out = {}
+    for acc in sorted({r[IDX["accelerator_id"]] for r in rows}):
+        mine = [r for r in rows if r[IDX["accelerator_id"]] == acc]
+        records = {r[IDX["record_id"]] for r in mine}
+        basis = [r[IDX["basis"]] for r in mine]
+        out[acc] = (len(mine), basis.count("stated"), basis.count("inferred"), basis.count("gap"), len(records), sum(1 for rec in records if len(by_record[rec]) > 1))
+    return out
+
+
+def reference_date(query_text: str) -> str:
+    found = re.findall(r"DATE '(\d{4}-\d{2}-\d{2})' AS reference_date", query_text)
+    assert len(found) == 1, "the source-age query must hold exactly one reference date"
+    return found[0]
+
+
+def independent_ages(rows: set[tuple], reference: str) -> set[tuple]:
+    """(accelerator_id, record_id, gap_reason, newest, newest_basis, age_days, beyond_horizon) per row."""
+    import datetime  # noqa: PLC0415
+
+    ref = datetime.date.fromisoformat(reference)
+    cutoff = ref.replace(year=ref.year - 1)  # 12 months before the reference date
+    out = set()
+    for r in rows:
+        newest, basis = r[IDX["evidence_dated_to"]], r[IDX["evidence_dated_to_basis"]]
+        if newest == "not_applicable":
+            age = beyond = "not_applicable"
+        else:
+            start = datetime.date.fromisoformat({4: newest + "-01-01", 7: newest + "-01"}.get(len(newest), newest))
+            age, beyond = str((ref - start).days), "yes" if start < cutoff else "no"
+        out.add((r[IDX["accelerator_id"]], r[IDX["record_id"]], r[IDX["gap_reason"]], newest, basis, age, beyond))
+    return out
+
+
+def independent_suppliers(records: "Records", rows: set[tuple]) -> tuple:
+    """(parts, parts_supplier_named, parts_supplier_unknown, unknown_state, supplies_links, status)."""
+    edges = {e["id"]: e for e in records.edges}
+    chain_parts = {r[IDX["record_id"]] for r in rows if r[IDX["record_id"]] in edges and edges[r[IDX["record_id"]]]["relation_type"] == "incorporates" and edges[r[IDX["record_id"]]]["source_entity"] == r[IDX["accelerator_id"]]}
+    named = {e for e in chain_parts if isinstance(edges[e].get("supplier"), list) and edges[e]["supplier"]}
+    unknown = {e for e in chain_parts if isinstance(edges[e].get("supplier"), dict)}
+    states = sorted({edges[e]["supplier"]["state"] for e in unknown})
+    items = {edges[e]["target_entity"] for e in chain_parts}
+    supplies = sum(1 for e in records.edges if e["relation_type"] == "supplies" and e.get("item") in items)
+    return (len(named | unknown), len(named), len(unknown), ", ".join(states) if states else "not_applicable", supplies, "cannot_be_computed_yet" if not named else "computable_not_yet_defined")
 
 
 def copy_repo() -> Path:
@@ -324,6 +406,9 @@ class WarehouseTests(unittest.TestCase):
             with self.subTest(query=query.name):
                 self.assertTrue(t["header"].get("question"), "no '-- question:' paragraph")
                 self.assertTrue(t["header"].get("reading"), "no '-- reading:' paragraph")
+                if query.stem in METRICS:
+                    for field in PEF_FIELDS:
+                        self.assertTrue(t["header"].get(field), f"a metric's header does not answer '{field}' (PEF §8)")
                 self.assertGreaterEqual(len(t["steps"]), 2)
                 for step in t["steps"]:
                     self.assertTrue(step["title"] and step["explanation"] and step["code"], f"step {step['title']!r} lacks a title, an explanation or code")
@@ -339,6 +424,85 @@ class WarehouseTests(unittest.TestCase):
         keys = [(r["accelerator"], r["position"], r["record_id"], r["gap_reason"], r["from_id"]) for r in rows]
         self.assertEqual(keys, sorted(keys), "rows are not in the order the query states")
         self.assertEqual(len(keys), len(set(keys)), "two rows share a key")
+
+
+    # WH-11
+    def test_wh11_a_query_reads_an_earlier_result_and_records_it(self) -> None:
+        for stem in METRICS:
+            with self.subTest(metric=stem):
+                self.assertIn(f"sql/results/{stem}.json", self.fresh, f"no result for sql/{stem}.sql")
+                result = json.loads(self.fresh[f"sql/results/{stem}.json"])
+                self.assertIn(f"sql/{FIRST}.sql", [i["path"] for i in result["inputs"]], "a result does not record the query it builds on")
+        root = copy_repo()
+        first = root / "sql" / f"{FIRST}.sql"
+        first.write_text(first.read_text(encoding="utf-8").replace("-- step:", "-- step: (edited)", 1), encoding="utf-8")
+        fresh = self.wh.build_results(root / "data", sql=root / "sql")
+        for stem in METRICS:
+            with self.subTest(metric=stem):
+                self.assertNotEqual(json.loads(fresh[f"sql/results/{stem}.json"])["input_digest"], json.loads(self.fresh[f"sql/results/{stem}.json"])["input_digest"], "a changed upstream query leaves the dependent result looking fresh")
+
+    # WH-12
+    def test_wh12_evidence_coverage_equals_an_independent_computation(self) -> None:
+        rows = json.loads(self.fresh[f"sql/results/{COVERAGE}.json"])["rows"]
+        got = {r["accelerator_id"]: (r["links"], r["stated"], r["inferred"], r["gap"], r["records"], r["shared"]) for r in rows}
+        self.assertEqual(got, independent_coverage(Records(DATA).rows()))
+        for r in rows:
+            with self.subTest(accelerator=r["accelerator_id"]):
+                self.assertEqual(r["stated"] + r["inferred"] + r["gap"], r["links"], "the parts do not add up to the denominator")
+
+    # WH-13
+    def test_wh13_source_age_equals_an_independent_computation(self) -> None:
+        text = (SQL / f"{AGE}.sql").read_text(encoding="utf-8")
+        reference = reference_date(text)
+        rows = json.loads(self.fresh[f"sql/results/{AGE}.json"])["rows"]
+        got = {(r["accelerator_id"], r["record_id"], r["gap_reason"], r["newest_evidence"], r["newest_evidence_basis"], r["age_days"], r["beyond_horizon"]) for r in rows}
+        self.assertEqual(got, independent_ages(Records(DATA).rows(), reference))
+        self.assertEqual({r["reference_date"] for r in rows}, {reference})
+        first = json.loads(self.fresh[f"sql/results/{FIRST}.json"])["rows"]
+        self.assertEqual([(r["accelerator_id"], r["record_id"], r["gap_reason"], r["from_id"]) for r in rows], [(r["accelerator_id"], r["record_id"], r["gap_reason"], r["from_id"]) for r in first], "the ages are not the links of the table, in its order")
+
+    def test_wh13_moving_the_reference_date_changes_the_ages_and_nothing_else(self) -> None:
+        root = copy_repo()
+        query = root / "sql" / f"{AGE}.sql"
+        query.write_text(query.read_text(encoding="utf-8").replace("DATE '2026-10-06' AS reference_date", "DATE '2027-10-06' AS reference_date"), encoding="utf-8")
+        before = json.loads(self.fresh[f"sql/results/{AGE}.json"])["rows"]
+        after = json.loads(self.wh.build_results(root / "data", sql=root / "sql")[f"sql/results/{AGE}.json"])["rows"]
+        moving = {"reference_date", "age_days", "beyond_horizon"}
+        self.assertEqual(len(before), len(after))
+        changed = set()
+        for b, a in zip(before, after):
+            changed |= {k for k in b if b[k] != a[k]}
+            self.assertEqual({k: v for k, v in b.items() if k not in moving}, {k: v for k, v in a.items() if k not in moving})
+        self.assertEqual(changed, moving, "moving the reference date must move the ages, and only the ages")
+        self.assertEqual(independent_ages(Records(root / "data").rows(), "2027-10-06"), {(r["accelerator_id"], r["record_id"], r["gap_reason"], r["newest_evidence"], r["newest_evidence_basis"], r["age_days"], r["beyond_horizon"]) for r in after})
+
+    # WH-14
+    def test_wh14_supplier_metrics_equal_an_independent_computation(self) -> None:
+        rows = json.loads(self.fresh[f"sql/results/{SUPPLIERS}.json"])["rows"]
+        self.assertEqual([r["metric"] for r in rows], ["supplier count", "geographic concentration", "single-source relationships"])
+        records = Records(DATA)
+        want = independent_suppliers(records, records.rows())
+        for r in rows:
+            with self.subTest(metric=r["metric"]):
+                self.assertEqual((r["parts"], r["parts_supplier_named"], r["parts_supplier_unknown"], r["unknown_state"], r["supplies_links"], r["status"]), want)
+                self.assertTrue(r["needs"])
+        self.assertEqual({r["status"] for r in rows}, {"cannot_be_computed_yet"}, "a supplier metric shows as computable while no supplier is named")
+
+    def test_wh14_a_planted_unknown_keeps_its_word_in_every_metric(self) -> None:
+        root = copy_repo()
+        edges = load_json(root / "data/relationships.json")
+        h100 = next(e for e in edges if e["id"] == "rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-memory")
+        h100["supplier"] = {"state": "not_publicly_determinable"}
+        (root / "data/relationships.json").write_text(json.dumps(edges), encoding="utf-8")
+        fresh = self.wh.build_results(root / "data")
+        suppliers = json.loads(fresh[f"sql/results/{SUPPLIERS}.json"])["rows"]
+        self.assertEqual({r["unknown_state"] for r in suppliers}, {"not_publicly_determinable, not_researched"})
+        self.assertEqual({r["parts_supplier_unknown"] for r in suppliers}, {2})
+        coverage = {r["accelerator_id"]: r for r in json.loads(fresh[f"sql/results/{COVERAGE}.json"])["rows"]}
+        self.assertEqual(coverage["product-nvidia-h100-tensor-core-gpu"]["gap"], 2, "an unknown left the gap count")
+        ages = json.loads(fresh[f"sql/results/{AGE}.json"])["rows"]
+        planted = [r for r in ages if r["gap_reason"] == "not_publicly_determinable"]
+        self.assertEqual([(r["age_days"], r["beyond_horizon"]) for r in planted], [("not_applicable", "not_applicable")], "an unknown was given an age")
 
 
 class WarehouseBreakTests(unittest.TestCase):

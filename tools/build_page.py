@@ -67,7 +67,19 @@ JOURNEY = {
 # The first SQL result on the page and its tutorial (S14, H-3, D-115, D-121): the query file and the
 # result tools/warehouse.py wrote from it. The page reads both as files.
 SQL_QUERY = "accelerator_dependencies"
-SQL_FLAGS = {"rests_on_atlas_interpretation": "rests on the Atlas’s own definitions", "publishers": "one publisher only"}
+SQL_FLAGS = {
+    "rests_on_atlas_interpretation": "rests on the Atlas’s own definitions",
+    "publishers": "one publisher only",
+    # S15 (D-129): a date that is only the day an undated web page was read
+    "evidence_dated_to_basis": "dated by the day the page was read",
+    "evidence_dated_from_basis": "dated by the day the page was read",
+}
+# The tutorial header (D-121), with the eight questions every metric answers (PEF §8; S15, D-131), in reading order.
+TUTORIAL_FIELDS = ("question", "population", "denominator", "assumptions", "missing data", "reproduce", "sensitivity", "does not prove", "reading")
+TUTORIAL_HEADS = {
+    "population": "Population", "denominator": "Denominator", "assumptions": "Assumptions", "missing data": "Missing data",
+    "reproduce": "Reproduce", "sensitivity": "Sensitivity", "does not prove": "What it does not prove",
+}
 
 # Where each rule code the page quotes is defined (the new-user test, D-108): a code's one-line home.
 RULE_HOMES = {
@@ -115,6 +127,8 @@ LABELS = frozenset(
         "publisher not linked to a company record:", "The question", "The query, step by step",
         "How to read the result", "query file", "result file", "check the result:",
         "python tools/warehouse.py --check",
+        "dated by the day the page was read", "Population", "Denominator", "Assumptions", "Missing data",
+        "Reproduce", "Sensitivity", "What it does not prove",
     }
 )
 
@@ -162,13 +176,14 @@ def input_digest(paths: list[str]) -> str:
     return digest.hexdigest()
 
 
-def sql_tutorial(text: str) -> dict:
-    """A query file read as its tutorial (sql-layer.md §6): the -- question: and -- reading: paragraphs,
-    then each -- step: with its explanation lines and its SQL, exactly as the file has them."""
+def sql_tutorial(text: str, stem: str = SQL_QUERY) -> dict:
+    """A query file read as its tutorial (sql-layer.md §6): the header paragraphs (-- question:, -- reading:
+    and, for a metric, the eight PEF §8 answers, S15), then each -- step: with its explanation lines and its
+    SQL, exactly as the file has them."""
     lines = text.split("\n")
     header, steps, field, i = {}, [], None, 0
     while i < len(lines) and not lines[i].startswith("-- step:"):
-        m = re.match(r"^-- (question|reading): (.*)$", lines[i])
+        m = re.match(r"^-- (" + "|".join(TUTORIAL_FIELDS) + r"): (.*)$", lines[i])
         if m:
             field = m.group(1)
             header[field] = m.group(2).strip()
@@ -177,7 +192,7 @@ def sql_tutorial(text: str) -> dict:
         elif lines[i] in ("--", ""):
             field = None
         else:
-            raise BuildError(f"sql/{SQL_QUERY}.sql line {i + 1} is not part of the tutorial header")
+            raise BuildError(f"sql/{stem}.sql line {i + 1} is not part of the tutorial header")
         i += 1
     while i < len(lines):
         title = lines[i].removeprefix("-- step:").strip()
@@ -191,7 +206,7 @@ def sql_tutorial(text: str) -> dict:
             i += 1
         steps.append({"title": title, "explanation": " ".join(explanation), "code": "\n".join(code).strip("\n")})
     if not header.get("question") or not header.get("reading") or not steps:
-        raise BuildError(f"sql/{SQL_QUERY}.sql has no question, reading or steps for its tutorial")
+        raise BuildError(f"sql/{stem}.sql has no question, reading or steps for its tutorial")
     return {"header": header, "steps": steps}
 
 
@@ -912,10 +927,10 @@ class Page:
 
     # --- the chain as a table (S14) --------------------------------------------------------------
 
-    def sql_cell(self, row: int, column: str, value, item: int | None = None, fmt: str | None = None, tag: str = "span", cls: str | None = None) -> str:
-        """One value of the committed SQL result; tests/test_page.py PG-11 compares it with the result."""
+    def sql_cell(self, row: int, column: str, value, item: int | None = None, fmt: str | None = None, tag: str = "span", cls: str | None = None, query: str = SQL_QUERY) -> str:
+        """One value of a committed SQL result; tests/test_page.py PG-11 compares it with the result."""
         text = str(value).replace("_", " ") if fmt == "state" else str(value)
-        extra = {"data_query": SQL_QUERY, "data_row": str(row), "data_column": column, "data_item": None if item is None else str(item), "data_format": fmt}
+        extra = {"data_query": query, "data_row": str(row), "data_column": column, "data_item": None if item is None else str(item), "data_format": fmt}
         return self.derived("sql-cell", text, tag=tag, cls=cls, **{k: v for k, v in extra.items() if v is not None})
 
     def sql_list(self, row: int, column: str, values: list, tag: str = "code", sep: str = ", ") -> str:
@@ -951,6 +966,10 @@ class Page:
                 caveats.append(self.derived("sql-flag", SQL_FLAGS["rests_on_atlas_interpretation"], data_row=str(i), data_column="rests_on_atlas_interpretation"))
             if len(r["publishers"]) == 1:
                 caveats.append(self.derived("sql-flag", SQL_FLAGS["publishers"], data_row=str(i), data_column="publishers"))
+            for column in ("evidence_dated_to_basis", "evidence_dated_from_basis"):
+                if r.get(column) == "accessed":  # S15, D-129: one flag, on the newest date first
+                    caveats.append(self.derived("sql-flag", SQL_FLAGS[column], data_row=str(i), data_column=column))
+                    break
             if r["party_standing_unchecked"]:
                 caveats.append(f'{self.label("publisher not linked to a company record:")} {self.sql_list(i, "party_standing_unchecked", r["party_standing_unchecked"])}')
             ids = (
@@ -968,24 +987,40 @@ class Page:
             empty = ' class="empty"'  # a cell with nothing to show, hidden at phone width
             body.append("<tr>" + "".join(f"<td{'' if c else empty}>{k[h]}{c}</td>" for h, c in zip(heads, cells)) + "</tr>")
         head = "".join(f'<th scope="col">{self.label(h)}</th>' for h in heads)
-        t = sql_tutorial(query.read_text(encoding="utf-8"))
+        tutorial = self.sql_tutorial_block(SQL_QUERY, result)
+        return f'<div class="table-wrap"><table class="sql"><thead><tr>{head}</tr></thead><tbody>{"".join(body)}</tbody></table></div>{tutorial}'
+
+    def sql_tutorial_block(self, stem: str, result: dict, box_id: str | None = None, heading: str = "h3") -> str:
+        """A query's "How this was computed" (D-115, D-121), closed by default: the question, a metric's eight
+        PEF §8 answers (S15, D-131), the steps with their SQL exactly as the file has them, and how to read
+        the result. Shared by every page that shows a SQL result (S15: the third composition, MA §16.1)."""
+        query = REPO_ROOT / "sql" / f"{stem}.sql"
+        if result["query_sha256"] != hashlib.sha256(query.read_bytes()).hexdigest():
+            raise BuildError(f"sql/results/{stem}.json was computed from another version of its query (python tools/warehouse.py)")
+        t = sql_tutorial(query.read_text(encoding="utf-8"), stem)
         steps = "".join(
-            f'<li>{self.derived("sql-step-title", s["title"], tag="h4")}{self.derived("sql-step-text", s["explanation"], tag="p")}'
-            f'<pre><code data-derived="sql-step-code">{esc(s["code"])}</code></pre></li>'
+            f'<li>{self.derived("sql-step-title", s["title"], tag="h4", data_query=stem)}{self.derived("sql-step-text", s["explanation"], tag="p", data_query=stem)}'
+            f'<pre><code data-derived="sql-step-code" data-query="{esc(stem)}">{esc(s["code"])}</code></pre></li>'
             for s in t["steps"]
         )
-        tutorial = (
-            f'<details class="sql-tutorial"><summary>{self.label("How this was computed")}</summary><div class="tutorial">'
-            f'{self.label("The question", tag="h3")}{self.derived("sql-question", t["header"]["question"], tag="p")}'
-            f'{self.label("The query, step by step", tag="h3")}<ol class="steps">{steps}</ol>'
-            f'{self.label("How to read the result", tag="h3")}{self.derived("sql-reading", t["header"]["reading"], tag="p")}'
-            f'<p class="meta">{self.label("query file", cls="k")} {self.derived("sql-file", f"sql/{SQL_QUERY}.sql", tag="code")} · '
-            f'{self.label("result file", cls="k")} {self.derived("sql-file", f"sql/results/{SQL_QUERY}.json", tag="code")} · '
-            f'{self.label("input digest", cls="k")} {self.derived("sql-digest", result["input_digest"], tag="code", cls="digest")}</p>'
+        answers = "".join(
+            f'<div><dt>{self.label(TUTORIAL_HEADS[field])}</dt><dd>{self.derived("sql-header", t["header"][field], data_query=stem, data_field=field)}</dd></div>'
+            for field in TUTORIAL_HEADS
+            if field in t["header"]
+        )
+        answers = f'<dl class="terms pef">{answers}</dl>' if answers else ""
+        sub = f"h{int(heading[1]) + 1}"  # the steps sit one level below the tutorial's own headings
+        return (
+            f'<details class="sql-tutorial"{f" id={chr(34)}{esc(box_id)}{chr(34)}" if box_id else ""} data-query="{esc(stem)}"><summary>{self.label("How this was computed")}</summary><div class="tutorial">'
+            f'{self.label("The question", tag=heading)}{self.derived("sql-question", t["header"]["question"], tag="p", data_query=stem)}{answers}'
+            f'{self.label("The query, step by step", tag=heading)}<ol class="steps">{steps.replace("<h4", f"<{sub}").replace("</h4>", f"</{sub}>")}</ol>'
+            f'{self.label("How to read the result", tag=heading)}{self.derived("sql-reading", t["header"]["reading"], tag="p", data_query=stem)}'
+            f'<p class="meta">{self.label("query file", cls="k")} {self.derived("sql-file", f"sql/{stem}.sql", tag="code", data_query=stem)} · '
+            f'{self.label("result file", cls="k")} {self.derived("sql-file", f"sql/results/{stem}.json", tag="code", data_query=stem)} · '
+            f'{self.label("input digest", cls="k")} {self.derived("sql-digest", result["input_digest"], tag="code", cls="digest", data_query=stem)}</p>'
             f'<pre><code>{self.label("check the result:")}\n{self.label("python tools/warehouse.py --check")}</code></pre>'
             "</div></details>"
         )
-        return f'<div class="table-wrap"><table class="sql"><thead><tr>{head}</tr></thead><tbody>{"".join(body)}</tbody></table></div>{tutorial}'
 
     def atlas_relation_types(self) -> set[str]:
         return {c["const"] for c in self.schemas["relationships"]["$defs"]["vocab_relation_type"]["oneOf"]}

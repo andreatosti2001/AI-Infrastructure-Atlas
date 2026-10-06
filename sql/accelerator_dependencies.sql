@@ -159,15 +159,19 @@ reached AS (
 -- step: Date each piece of evidence
 -- The freshness rule defines a citation's evidence date: the claim's as-of date if it has one;
 -- otherwise the latest date the source states for itself; otherwise the day the source was accessed.
--- A partial date such as 2021-02 is kept as written and sorts at the start of its period. This part
--- lists sources; nothing here counts them. Sources listed together for an inferred row back different
--- steps of its reasoning: they do not confirm one another.
+-- A partial date such as 2021-02 is kept as written and sorts at the start of its period. date_basis
+-- records which of the three the date is (as_of, stated or accessed), so a page can say when a date
+-- is only the day a page was read. This part lists sources; nothing here counts them. Sources listed
+-- together for an inferred row back different steps of its reasoning: they do not confirm one another.
 evidence AS (
     SELECT x.row_key, ct.source_id, ct.standing, s.publisher, s.publisher_entity_state,
            CASE WHEN cl.as_of_state = 'value' THEN cl.as_of_value
                 WHEN s.stated_dates_state = 'value'
                      THEN (SELECT max(d.date) FROM source_dates AS d WHERE d.source_id = s.id)
-                ELSE substr(s.accessed_at, 1, 10) END AS evidence_date
+                ELSE substr(s.accessed_at, 1, 10) END AS evidence_date,
+           CASE WHEN cl.as_of_state = 'value' THEN 'as_of'
+                WHEN s.stated_dates_state = 'value' THEN 'stated'
+                ELSE 'accessed' END AS date_basis
     FROM reached AS x
     JOIN claims AS cl ON cl.id = x.claim_id
     JOIN citations AS ct ON ct.claim_id = x.claim_id
@@ -175,8 +179,10 @@ evidence AS (
 )
 
 -- step: One line per link, with its evidence summarised
--- For each row: its basis, the names of both ends, the oldest and newest evidence date, its sources
--- and publishers, and its caveats. The basis is stated when at least one claim the row cites is a
+-- For each row: its basis, the names of both ends, the oldest and newest evidence date with where each
+-- date comes from, its sources and publishers, and its caveats. When citations of different kinds share
+-- the oldest or newest date, the weakest kind is reported (accessed before stated before as_of), so the
+-- page never hides that a date is only an access date. The basis is stated when at least one claim the row cites is a
 -- FACT, inferred when no cited claim is, and gap for an unknown or a recorded gap. Each list is sorted inside
 -- its aggregate, and the final ORDER BY fixes the order of the rows, so every run gives the same
 -- bytes.
@@ -206,6 +212,20 @@ SELECT a.accelerator,
                 'not_applicable') AS evidence_dated_from,
        coalesce((SELECT max(e.evidence_date) FROM evidence AS e WHERE e.row_key = r.row_key),
                 'not_applicable') AS evidence_dated_to,
+       coalesce((SELECT CASE WHEN bool_or(e.date_basis = 'accessed') THEN 'accessed'
+                             WHEN bool_or(e.date_basis = 'stated') THEN 'stated'
+                             WHEN bool_or(e.date_basis = 'as_of') THEN 'as_of' END
+                 FROM evidence AS e
+                 WHERE e.row_key = r.row_key
+                   AND e.evidence_date = (SELECT min(f.evidence_date) FROM evidence AS f WHERE f.row_key = r.row_key)),
+                'not_applicable') AS evidence_dated_from_basis,
+       coalesce((SELECT CASE WHEN bool_or(e.date_basis = 'accessed') THEN 'accessed'
+                             WHEN bool_or(e.date_basis = 'stated') THEN 'stated'
+                             WHEN bool_or(e.date_basis = 'as_of') THEN 'as_of' END
+                 FROM evidence AS e
+                 WHERE e.row_key = r.row_key
+                   AND e.evidence_date = (SELECT max(f.evidence_date) FROM evidence AS f WHERE f.row_key = r.row_key)),
+                'not_applicable') AS evidence_dated_to_basis,
        coalesce((SELECT list(DISTINCT e.source_id ORDER BY e.source_id)
                  FROM evidence AS e
                  WHERE e.row_key = r.row_key AND e.standing = 'party'

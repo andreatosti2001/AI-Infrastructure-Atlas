@@ -2192,3 +2192,115 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   unchanged. `tests/test_validate_repo.py` covers the new names.
 - **Rejected:** renumbering S15 to S25 (every later prompt, the roadmap and the registry would shift); a
   report under S14 or S15 (the work would be filed under another session's contract).
+
+## D-127 — `sql-layer.md` §7: the inferred rows rest on two publishers
+
+- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (confirmed by the human on 2026-10-06 at the S15 opening)
+- **Context:** S14.5 found that `sql-layer.md` §7 said "every row today has one" publisher, while each
+  inferred row rests on two (S14.5 report, invalidated assumptions). The S14 table's caveat flags were
+  always correct.
+- **Decision:** the sentence now says that every stated row and every recorded gap has one publisher,
+  and each inferred row two, behind different steps of one reasoning, which do not confirm one another.
+  Only that sentence and its status line changed.
+- **Rejected:** leaving the sentence as debt.
+
+## D-128 — Evidence coverage: per accelerator, over its links
+
+- **Session:** S15 · **Date:** 2026-10-06 · **Status:** proposed (the population decided by the human on 2026-10-06 at the S15 opening, H-2)
+- **Context:** Part A's "evidence coverage"; S14's handover; S14.5's finding that 8 rows come from 5
+  records.
+- **Decision** (`metrics.md` §2, §3; `sql/evidence_coverage.sql`):
+  - for each accelerator, the rows of the table of links split into stated, inferred and gap, over the
+    number of its links;
+  - the result also gives the distinct records behind the rows and how many of them are shared with
+    another accelerator;
+  - the query reads the first result as a view;
+  - WH-12 recomputes it independently, and IN-10 checks the page against it. It replaces the prototype's
+    hand count with the same numbers.
+- **Rejected:** coverage over the whole Atlas (identity fields inflate the stated part); over claims
+  (says nothing about the chain); a percentage (four rows).
+
+## D-129 — Source age against a reference date, and where each evidence date comes from
+
+- **Session:** S15 · **Date:** 2026-10-06 · **Status:** proposed (the reference date decided by the human on 2026-10-06 at the S15 opening, H-3)
+- **Context:**
+  - Part A's "source age";
+  - S14 refused clock ages, and S14.5's V-5 forbids ages relative to today;
+  - S14's and S14.5's debt: an access date standing as an evidence date;
+  - DT-S13-4.
+- **Decision** (`metrics.md` §4; `sql/source_age.sql`, `sql/accelerator_dependencies.sql`):
+  - **the first query** gains `evidence_dated_from_basis` and `evidence_dated_to_basis` (`as_of`,
+    `stated`, `accessed`, `not_applicable`). When kinds share a date, the weakest is reported. Its rows
+    are unchanged;
+  - **the source-age query** ages each link's newest evidence as of the reference date written in the
+    file (2026-10-06), and flags links beyond the 12-month horizon. A link with nothing to date says
+    `not_applicable`;
+  - **both pages flag access dates:** the HBM page's table and the research view's chain and age
+    table;
+  - **checks:** WH-10 computes the date basis independently; WH-13 computes the ages independently, and
+    checks that moving the reference date moves the ages and nothing else;
+  - **DT-S13-4** is discharged for the page's chain. The Atlas-wide ageing report stays with the Change
+    Detector.
+- **Rejected:** today's date (results would change daily); a script in the page (H-3 C: three rules
+  broken); integer ages with a sentinel.
+
+## D-130 — The three supplier metrics: "cannot be computed yet", with why
+
+- **Session:** S15 · **Date:** 2026-10-06 · **Status:** proposed (the treatment decided by the human on 2026-10-06 at the S15 opening, H-1)
+- **Context:** supplier count, geographic concentration and single-source relationships need a named
+  supplier. The Atlas names none: both HBM `supplier` fields are `not_researched` (D-094), and no
+  `supplies` edge exists.
+- **Decision** (`metrics.md` §5; `sql/supplier_metrics.sql`):
+  - **the query:** one row per metric, giving:
+    - the incorporated parts, counted per accelerator;
+    - those with a named supplier and those unknown;
+    - the unknowns' state word;
+    - the supply links, in a separate column (DT-7);
+    - the status;
+    - what evidence each metric needs;
+  - **the page:** each metric as an amber "cannot be computed yet" block with its reason. The named
+    count and the supply-link count are never shown, because a bare zero would read as "no suppliers";
+  - **the stop rule:** the page build stops if a metric becomes computable, until its presentation is
+    designed;
+  - **checks:** WH-14 computes the query independently, and a planted `not_publicly_determinable` keeps
+    its own word;
+  - **DT-7** is closed for S15's metrics.
+- **Rejected:** a research step first (H-1 B); leaving the three out (H-1 C); counting part classes
+  (hides one unknown).
+
+## D-131 — Queries may build on queries; a metric's tutorial answers PEF §8
+
+- **Session:** S15 · **Date:** 2026-10-06 · **Status:** proposed
+- **Context:** the metrics must count the rows the page draws, under the first query's definitions,
+  without copying them. PEF §8's eight answers must sit beside each metric and in its tutorial.
+- **Decision** (`metrics.md` §8; `tools/warehouse.py`):
+  - the warehouse orders the queries so that a query runs after every query whose file stem its code
+    names. Each query becomes a view after it runs, and a cycle stops the run;
+  - a result's inputs include the query files it builds on (WH-11);
+  - the tutorial header (D-121) also accepts `population`, `denominator`, `assumptions`, `missing
+    data`, `reproduce`, `sensitivity` and `does not prove`. Every metric's file answers all eight (WH-9),
+    and pages render them;
+  - the tutorial rendering moves into `build_page.Page.sql_tutorial_block`, shared by both pages (the
+    third composition of MA §16.1);
+  - the HBM page's output is unchanged apart from its access-date flag, the tutorial's query attributes
+    and its digest.
+- **Rejected:** repeating the first query in each metric; `CREATE MACRO` or SQL includes; PEF answers
+  in a separate document (a second home).
+
+## D-132 — The metrics in the research view's indicator blocks
+
+- **Session:** S15 · **Date:** 2026-10-06 · **Status:** proposed (the placement decided by the human on 2026-10-06 at the S15 opening, H-4)
+- **Context:** `visual-architecture.md` §7.5 (indicator blocks), §10 (D-124); the prototype's three
+  hand counts (S14.5 handover).
+- **Decision** (`metrics.md` §6, §7; `tools/build_insight.py`, `tools/insight_template.html`):
+  - **the INSIGHT layer** shows two rows:
+    - "Indicators": evidence coverage (SQL cells), evidence age (a count of the drawn age rows, with
+      access dates called out) and publishers (the presentation count, kept);
+    - "Cannot be computed yet": the three supplier metrics;
+  - **each metric block** links to its "How this was computed" in the METHOD layer, where one tutorial
+    per metric renders its query file;
+  - **the DATA layer** gains "Evidence age, link by link";
+  - **of the prototype's hand counts**, "links on stated evidence" and "rows with nothing to date" are
+    replaced, and "publishers" is kept;
+  - **checks:** IN-10 and IN-11 are added to `tests/test_insight.py`.
+- **Rejected:** a section on the HBM page (H-4 A: two ways of showing counts); a new page (H-4 B).
