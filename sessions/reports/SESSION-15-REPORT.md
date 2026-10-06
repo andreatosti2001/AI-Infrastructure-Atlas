@@ -307,6 +307,12 @@ None. No source was retrieved.
 
 **Not asked now:** merging this branch; public deployment (NG-13).
 
+## Addendum: the S15 review (2026-10-06)
+
+Accepted by the human on 2026-10-06: D-128 to D-132 bind as built, with `docs/architecture/metrics.md`.
+Only status lines changed, and both pages' digest lines followed. No data, result, check or page content
+changed. The merge of the three supplier blocks into one was considered and not taken; S16 may raise it.
+
 ## Process lessons
 
 - **An independent check finds a population error before the query does.** The supplier query's first

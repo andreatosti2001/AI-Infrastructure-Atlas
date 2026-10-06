@@ -1,6 +1,6 @@
 # The first metrics
 
-**Status:** PROPOSED (S15, 2026-10-06; D-127 to D-132).
+**Status:** ACCEPTED as built by the human on 2026-10-06 at the S15 review (D-127 to D-132).
 **Decided by the human at the S15 opening (2026-10-06):**
 - the contract runs as written, with `sql-layer.md` §7's publisher sentence corrected (D-127);
 - the three supplier metrics are shown as "cannot be computed yet", with why (H-1, D-130);

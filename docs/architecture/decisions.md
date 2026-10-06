@@ -2206,7 +2206,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-128 — Evidence coverage: per accelerator, over its links
 
-- **Session:** S15 · **Date:** 2026-10-06 · **Status:** proposed (the population decided by the human on 2026-10-06 at the S15 opening, H-2)
+- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06, at the S15 review; the population decided by the human on 2026-10-06 at the S15 opening, H-2)
 - **Context:** Part A's "evidence coverage"; S14's handover; S14.5's finding that 8 rows come from 5
   records.
 - **Decision** (`metrics.md` §2, §3; `sql/evidence_coverage.sql`):
@@ -2222,7 +2222,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-129 — Source age against a reference date, and where each evidence date comes from
 
-- **Session:** S15 · **Date:** 2026-10-06 · **Status:** proposed (the reference date decided by the human on 2026-10-06 at the S15 opening, H-3)
+- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06, at the S15 review; the reference date decided by the human on 2026-10-06 at the S15 opening, H-3)
 - **Context:**
   - Part A's "source age";
   - S14 refused clock ages, and S14.5's V-5 forbids ages relative to today;
@@ -2246,7 +2246,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-130 — The three supplier metrics: "cannot be computed yet", with why
 
-- **Session:** S15 · **Date:** 2026-10-06 · **Status:** proposed (the treatment decided by the human on 2026-10-06 at the S15 opening, H-1)
+- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06, at the S15 review; the treatment decided by the human on 2026-10-06 at the S15 opening, H-1)
 - **Context:** supplier count, geographic concentration and single-source relationships need a named
   supplier. The Atlas names none: both HBM `supplier` fields are `not_researched` (D-094), and no
   `supplies` edge exists.
@@ -2270,7 +2270,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-131 — Queries may build on queries; a metric's tutorial answers PEF §8
 
-- **Session:** S15 · **Date:** 2026-10-06 · **Status:** proposed
+- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted as built by the human on 2026-10-06, at the S15 review
 - **Context:** the metrics must count the rows the page draws, under the first query's definitions,
   without copying them. PEF §8's eight answers must sit beside each metric and in its tutorial.
 - **Decision** (`metrics.md` §8; `tools/warehouse.py`):
@@ -2289,7 +2289,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-132 — The metrics in the research view's indicator blocks
 
-- **Session:** S15 · **Date:** 2026-10-06 · **Status:** proposed (the placement decided by the human on 2026-10-06 at the S15 opening, H-4)
+- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06, at the S15 review; the placement decided by the human on 2026-10-06 at the S15 opening, H-4)
 - **Context:** `visual-architecture.md` §7.5 (indicator blocks), §10 (D-124); the prototype's three
   hand counts (S14.5 handover).
 - **Decision** (`metrics.md` §6, §7; `tools/build_insight.py`, `tools/insight_template.html`):
