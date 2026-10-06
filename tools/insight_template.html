@@ -40,6 +40,15 @@ ul.compare ul li { margin: 3px 0; }
 ul.tallies { list-style: none; padding: 0; margin: 4px 0; }
 ul.tallies li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 6px 0; }
 .tally { font-size: 1.2rem; font-weight: 600; color: var(--ink-strong); }
+.split, .recs { display: block; flex-basis: 100%; font-size: 0.86rem; color: var(--ink-body); }
+.recs { color: var(--ink-muted); }
+.accessed { font-size: 0.86em; font-weight: 600; color: var(--ink-gap); }
+.how-link { white-space: nowrap; }
+.indicator h4 .who { font-weight: inherit; }
+section.metric-how { margin: 6px 0 14px; }
+section.metric-how h4 { margin: 18px 0 4px; }
+dl.pef div { margin: 6px 0; }
+table.age { margin-top: 6px; }
 .units { display: inline-flex; gap: 5px; }
 a.unit { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--line-ink); border-radius: 3px; background: var(--surface-page); }
 a.unit.stated { box-shadow: inset 0 0 0 9px var(--line-ink); }
@@ -134,7 +143,7 @@ ${indicators}
 <p class="framing-tag" data-label>Atlas framing</p>
 <h3 data-label>Reading the chains</h3>
 <p>Each chain is one accelerator, read in the direction of its arrows: what acts on it, the accelerator, the part it incorporates with who makes that part beneath it, and what that part requires. The part and the process are the same records in every chain; they are repeated so that the chains line up and can be compared.</p>
-<p>A solid line is stated by a source. A dashed line is the Atlas’s own inference. An amber dotted line or box is a gap, with its reason in words. A missing line means the Atlas has no record either way; it never means that no relationship exists. Every line opens its evidence.</p>
+<p>A solid line is stated by a source. A dashed line is the Atlas’s own inference. An amber dotted line or box is a gap, with its reason in words. A missing line means the Atlas has no record either way; it never means that no relationship exists. A date marked “access date” is only the day an undated web page was read. Every line opens its evidence.</p>
 </div>
 ${key}
 <h3 data-label>Explore</h3>
@@ -161,7 +170,7 @@ ${table}
 <div class="framing" data-framing>
 <p class="framing-tag" data-label>Atlas framing</p>
 <h3 data-label>What the counts count</h3>
-<p>The page is generated from the committed SQL result and the Atlas’s records by a tested build step; nothing on it is typed by hand. Its counts are tallies of the table’s rows, each shown beside the number of rows it is counted over. They describe what the Atlas records, never the industry, and a count of rows is not a count of records. The page computes no share, ranking or score, and no confidence value.</p>
+<p>The page is generated from the committed SQL results and the Atlas’s records by a tested build step; nothing on it is typed by hand. Each measure is a SQL result with its own explanation below; the few counts the page makes itself are tallies of rows it draws, each shown beside the number of rows it is counted over. Every number describes what the Atlas records, never the industry, and a count of rows is not a count of records. The page computes no share, ranking or score, and no confidence value.</p>
 </div>
 ${method}
 </section>
