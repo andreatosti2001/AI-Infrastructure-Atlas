@@ -426,3 +426,19 @@ S15 — dependency metrics:
 
 **Next recommended milestone:** S15, the first metric on the SQL layer, with its question,
 population and denominator decided before any SQL is written.
+
+## Addendum: the S15 prompt (2026-10-06)
+
+S14 was merged to `main` through PR #24. Requested by the human on 2026-10-06, Claude assembled
+[`S15-PROMPT.md`](../prompts/S15-PROMPT.md):
+
+- **Part A:** S14's operating contract and report list, with the operational roadmap's S15 entry,
+  word for word.
+- **Part B:** the elaboration. It records that three of Part A's five metrics (supplier count,
+  geographic concentration, single-source relationships) have no population in the data today,
+  and names the trap of measuring concentration over company headquarters.
+- **Asked at the start of S15:**
+  - what to do with the metrics that have no data (H-1);
+  - what evidence coverage is measured over (H-2);
+  - how source age is measured without the clock (H-3);
+  - where the metrics appear (H-4).
