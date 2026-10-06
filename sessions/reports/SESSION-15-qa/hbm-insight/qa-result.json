@@ -115,7 +115,7 @@
     },
     "contrastMin": "6.21",
     "contrastBelow45": [],
-    "contrastTexts": 792,
+    "contrastTexts": 795,
     "wideElementsOpen": []
   },
   "mobile": {
@@ -234,7 +234,7 @@
     },
     "contrastMin": "6.21",
     "contrastBelow45": [],
-    "contrastTexts": 896,
+    "contrastTexts": 899,
     "wideElementsOpen": []
   }
 }
