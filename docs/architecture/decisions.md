@@ -2084,7 +2084,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-122 — The visual benchmark and its pattern register
 
-- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** proposed
+- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06, at the S14.5 review
 - **Context:** the S14.5 prompt asks for a study of five data-intensive research products (Epoch AI, Our
   World in Data, IEA, Stanford AI Index, Datawrapper) across fourteen dimensions, each major pattern
   classified ADOPT, ADAPT or REJECT, with no branding, asset or layout copied.
@@ -2100,7 +2100,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-123 — The research-experience model, the visual principles and the minimal design system
 
-- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** proposed
+- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06, at the S14.5 review
 - **Context:** the S14.5 prompt's required outputs 1 to 9; `CLAUDE.md` §6A, §12; MA §16.1, §19.
 - **Decision** (`docs/architecture/visual-architecture.md` §1 to §9):
   - a research page reads `QUESTION → INSIGHT → VISUAL → EXPLORE → EVIDENCE → DATA → METHOD`. Each layer
@@ -2120,9 +2120,9 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-124 — From SQL results to visuals: the binding rule, and tallies of drawn rows
 
-- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** proposed (the tallies with their denominators
-  decided by the human on 2026-10-06: the prototype's indicator blocks may show counts of the links the
-  page draws, each with its denominator)
+- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted (the tallies with their denominators
+  decided by the human on 2026-10-06 during the session; the rule as a whole accepted by the human on
+  2026-10-06, at the S14.5 review)
 - **Context:** the S14.5 prompt (required output 9; "Do not create an opaque dependency score"); NG-11
   (no metrics before their question and denominator are defined); D-115 (a tutorial beside every SQL
   result); D-118 (the page build reads committed results).
@@ -2143,7 +2143,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-125 — The S14.5 prototype: a generated research view of the HBM chain
 
-- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** proposed
+- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06, at the S14.5 review
 - **Context:** the S14.5 prompt's "Limited implementation": one controlled prototype from existing data,
   preferring the HBM slice, without replacing the current product, without a framework, without a
   general-purpose dashboard system, without new data.
@@ -2182,7 +2182,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-126 — Sub-session numbering: S14.5
 
-- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** proposed
+- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06, at the S14.5 review
 - **Context:** the human inserted a session between S14 and S15, numbered S14.5. `tools/validate_repo.py`
   accepted only two-digit session numbers (`SNN-PROMPT.md`, `SESSION-NN-REPORT.md`), so the session's
   prompt and report could not be recorded under its own number.

@@ -373,6 +373,13 @@ evidence ageing DT-S13-4, the S13 debt register, S12's unscripted breaks).
 
 **Not asked now:** merging this branch to `main`; public deployment (NG-13).
 
+## Addendum: the S14.5 review (2026-10-06)
+
+Accepted by the human on 2026-10-06: D-122 to D-126 bind as built, with
+`docs/architecture/visual-architecture.md` and `docs/research/visual-benchmark-S14.5.md`. The rules
+bind S15 and every later page, and the prototype stays as built. Only status lines changed, and both
+pages' digest lines followed. No data, result, check or page content changed.
+
 ## Process lessons
 
 - **A refusal in the build is a check that runs before the page exists.** Checking every evidence link

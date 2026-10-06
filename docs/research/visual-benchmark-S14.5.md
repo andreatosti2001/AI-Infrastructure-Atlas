@@ -1,6 +1,6 @@
 # Visual benchmark: five data-intensive research products (S14.5)
 
-**Status:** PROPOSED (S14.5, 2026-10-06; D-122). The human reviews it at the S14.5 review.
+**Status:** ACCEPTED by the human on 2026-10-06 at the S14.5 review (D-122).
 **Claim label:** every entry below is the Atlas's own reading (`INTERPRETATION`) of public pages
 observed on 2026-10-06. Nothing here is evidence about AI infrastructure, and no statement made
 *by* a benchmark is used as a fact anywhere in the Atlas. Where a benchmark page makes a claim about

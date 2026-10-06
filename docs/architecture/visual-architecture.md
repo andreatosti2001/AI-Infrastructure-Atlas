@@ -1,8 +1,9 @@
 # Visual and research-experience architecture
 
-**Status:** PROPOSED (S14.5, 2026-10-06; D-123 to D-125). The human decided on 2026-10-06 that the
-prototype's indicator blocks may show counts of the links the page draws, each with its denominator
-(§10, D-124). Everything else awaits the S14.5 review.
+**Status:** ACCEPTED by the human on 2026-10-06 at the S14.5 review (D-123 to D-125): the rules bind
+S15 and every later page, and the prototype stays as built. During the session the human decided that
+the prototype's indicator blocks may show counts of the links the page draws, each with its
+denominator (§10, D-124).
 **Session:** S14.5 · **Date:** 2026-10-06
 **Required by:** the S14.5 prompt ("What should an Atlas analytical research experience look and
 behave like, and how does that experience remain directly traceable to the evidence and analytical
