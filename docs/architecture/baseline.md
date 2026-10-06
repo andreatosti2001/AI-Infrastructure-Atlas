@@ -40,6 +40,7 @@ repository are logged in [`decisions.md`](./decisions.md).
 | Claim/provenance implementation | yes, accepted (S06 review): `docs/architecture/claim-model.md`, `schemas/claims.schema.json`, the source record in `schemas/sources.schema.json`, `tools/trace.py` | S06 |
 | Canonical data | yes (S07 to S10, accepted by the human in the session): 52 source records (`data/sources.json`), 120 claims (`data/claims.json`), 8 companies, 4 jurisdictions, 7 components, 9 technologies, 3 products, 2 facilities, 4 events (`data/events.json`, schema `schemas/events.schema.json`) and 5 relationships (`data/relationships.json`), as measured at the S10 final commit; and (S12) 12 refused candidates (`data/refused_candidates.json`, schema `schemas/refused_candidates.schema.json`, D-109): relations the Atlas considered and refused, never edges; `cand-002` names Samsung as a third party with no record (S13, D-111); and (S14) 28 identity-basis rows (`data/identity_basis.json`, schema `schemas/identity_basis.schema.json`, D-117): the ID terms and the claims behind `instance_of` and facility kinds, moved from four document tables (DT-1). Staging is empty | S06 to S10, S12, S14 |
 | Presentation / UI | yes, accepted (S11; S12 opening review): one generated page, `site/hbm-chain/index.html`, built by `tools/build_page.py` from `data/` (`vertical-slice.md`, D-100 to D-107); from S14 it also shows the first SQL result, "The chain as a table", with its "How this was computed" tutorial (D-121, accepted 2026-10-03); not published (NG-13) | S11, S14 |
+| Visual and research-experience architecture | yes, accepted (S14.5 review, 2026-10-06): `docs/architecture/visual-architecture.md` (the seven-layer research view, visual principles, minimal design system, grammar, evidence-aware semantics, the SQL-to-visual binding rule) and `docs/research/visual-benchmark-S14.5.md` (five benchmarks, 29 patterns); one generated prototype, `site/hbm-insight/index.html`, built by `tools/build_insight.py` from the S14 result (D-122 to D-126); not published (NG-13) | S14.5 |
 | DuckDB / SQL layer | yes, accepted (S14 review, 2026-10-03): `tools/warehouse.py` rebuilds an in-memory DuckDB from the canonical files on every run; queries in `sql/`, results in `sql/results/` with their inputs' digests; DuckDB pinned in `requirements-analysis.txt` (`docs/architecture/sql-layer.md`, D-118 to D-120) | S14 |
 
 Directories for data, schemas, analysis and UI are **not** created until the session that
@@ -107,7 +108,7 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 |---|---|
 | `validate-data` | **built for sources, claims, entity, event, relationship and refused-candidate records** (S06 to S10, S12; D-051, D-063, D-077, D-087, D-096, D-109): `python -m unittest discover -s tests -p "test_data*.py"`, run in CI; V-7 and V-8 report warnings |
 | `validate-i18n` | not applicable in v1.0 (NG-10: English only) |
-| `validate-design` | **built for the S11 page** (D-105): `python -m unittest discover -s tests -p "test_page.py"`, run in CI; `python tools/build_page.py --check` compares the committed page with a rebuild |
+| `validate-design` | **built for the S11 page** (D-105): `python -m unittest discover -s tests -p "test_page.py"`, run in CI; `python tools/build_page.py --check` compares the committed page with a rebuild. **And for the S14.5 prototype** (D-125): `tests/test_insight.py` (IN-1 to IN-9), run in CI; `python tools/build_insight.py --check` |
 | `validate-freshness` | **first rule built** (S07, D-064): F-1, the 12-month horizon for `time_sensitive` fields, `python -m unittest discover -s tests -p "test_freshness.py"`, run in CI. Scheduled re-checks wait for the Change Detector |
 | `qa-browser` | **scripted, outside the repository** (S11, D-106): the run and its results are in `sessions/reports/SESSION-11-REPORT.md`; a pinned, CI-run version waits for a decision (H-3's alternative) |
 
@@ -129,7 +130,7 @@ human **before** the work starts. Each row cites where the rule comes from.
 | NG-08 | An agent runtime (orchestrator, dispatcher, autonomous write path, control plane) before S19 | D-018 L-01 |
 | NG-09 | A chatbot or any interface that answers from model memory | MA §24; CLAUDE.md §19 |
 | NG-10 | Translations: the Atlas is English-only in v1.0 | D-018 L-05 |
-| NG-11 | Metrics, scores or rankings before their question and denominator are defined (S14–S15) | SESSION-PROMPT-SPEC §7; PEF §8 |
+| NG-11 | Metrics, scores or rankings before their question and denominator are defined (S14–S15). Exception (S14.5, D-124, accepted 2026-10-06): a page may tally the rows it draws, with the denominator printed in the same block | SESSION-PROMPT-SPEC §7; PEF §8 |
 | NG-12 | Legal advice or compliance determinations | CLAUDE.md §13; MA §20 |
 | NG-13 | Public deployment before the S11 vertical slice exists and passes its gates | D-004; MA §14 |
 | NG-14 | A runtime or retrieval dependency on an external API (added 2026-09-30, human decision) | S00 prompt; D-043 |

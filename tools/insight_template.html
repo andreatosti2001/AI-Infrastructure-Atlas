@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>${title}</title>
+<!--
+  Template of the S14.5 visual prototype (visual-architecture.md §12; D-125). Framing and style only:
+  framing states no fact and names no record (IN-6); every value comes from tools/build_insight.py
+  through a named slot. The base style is the S11 page's (tools/page_template.html), read by the build
+  so that the Atlas has one stylesheet home; the rules below add the research-view components. The
+  page this produces, site/hbm-insight/index.html, is generated: never edit it by hand.
+-->
+<style>
+${base_style}
+/* --- research-view components (visual-architecture.md §3, §6) --- */
+.kicker .proto { font-weight: 700; color: var(--ink-gap); }
+.qline { margin: 0 0 8px; font-size: 1.02rem; color: var(--ink-body); max-width: 72ch; }
+h1.headline { max-width: 34ch; font-size: clamp(1.6rem, 3.8vw, 2.4rem); }
+h1.headline .basis { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 0.5em; vertical-align: middle; }
+h1.headline .rel { font-weight: 700; }
+.scope { max-width: 72ch; margin: 6px 0 10px; }
+.comparison { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 40px; }
+@media (min-width: 900px) { .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+ul.compare { list-style: none; padding: 0; margin: 6px 0; }
+ul.compare > li { padding: 8px 0; border-bottom: 1px solid var(--line-rule); }
+ul.compare ul { padding-left: 1.1em; margin: 4px 0 0; }
+ul.compare ul li { margin: 3px 0; }
+.indicators { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 14px; margin: 10px 0 6px; }
+.indicator { background: var(--surface-panel); border-top: 3px solid var(--line-ink); border-radius: 0 0 6px 6px; padding: 8px 14px 12px; }
+.indicator.state { border-top-color: var(--line-gap); }
+.indicator h4 { margin: 4px 0 6px; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
+.indicator .value { margin: 4px 0; font-size: 1.7rem; font-weight: 600; line-height: 1.2; color: var(--ink-strong); }
+.indicator .value .basis.gap { font-size: 1.15rem; padding: 2px 12px; border-radius: 14px; }
+.indicator .range { font-size: 1.3rem; }
+.indicator .range span { white-space: nowrap; }
+.indicator .den { margin: 4px 0; font-weight: 600; color: var(--ink-strong); }
+.how { margin: 6px 0 0; font-size: 0.84rem; color: var(--ink-muted); max-width: 80ch; }
+ul.tallies { list-style: none; padding: 0; margin: 4px 0; }
+ul.tallies li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 6px 0; }
+.tally { font-size: 1.2rem; font-weight: 600; color: var(--ink-strong); }
+.units { display: inline-flex; gap: 5px; }
+a.unit { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--line-ink); border-radius: 3px; background: var(--surface-page); }
+a.unit.stated { box-shadow: inset 0 0 0 9px var(--line-ink); }
+a.unit.inferred { border-style: dashed; }
+a.unit.gap { border: 2px dotted var(--line-gap); background: var(--surface-gap); }
+a.unit:hover, a.unit:focus-visible { outline: 3px solid var(--line-focus); outline-offset: 2px; }
+.vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+ul.key { list-style: none; padding: 0; margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 0.88rem; }
+ul.key li { display: flex; align-items: center; gap: 8px; }
+.swatch { display: inline-block; width: 34px; height: 0; border-top: 2px solid var(--line-ink); }
+.swatch.k-inferred { border-top-style: dashed; }
+.swatch.k-gap { border-top: 2px dotted var(--line-gap); }
+.swatch.k-norecord { border-top: 2px dashed var(--line-rule); }
+.swatch.k-instance { width: 26px; height: 16px; border: 1.5px solid var(--line-ink); border-radius: 3px; }
+.swatch.k-class { width: 26px; height: 16px; border: 1.5px solid var(--line-ink); border-top-width: 5px; border-radius: 3px; background: var(--surface-class); }
+fieldset.filter { border: 1px solid var(--line-rule); border-radius: 6px; padding: 6px 14px 10px; margin: 16px 0 6px; max-width: 980px; }
+fieldset.filter legend { font-weight: 600; color: var(--ink-strong); padding: 0 6px; }
+.opt { display: inline-flex; align-items: center; gap: 6px; margin: 6px 18px 0 0; }
+.opt label { cursor: pointer; }
+.opt input { width: 18px; height: 18px; margin: 0; accent-color: var(--line-focus); }
+section.strip { margin: 22px 0 28px; }
+section.strip h3 { margin: 0 0 10px; }
+.chain { display: grid; align-items: center; gap: 10px 0;
+  grid-template-columns: minmax(0, 1fr) minmax(104px, 0.9fr) minmax(0, 1fr) minmax(104px, 0.9fr) minmax(0, 1fr) minmax(104px, 0.9fr) minmax(0, 1fr);
+  grid-template-areas: "actor l1 acc l2 part l4 proc" ". . . . sup . ."; }
+.a-actor { grid-area: actor; } .s-actor { grid-area: l1; } .a-acc { grid-area: acc; } .s-part { grid-area: l2; }
+.a-part { grid-area: part; } .s-supplier { grid-area: sup; } .s-process { grid-area: l4; } .a-process { grid-area: proc; }
+.node { border: 1.5px solid var(--line-ink); border-radius: 6px; padding: 8px 10px; background: var(--surface-page); min-height: 62px; overflow-wrap: anywhere; }
+.node.class-level { background: var(--surface-class); border-top: 5px solid var(--line-ink); }
+.node.norecord { border: 1.5px dashed var(--line-rule); color: var(--ink-muted); }
+.nk { display: block; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
+.nn { display: block; font-weight: 700; color: var(--ink-strong); }
+a.link { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 2px 6px; font-size: 0.8rem; color: var(--ink-body); text-decoration: none; border-radius: 4px; }
+.link .rel { font-size: 0.86rem; }
+.link .wire { position: relative; display: block; width: 100%; height: 0; margin: 6px 0; border-top: 2px solid var(--line-ink); }
+.link .wire::after { content: ""; position: absolute; right: -1px; top: -7px; border-style: solid; border-width: 6px 0 6px 10px; border-color: transparent; border-left-color: var(--line-ink); }
+.link.inferred .wire { border-top-style: dashed; }
+.link.gap .wire { border-top: 2px dotted var(--line-gap); }
+.link.gap .wire::after { display: none; }
+.link .b { margin-top: 1px; }
+.link .dates { margin-top: 2px; font-size: 0.74rem; color: var(--ink-muted); }
+span.link.norecord, span.slot.norecord { display: block; padding: 6px; text-align: center; font-size: 0.8rem; color: var(--ink-muted); border: 1.5px dashed var(--line-rule); border-radius: 6px; }
+a.slot { display: block; padding: 6px 10px; font-size: 0.85rem; color: var(--ink-gap); text-decoration: none; background: var(--surface-gap); border: 1.5px dashed var(--line-gap); border-radius: 8px; }
+a.link:hover, a.link:focus-visible, a.slot:hover, a.slot:focus-visible { outline: 3px solid var(--line-focus); outline-offset: 2px; }
+body:has(#f-stated:checked) [data-mark][data-basis="stated"], body:has(#f-inferred:checked) [data-mark][data-basis="inferred"], body:has(#f-gap:checked) [data-mark][data-basis="gap"] { outline: 3px solid var(--line-focus); outline-offset: 2px; }
+body:has(#f-stated:checked) tr[data-basis]:not([data-basis="stated"]), body:has(#f-inferred:checked) tr[data-basis]:not([data-basis="inferred"]), body:has(#f-gap:checked) tr[data-basis]:not([data-basis="gap"]) { display: none; }
+tr:target { outline: 3px solid var(--line-focus); outline-offset: -3px; }
+ul.evidence-index { padding-left: 1.2em; max-width: 80ch; }
+ul.evidence-index li { margin: 8px 0; }
+@media (max-width: 760px) {
+  .chain { grid-template-columns: minmax(0, 1fr); grid-template-areas: "actor" "l1" "acc" "l2" "part" "sup" "l4" "proc"; gap: 0; }
+  a.link { position: relative; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 2px 8px; min-height: 52px; padding: 6px 0 6px 30px; text-align: left; }
+  .link .wire { position: absolute; left: 14px; top: 0; bottom: 0; width: 0; height: auto; margin: 0; border-top: 0; border-left: 2px solid var(--line-ink); }
+  .link.inferred .wire { border-left-style: dashed; }
+  .link.gap .wire { border-top: 0; border-left: 2px dotted var(--line-gap); }
+  .link .wire::after { right: auto; top: auto; left: -7px; bottom: -1px; border-width: 10px 6px 0 6px; border-color: transparent; border-top-color: var(--line-ink); }
+  a.slot, span.slot.norecord { margin: 8px 0 8px 30px; }
+  span.link.norecord { margin: 6px 0 6px 30px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="masthead">
+<p class="kicker"><span data-label>AI Infrastructure Atlas</span><span data-label>Research view</span><span class="proto" data-label>Prototype</span></p>
+<p class="qline"><span class="k" data-label>The question</span> ${question}</p>
+<h1 class="headline ${headline_class}">${headline}</h1>
+${scope}
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>This page is a prototype of the Atlas’s research view. It shows the same records and the same SQL result as the dependency journey, arranged so that the answer comes first, the comparison second, and the evidence one click from every mark. It is not published.</p>
+</div>
+<nav class="jump" aria-label="Sections"><span class="k" data-label>Jump to</span>
+<a href="#insight"><span data-label>What the records show</span></a>
+<a href="#visual"><span data-label>The chains, side by side</span></a>
+<a href="#evidence"><span data-label>Evidence</span></a>
+<a href="#data"><span data-label>The links as a table</span></a>
+<a href="#method"><span data-label>Method and limitations</span></a>
+</nav>
+</header>
+
+<main>
+<section id="insight" aria-labelledby="insight-h">
+<h2 id="insight-h" data-label>What the records show</h2>
+${comparison}
+${indicators}
+</section>
+
+<section id="visual" aria-labelledby="visual-h">
+<h2 id="visual-h" data-label>The chains, side by side</h2>
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<h3 data-label>Reading the chains</h3>
+<p>Each chain is one accelerator, read in the direction of its arrows: what acts on it, the accelerator, the part it incorporates with who makes that part beneath it, and what that part requires. The part and the process are the same records in every chain; they are repeated so that the chains line up and can be compared.</p>
+<p>A solid line is stated by a source. A dashed line is the Atlas’s own inference. An amber dotted line or box is a gap, with its reason in words. A missing line means the Atlas has no record either way; it never means that no relationship exists. Every line opens its evidence.</p>
+</div>
+${key}
+<h3 data-label>Explore</h3>
+${explore}
+${strips}
+</section>
+
+<section id="evidence" aria-labelledby="evidence-h">
+<h2 id="evidence-h" data-label>Evidence</h2>
+${evidence}
+</section>
+
+<section id="data" aria-labelledby="data-h">
+<h2 id="data-h" data-label>The links as a table</h2>
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>Every chain, indicator and comparison above is drawn from this table, and the table is the SQL result itself, cell for cell. Each line says how the Atlas knows the link, how old its evidence is, who published that evidence, and which records it comes from. The dates are dates, not ages, and a gap is never a zero.</p>
+</div>
+${table}
+</section>
+
+<section id="method" aria-labelledby="method-h">
+<h2 id="method-h" data-label>Method and limitations</h2>
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<h3 data-label>What the counts count</h3>
+<p>The page is generated from the committed SQL result and the Atlas’s records by a tested build step; nothing on it is typed by hand. Its counts are tallies of the table’s rows, each shown beside the number of rows it is counted over. They describe what the Atlas records, never the industry, and a count of rows is not a count of records. The page computes no share, ranking or score, and no confidence value.</p>
+</div>
+${method}
+</section>
+</main>
+</div>
+</body>
+</html>

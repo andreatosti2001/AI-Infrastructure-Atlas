@@ -1,0 +1,188 @@
+{
+  "desktop": {
+    "console": [],
+    "pageErrors": [],
+    "requests": [
+      "file:///home/user/AI-Infrastructure-Atlas/site/hbm-insight/index.html"
+    ],
+    "overflow": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280
+    },
+    "wideElements": [],
+    "tabsToReachAllMarks": 22,
+    "marks": 16,
+    "marksReachedByTab": 16,
+    "focusRing": "solid 3px",
+    "unitEnter": [
+      {
+        "row": "0",
+        "ok": true
+      },
+      {
+        "row": "1",
+        "ok": true
+      },
+      {
+        "row": "2",
+        "ok": true
+      },
+      {
+        "row": "3",
+        "ok": true
+      },
+      {
+        "row": "4",
+        "ok": true
+      },
+      {
+        "row": "5",
+        "ok": true
+      },
+      {
+        "row": "6",
+        "ok": true
+      },
+      {
+        "row": "7",
+        "ok": true
+      }
+    ],
+    "filter": [
+      {
+        "basis": "stated",
+        "checked": "stated",
+        "rowsShown": 3,
+        "rowsAllMatch": true,
+        "rowsExpected": 3,
+        "marksOutlined": 6,
+        "outlinedAllMatch": true,
+        "marksExpected": 6,
+        "ok": true
+      },
+      {
+        "basis": "inferred",
+        "checked": "inferred",
+        "rowsShown": 2,
+        "rowsAllMatch": true,
+        "rowsExpected": 2,
+        "marksOutlined": 4,
+        "outlinedAllMatch": true,
+        "marksExpected": 4,
+        "ok": true
+      },
+      {
+        "basis": "gap",
+        "checked": "gap",
+        "rowsShown": 3,
+        "rowsAllMatch": true,
+        "rowsExpected": 3,
+        "marksOutlined": 6,
+        "outlinedAllMatch": true,
+        "marksExpected": 6,
+        "ok": true
+      }
+    ],
+    "filterBackToAll": {
+      "checked": "all",
+      "rowsHidden": 0
+    },
+    "contrastMin": "6.21",
+    "contrastBelow45": [],
+    "contrastTexts": 524,
+    "wideElementsOpen": []
+  },
+  "mobile": {
+    "console": [],
+    "pageErrors": [],
+    "requests": [
+      "file:///home/user/AI-Infrastructure-Atlas/site/hbm-insight/index.html"
+    ],
+    "overflow": {
+      "scrollWidth": 375,
+      "clientWidth": 375
+    },
+    "wideElements": [],
+    "tabsToReachAllMarks": 22,
+    "marks": 16,
+    "marksReachedByTab": 16,
+    "focusRing": "solid 3px",
+    "unitEnter": [
+      {
+        "row": "0",
+        "ok": true
+      },
+      {
+        "row": "1",
+        "ok": true
+      },
+      {
+        "row": "2",
+        "ok": true
+      },
+      {
+        "row": "3",
+        "ok": true
+      },
+      {
+        "row": "4",
+        "ok": true
+      },
+      {
+        "row": "5",
+        "ok": true
+      },
+      {
+        "row": "6",
+        "ok": true
+      },
+      {
+        "row": "7",
+        "ok": true
+      }
+    ],
+    "filter": [
+      {
+        "basis": "stated",
+        "checked": "stated",
+        "rowsShown": 3,
+        "rowsAllMatch": true,
+        "rowsExpected": 3,
+        "marksOutlined": 6,
+        "outlinedAllMatch": true,
+        "marksExpected": 6,
+        "ok": true
+      },
+      {
+        "basis": "inferred",
+        "checked": "inferred",
+        "rowsShown": 2,
+        "rowsAllMatch": true,
+        "rowsExpected": 2,
+        "marksOutlined": 4,
+        "outlinedAllMatch": true,
+        "marksExpected": 4,
+        "ok": true
+      },
+      {
+        "basis": "gap",
+        "checked": "gap",
+        "rowsShown": 3,
+        "rowsAllMatch": true,
+        "rowsExpected": 3,
+        "marksOutlined": 6,
+        "outlinedAllMatch": true,
+        "marksExpected": 6,
+        "ok": true
+      }
+    ],
+    "filterBackToAll": {
+      "checked": "all",
+      "rowsHidden": 0
+    },
+    "contrastMin": "6.21",
+    "contrastBelow45": [],
+    "contrastTexts": 580,
+    "wideElementsOpen": []
+  }
+}

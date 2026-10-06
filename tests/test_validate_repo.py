@@ -94,6 +94,30 @@ class ValidateRepoTests(unittest.TestCase):
             ],
         )
 
+    def test_sub_session_numbers_are_accepted_and_paired(self) -> None:
+        # D-126: a session inserted between two others carries a one-digit suffix (S14.5)
+        registry = self.root / "sessions/prompts/PROMPT-REGISTRY.md"
+        registry.write_text(registry.read_text(encoding="utf-8") + "| S14.5 | [`S14.5-PROMPT.md`](./S14.5-PROMPT.md) |\n", encoding="utf-8")
+        (self.root / "sessions/prompts/S14.5-PROMPT.md").write_text("# S14.5\n", encoding="utf-8")
+        (self.root / "sessions/reports/SESSION-14.5-REPORT.md").write_text(VALID_REPORT, encoding="utf-8")
+        self.assertEqual(validate_repo.validate(self.root), [])
+        (self.root / "sessions/reports/SESSION-14.6-REPORT.md").write_text(VALID_REPORT, encoding="utf-8")
+        self.assertEqual(
+            validate_repo.validate(self.root),
+            ["sessions/reports/SESSION-14.6-REPORT.md: no matching prompt sessions/prompts/S14.6-PROMPT.md"],
+        )
+
+    def test_malformed_sub_session_numbers_fail(self) -> None:
+        (self.root / "sessions/prompts/S14.55-PROMPT.md").write_text("x", encoding="utf-8")
+        (self.root / "sessions/reports/SESSION-14.-REPORT.md").write_text("x", encoding="utf-8")
+        self.assertEqual(
+            validate_repo.validate(self.root),
+            [
+                "sessions/prompts/S14.55-PROMPT.md: name must match SNN-PROMPT.md",
+                "sessions/reports/SESSION-14.-REPORT.md: name must match SESSION-NN-REPORT.md",
+            ],
+        )
+
     def test_main_exit_status(self) -> None:
         with redirect_stdout(io.StringIO()):
             self.assertEqual(validate_repo.main(["validate_repo.py", str(self.root)]), 0)

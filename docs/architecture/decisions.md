@@ -2081,3 +2081,114 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
     the file's parts rebuild it exactly and that no explanation names a record.
 - **Rejected:** tutorial text in a separate file (it could drift from the query); a new page (H-3 B);
   showing the whole query once without steps (harder to follow, D-116).
+
+## D-122 — The visual benchmark and its pattern register
+
+- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06, at the S14.5 review
+- **Context:** the S14.5 prompt asks for a study of five data-intensive research products (Epoch AI, Our
+  World in Data, IEA, Stanford AI Index, Datawrapper) across fourteen dimensions, each major pattern
+  classified ADOPT, ADAPT or REJECT, with no branding, asset or layout copied.
+- **Decision** (`docs/research/visual-benchmark-S14.5.md`):
+  - the pages are observed with the pre-installed headless browser at 1440 and 390 px; screenshots and
+    the script stay outside the repository;
+  - the IEA website refused automated access (403), so IEA is assessed through its *Energy and AI* report
+    (PDF, CC BY 4.0) only, and its web navigation and responsive behaviour are recorded as not assessed;
+  - 29 patterns are classified. The register is the Atlas's reading (`INTERPRETATION`), and no
+    benchmark statement enters the Atlas as a fact.
+- **Rejected:** screenshots committed as evidence (they would copy other organisations' visual identity
+  into the repository); benchmarking from memory (`CLAUDE.md` §5).
+
+## D-123 — The research-experience model, the visual principles and the minimal design system
+
+- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06, at the S14.5 review
+- **Context:** the S14.5 prompt's required outputs 1 to 9; `CLAUDE.md` §6A, §12; MA §16.1, §19.
+- **Decision** (`docs/architecture/visual-architecture.md` §1 to §9):
+  - a research page reads `QUESTION → INSIGHT → VISUAL → EXPLORE → EVIDENCE → DATA → METHOD`. Each layer
+    is rendered from a committed SQL result or from canonical records, and a lower layer adds detail
+    without weakening a higher one;
+  - eleven visual principles (V-1 to V-11) and eight analytical UX principles (U-1 to U-8);
+  - the design system names the S11 palette's tokens by job. The gap amber is reserved for gaps.
+    "No recorded relationship" is drawn neutral, distinct from a gap. Indicator values are set in the
+    sans face; system fonts only; no dark mode yet;
+  - a grammar for rankings, timelines, maps, dependency diagrams, indicator blocks, comparisons,
+    evidence indicators and analytical tables, each with its rule for unknowns and its "not when";
+  - the rules for choosing a visual, a table or text, and the evidence-aware semantics table;
+  - an information architecture organised by questions, proposed for S20 to build.
+- **Rejected:** a charting library; hover tooltips by default; a component library now (two compositions
+  exist, MA §16.1 asks for two or three first); a categorical palette before any visual encodes
+  identity by hue; dark mode before S22.
+
+## D-124 — From SQL results to visuals: the binding rule, and tallies of drawn rows
+
+- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted (the tallies with their denominators
+  decided by the human on 2026-10-06 during the session; the rule as a whole accepted by the human on
+  2026-10-06, at the S14.5 review)
+- **Context:** the S14.5 prompt (required output 9; "Do not create an opaque dependency score"); NG-11
+  (no metrics before their question and denominator are defined); D-115 (a tutorial beside every SQL
+  result); D-118 (the page build reads committed results).
+- **Decision** (`visual-architecture.md` §10):
+  - a visual reads only committed SQL results and canonical records, one mark per result row, each mark
+    carrying its row number;
+  - the build may copy a cell, tally the rows it draws over a denominator it prints, take the first and
+    last of a column it shows, and group rows to say what they share and where they differ;
+  - anything else (a share, a ratio, a concentration, a count of things not drawn) is a metric. A metric
+    is a SQL column defined in S15, with its tutorial;
+  - every tally names its unit and its denominator in the same block, and says when one record appears in
+    several rows;
+  - the checks recompute every derived value from the result file without the build's code;
+  - a limited, stated exception to NG-11: tallies of the rows a page draws are presentation, not metrics.
+    S15 may keep them, move them into SQL, or retire them.
+- **Rejected:** percentages (a share is a metric); the build computing new quantities; a presentation
+  data file holding headline text or indicator values.
+
+## D-125 — The S14.5 prototype: a generated research view of the HBM chain
+
+- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06, at the S14.5 review
+- **Context:** the S14.5 prompt's "Limited implementation": one controlled prototype from existing data,
+  preferring the HBM slice, without replacing the current product, without a framework, without a
+  general-purpose dashboard system, without new data.
+- **Decision** (`visual-architecture.md` §12):
+  - `tools/build_insight.py` (standard library; a subclass of `build_page.Page`) and
+    `tools/insight_template.html` write `site/hbm-insight/index.html` from:
+    - the S14 result `sql/results/accelerator_dependencies.json`;
+    - the canonical records;
+    - the query file;
+    - the HBM page, whose panels its evidence links open;
+  - the page shows:
+    - a composed headline;
+    - a derived comparison;
+    - four indicator blocks;
+    - one chain strip per accelerator in aligned columns;
+    - a CSS-only basis filter;
+    - an evidence index;
+    - the S14 table with its tutorial;
+    - a method block;
+  - the stylesheet extends the S11 template's style block, read by the build, so the Atlas keeps one
+    palette and one base stylesheet;
+  - checks IN-1 to IN-9 (`tests/test_insight.py`), run in CI with every test module. The build refuses
+    rows its specification does not fit: an unknown position, two rows in one slot, rows that do not
+    form the chain, an evidence link with no panel, or a result from another version of the query;
+  - order of builds: data, then `tools/warehouse.py`, then `tools/build_page.py`, then
+    `tools/build_insight.py`;
+  - the page is marked "Prototype", is not linked from the HBM page, and is not published (NG-13).
+    `tools/build_page.py` and the HBM page are unchanged.
+- **Rejected:**
+  - redesigning the HBM page (forbidden by the prompt; its rules are accepted);
+  - a copy of the S11 stylesheet (two homes for the palette);
+  - SVG for the strips (HTML text wraps and reflows to a vertical chain at phone width with no second
+    drawing);
+  - JavaScript for the filter;
+  - repeating the evidence panels on the new page (a second home for the trace).
+
+## D-126 — Sub-session numbering: S14.5
+
+- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06, at the S14.5 review
+- **Context:** the human inserted a session between S14 and S15, numbered S14.5. `tools/validate_repo.py`
+  accepted only two-digit session numbers (`SNN-PROMPT.md`, `SESSION-NN-REPORT.md`), so the session's
+  prompt and report could not be recorded under its own number.
+- **Decision:** the validator accepts an optional one-digit suffix: `S14.5-PROMPT.md` and
+  `SESSION-14.5-REPORT.md`, matched to each other like any other pair. The prompt is recorded verbatim
+  as the human gave it, and listed in the registry between S14 and S15. Later session numbers are
+  unchanged. `tests/test_validate_repo.py` covers the new names.
+- **Rejected:** renumbering S15 to S25 (every later prompt, the roadmap and the registry would shift); a
+  report under S14 or S15 (the work would be filed under another session's contract).

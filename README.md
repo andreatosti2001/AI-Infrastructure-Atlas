@@ -3,7 +3,7 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 
 ## Status
 
-**M4 — Analytical Intelligence (S14 done: the SQL layer, accepted 2026-10-03; S15 next).** The repository contains governance documents, the
+**M4 — Analytical Intelligence (S14 done: the SQL layer, accepted 2026-10-03; S14.5 done: the visual and research-experience architecture, accepted 2026-10-06; S15 next).** The repository contains governance documents, the
 session system, a repository-integrity check, the S01 domain map, the accepted entity
 schema (S03), the accepted relationship schema (S04), the accepted source policy with its
 source-class vocabulary (S05), the accepted claim model (S06), and the first canonical
@@ -29,7 +29,13 @@ NVIDIA's memory suppliers now names all three firms NVIDIA names, and ten weakne
 owners. S14 added the SQL layer ([`docs/architecture/sql-layer.md`](docs/architecture/sql-layer.md)): the records are
 loaded into a DuckDB database rebuilt from `data/` on every run and never stored, and the first query lists, for
 each accelerator on the page, every link the Atlas records with its basis and evidence dates. The page shows the
-result as "The chain as a table", with a "How this was computed" tutorial generated from the query file. See
+result as "The chain as a table", with a "How this was computed" tutorial generated from the query file. S14.5
+studied five data-intensive research products ([`docs/research/visual-benchmark-S14.5.md`](docs/research/visual-benchmark-S14.5.md))
+and set the Atlas's visual and research-experience architecture ([`docs/architecture/visual-architecture.md`](docs/architecture/visual-architecture.md)):
+a page answers its question in seven layers, from the finding to the method, each rendered from a committed SQL result or
+from the records. A generated prototype, [`site/hbm-insight/index.html`](site/hbm-insight/index.html), shows the HBM chain that
+way: a headline composed from the result, indicator blocks whose counts carry their denominators, the two accelerators'
+chains side by side, a basis filter, and evidence one click from every mark. See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is
 planned.
 
@@ -44,9 +50,9 @@ data/            source records, canonical claims, companies, jurisdictions, tec
 docs/            documentation map, baseline, decision log, entity and relationship taxonomies, claim model, company, concept, facility and edge datasets, milestone audits, agent roles and contracts, research, source policy
 schemas/         JSON Schema for entity records (accepted, S03), relationship records (accepted, S04), refused candidates (S12), source records around the accepted source-class vocabulary (S05, S06), claims (S06) and facility events (S09)
 sessions/        session prompts, prompt registry and session reports
-tools/           Gate 0 validator, the trace command, the facility status derivation, edge navigation, the page build with its template, and the SQL warehouse (S14)
+tools/           Gate 0 validator, the trace command, the facility status derivation, edge navigation, the page build with its template, the SQL warehouse (S14), and the prototype build with its template (S14.5)
 sql/             SQL queries, each also its own tutorial; results/ holds their generated results (never edited by hand)
-site/            generated pages (never edited by hand): hbm-chain/index.html (S11)
+site/            generated pages (never edited by hand): hbm-chain/index.html (S11); hbm-insight/index.html (S14.5 prototype)
 tests/           unit tests for tools/, schemas/ and data/ (validate-data), with fictional fixtures
 .github/         CI
 ```
@@ -67,6 +73,7 @@ python tools/facility_status.py facility-kr-m16 --on 2026-10-02   # a facility's
 python tools/navigate.py depends-on technology-3d-die-stacking   # what depends on a record (S10); --json for data (S11)
 python tools/warehouse.py --check                                # every SQL result equals a fresh run from data/ (S14)
 python tools/build_page.py --check                               # the S11 page equals a rebuild (validate-design: tests/test_page.py)
+python tools/build_insight.py --check                            # the S14.5 prototype equals a rebuild (tests/test_insight.py); build it after the S11 page
 ```
 
 CI runs the unit tests (including the page checks) and Gate 0 on every push and pull request.
