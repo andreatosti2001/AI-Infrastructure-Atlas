@@ -3,7 +3,7 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 
 ## Status
 
-**M4 — Analytical Intelligence (S14 done: the SQL layer, accepted 2026-10-03; S14.5 done: the visual and research-experience architecture, accepted 2026-10-06; S15 next).** The repository contains governance documents, the
+**M4 — Analytical Intelligence (S14 done: the SQL layer, accepted 2026-10-03; S14.5 done: the visual and research-experience architecture, accepted 2026-10-06; S15 done: the first metrics, proposed 2026-10-06; S16 next).** The repository contains governance documents, the
 session system, a repository-integrity check, the S01 domain map, the accepted entity
 schema (S03), the accepted relationship schema (S04), the accepted source policy with its
 source-class vocabulary (S05), the accepted claim model (S06), and the first canonical
@@ -35,7 +35,11 @@ and set the Atlas's visual and research-experience architecture ([`docs/architec
 a page answers its question in seven layers, from the finding to the method, each rendered from a committed SQL result or
 from the records. A generated prototype, [`site/hbm-insight/index.html`](site/hbm-insight/index.html), shows the HBM chain that
 way: a headline composed from the result, indicator blocks whose counts carry their denominators, the two accelerators'
-chains side by side, a basis filter, and evidence one click from every mark. See
+chains side by side, a basis filter, and evidence one click from every mark. S15 added the first metrics
+([`docs/architecture/metrics.md`](docs/architecture/metrics.md)), each a SQL query built on the table of links and
+shown in the research view with its question, denominator and tutorial: evidence coverage per accelerator, and
+source age as of a fixed reference date. The three supplier metrics (supplier count, geographic concentration,
+single-source relationships) are shown as "cannot be computed yet", because the Atlas names no supplier. See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is
 planned.
 
