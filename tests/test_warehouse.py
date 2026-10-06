@@ -434,10 +434,11 @@ class WarehouseTests(unittest.TestCase):
         next(c for c in claims if c["id"] == "claim-ecp-hbm-definition")["as_of"] = "2020-12"
         (root / "data/claims.json").write_text(json.dumps(claims), encoding="utf-8")
         rows = json.loads(self.wh.build_results(root / "data")[f"sql/results/{FIRST}.json"])["rows"]
-        self.assertEqual(comparable(rows), Records(root / "data").rows())
         tied = [r for r in rows if r["relation"] == "requires"]
         self.assertTrue(tied)
+        # the specific reason first, then the independent computation of every row
         self.assertEqual({(r["evidence_dated_to"], r["evidence_dated_to_basis"]) for r in tied}, {("2020-12", "stated")}, "a tie between an as-of date and a stated date must report the weaker kind")
+        self.assertEqual(comparable(rows), Records(root / "data").rows())
 
     # WH-11
     def test_wh11_a_query_reads_an_earlier_result_and_records_it(self) -> None:

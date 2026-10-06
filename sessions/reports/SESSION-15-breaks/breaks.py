@@ -151,7 +151,8 @@ S15 = [
     ("S15-M12", "the date basis reports the strongest kind instead of the weakest (rebuilt)",
      edit("sql/accelerator_dependencies.sql", "coalesce((SELECT CASE WHEN bool_or(e.date_basis = 'accessed') THEN 'accessed'\n                             WHEN bool_or(e.date_basis = 'stated') THEN 'stated'\n                             WHEN bool_or(e.date_basis = 'as_of') THEN 'as_of' END",
           "coalesce((SELECT CASE WHEN bool_or(e.date_basis = 'as_of') THEN 'as_of'\n                             WHEN bool_or(e.date_basis = 'stated') THEN 'stated'\n                             WHEN bool_or(e.date_basis = 'accessed') THEN 'accessed' END", count=2), ALL,
-     ["test_wh10_the_first_result_equals_an_independent_computation"]),
+     # first named WH-10's comparison, which cannot see a tie the data does not hold; the planted tie names it now
+     ["a tie between an as-of date and a stated date must report the weaker kind"]),
     ("S15-C1", "control: a metric's sensitivity sentence reworded, everything rebuilt",
      edit(COV, "Small counts: read the numbers, not a proportion.", "Small counts: read the numbers rather than a proportion."), ALL, []),
 ]
