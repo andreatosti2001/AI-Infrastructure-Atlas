@@ -1,6 +1,6 @@
 # M3 Milestone Audit — Vertical Slice + Audit (S11 to S13)
 
-**Status:** written in S16.5 (2026-10-07) under D-140; awaits the human's acceptance.
+**Status:** ACCEPTED by the human on 2026-10-07 (S16.5). Written in S16.5 under D-140.
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §4 ("At every major milestone"); `SESSION-ROADMAP.md`
 M3. M3 ended on 2026-10-02 with S13 ("M3 is complete", S13 report) and no milestone audit. This audit is
 written after the fact, from the record.

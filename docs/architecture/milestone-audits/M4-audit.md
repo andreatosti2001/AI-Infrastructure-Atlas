@@ -1,6 +1,6 @@
 # M4 Milestone Audit — Analytical Intelligence (S14 to S16)
 
-**Status:** written in S16.5 (2026-10-07) under D-140; awaits the human's acceptance. M4 closes with this audit
+**Status:** ACCEPTED by the human on 2026-10-07 (S16.5). Written in S16.5 under D-140; M4 closes with this audit
 (D-140).
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §4; `SESSION-ROADMAP.md` M4.
 **Written by:** Claude, as the Knowledge Architect, with the Portfolio Reviewer's process judgement (S16.5
