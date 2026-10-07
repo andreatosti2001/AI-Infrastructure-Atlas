@@ -1225,5 +1225,29 @@
       "accessed_at": "2026-10-02T16:17Z",
       "sha256": "6a6c3fe30012dc67d0a3724e70d781e7021e8d32a3f585d6d946a6aa8e533ef3"
     }
+  },
+  {
+    "id": "src-053",
+    "source_class": "company_press_release",
+    "title": "SK hynix to Supply Industry’s First HBM3 DRAM to NVIDIA",
+    "publisher": "SK hynix (Newsroom)",
+    "publisher_entity": {
+      "state": "not_researched"
+    },
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://news.skhynix.com/en/sk-hynix-to-supply-industrys-first-hbm3-dram-to-nvidia/",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2022-06-08"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-07T15:24Z",
+      "sha256": "3712f70b893f491fda26a1e47826ca83a0161beeee78b33290c3b1de9593174a"
+    }
   }
 ]

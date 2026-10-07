@@ -28,6 +28,10 @@ IN-10 (S15, D-128 to D-130, D-132) every metric value in the indicator blocks is
       never its named-supplier or supply-link count; access dates are flagged where the result has them;
 IN-11 (S15, D-131) every metric has its own "How this was computed", closed by default, which is its
       query file: question, the eight PEF §8 answers, steps and reading; each metric block links to it.
+IN-12 (S16, D-133 to D-135) the publishers block is retired and computes nothing, while every row resting
+      on one publisher keeps its flag; the coverage block says, with its own cells, how many records its
+      links come from and how many are counted under another accelerator; the age block says that the
+      twelve months is a reading aid, which the re-check rule applies only to time-sensitive links.
 """
 
 from __future__ import annotations
@@ -69,9 +73,13 @@ INPUT_FILES = (
 SLOTS = {1: "actor", 2: "part", 3: "supplier", 4: "process"}
 DERIVED_KINDS = {
     "sql-cell", "sql-flag", "sql-question", "sql-reading", "sql-step-title", "sql-step-text", "sql-step-code", "sql-file", "sql-digest",
-    "sql-header", "input-file", "input-digest", "acc-count", "date-first", "date-last", "pub-min", "pub-max", "one-pub-count",
-    "sourced-count", "shown-in", "age-beyond", "age-dated", "age-accessed",
+    "sql-header", "input-file", "input-digest", "acc-count", "date-first", "date-last", "shown-in", "age-beyond", "age-dated",
+    "age-accessed",
 }
+# S16 (D-135): the publishers block is retired; none of its tallies may come back
+RETIRED_KINDS = {"pub-min", "pub-max", "one-pub-count", "sourced-count"}
+HORIZON_NOTE = "Twelve months is a reading aid: the Atlas’s re-check rule applies it only to who fabricates a product and who supplies a part."
+UNDATED_NOTE = "An undated web page is dated by the day it was read."
 # S15: the metric results the page shows (metrics.md; D-128 to D-130), and the PEF §8 fields each answers.
 METRICS = ("evidence_coverage", "source_age", "supplier_metrics")
 PEF_FIELDS = ("population", "denominator", "assumptions", "missing data", "reproduce", "sensitivity", "does not prove")
@@ -195,23 +203,17 @@ class InsightTests(unittest.TestCase):
         kinds = {n.attrs["data-derived"] for n in self.nodes if "data-derived" in n.attrs}
         self.assertLessEqual(kinds, DERIVED_KINDS, "a derived value the checks do not recompute")
         rows = self.rows
-        sourced = [r for r in rows if r["publishers"]]
         dates = sorted({d for r in rows for d in (r["evidence_dated_from"], r["evidence_dated_to"]) if d != "not_applicable"})
-        pubs = sorted(len(r["publishers"]) for r in sourced)
         expected = {
             "acc-count": str(len(self.accelerators())),
             "date-first": dates[0],
             "date-last": dates[-1],
-            "pub-min": str(pubs[0]),
-            "pub-max": str(pubs[-1]),
-            "one-pub-count": str(sum(len(r["publishers"]) == 1 for r in sourced)),
-            "sourced-count": str(len(sourced)),
         }
         for kind, want in expected.items():
             for node in self.derived(kind):
                 with self.subTest(kind=kind):
                     self.assertEqual(node.text(), want)
-        for kind in ("acc-count", "date-first", "date-last", "pub-min", "sourced-count", "age-beyond", "age-dated", "age-accessed"):
+        for kind in ("acc-count", "date-first", "date-last", "age-beyond", "age-dated", "age-accessed"):
             self.assertTrue(self.derived(kind), f"{kind} is not shown")
         ages = self.results["source_age"]["rows"]
         for acc in self.accelerators():
@@ -228,7 +230,7 @@ class InsightTests(unittest.TestCase):
         self.assertEqual([n.text() for n in self.derived("input-digest")], [input_digest(input_paths())])
 
     def test_in3_every_tally_has_its_denominator_in_its_block(self) -> None:
-        pairs = {"one-pub-count": "sourced-count", "age-beyond": "age-dated", "age-accessed": "age-dated"}
+        pairs = {"age-beyond": "age-dated", "age-accessed": "age-dated"}
         for numerator, denominator in pairs.items():
             for node in self.derived(numerator):
                 # the denominator sits beside its own count, in the same line: two counts in one block may not
@@ -444,6 +446,32 @@ class InsightTests(unittest.TestCase):
                 self.assertEqual(self.results[stem]["query_sha256"], hashlib.sha256((REPO_ROOT / "sql" / f"{stem}.sql").read_bytes()).hexdigest())
                 links = [n for n in self.nodes if n.tag == "a" and n.attrs.get("href") == f"#how-{stem}"]
                 self.assertTrue(links and all(any(a.attrs.get("data-metric") == stem for a in n.ancestors()) for n in links), "a metric block without a link to its tutorial")
+
+    # IN-12
+    def test_in12_the_publishers_block_is_retired_and_the_row_flags_stay(self) -> None:
+        self.assertFalse([n for n in self.nodes if n.attrs.get("data-derived") in RETIRED_KINDS], "a retired publishers tally is back")
+        self.assertNotIn("Publishers behind a sourced link", self.root.text(), "the retired publishers block is back")
+        flags = sorted(int(n.attrs["data-row"]) for n in self.nodes
+                       if n.attrs.get("data-derived") == "sql-flag" and n.attrs.get("data-column") == "publishers" and n.text() == "one publisher only")
+        self.assertEqual(flags, [i for i, r in enumerate(self.rows) if len(r["publishers"]) == 1], "a row on one publisher lost its flag")
+
+    def test_in12_the_coverage_block_says_what_its_records_are(self) -> None:
+        for j, r in enumerate(self.results["evidence_coverage"]["rows"]):
+            line = next(n for n in self.nodes if n.attrs.get("data-coverage") == r["accelerator_id"])
+            text = re.sub(r"\s+", " ", line.text())
+            with self.subTest(accelerator=r["accelerator_id"]):
+                self.assertNotIn("rows drawn from", text, "the records line readers did not understand is back")
+                agree = "record is" if r["shared"] == 1 else "records are"
+                self.assertIn(f"The {r['links']} links come from {r['records']} records; {r['shared']} {agree} also counted under another accelerator", text)
+                recs = [n for n in line.walk() if n.attrs.get("data-query") == "evidence_coverage" and n.attrs.get("data-column") in ("records", "shared")]
+                self.assertEqual({n.attrs["data-column"] for n in recs}, {"records", "shared"}, "a records count typed, not copied from its cell")
+
+    def test_in12_the_age_block_says_where_the_horizon_applies(self) -> None:
+        block = next(n for n in self.nodes if n.attrs.get("data-metric") == "source_age" and "indicator" in n.attrs.get("class", "").split())
+        text = re.sub(r"\s+", " ", block.text())
+        self.assertIn(HORIZON_NOTE, text, "the age block reads 'older than twelve months' as 'needs re-checking' for every link")
+        self.assertIn(UNDATED_NOTE, text)
+        self.assertNotIn("Dates, not ages", text)
 
     # IN-8
     def test_in8_rebuild_is_byte_identical(self) -> None:

@@ -22,6 +22,7 @@ Each prompt is an executable session contract for Opus 5.5. Do not edit a prompt
 | S14.5 | RESEARCH / ARCHITECTURE / LIMITED IMPLEMENTATION | M4 — Analytical Intelligence | [`S14.5-PROMPT.md`](./S14.5-PROMPT.md) | traceable research experience |
 | S15 | ANALYSIS | M4 — Analytical Intelligence | [`S15-PROMPT.md`](./S15-PROMPT.md) | transparent metrics |
 | S16 | AUDIT | M4 — Analytical Intelligence | [`S16-PROMPT.md`](./S16-PROMPT.md) | analytical validity |
+| S16.5 | RESEARCH (with an AUDIT opening) | M4 — Analytical Intelligence (closing) | [`S16.5-PROMPT.md`](./S16.5-PROMPT.md) | M3/M4 audited; HBM supplier evidence decided (D-139, D-140) |
 | S17 | RESEARCH / ARCHITECTURE | M5 — Policy / Geopolitical Layer | [`S17-PROMPT.md`](./S17-PROMPT.md) | bounded policy layer |
 | S18 | IMPLEMENTATION | M5 — Policy / Geopolitical Layer | [`S18-PROMPT.md`](./S18-PROMPT.md) | policy relationships |
 | S19 | AUDIT | M5 — Policy / Geopolitical Layer | [`S19-PROMPT.md`](./S19-PROMPT.md) | agent system justified |

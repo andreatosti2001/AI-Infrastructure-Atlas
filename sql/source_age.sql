@@ -1,12 +1,14 @@
 -- question: As of a fixed reference date, how old is the newest evidence behind each link around each
---   AI accelerator on this page, and which links rest only on evidence older than the Atlas's 12-month
---   freshness horizon?
+--   AI accelerator on this page, and which links rest only on evidence more than 12 months older than
+--   that date?
 -- population: The links in the table of links, one row per accelerator and link, with the evidence dates
 --   that table gives them. A link with nothing to date (an unknown) is listed with no age.
 -- denominator: For a share read from this table, the number of links that have a date. The links with
 --   nothing to date are a separate part, never counted as old or as new.
--- assumptions: The reference date is fixed in this file and moves only by a commit, so the result does
---   not change with the calendar. A link's age is the age of its newest evidence, because the freshness
+-- assumptions: The reference date is fixed in this file and moves only by a commit: each session that
+--   rebuilds the pages sets it to the day it opened, so the result does not change with the calendar. The
+--   12 months is the source policy's re-check horizon, which the policy applies only to time-sensitive
+--   links (who fabricates a product, who supplies a part); for every other link it is a reading aid. A link's age is the age of its newest evidence, because the freshness
 --   rule asks for at least one recent citation. A partial date counts from the start of its period. A
 --   web page that states no date is dated by the day it was read, and its row says so.
 -- missing data: Fourteen sources state no date of their own. Where one of them is the newest evidence,
@@ -17,8 +19,9 @@
 -- sensitivity: Each age moves one day for each day the reference date moves. A link crosses the
 --   horizon on a known date, which the reference date makes visible rather than hiding.
 -- does not prove: An old date does not make a statement false, and a recent date does not make it true.
---   Age is not reliability. Past the horizon, the freshness rule asks for newer evidence before the
---   value is used again; it does not withdraw the link.
+--   Age is not reliability. Past 12 months, the freshness rule asks for newer evidence only on a
+--   time-sensitive link, and even then it does not withdraw the link; a stable link (who designs a
+--   product, what it incorporates, what a part requires) has no age limit.
 -- reading: One row per link. newest_evidence is the newest evidence date behind the link, and
 --   newest_evidence_basis says where that date comes from: a claim's as-of date, a date the source states
 --   for itself, or the day the page was read. age_days counts the days from that date to the reference
@@ -27,9 +30,10 @@
 
 -- step: Set the reference date and the horizon
 -- Ages are measured from the reference date written here, not from today, so the same files always
--- give the same result. The horizon is the freshness rule's 12 months.
+-- give the same result. The horizon is the freshness rule's 12 months; that rule applies it only to
+-- time-sensitive links, so for the others the flag below is a reading aid, not a re-check.
 WITH params AS (
-    SELECT DATE '2026-10-06' AS reference_date, INTERVAL 12 MONTH AS horizon
+    SELECT DATE '2026-10-07' AS reference_date, INTERVAL 12 MONTH AS horizon
 ),
 
 -- step: Take the newest evidence date of each link

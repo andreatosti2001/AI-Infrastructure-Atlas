@@ -1,8 +1,12 @@
 -- question: For each AI accelerator on this page, how do the links the Atlas records around it divide
 --   between links a source states, links the Atlas infers, and gaps the Atlas has recorded?
 -- population: The links around each accelerator, exactly as the table of links lists them: one row
---   per accelerator and link. It is a census of what the Atlas has recorded, not of the world's supply
---   chain. A link the Atlas has not recorded is in no row and in no count.
+--   per accelerator and link. Around means the edges that start or end at the accelerator, plus the
+--   incorporates and requires edges reached outward from the parts it incorporates. An unknown field on
+--   an edge (who supplies the part) is a row of its own. A relation the Atlas considered and refused is a
+--   row, as a gap, only when its one reason is that its evidence is too old; refused for any other reason,
+--   it is in no row. It is a census of what the Atlas has recorded, not of the world's supply chain. A
+--   link the Atlas has not recorded is in no row and in no count.
 -- denominator: The number of links the Atlas records around that accelerator. The rows are not
 --   independent records: one link can appear under several accelerators, and an unknown supplier is a
 --   row of its own that sits on the link it qualifies. The records column says how many distinct

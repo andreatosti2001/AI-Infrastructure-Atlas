@@ -2304,3 +2304,176 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
     replaced, and "publishers" is kept;
   - **checks:** IN-10 and IN-11 are added to `tests/test_insight.py`.
 - **Rejected:** a section on the HBM page (H-4 A: two ways of showing counts); a new page (H-4 B).
+
+## D-133 — Evidence coverage kept, its records line and its population reworded
+
+- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
+- **Context:** `analytical-audit-S16.md` §2, findings C-1 and C-3. Neither cold reader understood "rows
+  drawn from 3 records, of which shared with another accelerator: 1". An independent reader given only the
+  population and denominator lines counted the H100 as 5 links, not 4.
+- **Decision** (`sql/evidence_coverage.sql`; `tools/build_insight.py`):
+  - the metric, its query and its numbers are unchanged;
+  - the block's records line reads "The 4 links come from 3 records; 1 record is also counted under another
+    accelerator", every number a cell of the result;
+  - the header's population line says how far "around" reaches (the accelerator's own edges plus the
+    incorporates and requires edges walked from its parts), that an unknown field is a row of its own, and
+    that a refused relation is a row only when its one reason is stale evidence;
+  - **checks:** IN-12 (the records line, from cells) and WH-15 (the population line).
+- **Supersedes:** D-128's block wording only; its population and denominator stand.
+- **Rejected:** keeping the block as built; retiring it; naming each gap's reason in the split line (C-2 is
+  the first query's definition, recorded as debt in D-138).
+
+## D-134 — Source age kept; the 12-month horizon said to apply only to time-sensitive links
+
+- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
+- **Context:** `analytical-audit-S16.md` §3, findings C-4 and C-6. The source policy (§12; D-040) applies
+  its 12-month re-check only to `time_sensitive` rows (`rel:fabricates`, `rel:incorporates.supplier`,
+  `rel:supplies`). `stable` rows (`rel:designs`, `rel:incorporates`, `rel:requires`) have no age limit.
+  The block and its tutorial applied the horizon to every link, and the tutorial stated the rule wrongly.
+- **Decision** (`sql/source_age.sql`; `tools/build_insight.py`):
+  - the metric, its columns and its counts are unchanged;
+  - the question asks which links rest only on evidence more than 12 months older than the reference date;
+  - the assumptions and does-not-prove lines say where the horizon applies;
+  - the block's note reads "Twelve months is a reading aid: the Atlas's re-check rule applies it only to who
+    fabricates a product and who supplies a part. An undated web page is dated by the day it was read."
+    This replaces "Dates, not ages: …";
+  - **checks:** IN-12 (the note) and WH-15 (the header).
+- **Supersedes:** D-129's description of the horizon as the freshness horizon for every link. The column
+  `beyond_horizon` keeps its name and its computation.
+- **Rejected:** keeping the block as built; retiring it; a time-sensitivity column in the query (the
+  freshness class lives in `source-policy.md`, not in `data/`; a new SQL input is beyond an audit's
+  remediation).
+
+## D-135 — The publishers tally retired
+
+- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
+- **Context:** `analytical-audit-S16.md` §4, §6 and finding C-7:
+  - the block's "1 to 2" was the range of a per-row count the page computed and never showed;
+  - its "4 of 6" counted 6 rows from 5 records without saying so (both outside D-124);
+  - its only "2" was the inferred link's two reasoning steps, which do not confirm one another;
+  - neither cold reader could act on it.
+- **Decision** (`tools/build_insight.py`; `metrics.md` §6):
+  - the block leaves the research view;
+  - every table row resting on one publisher keeps its "one publisher only" flag, on both pages;
+  - **checks:** IN-12 requires the block and its four tallies to stay gone, and every flag to stay. IN-3 no
+    longer recomputes the retired tallies.
+- **Supersedes:** D-132's "publishers (the presentation count, kept)"; `metrics.md` §6's "kept".
+- **Rejected:** keeping it, reworded, with the range still computed in the page; keeping it as built.
+
+## D-136 — The three supplier metrics kept as built
+
+- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
+- **Context:** `analytical-audit-S16.md` §5 and §6:
+  - both cold readers read the blocks as unknown, not zero;
+  - each block's "needs" names different evidence;
+  - probe P7 confirms that both builds stop, with named reasons, when a supplier is named.
+- **Decision:** D-130 stands as built: three amber "cannot be computed yet" blocks, and the stop rule.
+- **Rejected:** one merged block (S15's open question; no reader was misled, and each metric keeps the
+  place it will take once computable); retiring them (the indicators would no longer show the gap).
+
+## D-137 — The source-age reference date moves with each session that rebuilds the pages
+
+- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-4)
+- **Context:**
+  - S15's debt row, "nobody is yet charged with moving it";
+  - probes P5 and P6: a move changes only the ages and the "as of" date until a link crosses 12 months.
+    The next crossing is 2027-10-02, Trainium2's access-dated link.
+- **Decision:**
+  - a session that rebuilds the pages, for any reason, sets the reference date in `sql/source_age.sql` to
+    the day it opened, as part of its rebuild;
+  - S16 set it to 2026-10-07;
+  - each move changes the query, `sql/results/source_age.json`, the research view's "as of", ages and age
+    table, and both pages' digest lines;
+  - WH-13 now moves whatever date the query holds by one year, instead of a fixed date.
+- **Amends:** D-129's "moves only by a commit". It still moves only by a commit, now with an owner.
+- **Rejected:** moving only in audit sessions (rebuilt pages would carry an older "as of" between audits);
+  moving only when the human asks.
+
+## D-138 — The S16 findings: remediated or debt with owners
+
+- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
+- **Context:** `analytical-audit-S16.md` §8.
+- **Decision:**
+  - **remediated in S16:** C-1 and C-3 (D-133), C-4 and C-6 (D-134), C-7 (D-135);
+  - **debt:**
+
+    | Finding | Owner |
+    |---|---|
+    | C-2: "gap" mixes not researched with refused as stale | S20 (the researcher product), raised again in S16's handoff |
+    | C-5: the H100's age tally includes its recorded gap | S20 |
+    | C-8: one source carries two access dates for the same bytes | S22 |
+    | C-9: the two accelerators' links are not the same kinds | the session that next adds accelerator links |
+    | E-1: a resolved recorded gap stops both builds | S22 |
+    | E-2: an invalid citation standing crashes the HBM page build without a named reason | S22 |
+
+- **Rejected:** fixing C-2 or C-9 in S16. Each needs a change to the first query's definitions or new
+  research (S16 non-goals).
+
+## D-139 — A research session on the HBM suppliers (S16.5) precedes S17
+
+- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:** the S16 audit:
+  - three metrics show "cannot be computed yet" because no source the Atlas holds names who supplies the
+    HBM in the H100 or in Trainium2 (D-130, D-136);
+  - S16's prompt forbade research to fill a gap;
+  - the human asked that the system find such evidence itself rather than ask for it.
+- **Decision:**
+  - the next session, S16.5, researches the supplier of each incorporated HBM part from primary sources,
+    under `source-policy.md` (the `rel:incorporates.supplier` row: time-sensitive, party standing);
+  - Claude finds, extracts and verifies the evidence itself (Source Scout, Extractor, Verifier);
+  - each supplier link is staged and becomes canonical only on the human's approval (Class C);
+  - S16.5 designs the supplier metrics' presentation before any page is rebuilt with a named supplier
+    (D-130's stop rule);
+  - S17 (the policy entities) follows S16.5.
+- **Rejected:** researching inside S16 (outside its contract); keeping the planned order (the gap stays
+  debt).
+
+## D-140 — The M3 and M4 milestone audits are written at S16.5's opening
+
+- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:** PEF §4 requires a milestone audit at every major milestone. M3 (S11 to S13) has none, and M4
+  (S14 to S16) closes with S16 without one (S16 report, "Unresolved issues"; H-1 C was not chosen).
+- **Decision:**
+  - S16.5 opens by writing both audits under `docs/architecture/milestone-audits/`, each answering PEF §4's
+    eight questions, with a row each in `docs/quality/audit-history.md`;
+  - the HBM supplier research (D-139) starts after them;
+  - M4 closes as a milestone when its audit is written.
+- **Rejected:** a separate short session after S16.5; leaving the session reports as the only record.
+
+## D-141 — The HBM supplier research: both suppliers stay unknown; SK hynix's 2022 statement kept as evidence
+
+- **Session:** S16.5 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-1/H-2)
+- **Context:** `docs/research/hbm-supplier-research-S16.5.md`; the search log (28 queries, 51 retrievals).
+  - **H100:** the only product-level statement by a party is SK hynix's press release of 2022-06-08
+    (`src-053`): "HBM3 to be combined with NVIDIA H100 Tensor Core GPU". It is more than 12 months older
+    than its verification, so F-1 refuses it as a supplier value.
+  - **NVIDIA's FY2026 10-K** names its memory suppliers at company level only (ER-9; `cand-002`).
+  - **Trainium2:** no party names the memory maker.
+  - **Access gaps:** SK hynix's and Micron's filings could not be read (SP-7), so ER-3's search is
+    incomplete for both parts.
+- **Decision:**
+  - both `supplier` fields stay `not_researched`, as ER-3 prescribes after a search with access gaps; the
+    research is recorded in the findings document and the log;
+  - SK hynix's 2022 statement becomes canonical evidence: source `src-053` and the `FACT` claim
+    `claim-sk-hynix-hbm3-for-h100-2022`, reviewed and accepted by the human. It is linked to no edge or
+    field, so no page and no metric changes;
+  - the three supplier metrics stay "cannot be computed yet" (D-130, D-136). The presentation design of
+    S16.5's H-3 was not needed.
+- **Rejected:**
+  - the research recorded only in documents (verified evidence would stay outside the queryable data);
+  - SK hynix → H100 drawn as a recorded "evidence not fresh" gap, like `cand-001`. It would change the
+    H100's coverage counts, and the refused-candidate model was not checked for a supplier qualifier;
+  - SK hynix named as the supplier on stale evidence (F-1).
+
+## D-142 — A claim's review may be recorded in a sub-session report
+
+- **Session:** S16.5 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, with
+  D-141)
+- **Context:** `schemas/claims.schema.json` accepted `recorded_in` only as `SESSION-NN-REPORT.md`. A claim
+  reviewed in S16.5 could not name its own session's report. D-126 had widened the repository validator,
+  not the claim schema.
+- **Decision:** `recorded_in` accepts D-126's optional one-digit suffix (`SESSION-16.5-REPORT.md`). Anything
+  else stays refused. Checked by `tests/test_claim_schema.py`
+  (`test_review_may_be_recorded_in_a_sub_session_report`), written first.
+- **Rejected:** recording S16.5's review in S16's report (it would file the decision under another
+  session's contract).

@@ -81,8 +81,7 @@ LABELS = build_page.LABELS | frozenset(
         "Indicators", "Who makes the memory", "of", "accelerators",
         "Counted from the table’s rows at the step “who makes that part”.",
         "Links on stated evidence", "links", "rows in the table show", "records: one record can appear under more than one accelerator, and an unknown supplier sits on the link it qualifies.",
-        "rows have nothing to date", "Dates, not ages: an undated web page is dated by the day it was read.",
-        "Publishers behind a sourced link", "sourced rows rest on one publisher", "Listed, never counted as confirmation.",
+        "rows have nothing to date",
         "The chains, side by side", "Reading the chains", "Explore", "Show links whose basis is", "all links",
         "Highlights the matching links in the chains and keeps only the matching rows in the table.",
         "no recorded relationship", "table rows:", "open the evidence",
@@ -91,12 +90,17 @@ LABELS = build_page.LABELS | frozenset(
         "Built from", "Rulings this page depends on", "Reproduce", "rebuild the result:", "rebuild this page:",
         "python tools/build_insight.py --check",
         # S15 (D-128 to D-130): the metric blocks, the age table, the method layer
-        "Evidence coverage", "Source age", "Supplier metrics", "links stated", "gaps", "rows drawn from",
-        "records, of which shared with another accelerator:", "Evidence age", "as of",
+        "Evidence coverage", "Source age", "Supplier metrics", "links stated", "gaps", "Evidence age", "as of",
         "dated links: newest evidence older than twelve months", "dated links: dated only by the day a page was read",
         "Cannot be computed yet", "incorporated parts, one per accelerator:", "with supplier", "needs:", "see how this was computed", "access date",
         "Evidence age, link by link", "Newest evidence", "Where the date comes from", "Age in days",
         "Beyond twelve months", "How each measure was computed", "inferred,", "stated,",
+        # S16 (D-133, D-134): the coverage block's records line and the age block's note, reworded after the
+        # cold readings; the publishers block's labels left with the block (D-135)
+        "The", "links come from", "records;", "record is also counted under another accelerator",
+        "records are also counted under another accelerator",
+        "Twelve months is a reading aid: the Atlas’s re-check rule applies it only to who fabricates a product and who supplies a part.",
+        "An undated web page is dated by the day it was read.",
     }
 )
 
@@ -287,8 +291,9 @@ class Insight(build_page.Page):
 
     def indicators(self, chains: dict) -> str:
         """The INSIGHT layer's blocks (visual-architecture.md §7.5; S15, H-4): each metric from its SQL result,
-        with its denominator in the same block and a link to its tutorial; the publishers tally kept as
-        presentation (D-124); the three supplier metrics as "cannot be computed yet" (H-1)."""
+        with its denominator in the same block and a link to its tutorial; the three supplier metrics as
+        "cannot be computed yet" (H-1). The S14.5 publishers tally is retired (S16, D-135): each table row
+        resting on one publisher keeps its own flag."""
         rows = self.rows
         # evidence coverage: every cell from sql/results/evidence_coverage.json (H-2)
         cov = self.metrics["evidence_coverage"]["rows"]
@@ -306,7 +311,8 @@ class Insight(build_page.Page):
                 f'<span class="tally">{m("stated")} {self.label("of")} {m("links")} {self.label("links stated")}</span>'
                 f'<span class="units">{units}</span>'
                 f'<span class="split">{m("inferred")} {self.label("inferred,")} {m("gap")} {self.label("gap" if c["gap"] == 1 else "gaps")}</span>'
-                f'<span class="recs">{self.label("rows drawn from")} {m("records")} {self.label("records, of which shared with another accelerator:")} {m("shared")}</span></li>'
+                f'<span class="recs">{self.label("The")} {m("links")} {self.label("links come from")} {m("records")} {self.label("records;")} {m("shared")} '
+                f'{self.label("record is also counted under another accelerator" if c["shared"] == 1 else "records are also counted under another accelerator")}</span></li>'
             )
         k1 = (
             f'<div class="indicator" data-metric="evidence_coverage">{self.label("Evidence coverage", tag="h4")}'
@@ -332,19 +338,8 @@ class Insight(build_page.Page):
             f'<div class="indicator" data-metric="source_age">{self.label("Evidence age", tag="h4")}'
             f'<p class="den">{self.label("as of")} {self.mcell("source_age", ref, "reference_date")}</p>'
             f'<ul class="tallies">{"".join(lines)}</ul>'
-            f'<p class="how">{self.label("Dates, not ages: an undated web page is dated by the day it was read.")} {self.how("source_age")}</p></div>'
-        )
-        # publishers behind a sourced link: a presentation tally of the first result's rows, kept (S15)
-        sourced = [r for r in rows if r["publishers"]]
-        counts = sorted(len(r["publishers"]) for r in sourced)
-        rng = self.derived("pub-min", str(counts[0]))
-        if counts[-1] != counts[0]:
-            rng += f" {self.label('to')} {self.derived('pub-max', str(counts[-1]))}"
-        k3 = (
-            f'<div class="indicator">{self.label("Publishers behind a sourced link", tag="h4")}<p class="value range">{rng}</p>'
-            f'<p class="den">{self.derived("one-pub-count", str(sum(len(r["publishers"]) == 1 for r in sourced)))} {self.label("of")} '
-            f'{self.derived("sourced-count", str(len(sourced)))} {self.label("sourced rows rest on one publisher")}</p>'
-            f'<p class="how">{self.label("Listed, never counted as confirmation.")}</p></div>'
+            f'<p class="how">{self.label("Twelve months is a reading aid: the Atlas’s re-check rule applies it only to who fabricates a product and who supplies a part.")} '
+            f'{self.label("An undated web page is dated by the day it was read.")} {self.how("source_age")}</p></div>'
         )
         # the three supplier metrics: no number, the reason, what evidence would make each computable (H-1)
         blocks = []
@@ -360,7 +355,7 @@ class Insight(build_page.Page):
                 f'<p class="how">{self.label("needs:")} {m("needs")} {self.how("supplier_metrics")}</p></div>'
             )
         return (
-            f'{self.label("Indicators", tag="h3", cls="indicators-h")}<div class="indicators">{k1}{k2}{k3}</div>'
+            f'{self.label("Indicators", tag="h3", cls="indicators-h")}<div class="indicators">{k1}{k2}</div>'
             f'{self.label("Cannot be computed yet", tag="h3", cls="indicators-h")}<div class="indicators">{"".join(blocks)}</div>'
         )
 

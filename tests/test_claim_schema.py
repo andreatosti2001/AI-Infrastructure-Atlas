@@ -71,6 +71,17 @@ class ClaimSchemaTests(unittest.TestCase):
     def test_invalid_mutations_fail_where_they_mutate(self) -> None:
         check_mutations(self, self.check, FIXTURES)
 
+    def test_review_may_be_recorded_in_a_sub_session_report(self) -> None:
+        # S16.5 (D-142): a review is recorded in the report of the session that took it, sub-sessions
+        # included, with D-126's one-digit suffix; anything else stays refused.
+        accepted = next(r for r in VALID.values() if isinstance(r.get("review"), dict) and r["review"].get("verdict") == "accepted")
+        for path, ok in (("sessions/reports/SESSION-16.5-REPORT.md", True), ("sessions/reports/SESSION-16-REPORT.md", True),
+                         ("sessions/reports/SESSION-16.55-REPORT.md", False), ("sessions/reports/SESSION-16.x-REPORT.md", False)):
+            record = copy.deepcopy(accepted)
+            record["review"]["recorded_in"] = path
+            with self.subTest(recorded_in=path):
+                self.assertEqual(self.errors(record) == [], ok, self.errors(record))
+
     def test_type_by_status_table_matches_the_schema(self) -> None:
         rows = rule_rows()
         self.assertEqual(set(rows), TYPES)

@@ -1,0 +1,15 @@
+Ran 361 tests in 24.115s
+
+OK
+Repository integrity: OK
+results: up to date
+page: up to date
+page: up to date
+Python 3.11.17
+
+# Re-run on the final tree (after D-139, the documentation and the pages' digest lines), same fresh venv:
+Ran 361 tests: OK
+Repository integrity: OK
+results: up to date
+page: up to date
+page: up to date
