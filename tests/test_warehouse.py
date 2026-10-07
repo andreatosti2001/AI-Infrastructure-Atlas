@@ -28,6 +28,7 @@ WH-13 (S15) source age equals an independent computation; moving the reference d
       and nothing else
 WH-14 (S15) the supplier metrics equal an independent computation; with no supplier named, all three are
       "cannot be computed yet", and a planted unknown keeps its own word
+WH-3  (S16.6, D-147) a third-party citation's criteria reach SQL, one row per criterion
 WH-15 (S16, D-133, D-134) the metric headers say what an independent reader needed: coverage's population
       says which refused relations are rows and how far "around" reaches; source age says the 12-month
       horizon is a re-check rule only for time-sensitive links, and never that every older link needs newer
@@ -330,6 +331,20 @@ class WarehouseTests(unittest.TestCase):
         (root / "data/claims.json").write_text(json.dumps(claims), encoding="utf-8")
         with self.assertRaisesRegex(Exception, r"claims\.json.*confidence"):
             self.wh.load(root / "data")
+
+    def test_wh3_third_party_criteria_reach_sql_row_by_row(self) -> None:
+        # S16.6 (D-147): a citation's third-party criteria are loaded, one row per criterion, never dropped, so a
+        # query can show "reported by …" with each unmet criterion beside it.
+        root = copy_repo()
+        claims = load_json(root / "data/claims.json")
+        cited = next(c for c in claims if c.get("citations"))
+        cited["citations"][0]["third_party_criteria"] = {"recognised": {"met": False, "reason": "r1"}, "independent": {"met": True, "reason": "r2"}}
+        (root / "data/claims.json").write_text(json.dumps(claims), encoding="utf-8")
+        con = self.wh.load(root / "data")
+        got = con.execute("SELECT criterion, met, reason FROM citation_criteria WHERE claim_id = ? AND ordinal = 0 ORDER BY criterion", [cited["id"]]).fetchall()
+        self.assertEqual(got, [("independent", True, "r2"), ("recognised", False, "r1")])
+        want = sum(len(c.get("third_party_criteria", {})) for x in load_json(DATA / "claims.json") for c in x.get("citations", []))
+        self.assertEqual(self.wh.load(DATA).execute("SELECT count(*) FROM citation_criteria").fetchone()[0], want)
 
     def test_wh4_null_only_beside_a_state(self) -> None:
         con = self.wh.load(DATA)

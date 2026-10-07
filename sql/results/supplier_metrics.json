@@ -3,15 +3,15 @@
   "query": "sql/supplier_metrics.sql",
   "query_sha256": "712e9af41a88f5fcb8130786eb099e36ccf51e66a299b2f1f148134ffac7653c",
   "engine": "duckdb 1.5.6",
-  "input_digest": "39892db9d8ec1696f82ba058bb0620748bdce4d10dcd5906df93c4ba1722c748",
+  "input_digest": "a8dcc03e9846333efacb202e686aca0f958e62e4f2ae0c272c177dc363ac9b3a",
   "inputs": [
     {
       "path": "data/claims.json",
-      "sha256": "c4c16a19c00628e6dcb991767a0f70e46c9aae59a7993184926e4fbc55dd9271"
+      "sha256": "22eea1abddb827fa58ebe3632e55a386739c6484bb875a4ed111aea9ca468e9b"
     },
     {
       "path": "data/companies.json",
-      "sha256": "871ea0d0b159555a4aa3721a28021391881fcd3566f54419da6849d6640a2df2"
+      "sha256": "ff07246c91cdbbdf53e7ca96d3546fc72a6b8be94c48bb107d0e8ed8206f11a5"
     },
     {
       "path": "data/components.json",
@@ -47,7 +47,7 @@
     },
     {
       "path": "data/sources.json",
-      "sha256": "9d15fa28d4d16ae56303ebd4eeff0e922f0134d0055476056df27ee7d56551ad"
+      "sha256": "7e91880776b4b7134cc6f20d042ce6a9956beebd39ab8919c78b3d03227b1709"
     },
     {
       "path": "data/technologies.json",
@@ -63,7 +63,7 @@
     },
     {
       "path": "tools/warehouse.py",
-      "sha256": "d2777256cd59f05141e81cf0af661180ec460520261cfd43a630d13b88be01f5"
+      "sha256": "f2b0b1062808a38ad14f425ec831fda987cecfc3e41645181e2eca206638e07a"
     }
   ],
   "columns": [

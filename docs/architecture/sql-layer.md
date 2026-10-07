@@ -184,6 +184,7 @@ All from canonical files. The loader is `tools/warehouse.py`; this list is its c
 | `source_dates` | date a source states for itself | `sources.json` `stated_dates` |
 | `claims` | claim | `claims.json` |
 | `citations` | citation of a claim | `claims.json` `citations` |
+| `citation_criteria` | one §7.1 criterion of a third-party citation: `recognised` or `independent`, met or not, and why (S16.6, D-147) | `claims.json` `citations` `third_party_criteria` |
 | `claim_inputs` | input claim of a claim | `claims.json` `input_claim_ids` |
 | `entities` | company, jurisdiction, technology, component, product or facility | the six entity files |
 | `entity_lists` | item of a list field (`aliases`, `identity_claim_ids`, `concept_refs`, `broader`, `instance_of`, `facility_kinds`) | the six entity files |

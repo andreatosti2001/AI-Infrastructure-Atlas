@@ -52,7 +52,7 @@ ENTITY_ATTRIBUTES = (
 KNOWN_KEYS = {
     "sources.json": {"id", "migrated_from", "source_class", "title", "publisher", "publisher_entity", "authors", "url", "stated_dates", "retrieval", "filing_copy"},
     "claims.json": {"id", "claim_type", "statement", "evidence_status", "citations", "as_of", "review", "verified_on", "input_claim_ids", "reasoning", "disputed_with", "search"},
-    "citation": {"source_id", "locator", "anchor", "standing", "read", "originator"},
+    "citation": {"source_id", "locator", "anchor", "standing", "read", "originator", "third_party_criteria"},
     "relationships.json": {"id", "relation_type", "source_entity", "target_entity", "claim_ids", "supplier", "item", "valid_from", "valid_to"},
     "events.json": {"id", "event_type", "subject", "date", "claim_ids"},
     "refused_candidates.json": {"id", "relation_types", "source_entities", "target_entities", "item", "considered", "reasons", "ruling", "reasoning"},
@@ -80,6 +80,8 @@ TABLES = {
         "claim_id VARCHAR, ordinal INTEGER, source_id VARCHAR, locator VARCHAR, anchor VARCHAR, standing VARCHAR, "
         "read_accessed_at VARCHAR, read_sha256 VARCHAR, originator_value VARCHAR, originator_state VARCHAR"
     ),
+    # S16.6 (D-147): a third-party citation's criteria, one row per criterion (recognised, independent)
+    "citation_criteria": "claim_id VARCHAR, ordinal INTEGER, criterion VARCHAR, met BOOLEAN, reason VARCHAR",
     "claim_inputs": "claim_id VARCHAR, ordinal INTEGER, input_claim_id VARCHAR",
     "claim_disputes": "claim_id VARCHAR, ordinal INTEGER, disputed_claim_id VARCHAR",
     "entities": "id VARCHAR, type VARCHAR, name VARCHAR",
@@ -190,6 +192,8 @@ def load(data: Path = DATA, db: str = ":memory:") -> duckdb.DuckDBPyConnection:
                 c["id"], i, cit["source_id"], cit["locator"], cit["anchor"], cit["standing"],
                 cit["read"]["accessed_at"], cit["read"]["sha256"], *vs(cit, "originator"),
             ))
+            for criterion, verdict in sorted(cit.get("third_party_criteria", {}).items()):
+                rows["citation_criteria"].append((c["id"], i, criterion, verdict["met"], verdict["reason"]))
         rows["claim_inputs"] += [(c["id"], i, x) for i, x in enumerate(c.get("input_claim_ids", []))]
         rows["claim_disputes"] += [(c["id"], i, x) for i, x in enumerate(c.get("disputed_with", []))]
 

@@ -1249,5 +1249,69 @@
       "accessed_at": "2026-10-07T15:24Z",
       "sha256": "3712f70b893f491fda26a1e47826ca83a0161beeee78b33290c3b1de9593174a"
     }
+  },
+  {
+    "id": "src-054",
+    "source_class": "market_research_consultancy",
+    "title": "HBM3 Initially Exclusively Supplied by SK Hynix, Samsung Rallies Fast After AMD Validation, Says TrendForce",
+    "publisher": "TrendForce (Press Center)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "Avril Wu",
+    "url": "https://www.trendforce.com/presscenter/news/20240313-12075.html",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2024-03-13"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-07T16:44Z",
+      "sha256": "bc09c9b87630057287f07954a07427f1888518dbd64f5fda30ca9af72b97abd7"
+    }
+  },
+  {
+    "id": "src-055",
+    "source_class": "market_research_consultancy",
+    "title": "AWS Trainium3 Deep Dive | A Potential Challenger Approaching",
+    "publisher": "SemiAnalysis",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "Dylan Patel, Daniel Nishball, Wega Chu, and others",
+    "url": "https://newsletter.semianalysis.com/p/aws-trainium3-deep-dive-a-potential",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2025-12-04"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-07T16:45Z",
+      "sha256": "f5516abea183865b8a650bbb62040ea7fed56dec5263272a2e2b6d1c04bacf79"
+    }
+  },
+  {
+    "id": "src-056",
+    "source_class": "company_filing",
+    "title": "2025 Business Report, for the year ended December 31, 2025 (English)",
+    "publisher": "Samsung Electronics Co., Ltd.",
+    "publisher_entity": "company-samsung-electronics-co-ltd",
+    "authors": {
+      "state": "not_researched"
+    },
+    "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2025_4Q_Interim_Report.pdf",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-07T15:27Z",
+      "sha256": "626dd527bb25dc1ffd7ce72d84a0ded10f4d8f3daa0352d6c6b6be07c3eae73a"
+    },
+    "filing_copy": "filer_hosted_not_checked"
   }
 ]

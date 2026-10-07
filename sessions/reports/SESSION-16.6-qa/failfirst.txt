@@ -24,3 +24,7 @@ FAIL: test_a_citation_may_record_its_third_party_criteria (test_claim_schema.Cla
 AssertionError: Lists differ: ["Additional properties are not allowed ('[34 chars]ed)"] != []
 Ran 76 tests in 0.722s
 FAILED (failures=12)
+Ran 1 test in 1.428s
+FAILED (errors=1)
+    raise UnknownKey(f"{where}: key(s) {unknown} are not in the loader's contract (tools/warehouse.py KNOWN_KEYS)")
+warehouse.UnknownKey: claims.json claim-nvidia-registrant-name citation 0: key(s) ['third_party_criteria'] are not in the loader's contract (tools/warehouse.py KNOWN_KEYS)
