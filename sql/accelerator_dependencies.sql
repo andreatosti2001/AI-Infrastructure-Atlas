@@ -1,9 +1,12 @@
 -- question: For each AI accelerator on this page, which links does the Atlas record around it, on what
---   basis (stated by a source, inferred by the Atlas, or a known gap), and how old is the evidence
---   behind each link?
+--   basis (stated by a source, reported by a third party, inferred by the Atlas, or a known gap), and how
+--   old is the evidence behind each link?
 -- reading: Each row is one link around one accelerator. The basis says how the Atlas knows it:
---   stated (a cited claim is a FACT), inferred (every cited claim is the Atlas's reasoning), or gap
---   (the Atlas records that it does not know, and the gap reason says why, in the record's own words).
+--   stated (a cited claim is a FACT), reported (no cited claim is a FACT, and one reports what a third
+--   party says), inferred (every cited claim is the Atlas's reasoning), or gap (the Atlas records that it
+--   does not know, and the gap reason says why, in the record's own words). Period to is the last date a
+--   historical value is supported for; not applicable means the row claims no end. Criteria unmet lists
+--   the source-policy §7.1 criteria a third-party source behind the row does not meet.
 --   The two evidence dates are the oldest and newest dates of the evidence the row rests on, dated as
 --   the freshness rule dates them; not applicable means there is nothing to date. They are dates, not
 --   ages: the table never says whether a value is still current. Publishers lists every publisher
@@ -81,7 +84,8 @@ edge_rows AS (
            r.source_entity AS from_id, r.relation_type AS relation, r.target_entity AS to_id,
            'edge' AS row_kind, 'not_applicable' AS gap_reason,
            (SELECT list(rc.claim_id ORDER BY rc.claim_id)
-            FROM relationship_claims AS rc WHERE rc.relationship_id = r.id) AS claim_ids
+            FROM relationship_claims AS rc WHERE rc.relationship_id = r.id) AS claim_ids,
+           CASE WHEN r.valid_to_state = 'value' THEN r.valid_to_value ELSE 'not_applicable' END AS period_to
     FROM (SELECT accelerator_id, record_id, reached_through, depth FROM direct_links
           UNION ALL
           SELECT accelerator_id, record_id, reached_through, depth FROM walked_links) AS l
@@ -103,7 +107,8 @@ field_rows AS (
            coalesce((SELECT list(fc.claim_id ORDER BY fc.claim_id)
                      FROM field_value_claims AS fc
                      WHERE fc.record_id = f.record_id AND fc.field = f.field AND fc.ordinal = f.ordinal),
-                    []::VARCHAR[]) AS claim_ids
+                    []::VARCHAR[]) AS claim_ids,
+           CASE WHEN f.valid_to_state = 'value' THEN f.valid_to_value ELSE 'not_applicable' END AS period_to
     FROM edge_rows AS e
     JOIN field_values AS f ON f.record_id = e.record_id
 ),
@@ -121,7 +126,8 @@ gap_rows AS (
            coalesce((SELECT list(k.claim_id_value ORDER BY k.claim_id_value)
                      FROM candidate_considered AS k
                      WHERE k.candidate_id = c.id AND k.claim_id_state = 'value'),
-                    []::VARCHAR[]) AS claim_ids
+                    []::VARCHAR[]) AS claim_ids,
+           'not_applicable' AS period_to
     FROM accelerators AS a
     JOIN candidate_endpoints AS target
       ON target.side = 'target' AND target.entity_value = a.accelerator_id
@@ -183,7 +189,10 @@ evidence AS (
 -- date comes from, its sources and publishers, and its caveats. When citations of different kinds share
 -- the oldest or newest date, the weakest kind is reported (accessed before stated before as_of), so the
 -- page never hides that a date is only an access date. The basis is stated when at least one claim the row cites is a
--- FACT, inferred when no cited claim is, and gap for an unknown or a recorded gap. Each list is sorted inside
+-- FACT, reported when no cited claim is a FACT but one is an ATTRIBUTION (what a third party says,
+-- source-policy §7.1),
+-- inferred otherwise, and gap for an unknown or a recorded gap. criteria_unmet lists, from every claim
+-- the row reaches, the §7.1 criteria a third-party citation does not meet. Each list is sorted inside
 -- its aggregate, and the final ORDER BY fixes the order of the rows, so every run gives the same
 -- bytes.
 SELECT a.accelerator,
@@ -199,6 +208,8 @@ SELECT a.accelerator,
        CASE WHEN r.row_kind IN ('unknown', 'recorded_gap') THEN 'gap'
             WHEN EXISTS (SELECT 1 FROM claims AS cl
                          WHERE list_contains(r.claim_ids, cl.id) AND cl.claim_type = 'FACT') THEN 'stated'
+            WHEN EXISTS (SELECT 1 FROM claims AS cl
+                         WHERE list_contains(r.claim_ids, cl.id) AND cl.claim_type = 'ATTRIBUTION') THEN 'reported'
             ELSE 'inferred' END AS basis,
        r.gap_reason,
        r.record_id,
@@ -231,7 +242,11 @@ SELECT a.accelerator,
                  WHERE e.row_key = r.row_key AND e.standing = 'party'
                    AND e.publisher_entity_state <> 'value'), []::VARCHAR[]) AS party_standing_unchecked,
        EXISTS (SELECT 1 FROM reached AS x JOIN claims AS cl ON cl.id = x.claim_id
-               WHERE x.row_key = r.row_key AND cl.claim_type = 'INTERPRETATION') AS rests_on_atlas_interpretation
+               WHERE x.row_key = r.row_key AND cl.claim_type = 'INTERPRETATION') AS rests_on_atlas_interpretation,
+       r.period_to,
+       coalesce((SELECT list(DISTINCT cc.criterion ORDER BY cc.criterion)
+                 FROM reached AS x JOIN citation_criteria AS cc ON cc.claim_id = x.claim_id
+                 WHERE x.row_key = r.row_key AND NOT cc.met), []::VARCHAR[]) AS criteria_unmet
 FROM all_rows AS r
 JOIN accelerators AS a ON a.accelerator_id = r.accelerator_id
 LEFT JOIN entities AS ef ON ef.id = r.from_id

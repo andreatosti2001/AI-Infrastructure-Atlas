@@ -28,6 +28,8 @@ IN-10 (S15, D-128 to D-130, D-132) every metric value in the indicator blocks is
       never its named-supplier or supply-link count; access dates are flagged where the result has them;
 IN-11 (S15, D-131) every metric has its own "How this was computed", closed by default, which is its
       query file: question, the eight PEF §8 answers, steps and reading; each metric block links to it.
+IN-13 (S16.6, D-147, D-148) a named supplier shows its name, basis, period and unmet criteria as cells; coverage
+      counts reported links; a supplier block shows each non-zero kind of supplier and never a zero
 IN-12 (S16, D-133 to D-135) the publishers block is retired and computes nothing, while every row resting
       on one publisher keeps its flag; the coverage block says, with its own cells, how many records its
       links come from and how many are counted under another accelerator; the age block says that the
@@ -247,6 +249,7 @@ class InsightTests(unittest.TestCase):
         uniform = (
             len({(r["relation"], r["to_id"], r["basis"]) for r in parts}) == 1
             and len({r["gap_reason"] for r in suppliers}) == 1
+            and all(r["basis"] == "gap" for r in suppliers)  # S16.6: named suppliers are not one shared state
             and {r["accelerator_id"] for r in parts} == {r["accelerator_id"] for r in suppliers} == set(self.accelerators())
         )
         if uniform:
@@ -406,18 +409,24 @@ class InsightTests(unittest.TestCase):
         for r in self.results["evidence_coverage"]["rows"]:
             mine = [x for x in self.rows if x["accelerator_id"] == r["accelerator_id"]]
             with self.subTest(accelerator=r["accelerator_id"]):
-                self.assertEqual((r["links"], r["stated"], r["inferred"], r["gap"], r["records"]), (len(mine), sum(x["basis"] == "stated" for x in mine), sum(x["basis"] == "inferred" for x in mine), sum(x["basis"] == "gap" for x in mine), len({x["record_id"] for x in mine})))
+                self.assertEqual((r["links"], r["stated"], r["inferred"], r["reported"], r["gap"], r["records"]), (len(mine), sum(x["basis"] == "stated" for x in mine), sum(x["basis"] == "inferred" for x in mine), sum(x["basis"] == "reported" for x in mine), sum(x["basis"] == "gap" for x in mine), len({x["record_id"] for x in mine})))
                 units = [n for n in self.nodes if n.attrs.get("data-coverage") == r["accelerator_id"]]
                 self.assertEqual(len(units), 1)
                 cols = {n.attrs["data-column"] for n in units[0].walk() if n.attrs.get("data-query") == "evidence_coverage"}
-                self.assertLessEqual({"links", "stated", "inferred", "gap", "records", "shared"}, cols, "a coverage block without its parts or its denominator")
+                self.assertLessEqual({"links", "stated", "inferred", "reported", "gap", "records", "shared"}, cols, "a coverage block without its parts or its denominator")
         # a supplier metric: its status in words, its reason, never a named-supplier or supply-link count
         for b in blocks["supplier_metrics"]:
             cols = {n.attrs["data-column"] for n in b.walk() if n.attrs.get("data-query") == "supplier_metrics"}
             with self.subTest(block=b.attrs.get("data-row")):
-                self.assertNotIn("parts_supplier_named", cols, "a zero beside a supplier metric reads as 'no suppliers'")
                 self.assertNotIn("supplies_links", cols)
-                self.assertLessEqual({"metric", "status", "parts", "parts_supplier_unknown", "unknown_state", "needs"}, cols)
+                self.assertLessEqual({"metric", "status", "parts", "needs"}, cols)
+                # S16.6 (D-148): each kind of supplier the parts have is shown, and a zero kind never is
+                row = self.results["supplier_metrics"]["rows"][int(b.attrs["data-row"])]
+                for column in ("parts_supplier_stated", "parts_supplier_reported", "parts_supplier_unknown"):
+                    if row[column]:
+                        self.assertIn(column, cols, f"{column} is not shown")
+                    else:
+                        self.assertNotIn(column, cols, "a zero beside a supplier metric reads as 'no suppliers'")
                 self.assertIn("cannot be computed yet", b.text())
         # every row of the age result is drawn in the age table, and every access date is flagged
         age_rows = [n for n in self.nodes if n.tag == "tr" and n.attrs.get("id", "").startswith("age-")]
@@ -472,6 +481,21 @@ class InsightTests(unittest.TestCase):
         self.assertIn(HORIZON_NOTE, text, "the age block reads 'older than twelve months' as 'needs re-checking' for every link")
         self.assertIn(UNDATED_NOTE, text)
         self.assertNotIn("Dates, not ages", text)
+
+    # IN-13
+    def test_in13_a_named_supplier_shows_its_name_basis_period_and_unmet_criteria(self) -> None:
+        # S16.6 (D-147, D-148): in the chains, a named supplier is its company, its basis in words, its period when
+        # historical, and every source-policy criterion a third party behind it does not meet, each a cell
+        for i, r in enumerate(self.rows):
+            if r["relation"] != "supplier" or r["basis"] == "gap":
+                continue
+            slot = next(n for n in self.nodes if n.attrs.get("data-slot") == "supplier" and n.attrs.get("data-row") == str(i))
+            cells = {(n.attrs["data-column"], n.attrs.get("data-item")) for n in slot.walk() if n.attrs.get("data-derived") == "sql-cell" and n.attrs.get("data-row") == str(i)}
+            with self.subTest(row=i):
+                self.assertIn(("from_name", None), cells, "a named supplier without its name")
+                self.assertIn(("basis", None), cells)
+                self.assertEqual(("period_to", None) in cells, r["period_to"] != "not_applicable", "a historical supplier without its period, or a period invented")
+                self.assertEqual({int(item) for col, item in cells if col == "criteria_unmet"}, set(range(len(r["criteria_unmet"]))), "an unmet criterion left out")
 
     # IN-8
     def test_in8_rebuild_is_byte_identical(self) -> None:

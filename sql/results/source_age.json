@@ -3,7 +3,7 @@
   "query": "sql/source_age.sql",
   "query_sha256": "90f0f06eb55c3df570a2fff4eb1b582e0baf29b77ed9c4c12cc42744b5855c68",
   "engine": "duckdb 1.5.6",
-  "input_digest": "c93e840fcfe3c68de86c31295c93df2da04ec95e2899cc7ea1803dc581982e19",
+  "input_digest": "1c3b210dd648dd48c524f7d35b35c65c8ea7759e9cd525c92db01d91c1c0d65b",
   "inputs": [
     {
       "path": "data/claims.json",
@@ -43,7 +43,7 @@
     },
     {
       "path": "data/relationships.json",
-      "sha256": "5d8d7c60065cc317095575cbfc144a9af8f91e210f3f4c7ed068a38ba4f08a09"
+      "sha256": "519be48f6d83d3dcf858b14fe79837a05d0d303158afb919a7dd605b25666178"
     },
     {
       "path": "data/sources.json",
@@ -55,7 +55,7 @@
     },
     {
       "path": "sql/accelerator_dependencies.sql",
-      "sha256": "0d06a6b940680f19d65ac84f76cb007fc39190170d012632a7e76cf3f649bd64"
+      "sha256": "86815758cb5a569f29426c46adeec17888884072c61beb64e60118f600e93e18"
     },
     {
       "path": "sql/source_age.sql",
@@ -123,17 +123,17 @@
       "accelerator_id": "product-amazon-com-trainium2",
       "position": 3,
       "record_id": "rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memory",
-      "gap_reason": "not_researched",
-      "from_id": "not_researched",
-      "from_name": "not_researched",
+      "gap_reason": "not_applicable",
+      "from_id": "company-samsung-electronics-co-ltd",
+      "from_name": "Samsung Electronics",
       "relation": "supplier",
       "to_name": "High Bandwidth Memory",
-      "basis": "gap",
+      "basis": "reported",
       "reference_date": "2026-10-07",
-      "newest_evidence": "not_applicable",
-      "newest_evidence_basis": "not_applicable",
-      "age_days": "not_applicable",
-      "beyond_horizon": "not_applicable"
+      "newest_evidence": "2025-12-04",
+      "newest_evidence_basis": "stated",
+      "age_days": "307",
+      "beyond_horizon": "no"
     },
     {
       "accelerator": "AWS Trainium2",
@@ -191,17 +191,17 @@
       "accelerator_id": "product-nvidia-h100-tensor-core-gpu",
       "position": 3,
       "record_id": "rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-memory",
-      "gap_reason": "not_researched",
-      "from_id": "not_researched",
-      "from_name": "not_researched",
+      "gap_reason": "not_applicable",
+      "from_id": "company-sk-hynix",
+      "from_name": "SK hynix",
       "relation": "supplier",
       "to_name": "High Bandwidth Memory",
-      "basis": "gap",
+      "basis": "reported",
       "reference_date": "2026-10-07",
-      "newest_evidence": "not_applicable",
-      "newest_evidence_basis": "not_applicable",
-      "age_days": "not_applicable",
-      "beyond_horizon": "not_applicable"
+      "newest_evidence": "2024-03-13",
+      "newest_evidence_basis": "stated",
+      "age_days": "938",
+      "beyond_horizon": "yes"
     },
     {
       "accelerator": "NVIDIA H100",

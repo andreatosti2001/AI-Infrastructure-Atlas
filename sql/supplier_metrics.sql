@@ -3,31 +3,37 @@
 -- population: The parts the accelerators on this page incorporate, counted per accelerator: each
 --   accelerator's incorporates link carries its own supplier field, because who makes the memory in one
 --   product says nothing about who makes it in another.
--- denominator: The number of those incorporated parts. A supplier metric would need a named supplier for
---   each; this table counts how many have one and how many are unknown, and it computes no metric until
---   at least one is named.
--- assumptions: A supplier is known only when the Atlas records it by name, with the claims behind it.
---   An unknown supplier keeps its own state word. Supply links between companies are counted in a
---   separate column and are never read as the supplier of a part.
--- missing data: Who supplies each part. No source the Atlas holds states it, and the research has not
---   been done.
+-- denominator: The number of those incorporated parts. A supplier metric needs, for each part, what its
+--   needs line says: the full set of its suppliers, where each makes the part, or a statement that it has
+--   exactly one. This table counts how many parts have a supplier stated by a party, how many have one
+--   reported by a third party, and how many are unknown, and it computes no metric until those needs are
+--   met.
+-- assumptions: A supplier is known only when the Atlas records it by name, with the claims behind it. It is
+--   stated when a party's own statement names it, and reported when only a third party does (source-policy
+--   §7.1). A named supplier is one supplier, not the full set: neither kind of statement says it was the
+--   only one. An unknown supplier keeps its own state word. Supply links between companies are counted in
+--   a separate column and are never read as the supplier of a part.
+-- missing data: For each part, the full set of its suppliers, where each makes it, and whether it has
+--   exactly one. No source the Atlas holds states any of them.
 -- reproduce: python tools/warehouse.py rebuilds this result; the warehouse's checks recompute each count
 --   independently, in plain Python, from the records.
--- sensitivity: The first named supplier changes the status of all three metrics; until then nothing a
---   reader could vary changes the answer.
--- does not prove: That a part has no supplier, one supplier or many. An unknown is not a zero, and the
---   absence of a metric says nothing about concentration in the world.
+-- sensitivity: A source stating a part's full set of suppliers, their locations, or a single supplier would
+--   change a metric's status; a further named supplier changes only the counts.
+-- does not prove: That a part has no supplier, one supplier or many. A named or reported supplier is not
+--   the only supplier, an unknown is not a zero, and the absence of a metric says nothing about
+--   concentration in the world.
 -- reading: One row per supplier metric. parts counts the incorporated parts on the page, one per
---   accelerator and part; parts_supplier_named and parts_supplier_unknown split them by what the Atlas
---   records; unknown_state gives the record's own word for the unknowns. supplies_links counts the company-to-company supply links recorded for those parts,
---   kept apart from the supplier field. status says whether the metric can be computed yet, and needs says
---   what evidence it would take.
+--   accelerator and part; parts_supplier_stated, parts_supplier_reported and parts_supplier_unknown split
+--   them by what the Atlas records; unknown_state gives the record's own word for the unknowns.
+--   supplies_links counts the company-to-company supply links recorded for those parts, kept apart from
+--   the supplier field. status says whether the metric can be computed yet, and needs says what evidence
+--   it would take.
 
 -- step: Take the supplier of each part on the page
 -- This query reads the result of the links query, accelerator_dependencies, as a table. Each part an
--- accelerator incorporates has a supplier row on its incorporates link: a name when the Atlas records
--- one, otherwise the state word of the unknown. record_id is that link, so each accelerator's part is
--- counted separately even when two accelerators incorporate the same class of part.
+-- accelerator incorporates has a supplier row on its incorporates link: a named supplier, with the basis
+-- of the claims behind it, or the state word of the unknown. record_id is that link, so each accelerator's
+-- part is counted separately even when two accelerators incorporate the same class of part.
 WITH suppliers AS (
     SELECT DISTINCT d.record_id, d.to_id AS part_id, d.basis, d.gap_reason
     FROM accelerator_dependencies AS d
@@ -50,25 +56,27 @@ supply_links AS (
 -- the Atlas would have to record before each could be computed.
 metrics AS (
     SELECT * FROM (VALUES
-        (1, 'supplier count', 'who supplies each part, named in a source'),
+        (1, 'supplier count', 'the full set of suppliers of each part, named in a source'),
         (2, 'geographic concentration', 'where each named supplier makes the part'),
         (3, 'single-source relationships', 'a source stating that a part has exactly one supplier')
     ) AS m(ordinal, metric, needs)
 )
 
--- step: Decide whether each metric can be computed
--- A metric can be computed only when at least one supplier is named. Until then its status is
--- cannot_be_computed_yet, and the counts beside it show why. string_agg lists the distinct state words
--- of the unknowns in a fixed order. The final ORDER BY fixes the order of the rows.
+-- step: Count the parts by what the Atlas records, and keep every metric uncomputable
+-- A part counts as stated when a party's statement names its supplier, as reported when only a third
+-- party does, and as unknown when the field holds a state. No record kind yet holds a part's full set of
+-- suppliers, their locations or a single-supplier statement, so no metric's needs can be met and every
+-- status is cannot_be_computed_yet. string_agg lists the distinct state words of the unknowns in a fixed
+-- order. The final ORDER BY fixes the order of the rows.
 SELECT m.metric,
        (SELECT count(DISTINCT record_id) FROM suppliers) AS parts,
-       (SELECT count(DISTINCT record_id) FROM suppliers WHERE basis <> 'gap') AS parts_supplier_named,
+       (SELECT count(DISTINCT record_id) FROM suppliers WHERE basis = 'stated') AS parts_supplier_stated,
+       (SELECT count(DISTINCT record_id) FROM suppliers WHERE basis = 'reported') AS parts_supplier_reported,
        (SELECT count(DISTINCT record_id) FROM suppliers WHERE basis = 'gap') AS parts_supplier_unknown,
        coalesce((SELECT string_agg(DISTINCT gap_reason, ', ' ORDER BY gap_reason)
                  FROM suppliers WHERE basis = 'gap'), 'not_applicable') AS unknown_state,
        (SELECT n FROM supply_links) AS supplies_links,
-       CASE WHEN NOT EXISTS (SELECT 1 FROM suppliers WHERE basis <> 'gap') THEN 'cannot_be_computed_yet'
-            ELSE 'computable_not_yet_defined' END AS status,
+       'cannot_be_computed_yet' AS status,
        m.needs
 FROM metrics AS m
 ORDER BY m.ordinal

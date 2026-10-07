@@ -44,6 +44,7 @@ ul.tallies li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10
 .recs { color: var(--ink-muted); }
 .accessed { font-size: 0.86em; font-weight: 600; color: var(--ink-gap); }
 .how-link { white-space: nowrap; }
+span.date { white-space: nowrap; }
 .indicator h4 .who { font-weight: inherit; }
 section.metric-how { margin: 6px 0 14px; }
 section.metric-how h4 { margin: 18px 0 4px; }
@@ -54,6 +55,7 @@ a.unit { display: inline-block; width: 18px; height: 18px; border: 2px solid var
 a.unit.stated { box-shadow: inset 0 0 0 9px var(--line-ink); }
 a.unit.inferred { border-style: dashed; }
 a.unit.gap { border: 2px dotted var(--line-gap); background: var(--surface-gap); }
+a.unit.reported { border: 4px double var(--line-ink); }
 a.unit:hover, a.unit:focus-visible { outline: 3px solid var(--line-focus); outline-offset: 2px; }
 .vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 ul.key { list-style: none; padding: 0; margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 0.88rem; }
@@ -61,6 +63,7 @@ ul.key li { display: flex; align-items: center; gap: 8px; }
 .swatch { display: inline-block; width: 34px; height: 0; border-top: 2px solid var(--line-ink); }
 .swatch.k-inferred { border-top-style: dashed; }
 .swatch.k-gap { border-top: 2px dotted var(--line-gap); }
+.swatch.k-reported { border-top: 4px double var(--line-ink); }
 .swatch.k-norecord { border-top: 2px dashed var(--line-rule); }
 .swatch.k-instance { width: 26px; height: 16px; border: 1.5px solid var(--line-ink); border-radius: 3px; }
 .swatch.k-class { width: 26px; height: 16px; border: 1.5px solid var(--line-ink); border-top-width: 5px; border-radius: 3px; background: var(--surface-class); }
@@ -88,13 +91,16 @@ a.link { display: flex; flex-direction: column; align-items: center; text-align:
 .link.inferred .wire { border-top-style: dashed; }
 .link.gap .wire { border-top: 2px dotted var(--line-gap); }
 .link.gap .wire::after { display: none; }
+.link.reported .wire { border-top: 4px double var(--line-ink); }
 .link .b { margin-top: 1px; }
 .link .dates { margin-top: 2px; font-size: 0.74rem; color: var(--ink-muted); }
 span.link.norecord, span.slot.norecord { display: block; padding: 6px; text-align: center; font-size: 0.8rem; color: var(--ink-muted); border: 1.5px dashed var(--line-rule); border-radius: 6px; }
 a.slot { display: block; padding: 6px 10px; font-size: 0.85rem; color: var(--ink-gap); text-decoration: none; background: var(--surface-gap); border: 1.5px dashed var(--line-gap); border-radius: 8px; }
+a.slot.stated { color: var(--ink-body); background: var(--surface-page); border: 1.5px solid var(--line-ink); }
+a.slot.reported { color: var(--ink-body); background: var(--surface-page); border: 4px double var(--line-ink); }
 a.link:hover, a.link:focus-visible, a.slot:hover, a.slot:focus-visible { outline: 3px solid var(--line-focus); outline-offset: 2px; }
-body:has(#f-stated:checked) [data-mark][data-basis="stated"], body:has(#f-inferred:checked) [data-mark][data-basis="inferred"], body:has(#f-gap:checked) [data-mark][data-basis="gap"] { outline: 3px solid var(--line-focus); outline-offset: 2px; }
-body:has(#f-stated:checked) tr[data-basis]:not([data-basis="stated"]), body:has(#f-inferred:checked) tr[data-basis]:not([data-basis="inferred"]), body:has(#f-gap:checked) tr[data-basis]:not([data-basis="gap"]) { display: none; }
+body:has(#f-stated:checked) [data-mark][data-basis="stated"], body:has(#f-inferred:checked) [data-mark][data-basis="inferred"], body:has(#f-gap:checked) [data-mark][data-basis="gap"], body:has(#f-reported:checked) [data-mark][data-basis="reported"] { outline: 3px solid var(--line-focus); outline-offset: 2px; }
+body:has(#f-stated:checked) tr[data-basis]:not([data-basis="stated"]), body:has(#f-inferred:checked) tr[data-basis]:not([data-basis="inferred"]), body:has(#f-gap:checked) tr[data-basis]:not([data-basis="gap"]), body:has(#f-reported:checked) tr[data-basis]:not([data-basis="reported"]) { display: none; }
 tr:target { outline: 3px solid var(--line-focus); outline-offset: -3px; }
 ul.evidence-index { padding-left: 1.2em; max-width: 80ch; }
 ul.evidence-index li { margin: 8px 0; }
@@ -104,6 +110,7 @@ ul.evidence-index li { margin: 8px 0; }
   .link .wire { position: absolute; left: 14px; top: 0; bottom: 0; width: 0; height: auto; margin: 0; border-top: 0; border-left: 2px solid var(--line-ink); }
   .link.inferred .wire { border-left-style: dashed; }
   .link.gap .wire { border-top: 0; border-left: 2px dotted var(--line-gap); }
+  .link.reported .wire { border-top: 0; border-left: 4px double var(--line-ink); }
   .link .wire::after { right: auto; top: auto; left: -7px; bottom: -1px; border-width: 10px 6px 0 6px; border-color: transparent; border-top-color: var(--line-ink); }
   a.slot, span.slot.norecord { margin: 8px 0 8px 30px; }
   span.link.norecord { margin: 6px 0 6px 30px; }
@@ -143,7 +150,7 @@ ${indicators}
 <p class="framing-tag" data-label>Atlas framing</p>
 <h3 data-label>Reading the chains</h3>
 <p>Each chain is one accelerator, read in the direction of its arrows: what acts on it, the accelerator, the part it incorporates with who makes that part beneath it, and what that part requires. The part and the process are the same records in every chain; they are repeated so that the chains line up and can be compared.</p>
-<p>A solid line is stated by a source. A dashed line is the Atlas’s own inference. An amber dotted line or box is a gap, with its reason in words. A missing line means the Atlas has no record either way; it never means that no relationship exists. A date marked “access date” is only the day an undated web page was read. Every line opens its evidence.</p>
+<p>A solid line is stated by a source. A dashed line is the Atlas’s own inference. A double line or double-bordered box is reported by a third party, never confirmed by the parties, with any source-policy criterion it does not meet written beside it. An amber dotted line or box is a gap, with its reason in words. A missing line means the Atlas has no record either way; it never means that no relationship exists. A date marked “access date” is only the day an undated web page was read. Every line opens its evidence.</p>
 </div>
 ${key}
 <h3 data-label>Explore</h3>

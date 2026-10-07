@@ -377,6 +377,8 @@ say, the visual is decoration (`CLAUDE.md` §15).
 |---|---|---|---|
 | an edge citing at least one `FACT` | stated | solid line | ink |
 | an edge citing only `DERIVATION`s | inferred | dashed line | ink |
+| an edge field resting on third-party reports: no cited claim is a `FACT`, at least one is an `ATTRIBUTION` (D-147, D-148) | reported, with each unmet source-policy §7.1 criterion beside it ("criterion not met: recognised") | dash-dot outline on the HBM page; double line or double border in the research view (the research view's palette has no dash-dot line) | ink |
+| a value that carries an end date (`valid_to`, D-144) | historical, to *date* | the date beside the basis word, never alone | ink |
 | an inferred row whose reasoning includes the Atlas's working definitions | rests on the Atlas's own definitions | flag beside the row | ink |
 | an edge field held as `not_researched` | gap · not researched | amber pill | gap |
 | an edge field held as `not_publicly_determinable` | gap · not publicly determinable | amber pill | gap |

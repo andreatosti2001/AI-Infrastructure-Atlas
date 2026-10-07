@@ -69,7 +69,7 @@ DECISIONS = ("D-091", "D-092", "D-094", "D-120", "D-124", "D-128", "D-129", "D-1
 # The S15 metrics (metrics.md; D-128 to D-130), each a query in sql/ built on the first result, shown in the
 # indicator blocks (H-4) with its own "How this was computed" in the method layer.
 METRICS = {"evidence_coverage": "Evidence coverage", "source_age": "Source age", "supplier_metrics": "Supplier metrics"}
-BASES = ("stated", "inferred", "gap")
+BASES = ("stated", "inferred", "reported", "gap")  # reported: S16.6, D-148
 
 # Every fixed word this page adds to the S11 page's labels (PG-1, IN-1): none names a record or holds a digit.
 LABELS = build_page.LABELS | frozenset(
@@ -101,6 +101,11 @@ LABELS = build_page.LABELS | frozenset(
         "records are also counted under another accelerator",
         "Twelve months is a reading aid: the Atlas’s re-check rule applies it only to who fabricates a product and who supplies a part.",
         "An undated web page is dated by the day it was read.",
+        # S16.6 (D-147, D-148): a named supplier, the reported basis, the period and the unmet criteria
+        "reported", "reported,", "historical, to", "criterion not met:",
+        "reported: no cited claim is a FACT, and one reports what a third party says",
+        "with a supplier reported by a third party;", "with a supplier stated by a party;", "with supplier not known:",
+        "no part has its full set of suppliers stated",
     }
 )
 
@@ -192,6 +197,11 @@ class Insight(build_page.Page):
         words = self.cell(i, "basis", cls=f"basis {b}")
         if b == "gap":
             words += f" · {self.cell(i, 'gap_reason', fmt='state')}"
+        r = self.rows[i]
+        if r["period_to"] != "not_applicable":  # a historical value (S16.6, D-144)
+            words += f" · {self.label('historical, to')} {self.cell(i, 'period_to', cls='date')}"
+        for k in range(len(r["criteria_unmet"])):  # an unmet source-policy §7.1 criterion is never left out (D-147)
+            words += f" · {self.label('criterion not met:')} {self.sql_cell(i, 'criteria_unmet', r['criteria_unmet'][k], item=k)}"
         return words
 
     def dated(self, i: int) -> str:
@@ -213,7 +223,9 @@ class Insight(build_page.Page):
         if slot == "part":
             return f"{self.cell(i, 'relation', cls='rel')} {self.cell(i, 'to_name')} · {self.basis_words(i)}"
         if slot == "supplier":
-            return f"{self.cell(i, 'relation', cls='rel')}: {self.basis_words(i)}"  # the state is the gap's reason
+            if self.rows[i]["basis"] == "gap":
+                return f"{self.cell(i, 'relation', cls='rel')}: {self.basis_words(i)}"  # the state is the gap's reason
+            return f"{self.cell(i, 'relation', cls='rel')}: {self.cell(i, 'from_name')} · {self.basis_words(i)}"  # S16.6
         return f"{self.cell(i, 'from_name')} {self.cell(i, 'relation', cls='rel')} {self.cell(i, 'to_name')} · {self.basis_words(i)}"
 
     def kind(self, record_id: str) -> str:
@@ -233,6 +245,7 @@ class Insight(build_page.Page):
             len({(self.rows[i]["relation"], self.rows[i]["to_id"], self.rows[i]["basis"]) for i in parts}) == 1
             and None not in suppliers
             and len({self.rows[i]["gap_reason"] for i in suppliers}) == 1
+            and all(self.rows[i]["basis"] == "gap" for i in suppliers)  # S16.6: named suppliers are not one shared state
         )
         if not uniform:
             return "question", self.question()
@@ -310,7 +323,7 @@ class Insight(build_page.Page):
                 f'<li data-coverage="{esc(c["accelerator_id"])}">{self.mcell("evidence_coverage", j, "accelerator", cls="who")} '
                 f'<span class="tally">{m("stated")} {self.label("of")} {m("links")} {self.label("links stated")}</span>'
                 f'<span class="units">{units}</span>'
-                f'<span class="split">{m("inferred")} {self.label("inferred,")} {m("gap")} {self.label("gap" if c["gap"] == 1 else "gaps")}</span>'
+                f'<span class="split">{m("inferred")} {self.label("inferred,")} {m("reported")} {self.label("reported,")} {m("gap")} {self.label("gap" if c["gap"] == 1 else "gaps")}</span>'
                 f'<span class="recs">{self.label("The")} {m("links")} {self.label("links come from")} {m("records")} {self.label("records;")} {m("shared")} '
                 f'{self.label("record is also counted under another accelerator" if c["shared"] == 1 else "records are also counted under another accelerator")}</span></li>'
             )
@@ -350,8 +363,14 @@ class Insight(build_page.Page):
             blocks.append(
                 f'<div class="indicator state" data-metric="supplier_metrics" data-row="{j}"><h4>{m("metric")}</h4>'
                 f'<p class="value">{m("status", fmt="state", cls="basis gap")}</p>'
-                f'<p class="den">{self.label("incorporated parts, one per accelerator:")} {m("parts_supplier_unknown")} {self.label("of")} {m("parts")} '
-                f'{self.label("with supplier")} {m("unknown_state", fmt="state")}</p>'
+                f'<p class="den">{self.label("incorporated parts, one per accelerator:")} '
+                + "".join(
+                    f'{m(column)} {self.label("of")} {m("parts")} {self.label(words)} '
+                    for column, words in (("parts_supplier_stated", "with a supplier stated by a party;"), ("parts_supplier_reported", "with a supplier reported by a third party;"))
+                    if r[column]
+                )
+                + (f'{m("parts_supplier_unknown")} {self.label("of")} {m("parts")} {self.label("with supplier not known:")} {m("unknown_state", fmt="state")}; ' if r["parts_supplier_unknown"] else "")
+                + f'{self.label("no part has its full set of suppliers stated")}</p>'
                 f'<p class="how">{self.label("needs:")} {m("needs")} {self.how("supplier_metrics")}</p></div>'
             )
         return (
@@ -390,7 +409,9 @@ class Insight(build_page.Page):
             r = self.rows[i]
             cells.append(
                 f'<a class="slot {r["basis"]} s-supplier" data-mark="strip" data-slot="supplier" data-row="{i}" data-basis="{r["basis"]}" href="{CHAIN_HREF}#{self.target(i)}">'
-                f'{self.label("who makes that part", cls="nk")}<span class="b">{self.basis_words(i)}</span></a>'
+                f'{self.label("who makes that part", cls="nk")}'
+                + (self.cell(i, "from_name", cls="nn") if r["basis"] != "gap" else "")  # a named supplier (S16.6)
+                + f'<span class="b">{self.basis_words(i)}</span></a>'
             )
         else:
             cells.append(f'<span class="slot norecord s-supplier" data-slot="supplier">{self.label("no recorded relationship")}</span>')
@@ -409,6 +430,7 @@ class Insight(build_page.Page):
         items = [
             ("k-stated", "stated: at least one cited claim is a FACT"),
             ("k-inferred", "inferred: every cited claim is a DERIVATION"),
+            ("k-reported", "reported: no cited claim is a FACT, and one reports what a third party says"),
             ("k-gap", "gap: an unknown value or a recorded gap, never a zero"),
             ("k-norecord", "no recorded relationship"),
             ("k-instance", "named thing (instance level)"),
