@@ -129,7 +129,27 @@ box overflowed with its period on one line (the period now has its own line), an
 
 **The S16.6 breaks** ([`breaks.py`](./SESSION-16.6-breaks/breaks.py)):
 
-BREAK_TABLE
+| Break | Fault | Caught by |
+|---|---|---|
+| S16.6-A1 | a reported supplier relabelled "stated" in the first query | WH-10's independent computation |
+| S16.6-A2 | coverage counts reported links as gaps | WH-12's independent computation; the parts-add-up check; IN-10 |
+| S16.6-A3 | the warehouse drops the third-party criteria | WH-3 (criteria row by row); WH-10 |
+| S16.6-A4 | the research view leaves out a historical value's period | IN-13 |
+| S16.6-A5 | the research view leaves out an unmet criterion | IN-13 |
+| S16.6-A6 | the HBM page draws a historical supplier without its period | PG-5 |
+| S16.6-A7 | the HBM page's key loses its "reported" line | PG-5 (the key check) |
+| S16.6-A8 | the evidence panel leaves out the recognition criterion | PG-2 (claims shown whole) |
+| S16.6-A9 | a third-party citation recorded without its criteria | V-10 (R-5) |
+| S16.6-A10 | the H100's supplier loses its end date: stale evidence shown as current | F-1 |
+| S16.6-A11 | the H100's period moved before its evidence | F-1's historical rule (D-144) |
+| S16.6-A12 | the source policy loses "no conflict of interest" | the §7.1 criteria check |
+| S16.6-C1 | control: the TrendForce claim reworded, everything rebuilt | passes |
+
+**Replaced inherited breaks** (the same fault on the S16.6 tree, reasons in `breaks.py`): S13's supplier gap
+drawn as zero (now the remaining gap mark), its five D-111 Samsung breaks (now on the remaining no-record
+names, or Samsung's linked record), S13-20 (now cand-011's two cards), S14.5-T1, T2 and L1 (the new tallies
+and headline), S15-M8 (a zero supplier kind shown) and S15-M9 (the status rule loosened in SQL). All are
+caught as named; the gap-as-zero break only after the check was strengthened (Debt, below).
 
 ## Evidence added/retired
 
