@@ -3,7 +3,7 @@ Evidence-backed intelligence system mapping the infrastructure, supply chains, c
 
 ## Status
 
-**M4 — Analytical Intelligence (S14 done: the SQL layer, accepted 2026-10-03; S14.5 done: the visual and research-experience architecture, accepted 2026-10-06; S15 done: the first metrics, accepted 2026-10-06; S16 done: the analytical audit, verdicts decided 2026-10-07; S16.5 done: the M3 and M4 milestone audits (M4 closed) and the HBM supplier research, 2026-10-07; S17 next, M5).** The repository contains governance documents, the
+**M4 — Analytical Intelligence (S14 done: the SQL layer, accepted 2026-10-03; S14.5 done: the visual and research-experience architecture, accepted 2026-10-06; S15 done: the first metrics, accepted 2026-10-06; S16 done: the analytical audit, verdicts decided 2026-10-07; S16.5 done: the M3 and M4 milestone audits (M4 closed) and the HBM supplier research, 2026-10-07; S16.6 done: the supplier evidence rules and the first named HBM suppliers, shown as reported, 2026-10-07; S17 next, M5).** The repository contains governance documents, the
 session system, a repository-integrity check, the S01 domain map, the accepted entity
 schema (S03), the accepted relationship schema (S04), the accepted source policy with its
 source-class vocabulary (S05), the accepted claim model (S06), and the first canonical
@@ -46,7 +46,13 @@ their wording corrected (the 12-month horizon applies only to time-sensitive lin
 and the supplier metrics were kept as built. S16.5 researched who supplies the HBM in both accelerators
 ([`docs/research/hbm-supplier-research-S16.5.md`](docs/research/hbm-supplier-research-S16.5.md)): no statement
 fresh and specific enough was found, so both suppliers stay unknown; SK hynix's 2022 statement about the H100
-is kept as evidence. See
+is kept as evidence. S16.6 revised the rules for supplier evidence
+([`docs/research/supplier-evidence-rules-S16.6.md`](docs/research/supplier-evidence-rules-S16.6.md)): a past value can be
+recorded with its end date, and a third party may support a supplier when it is recognised as reliable and independent,
+with any unmet criterion stated. Under them ([`docs/research/hbm-supplier-research-S16.6.md`](docs/research/hbm-supplier-research-S16.6.md)),
+both pages now name SK hynix for the H100's HBM (historical, to 2024-03, reported by TrendForce) and Samsung Electronics
+for Trainium2's (reported by SemiAnalysis, whose recognition criterion is not met), each marked "reported", never
+"stated". See
 [`docs/architecture/baseline.md`](docs/architecture/baseline.md) for what exists and what is
 planned.
 

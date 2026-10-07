@@ -1,6 +1,8 @@
 # How a reported supplier is shown (S16.6, H-3): proposal
 
-**Status:** PROPOSED on 2026-10-07. Nothing is built until the human approves it.
+**Status:** decided by the human on 2026-10-07 (H-3: "as in the preview, built now"); built in S16.6 (D-148). One
+deviation from the mock-up: the research view draws "reported" as a double line, not dash-dot (D-148).
+Proposed earlier on 2026-10-07.
 **Why now:** the human approved two supplier values on 2026-10-07 (H-2):
 
 - **the H100's HBM:** SK hynix, historical (to 2024-03), reported by TrendForce;

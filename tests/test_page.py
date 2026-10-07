@@ -600,7 +600,9 @@ class PageTests(unittest.TestCase):
             self.assertNotRegex(text.lower(), r"\bnone\b", "RR-7: never 'none'")
         for mark in self.marks:
             if mark.attrs["data-mark"] in ("gap", "supplier-gap"):
-                self.assertNotRegex(mark.text(), r"(?<![\w.])0(?![\w.])", "a gap drawn as zero")
+                # each text node on its own: joined, "inferred" and "0" read "inferred0" and hide the zero (S16.6)
+                for text, _ in mark.texts():
+                    self.assertNotRegex(text, r"(?<![\w.])0(?![\w.])", "a gap drawn as zero")
 
     def test_pg5_candidates_are_cards_never_lines(self) -> None:
         # D-109: a refused candidate is never drawn in the diagram; each one the journey names is a

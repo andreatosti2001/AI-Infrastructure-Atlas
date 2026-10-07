@@ -3,7 +3,7 @@
   "query": "sql/supplier_metrics.sql",
   "query_sha256": "8a3a18d3eb7b92dfef0f742ee8a3792379b7575e19b04571c6353a6c8f7fd5c9",
   "engine": "duckdb 1.5.6",
-  "input_digest": "1aacb134a587d9231e54d63d4308f63b4404aad18998a3a6e99f1217df0fb028",
+  "input_digest": "492b7176289bb818e5d2565b2553b0b4023ceba5581c10337c91ff657ea5a0c2",
   "inputs": [
     {
       "path": "data/claims.json",
@@ -39,7 +39,7 @@
     },
     {
       "path": "data/refused_candidates.json",
-      "sha256": "6d92d83a85a9281bf5a87b39b9f926cea464d22b4d56c924d132a5d7b18adb2f"
+      "sha256": "5a456db879abfde8b802b6e8d2ff8fad577f10c2e69952ca3903afad39103ef0"
     },
     {
       "path": "data/relationships.json",

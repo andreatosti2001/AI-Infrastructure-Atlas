@@ -3,7 +3,7 @@
   "query": "sql/source_age.sql",
   "query_sha256": "90f0f06eb55c3df570a2fff4eb1b582e0baf29b77ed9c4c12cc42744b5855c68",
   "engine": "duckdb 1.5.6",
-  "input_digest": "1c3b210dd648dd48c524f7d35b35c65c8ea7759e9cd525c92db01d91c1c0d65b",
+  "input_digest": "8ef1b5983f8e8acd3b909b7166d8942ad6c32a9c2b21651cc31fdbe6170fcc0f",
   "inputs": [
     {
       "path": "data/claims.json",
@@ -39,7 +39,7 @@
     },
     {
       "path": "data/refused_candidates.json",
-      "sha256": "6d92d83a85a9281bf5a87b39b9f926cea464d22b4d56c924d132a5d7b18adb2f"
+      "sha256": "5a456db879abfde8b802b6e8d2ff8fad577f10c2e69952ca3903afad39103ef0"
     },
     {
       "path": "data/relationships.json",

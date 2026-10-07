@@ -152,6 +152,10 @@ def check_no_record_names(cands, entities) -> list[str]:
             name = value["name"]
             if name.casefold() in names:
                 errors.append(f"{cand['id']}.{field}: no_record {name!r} names a record ({names[name.casefold()]}); use its ID")
+            # S16.6: a short form of a record's name ("Samsung" for "Samsung Electronics") names it too
+            for full, rid in sorted(names.items()):
+                if full.startswith(name.casefold() + " "):
+                    errors.append(f"{cand['id']}.{field}: no_record {name!r} is the start of a record's name ({rid}); use its ID")
             if words.match(name.strip()):
                 errors.append(f"{cand['id']}.{field}: no_record {name!r} is a placeholder (RR-7)")
     return errors

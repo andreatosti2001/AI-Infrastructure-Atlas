@@ -3,7 +3,7 @@
   "query": "sql/evidence_coverage.sql",
   "query_sha256": "8f26b10a7cb663184a6a734c68dcc42882817081b82a49337bafe83a8cfa80e1",
   "engine": "duckdb 1.5.6",
-  "input_digest": "e72b766d8b7bdc5933e00fa7e1da4ea187c013bace528829c2584d1ba5e65738",
+  "input_digest": "9eec82dd541e8a9d565b8ce32a12ae16c0c31cd3123560f16a03985a3a98c167",
   "inputs": [
     {
       "path": "data/claims.json",
@@ -39,7 +39,7 @@
     },
     {
       "path": "data/refused_candidates.json",
-      "sha256": "6d92d83a85a9281bf5a87b39b9f926cea464d22b4d56c924d132a5d7b18adb2f"
+      "sha256": "5a456db879abfde8b802b6e8d2ff8fad577f10c2e69952ca3903afad39103ef0"
     },
     {
       "path": "data/relationships.json",

@@ -1736,7 +1736,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-104 — Gap encoding and the lane
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)"); the lane rule superseded in part by D-148 (2026-10-07): the lane's note names only its facility and product
 - **Context:** RR-7; D-092, D-094; the human's lane rulings (D-100).
 - **Decision** (`vertical-slice.md` §5): each `not_researched` supplier is a pill on its
   `incorporates` arrow; TSMC → H100 is a dotted line with no arrowhead and the pill "gap: no
@@ -2031,7 +2031,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-120 — The first query: each accelerator's links, their basis and their evidence dates
 
-- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted by the human on 2026-10-03, at the S14 review
+- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted by the human on 2026-10-03, at the S14 review; the basis definitions superseded in part by D-148 (2026-10-07): a fourth basis, "reported"
 - **Context:** S13's recommended first question; its weaknesses that a query must show (content
   audit Part 5; DT-S13-1, -2, -4, -7).
 - **Decision** (`sql/accelerator_dependencies.sql`; `sql-layer.md` §7):
@@ -2206,7 +2206,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-128 — Evidence coverage: per accelerator, over its links
 
-- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06, at the S15 review; the population decided by the human on 2026-10-06 at the S15 opening, H-2)
+- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06, at the S15 review; the population decided by the human on 2026-10-06 at the S15 opening, H-2); the split superseded in part by D-148 (2026-10-07): a `reported` column
 - **Context:** Part A's "evidence coverage"; S14's handover; S14.5's finding that 8 rows come from 5
   records.
 - **Decision** (`metrics.md` §2, §3; `sql/evidence_coverage.sql`):
@@ -2246,7 +2246,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-130 — The three supplier metrics: "cannot be computed yet", with why
 
-- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06, at the S15 review; the treatment decided by the human on 2026-10-06 at the S15 opening, H-1)
+- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06, at the S15 review; the treatment decided by the human on 2026-10-06 at the S15 opening, H-1); the status rule superseded in part by D-148 (2026-10-07): a named supplier alone does not make a metric computable
 - **Context:** supplier count, geographic concentration and single-source relationships need a named
   supplier. The Atlas names none: both HBM `supplier` fields are `not_researched` (D-094), and no
   `supplies` edge exists.
@@ -2563,3 +2563,60 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   - checks, written first: `test_source_policy.py`, `test_data_relationships.py`, `test_claim_schema.py`.
 - **Rejected:** keeping third-party reports as attributed claims beside an unknown supplier; labelling a
   reported value "inferred".
+
+## D-148 — How a reported supplier is shown (H-3)
+
+- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (the presentation chosen by the human on
+  2026-10-07, H-3: "as in the preview, built now")
+- **Context:**
+  - the human approved two supplier values on 2026-10-07 (H-2): SK hynix for the H100's HBM, historical to
+    2024-03, reported by TrendForce; Samsung Electronics for Trainium2's HBM, reported by SemiAnalysis, with
+    its recognition criterion not met;
+  - both page builds stopped as soon as a supplier was named (D-130), and D-147 asked for the "reported"
+    label with its presentation;
+  - the proposal and its mock-up: `docs/research/supplier-presentation-S16.6.md`.
+- **Decision:**
+  - **the first query** (`sql/accelerator_dependencies.sql`): a named supplier is a row with its company. Its
+    basis is **reported** when its claims include an `ATTRIBUTION` and no `FACT`. Two new columns: the
+    period end (`period_to`, from `valid_to`, else `not_applicable`) and the unmet §7.1 criteria
+    (`criteria_unmet`, read from the new `citation_criteria` table). Supersedes D-120's basis definitions;
+  - **coverage** (`sql/evidence_coverage.sql`): a `reported` column. Stated + inferred + reported + gap =
+    links. Supersedes D-128's split;
+  - **the supplier metrics** (`sql/supplier_metrics.sql`): the status stays `cannot_be_computed_yet` until a
+    metric's needs are met (a part's full supplier set, where each supplier makes it, a source stating one
+    supplier only), not as soon as a supplier is named. Party-stated and reported suppliers are counted
+    apart. The page shows each non-zero kind and never a zero one. Supersedes D-130's status rule. D-130's
+    build stop stays for a status with no designed presentation;
+  - **both pages:** a named supplier is drawn with its name, its basis in words, its period ("historical,
+    to 2024-03") and each unmet criterion ("criterion not met: recognised"). The HBM page draws it as a
+    dash-dot outlined box with a key line. The research view uses a double line or double border: its
+    palette check (IN-7) forbids a new line pattern, so this differs from the mock-up's dash-dot there.
+    The evidence panel shows both criteria with their reasons;
+  - **the lane** (supersedes D-104's lane rule in part): SK hynix is now a reported supplier on the chain,
+    so the lane's "not linked" note names only the facility and the product it holds ("the facility and
+    product here: not linked to this chain"); the build still refuses a link from a lane facility or
+    product to either accelerator;
+  - **visual semantics:** `visual-architecture.md` §9 gains the "reported" and "historical" rows;
+  - **checks, written first:** WH-3 (criteria reach SQL), WH-10, WH-12, WH-14 (independent computations
+    with "reported"), PG-2, PG-5 (name, basis, period, key line), IN-3, IN-10, IN-13; the S16.6 break
+    harness.
+- **Rejected:** a coloured fill for "reported" (colour alone, and outside the palette); counting a reported
+  supplier towards a supplier count (neither report says its maker was the only one); keeping the build
+  stop for any named supplier.
+
+## D-149 — The refused NVIDIA memory-supplier card links Samsung's new record
+
+- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:**
+  - the refused candidate `cand-002` (NVIDIA's 10-K: "We purchase memory from SK Hynix Inc., Micron
+    Technology, Inc., and Samsung") held Samsung as a firm with no record (D-111), one of its two reasons;
+  - S16.6 created `company-samsung-electronics-co-ltd` (H-2), so the card contradicted the record the same
+    page draws as Trainium2's reported supplier;
+  - RC-4 matched a no-record name only exactly, so "Samsung" against "Samsung Electronics" passed.
+- **Decision:**
+  - `cand-002` names Samsung by its record ID and drops `endpoint_has_no_record`; its reasoning says when
+    and why. It stays refused: the item, "memory", has no record (ER-9);
+  - RC-4 also refuses a no-record name that is the start of a record's name, written first
+    (`tests/test_data_candidates.py`);
+  - on the HBM page the card moves from the "endpoint has no record" group to "item has no record" only.
+- **Rejected:** leaving the card as it was, true to its 2026-10-02 ruling but contradicting the new record.
