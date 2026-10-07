@@ -2408,3 +2408,22 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 - **Rejected:** fixing C-2 or C-9 in S16. Each needs a change to the first query's definitions or new
   research (S16 non-goals).
+
+## D-139 — A research session on the HBM suppliers (S16.5) precedes S17
+
+- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:** the S16 audit:
+  - three metrics show "cannot be computed yet" because no source the Atlas holds names who supplies the
+    HBM in the H100 or in Trainium2 (D-130, D-136);
+  - S16's prompt forbade research to fill a gap;
+  - the human asked that the system find such evidence itself rather than ask for it.
+- **Decision:**
+  - the next session, S16.5, researches the supplier of each incorporated HBM part from primary sources,
+    under `source-policy.md` (the `rel:incorporates.supplier` row: time-sensitive, party standing);
+  - Claude finds, extracts and verifies the evidence itself (Source Scout, Extractor, Verifier);
+  - each supplier link is staged and becomes canonical only on the human's approval (Class C);
+  - S16.5 designs the supplier metrics' presentation before any page is rebuilt with a named supplier
+    (D-130's stop rule);
+  - S17 (the policy entities) follows S16.5.
+- **Rejected:** researching inside S16 (outside its contract); keeping the planned order (the gap stays
+  debt).

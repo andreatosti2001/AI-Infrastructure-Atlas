@@ -1,7 +1,10 @@
 # Analytical audit (S16)
 
-**Status:** findings written 2026-10-07; the human's verdicts are pending (H-3, H-4). Every finding below is
-the Atlas's assessment (`INTERPRETATION`) of its own metrics, never a fact about the world.
+**Status:** findings written 2026-10-07; **verdicts decided by the human on 2026-10-07** (H-3, H-4):
+coverage modified (D-133), source age modified (D-134), publishers retired (D-135), the supplier metrics kept
+(D-136), the reference date moved with each session that rebuilds the pages (D-137), the findings split as
+proposed in §8 (D-138). Every finding below is the Atlas's assessment (`INTERPRETATION`) of its own metrics,
+never a fact about the world.
 
 - **Session:** S16 · **Kind:** analytical depth audit (PEF §8), the mandatory audit "after the first
   analytical layer" (SPEC §4) · **Milestone:** M4.
@@ -347,10 +350,10 @@ Two readers, both fresh agents. Outcomes only.
 
 ## 8. Findings
 
-Each finding opens with what a reader would get wrong, or what is missing. Its split is Claude's proposal
-for the human's ruling (H-3).
+Each finding opens with what a reader would get wrong, or what is missing. The split was proposed by Claude
+and ruled by the human as proposed on 2026-10-07 (D-138).
 
-| ID | Finding | Evidence | Proposed split |
+| ID | Finding | Evidence | Split (ruled 2026-10-07, D-138) |
 |---|---|---|---|
 | C-1 | **A reader cannot tell what "rows drawn from 3 records, of which shared with another accelerator: 1" means.** | both readers, q1; rendered text | blocking: reword the line (coverage, modify) |
 | C-2 | **"Gap" means two different things in one count**: nobody has looked (the supplier), and the Atlas looked and refused the evidence as stale (TSMC). The H100 has more gaps partly because more was found. | both readers, q1; `accelerator_dependencies.json` rows 3, 5, 7 | debt: the definition is the first query's (non-goal §08); owner: the human's ruling on a superseding decision, raised again in S16's handoff for S20 (the researcher product) |
