@@ -1,0 +1,82 @@
+S16 sensitivity probes (Part B §06 q5, §07 task 4).
+base: a42bf24
+
+=== P0 control: no change
+  tools/warehouse.py: built
+  tools/build_page.py: built
+  tools/build_insight.py: built
+  Evidence coverage AWS Trainium2 2 of 4 links stated stated stated gap inferred 1 inferred, 1 gap rows drawn from 3 records, of which shared with another accelerator: 1 NVIDIA H100 1 of 4 links stated gap stated gap inferred 1 inferred, 2 gaps rows drawn from 3 records, of which shared with another accelerator: 1
+  Evidence age as of 2026-10-06 AWS Trainium2 2 of 3 dated links: newest evidence older than twelve months 1 of 3 dated links: dated only by the day a page was read NVIDIA H100 3 of 3 dated links: newest evidence older than twelve months 0 of 3 dated links: dated only by the day a page was read Dates, not ages: an undated web page is dated by the day it was read.
+  Publishers behind a sourced link 1 to 2 4 of 6 sourced rows rest on one publisher Listed, never counted as confirmation.
+  Cannot be computed yet supplier count cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: who supplies each part, named in a source
+  geographic concentration cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: where each named supplier makes the part
+  single-source relationships cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: a source stating that a part has exactly one supplier
+
+=== P1: One more link stated (shared): the claim behind 'HBM requires 3D die stacking' re-typed DERIVATION -> FACT,
+    with a planted citation of a source it already rests on (src-039).
+  tools/warehouse.py: built
+  tools/build_page.py: built
+  tools/build_insight.py: built
+  Evidence coverage AWS Trainium2 3 of 4 links stated stated stated gap stated 0 inferred, 1 gap rows drawn from 3 records, of which shared with another accelerator: 1 NVIDIA H100 2 of 4 links stated gap stated gap stated 0 inferred, 2 gaps rows drawn from 3 records, of which shared with another accelerator: 1
+  Evidence age as of 2026-10-06 AWS Trainium2 2 of 3 dated links: newest evidence older than twelve months 1 of 3 dated links: dated only by the day a page was read NVIDIA H100 3 of 3 dated links: newest evidence older than twelve months 0 of 3 dated links: dated only by the day a page was read Dates, not ages: an undated web page is dated by the day it was read.
+  Publishers behind a sourced link 1 6 of 6 sourced rows rest on one publisher Listed, never counted as confirmation.
+  Cannot be computed yet supplier count cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: who supplies each part, named in a source
+  geographic concentration cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: where each named supplier makes the part
+  single-source relationships cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: a source stating that a part has exactly one supplier
+
+=== P2: One more link stated (one accelerator): the H100's recorded gap 'TSMC fabricates' (refused as not fresh)
+    replaced by a recorded fabricates edge citing the FACT claim the candidate already considered.
+  tools/warehouse.py: built
+  tools/build_page.py: STOPPED: build refused: refused candidate cand-001 is not canonical
+  tools/build_insight.py: STOPPED: build refused: row 4: the dependency journey page has no panel ev-rel-probe-s16-tsmc-fabricates-h100
+
+=== P3: One undated source given a publication date: src-043 (Trainium2's only recent date, an access date)
+    given a PLANTED stated date 2024-12-03, older than the horizon.
+  tools/warehouse.py: built
+  tools/build_page.py: built
+  tools/build_insight.py: built
+  Evidence coverage AWS Trainium2 2 of 4 links stated stated stated gap inferred 1 inferred, 1 gap rows drawn from 3 records, of which shared with another accelerator: 1 NVIDIA H100 1 of 4 links stated gap stated gap inferred 1 inferred, 2 gaps rows drawn from 3 records, of which shared with another accelerator: 1
+  Evidence age as of 2026-10-06 AWS Trainium2 3 of 3 dated links: newest evidence older than twelve months 0 of 3 dated links: dated only by the day a page was read NVIDIA H100 3 of 3 dated links: newest evidence older than twelve months 0 of 3 dated links: dated only by the day a page was read Dates, not ages: an undated web page is dated by the day it was read.
+  Publishers behind a sourced link 1 to 2 4 of 6 sourced rows rest on one publisher Listed, never counted as confirmation.
+  Cannot be computed yet supplier count cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: who supplies each part, named in a source
+  geographic concentration cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: where each named supplier makes the part
+  single-source relationships cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: a source stating that a part has exactly one supplier
+
+=== P4: The same source given a PLANTED stated date 2026-06-15, within the horizon.
+  tools/warehouse.py: built
+  tools/build_page.py: built
+  tools/build_insight.py: built
+  Evidence coverage AWS Trainium2 2 of 4 links stated stated stated gap inferred 1 inferred, 1 gap rows drawn from 3 records, of which shared with another accelerator: 1 NVIDIA H100 1 of 4 links stated gap stated gap inferred 1 inferred, 2 gaps rows drawn from 3 records, of which shared with another accelerator: 1
+  Evidence age as of 2026-10-06 AWS Trainium2 2 of 3 dated links: newest evidence older than twelve months 0 of 3 dated links: dated only by the day a page was read NVIDIA H100 3 of 3 dated links: newest evidence older than twelve months 0 of 3 dated links: dated only by the day a page was read Dates, not ages: an undated web page is dated by the day it was read.
+  Publishers behind a sourced link 1 to 2 4 of 6 sourced rows rest on one publisher Listed, never counted as confirmation.
+  Cannot be computed yet supplier count cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: who supplies each part, named in a source
+  geographic concentration cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: where each named supplier makes the part
+  single-source relationships cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: a source stating that a part has exactly one supplier
+
+=== P5: The reference date moved to the day S16 opened, 2026-10-07.
+  tools/warehouse.py: built
+  tools/build_page.py: built
+  tools/build_insight.py: built
+  Evidence coverage AWS Trainium2 2 of 4 links stated stated stated gap inferred 1 inferred, 1 gap rows drawn from 3 records, of which shared with another accelerator: 1 NVIDIA H100 1 of 4 links stated gap stated gap inferred 1 inferred, 2 gaps rows drawn from 3 records, of which shared with another accelerator: 1
+  Evidence age as of 2026-10-07 AWS Trainium2 2 of 3 dated links: newest evidence older than twelve months 1 of 3 dated links: dated only by the day a page was read NVIDIA H100 3 of 3 dated links: newest evidence older than twelve months 0 of 3 dated links: dated only by the day a page was read Dates, not ages: an undated web page is dated by the day it was read.
+  Publishers behind a sourced link 1 to 2 4 of 6 sourced rows rest on one publisher Listed, never counted as confirmation.
+  Cannot be computed yet supplier count cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: who supplies each part, named in a source
+  geographic concentration cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: where each named supplier makes the part
+  single-source relationships cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: a source stating that a part has exactly one supplier
+
+=== P6: The reference date moved one year, to 2027-10-06 (where the next horizon crossing falls).
+  tools/warehouse.py: built
+  tools/build_page.py: built
+  tools/build_insight.py: built
+  Evidence coverage AWS Trainium2 2 of 4 links stated stated stated gap inferred 1 inferred, 1 gap rows drawn from 3 records, of which shared with another accelerator: 1 NVIDIA H100 1 of 4 links stated gap stated gap inferred 1 inferred, 2 gaps rows drawn from 3 records, of which shared with another accelerator: 1
+  Evidence age as of 2027-10-06 AWS Trainium2 3 of 3 dated links: newest evidence older than twelve months 1 of 3 dated links: dated only by the day a page was read NVIDIA H100 3 of 3 dated links: newest evidence older than twelve months 0 of 3 dated links: dated only by the day a page was read Dates, not ages: an undated web page is dated by the day it was read.
+  Publishers behind a sourced link 1 to 2 4 of 6 sourced rows rest on one publisher Listed, never counted as confirmation.
+  Cannot be computed yet supplier count cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: who supplies each part, named in a source
+  geographic concentration cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: where each named supplier makes the part
+  single-source relationships cannot be computed yet incorporated parts, one per accelerator: 2 of 2 with supplier not researched needs: a source stating that a part has exactly one supplier
+
+=== P7: One supplier named: the H100's HBM supplier set to a PLACEHOLDER id (no company), on a claim already held.
+  tools/warehouse.py: built
+  tools/build_page.py: STOPPED: build refused: named suppliers need a design before they are drawn
+  tools/build_insight.py: STOPPED: build refused: supplier count: a supplier metric became computable; its presentation is not defined yet (S15 stop condition)
+
