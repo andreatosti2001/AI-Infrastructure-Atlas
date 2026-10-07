@@ -2620,3 +2620,25 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
     (`tests/test_data_candidates.py`);
   - on the HBM page the card moves from the "endpoint has no record" group to "item has no record" only.
 - **Rejected:** leaving the card as it was, true to its 2026-10-02 ruling but contradicting the new record.
+
+## D-150 — The full break harness runs at milestone audits
+
+- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:**
+  - the merged harness had grown to 100 breaks. A full run takes three to four hours: each break rebuilds
+    the pages and runs the whole suite, one after another;
+  - S16.6 replaced twelve inherited breaks whose setup text had changed, and found one weak check through a
+    break;
+  - the harness tests the checks, not the evidence; content audits, cold readings, browser QA and the
+    human's review cover the rest.
+- **Decision:**
+  - from S17, the full merged harness runs **only at a milestone audit** (the next is M5's, planned for
+    S19);
+  - a session in between runs the breaks that touch the files it changes, plus its own new breaks;
+  - three improvements are kept as reminders in S17's prompt, for the human to schedule:
+    - the most useful breaks become permanent tests with planted data inside the suite, run on every commit
+      and in CI;
+    - breaks are selected by the files a session touches;
+    - breaks run in parallel, each in its own copy.
+  - S16.6's own full run was completed as its prompt asked.
+- **Rejected:** a full run in every session that changes checks or pages (the rule up to S16.6).

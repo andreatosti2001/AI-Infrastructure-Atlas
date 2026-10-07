@@ -14,8 +14,8 @@
   - `f5f7e7e`: the records approved at H-2 and the criteria loaded into SQL;
   - `ccbbc2b`: the presentation proposal and its mock-up (H-3);
   - `a3143b0`: the supplier values set and drawn as "reported";
-  - and the commit that adds D-148, D-149, the Samsung card, the break harness and its full run, the
-    findings, this report and the state rows.
+  - `f24cc7b`: D-148, D-149, the Samsung card, the break harness, the findings and the state rows;
+  - and the commits that add the break runs, D-150, S17's prompt and this report.
 
 ## Mission outcome
 
@@ -106,9 +106,9 @@ no current H100 supplier is established.
 |---|---|
 | **At start** (`cdbd920`) | 362 tests OK; Gate 0 OK |
 | **Fail-first**, each before its change | the rules ([`failfirst.txt`](./SESSION-16.6-qa/failfirst.txt)); the supplier values and their presentation ([`failfirst-supplier-values.txt`](./SESSION-16.6-qa/failfirst-supplier-values.txt)); the key line ([`failfirst-legend.txt`](./SESSION-16.6-qa/failfirst-legend.txt)); the Samsung card ([`failfirst-samsung-card.txt`](./SESSION-16.6-qa/failfirst-samsung-card.txt)). Each failed for its named reason |
-| **At the end** | FINAL_SUITE |
-| **S16.6's breaks** | NEW_BREAKS |
-| **Merged break harness in full** | FULL_RUN |
+| **At the end** | 370 tests OK; Gate 0 OK; the three `--check` commands up to date (fresh virtualenv built in this session) |
+| **S16.6's breaks** and the replaced ones, first run ([`targeted-run.txt`](./SESSION-16.6-breaks/targeted-run.txt)) | all caught as named and the control passes, except the gap-as-zero break, which exposed a weak check (Debt, below); caught once the check was fixed |
+| **Merged break harness in full**, 100 breaks | **89 of 89 faults caught as named; 11 of 11 controls pass** ([`merged-breaks-full-run.txt`](./SESSION-16.6-breaks/merged-breaks-full-run.txt)). Run in two parts on the same tree: 78 breaks, then the 22 left after a pause (Deviations) |
 | **Browser QA** at 1280 and 375 px, both pages | clean (below) |
 
 **Browser QA** (Playwright from `/opt/node-tools`, the pre-installed Chromium; S14's script for the HBM page,
@@ -169,6 +169,7 @@ caught as named; the gap-as-zero break only after the check was strengthened (De
 | D-147 | third parties under the human's criteria; the "reported" label | accepted (2026-10-07) |
 | D-148 | how a reported supplier is shown; supersedes parts of D-104, D-120, D-128, D-130 | accepted (2026-10-07) |
 | D-149 | the refused memory-supplier card links Samsung's record | accepted (2026-10-07) |
+| D-150 | from S17, the full break harness runs only at milestone audits; three improvements kept as reminders in S17's prompt | accepted (2026-10-07) |
 
 **Rejected alternatives:** third-party reports kept beside an unknown supplier; "inferred" for a reported
 value; a coloured fill for "reported"; a reported supplier counted as a supplier count; the build stopping
@@ -186,6 +187,10 @@ for any named supplier; the Samsung card left contradicting the new record.
 4. **Twelve inherited breaks were replaced,** because S16.6 changed their setup text or meaning (named in
    `breaks.py`). The merged harness had silently given two S13 breaks the same ID each time; the
    replacements are keyed by description.
+5. **The full harness ran in two parts.** It was paused after 78 breaks when the human first asked to stop
+   it, then resumed at the human's request with the 22 breaks left, on the same unchanged tree. The two
+   outputs are joined in one file.
+6. **S17's prompt was written in S16.6** at the human's request, with the validation regime of D-150.
 
 ## Debt introduced/resolved
 
@@ -210,13 +215,15 @@ for any named supplier; the Samsung card left contradicting the new record.
 
 ## Unresolved issues
 
-- **No human decision is pending.**
+- **No human decision is pending.** S17's prompt asks two at its opening: which kind of policy instrument
+  comes first, and when the three harness improvements are scheduled.
 - **Disagreement recorded, not resolved:** DIGITIMES (2023, a plan) says Samsung and SK hynix "will both
   supply" Trainium2's HBM3; SemiAnalysis (2025, past) names Samsung only. Neither excludes the other.
 - Merging this branch into `main` is not asked here.
 
 ## Process lessons
 
+- **A full harness run costs hours and tests only the checks.** D-150 keeps it for milestone audits.
 - **Look at the screenshot, not only the numbers.** Both rendering faults passed every automated check.
 - **A break that is not caught as named is a finding.** S13-4's replacement exposed the joined-text weakness
   in the zero check.
@@ -241,4 +248,7 @@ for any named supplier; the Samsung card left contradicting the new record.
 **Recommended next decision** (asked at S17's opening, in the `CLAUDE.md` §9A format): which kind of policy
 instrument S17 models first (for example export controls on advanced memory and accelerators, or public
 support for memory manufacturing), so that its first records attach to the companies and parts this chain
-already holds.
+already holds. S17's prompt: [`S17-PROMPT.md`](../prompts/S17-PROMPT.md).
+
+**Validation from S17** (D-150): the full harness runs only at M5's audit; sessions run the breaks for the
+files they change, plus their own.
