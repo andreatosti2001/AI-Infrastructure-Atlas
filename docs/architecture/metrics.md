@@ -1,6 +1,13 @@
 # The first metrics
 
 **Status:** ACCEPTED as built by the human on 2026-10-06 at the S15 review (D-127 to D-132).
+**Audited in S16 (2026-10-07,** [`analytical-audit-S16.md`](./analytical-audit-S16.md)**), decided by the human
+(H-3, H-4):**
+- evidence coverage: kept, with its records line and population reworded (D-133);
+- source age: kept, saying that the 12-month horizon applies only to time-sensitive links (D-134);
+- the publishers count: **retired** (D-135); its history stays in §6;
+- the three supplier metrics: kept as built (D-136);
+- the reference date moves with each session that rebuilds the pages; S16 set it to 2026-10-07 (D-137).
 **Decided by the human at the S15 opening (2026-10-06):**
 - the contract runs as written, with `sql-layer.md` §7's publisher sentence corrected (D-127);
 - the three supplier metrics are shown as "cannot be computed yet", with why (H-1, D-130);
@@ -28,7 +35,7 @@ are shown as "cannot be computed yet", with the reason:
 | Metric | Query | Status | What it says today |
 |---|---|---|---|
 | Evidence coverage | `sql/evidence_coverage.sql` | computed | Trainium2: 2 of 4 links stated, 1 inferred, 1 gap. H100: 1 of 4 stated, 1 inferred, 2 gaps. Each accelerator's 4 rows come from 3 records, 1 of them shared |
-| Source age | `sql/source_age.sql` | computed, as of 2026-10-06 | 5 of the 6 dated links rest on evidence older than 12 months. The one recent date (5 days) is only the day an undated page was read |
+| Source age | `sql/source_age.sql` | computed, as of 2026-10-07 (D-137) | 5 of the 6 dated links rest on evidence older than 12 months; the source policy's re-check applies to only one of them, already a gap (D-134). The one recent date (6 days) is only the day an undated page was read |
 | Supplier count | `sql/supplier_metrics.sql` | cannot be computed yet | 0 of 2 incorporated parts have a named supplier; both are `not_researched` |
 | Geographic concentration | `sql/supplier_metrics.sql` | cannot be computed yet | needs where each named supplier makes the part |
 | Single-source relationships | `sql/supplier_metrics.sql` | cannot be computed yet | needs a source stating that a part has exactly one supplier |
@@ -47,7 +54,7 @@ restate them.
   rule 3). The page build only copies cells.
   - The one exception is the per-accelerator count of aged rows in the "Evidence age" block. It is a
     count of rows the page draws in its age table, with the denominator printed (D-124, rule b).
-  - The publishers count is the S14.5 presentation count, kept (§6).
+  - The publishers count, the S14.5 presentation count kept in S15, was retired in S16 (§6, D-135).
 - **Never a composite.** Each metric has its own block, question, denominator and tutorial. No block
   and no query combines two of them, and no word on the page reads "dependency", "risk" or "score".
 
@@ -83,10 +90,11 @@ Deviations).
 
 ## 4. Source age (D-129)
 
-- **The reference date** is written in the query (`DATE '2026-10-06'`) and moves only by a commit
-  (H-3). An age is "as of" that date. It is never relative to today, so S14.5's rule against clock
+- **The reference date** is written in the query and moves only by a commit (H-3). Each session that
+  rebuilds the pages sets it to the day it opened (D-137, S16): 2026-10-06 in S15, 2026-10-07 in S16. An age is "as of" that date. It is never relative to today, so S14.5's rule against clock
   ages (V-5) holds and the result is byte-identical across runs. WH-13 moves the date and checks that
-  only the reference date, the ages and the horizon flags change.
+  only the reference date, the ages and the horizon flags change. Since S16 it moves whatever date the query
+  holds.
 - **Newest evidence.** F-1 asks for at least one citation within the horizon, so a link's age is the
   age of its newest evidence.
 - **The evidence-date basis** (S14's and S14.5's debt):
@@ -97,8 +105,10 @@ Deviations).
     research view on the chain's links and in the age table.
 - **The horizon** is source-policy §12's 12 months. A link is beyond it when its newest evidence
   starts more than 12 months before the reference date. A partial date counts from the start of its
-  period (F-1).
-- **DT-S13-4.** This is the ageing report for the page's chain: as of 2026-10-06, it shows which
+  period (F-1). **The policy applies the horizon only to `time_sensitive` links** (who fabricates a
+  product, who supplies a part). For `stable` links it is a reading aid, and the block and the tutorial
+  say so (S16 finding C-4, D-134).
+- **DT-S13-4.** This is the ageing report for the page's chain: as of its reference date, it shows which
   links have passed the horizon. It is not an Atlas-wide report. The other claims' evidence ages
   unreported, as before, and the Atlas-wide report stays with the Change Detector (re-owned, D-129).
 
@@ -128,13 +138,13 @@ Deviations).
 |---|---|
 | Links on stated evidence | **replaced** by evidence coverage (same numbers, now SQL) |
 | Rows with nothing to date | **replaced** by the evidence-age block: its denominator is the dated links, and the undated ones are a part of their own |
-| Publishers behind a sourced row | **kept** as a presentation count (D-124, rule b). No S15 metric measures corroboration, and S16 may audit it |
+| Publishers behind a sourced row | **kept** in S15 as a presentation count (D-124, rule b). **Retired in S16** (D-135, 2026-10-07): its range was a per-row count the page computed and never showed, its "4 of 6" counted 6 rows from 5 records without saying so, and its only "2" was the inferred link's two reasoning steps. Each table row resting on one publisher keeps its own flag |
 
 ## 7. Placement (D-132)
 
 The metrics sit in the research view's INSIGHT layer (H-4 C):
 
-- an "Indicators" row with evidence coverage, evidence age and publishers;
+- an "Indicators" row with evidence coverage and evidence age (publishers until S16, D-135);
 - a "Cannot be computed yet" row with the three supplier metrics.
 
 Each metric block links to its "How this was computed" in the METHOD layer, which renders the query

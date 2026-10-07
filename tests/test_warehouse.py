@@ -28,6 +28,10 @@ WH-13 (S15) source age equals an independent computation; moving the reference d
       and nothing else
 WH-14 (S15) the supplier metrics equal an independent computation; with no supplier named, all three are
       "cannot be computed yet", and a planted unknown keeps its own word
+WH-15 (S16, D-133, D-134) the metric headers say what an independent reader needed: coverage's population
+      says which refused relations are rows and how far "around" reaches; source age says the 12-month
+      horizon is a re-check rule only for time-sensitive links, and never that every older link needs newer
+      evidence
 
 Uses the pinned DuckDB (requirements-analysis.txt, D-118) through tools/warehouse.py.
 Run alone: python -m unittest discover -s tests -p "test_warehouse.py" -v
@@ -476,9 +480,14 @@ class WarehouseTests(unittest.TestCase):
         self.assertEqual([(r["accelerator_id"], r["record_id"], r["gap_reason"], r["from_id"]) for r in rows], [(r["accelerator_id"], r["record_id"], r["gap_reason"], r["from_id"]) for r in first], "the ages are not the links of the table, in its order")
 
     def test_wh13_moving_the_reference_date_changes_the_ages_and_nothing_else(self) -> None:
+        # the reference date moves with each session that rebuilds the pages (S16, D-137), so the probe moves
+        # whatever date the query holds by one year, which makes the access-dated link cross the horizon
         root = copy_repo()
         query = root / "sql" / f"{AGE}.sql"
-        query.write_text(query.read_text(encoding="utf-8").replace("DATE '2026-10-06' AS reference_date", "DATE '2027-10-06' AS reference_date"), encoding="utf-8")
+        text = query.read_text(encoding="utf-8")
+        now = reference_date(text)
+        later = f"{int(now[:4]) + 1}{now[4:]}"
+        query.write_text(text.replace(f"DATE '{now}' AS reference_date", f"DATE '{later}' AS reference_date"), encoding="utf-8")
         before = json.loads(self.fresh[f"sql/results/{AGE}.json"])["rows"]
         after = json.loads(self.wh.build_results(root / "data", sql=root / "sql")[f"sql/results/{AGE}.json"])["rows"]
         moving = {"reference_date", "age_days", "beyond_horizon"}
@@ -488,7 +497,19 @@ class WarehouseTests(unittest.TestCase):
             changed |= {k for k in b if b[k] != a[k]}
             self.assertEqual({k: v for k, v in b.items() if k not in moving}, {k: v for k, v in a.items() if k not in moving})
         self.assertEqual(changed, moving, "moving the reference date must move the ages, and only the ages")
-        self.assertEqual(independent_ages(Records(root / "data").rows(), "2027-10-06"), {(r["accelerator_id"], r["record_id"], r["gap_reason"], r["newest_evidence"], r["newest_evidence_basis"], r["age_days"], r["beyond_horizon"]) for r in after})
+        self.assertEqual(independent_ages(Records(root / "data").rows(), later), {(r["accelerator_id"], r["record_id"], r["gap_reason"], r["newest_evidence"], r["newest_evidence_basis"], r["age_days"], r["beyond_horizon"]) for r in after})
+
+    # WH-15
+    def test_wh15_metric_headers_say_what_a_reader_needs(self) -> None:
+        coverage = tutorial((REPO_ROOT / "sql" / f"{COVERAGE}.sql").read_text(encoding="utf-8"))["header"]
+        self.assertRegex(coverage["population"], r"refused", "coverage's population does not say which refused relations are rows (an independent reader counted one too many)")
+        self.assertRegex(coverage["population"], r"requires", "coverage's population does not say how far the links around an accelerator reach")
+        age = tutorial((REPO_ROOT / "sql" / f"{AGE}.sql").read_text(encoding="utf-8"))["header"]
+        for field in ("assumptions", "does not prove"):
+            with self.subTest(field=field):
+                self.assertIn("time-sensitive", age[field], "source age does not say where the 12-month horizon applies (source-policy.md §12)")
+        self.assertNotIn("freshness horizon", age["question"], "the question applies the freshness horizon to every link")
+        self.assertNotRegex(age["does not prove"], r"Past the horizon, the freshness rule asks for newer evidence before", "the old, wrong statement of the rule is back")
 
     # WH-14
     def test_wh14_supplier_metrics_equal_an_independent_computation(self) -> None:
