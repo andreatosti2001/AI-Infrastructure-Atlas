@@ -350,3 +350,9 @@ when?**
 **Next recommended milestone:** S16.5, the HBM supplier research (D-139): the supplier of the HBM in the
 H100 and in Trainium2, found and verified from primary sources, staged for the human's approval, opening with
 the decision on the M3 and M4 milestone reviews.
+
+## Addendum: the milestone audits (2026-10-07)
+
+Decided by the human on 2026-10-07 (D-140): the M3 and M4 milestone audits are written at S16.5's opening,
+before the HBM supplier research starts. M4 closes as a milestone when its audit is written. Only
+`decisions.md`, this addendum and the pages' digest lines changed.

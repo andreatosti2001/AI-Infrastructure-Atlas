@@ -2427,3 +2427,15 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   - S17 (the policy entities) follows S16.5.
 - **Rejected:** researching inside S16 (outside its contract); keeping the planned order (the gap stays
   debt).
+
+## D-140 — The M3 and M4 milestone audits are written at S16.5's opening
+
+- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:** PEF §4 requires a milestone audit at every major milestone. M3 (S11 to S13) has none, and M4
+  (S14 to S16) closes with S16 without one (S16 report, "Unresolved issues"; H-1 C was not chosen).
+- **Decision:**
+  - S16.5 opens by writing both audits under `docs/architecture/milestone-audits/`, each answering PEF §4's
+    eight questions, with a row each in `docs/quality/audit-history.md`;
+  - the HBM supplier research (D-139) starts after them;
+  - M4 closes as a milestone when its audit is written.
+- **Rejected:** a separate short session after S16.5; leaving the session reports as the only record.
