@@ -1,0 +1,30 @@
+FAIL: test_r1_a_historical_value_dated_by_its_evidence_passes (test_freshness.HistoricalSupplierTests.test_r1_a_historical_value_dated_by_its_evidence_passes)
+AssertionError: Lists differ: ['rel-product-nvidia-h100-tensor-core-gpu-[174 chars]ve)'] != []
+FAIL: test_r1_a_period_its_evidence_does_not_date_is_refused (test_freshness.HistoricalSupplierTests.test_r1_a_period_its_evidence_does_not_date_is_refused) (valid_to='2022-07')
+AssertionError: False is not true : ['rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-memory.supplier = company-sk-hynix: no accepted evidence within 12 months of its verification (rel:incorporates.supplier is time_sensi
+FAIL: test_r1_a_period_its_evidence_does_not_date_is_refused (test_freshness.HistoricalSupplierTests.test_r1_a_period_its_evidence_does_not_date_is_refused) (valid_to='2021-05')
+AssertionError: False is not true : ['rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-memory.supplier = company-sk-hynix: no accepted evidence within 12 months of its verification (rel:incorporates.supplier is time_sensi
+FAIL: test_r5_a_third_party_supplier_citation_records_its_criteria (test_data_relationships.EdgeDataTests.test_r5_a_third_party_supplier_citation_records_its_criteria)
+AssertionError: False is not true : ['rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-memory.supplier = company-sk-hynix: no citation with a class and standing that rel:incorporates.supplier allows']
+FAIL: test_secondary_classes_are_never_sufficient_alone_anywhere (test_source_policy.MatrixTests.test_secondary_classes_are_never_sufficient_alone_anywhere) (row='`rel:incorporates.supplier`')
+AssertionError: 'party' != 'party, or a third party under §7.1'
+FAIL: test_third_party_criteria_are_stated (test_source_policy.MatrixTests.test_third_party_criteria_are_stated) (phrase='### 7.1')
+AssertionError: '### 7.1' not found in '\n## 7. Preference matrix (machine-checked)\n\n**Material claim types are defined by the schemas**, so that a new field or relation type\nfails the tests until it has a row:\n\n- every relation type in `relatio
+FAIL: test_third_party_criteria_are_stated (test_source_policy.MatrixTests.test_third_party_criteria_are_stated) (phrase='no older than 12 months')
+AssertionError: 'no older than 12 months' not found in '\n## 7. Preference matrix (machine-checked)\n\n**Material claim types are defined by the schemas**, so that a new field or relation type\nfails the tests until it has a row:\n\n- every relation 
+FAIL: test_third_party_criteria_are_stated (test_source_policy.MatrixTests.test_third_party_criteria_are_stated) (phrase='internationally recognised as reliable')
+AssertionError: 'internationally recognised as reliable' not found in '\n## 7. Preference matrix (machine-checked)\n\n**Material claim types are defined by the schemas**, so that a new field or relation type\nfails the tests until it has a row:\n\n- 
+FAIL: test_third_party_criteria_are_stated (test_source_policy.MatrixTests.test_third_party_criteria_are_stated) (phrase='no conflict of interest')
+AssertionError: 'no conflict of interest' not found in '\n## 7. Preference matrix (machine-checked)\n\n**Material claim types are defined by the schemas**, so that a new field or relation type\nfails the tests until it has a row:\n\n- every relation 
+FAIL: test_third_party_criteria_are_stated (test_source_policy.MatrixTests.test_third_party_criteria_are_stated) (phrase='stated explicitly')
+AssertionError: 'stated explicitly' not found in '\n## 7. Preference matrix (machine-checked)\n\n**Material claim types are defined by the schemas**, so that a new field or relation type\nfails the tests until it has a row:\n\n- every relation type i
+FAIL: test_third_party_criteria_are_stated (test_source_policy.MatrixTests.test_third_party_criteria_are_stated)
+AssertionError: 'Historical values of a `time_sensitive` row' not found in '\n## 12. Freshness and dated evidence\n\n**The dates, kept apart:**\n\n| Date | What it is | Where it lives |\n|---|---|---|\n| as-of date | the date the content describes, w
+FAIL: test_a_citation_may_record_its_third_party_criteria (test_claim_schema.ClaimSchemaTests.test_a_citation_may_record_its_third_party_criteria)
+AssertionError: Lists differ: ["Additional properties are not allowed ('[34 chars]ed)"] != []
+Ran 76 tests in 0.722s
+FAILED (failures=12)
+Ran 1 test in 1.428s
+FAILED (errors=1)
+    raise UnknownKey(f"{where}: key(s) {unknown} are not in the loader's contract (tools/warehouse.py KNOWN_KEYS)")
+warehouse.UnknownKey: claims.json claim-nvidia-registrant-name citation 0: key(s) ['third_party_criteria'] are not in the loader's contract (tools/warehouse.py KNOWN_KEYS)

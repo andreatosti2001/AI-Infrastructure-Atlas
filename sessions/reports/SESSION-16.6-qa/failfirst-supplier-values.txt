@@ -1,0 +1,69 @@
+ERROR: test_pg7_rebuild_is_byte_identical (test_page.PageTests.test_pg7_rebuild_is_byte_identical)
+ERROR: test_wh10_a_tied_date_reports_its_weakest_kind (test_warehouse.WarehouseTests.test_wh10_a_tied_date_reports_its_weakest_kind)
+ERROR: test_wh10_the_first_result_equals_an_independent_computation (test_warehouse.WarehouseTests.test_wh10_the_first_result_equals_an_independent_computation)
+ERROR: test_wh12_evidence_coverage_equals_an_independent_computation (test_warehouse.WarehouseTests.test_wh12_evidence_coverage_equals_an_independent_computation) (accelerator='product-amazon-com-trai
+ERROR: test_wh12_evidence_coverage_equals_an_independent_computation (test_warehouse.WarehouseTests.test_wh12_evidence_coverage_equals_an_independent_computation) (accelerator='product-nvidia-h100-ten
+ERROR: test_wh12_evidence_coverage_equals_an_independent_computation (test_warehouse.WarehouseTests.test_wh12_evidence_coverage_equals_an_independent_computation)
+ERROR: test_wh13_moving_the_reference_date_changes_the_ages_and_nothing_else (test_warehouse.WarehouseTests.test_wh13_moving_the_reference_date_changes_the_ages_and_nothing_else)
+ERROR: test_wh13_source_age_equals_an_independent_computation (test_warehouse.WarehouseTests.test_wh13_source_age_equals_an_independent_computation)
+ERROR: test_wh14_a_planted_unknown_keeps_its_word_in_every_metric (test_warehouse.WarehouseTests.test_wh14_a_planted_unknown_keeps_its_word_in_every_metric)
+ERROR: test_wh14_supplier_metrics_equal_an_independent_computation (test_warehouse.WarehouseTests.test_wh14_supplier_metrics_equal_an_independent_computation)
+FAIL: test_in3_derived_values_are_recomputed (test_insight.InsightTests.test_in3_derived_values_are_recomputed)
+FAIL: test_in8_rebuild_is_byte_identical (test_insight.InsightTests.test_in8_rebuild_is_byte_identical)
+FAIL: test_a_journey_candidate_in_staging (test_page.BuildRefusalTests.test_a_journey_candidate_in_staging)
+FAIL: test_pg2_derived_values (test_page.PageTests.test_pg2_derived_values)
+FAIL: test_pg2_every_record_value_equals_its_home (test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-
+FAIL: test_pg2_every_record_value_equals_its_home (test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-
+FAIL: test_pg2_every_record_value_equals_its_home (test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memory'
+FAIL: test_pg2_every_record_value_equals_its_home (test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-
+FAIL: test_pg2_every_record_value_equals_its_home (test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memory'
+FAIL: test_pg2_every_record_value_equals_its_home (test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-
+FAIL: test_pg2_every_record_value_equals_its_home (test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memory'
+FAIL: test_pg2_every_record_value_equals_its_home (test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-
+FAIL: test_pg2_every_record_value_equals_its_home (test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memory'
+FAIL: test_pg2_every_record_value_equals_its_home (test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-
+FAIL: test_pg2_every_record_value_equals_its_home (test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memory'
+FAIL: test_pg5_the_chain_and_its_gaps_are_drawn (test_page.PageTests.test_pg5_the_chain_and_its_gaps_are_drawn) (edge='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-mem
+FAIL: test_pg5_the_chain_and_its_gaps_are_drawn (test_page.PageTests.test_pg5_the_chain_and_its_gaps_are_drawn) (edge='rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memory')
+FAIL: test_pg5_the_lane_is_not_linked (test_page.PageTests.test_pg5_the_lane_is_not_linked) (edge='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-memory')
+FAIL: test_wh2_a_result_records_its_inputs_and_query (test_warehouse.WarehouseTests.test_wh2_a_result_records_its_inputs_and_query) (query='accelerator_dependencies.sql')
+FAIL: test_wh2_a_result_records_its_inputs_and_query (test_warehouse.WarehouseTests.test_wh2_a_result_records_its_inputs_and_query) (query='evidence_coverage.sql')
+FAIL: test_wh2_a_result_records_its_inputs_and_query (test_warehouse.WarehouseTests.test_wh2_a_result_records_its_inputs_and_query) (query='source_age.sql')
+FAIL: test_wh2_a_result_records_its_inputs_and_query (test_warehouse.WarehouseTests.test_wh2_a_result_records_its_inputs_and_query) (query='supplier_metrics.sql')
+FAIL: test_wh2_committed_results_equal_a_fresh_run (test_warehouse.WarehouseTests.test_wh2_committed_results_equal_a_fresh_run) (result='sql/results/accelerator_dependencies.json')
+FAIL: test_wh2_committed_results_equal_a_fresh_run (test_warehouse.WarehouseTests.test_wh2_committed_results_equal_a_fresh_run) (result='sql/results/evidence_coverage.json')
+FAIL: test_wh2_committed_results_equal_a_fresh_run (test_warehouse.WarehouseTests.test_wh2_committed_results_equal_a_fresh_run) (result='sql/results/source_age.json')
+FAIL: test_wh2_committed_results_equal_a_fresh_run (test_warehouse.WarehouseTests.test_wh2_committed_results_equal_a_fresh_run) (result='sql/results/supplier_metrics.json')
+FAIL: test_wh5_planted_states_survive_as_themselves (test_warehouse.WarehouseTests.test_wh5_planted_states_survive_as_themselves)
+Ran 369 tests in 27.711s
+FAILED (failures=27, errors=10)
+ERROR: test_pg11_the_tutorial_is_its_query_file (tests.test_page.PageTests.test_pg11_the_tutorial_is_its_query_file)
+ERROR: test_pg7_rebuild_is_byte_identical (tests.test_page.PageTests.test_pg7_rebuild_is_byte_identical)
+FAIL: test_a_journey_candidate_in_staging (tests.test_page.BuildRefusalTests.test_a_journey_candidate_in_staging)
+FAIL: test_pg11_the_sql_table_equals_its_result (tests.test_page.PageTests.test_pg11_the_sql_table_equals_its_result) (row=2, column='from_name')
+FAIL: test_pg11_the_sql_table_equals_its_result (tests.test_page.PageTests.test_pg11_the_sql_table_equals_its_result) (row=2, column='basis')
+FAIL: test_pg11_the_sql_table_equals_its_result (tests.test_page.PageTests.test_pg11_the_sql_table_equals_its_result) (row=2, column='gap_reason')
+FAIL: test_pg11_the_sql_table_equals_its_result (tests.test_page.PageTests.test_pg11_the_sql_table_equals_its_result) (row=2, column='evidence_dated_from')
+FAIL: test_pg11_the_sql_table_equals_its_result (tests.test_page.PageTests.test_pg11_the_sql_table_equals_its_result) (row=6, column='from_name')
+FAIL: test_pg11_the_sql_table_equals_its_result (tests.test_page.PageTests.test_pg11_the_sql_table_equals_its_result) (row=6, column='basis')
+FAIL: test_pg11_the_sql_table_equals_its_result (tests.test_page.PageTests.test_pg11_the_sql_table_equals_its_result) (row=6, column='gap_reason')
+FAIL: test_pg11_the_sql_table_equals_its_result (tests.test_page.PageTests.test_pg11_the_sql_table_equals_its_result) (row=6, column='evidence_dated_from')
+FAIL: test_pg11_the_sql_table_equals_its_result (tests.test_page.PageTests.test_pg11_the_sql_table_equals_its_result) (row=2)
+FAIL: test_pg11_the_sql_table_equals_its_result (tests.test_page.PageTests.test_pg11_the_sql_table_equals_its_result) (row=6)
+FAIL: test_pg11_the_sql_table_equals_its_result (tests.test_page.PageTests.test_pg11_the_sql_table_equals_its_result)
+FAIL: test_pg2_derived_values (tests.test_page.PageTests.test_pg2_derived_values)
+FAIL: test_pg2_every_record_value_equals_its_home (tests.test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-band
+FAIL: test_pg2_every_record_value_equals_its_home (tests.test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-band
+FAIL: test_pg2_every_record_value_equals_its_home (tests.test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-m
+FAIL: test_pg2_every_record_value_equals_its_home (tests.test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-band
+FAIL: test_pg2_every_record_value_equals_its_home (tests.test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-m
+FAIL: test_pg2_every_record_value_equals_its_home (tests.test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-band
+FAIL: test_pg2_every_record_value_equals_its_home (tests.test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-m
+FAIL: test_pg2_every_record_value_equals_its_home (tests.test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-band
+FAIL: test_pg2_every_record_value_equals_its_home (tests.test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-m
+FAIL: test_pg2_every_record_value_equals_its_home (tests.test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-band
+FAIL: test_pg2_every_record_value_equals_its_home (tests.test_page.PageTests.test_pg2_every_record_value_equals_its_home) (ref='rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-m
+FAIL: test_pg5_the_chain_and_its_gaps_are_drawn (tests.test_page.PageTests.test_pg5_the_chain_and_its_gaps_are_drawn) (edge='rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwid
+FAIL: test_pg5_the_chain_and_its_gaps_are_drawn (tests.test_page.PageTests.test_pg5_the_chain_and_its_gaps_are_drawn) (edge='rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memo
+Ran 24 tests in 0.223s
+FAILED (failures=26, errors=2)

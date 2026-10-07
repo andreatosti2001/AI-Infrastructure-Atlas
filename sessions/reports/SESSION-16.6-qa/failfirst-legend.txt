@@ -1,0 +1,19 @@
+FAIL: test_pg5_the_chain_and_its_gaps_are_drawn (test_page.PageTests.test_pg5_the_chain_and_its_gaps_are_drawn) (key='reported')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/AI-Infrastructure-Atlas/tests/test_page.py", line 589, in test_pg5_the_chain_and_its_gaps_are_drawn
+    self.assertIn(f"{basis}:", key, "a named supplier's basis is missing from the key")
+AssertionError: 'reported:' not found in 'named thing (instance level)vendor-neutral class (class level)stated: at least one cited claim is a FACTinferred: every cited claim is a DERIVATIONgap: an unknown value or a recorded gap, never a zerorecorded gap: a claim the Atlas holds, not an edgerecorded in the Atlas, not linked to the chain' : a named supplier's basis is missing from the key
+
+======================================================================
+FAIL: test_pg5_the_chain_and_its_gaps_are_drawn (test_page.PageTests.test_pg5_the_chain_and_its_gaps_are_drawn) (key='reported')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/AI-Infrastructure-Atlas/tests/test_page.py", line 589, in test_pg5_the_chain_and_its_gaps_are_drawn
+    self.assertIn(f"{basis}:", key, "a named supplier's basis is missing from the key")
+AssertionError: 'reported:' not found in 'named thing (instance level)vendor-neutral class (class level)stated: at least one cited claim is a FACTinferred: every cited claim is a DERIVATIONgap: an unknown value or a recorded gap, never a zerorecorded gap: a claim the Atlas holds, not an edgerecorded in the Atlas, not linked to the chain' : a named supplier's basis is missing from the key
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.316s
+
+FAILED (failures=2)

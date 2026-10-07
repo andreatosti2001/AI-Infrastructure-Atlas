@@ -1,0 +1,7 @@
+# S16.5 final checks, Python 3.11 virtualenv built from both pin files, on the final tree
+Ran 362 tests: OK
+Repository integrity: OK
+results: up to date
+page: up to date (site/hbm-chain/index.html)
+page: up to date (site/hbm-insight/index.html)
+Both pages differ from S16's only in their sha256 digest lines (compared with the hashes masked).

@@ -110,7 +110,9 @@ def matrix() -> dict[str, dict]:
     result = {}
     for row in matrix_rows():
         key = row[0].strip("`")
-        standings = {"party or originator": {"party", "originator"}, "party": {"party"}, "originator": {"originator"}}[row[4]]
+        standings = {"party or originator": {"party", "originator"}, "party": {"party"}, "originator": {"originator"},
+                     # S16.6 (D-147): the supplier row also admits third parties, only under §7.1's criteria (V-10)
+                     "party, or a third party under §7.1": {"party", "originator", "reporter"}}[row[4]]
         result[key] = {
             "sufficient": set(column_classes(row[1])) | set(column_classes(row[2])),
             "standings": standings,

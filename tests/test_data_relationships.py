@@ -55,6 +55,8 @@ from test_data_integrity import DATA, load_data, load_records
 from test_entity_taxonomy import cells, section
 from test_source_policy import column_classes, matrix_rows
 
+H100_HBM = "rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-memory"
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 REL_SCHEMA = json.loads((REPO_ROOT / "schemas/relationships.schema.json").read_text(encoding="utf-8"))
 TAXONOMY = (REPO_ROOT / "docs/architecture/relationship-taxonomy.md").read_text(encoding="utf-8")
@@ -329,6 +331,10 @@ def check_edge_matrix(edges, sources, staging_claims, canonical_claims) -> list[
         for assertion in supplier_assertions(edge):
             if not supported(assertion["claim_ids"], qualifier):
                 errors.append(f"{edge['id']}.supplier = {assertion['value']}: no citation with a class and standing that {qualifier} allows")
+            # S16.6 (D-147; source-policy.md §7.1): a citation by a third party (not a party) states its criteria
+            for _, citation in (lc for cid in assertion["claim_ids"] for lc in leaf_citations(cid, claims)):
+                if citation["standing"] != "party" and "third_party_criteria" not in citation:
+                    errors.append(f"{edge['id']}.supplier = {assertion['value']}: a citation of {citation['source_id']} without its third-party criteria (R-5)")
         state = supplier_state(edge)
         if state and state["state"] == "not_publicly_determinable":
             searched = {
@@ -572,6 +578,23 @@ class EdgeDataTests(unittest.TestCase):
 
     def test_v10_edges_rest_on_allowed_classes_and_standing(self) -> None:
         self.assertEqual(check_edge_matrix(self.edges, self.sources, self.staging, self.canonical), [])
+
+    def test_r5_a_third_party_supplier_citation_records_its_criteria(self) -> None:
+        # S16.6 (R-5, D-147): a supplier may rest on a third party (a report, an analyst, the press) only with its
+        # criteria recorded: internationally recognised as reliable, and independent of the parties, each with a
+        # reason. A criterion not met is allowed, but it must be stated, never left out.
+        edges = copy.deepcopy(self.edges)
+        edge = next(e for e in edges["canonical"] if e["id"] == H100_HBM)
+        edge["supplier"] = [{"value": "company-sk-hynix", "claim_ids": ["claim-test-reported-supplier"]}]
+        sources = self.sources + [{"id": "src-test-news", "source_class": "news_media"}]
+        citation = {"source_id": "src-test-news", "locator": "x", "anchor": "y", "standing": "reporter",
+                    "originator": {"name": "An analyst"}}
+        claim = {"id": "claim-test-reported-supplier", "claim_type": "ATTRIBUTION", "citations": [citation]}
+        errors = check_edge_matrix(edges, sources, self.staging + [claim], self.canonical)
+        self.assertTrue(any("without its third-party criteria (R-5)" in e for e in errors), errors)
+        citation["third_party_criteria"] = {"recognised": {"met": False, "reason": "a regional outlet"},
+                                            "independent": {"met": True, "reason": "no tie to the parties found"}}
+        self.assertEqual(check_edge_matrix(edges, sources, self.staging + [claim], self.canonical), [])
 
     def test_ce1_canonical_edges_rest_on_canonical_records(self) -> None:
         self.assertEqual(check_canonical_edges(self.edges, self.entities, self.canonical), [])

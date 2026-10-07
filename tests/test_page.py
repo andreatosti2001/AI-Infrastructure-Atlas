@@ -22,6 +22,9 @@ PG-7  the committed page equals a rebuild, and two builds are identical;
 PG-8  accessibility basics, the palette and its contrast;
 PG-9  links resolve and the page loads nothing from the network;
 PG-10 the journey specification matches its homes;
+PG-5  (S16.6, D-148) a named supplier is drawn with its name, its basis ("stated" or "reported") and, when
+      historical, its period; a third-party citation shows each §7.1 criterion as met or not met; the lane's
+      facility and product, not its company, are what may not be linked
 PG-11 (S14, D-115, D-121; S15, D-129) the SQL table equals its committed result cell by cell, every result row is
       shown, its caveats appear exactly where the result has them, and its "How this was computed"
       tutorial, beside it and closed by default, is the query file the result records.
@@ -69,7 +72,9 @@ SQL_FLAGS = {
 SQL_SHOWN = ("accelerator", "from_name", "relation", "to_name", "basis", "evidence_dated_from", "record_id", "reached_through", "accelerator_class_claim")
 SQL_LISTS = ("claim_ids", "source_ids", "publishers", "party_standing_unchecked")
 BARE = re.compile(r"^[\s·→←↓,.;:()\[\]/—–\-\"“”'‘’…+#?!]*$")
-FORMATS = {None: lambda value: value, "state": lambda value: value.replace("_", " ")}
+# S16.6 (D-148): a §7.1 criterion's boolean is shown as "met" or "not met"
+FORMATS = {None: lambda value: value, "state": lambda value: value.replace("_", " "), "met": lambda value: "met" if value == "True" else "not met"}
+SUPPLIER_BASIS = {"FACT": "stated", "ATTRIBUTION": "reported"}
 FRAMING_MARK = "Atlas framing"
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
 
@@ -341,6 +346,10 @@ class PageTests(unittest.TestCase):
                 for index, citation in enumerate(claim.get("citations", [])):
                     for field in ("anchor", "locator", "standing", "read/accessed_at"):
                         self.assertIn((claim_id, f"/citations/{index}/{field}"), shown)
+                    # S16.6 (D-147): a third-party citation shows each §7.1 criterion, met or not, and why
+                    for criterion in citation.get("third_party_criteria", {}):
+                        for part in ("met", "reason"):
+                            self.assertIn((claim_id, f"/citations/{index}/third_party_criteria/{criterion}/{part}"), shown, f"a citation hides its criterion {criterion}")
                     source_id = citation["source_id"]
                     for field in ("/title", "/publisher", "/source_class", "/url", "/retrieval/accessed_at"):
                         self.assertIn((source_id, field), shown)
@@ -404,7 +413,8 @@ class PageTests(unittest.TestCase):
                     home = (REPO_ROOT / node.text()).read_text(encoding="utf-8")
                     self.assertRegex(home, rf"(\| {re.escape(node.attrs['data-target'])} \||\({re.escape(node.attrs['data-target'])}\)\n)", "the rule is not defined where the page says")
                 elif kind == "lane-unlinked":
-                    self.assertEqual(node.text(), "not linked to any accelerator on this chain")
+                    # S16.6: the lane's facility and product are not linked; its company may be (a reported supplier)
+                    self.assertEqual(node.text(), "the facility and product here: not linked to this chain")
 
     # PG-11
     def sql_result(self) -> dict:
@@ -485,7 +495,7 @@ class PageTests(unittest.TestCase):
                 record = self.homes.canonical[target]
                 if kind == "node":
                     self.assertIn("type", record)
-                elif kind in ("edge", "supplier-gap"):
+                elif kind in ("edge", "supplier-gap", "supplier"):
                     self.assertIn("relation_type", record)
                 elif kind == "gap":
                     self.assertIn("claim_type", record)
@@ -550,12 +560,33 @@ class PageTests(unittest.TestCase):
                     for actor in self.atlas.actors_list(node):
                         self.assertIn(("edge", actor["edge"]["id"]), drawn)
                 supplier = edge.get("supplier")
-                if supplier is not None:
-                    self.assertIsInstance(supplier, dict, "named suppliers need a design before they are drawn")
+                if isinstance(supplier, dict):
                     self.assertIn(("supplier-gap", edge["id"]), drawn)
                     gap = next(m for m in self.marks if m.attrs["data-mark"] == "supplier-gap" and m.attrs["data-target"] == edge["id"])
                     states = [n for n in gap.walk() if n.attrs.get("data-field") == "/supplier/state"]
                     self.assertEqual(len(states), 1, "an unknown supplier drawn without its state")
+                elif isinstance(supplier, list):
+                    # S16.6 (D-148): a named supplier is drawn with its name, its basis in words, and its period
+                    self.assertIn(("supplier", edge["id"]), drawn, "a named supplier is not drawn")
+                    mark = next(m for m in self.marks if m.attrs["data-mark"] == "supplier" and m.attrs["data-target"] == edge["id"])
+                    words = {n.text() for n in mark.walk() if "data-label" in n.attrs}
+                    for i, assertion in enumerate(supplier):
+                        names = [n for n in mark.walk() if n.attrs.get("data-ref") == assertion["value"] and n.attrs.get("data-field") == "/name"]
+                        self.assertEqual(len(names), 1, "a named supplier drawn without its name")
+                        types = {self.homes.canonical[c]["claim_type"] for c in assertion["claim_ids"]}
+                        basis = "stated" if "FACT" in types else SUPPLIER_BASIS.get("ATTRIBUTION" if "ATTRIBUTION" in types else "", "inferred")
+                        self.assertIn(basis, words, "a named supplier drawn without its basis in words")
+                        periods = [n for n in mark.walk() if n.attrs.get("data-field") == f"/supplier/{i}/valid_to"]
+                        self.assertEqual(len(periods), 1 if "valid_to" in assertion else 0, "a historical supplier drawn without its period, or a period invented")
+                        if "valid_to" in assertion:
+                            self.assertIn("historical, to", words, "a historical supplier drawn as current")
+        # S16.6 (D-148): every basis a named supplier is drawn with has its line in the diagram's key
+        key = " ".join(n.text() for n in self.nodes if n.tag == "ul" and "legend" in n.attrs.get("class", "").split())
+        for mark in self.marks:
+            if mark.attrs["data-mark"] == "supplier":
+                basis = next(c for c in mark.attrs["class"].split() if c in ("stated", "inferred", "reported"))
+                with self.subTest(key=basis):
+                    self.assertIn(f"{basis}:", key, "a named supplier's basis is missing from the key")
         for gap in journey["drawn_gaps"]:
             with self.subTest(gap=gap["candidate"]):
                 marks = [m for m in self.marks if m.attrs["data-mark"] == "gap" and m.attrs["data-target"] == gap["claim"]]
@@ -569,7 +600,9 @@ class PageTests(unittest.TestCase):
             self.assertNotRegex(text.lower(), r"\bnone\b", "RR-7: never 'none'")
         for mark in self.marks:
             if mark.attrs["data-mark"] in ("gap", "supplier-gap"):
-                self.assertNotRegex(mark.text(), r"(?<![\w.])0(?![\w.])", "a gap drawn as zero")
+                # each text node on its own: joined, "inferred" and "0" read "inferred0" and hide the zero (S16.6)
+                for text, _ in mark.texts():
+                    self.assertNotRegex(text, r"(?<![\w.])0(?![\w.])", "a gap drawn as zero")
 
     def test_pg5_candidates_are_cards_never_lines(self) -> None:
         # D-109: a refused candidate is never drawn in the diagram; each one the journey names is a
@@ -603,7 +636,7 @@ class PageTests(unittest.TestCase):
         for edge_id in journey["lane_edges"]:
             self.assertIn(edge_id, lane)
         products = {e["edge"]["source_entity"] for e in self.atlas.depends_on_tree(journey["walk_root"])[0]["dependents"]}
-        lane_records = {t for t in lane if t in self.homes.canonical and "type" in self.homes.canonical[t]}
+        lane_records = {t for t in lane if t in self.homes.canonical and self.homes.canonical[t].get("type") in ("facility", "product")}
         for edge, _ in self.atlas.edges:
             ends = {edge["source_entity"], edge["target_entity"]}
             with self.subTest(edge=edge["id"]):

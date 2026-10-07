@@ -45,7 +45,8 @@ EVENT_DEFS = json.loads(read("schemas/events.schema.json"))["$defs"]
 
 CLASS_ITEMS = SOURCE_SCHEMA["$defs"]["vocab_source_class"]["oneOf"]
 CLASSES = {item["const"] for item in CLASS_ITEMS}
-STANDINGS = {"party", "originator", "party or originator"}
+THIRD_PARTY_STANDING = "party, or a third party under §7.1"
+STANDINGS = {"party", "originator", "party or originator", THIRD_PARTY_STANDING}
 FRESHNESS = {"stable", "time_sensitive"}
 SRC = r"SRC-\d{3}"
 REQUIRED_PAIRS = {
@@ -223,10 +224,26 @@ class MatrixTests(unittest.TestCase):
                 self.assertTrue(preferred or row[1].startswith("none —"), "no preferred class, no reason")
 
     def test_secondary_classes_are_never_sufficient_alone_anywhere(self) -> None:
-        # §9 states this in prose; it must stay true of every row.
+        # §9 states this in prose; it must stay true of every row but one. S16.6 (R-5, D-147): the supplier of a
+        # product may rest on a third party under §7.1's criteria, and only that row says so.
         for row in matrix_rows():
             with self.subTest(row=row[0]):
-                self.assertLessEqual({"market_research_consultancy", "news_media"}, set(column_classes(row[3])))
+                if row[0] == "`rel:incorporates.supplier`":
+                    self.assertEqual(row[4], THIRD_PARTY_STANDING, "the supplier row must name §7.1's standing")
+                    self.assertLessEqual({"research_report", "market_research_consultancy", "news_media"}, set(column_classes(row[2])))
+                    self.assertIn("§7.1", row[6])
+                else:
+                    self.assertLessEqual({"market_research_consultancy", "news_media"}, set(column_classes(row[3])))
+                    self.assertNotEqual(row[4], THIRD_PARTY_STANDING, "only the supplier row admits third parties")
+
+    def test_third_party_criteria_are_stated(self) -> None:
+        # S16.6 (R-5): the human's four criteria, in §7.1, and R-1's historical values in §12.
+        body = policy_section("7", "8")
+        for phrase in ("### 7.1", "no older than 12 months", "internationally recognised as reliable",
+                       "no conflict of interest", "stated explicitly"):
+            with self.subTest(phrase=phrase):
+                self.assertIn(phrase, body)
+        self.assertIn("Historical values of a `time_sensitive` row", policy_section("12", "13"))
 
     def test_standing_and_freshness_values(self) -> None:
         for row in matrix_rows():

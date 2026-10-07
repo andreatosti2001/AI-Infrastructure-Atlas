@@ -21,6 +21,7 @@ Run alone: python -m unittest discover -s tests -p "test_freshness.py" -v
 """
 
 import calendar
+import copy
 import re
 import unittest
 
@@ -69,6 +70,20 @@ def fresh_support(ids, row, months, by_id, claims) -> bool:
     return False
 
 
+def historical_support(assertion, row, months, by_id, claims) -> bool:
+    """S16.6 (R-1, D-144): at least one accepted citation dated no earlier than `valid_to` and no later than
+    `valid_to` plus the horizon. A partial `valid_to` counts from the start of its period."""
+    start = start_of(assertion["valid_to"])
+    end = months_before(start, -months)
+    for claim, citation in (lc for cid in assertion["claim_ids"] for lc in leaf_citations(cid, claims)):
+        source = by_id.get(citation["source_id"])
+        if source is None or source["source_class"] not in row["sufficient"] or citation["standing"] not in row["standings"]:
+            continue
+        if "verified_on" in claim and start <= evidence_date(claim, source) <= end:
+            return True
+    return False
+
+
 def check_edge_freshness(edges, sources, staging_claims, canonical_claims) -> list[str]:
     """F-1, on every edge, staging and canonical (S10)."""
     rows = matrix()
@@ -85,7 +100,11 @@ def check_edge_freshness(edges, sources, staging_claims, canonical_claims) -> li
             supplier = edge.get("supplier")
             if qualifier in rows and rows[qualifier]["freshness"] == "time_sensitive" and isinstance(supplier, list):
                 for assertion in supplier:
-                    if not fresh_support(assertion["claim_ids"], rows[qualifier], months, by_id, claims):
+                    if "valid_to" in assertion:
+                        # a historical value (S16.6, D-144): its evidence dates its period, F-1 does not apply
+                        if not historical_support(assertion, rows[qualifier], months, by_id, claims):
+                            errors.append(f"{edge['id']}.supplier = {assertion['value']}: historical value whose evidence is not dated from valid_to {assertion['valid_to']} to {months} months after it")
+                    elif not fresh_support(assertion["claim_ids"], rows[qualifier], months, by_id, claims):
                         errors.append(f"{edge['id']}.supplier = {assertion['value']}: no accepted evidence within {months} months of its verification ({qualifier} is time_sensitive)")
     return errors
 
@@ -178,6 +197,33 @@ class EdgeFreshnessTests(unittest.TestCase):
         errors = check_edge_freshness(edges, sources, staging, canonical)
         self.assertTrue(any("operates-facility-xa-example-fab-1" in e for e in errors), errors)
         self.assertFalse(any("designs" in e for e in errors), "rel:designs is stable")
+
+
+class HistoricalSupplierTests(unittest.TestCase):
+    """S16.6 (R-1, D-144): a supplier value with `valid_to` is historical. F-1 does not apply; its evidence must
+    date its period: no earlier than `valid_to`, and no later than `valid_to` plus the horizon. That it states a
+    past fact, not a plan (ER-8), is the Verifier's reading, not a check."""
+
+    H100_HBM = "rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-memory"
+    BASE = {"value": "company-sk-hynix", "claim_ids": ["claim-sk-hynix-hbm3-for-h100-2022"]}
+
+    def errors(self, assertion: dict) -> list[str]:
+        sources, staging, canonical = load_data()
+        edges = copy.deepcopy(load_edges())
+        next(e for e in edges["canonical"] if e["id"] == self.H100_HBM)["supplier"] = [assertion]
+        return [e for e in check_edge_freshness(edges, sources, staging, canonical) if ".supplier" in e]
+
+    def test_r1_without_valid_to_stale_evidence_is_refused(self) -> None:
+        self.assertTrue(self.errors(dict(self.BASE)), "a supplier on 2022 evidence passed F-1")
+
+    def test_r1_a_historical_value_dated_by_its_evidence_passes(self) -> None:
+        self.assertEqual(self.errors(dict(self.BASE, valid_to="2022-06")), [])
+
+    def test_r1_a_period_its_evidence_does_not_date_is_refused(self) -> None:
+        for valid_to in ("2022-07", "2021-05"):
+            with self.subTest(valid_to=valid_to):
+                errors = self.errors(dict(self.BASE, valid_to=valid_to))
+                self.assertTrue(any("historical" in e for e in errors), errors)
 
 
 if __name__ == "__main__":

@@ -67,7 +67,7 @@ evidence of something different.
 | `company_marketing` | That the company offers a named product; how the vendor names and describes its own products (SRC-007) | Technology or component definitions: the roadmap's S08 mission is to model them "independently of company marketing language"; class-level necessity; exclusivity or leadership (ER-5); anything about another firm |
 | `standard_specification` | As originator: standardised terms, interfaces, generations and measurement methods; structures a standard mandates for every conforming instance | Which firm makes, supplies or uses anything; adoption or market state |
 | `government_publication` | As originator: definitions it issues (SRC-001); official-register facts (incorporation, permits, site location); its own programme facts (SRC-004) | Company activity it only reports; data it takes from others (ER-6) |
-| `research_report` | As originator: its own methods, measurements and estimates (as `DERIVATION` or `ATTRIBUTION` of the estimate); technical definitions in its own work (SRC-021) | Data it reports from others (ER-6; SRC-021 p.31, p.33); company-specific edges; anything outside its stated scope |
+| `research_report` | As originator: its own methods, measurements and estimates (as `DERIVATION` or `ATTRIBUTION` of the estimate); technical definitions in its own work (SRC-021); a teardown of a named product, for its part's supplier (§7.1, D-145) | Data it reports from others (ER-6; SRC-021 p.31, p.33); company-specific edges, except §7.1's teardown; anything outside its stated scope |
 | `policy_research_brief` | Its own assessments and glossary definitions, as `ATTRIBUTION` (SRC-002, SRC-003) | Facts about named companies; market data, which it reports with an as-of date (SRC-002 p.5: "current as of 2019"); technical necessity |
 | `industry_association` | Its own positions and definitions, as `ATTRIBUTION` (SRC-005) | Any fact about its members or the market; a definition that other sources contest (CON-03, CON-04). It states a representational role (SRC-005 p.2) |
 | `market_research_consultancy` | Its own estimates, as `ATTRIBUTION` | Any record. Its data usually reaches the Atlas second-hand and cannot be retrieved: SRC-021 lists IDC data as purchased (p.33) and cites an IDC analyst's personal communication (p.31) |
@@ -224,7 +224,7 @@ attribute rows and 4 event rows.
 | `rel:fabricates` | `company_filing`, `company_technical_documentation` | `company_press_release`, `company_marketing` | `standard_specification`, `government_publication`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party | time_sensitive | taxonomy §5 `fabricates`; ER-1, ER-9 |
 | `rel:packages` | `company_filing`, `company_technical_documentation` | `company_press_release`, `company_marketing` | `standard_specification`, `government_publication`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party | time_sensitive | taxonomy §5 `packages`; ER-9; D-032 |
 | `rel:incorporates` | `company_technical_documentation` | `company_filing`, `company_marketing`, `company_press_release` | `standard_specification`, `government_publication`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party | stable | taxonomy §5 `incorporates` |
-| `rel:incorporates.supplier` | `company_technical_documentation`, `company_filing` | `company_press_release` | `company_marketing`, `standard_specification`, `government_publication`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party | time_sensitive | taxonomy §5 `incorporates` and §9; ER-3, ER-9; D-031 |
+| `rel:incorporates.supplier` | `company_technical_documentation`, `company_filing` | `company_press_release`, `research_report`, `market_research_consultancy`, `news_media` | `company_marketing`, `standard_specification`, `government_publication`, `policy_research_brief`, `industry_association` | party, or a third party under §7.1 | time_sensitive | taxonomy §5 `incorporates` and §9; ER-3, ER-9; D-031; third parties only under §7.1 (D-145, D-147) |
 | `rel:supplies` | `company_filing` | `company_press_release`, `company_technical_documentation` | `company_marketing`, `standard_specification`, `government_publication`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party | time_sensitive | taxonomy §5 `supplies`; ER-9 |
 | `rel:houses` | `company_press_release`, `company_technical_documentation` | `company_filing`, `government_publication` | `company_marketing`, `standard_specification`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party | time_sensitive | taxonomy §5 `houses`; ER-3 (deployment is usually non-public) |
 | `rel:provides_access_to` | `company_technical_documentation` | `company_marketing`, `company_press_release` | `company_filing`, `standard_specification`, `government_publication`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | party | time_sensitive | taxonomy §5 `provides_access_to` |
@@ -261,6 +261,39 @@ attribute rows and 4 event rows.
 - **Quantities outside the schema** (volumes, market shares, deployment counts) have no
   rows, because no field holds them (NG-11). They are mostly `not_publicly_determinable`
   (domain map §8).
+
+### 7.1 Third-party evidence for a product's supplier (S16.6; D-145, D-147)
+
+The supplier of a product's part (`rel:incorporates.supplier`) may rest on a source that is not a party
+(neither the product's vendor nor the part's maker) when no party states it. The human set the criteria
+on 2026-10-07:
+
+1. **Recency:** preferably evidence no older than 12 months at verification. Older evidence is used only
+   as a historical value (§12, "Historical values of a `time_sensitive` row"), never as current.
+2. **Reliability:** a publisher internationally recognised as reliable: an international news agency or
+   newspaper of record, or an established, independent analysis or teardown firm whose work the parties,
+   governments or intergovernmental bodies routinely cite. The Verifier records why.
+3. **Independence:** no conflict of interest. The publisher is not owned, commissioned or sponsored by a
+   party or a party's competitor for the statement, and discloses no such tie. The Verifier records what
+   was checked.
+4. **Explicitness:** when a criterion cannot be met, the source may still be used if no better one exists,
+   but the unmet criterion is stated explicitly: in the citation's `third_party_criteria`, and wherever
+   the value is shown, beside it.
+
+**How such evidence is recorded:**
+
+- a report of what another party said is an `ATTRIBUTION` (`reporter` standing, with its originator);
+- an analyst's own estimate is an `ATTRIBUTION` of that estimate (`originator` standing);
+- **a teardown of the named product** (D-145) is the laboratory's own observation (`research_report`,
+  `originator`). It may be a `FACT` that "the unit examined by the laboratory contained the maker's part",
+  never that every unit did. It must name the specific product and variant, and identify the maker from the
+  unit (markings, die analysis), not from market reports;
+- every third-party citation carries `third_party_criteria`: `recognised` and `independent`, each with `met`
+  and a `reason`. Recency is computed from the dates;
+- a value resting only on third-party evidence is shown as **reported** ("reported by the publisher, on its
+  date"), never as stated (D-147). Its presentation is designed with the first such value;
+- a paywalled report is an access gap unless the human retrieves it (RA-4);
+- market research and news remain never sufficient alone in every other row (§9).
 
 ## 8. The registered sources and their classes (machine-checked)
 
@@ -385,6 +418,8 @@ edited.
     its own products. That is the `party` standing rule (§4), not a rank;
   - MA's level 1 (primary legal sources) has no v1 row: the policy layer starts at S17;
   - MA's level 7 (tertiary summaries) is not a class. It is not a source (§2).
+- **One exception (S16.6, D-147):** the supplier of a product's part may rest on third parties under §7.1's
+  criteria. Every other row keeps the agreement below.
 - **Where they agree.** Secondary analysis and news are never enough alone for any record
   in the matrix. Their rows all place `market_research_consultancy` and `news_media` in
   "never sufficient alone".
@@ -520,6 +555,14 @@ extra package). So:
   human at the S05 review (D-040). CSET's 2019 market data are stale by this rule, and the
   domain map already does not use them.
 - **`stable` rows** have no age limit. Only supersession and anchor drift make them stale.
+- **Historical values of a `time_sensitive` row** (S16.6, D-144). An assertion that carries `valid_to`
+  states what its evidence supports up to that date, and nothing about later dates. F-1 does not apply to
+  it. Instead:
+  - its evidence must be dated no earlier than `valid_to`, and no later than `valid_to` plus 12 months;
+  - it must state the past, not a plan (ER-8);
+  - every page shows it with its period, in words that cannot read as current.
+
+  The current state stays a separate question.
 
 The rule is written here. `validate-freshness` implements it later (S06+), and S05 writes
 no freshness code (L-01, L-09).

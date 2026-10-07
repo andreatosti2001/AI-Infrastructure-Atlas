@@ -104,6 +104,10 @@ LABELS = frozenset(
         "stated: at least one cited claim is a FACT", "inferred: every cited claim is a DERIVATION",
         "gap: an unknown value or a recorded gap, never a zero", "recorded in the Atlas, not linked to the chain",
         "also recorded in the Atlas", "not linked to any accelerator on this chain", "instance of",
+        # S16.6 (D-147, D-148): a named supplier, its basis, its period and the §7.1 criteria of a third party
+        "reported", "historical, to", "the facility and product here: not linked to this chain",
+        "reported: no cited claim is a FACT, and one reports what a third party says",
+        "recognised as reliable:", "independent of the parties:", "criteria (source policy)",
         "recorded as a kind of", "a property of its record,", "not a supply link", "a property of its record, not a supply link",
         "recorded gap", "a claim the Atlas holds, not an edge", "recorded gap: a claim the Atlas holds, not an edge",
         "ruling", "candidate", "type", "why not", "item", "no record in the Atlas", "the rule that refuses candidates:",
@@ -276,6 +280,8 @@ class Page:
         text = str(self.value(ref, field))
         if fmt == "state":
             text = text.replace("_", " ")
+        elif fmt == "met":
+            text = "met" if text == "True" else "not met"
         attributes = {"class": cls, "data-ref": ref, "data-field": field, "data-format": fmt} | {k.replace("_", "-"): v for k, v in extra.items()}
         attributes = {k: v for k, v in attributes.items() if v is not None}
         return f"<{tag}{self.attrs(attributes)}>{esc(text)}</{tag}>"
@@ -352,7 +358,7 @@ class Page:
         lane_products = [r["id"] for r, _ in self.atlas.records.values() if r.get("type") == "product" and component in r.get("instance_of", []) and r["id"] not in chain_ids]
         if len(lane_edges) > 1 or len(lane_products) > 1:
             raise BuildError("the lane is drawn for one edge and one product")
-        lane_records = {r for e in lane_edges for r in (e["edge"]["source_entity"], e["edge"]["target_entity"])} | set(lane_products)
+        lane_records = {r for e in lane_edges for r in (e["edge"]["source_entity"], e["edge"]["target_entity"]) if self.homes[r].get("type") in ("facility", "product")} | set(lane_products)
         for edge, _ in self.atlas.edges:
             ends = {edge["source_entity"], edge["target_entity"]}
             supplier = edge.get("supplier")
@@ -378,6 +384,26 @@ class Page:
     def basis(item: dict) -> str:
         """Stated when at least one cited claim is a FACT; otherwise inferred (D-103)."""
         return "stated" if any(c.get("claim_type") == "FACT" for c in item["claims"]) else "inferred"
+
+    def assertion_basis(self, assertion: dict) -> str:
+        """S16.6 (D-148): a named supplier is stated when a FACT names it, reported when only an ATTRIBUTION does."""
+        types = {self.homes[c]["claim_type"] for c in assertion["claim_ids"]}
+        return "stated" if "FACT" in types else "reported" if "ATTRIBUTION" in types else "inferred"
+
+    def supplier_words(self, edge: dict) -> str:
+        """The supplier field in words: its state when unknown; else each named supplier with its basis and,
+        when historical, its period (S16.6, D-148)."""
+        supplier = edge["supplier"]
+        if isinstance(supplier, dict):
+            return self.ref(edge["id"], "/supplier/state", fmt="state", cls="basis gap")
+        out = []
+        for i, assertion in enumerate(supplier):
+            basis = self.assertion_basis(assertion)
+            text = f'{self.name(assertion["value"])} · {self.label(basis, cls="basis " + basis)}'
+            if "valid_to" in assertion:
+                text += f' · {self.label("historical, to")} {self.ref(edge["id"], f"/supplier/{i}/valid_to")}'
+            out.append(text)
+        return "; ".join(out)
 
     def claim_basis(self, claim_id: str) -> str:
         return "stated" if self.homes[claim_id]["claim_type"] == "FACT" else "inferred"
@@ -438,8 +464,31 @@ class Page:
     def supplier_pill(self, item: dict, x: int, y: int) -> str:
         edge_id = item["edge"]["id"]
         supplier = item["edge"]["supplier"]
-        if not isinstance(supplier, dict):
-            raise BuildError("named suppliers need a design before they are drawn")
+        if isinstance(supplier, list):
+            # S16.6 (D-148): a named supplier, its basis in words, and its period when historical
+            if len(supplier) != 1:
+                raise BuildError("the pill is drawn for one named supplier")
+            assertion = supplier[0]
+            basis = self.assertion_basis(assertion)
+            head_id, name_id, basis_id = self.new_id("t"), self.new_id("t"), self.new_id("t")
+            basis_line = f'<text class="pill-head" id="{basis_id}" x="{x}" y="{y + 47}" text-anchor="middle">{self.label(basis, tag="tspan", cls="pill-basis")}</text>'
+            labelled, height = f"{head_id} {name_id} {basis_id}", 54
+            if "valid_to" in assertion:
+                # the period gets its own line: beside the basis it is wider than the pill
+                period_id = self.new_id("t")
+                labelled, height = f"{labelled} {period_id}", 68
+                basis_line += (
+                    f'<text class="pill-head" id="{period_id}" x="{x}" y="{y + 61}" text-anchor="middle">'
+                    f'{self.label("historical, to", tag="tspan")} {self.ref(edge_id, "/supplier/0/valid_to", tag="tspan")}</text>'
+                )
+            return (
+                f'<a class="mark supplier {basis}" href="#ev-{esc(edge_id)}" data-mark="supplier" data-target="{esc(edge_id)}" aria-labelledby="{labelled}">'
+                f'<rect class="pill named" x="{x - 80}" y="{y}" width="160" height="{height}" rx="10"/>'
+                + self.label("supplier (who makes it)", tag="text", cls="pill-head", id=head_id, x=x, y=y + 16, text_anchor="middle")
+                + self.name(assertion["value"], tag="text", cls="pill-text", id=name_id, x=x, y=y + 32, text_anchor="middle")
+                + basis_line
+                + "</a>"
+            )
         self.term("Unknown and unstated values", f"schema:entities#vocab_unresolved_state/{supplier['state']}")
         head_id, state_id = self.new_id("t"), self.new_id("t")
         return (
@@ -487,7 +536,7 @@ class Page:
         lane = [f'<g class="lane" data-lane>']
         lane.append(f'<rect class="lane-box" x="2" y="{lane_y}" width="356" height="236" rx="8"/>')
         lane.append(self.label("also recorded in the Atlas", tag="text", cls="lane-head", x=14, y=lane_y + 22))
-        lane.append(self.derived("lane-unlinked", self.label_text("not linked to any accelerator on this chain"), tag="text", cls="lane-note", x=14, y=lane_y + 38))
+        lane.append(self.derived("lane-unlinked", self.label_text("the facility and product here: not linked to this chain"), tag="text", cls="lane-note", x=14, y=lane_y + 38))
         for item in j["lane_edges"]:
             edge = item["edge"]
             lane.append(self.box(edge["source_entity"], 10, lane_y + 54, col_w, 46))
@@ -519,6 +568,7 @@ class Page:
             ('<rect class="box" x="2" y="4" width="32" height="18" rx="4"/><rect class="class-rule" x="2" y="4" width="32" height="4" rx="2"/>', "vendor-neutral class (class level)", " class-level"),
             ('<line class="line" x1="2" y1="13" x2="30" y2="13" marker-end="url(#arrow)"/>', "stated: at least one cited claim is a FACT", ""),
             ('<line class="line" x1="2" y1="13" x2="30" y2="13" marker-end="url(#arrow)"/>', "inferred: every cited claim is a DERIVATION", " inferred"),
+            ('<rect class="pill named" x="2" y="4" width="32" height="18" rx="9"/>', "reported: no cited claim is a FACT, and one reports what a third party says", " supplier reported"),
             ('<rect class="pill" x="2" y="4" width="32" height="18" rx="9"/>', "gap: an unknown value or a recorded gap, never a zero", " gap"),
             ('<line class="line" x1="2" y1="13" x2="34" y2="13"/>', "recorded gap: a claim the Atlas holds, not an edge", " gap"),
             ('<rect class="lane-box" x="2" y="4" width="32" height="18" rx="4"/>', "recorded in the Atlas, not linked to the chain", ""),
@@ -552,7 +602,7 @@ class Page:
             item = col["item"]
             items.append(
                 f"<li>{sentence(item)} · {self.label('supplier (who makes this part)')}: "
-                f"{self.ref(item['edge']['id'], '/supplier/state', fmt='state', cls='basis gap')} {self.evidence_link(item['edge']['id'])}</li>"
+                f"{self.supplier_words(item['edge'])} {self.evidence_link(item['edge']['id'])}</li>"
             )
         items.append(f"<li>{sentence(j['root'])} {self.evidence_link(j['root']['edge']['id'])}</li>")
         lane = [f"<li>{sentence(item)} {self.evidence_link(item['edge']['id'])}</li>" for item in j["lane_edges"]]
@@ -564,7 +614,7 @@ class Page:
         return (
             f'<div id="chain-words"><ol class="words">{"".join(items)}</ol>'
             f'<p class="lane-words">{self.label("also recorded in the Atlas")} · '
-            f'{self.derived("lane-unlinked", self.label_text("not linked to any accelerator on this chain"))}</p>'
+            f'{self.derived("lane-unlinked", self.label_text("the facility and product here: not linked to this chain"))}</p>'
             f'<ul class="words">{"".join(lane)}</ul></div>'
         )
 
@@ -610,7 +660,7 @@ class Page:
             edge = col["item"]["edge"]
             items.append(
                 f"<li>{self.name(edge['source_entity'])} → {self.name(edge['target_entity'])} · {self.label('supplier (who makes this part)')}: "
-                f"{self.ref(edge['id'], '/supplier/state', fmt='state', cls='basis gap')} {self.evidence_link(edge['id'])}</li>"
+                f"{self.supplier_words(edge)} {self.evidence_link(edge['id'])}</li>"
             )
         for col in j["columns"]:
             if col["actor"]:
@@ -648,6 +698,8 @@ class Page:
         states = set()
         for col in j["columns"]:
             edge = col["item"]["edge"]
+            if not isinstance(edge["supplier"], dict):
+                continue  # a named supplier is not an unknown value (S16.6)
             states.add(edge["supplier"]["state"])
             unknown.append(
                 f"<li>{self.name(edge['source_entity'])} → {self.name(edge['target_entity'])} · {self.label('supplier (who makes this part)')}: "
@@ -680,8 +732,8 @@ class Page:
                     f'{self.derived("no-activity-edge", self.label_text("no recorded relationship"), data_target=col["product"])}</li>'
                 )
         return (
-            f'{self.label("Unknown values", tag="h3")}<ul class="gaps">{"".join(unknown)}</ul>{meaning}<p class="meaning">{self.label("ruling")}: {ruling}</p>'
-            f'{self.label("Recorded gaps", tag="h3")}<ul class="gaps">{"".join(drawn)}</ul>'
+            (f'{self.label("Unknown values", tag="h3")}<ul class="gaps">{"".join(unknown)}</ul>{meaning}<p class="meaning">{self.label("ruling")}: {ruling}</p>' if unknown else "")
+            + f'{self.label("Recorded gaps", tag="h3")}<ul class="gaps">{"".join(drawn)}</ul>'
             f'{self.label("Candidates that are not edges", tag="h3")}{table}'
             f'{self.label("No recorded relationship", tag="h3")}<ul class="gaps">{"".join(none_recorded)}</ul>'
         )
@@ -824,6 +876,13 @@ class Page:
         ]
         if "originator" in citation:
             out.append(f'<p class="meta">{self.label("originator", cls="k")} {k("originator/name")} · {k("originator/source_class", cls="tag")}</p>')
+        if "third_party_criteria" in citation:
+            # S16.6 (D-147): each §7.1 criterion, met or not, and why; an unmet one is never left out
+            out.append(
+                f'<p class="meta criteria">{self.label("criteria (source policy)", cls="k")} '
+                f'{self.label("recognised as reliable:")} {k("third_party_criteria/recognised/met", fmt="met", cls="tag")} · {k("third_party_criteria/recognised/reason")} · '
+                f'{self.label("independent of the parties:")} {k("third_party_criteria/independent/met", fmt="met", cls="tag")} · {k("third_party_criteria/independent/reason")}</p>'
+            )
         if "read" in citation:
             registered = source["retrieval"]["sha256"]
             same = citation["read"]["sha256"].startswith(registered) or registered.startswith(citation["read"]["sha256"])
@@ -872,8 +931,8 @@ class Page:
                 details.append(("period", " – ".join(self.ref(edge_id, f"/{k}") for k in ("valid_from", "valid_to") if k in edge)))
             else:
                 details.append(("period", self.absent(edge_id, "/valid_from", "no period in the claims")))
-        if isinstance(edge.get("supplier"), dict):
-            details.append(("supplier", self.ref(edge_id, "/supplier/state", fmt="state", cls="basis gap")))
+        if "supplier" in edge:
+            details.append(("supplier", self.supplier_words(edge)))
         basis = self.basis(item)
         details.append(("basis", self.label(basis, cls="basis " + basis)))
         return self.panel(edge_id, heading, details)

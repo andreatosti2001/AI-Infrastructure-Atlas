@@ -361,5 +361,43 @@
         ]
       }
     ]
+  },
+  {
+    "id": "company-samsung-electronics-co-ltd",
+    "type": "company",
+    "name": "Samsung Electronics",
+    "aliases": [
+      "Samsung Electronics Co., Ltd."
+    ],
+    "identity_claim_ids": [
+      "claim-samsung-electronics-legal-name"
+    ],
+    "legal_name": [
+      {
+        "value": "Samsung Electronics Co., Ltd.",
+        "claim_ids": [
+          "claim-samsung-electronics-legal-name"
+        ]
+      }
+    ],
+    "incorporated_in": {
+      "state": "not_researched"
+    },
+    "headquartered_in": [
+      {
+        "value": "jurisdiction-kr",
+        "claim_ids": [
+          "claim-samsung-electronics-headquartered-in-kr"
+        ]
+      }
+    ],
+    "roles": [
+      {
+        "value": "memory_manufacturer",
+        "claim_ids": [
+          "claim-samsung-electronics-memory-products"
+        ]
+      }
+    ]
   }
 ]

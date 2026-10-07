@@ -34,9 +34,9 @@ are shown as "cannot be computed yet", with the reason:
 
 | Metric | Query | Status | What it says today |
 |---|---|---|---|
-| Evidence coverage | `sql/evidence_coverage.sql` | computed | Trainium2: 2 of 4 links stated, 1 inferred, 1 gap. H100: 1 of 4 stated, 1 inferred, 2 gaps. Each accelerator's 4 rows come from 3 records, 1 of them shared |
+| Evidence coverage | `sql/evidence_coverage.sql` | computed | Trainium2: 2 of 4 links stated, 1 inferred, 1 reported, 0 gaps. H100: 1 of 4 stated, 1 inferred, 1 reported, 1 gap (S16.6). Each accelerator's 4 rows come from 3 records, 1 of them shared |
 | Source age | `sql/source_age.sql` | computed, as of 2026-10-07 (D-137) | 5 of the 6 dated links rest on evidence older than 12 months; the source policy's re-check applies to only one of them, already a gap (D-134). The one recent date (6 days) is only the day an undated page was read |
-| Supplier count | `sql/supplier_metrics.sql` | cannot be computed yet | 0 of 2 incorporated parts have a named supplier; both are `not_researched` |
+| Supplier count | `sql/supplier_metrics.sql` | cannot be computed yet | 2 of 2 incorporated parts have a supplier reported by a third party (S16.6); no part has its full set of suppliers stated |
 | Geographic concentration | `sql/supplier_metrics.sql` | cannot be computed yet | needs where each named supplier makes the part |
 | Single-source relationships | `sql/supplier_metrics.sql` | cannot be computed yet | needs a source stating that a part has exactly one supplier |
 
@@ -84,6 +84,8 @@ Deviations).
   and inflate the stated part.
 - **Unknowns:** a gap is counted in its own column, `gap`, never dropped. `stated + inferred + gap =
   links` is checked (WH-12).
+- **Reported** (S16.6, D-148): a link resting only on third-party reports is counted in its own column,
+  `reported`, never as stated. `stated + inferred + reported + gap = links` is checked (WH-12).
 - **It replaces the prototype's hand count.** The prototype's "links on stated evidence" count gave
   2 of 4 and 1 of 4. The SQL metric gives the same numbers. WH-12 checks the SQL against an
   independent computation, and IN-10 checks the page against both.
@@ -116,18 +118,24 @@ Deviations).
 
 - **What the query does** (H-1): one row per metric, with:
   - the incorporated parts;
-  - how many have a named supplier and how many are unknown;
+  - how many have a supplier stated by a party, how many a supplier reported by a third party (S16.6),
+    and how many are unknown;
   - the unknowns' own state word;
   - the company-to-company supply links recorded for those parts;
-  - the status (`cannot_be_computed_yet` while no supplier is named);
+  - the status (`cannot_be_computed_yet` until the metric's needs are met; since S16.6 a named supplier
+    alone no longer changes it, D-148);
   - in plain words, what evidence each metric needs.
 - **What the page shows:** each as an amber "cannot be computed yet" block, with the reason
-  ("2 of 2 parts: supplier not researched") and what it needs.
+  ("2 of 2 parts: supplier not researched" in S15; "2 of 2 with a supplier reported by a third party; no
+  part has its full set of suppliers stated" since S16.6) and what it needs.
 - **What the page never shows** (V-4, `CLAUDE.md` §7): the named-supplier count (0) or the
   supply-link count (0). A bare zero beside "supplier count" would read as "no suppliers".
-- **When the first supplier is named:** the status becomes `computable_not_yet_defined` and the page
-  build stops. The metric's presentation has not been designed, and drawing it unreviewed would
-  break the stop rule (Part B §16).
+- **When the first supplier is named** (S16.6, D-148, superseding D-130's status rule): the status stays
+  `cannot_be_computed_yet`, because a named supplier does not meet any metric's needs (a part's full
+  supplier set, where each supplier makes it, a source stating one supplier only). Neither report says
+  its maker was the only one, so a count of 1 would read as single-sourcing. The page shows each
+  non-zero kind ("2 of 2 with a supplier reported by a third party") and never a zero one. The build
+  still stops if a status becomes computable, until its presentation is designed (Part B §16).
 - **DT-7:** the `supplier` field and `supplies` edges are kept in separate columns (`parts_supplier_*`
   vs `supplies_links`). No metric combines a product's `vendor` with a `designs` edge. DT-7 is
   closed for S15's metrics.

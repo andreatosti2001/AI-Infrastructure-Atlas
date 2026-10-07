@@ -7,9 +7,15 @@
     "claim_ids": [
       "claim-h100-hbm-stacks"
     ],
-    "supplier": {
-      "state": "not_researched"
-    }
+    "supplier": [
+      {
+        "value": "company-sk-hynix",
+        "claim_ids": [
+          "claim-trendforce-h100-hbm3-primarily-sk-hynix-2024"
+        ],
+        "valid_to": "2024-03"
+      }
+    ]
   },
   {
     "id": "rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memory",
@@ -19,9 +25,14 @@
     "claim_ids": [
       "claim-trainium2-hbm-capacity"
     ],
-    "supplier": {
-      "state": "not_researched"
-    }
+    "supplier": [
+      {
+        "value": "company-samsung-electronics-co-ltd",
+        "claim_ids": [
+          "claim-semianalysis-trn2-hbm-samsung-2025"
+        ]
+      }
+    ]
   },
   {
     "id": "rel-company-amazon-com-designs-product-amazon-com-trainium2",
