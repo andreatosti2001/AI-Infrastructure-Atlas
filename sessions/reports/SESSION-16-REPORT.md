@@ -93,7 +93,7 @@ copies only, among them a placeholder supplier id that names no company. They we
 | **Fail-first** (checks written, nothing else changed) | 6 failures, each with its named reason ([`failfirst.txt`](./SESSION-16-qa/failfirst.txt)): the three IN-12 checks, IN-3 (the retired kinds), WH-15 |
 | **Final**, a second fresh venv | OK (361 tests); Gate 0 OK; `results: up to date`; both pages `up to date` ([`final-checks.txt`](./SESSION-16-qa/final-checks.txt)) |
 | **Merged break harness**, run in full on `dc210b2` (the remediated tree) | **74 of 74 faults caught as named; 9 of 9 controls pass** ([`merged-breaks-full-run.txt`](./SESSION-16-breaks/merged-breaks-full-run.txt)) |
-| **CI** | <CI> |
+| **CI** (GitHub Actions, observed) | green on every S16 commit pushed before the report: runs 150 to 156, `a42bf24` to `cdf9d18`, the remediation `dc210b2` included. The report commit's own run was not observed at writing |
 
 ### Deliberate breaks
 
