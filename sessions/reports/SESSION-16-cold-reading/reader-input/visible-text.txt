@@ -1,0 +1,218 @@
+AI INFRASTRUCTURE ATLASRESEARCH VIEWPROTOTYPE
+
+THE QUESTION What does an AI accelerator’s memory depend on, and who is known to make it?
+
+AWS Trainium2 and NVIDIA H100 each incorporates High Bandwidth Memory (stated); who makes it: not researched
+
+SCOPE: 2 accelerators recorded in the Atlas, and every link it records around each, with evidence dated 2018-06-08 to 2026-10-01.
+
+ATLAS FRAMING
+
+This page is a prototype of the Atlas’s research view. It shows the same records and the same SQL result as the dependency journey, arranged so that the answer comes first, the comparison second, and the evidence one click from every mark. It is not published.
+
+JUMP TO
+What the records show
+The chains, side by side
+Evidence
+The links as a table
+Method and limitations
+What the records show
+In common
+THE PART incorporates High Bandwidth Memory · stated
+THE PART’S MAKER supplier: gap · not researched
+THE PART’S PROCESS High Bandwidth Memory requires 3D die stacking · inferred
+Where they differ
+ACTS ON IT
+AWS Trainium2: Amazon designs · stated
+NVIDIA H100: TSMC fabricates · gap · evidence not fresh
+Indicators
+EVIDENCE COVERAGE
+AWS Trainium2
+2 of 4 links stated
+stated
+stated
+gap
+inferred
+1 inferred, 1 gap
+rows drawn from 3 records, of which shared with another accelerator: 1
+NVIDIA H100
+1 of 4 links stated
+gap
+stated
+gap
+inferred
+1 inferred, 2 gaps
+rows drawn from 3 records, of which shared with another accelerator: 1
+
+see how this was computed
+
+EVIDENCE AGE
+
+as of 2026-10-06
+
+AWS Trainium2
+2 of 3
+dated links: newest evidence older than twelve months
+1 of 3 dated links: dated only by the day a page was read
+NVIDIA H100
+3 of 3
+dated links: newest evidence older than twelve months
+0 of 3 dated links: dated only by the day a page was read
+
+Dates, not ages: an undated web page is dated by the day it was read. see how this was computed
+
+PUBLISHERS BEHIND A SOURCED LINK
+
+1 to 2
+
+4 of 6 sourced rows rest on one publisher
+
+Listed, never counted as confirmation.
+
+Cannot be computed yet
+SUPPLIER COUNT
+
+cannot be computed yet
+
+incorporated parts, one per accelerator: 2 of 2 with supplier not researched
+
+needs: who supplies each part, named in a source see how this was computed
+
+GEOGRAPHIC CONCENTRATION
+
+cannot be computed yet
+
+incorporated parts, one per accelerator: 2 of 2 with supplier not researched
+
+needs: where each named supplier makes the part see how this was computed
+
+SINGLE-SOURCE RELATIONSHIPS
+
+cannot be computed yet
+
+incorporated parts, one per accelerator: 2 of 2 with supplier not researched
+
+needs: a source stating that a part has exactly one supplier see how this was computed
+
+The chains, side by side
+
+ATLAS FRAMING
+
+Reading the chains
+
+Each chain is one accelerator, read in the direction of its arrows: what acts on it, the accelerator, the part it incorporates with who makes that part beneath it, and what that part requires. The part and the process are the same records in every chain; they are repeated so that the chains line up and can be compared.
+
+A solid line is stated by a source. A dashed line is the Atlas’s own inference. An amber dotted line or box is a gap, with its reason in words. A missing line means the Atlas has no record either way; it never means that no relationship exists. A date marked “access date” is only the day an undated web page was read. Every line opens its evidence.
+
+stated: at least one cited claim is a FACT
+inferred: every cited claim is a DERIVATION
+gap: an unknown value or a recorded gap, never a zero
+no recorded relationship
+named thing (instance level)
+vendor-neutral class (class level)
+Explore
+Show links whose basis is
+all links
+stated
+inferred
+gap
+
+Highlights the matching links in the chains and keeps only the matching rows in the table.
+
+AWS Trainium2
+ACTS ON IT
+Amazon
+designs
+stated
+2023-11-28
+ACCELERATOR
+AWS Trainium2
+incorporates
+stated
+2026-10-01 (access date)
+IT INCORPORATES
+High Bandwidth Memory
+WHO MAKES THAT PART
+gap · not researched
+requires
+inferred
+2018-06-08 to 2020-12
+THAT PART REQUIRES
+3D die stacking
+NVIDIA H100
+ACTS ON IT
+TSMC
+fabricates
+gap · evidence not fresh
+2025-07-22
+ACCELERATOR
+NVIDIA H100
+incorporates
+stated
+2025-07-22
+IT INCORPORATES
+High Bandwidth Memory
+WHO MAKES THAT PART
+gap · not researched
+requires
+inferred
+2018-06-08 to 2020-12
+THAT PART REQUIRES
+3D die stacking
+Evidence
+Amazon designs AWS Trainium2 · stated · TABLE ROWS: 1 open the evidence
+AWS Trainium2 incorporates High Bandwidth Memory · stated · TABLE ROWS: 2 open the evidence
+High Bandwidth Memory requires 3D die stacking · inferred · TABLE ROWS: 2 open the evidence
+TSMC fabricates NVIDIA H100 · gap · evidence not fresh · TABLE ROWS: 1 open the evidence
+NVIDIA H100 incorporates High Bandwidth Memory · stated · TABLE ROWS: 2 open the evidence
+
+Each line opens its evidence on the dependency journey page, which holds every panel. the full dependency journey
+
+The links as a table
+
+ATLAS FRAMING
+
+Every chain, indicator and comparison above is drawn from this table, and the table is the SQL result itself, cell for cell. Each line says how the Atlas knows the link, how old its evidence is, who published that evidence, and which records it comes from. The dates are dates, not ages, and a gap is never a zero.
+
+Accelerator	Link	How the Atlas knows	Evidence dated	Published by	Caveats	Traced to
+AWS Trainium2	Amazon designs AWS Trainium2	stated	2023-11-28	Amazon (US Press Center)	one publisher only
+publisher not linked to a company record: src-052	
+IDs
+
+AWS Trainium2	AWS Trainium2 incorporates High Bandwidth Memory	stated	2026-10-01	Amazon Web Services (AWS Neuron documentation)	one publisher only
+dated by the day the page was read
+publisher not linked to a company record: src-043	
+IDs
+
+AWS Trainium2	High Bandwidth Memory · supplier: not researched	gap · not researched	not applicable	no source cited		
+IDs
+
+AWS Trainium2	High Bandwidth Memory requires 3D die stacking	inferred	2018-06-08 to 2020-12	IEEE Electronics Packaging Society (EPS); Sandia National Laboratories, for the DOE Exascale Computing Project (ECP), via OSTI	rests on the Atlas’s own definitions	
+IDs
+
+NVIDIA H100	TSMC fabricates NVIDIA H100	gap · evidence not fresh	2025-07-22	NVIDIA (NVIDIA Technical Blog)	one publisher only
+publisher not linked to a company record: src-042	
+IDs
+
+NVIDIA H100	NVIDIA H100 incorporates High Bandwidth Memory	stated	2025-07-22	NVIDIA (NVIDIA Technical Blog)	one publisher only
+publisher not linked to a company record: src-051	
+IDs
+
+NVIDIA H100	High Bandwidth Memory · supplier: not researched	gap · not researched	not applicable	no source cited		
+IDs
+
+NVIDIA H100	High Bandwidth Memory requires 3D die stacking	inferred	2018-06-08 to 2020-12	IEEE Electronics Packaging Society (EPS); Sandia National Laboratories, for the DOE Exascale Computing Project (ECP), via OSTI	rests on the Atlas’s own definitions	
+IDs
+Evidence age, link by link
+
+as of 2026-10-06
+
+Accelerator	Link	Newest evidence	Where the date comes from	Age in days	Beyond twelve months
+AWS Trainium2	Amazon designs AWS Trainium2	2023-11-28	as of	1043	yes
+AWS Trainium2	AWS Trainium2 incorporates High Bandwidth Memory	2026-10-01	accessed	5	no
+AWS Trainium2	High Bandwidth Memory · supplier: not researched	not applicable	not applicable	not applicable	not applicable
+AWS Trainium2	High Bandwidth Memory requires 3D die stacking	2020-12	stated	2135	yes
+NVIDIA H100	TSMC fabricates NVIDIA H100	2025-07-22	stated	441	yes
+NVIDIA H100	NVIDIA H100 incorporates High Bandwidth Memory	2025-07-22	stated	441	yes
+NVIDIA H100	High Bandwidth Memory · supplier: not researched	not applicable	not applicable	not applicable	not applicable
+NVIDIA H100	High Bandwidth Memory requires 3D die stacking	2020-12	stated	2135	yes
