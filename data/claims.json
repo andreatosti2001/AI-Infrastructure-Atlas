@@ -3164,5 +3164,43 @@
       "recorded_in": "sessions/reports/SESSION-10-REPORT.md"
     },
     "verified_on": "2026-10-02"
+  },
+  {
+    "id": "claim-sk-hynix-hbm3-for-h100-2022",
+    "claim_type": "FACT",
+    "statement": "SK hynix stated on 8 June 2022 that its HBM3 was to be combined with the NVIDIA H100 Tensor Core GPU, and that it would provide HBM3 for NVIDIA systems expected to ship from the third quarter of 2022.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-053",
+        "locator": "'News Highlights', the second bullet",
+        "anchor": "HBM3 to be combined with NVIDIA H100 Tensor Core GPU for accelerated computing",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-07T15:24Z",
+          "sha256": "3712f70b893f491fda26a1e47826ca83a0161beeee78b33290c3b1de9593174a"
+        }
+      },
+      {
+        "source_id": "src-053",
+        "locator": "the paragraph beginning 'NVIDIA has recently completed its performance evaluation'",
+        "anchor": "SK hynix will provide HBM3 for NVIDIA systems expected to ship starting in the third quarter of this year",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-07T15:24Z",
+          "sha256": "3712f70b893f491fda26a1e47826ca83a0161beeee78b33290c3b1de9593174a"
+        }
+      }
+    ],
+    "as_of": {
+      "state": "not_stated"
+    },
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-07",
+      "recorded_in": "sessions/reports/SESSION-16.5-REPORT.md"
+    },
+    "verified_on": "2026-10-07"
   }
 ]

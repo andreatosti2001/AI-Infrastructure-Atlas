@@ -163,7 +163,7 @@
         "verdict": { "$ref": "#/$defs/vocab_review_verdict" },
         "reviewer": { "const": "human", "description": "Class C review is the human's (CLAUDE.md §9). No agent role may write a verdict." },
         "reviewed_on": { "$ref": "sources.schema.json#/$defs/full_date" },
-        "recorded_in": { "description": "The session report whose addendum holds the human's words.", "type": "string", "pattern": "^sessions/reports/SESSION-[0-9]{2}-REPORT\\.md$" }
+        "recorded_in": { "description": "The session report whose addendum holds the human's decision; a sub-session report carries D-126's one-digit suffix (D-142).", "type": "string", "pattern": "^sessions/reports/SESSION-[0-9]{2}(\\.[0-9])?-REPORT\\.md$" }
       },
       "additionalProperties": false
     },

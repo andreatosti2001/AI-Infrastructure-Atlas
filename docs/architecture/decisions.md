@@ -2439,3 +2439,41 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   - the HBM supplier research (D-139) starts after them;
   - M4 closes as a milestone when its audit is written.
 - **Rejected:** a separate short session after S16.5; leaving the session reports as the only record.
+
+## D-141 — The HBM supplier research: both suppliers stay unknown; SK hynix's 2022 statement kept as evidence
+
+- **Session:** S16.5 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-1/H-2)
+- **Context:** `docs/research/hbm-supplier-research-S16.5.md`; the search log (28 queries, 51 retrievals).
+  - **H100:** the only product-level statement by a party is SK hynix's press release of 2022-06-08
+    (`src-053`): "HBM3 to be combined with NVIDIA H100 Tensor Core GPU". It is more than 12 months older
+    than its verification, so F-1 refuses it as a supplier value.
+  - **NVIDIA's FY2026 10-K** names its memory suppliers at company level only (ER-9; `cand-002`).
+  - **Trainium2:** no party names the memory maker.
+  - **Access gaps:** SK hynix's and Micron's filings could not be read (SP-7), so ER-3's search is
+    incomplete for both parts.
+- **Decision:**
+  - both `supplier` fields stay `not_researched`, as ER-3 prescribes after a search with access gaps; the
+    research is recorded in the findings document and the log;
+  - SK hynix's 2022 statement becomes canonical evidence: source `src-053` and the `FACT` claim
+    `claim-sk-hynix-hbm3-for-h100-2022`, reviewed and accepted by the human. It is linked to no edge or
+    field, so no page and no metric changes;
+  - the three supplier metrics stay "cannot be computed yet" (D-130, D-136). The presentation design of
+    S16.5's H-3 was not needed.
+- **Rejected:**
+  - the research recorded only in documents (verified evidence would stay outside the queryable data);
+  - SK hynix → H100 drawn as a recorded "evidence not fresh" gap, like `cand-001`. It would change the
+    H100's coverage counts, and the refused-candidate model was not checked for a supplier qualifier;
+  - SK hynix named as the supplier on stale evidence (F-1).
+
+## D-142 — A claim's review may be recorded in a sub-session report
+
+- **Session:** S16.5 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, with
+  D-141)
+- **Context:** `schemas/claims.schema.json` accepted `recorded_in` only as `SESSION-NN-REPORT.md`. A claim
+  reviewed in S16.5 could not name its own session's report. D-126 had widened the repository validator,
+  not the claim schema.
+- **Decision:** `recorded_in` accepts D-126's optional one-digit suffix (`SESSION-16.5-REPORT.md`). Anything
+  else stays refused. Checked by `tests/test_claim_schema.py`
+  (`test_review_may_be_recorded_in_a_sub_session_report`), written first.
+- **Rejected:** recording S16.5's review in S16's report (it would file the decision under another
+  session's contract).
