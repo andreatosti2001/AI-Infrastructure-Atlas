@@ -2477,3 +2477,23 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   (`test_review_may_be_recorded_in_a_sub_session_report`), written first.
 - **Rejected:** recording S16.5's review in S16's report (it would file the decision under another
   session's contract).
+
+## D-143 — The supplier-evidence rules are revised in their own session (S16.6) before S17
+
+- **Session:** S16.5 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:**
+  - D-141 left both HBM suppliers unknown;
+  - sources other than the companies exist (market research, news, independent teardowns), but the
+    `rel:incorporates.supplier` matrix row treats every such class as "never sufficient alone";
+  - F-1 makes almost all evidence about a 2022 product stale by construction.
+- **Decision:**
+  - a session, S16.6, opens with a proposed revision of the supplier-evidence rules, put to the human as a
+    `CLAUDE.md` §9A decision before any rule changes. At least two changes are proposed:
+    - historical supplier values with a date and a validity period, outside the 12-month rule when
+      marked as past;
+    - an independent teardown as first-hand evidence of which maker's part a product contains;
+  - the HBM supplier research is then redone under the rules as decided;
+  - S17 follows.
+- **Rejected:**
+  - recording third-party reports only as attributed claims under the current rules;
+  - leaving the rules unchanged.
