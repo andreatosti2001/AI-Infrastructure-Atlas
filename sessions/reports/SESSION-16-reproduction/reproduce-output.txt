@@ -1,0 +1,74 @@
+S16 reproduction  (reference date 2026-10-06, horizon 12 months -> evidence dated before 2025-10-06 is beyond it)
+
+TABLE OF LINKS (primary interpretation)
+  AWS Trainium2  stated    Amazon designs AWS Trainium2                                                record=rel-company-amazon-com-designs-product-amazon-com-trainium2
+  AWS Trainium2  inferred  High Bandwidth Memory requires 3D die stacking                              record=rel-component-high-bandwidth-memory-requires-technology-3d-die-stacking
+  AWS Trainium2  stated    AWS Trainium2 incorporates High Bandwidth Memory                            record=rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memory
+  AWS Trainium2  gap       supplier of High Bandwidth Memory in AWS Trainium2: not_researched          record=rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memory
+  NVIDIA H100    inferred  High Bandwidth Memory requires 3D die stacking                              record=rel-component-high-bandwidth-memory-requires-technology-3d-die-stacking
+  NVIDIA H100    stated    NVIDIA H100 incorporates High Bandwidth Memory                              record=rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-memory
+  NVIDIA H100    gap       supplier of High Bandwidth Memory in NVIDIA H100: not_researched            record=rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-memory
+  NVIDIA H100    gap       TSMC fabricates NVIDIA H100 (refused: evidence_not_fresh)                   record=cand-001
+  NVIDIA H100    gap       NVIDIA designs NVIDIA H100 (refused: relation_not_stated)                   record=cand-007
+
+1. EVIDENCE COVERAGE (primary)
+  accelerator    links stated inferred  gap records shared
+  AWS Trainium2      4      2        1    1       3      1
+  NVIDIA H100        5      1        1    3       4      1
+
+  Alternatives (each changes one choice from primary):
+   - CHOICE-2 alt: no hop-2 (only links touching the accelerator itself)
+       AWS Trainium2  links=3 stated=2 inferred=0 gap=1 records=2 shared=0
+       NVIDIA H100    links=4 stated=1 inferred=0 gap=3 records=3 shared=0
+   - CHOICE-2 alt: hop-2 also inbound to the part (the other accelerator's incorporates link + its supplier row)
+       AWS Trainium2  links=6 stated=3 inferred=1 gap=2 records=4 shared=3
+       NVIDIA H100    links=7 stated=2 inferred=1 gap=4 records=5 shared=3
+   - CHOICE-5 alt: cand-008 (refused extra evidence for Amazon-designs-Trainium2) counted as a gap row
+       AWS Trainium2  links=5 stated=2 inferred=1 gap=2 records=4 shared=1
+       NVIDIA H100    links=5 stated=1 inferred=1 gap=3 records=4 shared=1
+   - CHOICE-1 alt: product-record fields vendor + instance_of counted as links
+       AWS Trainium2  links=6 stated=3 inferred=2 gap=1 records=4 shared=1
+       NVIDIA H100    links=7 stated=3 inferred=1 gap=3 records=5 shared=1
+
+2. SOURCE AGE (primary: content dates; access date only as fallback; partial date -> last day of period)
+  AWS Trainium2  Amazon designs AWS Trainium2                                  newest=2023-11-28 age=1043d beyond=yes  from src-052.stated_dates[published] [content]
+  AWS Trainium2  High Bandwidth Memory requires 3D die stacking                newest=2020-12-31 age=2105d beyond=yes  from src-039.stated_dates[published] [content]
+  AWS Trainium2  AWS Trainium2 incorporates High Bandwidth Memory              newest=2026-10-02 age=   4d beyond=no  from claim-trainium2-hbm-capacity citation read.accessed_at (src-043) [access]
+  AWS Trainium2  supplier of High Bandwidth Memory in AWS Trainium2: not_rese  no date (nothing to date)
+  NVIDIA H100    High Bandwidth Memory requires 3D die stacking                newest=2020-12-31 age=2105d beyond=yes  from src-039.stated_dates[published] [content]
+  NVIDIA H100    NVIDIA H100 incorporates High Bandwidth Memory                newest=2025-07-22 age= 441d beyond=yes  from src-051.stated_dates[modified] [content]
+  NVIDIA H100    supplier of High Bandwidth Memory in NVIDIA H100: not_resear  no date (nothing to date)
+  NVIDIA H100    TSMC fabricates NVIDIA H100 (refused: evidence_not_fresh)     newest=2025-07-22 age= 441d beyond=yes  from src-042.stated_dates[modified] [content]
+  NVIDIA H100    NVIDIA designs NVIDIA H100 (refused: relation_not_stated)     newest=2025-07-22 age= 441d beyond=yes  from src-042.stated_dates[modified] [content]
+
+  accelerator    dated beyond_horizon access_date_only nothing_to_date
+  AWS Trainium2      3              2                1               1
+  NVIDIA H100        4              4                0               1
+
+  Alternatives:
+   - CHOICE-7 alt 'never': access dates are not evidence dates
+       AWS Trainium2  dated=2 beyond=2 access_only=0 nothing_to_date=2
+       NVIDIA H100    dated=4 beyond=4 access_only=0 nothing_to_date=1
+   - CHOICE-7 alt 'always': access dates compete with content dates
+       AWS Trainium2  dated=3 beyond=0 access_only=3 nothing_to_date=1
+       NVIDIA H100    dated=4 beyond=0 access_only=4 nothing_to_date=1
+   - CHOICE-8 alt: source retrieval.accessed_at instead of the citation's read.accessed_at
+       AWS Trainium2  dated=3 beyond=2 access_only=1 nothing_to_date=1
+       NVIDIA H100    dated=4 beyond=4 access_only=0 nothing_to_date=1
+       AWS Trainium2 / AWS Trainium2 incorporates High Bandwidth Memory: 2026-10-01 age 5d
+   - CHOICE-9 alt: partial date -> first day of period
+       AWS Trainium2  dated=3 beyond=2 access_only=1 nothing_to_date=1
+       NVIDIA H100    dated=4 beyond=4 access_only=0 nothing_to_date=1
+       AWS Trainium2 / High Bandwidth Memory requires 3D die stacking: 2020-12-01 age 2135d
+       NVIDIA H100 / High Bandwidth Memory requires 3D die stacking: 2020-12-01 age 2135d
+   - CHOICE-10 alt: refused-candidate (gap) rows get no date
+       AWS Trainium2  dated=3 beyond=2 access_only=1 nothing_to_date=1
+       NVIDIA H100    dated=2 beyond=2 access_only=0 nothing_to_date=3
+   - CHOICE-2 alt: no hop-2
+       AWS Trainium2  dated=2 beyond=1 access_only=1 nothing_to_date=1
+       NVIDIA H100    dated=3 beyond=3 access_only=0 nothing_to_date=1
+
+3. SUPPLIER METRICS
+  AWS Trainium2  parts=1 ['High Bandwidth Memory'] named=0 unknown=1 state=not_researched supply_links_for_parts=0 (supplies edges anywhere=0; refused supply candidates for these parts=0)
+  NVIDIA H100    parts=1 ['High Bandwidth Memory'] named=0 unknown=1 state=not_researched supply_links_for_parts=0 (supplies edges anywhere=0; refused supply candidates for these parts=0)
+  Supplier count / concentration / single-source: not computed (no part has a named supplier).
