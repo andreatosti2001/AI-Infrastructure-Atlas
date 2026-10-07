@@ -2497,3 +2497,69 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 - **Rejected:**
   - recording third-party reports only as attributed claims under the current rules;
   - leaving the rules unchanged.
+
+## D-144 — Historical supplier values (R-1)
+
+- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-1)
+- **Context:** `docs/research/supplier-evidence-rules-S16.6.md` R-1. F-1 treats a product's supplier as
+  present-tense, so a dated past supply could not be recorded (D-141).
+- **Decision** (`source-policy.md` §12, "Historical values of a `time_sensitive` row"):
+  - a supplier assertion with `valid_to` states what its evidence supports up to that date. F-1 does not
+    apply to it;
+  - its evidence must be dated no earlier than `valid_to`, and no later than `valid_to` plus 12 months;
+  - it must state the past, not a plan (ER-8);
+  - pages show it with its period, never as current. The current state stays a separate question;
+  - checks: `tests/test_freshness.py` (`HistoricalSupplierTests`, written first); no schema change.
+- **Rejected:** keeping F-1 for every value.
+
+## D-145 — An independent teardown as evidence of a product's part maker (R-2)
+
+- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-1)
+- **Context:** R-2. Only the two parties could support a supplier, and both are often silent.
+- **Decision** (`source-policy.md` §2 `research_report`, §7.1; the matrix row `rel:incorporates.supplier`):
+  - a teardown of the named product is `research_report` with `originator` standing, and acceptable for
+    the row;
+  - it must name the product and variant, and identify the maker from the unit;
+  - it supports "the unit examined contained the maker's part", never every unit;
+  - it is subject to D-147's criteria record;
+  - checks: `tests/test_source_policy.py`.
+- **Rejected:** keeping teardowns as never sufficient.
+
+## D-146 — Retrieved sources are registered when retrieved (R-4)
+
+- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-1)
+- **Context:** S16.5 found the Extractor's contract (sources straight to `data/sources.json`) in conflict
+  with a prompt rule forbidding any `data/` edit before approval.
+- **Decision:**
+  - the contract governs. A retrieved source is registered in `data/sources.json` when it is retrieved;
+  - claims and supplier values wait in staging until the human's review;
+  - `docs/agents/contracts.md` says so in the Extractor's writes;
+  - future prompts do not forbid it.
+- **Rejected:** keeping drafts outside `data/` until approval, where the checks could not see them.
+
+## D-147 — Third-party evidence for a product's supplier, under the human's criteria (R-5)
+
+- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (criteria set by the human on 2026-10-07;
+  the "reported" label decided by the human the same day)
+- **Context:**
+  - the human's question whether sources other than the companies exist (S16.5), and the human's
+    criteria for using them;
+  - `source-policy.md` §9 kept market research and news never sufficient alone in every row.
+- **Decision** (`source-policy.md` §7.1, §9; the matrix row; `schemas/claims.schema.json`):
+  - the supplier row admits third parties (`research_report`, `market_research_consultancy`, `news_media`)
+    under four criteria:
+    - recency: preferably no older than 12 months, otherwise only as a historical value (D-144);
+    - recognition: internationally recognised as reliable;
+    - independence: no conflict of interest;
+    - explicitness: any unmet criterion is stated explicitly;
+  - each third-party citation carries `third_party_criteria` (`recognised`, `independent`, each `met` with a
+    `reason`). V-10 refuses a third-party supplier citation without it;
+  - a value resting only on third-party evidence is shown as **reported** ("reported by the publisher, on
+    its date"), with any unmet criterion beside it, never as stated. This supersedes D-120's
+    basis definitions (stated, inferred, gap) and D-128's coverage split, **when the first reported value
+    exists**: the first query and the coverage metric gain "reported", designed and approved with that
+    value's presentation (H-3);
+  - every other row keeps §9's rule;
+  - checks, written first: `test_source_policy.py`, `test_data_relationships.py`, `test_claim_schema.py`.
+- **Rejected:** keeping third-party reports as attributed claims beside an unknown supplier; labelling a
+  reported value "inferred".

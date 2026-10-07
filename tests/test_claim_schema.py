@@ -71,6 +71,22 @@ class ClaimSchemaTests(unittest.TestCase):
     def test_invalid_mutations_fail_where_they_mutate(self) -> None:
         check_mutations(self, self.check, FIXTURES)
 
+    def test_a_citation_may_record_its_third_party_criteria(self) -> None:
+        # S16.6 (R-5, D-147): a third-party citation records whether its publisher is internationally recognised
+        # as reliable and independent of the parties, each with a reason; a malformed record is refused.
+        fact = copy.deepcopy(VALID["fact"])
+        good = {"recognised": {"met": True, "reason": "an established teardown laboratory"},
+                "independent": {"met": False, "reason": "commissioned by a party"}}
+        fact["citations"][0]["third_party_criteria"] = good
+        self.assertEqual(self.errors(fact), [])
+        for bad in ({"recognised": {"met": True, "reason": "x"}},
+                    {"recognised": {"met": "yes", "reason": "x"}, "independent": {"met": True, "reason": "x"}},
+                    {"recognised": {"met": True}, "independent": {"met": True, "reason": "x"}},
+                    dict(good, recent=True)):
+            fact["citations"][0]["third_party_criteria"] = bad
+            with self.subTest(criteria=bad):
+                self.assertNotEqual(self.errors(fact), [])
+
     def test_review_may_be_recorded_in_a_sub_session_report(self) -> None:
         # S16.5 (D-142): a review is recorded in the report of the session that took it, sub-sessions
         # included, with D-126's one-digit suffix; anything else stays refused.

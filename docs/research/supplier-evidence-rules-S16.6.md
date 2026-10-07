@@ -1,6 +1,14 @@
 # Rules for supplier evidence: proposed revision (S16.6)
 
-**Status:** PROPOSED on 2026-10-07 (S16.6, D-143). No rule changes until the human decides each item (H-1).
+**Status:** decided by the human on 2026-10-07 (H-1):
+
+- R-1 adopted (D-144);
+- R-2 adopted (D-145);
+- R-4 adopted (D-146);
+- **R-5 added by the human:** the human's criteria for sources that are not parties, with values shown as
+  "reported" (D-147).
+
+Proposed earlier on 2026-10-07 (S16.6, D-143).
 **Scope:** the `supplier` of a product's `incorporates` edge, the matrix row `rel:incorporates.supplier`
 (`source-policy.md` §7). No other row changes.
 **Why** (D-141, D-143):
@@ -145,3 +153,24 @@ must not forbid it.
 
 **What it limits:** sources that end up unused stay registered. That is already the case for retrieval
 records.
+
+## R-5 — Sources that are not parties, under the human's criteria (added 2026-10-07)
+
+The human set the criteria for using sources other than the parties:
+
+- preferably no older than 12 months;
+- internationally recognised as reliable;
+- no conflict of interest;
+- when a criterion cannot be met, it is stated explicitly.
+
+**Recorded in** `source-policy.md` §7.1 and D-147:
+
+- the supplier row admits `research_report`, `market_research_consultancy` and `news_media` under these
+  criteria;
+- each such citation records `third_party_criteria`;
+- evidence older than 12 months is usable only as a historical value (R-1);
+- a value resting only on third parties is shown as "reported", never "stated". The first query and the
+  coverage metric gain that label when the first such value exists, with its presentation approved by the
+  human.
+
+§9's rule is unchanged for every other row.

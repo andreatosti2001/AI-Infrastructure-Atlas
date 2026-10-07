@@ -96,12 +96,22 @@
         "anchor": { "$ref": "sources.schema.json#/$defs/text", "description": "Verbatim, including the source's own quotation marks and apostrophes." },
         "standing": { "$ref": "#/$defs/vocab_standing" },
         "originator": { "$ref": "#/$defs/originator" },
-        "read": { "$ref": "#/$defs/read" }
+        "read": { "$ref": "#/$defs/read" },
+        "third_party_criteria": {
+          "description": "S16.6 (D-147; source-policy.md §7.1): a citation of a source that is not a party, used for a product's supplier, records whether its publisher is internationally recognised as reliable and independent of the parties, each with the reason. Recency is computed from the dates. An unmet criterion is stated, never left out.",
+          "type": "object", "required": ["recognised", "independent"], "additionalProperties": false,
+          "properties": { "recognised": { "$ref": "#/$defs/criterion" }, "independent": { "$ref": "#/$defs/criterion" } }
+        }
       },
       "additionalProperties": false,
       "if": { "properties": { "standing": { "const": "reporter" } }, "required": ["standing"] },
       "then": { "required": ["originator"] },
       "else": { "properties": { "originator": false } }
+    },
+    "criterion": {
+      "description": "One of source-policy.md §7.1's criteria for a third-party citation: whether it is met, and why (D-147).",
+      "type": "object", "required": ["met", "reason"], "additionalProperties": false,
+      "properties": { "met": { "type": "boolean" }, "reason": { "$ref": "sources.schema.json#/$defs/text" } }
     },
     "originator": {
       "description": "reporter citations only: the first link of the attribution chain, as the retrieved source names it (source-policy.md §4, ER-6). The originator was not retrieved and is never cited as if it had been.",
