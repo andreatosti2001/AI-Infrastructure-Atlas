@@ -1,7 +1,9 @@
 # Architecture Decision Log
 
 Append-only. A superseded decision is marked `superseded by D-NNN`, never rewritten
-(`SESSION-PROMPT-SPEC.md` §6).
+(`SESSION-PROMPT-SPEC.md` §6). References to a renamed document are updated so they still resolve. Paths
+under `sessions/` say where a file was when the entry was written; those files are kept in the private
+development archive, not in this repository (D-151).
 
 Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
@@ -20,7 +22,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-002 — Session system layout
 
-- **Session:** S00 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S00)
+- **Session:** S00 · **Date:** 2026-09-29 · **Status:** superseded by D-151 (2026-10-08); earlier: accepted (2026-09-29, human review of S00)
 - **Context:** The operational roadmap places prompts under `sessions/prompts/`;
   `SESSION-PROMPT-SPEC.md` §5 places reports at `sessions/reports/SESSION-XX-REPORT.md`.
   `PROMPT-REGISTRY.md` links to prompts as `./SNN-PROMPT.md`, which resolves only when
@@ -95,7 +97,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-009 — `OPUS-5.5-BOOTSTRAP-PROMPT.md` is superseded (resolves U-3)
 
-- **Session:** S00 (human review) · **Date:** 2026-09-29 · **Status:** accepted (human decision)
+- **Session:** S00 (human review) · **Date:** 2026-09-29 · **Status:** superseded by D-151 (2026-10-08); earlier: accepted (human decision)
 - **Decision:** The session system (`SESSION-ROADMAP.md` + `sessions/prompts/`) governs
   sequencing and scope. The bootstrap prompt stays at the root, unmodified, as a
   historical reference. It does not set session scope.
@@ -1761,7 +1763,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-106 — Browser QA in a scratch environment (H-3)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
+- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)"); amended by D-151 (2026-10-08): the scripts are kept in `tests/browser/`
 - **Context:** H-3 ("Scratch Playwright, no repo dep (Recommended)").
 - **Decision:** browser checks run with the pre-installed Chromium and Playwright outside the
   repository: desktop and 375 px screenshots, overflow, the keyboard path to every panel, console
@@ -1853,7 +1855,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 ## D-111 — A refused candidate names every party its quoted sentence names (`cand-002` and Samsung)
 
 - **Session:** S13 · **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02, S13 review)
-- **Context:** content audit F-1 (`docs/research/content-audit-S13.md`). `cand-002` refuses
+- **Context:** content audit F-1 (`docs/research/content-audit.md`). `cand-002` refuses
   "SK hynix and Micron supply memory to NVIDIA" from NVIDIA's 10-K (`src-024` p.8), whose quoted
   sentence is "We purchase memory from SK Hynix Inc., Micron Technology, Inc., and Samsung". The
   record and the page's card name two of the three firms. Samsung has no company record. S12 kept
@@ -2088,7 +2090,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 - **Context:** the S14.5 prompt asks for a study of five data-intensive research products (Epoch AI, Our
   World in Data, IEA, Stanford AI Index, Datawrapper) across fourteen dimensions, each major pattern
   classified ADOPT, ADAPT or REJECT, with no branding, asset or layout copied.
-- **Decision** (`docs/research/visual-benchmark-S14.5.md`):
+- **Decision** (`docs/research/visual-benchmark.md`):
   - the pages are observed with the pre-installed headless browser at 1440 and 390 px; screenshots and
     the script stay outside the repository;
   - the IEA website refused automated access (403), so IEA is assessed through its *Energy and AI* report
@@ -2182,7 +2184,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-126 — Sub-session numbering: S14.5
 
-- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06, at the S14.5 review
+- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** superseded by D-151 (2026-10-08); earlier: accepted by the human on 2026-10-06, at the S14.5 review
 - **Context:** the human inserted a session between S14 and S15, numbered S14.5. `tools/validate_repo.py`
   accepted only two-digit session numbers (`SNN-PROMPT.md`, `SESSION-NN-REPORT.md`), so the session's
   prompt and report could not be recorded under its own number.
@@ -2308,7 +2310,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 ## D-133 — Evidence coverage kept, its records line and its population reworded
 
 - **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
-- **Context:** `analytical-audit-S16.md` §2, findings C-1 and C-3. Neither cold reader understood "rows
+- **Context:** `analytical-audit.md` §2, findings C-1 and C-3. Neither cold reader understood "rows
   drawn from 3 records, of which shared with another accelerator: 1". An independent reader given only the
   population and denominator lines counted the H100 as 5 links, not 4.
 - **Decision** (`sql/evidence_coverage.sql`; `tools/build_insight.py`):
@@ -2326,7 +2328,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 ## D-134 — Source age kept; the 12-month horizon said to apply only to time-sensitive links
 
 - **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
-- **Context:** `analytical-audit-S16.md` §3, findings C-4 and C-6. The source policy (§12; D-040) applies
+- **Context:** `analytical-audit.md` §3, findings C-4 and C-6. The source policy (§12; D-040) applies
   its 12-month re-check only to `time_sensitive` rows (`rel:fabricates`, `rel:incorporates.supplier`,
   `rel:supplies`). `stable` rows (`rel:designs`, `rel:incorporates`, `rel:requires`) have no age limit.
   The block and its tutorial applied the horizon to every link, and the tutorial stated the rule wrongly.
@@ -2347,7 +2349,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 ## D-135 — The publishers tally retired
 
 - **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
-- **Context:** `analytical-audit-S16.md` §4, §6 and finding C-7:
+- **Context:** `analytical-audit.md` §4, §6 and finding C-7:
   - the block's "1 to 2" was the range of a per-row count the page computed and never showed;
   - its "4 of 6" counted 6 rows from 5 records without saying so (both outside D-124);
   - its only "2" was the inferred link's two reasoning steps, which do not confirm one another;
@@ -2363,7 +2365,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 ## D-136 — The three supplier metrics kept as built
 
 - **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
-- **Context:** `analytical-audit-S16.md` §5 and §6:
+- **Context:** `analytical-audit.md` §5 and §6:
   - both cold readers read the blocks as unknown, not zero;
   - each block's "needs" names different evidence;
   - probe P7 confirms that both builds stop, with named reasons, when a supplier is named.
@@ -2392,7 +2394,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 ## D-138 — The S16 findings: remediated or debt with owners
 
 - **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
-- **Context:** `analytical-audit-S16.md` §8.
+- **Context:** `analytical-audit.md` §8.
 - **Decision:**
   - **remediated in S16:** C-1 and C-3 (D-133), C-4 and C-6 (D-134), C-7 (D-135);
   - **debt:**
@@ -2443,7 +2445,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 ## D-141 — The HBM supplier research: both suppliers stay unknown; SK hynix's 2022 statement kept as evidence
 
 - **Session:** S16.5 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-1/H-2)
-- **Context:** `docs/research/hbm-supplier-research-S16.5.md`; the search log (28 queries, 51 retrievals).
+- **Context:** `docs/research/hbm-supplier-research-original-rules.md`; the search log (28 queries, 51 retrievals).
   - **H100:** the only product-level statement by a party is SK hynix's press release of 2022-06-08
     (`src-053`): "HBM3 to be combined with NVIDIA H100 Tensor Core GPU". It is more than 12 months older
     than its verification, so F-1 refuses it as a supplier value.
@@ -2467,8 +2469,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-142 — A claim's review may be recorded in a sub-session report
 
-- **Session:** S16.5 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, with
-  D-141)
+- **Session:** S16.5 · **Date:** 2026-10-07 · **Status:** superseded by D-151 (2026-10-08); earlier: accepted (decided by the human on
+  2026-10-07, with D-141)
 - **Context:** `schemas/claims.schema.json` accepted `recorded_in` only as `SESSION-NN-REPORT.md`. A claim
   reviewed in S16.5 could not name its own session's report. D-126 had widened the repository validator,
   not the claim schema.
@@ -2501,7 +2503,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 ## D-144 — Historical supplier values (R-1)
 
 - **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-1)
-- **Context:** `docs/research/supplier-evidence-rules-S16.6.md` R-1. F-1 treats a product's supplier as
+- **Context:** `docs/research/supplier-evidence-rules.md` R-1. F-1 treats a product's supplier as
   present-tense, so a dated past supply could not be recorded (D-141).
 - **Decision** (`source-policy.md` §12, "Historical values of a `time_sensitive` row"):
   - a supplier assertion with `valid_to` states what its evidence supports up to that date. F-1 does not
@@ -2574,7 +2576,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
     its recognition criterion not met;
   - both page builds stopped as soon as a supplier was named (D-130), and D-147 asked for the "reported"
     label with its presentation;
-  - the proposal and its mock-up: `docs/research/supplier-presentation-S16.6.md`.
+  - the proposal and its mock-up: `docs/research/supplier-presentation.md`.
 - **Decision:**
   - **the first query** (`sql/accelerator_dependencies.sql`): a named supplier is a row with its company. Its
     basis is **reported** when its claims include an `ATTRIBUTION` and no `FACT`. Two new columns: the
@@ -2642,3 +2644,43 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
     - breaks run in parallel, each in its own copy.
   - S16.6's own full run was completed as its prompt asked.
 - **Rejected:** a full run in every session that changes checks or pages (the rule up to S16.6).
+
+## D-151 — The public repository holds the current system; development records are kept privately
+
+- **Date:** 2026-10-08 · **Status:** accepted (the boundary and the migration instructed by the human on
+  2026-10-08)
+- **Context:**
+  - beside the product, the repository held the full record of how it was built: every session prompt and
+    report, a prompt registry, and per-session folders of screenshots, logs, fail-first outputs, one-off
+    migration scripts and research notes;
+  - three working parts of the system depended on that record: each canonical claim's `review.recorded_in`
+    named a session report as the record of the human's verdict; Gate 0 checked only session file names and
+    report headings; the break harness (D-150) and the browser QA scripts (D-106) lived in session folders.
+- **Decision:**
+  - **Boundary.** The public repository holds the current system: constitutional documents, current-state
+    documentation, data, schemas, SQL, tools, tests, generated pages, and the evidence that accepted audits
+    rest on. Session prompts, session reports, the prompt registry and per-session working files are kept in
+    the human's private development archive, outside this repository (`SESSION-PROMPT-SPEC.md` §5, §6).
+  - **Review provenance.** The human's verdicts are recorded in `docs/quality/human-reviews.md`, one entry
+    per review, stating its outcome in project terms. `review.recorded_in` names the entry
+    (`docs/quality/human-reviews.md#<entry>`, the anchor ending with the review date). Each of the six
+    reviews maps one-to-one onto the report that held it; every verdict, reviewer and date is unchanged.
+    Checked by `tests/test_claim_schema.py` (the form) and `tests/test_human_reviews.py` (HR-1 to HR-3: the
+    entry exists, its date is `reviewed_on`, its stated claim count is the data's), written first.
+  - **Gate 0** (`tools/validate_repo.py`) checks that the constitutional and governing documents exist and
+    that every relative link in the repository's Markdown resolves. It no longer checks session files.
+  - **Durable checks move to stable locations:** the break harness to `tests/regression/` (D-150 unchanged:
+    its full run is for milestone audits); the browser QA scripts to `tests/browser/` (D-106 unchanged: run
+    outside CI with the pre-installed browser; their results are reported, not committed).
+  - **Audit evidence** that accepted audits cite moves to `docs/quality/audit-evidence/`; research and audit
+    documents are named for what they cover, not for the session that wrote them.
+  - The bootstrap prompt (D-009) and the operational roadmap are removed; `SESSION-ROADMAP.md` remains the
+    plan, unchanged.
+  - References to renamed documents are updated in place. Paths under `sessions/` named in earlier entries
+    say where a file was when the entry was written; they are not in the public tree. Git history keeps them.
+- **Supersedes:** D-002; D-009 (the bootstrap prompt is no longer kept); D-126 (the validator's session-name
+  rule); D-142. **Amends:** D-106 (the scripts are kept in `tests/browser/`).
+- **Rejected:** keeping the reports public as the provenance of reviews (they expose the whole working
+  process to cite one verdict); dropping `recorded_in` and keeping only the verdict and date (loses where
+  the review is recorded); a public archive of the same files under new names; rewriting Git history (a
+  separate publication decision, not taken here).

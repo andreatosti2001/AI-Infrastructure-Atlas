@@ -1,5 +1,8 @@
 # M0 Milestone Audit — Project Constitution (S00–S02)
 
+> **Records cited.** This is a process audit (PEF §4). The session reports and prompts it cites are kept in the
+> private development archive, not in this repository (D-151); the decisions, documents and files it cites are here.
+
 **Status:** ACCEPTED. Written in S02. The human approved the baseline on 2026-09-29, and
 M0 is closed (`baseline.md` §8).
 **Date:** 2026-09-29

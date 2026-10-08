@@ -1,5 +1,0 @@
-      1 ERROR: setUpClass (tests.test_warehouse.WarehouseTests)
-      1 ERROR: test_a_changed_query_file_makes_the_result_stale (tests.test_warehouse.WarehouseBreakTests.test_a_changed_query_file_makes_the_result_stale)
-      1 FAILED (errors=2)
-      1 Ran 1 test in 2.177s
-      2 _duckdb.CatalogException: Catalog Error: Table with name accelerator_dependencies does not exist!

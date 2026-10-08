@@ -1,5 +1,8 @@
 # M4 Milestone Audit — Analytical Intelligence (S14 to S16)
 
+> **Records cited.** This is a process audit (PEF §4). The session reports and prompts it cites are kept in the
+> private development archive, not in this repository (D-151); the decisions, documents and files it cites are here.
+
 **Status:** ACCEPTED by the human on 2026-10-07 (S16.5). Written in S16.5 under D-140; M4 closes with this audit
 (D-140).
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §4; `SESSION-ROADMAP.md` M4.
@@ -29,10 +32,10 @@ The roadmap's M4:
 
 | Session | Delivered | Record |
 |---|---|---|
-| S14 | DT-1 first (28 identity-basis rows); `tools/warehouse.py` rebuilding an in-memory DuckDB from `data/` on every run; results committed with their input digests; the first query (the table of links) on the HBM page with its "How this was computed" | [S14 report](../../../sessions/reports/SESSION-14-REPORT.md); D-117 to D-121 |
-| S14.5 (inserted by the human) | a visual benchmark (five organisations, 29 patterns); the seven-layer research-experience architecture; the SQL-to-visual binding rule; the research view prototype `site/hbm-insight/index.html` | [S14.5 report](../../../sessions/reports/SESSION-14.5-REPORT.md); D-122 to D-126 |
-| S15 | evidence coverage and source age, computed in SQL; the three supplier metrics shown as "cannot be computed yet"; queries built on queries; the merged break harness | [S15 report](../../../sessions/reports/SESSION-15-REPORT.md); D-127 to D-132 |
-| S16 | the analytical audit; coverage and source age modified, the publishers tally retired, the supplier metrics kept; the reference date's owner | [S16 report](../../../sessions/reports/SESSION-16-REPORT.md); `analytical-audit-S16.md`; D-133 to D-140 |
+| S14 | DT-1 first (28 identity-basis rows); `tools/warehouse.py` rebuilding an in-memory DuckDB from `data/` on every run; results committed with their input digests; the first query (the table of links) on the HBM page with its "How this was computed" | `sql-layer.md`; D-117 to D-121 |
+| S14.5 (inserted by the human) | a visual benchmark (five organisations, 29 patterns); the seven-layer research-experience architecture; the SQL-to-visual binding rule; the research view prototype `site/hbm-insight/index.html` | `visual-architecture.md`, `visual-benchmark.md`; D-122 to D-126 |
+| S15 | evidence coverage and source age, computed in SQL; the three supplier metrics shown as "cannot be computed yet"; queries built on queries; the merged break harness | `metrics.md`; D-127 to D-132 |
+| S16 | the analytical audit; coverage and source age modified, the publishers tally retired, the supplier metrics kept; the reference date's owner | `analytical-audit.md`; D-133 to D-140 |
 
 **Against the gates:**
 
@@ -149,14 +152,14 @@ The roadmap's M4:
 | M4-P1 | **The decisive defects were found by readers, not checks.** S15's "2 of 2 parts" and S16's horizon question came from a person and an unprimed agent. Every check had passed | S15, the human's challenge; S16, reader 2 q2 | standing practice: a cold reading before findings, in every audit of something a reader sees |
 | M4-P2 | **A rule was cited without its scope** for two sessions (the horizon, S15–S16) | D-129 vs `source-policy.md` §12 | resolved by D-134; the lesson is in S16's report |
 | M4-P3 | **The milestone ended without its audit,** like M2 and M3 (M3-P1) | `audit-history.md` | resolved by D-140; carried into M5's planning |
-| M4-P4 | **The merged break harness works as a regression gate:** 74 faults and 9 controls run in full on S16's tree | `SESSION-16-breaks/merged-breaks-full-run.txt` | kept; one harness, extended per session |
+| M4-P4 | **The merged break harness works as a regression gate:** 74 faults and 9 controls run in full on S16's tree | the full run's output (session record, D-151); the harness is `tests/regression/breaks.py` | kept; one harness, extended per session |
 
 ## Part 3 — Maturity (PEF §3), where M4 produced new evidence
 
 | Dimension | Rating | Evidence |
 |---|---|---|
-| Analytical depth: process | **3, Controlled** | `analytical-audit-S16.md` §9 |
-| Analytical depth: outcome | **3, Controlled** after S16's remediation (2 at the audit) | `analytical-audit-S16.md` §9; D-133 to D-135; WH-15, IN-12 |
+| Analytical depth: process | **3, Controlled** | `analytical-audit.md` §9 |
+| Analytical depth: outcome | **3, Controlled** after S16's remediation (2 at the audit) | `analytical-audit.md` §9; D-133 to D-135; WH-15, IN-12 |
 | Reproducibility: outcome | **3, Controlled** | results rebuilt byte-identically from versioned inputs with their digests (WH-1, WH-2); `--check` in the suite and CI; the independent computations WH-10 to WH-14 |
 | Code / engineering: outcome | **2, Defined** | tested and harnessed (361 tests; 83 breaks). But two plausible data changes stop the builds without a design (E-1), one crashes them without a named reason (E-2), and a fixed result path remains (S22 debt) |
 

@@ -1,5 +1,8 @@
 # M2 Milestone Audit and S12 Data Architecture Audit
 
+> **Records cited.** This is a process audit (PEF §4). The session reports and prompts it cites are kept in the
+> private development archive, not in this repository (D-151); the decisions, documents and files it cites are here.
+
 **Status:** ACCEPTED (approved by the human on 2026-10-02, at the S13 opening). Proposed in S12; the remediation of Part 4's blocking finding was ruled in S12.
 **Date:** 2026-10-02
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §4 ("At every major milestone"), §5 (data
@@ -502,7 +505,7 @@ CI (`tests/test_data_candidates.py`); the page reads the records and no longer r
 `edge-dataset.md` (which left its inputs); the build and `tests/test_page.py` no longer parse a
 Markdown table, so two of M-4's three table parsers are gone; endpoints are IDs, so renaming every
 company's display name no longer stops the build (before S12 it refused: "'TSMC' does not name one
-record"). Evidence in `sessions/reports/SESSION-12-REPORT.md`.
+record"). The checks are in `tests/test_data_candidates.py` and `tests/test_page.py`.
 
 **Debt** (each with an owner; not remediated in S12):
 

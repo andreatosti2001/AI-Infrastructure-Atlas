@@ -372,8 +372,9 @@ the sheet in the S07 report:
      names?
 4. Give a verdict per claim: accept, reject, or "wording too strong".
 
-**Where the verdicts go:** verbatim into an addendum of `sessions/reports/SESSION-07-REPORT.md`.
-Each claim's `review` then records the verdict and that report (`claim-model.md` §7). §6 then
+**Where the verdicts go:** an entry of the human review record
+([`docs/quality/human-reviews.md`](../quality/human-reviews.md), D-151). Each claim's `review` then records
+the verdict and that entry (`claim-model.md` §7). §6 then
 decides which records move.
 
 ## 13. Candidates considered and rejected

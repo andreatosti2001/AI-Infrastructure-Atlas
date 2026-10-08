@@ -1,14 +1,14 @@
 """Repository integrity validator (MASTER-ARCHITECTURE.md §14, Gate 0).
 
-Checks the structural invariants established in S00:
+Checks the repository's structural invariants (D-151):
 
-- the constitutional documents and baseline architecture record exist;
-- every session prompt follows the naming convention and is listed in the
-  prompt registry;
-- every session report follows the naming convention, has a matching prompt,
-  and contains the minimum sections required by SESSION-PROMPT-SPEC.md §5.
+- the constitutional documents, the documentation map, the baseline, the decision log and the human
+  review record exist;
+- every relative link in the repository's Markdown resolves: the file or folder exists, and a fragment
+  (`file.md#heading`, `#heading`) names a heading of the target document.
 
-It does not validate data: no schema or canonical data exists yet.
+Data, schemas, SQL results and pages are validated by the test suite (`tests/`) and the `--check`
+commands of `tools/warehouse.py`, `tools/build_page.py` and `tools/build_insight.py`.
 
 Usage: python tools/validate_repo.py [repo_root]
 Exit status is 0 when the repository is valid, 1 otherwise.
@@ -21,90 +21,97 @@ import sys
 from pathlib import Path
 
 REQUIRED_FILES = (
+    "README.md",
     "CLAUDE.md",
     "MASTER-ARCHITECTURE.md",
     "SESSION-PROMPT-SPEC.md",
+    "SESSION-ROADMAP.md",
     "PROJECT-EVALUATION-FRAMEWORK.md",
+    "docs/README.md",
     "docs/architecture/baseline.md",
     "docs/architecture/decisions.md",
-    "sessions/prompts/PROMPT-REGISTRY.md",
+    "docs/quality/human-reviews.md",
 )
 
-PROMPTS_DIR = "sessions/prompts"
-REPORTS_DIR = "sessions/reports"
-REGISTRY_NAME = "PROMPT-REGISTRY.md"
+# Folders that are not part of the repository's documentation.
+SKIPPED_DIRS = {".git", "node_modules", "__pycache__", ".venv", "venv"}
 
-# A session inserted between two others carries a one-digit suffix: S14.5-PROMPT.md, SESSION-14.5-REPORT.md (D-126).
-PROMPT_RE = re.compile(r"^S(\d{2}(?:\.\d)?)-PROMPT\.md$")
-REPORT_RE = re.compile(r"^SESSION-(\d{2}(?:\.\d)?)-REPORT\.md$")
-
-# Minimum report fields, SESSION-PROMPT-SPEC.md §5. Each must appear as a
-# level-2 heading ("## Mission outcome"); matching is case-insensitive.
-REPORT_SECTIONS = (
-    "Mission outcome",
-    "Files changed",
-    "Data changed",
-    "Tests run",
-    "Evidence added/retired",
-    "Decisions made",
-    "Deviations",
-    "Debt introduced/resolved",
-    "Unresolved issues",
-    "Process lessons",
-    "Implications for the next session",
-)
+LINK_RE = re.compile(r"(?<!!)\[[^\]]*\]\(([^)\s]+)\)")
+INLINE_CODE_RE = re.compile(r"`[^`]*`")
+EXTERNAL_RE = re.compile(r"^[a-z][a-z0-9+.-]*:", re.IGNORECASE)
 
 
-def _h2_headings(text: str) -> set[str]:
-    return {
-        line[3:].strip().lower()
-        for line in text.splitlines()
-        if line.startswith("## ")
-    }
+def heading_anchor(heading: str) -> str:
+    """The anchor GitHub gives a heading: lower case, punctuation dropped, spaces as hyphens."""
+    return re.sub(r"[^\w\- ]", "", heading.strip().lower()).replace(" ", "-")
+
+
+def markdown_anchors(text: str) -> set[str]:
+    """Every heading anchor of a Markdown document; a repeated heading gets -1, -2, ... as on GitHub."""
+    anchors: set[str] = set()
+    seen: dict[str, int] = {}
+    fenced = False
+    for line in text.splitlines():
+        if line.lstrip().startswith("```"):
+            fenced = not fenced
+            continue
+        match = re.match(r"#{1,6} (.+)", line)
+        if fenced or not match:
+            continue
+        base = heading_anchor(match.group(1).replace("`", ""))
+        count = seen.get(base, 0)
+        seen[base] = count + 1
+        anchors.add(base if count == 0 else f"{base}-{count}")
+    return anchors
+
+
+def _markdown_files(root: Path) -> list[Path]:
+    out = []
+    for path in sorted(root.rglob("*.md")):
+        if not SKIPPED_DIRS.intersection(path.relative_to(root).parts):
+            out.append(path)
+    return out
+
+
+def _links(text: str):
+    """(line number, target) for every Markdown link outside code."""
+    fenced = False
+    for number, line in enumerate(text.splitlines(), start=1):
+        if line.lstrip().startswith("```"):
+            fenced = not fenced
+            continue
+        if fenced:
+            continue
+        for match in LINK_RE.finditer(INLINE_CODE_RE.sub("", line)):
+            yield number, match.group(1)
+
+
+def link_errors(root: Path) -> list[str]:
+    errors: list[str] = []
+    anchors: dict[Path, set[str]] = {}
+    for path in _markdown_files(root):
+        text = path.read_text(encoding="utf-8")
+        rel = path.relative_to(root).as_posix()
+        for number, target in _links(text):
+            if EXTERNAL_RE.match(target):
+                continue
+            file_part, _, fragment = target.partition("#")
+            resolved = (path.parent / file_part).resolve() if file_part else path
+            if not resolved.exists():
+                errors.append(f"{rel}:{number}: link to a missing file: {target}")
+                continue
+            if fragment and resolved.suffix == ".md":
+                if resolved not in anchors:
+                    anchors[resolved] = markdown_anchors(resolved.read_text(encoding="utf-8"))
+                if fragment not in anchors[resolved]:
+                    errors.append(f"{rel}:{number}: link to a missing heading: {target}")
+    return errors
 
 
 def validate(root: Path) -> list[str]:
     """Return a list of human-readable errors; empty means valid."""
-    errors: list[str] = []
-
-    for rel in REQUIRED_FILES:
-        if not (root / rel).is_file():
-            errors.append(f"missing required file: {rel}")
-
-    prompts_dir = root / PROMPTS_DIR
-    registry = prompts_dir / REGISTRY_NAME
-    registry_text = registry.read_text(encoding="utf-8") if registry.is_file() else ""
-
-    prompt_ids: set[str] = set()
-    if prompts_dir.is_dir():
-        for path in sorted(p for p in prompts_dir.iterdir() if p.is_file()):
-            if path.name == REGISTRY_NAME:
-                continue
-            match = PROMPT_RE.match(path.name)
-            if not match:
-                errors.append(f"{PROMPTS_DIR}/{path.name}: name must match SNN-PROMPT.md")
-                continue
-            prompt_ids.add(match.group(1))
-            if path.name not in registry_text:
-                errors.append(f"{PROMPTS_DIR}/{path.name}: not listed in {REGISTRY_NAME}")
-
-    reports_dir = root / REPORTS_DIR
-    if reports_dir.is_dir():
-        for path in sorted(p for p in reports_dir.iterdir() if p.is_file()):
-            rel = f"{REPORTS_DIR}/{path.name}"
-            match = REPORT_RE.match(path.name)
-            if not match:
-                errors.append(f"{rel}: name must match SESSION-NN-REPORT.md")
-                continue
-            session_id = match.group(1)
-            if session_id not in prompt_ids:
-                errors.append(f"{rel}: no matching prompt {PROMPTS_DIR}/S{session_id}-PROMPT.md")
-            headings = _h2_headings(path.read_text(encoding="utf-8"))
-            for section in REPORT_SECTIONS:
-                if section.lower() not in headings:
-                    errors.append(f"{rel}: missing section '## {section}'")
-
-    return errors
+    errors = [f"missing required file: {rel}" for rel in REQUIRED_FILES if not (root / rel).is_file()]
+    return errors + link_errors(root)
 
 
 def main(argv: list[str]) -> int:

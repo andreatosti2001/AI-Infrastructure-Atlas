@@ -274,8 +274,8 @@ The human opens the page with no other document and:
    "none", an inference shown as fact;
 4. notes every term that was unclear.
 
-The findings go verbatim into `SESSION-11-REPORT.md`. Blocking ones are fixed in S11, or listed for
-S12.
+The findings go verbatim into the session report. Blocking ones are fixed before the page is accepted,
+or listed for the data architecture audit (S12).
 
 ## 10. Candidates considered and rejected
 

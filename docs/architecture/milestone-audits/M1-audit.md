@@ -1,5 +1,8 @@
 # M1 Milestone Audit — Domain + Evidence Foundation (S03–S06)
 
+> **Records cited.** This is a process audit (PEF §4). The session reports and prompts it cites are kept in the
+> private development archive, not in this repository (D-151); the decisions, documents and files it cites are here.
+
 **Status:** ACCEPTED (human review of S07, 2026-10-01: "Approve all"). Written in S07 as its first task (human answer H-5, 2026-09-30:
 "First task of S07 (Recommended)"). It is a document only, with no code change.
 **Date:** 2026-10-01

@@ -9,7 +9,7 @@ denominator (§10, D-124).
 behave like, and how does that experience remain directly traceable to the evidence and analytical
 layer?"); `CLAUDE.md` §6A, §12; `MASTER-ARCHITECTURE.md` §14 Gate 6, §16.1, §19;
 `SESSION-ROADMAP.md`, "Cross-cutting capability — Visual Intelligence & Data Storytelling".
-**Built on:** [`../research/visual-benchmark-S14.5.md`](../research/visual-benchmark-S14.5.md) (the
+**Built on:** [`../research/visual-benchmark.md`](../research/visual-benchmark.md) (the
 benchmark and its pattern register P-01 to P-29); [`vertical-slice.md`](./vertical-slice.md) (the
 HBM page's rules, D-100 to D-108, which this document generalises and does not change);
 [`sql-layer.md`](./sql-layer.md) (D-117 to D-121).
@@ -504,12 +504,12 @@ subclassing it; `build_page.py` and the HBM page are unchanged.
 - IN-8: rebuild byte-identical;
 - IN-9: nothing loaded, no script, the prototype marked.
 
-Browser QA at 1280 and 375 px is recorded in the S14.5 report.
+Browser QA at 1280 and 375 px: `tests/browser/hbm-insight.qa.js` (D-106).
 
 ## 13. Validation of the prototype
 
-Filled from the checks and the browser run. The results are in `SESSION-14.5-REPORT.md`,
-"Prototype validation".
+Filled from the checks and the browser run (`tests/browser/hbm-insight.qa.js`); the criteria are re-run
+whenever the research view changes.
 
 | Criterion | Question | Where it is tested |
 |---|---|---|

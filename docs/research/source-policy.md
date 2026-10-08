@@ -647,7 +647,7 @@ pure-play foundry business" (FAB-03).
 
 ## 14. How the Atlas decides what to believe
 
-*Written for the week-2 gate (operational roadmap, week 2): the ontology and evidence policy
+*Written for the gate that the ontology and evidence policy
 are understandable before large-scale data collection begins. It walks one S01 sentence through all three models.
 The human judged the gate on this section and declared it passed (2026-09-30).*
 

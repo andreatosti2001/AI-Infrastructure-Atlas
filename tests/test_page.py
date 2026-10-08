@@ -46,6 +46,7 @@ DATA = REPO_ROOT / "data"
 sys.path.insert(0, str(REPO_ROOT / "tools"))
 
 import navigate  # noqa: E402
+from validate_repo import markdown_anchors  # noqa: E402
 
 # The build's inputs, as vertical-slice.md §6 defines them: every data file (the refused candidates
 # included), every schema, the documents the page quotes rules and rulings from, the template and the
@@ -758,7 +759,13 @@ class PageTests(unittest.TestCase):
                 elif re.match(r"https?://", href):
                     self.assertEqual(node.tag, "a", "a remote resource")
                 else:
-                    self.assertTrue((PAGE.parent / href).resolve().exists(), "a link to a file that does not exist")
+                    path, _, fragment = href.partition("#")
+                    self.assertTrue((PAGE.parent / path).resolve().exists(), "a link to a file that does not exist")
+                    if fragment:
+                        # a fragment into a Markdown document names one of its headings (D-151: a review's entry)
+                        self.assertTrue(path.endswith(".md"), "a fragment into a file that is not Markdown")
+                        text = (PAGE.parent / path).resolve().read_text(encoding="utf-8")
+                        self.assertIn(fragment, markdown_anchors(text), "a fragment with no heading in its document")
         css = "".join("".join(t for t, _ in n.texts()) for n in self.nodes if n.tag == "style")
         self.assertNotRegex(css, r"@import|url\(", "the style loads a resource")
         for node in self.nodes:

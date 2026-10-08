@@ -303,7 +303,7 @@
         "verdict": "accepted",
         "reviewer": "human",
         "reviewed_on": "2026-10-01",
-        "recorded_in": "sessions/reports/SESSION-06-REPORT.md"
+        "recorded_in": "docs/quality/human-reviews.md#companies-and-jurisdictions-2026-10-01"
       }
     },
     "fact_context_only": {
@@ -356,7 +356,7 @@
         "verdict": "rejected",
         "reviewer": "human",
         "reviewed_on": "2026-10-01",
-        "recorded_in": "sessions/reports/SESSION-06-REPORT.md"
+        "recorded_in": "docs/quality/human-reviews.md#companies-and-jurisdictions-2026-10-01"
       }
     }
   },
@@ -888,7 +888,7 @@
     },
     {
       "case": "review_recorded_elsewhere",
-      "why": "the human's words are kept in a session report",
+      "why": "a verdict is recorded in an entry of the human review record",
       "base": "fact_accepted",
       "set": {
         "/review/recorded_in": "docs/review.md"

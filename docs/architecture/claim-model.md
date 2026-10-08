@@ -228,8 +228,9 @@ look canonical has two parts (D-048):
   claim is in `data/claims.json` (H-2). A consumer that reads only `data/claims.json`
   cannot see a staging claim.
 - **Why it is there.** Every claim carries `review`. It is either `not_reviewed`, or a
-  verdict (`accepted` or `rejected`) with `reviewer: human`, the date, and the session
-  report whose addendum holds the human's words.
+  verdict (`accepted` or `rejected`) with `reviewer: human`, the date, and the entry of the
+  human review record ([`docs/quality/human-reviews.md`](../quality/human-reviews.md)) that holds
+  the review (`recorded_in`; D-151, which superseded the session report as that record).
 
 The checks tie the two together (VD-8):
 
@@ -512,9 +513,9 @@ Part A asks the human to test a few claims by hand. For each claim:
 | `claim-aws-availability-zone-data-centers` | AWS on its own infrastructure: is `FACT` (party) right? |
 | `claim-cloud-compute-facility-often-undisclosed` | Does it stay a planning consequence, without claiming any site is `not_publicly_determinable`? |
 
-**Where the verdicts go.** The human's words go verbatim into an addendum of
-`sessions/reports/SESSION-06-REPORT.md`. Each claim's `review` then records the verdict,
-the date and that report (§7). An accepted claim moves to `data/claims.json`.
+**Where the verdicts go.** The outcome is recorded as an entry of the human review record
+([`docs/quality/human-reviews.md`](../quality/human-reviews.md), D-151). Each claim's `review` then
+records the verdict, the date and that entry (§7). An accepted claim moves to `data/claims.json`.
 
 ## 15. Candidates considered and rejected
 
@@ -544,7 +545,8 @@ the date and that report (§7). An accepted claim moves to `data/claims.json`.
 > `company-dataset.md` §7, and VD-11 checks that they were read from the registered bytes;
 > V-1, V-4, V-9 and V-10 run on entity records (`company-dataset.md` §8); the first
 > `validate-freshness` rule runs (§9); `publisher_entity` is set for filings (D-065). The
-> human accepted the ten seed claims in S07, recorded in `SESSION-07-REPORT.md`.
+> human accepted the ten seed claims on 2026-10-01
+> ([review record](../quality/human-reviews.md#companies-and-jurisdictions-2026-10-01)).
 
 | Item | Owner | Note |
 |---|---|---|
