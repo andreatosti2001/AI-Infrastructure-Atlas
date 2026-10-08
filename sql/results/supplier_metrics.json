@@ -3,11 +3,11 @@
   "query": "sql/supplier_metrics.sql",
   "query_sha256": "8a3a18d3eb7b92dfef0f742ee8a3792379b7575e19b04571c6353a6c8f7fd5c9",
   "engine": "duckdb 1.5.6",
-  "input_digest": "d5b3aefea0550feba6750025baf6130c52289761e1f47a70bfa9a4f79d08de73",
+  "input_digest": "f98213f2bc7a90ef70c461f1f48d12cb8d0d1977790f77dd4ec25dabcb177517",
   "inputs": [
     {
       "path": "data/claims.json",
-      "sha256": "f78f10508cffac839f4c5dd1e4f57e9863ca15fe20a40e45811f16967ce31bf6"
+      "sha256": "537694948851307d88a3a81fdc8314d73bb3801e5f5e0e8ea0c04a034c34d284"
     },
     {
       "path": "data/companies.json",
@@ -19,7 +19,7 @@
     },
     {
       "path": "data/events.json",
-      "sha256": "145d550ee6432c9f8bcce461a4ef7295db7d5514af0e780df61fd0df4a8701f8"
+      "sha256": "350f7dd6d7ec2d08fa21f912522d4329cbc11d004ae8494d4df75c2b236a515a"
     },
     {
       "path": "data/facilities.json",
@@ -35,7 +35,7 @@
     },
     {
       "path": "data/policies.json",
-      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      "sha256": "1a123cb9108a5cefd24e6de57fe24411bbe22640aa392c216dd9e3309e0b6120"
     },
     {
       "path": "data/products.json",

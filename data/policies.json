@@ -1,1 +1,330 @@
-[]
+[
+  {
+    "id": "policy-us-15-cfr-730-774",
+    "type": "policy",
+    "name": "Export Administration Regulations",
+    "aliases": [
+      "EAR"
+    ],
+    "identity_claim_ids": [
+      "claim-ear-cfr-scope"
+    ],
+    "official_title": [
+      {
+        "value": "Export Administration Regulations",
+        "claim_ids": [
+          "claim-ear-cfr-scope"
+        ]
+      }
+    ],
+    "official_citation": [
+      {
+        "value": "15 CFR chapter VII, subchapter C",
+        "claim_ids": [
+          "claim-ear-cfr-scope"
+        ]
+      }
+    ],
+    "issued_in": [
+      {
+        "value": "jurisdiction-us",
+        "claim_ids": [
+          "claim-ear-issued-by-bis"
+        ]
+      }
+    ],
+    "issuing_authority": [
+      {
+        "value": "United States Department of Commerce, Bureau of Industry and Security (BIS)",
+        "claim_ids": [
+          "claim-ear-issued-by-bis"
+        ]
+      }
+    ],
+    "instrument_form": [
+      {
+        "value": "codified_regulation",
+        "claim_ids": [
+          "claim-ear-cfr-scope"
+        ]
+      }
+    ],
+    "measure_kinds": [
+      {
+        "value": "export_control",
+        "claim_ids": [
+          "claim-ear-export-control"
+        ]
+      }
+    ],
+    "amends": {
+      "state": "not_applicable"
+    }
+  },
+  {
+    "id": "policy-us-fr-2022-21658",
+    "type": "policy",
+    "name": "BIS rule of 13 October 2022 on advanced computing and semiconductor manufacturing items",
+    "aliases": [
+      "October 7 IFR"
+    ],
+    "identity_claim_ids": [
+      "claim-bis-rule-2022-21658-title",
+      "claim-bis-rule-2022-21658-document-number"
+    ],
+    "official_title": [
+      {
+        "value": "Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification",
+        "claim_ids": [
+          "claim-bis-rule-2022-21658-title"
+        ]
+      }
+    ],
+    "official_citation": [
+      {
+        "value": "87 FR 62186",
+        "claim_ids": [
+          "claim-bis-rule-2022-21658-citation"
+        ]
+      }
+    ],
+    "issued_in": [
+      {
+        "value": "jurisdiction-us",
+        "claim_ids": [
+          "claim-bis-rule-2022-21658-issued-in-us"
+        ]
+      }
+    ],
+    "issuing_authority": [
+      {
+        "value": "Bureau of Industry and Security, Department of Commerce",
+        "claim_ids": [
+          "claim-bis-rule-2022-21658-title"
+        ]
+      }
+    ],
+    "instrument_form": [
+      {
+        "value": "interim_final_rule",
+        "claim_ids": [
+          "claim-bis-rule-2022-21658-form"
+        ]
+      }
+    ],
+    "measure_kinds": [
+      {
+        "value": "export_control",
+        "claim_ids": [
+          "claim-bis-rule-2022-21658-export-controls"
+        ]
+      }
+    ],
+    "amends": [
+      {
+        "value": "policy-us-15-cfr-730-774",
+        "claim_ids": [
+          "claim-bis-rule-2022-21658-amends-ear"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "policy-us-fr-2023-23055",
+    "type": "policy",
+    "name": "BIS rule of 25 October 2023 on advanced computing items (updates and corrections)",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-bis-rule-2023-23055-title",
+      "claim-bis-rule-2023-23055-document-number"
+    ],
+    "official_title": [
+      {
+        "value": "Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections",
+        "claim_ids": [
+          "claim-bis-rule-2023-23055-title"
+        ]
+      }
+    ],
+    "official_citation": [
+      {
+        "value": "88 FR 73458",
+        "claim_ids": [
+          "claim-bis-rule-2023-23055-citation"
+        ]
+      }
+    ],
+    "issued_in": [
+      {
+        "value": "jurisdiction-us",
+        "claim_ids": [
+          "claim-bis-rule-2023-23055-issued-in-us"
+        ]
+      }
+    ],
+    "issuing_authority": [
+      {
+        "value": "Bureau of Industry and Security, Department of Commerce",
+        "claim_ids": [
+          "claim-bis-rule-2023-23055-title"
+        ]
+      }
+    ],
+    "instrument_form": [
+      {
+        "value": "interim_final_rule",
+        "claim_ids": [
+          "claim-bis-rule-2023-23055-form"
+        ]
+      }
+    ],
+    "measure_kinds": [
+      {
+        "value": "export_control",
+        "claim_ids": [
+          "claim-bis-rule-2023-23055-export-controls"
+        ]
+      }
+    ],
+    "amends": [
+      {
+        "value": "policy-us-15-cfr-730-774",
+        "claim_ids": [
+          "claim-bis-rule-2023-23055-amends-ear"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "policy-us-fr-2023-23049",
+    "type": "policy",
+    "name": "BIS rule of 25 October 2023 on semiconductor manufacturing items",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-bis-rule-2023-23049-title",
+      "claim-bis-rule-2023-23049-document-number"
+    ],
+    "official_title": [
+      {
+        "value": "Export Controls on Semiconductor Manufacturing Items",
+        "claim_ids": [
+          "claim-bis-rule-2023-23049-title"
+        ]
+      }
+    ],
+    "official_citation": [
+      {
+        "value": "88 FR 73424",
+        "claim_ids": [
+          "claim-bis-rule-2023-23049-citation"
+        ]
+      }
+    ],
+    "issued_in": [
+      {
+        "value": "jurisdiction-us",
+        "claim_ids": [
+          "claim-bis-rule-2023-23049-issued-in-us"
+        ]
+      }
+    ],
+    "issuing_authority": [
+      {
+        "value": "Bureau of Industry and Security, Commerce",
+        "claim_ids": [
+          "claim-bis-rule-2023-23049-title"
+        ]
+      }
+    ],
+    "instrument_form": [
+      {
+        "value": "interim_final_rule",
+        "claim_ids": [
+          "claim-bis-rule-2023-23049-form"
+        ]
+      }
+    ],
+    "measure_kinds": [
+      {
+        "value": "export_control",
+        "claim_ids": [
+          "claim-bis-rule-2023-23049-export-controls"
+        ]
+      }
+    ],
+    "amends": [
+      {
+        "value": "policy-us-15-cfr-730-774",
+        "claim_ids": [
+          "claim-bis-rule-2023-23049-amends-ear"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "policy-us-fr-2024-28270",
+    "type": "policy",
+    "name": "BIS rule of 5 December 2024 on foreign-produced direct product rules and refined controls",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-bis-rule-2024-28270-title",
+      "claim-bis-rule-2024-28270-document-number"
+    ],
+    "official_title": [
+      {
+        "value": "Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items",
+        "claim_ids": [
+          "claim-bis-rule-2024-28270-title"
+        ]
+      }
+    ],
+    "official_citation": [
+      {
+        "value": "89 FR 96790",
+        "claim_ids": [
+          "claim-bis-rule-2024-28270-citation"
+        ]
+      }
+    ],
+    "issued_in": [
+      {
+        "value": "jurisdiction-us",
+        "claim_ids": [
+          "claim-bis-rule-2024-28270-issued-in-us"
+        ]
+      }
+    ],
+    "issuing_authority": [
+      {
+        "value": "Bureau of Industry and Security, Commerce",
+        "claim_ids": [
+          "claim-bis-rule-2024-28270-title"
+        ]
+      }
+    ],
+    "instrument_form": [
+      {
+        "value": "interim_final_rule",
+        "claim_ids": [
+          "claim-bis-rule-2024-28270-form"
+        ]
+      }
+    ],
+    "measure_kinds": [
+      {
+        "value": "export_control",
+        "claim_ids": [
+          "claim-bis-rule-2024-28270-export-controls"
+        ]
+      }
+    ],
+    "amends": [
+      {
+        "value": "policy-us-15-cfr-730-774",
+        "claim_ids": [
+          "claim-bis-rule-2024-28270-amends-ear"
+        ]
+      }
+    ]
+  }
+]

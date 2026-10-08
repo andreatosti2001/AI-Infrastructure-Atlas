@@ -33,6 +33,7 @@ on each claim whose `recorded_in` names it, or query `claims.review_recorded_in`
 | [First relationships](#first-relationships-2026-10-02) | 2026-10-02 | 6 | all accepted |
 | [SK hynix HBM3 statement](#sk-hynix-hbm3-statement-2026-10-07) | 2026-10-07 | 1 | accepted |
 | [Third-party supplier reports and Samsung Electronics](#third-party-supplier-reports-and-samsung-electronics-2026-10-07) | 2026-10-07 | 6 | all accepted |
+| [Export-control records](#export-control-records-2026-10-08) | 2026-10-08 | 37 | all accepted |
 
 No claim has been rejected or found "wording too strong" at review.
 
@@ -125,3 +126,27 @@ No claim has been rejected or found "wording too strong" at review.
   shown as "reported" (D-148); the refused memory-supplier card links Samsung's record (D-149)
   ([`hbm-supplier-research.md`](../research/hbm-supplier-research.md)).
 - **Decided at the same review:** D-144 to D-149, accepted.
+
+## Export-control records, 2026-10-08
+
+- **Reviewer:** the human. **Claims:** 37. **Verdict:** all accepted, record by record.
+- **What was reviewed**, under the policy-layer design decided the same day
+  ([`policy-dataset.md`](../architecture/policy-dataset.md); D-154 to D-164), from a review sheet giving each
+  claim's statement, page, verbatim anchor and the link to the official PDF on govinfo.gov
+  ([search log](../research/search-logs/policy-instruments/search-log.md)):
+  - the Export Administration Regulations as a whole, three claims from the 2026 edition of 15 CFR part 730:
+    what "the EAR" refers to, their issuer, and the laws they are issued under;
+  - four rules of the Bureau of Industry and Security in the Federal Register (2022-21658, 2023-23055,
+    2023-23049, 2024-28270), each with its title and agency, citation, document number, form, the EAR parts it
+    amends, its kind of measure, its country and its dates (publication, and every effective date its text
+    fixes);
+  - five points were flagged for the human first: three rules' country joins the rule's AGENCY line with the
+    EAR's statement that BIS belongs to the United States Department of Commerce; the citation is written
+    "87 FR 62186" from the volume and page printed; the EAR record has no dates; one 2023 instruction is
+    effective only until 2026-01-01, which no event can hold; the 2024 rule's kind of measure joins its
+    SUMMARY with the EAR's statement.
+- **What changed:** the 37 claims and the five policy records (`policy-us-15-cfr-730-774`,
+  `policy-us-fr-2022-21658`, `policy-us-fr-2023-23055`, `policy-us-fr-2023-23049`, `policy-us-fr-2024-28270`)
+  became canonical, with eleven events: four publications and seven effective dates. No policy record is
+  linked to a company, part or technology (S18).
+- **Decided at the same review:** none; the design rulings D-153 to D-164 were taken earlier the same day.
