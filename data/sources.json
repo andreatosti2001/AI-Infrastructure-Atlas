@@ -1313,5 +1313,112 @@
       "sha256": "626dd527bb25dc1ffd7ce72d84a0ded10f4d8f3daa0352d6c6b6be07c3eae73a"
     },
     "filing_copy": "filer_hosted_not_checked"
+  },
+  {
+    "id": "src-057",
+    "source_class": "official_legal_text",
+    "title": "Code of Federal Regulations, Title 15, Chapter VII, Subchapter C (Export Administration Regulations), Part 730: General Information (1–1–26 Edition)",
+    "publisher": "Code of Federal Regulations, annual edition (govinfo.gov)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "Bureau of Industry and Security, Department of Commerce",
+    "url": "https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf",
+    "stated_dates": {
+      "state": "undated"
+    },
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-08T19:54Z",
+      "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2"
+    }
+  },
+  {
+    "id": "src-058",
+    "source_class": "official_legal_text",
+    "title": "Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification",
+    "publisher": "Federal Register (official edition, govinfo.gov)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "Bureau of Industry and Security, Department of Commerce",
+    "url": "https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2022-10-13"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-08T19:54Z",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+    }
+  },
+  {
+    "id": "src-059",
+    "source_class": "official_legal_text",
+    "title": "Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections",
+    "publisher": "Federal Register (official edition, govinfo.gov)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "Bureau of Industry and Security, Department of Commerce",
+    "url": "https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23055.pdf",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2023-10-25"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-08T19:54Z",
+      "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+    }
+  },
+  {
+    "id": "src-060",
+    "source_class": "official_legal_text",
+    "title": "Export Controls on Semiconductor Manufacturing Items",
+    "publisher": "Federal Register (official edition, govinfo.gov)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "Bureau of Industry and Security, Commerce",
+    "url": "https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2023-10-25"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-08T19:54Z",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db"
+    }
+  },
+  {
+    "id": "src-061",
+    "source_class": "official_legal_text",
+    "title": "Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items",
+    "publisher": "Federal Register (official edition, govinfo.gov)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "Bureau of Industry and Security, Commerce",
+    "url": "https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2024-12-05"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-08T19:54Z",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+    }
   }
 ]

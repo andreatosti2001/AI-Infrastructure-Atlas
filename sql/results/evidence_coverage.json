@@ -3,7 +3,7 @@
   "query": "sql/evidence_coverage.sql",
   "query_sha256": "8f26b10a7cb663184a6a734c68dcc42882817081b82a49337bafe83a8cfa80e1",
   "engine": "duckdb 1.5.6",
-  "input_digest": "c4cc29b1356bb0931fdfe18b361b5cc53450a049554f690e089f52743620c689",
+  "input_digest": "4d888f847757954bb5e651ef437c9e0c095de6a9a5bd0cd59b3a1fe534c0f670",
   "inputs": [
     {
       "path": "data/claims.json",
@@ -51,7 +51,7 @@
     },
     {
       "path": "data/sources.json",
-      "sha256": "7e91880776b4b7134cc6f20d042ce6a9956beebd39ab8919c78b3d03227b1709"
+      "sha256": "9c8a0780d94d057650b56c5743819f97440a3b0a7a48fd5922713e2b79609a53"
     },
     {
       "path": "data/technologies.json",

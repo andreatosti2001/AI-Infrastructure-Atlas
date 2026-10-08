@@ -1,1 +1,933 @@
-[]
+[
+  {
+    "id": "claim-ear-cfr-scope",
+    "claim_type": "FACT",
+    "statement": "Title 15 of the Code of Federal Regulations states that references to the Export Administration Regulations (EAR) are references to 15 CFR chapter VII, subchapter C.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-057",
+        "locator": "p.1, § 730.1 What these regulations cover, first sentence",
+        "anchor": "In this part, references to the Export Administration Regulations (EAR) are references to 15 CFR chapter VII, subchapter C.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2"
+        }
+      }
+    ],
+    "as_of": "2026-01-01",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-ear-issued-by-bis",
+    "claim_type": "FACT",
+    "statement": "The Code of Federal Regulations states that the EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-057",
+        "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+        "anchor": "The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2"
+        }
+      }
+    ],
+    "as_of": "2026-01-01",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-ear-export-control",
+    "claim_type": "ATTRIBUTION",
+    "statement": "The Code of Federal Regulations states that the EAR are issued under laws relating to the control of certain exports, reexports, and activities.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-057",
+        "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+        "anchor": "The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2"
+        }
+      }
+    ],
+    "as_of": "2026-01-01",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2022-21658-title",
+    "claim_type": "FACT",
+    "statement": "Rule 2022-21658 is titled 'Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification'; its AGENCY line names the Bureau of Industry and Security, Department of Commerce.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-058",
+        "locator": "p.1, heading (title)",
+        "anchor": "Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      },
+      {
+        "source_id": "src-058",
+        "locator": "p.1, AGENCY",
+        "anchor": "AGENCY: Bureau of Industry and Security, Department of Commerce.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      }
+    ],
+    "as_of": "2022-10-13",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2022-21658-citation",
+    "claim_type": "FACT",
+    "statement": "The rule begins on page 62186 of volume 87 (No. 197) of the Federal Register, the issue of Thursday, 13 October 2022; recorded in the Atlas as 87 FR 62186.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-058",
+        "locator": "p.1, page header",
+        "anchor": "62186 Federal Register / Vol. 87, No. 197 / Thursday, October 13, 2022 / Rules and Regulations",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      }
+    ],
+    "as_of": "2022-10-13",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2022-21658-document-number",
+    "claim_type": "FACT",
+    "statement": "The rule's Federal Register document number is 2022-21658.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-058",
+        "locator": "p.30, closing filing line",
+        "anchor": "[FR Doc. 2022–21658 Filed 10–7–22; 11:15 am]",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      }
+    ],
+    "as_of": "2022-10-13",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2022-21658-form",
+    "claim_type": "FACT",
+    "statement": "The Federal Register labels the rule an interim final rule, with a request for comments.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-058",
+        "locator": "p.1, ACTION",
+        "anchor": "ACTION: Interim final rule; request for comments.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      }
+    ],
+    "as_of": "2022-10-13",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2022-21658-amends-ear",
+    "claim_type": "FACT",
+    "statement": "The rule amends parts 734, 736, 740, 742, 744, 762, 772 and 774 of the Export Administration Regulations (15 CFR parts 730 through 774).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-058",
+        "locator": "p.10, the amendatory clause",
+        "anchor": "For the reasons stated in the preamble, parts 734, 736, 740, 742, 744, 762, 772, and 774 of the Export Administration Regulations (15 CFR parts 730 through 774) are amended as follows:",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      }
+    ],
+    "as_of": "2022-10-13",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2022-21658-export-controls",
+    "claim_type": "ATTRIBUTION",
+    "statement": "BIS's rule 2022-21658 describes itself, in its title, as the implementation of additional export controls.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-058",
+        "locator": "p.1, heading (title)",
+        "anchor": "Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      }
+    ],
+    "as_of": "2022-10-13",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2022-21658-issued-in-us",
+    "claim_type": "FACT",
+    "statement": "The rule is issued by the Bureau of Industry and Security, Department of Commerce and amends the Export Administration Regulations, which the Code of Federal Regulations states are issued by the United States Department of Commerce, Bureau of Industry and Security.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-058",
+        "locator": "p.1, AGENCY",
+        "anchor": "AGENCY: Bureau of Industry and Security, Department of Commerce.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      },
+      {
+        "source_id": "src-057",
+        "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+        "anchor": "The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2"
+        }
+      }
+    ],
+    "as_of": "2022-10-13",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2022-21658-effective-2022-10-07",
+    "claim_type": "FACT",
+    "statement": "Rule 2022-21658 states that its instructions 7, 9, 11, 17 and 25 are effective on 7 October 2022.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-058",
+        "locator": "p.1, DATES, item a",
+        "anchor": "a. Effective on October 7, 2022, are the following instructions: 7 (§ 740.2), 9 (§ 740.10), 11 (§ 742.6), 17 (§ 744.23), and 25 (supplement no. 1 to part 774).",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      }
+    ],
+    "as_of": "2022-10-13",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2022-21658-effective-2022-10-12",
+    "claim_type": "FACT",
+    "statement": "Rule 2022-21658 states that its instruction 15 is effective on 12 October 2022.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-058",
+        "locator": "p.1, DATES, item b",
+        "anchor": "b. Effective on October 12, 2022, is the following instruction: 15 (§ 744.6).",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      }
+    ],
+    "as_of": "2022-10-13",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2022-21658-effective-2022-10-21",
+    "claim_type": "FACT",
+    "statement": "Rule 2022-21658 states that its instructions 2, 3, 5, 8, 12, 14, 16, 18, 19, 21, 23 and 26 are effective on 21 October 2022.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-058",
+        "locator": "p.1, DATES, item c",
+        "anchor": "c. Effective on October 21, 2022, are the following instructions: 2 (§ 734.9), 3 (supplement no. 1 to part 734), 5 (supplement no. 1 to part 736), 8 (§ 740.2), 12 (§ 742.6), 14 (§ 744.1), 16 (§ 744.11), 18 (§ 744.23), 19 (supplement no. 4 to part 744), 21 (§ 762.2), 23 (§ 772.1), and 26 (supplement no. 1 to part 774).",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      }
+    ],
+    "as_of": "2022-10-13",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23055-title",
+    "claim_type": "FACT",
+    "statement": "Rule 2023-23055 is titled 'Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections'; its AGENCY line names the Bureau of Industry and Security, Department of Commerce.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-059",
+        "locator": "p.1, heading (title)",
+        "anchor": "Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      },
+      {
+        "source_id": "src-059",
+        "locator": "p.1, AGENCY",
+        "anchor": "AGENCY: Bureau of Industry and Security, Department of Commerce.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23055-citation",
+    "claim_type": "FACT",
+    "statement": "The rule begins on page 73458 of volume 88 (No. 205) of the Federal Register, the issue of Wednesday, 25 October 2023; recorded in the Atlas as 88 FR 73458.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-059",
+        "locator": "p.1, page header",
+        "anchor": "73458 Federal Register / Vol. 88, No. 205 / Wednesday, October 25, 2023 / Rules and Regulations",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23055-document-number",
+    "claim_type": "FACT",
+    "statement": "The rule's Federal Register document number is 2023-23055.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-059",
+        "locator": "p.60, closing filing line",
+        "anchor": "[FR Doc. 2023–23055 Filed 10–18–23; 8:45 am]",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23055-form",
+    "claim_type": "FACT",
+    "statement": "The Federal Register labels the rule an interim final rule, with a request for comments.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-059",
+        "locator": "p.1, ACTION",
+        "anchor": "ACTION: Interim final rule; request for comments.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23055-amends-ear",
+    "claim_type": "FACT",
+    "statement": "The rule amends parts 732, 734, 736, 740, 742, 744, 746, 748, 758, 770, 772 and 774 of the Export Administration Regulations (15 CFR parts 730 through 774).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-059",
+        "locator": "p.30, the amendatory clause",
+        "anchor": "For the reasons stated in the preamble, parts 732, 734, 736, 740, 742, 744, 746, 748, 758, 770, 772, and 774 of the Export Administration Regulations (15 CFR parts 730 through 774) are amended as follows:",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23055-export-controls",
+    "claim_type": "ATTRIBUTION",
+    "statement": "BIS's rule 2023-23055 describes itself, in its title, as the implementation of additional export controls.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-059",
+        "locator": "p.1, heading (title)",
+        "anchor": "Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23055-issued-in-us",
+    "claim_type": "FACT",
+    "statement": "The rule is issued by the Bureau of Industry and Security, Department of Commerce and amends the Export Administration Regulations, which the Code of Federal Regulations states are issued by the United States Department of Commerce, Bureau of Industry and Security.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-059",
+        "locator": "p.1, AGENCY",
+        "anchor": "AGENCY: Bureau of Industry and Security, Department of Commerce.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      },
+      {
+        "source_id": "src-057",
+        "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+        "anchor": "The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23055-effective-2023-11-17",
+    "claim_type": "FACT",
+    "statement": "Rule 2023-23055 states that it is effective on 17 November 2023, except for amendatory instruction 11, which it states is effective from 17 November 2023 to 1 January 2026.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-059",
+        "locator": "p.1, DATES, DATES",
+        "anchor": "This rule is effective November 17, 2023, except for amendatory instruction 11 amending supplement no. 1 to part 736 of the EAR, which is effective from November 17, 2023, to January 1, 2026.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23049-title",
+    "claim_type": "FACT",
+    "statement": "Rule 2023-23049 is titled 'Export Controls on Semiconductor Manufacturing Items'; its AGENCY line names the Bureau of Industry and Security, Commerce.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-060",
+        "locator": "p.1, heading (title)",
+        "anchor": "Export Controls on Semiconductor Manufacturing Items",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db"
+        }
+      },
+      {
+        "source_id": "src-060",
+        "locator": "p.1, AGENCY",
+        "anchor": "AGENCY: Bureau of Industry and Security, Commerce.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23049-citation",
+    "claim_type": "FACT",
+    "statement": "The rule begins on page 73424 of volume 88 (No. 205) of the Federal Register, the issue of Wednesday, 25 October 2023; recorded in the Atlas as 88 FR 73424.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-060",
+        "locator": "p.1, page header",
+        "anchor": "73424 Federal Register / Vol. 88, No. 205 / Wednesday, October 25, 2023 / Rules and Regulations",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23049-document-number",
+    "claim_type": "FACT",
+    "statement": "The rule's Federal Register document number is 2023-23049.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-060",
+        "locator": "p.32, closing filing line",
+        "anchor": "[FR Doc. 2023–23049 Filed 10–18–23; 8:45 am]",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23049-form",
+    "claim_type": "FACT",
+    "statement": "The Federal Register labels the rule an interim final rule, with a request for comments.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-060",
+        "locator": "p.1, ACTION",
+        "anchor": "ACTION: Interim final rule; request for comments.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23049-amends-ear",
+    "claim_type": "FACT",
+    "statement": "The rule amends parts 734, 736, 740, 742, 744, 772 and 774 of the Export Administration Regulations (15 CFR parts 730 through 774).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-060",
+        "locator": "p.23, the amendatory clause",
+        "anchor": "Accordingly, parts 734, 736, 740, 742, 744, 772, and 774 of the Export Administration Regulations (15 CFR parts 730–774) are amended as follows:",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23049-export-controls",
+    "claim_type": "ATTRIBUTION",
+    "statement": "BIS's rule 2023-23049 describes itself, in its title, as export controls on semiconductor manufacturing items.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-060",
+        "locator": "p.1, heading (title)",
+        "anchor": "Export Controls on Semiconductor Manufacturing Items",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23049-issued-in-us",
+    "claim_type": "FACT",
+    "statement": "The rule names its issuing bureau as the Bureau of Industry and Security, U.S. Department of Commerce.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-060",
+        "locator": "p.1, FOR FURTHER INFORMATION CONTACT",
+        "anchor": "Bureau of Industry and Security, U.S. Department of Commerce",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2023-23049-effective-2023-11-17",
+    "claim_type": "FACT",
+    "statement": "Rule 2023-23049 states that it is effective on 17 November 2023, except for amendatory instruction 5, which it states is effective on 1 January 2026.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-060",
+        "locator": "p.1, DATES, DATES",
+        "anchor": "Effective dates: This rule is effective November 17, 2023, except for amendatory instruction 5, which is effective January 1, 2026.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db"
+        }
+      }
+    ],
+    "as_of": "2023-10-25",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2024-28270-title",
+    "claim_type": "FACT",
+    "statement": "Rule 2024-28270 is titled 'Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items'; its AGENCY line names the Bureau of Industry and Security, Commerce.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-061",
+        "locator": "p.1, heading (title)",
+        "anchor": "Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      },
+      {
+        "source_id": "src-061",
+        "locator": "p.1, AGENCY",
+        "anchor": "AGENCY: Bureau of Industry and Security, Commerce.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      }
+    ],
+    "as_of": "2024-12-05",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2024-28270-citation",
+    "claim_type": "FACT",
+    "statement": "The rule begins on page 96790 of volume 89 (No. 234) of the Federal Register, the issue of Thursday, 5 December 2024; recorded in the Atlas as 89 FR 96790.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-061",
+        "locator": "p.1, page header",
+        "anchor": "96790 Federal Register / Vol. 89, No. 234 / Thursday, December 5, 2024 / Rules and Regulations",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      }
+    ],
+    "as_of": "2024-12-05",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2024-28270-document-number",
+    "claim_type": "FACT",
+    "statement": "The rule's Federal Register document number is 2024-28270.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-061",
+        "locator": "p.41, closing filing line",
+        "anchor": "[FR Doc. 2024–28270 Filed 12–2–24; 8:45 am]",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      }
+    ],
+    "as_of": "2024-12-05",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2024-28270-form",
+    "claim_type": "FACT",
+    "statement": "The Federal Register labels the rule an interim final rule.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-061",
+        "locator": "p.1, ACTION",
+        "anchor": "ACTION: Interim final rule.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      }
+    ],
+    "as_of": "2024-12-05",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2024-28270-amends-ear",
+    "claim_type": "FACT",
+    "statement": "The rule amends parts 732, 734, 736, 740, 742, 744, 758, 762, 770, 772 and 774 of the Export Administration Regulations (15 CFR parts 730 through 774).",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-061",
+        "locator": "p.20, the amendatory clause",
+        "anchor": "For the reasons stated in the preamble, parts 732, 734, 736, 740, 742, 744, 758, 762, 770, 772, and 774 of the Export Administration Regulations (15 CFR parts 730 through 774) are amended as follows:",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      }
+    ],
+    "as_of": "2024-12-05",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2024-28270-export-controls",
+    "claim_type": "ATTRIBUTION",
+    "statement": "BIS's rule 2024-28270 states that it makes changes to the controls of the Export Administration Regulations for certain advanced computing items, supercomputers and semiconductor manufacturing equipment; the Code of Federal Regulations states that the EAR are issued under laws relating to the control of certain exports, reexports and activities.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-061",
+        "locator": "p.1, SUMMARY, first sentence",
+        "anchor": "In this interim final rule (IFR), the Bureau of Industry and Security (BIS) makes changes to the Export Administration Regulations (EAR) controls for certain advanced computing items, supercomputers, and semiconductor manufacturing equipment",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      },
+      {
+        "source_id": "src-057",
+        "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+        "anchor": "The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2"
+        }
+      }
+    ],
+    "as_of": "2024-12-05",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2024-28270-issued-in-us",
+    "claim_type": "FACT",
+    "statement": "The rule is issued by the Bureau of Industry and Security, Commerce and amends the Export Administration Regulations, which the Code of Federal Regulations states are issued by the United States Department of Commerce, Bureau of Industry and Security.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-061",
+        "locator": "p.1, AGENCY",
+        "anchor": "AGENCY: Bureau of Industry and Security, Commerce.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      },
+      {
+        "source_id": "src-057",
+        "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+        "anchor": "The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2"
+        }
+      }
+    ],
+    "as_of": "2024-12-05",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  },
+  {
+    "id": "claim-bis-rule-2024-28270-effective-2024-12-02",
+    "claim_type": "FACT",
+    "statement": "Rule 2024-28270 states that it is effective on 2 December 2024.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-061",
+        "locator": "p.1, DATES, DATES",
+        "anchor": "Effective date: This rule is effective December 2, 2024.",
+        "standing": "originator",
+        "read": {
+          "accessed_at": "2026-10-08T19:54Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      }
+    ],
+    "as_of": "2024-12-05",
+    "verified_on": "2026-10-08",
+    "review": {
+      "state": "not_reviewed"
+    }
+  }
+]
