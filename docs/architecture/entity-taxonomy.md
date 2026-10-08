@@ -53,8 +53,8 @@ The human's ten are in **bold**. The roadmap adds Institution and Relationship.
 | **Component** | world: class of physical item | instantiable | S03 | Is it a kind of physical item, described without naming a vendor? |
 | **Product** | world: named offering | instantiable | S03 | Does a company offer it under its own name? |
 | **Country** → Jurisdiction | world: authority over territory | instantiable, kind `country` only | S03 | Does it have its own legal authority and an ISO 3166-1 code? |
-| Institution | world: non-commercial actor | reserved (defined, no records) | S05/S06 or S17 | Is it a public, standards or research body acting as such? |
-| **Policy** | world: rule | reserved (defined, no records) | S17 | Is it a legal or governmental instrument? |
+| Institution | world: non-commercial actor | reserved (defined, no records; D-159) | a later session | Is it a public, standards or research body acting as such? |
+| **Policy** | world: rule | instantiable from S17 (D-155) | S17 | Is it one legal act, as an official journal or code publishes it? |
 | **Source** | evidence | boundary defined here | S05/S06 | Is it a document or dataset that can be retrieved? |
 | **Claim** | evidence | boundary defined here | S06 | Is it one proposition, with a claim type and an evidence status, tied to a source locator? |
 | **Event** | change over time | boundary defined here | S09 (D-022) | Is it a dated occurrence that changed something? |
@@ -221,10 +221,11 @@ Each type below gives:
   fields that point to jurisdictions are `incorporated_in`, `headquartered_in` and
   `located_in`.
 
-### 3.7 Reserved types: Institution and Policy
+### 3.7 Institution (reserved) and Policy (from S17)
 
-Both are defined here so that their boundaries are clear. Neither has a schema, so the
-schema rejects any record of either type.
+Institution has no schema, so the schema rejects its records. Policy became instantiable in
+S17 (D-155); its reasoning, fields, checks and boundary are in
+[`policy-dataset.md`](policy-dataset.md), its field shapes in the schema.
 
 - **Institution:**
   - **Definition:** a non-commercial organisation acting as a public authority,
@@ -241,8 +242,10 @@ schema rejects any record of either type.
   - **Not an event.** A policy's adoption is an event. A statement about a policy is a
     claim.
   - **Start:** S17. The policy layer must not duplicate `Eu-Digital-Policy` (baseline §2).
-  - **Open:** S17 decides whether MA §6.1's `PolicyInstrument`, `TradeMeasure` and
-    `ExportControl` are kinds of Policy.
+  - **Decided in S17** (D-154, D-155): one record is one published act that bears on the
+    chain; `PolicyInstrument` and `TradeMeasure` are policy records, and `ExportControl` is a
+    kind of measure on them (§6). The issuing body is text, because Institution stays reserved
+    (D-159).
 
 ## 4. Why the ten are distinct (human focus)
 
@@ -258,7 +261,7 @@ schema rejects any record of either type.
      can own, sell and contract (commercial) ............ Company
      public, standards or research body ................. Institution (reserved)
      territory with its own legal authority ............. Jurisdiction ("Country")
-     a legal or governmental instrument ................. Policy (reserved)
+     one published legal act ............................ Policy
      a physical site .................................... Facility
      a way of making, designing or delivering ........... Technology
      a kind of physical item, no vendor named ........... Component
@@ -406,9 +409,9 @@ disposition. The Target column uses the §5 syntax plus:
 | EquipmentSupplier | 6.1 | a role, not a type (R-3) | `role:equipment_maker` | D-023 |
 | EnergyAsset | 6.1 | excluded from v1 | `none` | NG-05 |
 | NetworkAsset | 6.1 | excluded from v1 | `none` | NG-04 |
-| PolicyInstrument | 6.1 | reserved for S17 | `reserved:policy` | D-023 |
-| TradeMeasure | 6.1 | reserved for S17, which decides whether it is a kind of Policy | `reserved:policy` | D-023 |
-| ExportControl | 6.1 | reserved for S17, which decides whether it is a kind of Policy | `reserved:policy` | D-023 |
+| PolicyInstrument | 6.1 | adopted in S17: one published legal act (`policy-dataset.md` P-2) | `type:policy` | D-155 |
+| TradeMeasure | 6.1 | a policy record; its kind of measure is a `measure_kinds` value, added with its first record | `type:policy` | D-155 |
+| ExportControl | 6.1 | a kind of measure on a policy record, not a type | `measure_kind:export_control` | D-155 |
 | Investment | 6.1 | an event (MA §5.5 `invested`), not an entity | `kind:event` | D-023 |
 | Metric | 6.1 | a derivation, not a canonical entity (S14–S15) | `none` | NG-11 |
 | Source | 6.1 | record kind owned by S05/S06 | `kind:source` | D-022 |
@@ -418,15 +421,15 @@ disposition. The Target column uses the §5 syntax plus:
 | company | 5.1 | adopted | `type:company` | D-022 |
 | country/jurisdiction | 5.1 | adopted, kind `country` only in v1 | `type:jurisdiction` | D-022 |
 | institution | 5.1 | reserved (§3.7) | `reserved:institution` | D-022 |
-| regulation/instrument | 5.1 | reserved for S17; regulatory content belongs to the governance repositories (baseline §2) | `reserved:policy` | D-023 |
+| regulation/instrument | 5.1 | a policy record, only for acts that bear on the chain; regulatory content belongs to the governance repositories (baseline §2) and EU digital regulation to `Eu-Digital-Policy` | `type:policy` | D-154 |
 | provision | 5.1 | outside this repository (MA §3.3; baseline §2) | `none` | D-023 |
 | technology | 5.1 | adopted | `type:technology` | D-022 |
 | component | 5.1 | adopted | `type:component` | D-022 |
 | facility | 5.1 | adopted | `type:facility` | D-022 |
 | product | 5.1 | adopted | `type:product` | D-022 |
 | infrastructure asset | 5.1 | v1 kinds covered by facility; energy and network assets excluded | `type:facility` | D-023 |
-| policy instrument | 5.1 | reserved for S17 | `reserved:policy` | D-023 |
-| standard | 5.1 | not an entity in v1: a cited standard is a source; a standard as an instrument is S17's | `kind:source` | D-023 |
+| policy instrument | 5.1 | adopted in S17 | `type:policy` | D-155 |
+| standard | 5.1 | not an entity in v1: a cited standard is a source; a standard as an instrument would be a policy record, none in S17 | `kind:source` | D-023 |
 | event | 5.1 | record kind, schema owned by S09 | `kind:event` | D-022 |
 | metric | 5.1 | a derivation, not a canonical entity (S14–S15) | `none` | NG-11 |
 | dependency | 5.1 | not an entity: a structural dependency is a relationship (S04); a criticality assessment is a derivation (S15) | `kind:relationship` | D-023 |

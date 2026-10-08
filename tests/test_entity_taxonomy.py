@@ -27,7 +27,7 @@ MASTER = (REPO_ROOT / "MASTER-ARCHITECTURE.md").read_text(encoding="utf-8")
 DEFS = SCHEMA["$defs"]
 CONCEPT = r"(?:X|ACC|HBM|PKG|FAB|EDA|SME|DC|EN)-\d{2}"
 RECORD_KINDS = {"source", "claim", "event", "relationship"}
-RESERVED_TYPES = {"institution", "policy"}
+RESERVED_TYPES = {"institution"}  # policy became instantiable in S17 (D-155)
 
 
 def section(text: str, start: str, end: str) -> str:
@@ -52,6 +52,8 @@ def resolve_target(target: str) -> bool:
         return value in vocab("vocab_actor_role")
     if prefix == "facility_kind":
         return value in vocab("vocab_facility_kind")
+    if prefix == "measure_kind":
+        return value in vocab("vocab_measure_kind")
     if prefix == "attribute":
         entity, _, field = value.partition(".")
         return entity in ENTITY_TYPES and field in DEFS[entity]["properties"]

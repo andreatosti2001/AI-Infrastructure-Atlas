@@ -2721,3 +2721,132 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   coverage and twice the research); building the harness improvements in S17 (a large engineering task
   in a session that opens a new layer); leaving them to the engineering audit S22 (the M5 audit's full run
   would take hours).
+
+## D-154 — Which policy instruments the Atlas records (P-1)
+
+- **Date:** 2026-10-08 · **Status:** accepted (decided by the human on 2026-10-08)
+- **Context:** M5 opens the policy layer. `Eu-Digital-Policy` owns EU digital regulation (it holds 24 EU
+  instruments, among them the EU Chips Act and the Cloud and AI Development Act, as read on 2026-10-08), and
+  `Global-AI-Governance` owns comparative governance (NG-02).
+- **Decision:** the Atlas records a policy instrument only when its text names an item, technology or firm
+  class of the chain and it is an industrial, trade, export-control, investment or public-support measure;
+  never an instrument another portfolio product owns, and no comparative-governance content (no provisions,
+  obligations, enforcement or institution profiles). A policy's issuing jurisdiction must be a `country`
+  record (PL-3), so no EU instrument can be recorded until a decision creates a supranational jurisdiction.
+  `docs/architecture/policy-dataset.md` P-1.
+- **Rejected:** bare records of EU instruments by reference (a supranational jurisdiction now, and a second
+  home beside `Eu-Digital-Policy`).
+
+## D-155 — The policy record: one published act, seven sourced fields (P-2, P-3)
+
+- **Date:** 2026-10-08 · **Status:** accepted (decided by the human on 2026-10-08)
+- **Decision:** `policy` becomes an instantiable entity type (supersedes the reservation of policy in D-022
+  and D-023; `institution` stays reserved). One record is one officially published act: a rule in an official
+  journal, or a codified regulation as a whole. Identity is the official publication identifier; the ID is
+  `policy-<ISO code of the issuing jurisdiction>-<identifier slug>` (PL-2). Fields: `official_title`,
+  `official_citation`, `issued_in`, `issuing_authority`, `instrument_form` (`codified_regulation`,
+  `interim_final_rule`, `final_rule`, `proposed_rule`), `measure_kinds` (`export_control`; further kinds come
+  with their first record), `amends`, each claim-backed. No status, date, summary, content, "applies to" or
+  notes field. MA §6.1 `PolicyInstrument` and `TradeMeasure` are `type:policy`; `ExportControl` is the
+  measure kind `export_control`. Schema: `schemas/entities.schema.json`; checks PL-1 to PL-5.
+- **Rejected:** one record per policy area (no single text); one record per provision (governance content,
+  D-023); records without `amends`.
+
+## D-156 — A policy's dates are events; its status is derived (P-4)
+
+- **Date:** 2026-10-08 · **Status:** accepted (decided by the human on 2026-10-08)
+- **Decision:** three event types with a policy subject: `published`, `effective` (one per date the act
+  fixes; the proposal's working name was "took effect") and `repealed` (only from a repealing text or the
+  authority's official notice of the repeal). `announced` may have a policy subject and never moves the status
+  (ER-8). `tools/policy_status.py` derives the status on any date: `has_taken_effect`,
+  `published_not_yet_in_effect`, `not_yet_published` (the act did not exist yet on that date; added when the
+  tool was written), `repealed`, `proposed`, `indeterminate`, `no_recorded_effect`. A `proposed_rule` never
+  has an `effective` or `repealed` event (PL-6). The order of publication and effect is not checked. The
+  Atlas says "has taken effect; no repeal recorded in the Atlas", never "in force".
+- **Rejected:** a stored status (a second home that goes stale); a dated search for later repeals on every
+  record with a 12-month staleness rule (kept as a possible later strengthening).
+
+## D-157 — Normative text: no new claim type (P-5)
+
+- **Date:** 2026-10-08 · **Status:** accepted (decided by the human on 2026-10-08)
+- **Decision:** settles `claim-model.md` §2's reserved row. What an act's text fixes about itself (identity,
+  citation, form, publication, the dates it fixes, what it amends) is `FACT`, with the issuing authority as
+  `originator`; what the act provides is `ATTRIBUTION` to the issuing authority. A policy record cites only
+  `FACT` and `ATTRIBUTION` claims (PL-5).
+- **Rejected:** every policy claim as `ATTRIBUTION` (the occurrence rule EV-2 would have to change); a sixth
+  claim type `NORMATIVE` (rules in every table for no different treatment).
+
+## D-158 — A source class for official legal texts (P-6)
+
+- **Date:** 2026-10-08 · **Status:** accepted (decided by the human on 2026-10-08)
+- **Decision:** a twelfth class, `official_legal_text`: the act itself as an official journal or code
+  publishes it. It is the only preferred class of the eleven policy rows of `source-policy.md` §7
+  (`identity:policy`, seven `attr:policy.*`, `event:published`, `event:effective`, `event:repealed`);
+  `government_publication` is acceptable only for `issuing_authority` and `measure_kinds`, and never
+  sufficient alone for the dates and the repeal. Every row that existed before places the new class under
+  "never sufficient alone", so no earlier check is loosened (PL-8). The matrix has 47 rows.
+- **Rejected:** keeping official texts as `government_publication` (a press release could date or repeal an
+  act).
+
+## D-159 — Institutions stay reserved; the issuing authority is text (P-7)
+
+- **Date:** 2026-10-08 · **Status:** accepted (decided by the human on 2026-10-08)
+- **Decision:** `institution` stays reserved (D-022). A policy's issuing body is the sourced text field
+  `issuing_authority` until a link needs an institution record.
+- **Rejected:** institution records now (a second new record type with no use yet, and drift toward
+  `Global-AI-Governance`'s institutions).
+
+## D-160 — The links S18 may record (P-8)
+
+- **Date:** 2026-10-08 · **Status:** accepted (decided by the human on 2026-10-08)
+- **Decision:** settles D-030's four reserved verbs. `restricts` (policy → component, technology, product or
+  company) is defined: evidenced only by the act's own text naming the target, or a party stating that the
+  act applies to its own product; matching a text's term to an Atlas class is a separate `DERIVATION`; never
+  the Atlas applying a threshold. `supports` (policy → company or facility) is defined, instantiable only
+  when a session records public-support instruments. `regulated_by` and `constrained_by` are rejected as
+  vague (RR-10). Links are stored from the policy to its target; MA's `restricted_by` and `supported_by` are
+  the inverse readings. S18 adds them to the schema and amends RR-2 for a policy level; until then no
+  relationship has a policy endpoint (PL-9). The definitions' one home is `policy-dataset.md` P-8.
+- **Rejected:** `restricts` alone with `supports` left undefined.
+
+## D-161 — Description, never advice (P-9)
+
+- **Date:** 2026-10-08 · **Status:** accepted (decided by the human on 2026-10-08)
+- **Decision:** five rules for every policy record, claim, link and page (LA-1 to LA-5 in
+  `policy-dataset.md` P-9): the Atlas states only what a text says and the dates it fixes; only an S18 link
+  may say an act bears on a firm or product; no threshold, definition or exemption is applied to a product;
+  "in force", "legal", "compliant", "licence required" and "prohibited" never appear in the Atlas's own voice;
+  every display links the official text and says it describes and does not advise. LA-1 is checked (PL-5),
+  LA-2 by the schema; LA-3 to LA-5 are review rules.
+- **Rejected:** a check banning the words in claim statements (false alarms on quoted text).
+
+## D-162 — The policy layer's checks are written first, with breaks (P-10)
+
+- **Date:** 2026-10-08 · **Status:** accepted (decided by the human on 2026-10-08)
+- **Decision:** PL-1 to PL-9 are written before the schema changes and shown failing for their reasons;
+  each gets a planted-fault break (`S17-…`) in `tests/regression/`, run with the breaks that touch the
+  changed files (D-150).
+- **Rejected:** writing S17's breaks at the M5 audit.
+
+## D-163 — The first export-control records (P-11)
+
+- **Date:** 2026-10-08 · **Status:** accepted (decided by the human on 2026-10-08)
+- **Decision:** S17 researches five acts: the Export Administration Regulations as a whole (15 CFR parts
+  730-774) and the BIS rules of 13 October 2022 (87 FR 62186), 25 October 2023 (88 FR 73458 and 88 FR 73424)
+  and 5 December 2024 (89 FR 96790), each from its official text, put to the human record by record.
+- **Rejected for now:** the August 2022 chip-design software rule (87 FR 49979) and the January 2025 AI
+  Diffusion rule (90 FR 4544).
+
+## D-164 — An effective date the act fixes in advance comes from the act itself
+
+- **Date:** 2026-10-08 · **Status:** accepted (decided by the human on 2026-10-08)
+- **Context:** found while writing the checks. Rules usually fix their effective date in advance (published
+  25 October 2023, effective 17 November 2023). EV-3 refuses an event dated after the source that states it,
+  which is right for observed occurrences.
+- **Decision:** an `effective` event may be dated after a citation whose source is the act's own official
+  text (an `official_legal_text` source cited by the subject policy's identity claims): an act's effective
+  date is fixed by its publication, not observed later. EV-3 applies unchanged to every other event and
+  every other source (`tests/test_data_events.py`). The status wording stays "has taken effect on the date its
+  text fixes; no later act changing it recorded in the Atlas".
+- **Rejected:** counting a future effective date only once a later official text confirms it (more research
+  per record; acts would stay "not yet confirmed").

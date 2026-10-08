@@ -40,7 +40,14 @@ validity of the records is part 2 (tests/test_data_schema.py). The checks, by ID
 - FK-1 (S09) every facility kind has a facility_kind_basis row naming an identity
        claim whose anchor carries a word the kind's row accepts;
 - CAP-1 (S09) `nameplate_it_capacity_mw` is not_applicable on a site that is not a data
-       centre, and a data centre's value rests on an anchor that says it is IT capacity.
+       centre, and a data centre's value rests on an anchor that says it is IT capacity;
+- PL-2 (S17) a policy ID is `policy-`, the code of its one `issued_in` value, and a slug
+       (policy-dataset.md P-2, D-155);
+- PL-3 (S17) `issued_in` is an existing `country` jurisdiction: no supranational issuer, so no
+       EU instrument, until a decision creates one (P-1, D-154);
+- PL-4 (S17) `amends` names existing policy records, never the act itself, and has no cycle;
+- PL-5 (S17) a policy record cites only FACT and ATTRIBUTION claims: what an act says is
+       attributed to its authority, never the Atlas's own reading (P-5, P-9 LA-1; D-157, D-161).
 
 The rows CI-1, PI-1, IO-1, FI-1 and FK-1 read are data/identity_basis.json (S14, DT-1, D-117; until
 S14 they were tables in the documents named above, which keep the rules). The check functions take
@@ -66,8 +73,8 @@ ENTITY_SCHEMA = json.loads((REPO_ROOT / "schemas/entities.schema.json").read_tex
 REL_SCHEMA = json.loads((REPO_ROOT / "schemas/relationships.schema.json").read_text(encoding="utf-8"))
 FIXTURES = json.loads((REPO_ROOT / "tests/fixtures/entity_records.json").read_text(encoding="utf-8"))
 
-ENTITY_KINDS = ("companies", "jurisdictions", "technologies", "components", "products", "facilities")
-REF_FIELDS = {"incorporated_in", "headquartered_in", "located_in"}
+ENTITY_KINDS = ("companies", "jurisdictions", "technologies", "components", "products", "facilities", "policies")
+REF_FIELDS = {"incorporated_in", "headquartered_in", "located_in", "issued_in"}
 CONCEPT_TYPES = ("technology", "component")
 KIND_FIELD = {"technology": ("technology_kind", "vocab_technology_kind"), "component": ("use_class", "vocab_component_use_class")}
 
@@ -525,6 +532,77 @@ def facilities(entities) -> list[dict]:
     return [r for where in ("canonical", "staging") for r in entities[where]["facilities"]]
 
 
+def policies(entities) -> list[dict]:
+    return [r for where in ("canonical", "staging") for r in entities[where]["policies"]]
+
+
+def assertion_values(record: dict, field: str) -> list[str]:
+    value = record.get(field)
+    return [a["value"] for a in value] if isinstance(value, list) else []
+
+
+def check_policy_ids(entities) -> list[str]:
+    """PL-2."""
+    errors = []
+    for record in policies(entities):
+        codes = [v.removeprefix("jurisdiction-") for v in assertion_values(record, "issued_in")]
+        match = re.fullmatch(r"policy-([a-z]{2})-[a-z0-9]+(?:-[a-z0-9]+)*", record["id"])
+        if len(codes) != 1 or not match or match.group(1) != codes[0]:
+            errors.append(f"{record['id']}: not policy- plus the code of its issued_in value {codes} and a slug")
+    return errors
+
+
+def check_policy_issuers(entities) -> list[str]:
+    """PL-3."""
+    countries = {r["id"] for where in entities for r in entities[where]["jurisdictions"] if r["jurisdiction_kind"] == "country"}
+    errors = []
+    for record in policies(entities):
+        if not assertion_values(record, "issued_in"):
+            errors.append(f"{record['id']}: issued_in records no jurisdiction")
+        for value in assertion_values(record, "issued_in"):
+            if value not in countries:
+                errors.append(f"{record['id']}: issued_in {value} is not an existing country jurisdiction")
+    return errors
+
+
+def check_amends(entities) -> list[str]:
+    """PL-4."""
+    records = {r["id"]: r for r in policies(entities)}
+    errors = []
+    for pid, record in records.items():
+        for target in assertion_values(record, "amends"):
+            if target == pid:
+                errors.append(f"{pid} amends itself")
+            elif target not in records:
+                errors.append(f"{pid} amends missing policy {target}")
+    for start in records:
+        path, node = [start], start
+        while True:
+            nexts = [t for t in assertion_values(records[node], "amends") if t in records and t != node]
+            if not nexts:
+                break
+            node = nexts[0]
+            if node in path:
+                errors.append(f"amends cycle: {' -> '.join(path + [node])}")
+                break
+            path.append(node)
+    return errors
+
+
+def check_policy_claim_types(entities, staging_claims, canonical_claims) -> list[str]:
+    """PL-5."""
+    claims = {c["id"]: c for c in staging_claims + canonical_claims}
+    errors = []
+    for record in policies(entities):
+        for field, _, assertions in fields(record):
+            for _, ids in assertions:
+                for cid in ids:
+                    kind = claims.get(cid, {}).get("claim_type")
+                    if kind is not None and kind not in ("FACT", "ATTRIBUTION"):
+                        errors.append(f"{record['id']}.{field} cites {cid}, a {kind}, which is not FACT or ATTRIBUTION")
+    return errors
+
+
 def reachable(claim_ids, claims: dict) -> set[str]:
     """The claims cited and every claim reached from them through input_claim_ids."""
     seen, todo = set(), list(claim_ids)
@@ -671,6 +749,10 @@ def entity_errors(entities, sources, staging_claims, canonical_claims) -> list[s
     errors += check_broader_cycles(entities)
     errors += check_locations(entities, sources, staging_claims, canonical_claims, excluded_words())
     errors += check_capacity(entities, staging_claims, canonical_claims, capacity_markers())
+    errors += check_policy_ids(entities)
+    errors += check_policy_issuers(entities)
+    errors += check_amends(entities)
+    errors += check_policy_claim_types(entities, staging_claims, canonical_claims)
     return errors
 
 
@@ -845,6 +927,18 @@ class EntityDataTests(unittest.TestCase):
 
     def test_cap1_capacity_only_as_nameplate_it_capacity(self) -> None:
         self.assertEqual(check_capacity(self.entities, self.staging, self.canonical, capacity_markers()), [])
+
+    def test_pl2_policy_ids_follow_the_rule(self) -> None:
+        self.assertEqual(check_policy_ids(self.entities), [])
+
+    def test_pl3_policies_are_issued_by_a_country(self) -> None:
+        self.assertEqual(check_policy_issuers(self.entities), [])
+
+    def test_pl4_amends_resolves_and_has_no_cycle(self) -> None:
+        self.assertEqual(check_amends(self.entities), [])
+
+    def test_pl5_policy_records_cite_only_fact_and_attribution(self) -> None:
+        self.assertEqual(check_policy_claim_types(self.entities, self.staging, self.canonical), [])
 
 
 class EntityFixtureTests(unittest.TestCase):

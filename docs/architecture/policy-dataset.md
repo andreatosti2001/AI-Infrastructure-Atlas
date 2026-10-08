@@ -1,8 +1,9 @@
 # Policy dataset: the instruments that act on the chain
 
-**Status:** PROPOSED, awaiting the human's rulings (H-1). Nothing in this document is in force yet: no
-schema, vocabulary, source-policy row or check has changed. Each item P-1 to P-11 is ruled on separately, and
-the ruling and its decision number are added under the item.
+**Status:** ACCEPTED (the human's rulings of 2026-10-08, H-1): every item P-1 to P-11 as proposed
+(D-154 to D-163), and one rule found while writing the checks, effective dates fixed in advance (D-164).
+The rulings are listed at the end. The text below is the design as decided; the two implementation details
+that differ from the proposal are marked "(as built)".
 **Date:** 2026-10-08
 **Decided before this proposal** (D-153): the first policy records are export controls on AI chips,
 high-bandwidth memory, chipmaking tools and chip-design software.
@@ -23,6 +24,13 @@ The facts about real rules quoted here were read from the Federal Register on 20
 design. They are not records. The records, their sources and their anchors come after H-1, through the
 search plan and the human's review (H-2).
 
+**Schemas:** [`schemas/entities.schema.json`](../../schemas/entities.schema.json) (the `policy` type, its
+two vocabularies) and [`schemas/events.schema.json`](../../schemas/events.schema.json) (the policy events);
+the source class in [`schemas/sources.schema.json`](../../schemas/sources.schema.json).
+**Status tool:** [`tools/policy_status.py`](../../tools/policy_status.py), the only home of a policy's status.
+**Data:** [`data/policies.json`](../../data/policies.json) and its staging copy.
+**Checks:** PL-1 to PL-9 (P-10).
+
 ---
 
 ## In one paragraph
@@ -32,7 +40,7 @@ Security (BIS) published in the Federal Register. The record holds only what ide
 official title and citation, who issued it, in which country, what form it takes ("interim final rule"),
 what kind of measure it is (an export control) and which act it amends. Each value rests on a claim that
 quotes the act's own text. **What the act requires is never a field.** It stays in claims that attribute
-the words to the authority ("BIS's rule states that…"). **Its dates are events** (published, took effect,
+the words to the authority ("BIS's rule states that…"). **Its dates are events** (published, effective,
 repealed), and its status on any day is computed from those events, never stored. Linking an act to the
 companies, parts and technologies it bears on is S18's work. This document only defines the links and the
 evidence each needs.
@@ -133,12 +141,13 @@ never left out (R-7).
 
 ## P-4 Dates are events; status is derived
 
-**Proposal.** Three new event types, each with a policy as its subject:
+**Proposal.** Three new event types, each with a policy as its subject. (As built: the second is named
+`effective`, because D-164 makes it the date the act fixes rather than an observation.)
 
 | Event | Meaning | Rests on |
 |---|---|---|
 | `published` | the act appeared in the official journal on this date | a `FACT` from the journal's own record of it |
-| `took_effect` | all or part of the act took effect on this date, as its text states. An act taking effect in stages has one event per stated date | a `FACT` from the act's "DATES" section |
+| `effective` | all or part of the act has effect from this date, as its text fixes it. An act taking effect in stages has one event per stated date. The date may follow publication: the act's own text fixes it (D-164) | a `FACT` from the act's "DATES" section |
 | `repealed` | the act was repealed, rescinded or removed, as a later official text or the authority's official notice of the repeal states | a `FACT` from that text |
 
 The existing `announced` event may also have a policy as its subject: "the authority announced it will
@@ -149,17 +158,20 @@ date:
 
 | Derived status | When | Shown as |
 |---|---|---|
-| `has_taken_effect` | a `took_effect` event lies wholly before the date, and no `repealed` event does | "has taken effect (from <first date>; in stages to <last date> if several); no repeal recorded in the Atlas" |
-| `published_not_yet_in_effect` | it was published before the date, and its only `took_effect` events are after it | "published; takes effect on <date>, as its text states" |
+| `has_taken_effect` | an `effective` event lies wholly before the date, and no `repealed` event does | "has taken effect (from <first date>; in stages to <last date> if several); no repeal recorded in the Atlas" |
+| `published_not_yet_in_effect` | it was published before the date, and its only `effective` events are after it | "published; takes effect on <date>, as its text states" |
+| `not_yet_published` (as built) | the date is before both the act's publication and its first effective date | "not yet published on this date" |
 | `repealed` | a `repealed` event lies wholly before the date | "repealed on <date>" |
 | `proposed` | the form is `proposed_rule` | "proposed; a proposal never takes effect" |
 | `indeterminate` | an event's period contains the date, or events cannot be ordered | "indeterminate on this date" |
-| `no_recorded_effect` | no `took_effect` event is recorded | "no effective date recorded in the Atlas": unknown, never "not in effect" |
+| `no_recorded_effect` | no `effective` event is recorded | "no effective date recorded in the Atlas": unknown, never "not in effect" |
 
 **Two rules the checks enforce:**
-- a `proposed_rule` never has a `took_effect` or `repealed` event, so a proposal can never be shown as in
+- a `proposed_rule` never has an `effective` or `repealed` event, so a proposal can never be shown as in
   effect;
-- the order of `published` and `took_effect` is not checked (the 2022 rule took effect before publication).
+- the order of `published` and `effective` is not checked (the 2022 rule took effect before publication);
+- an `effective` event may be dated after its source only when that source is the act's own official text
+  (EV-3's one exception, D-164).
 
 **Wording.** The Atlas never writes "in force", "legal" or "applies to". It says "has taken effect" and "no
 repeal recorded in the Atlas". The second phrase is honest about what the Atlas has not checked: a later
@@ -213,7 +225,7 @@ dates and the repeal. It also stops a press release from making an act look repe
 - every existing matrix row places `official_legal_text` under "never sufficient alone". No current record
   rests on one, so no check is loosened;
 - §7 gains **eleven rows**: `identity:policy`, the seven `attr:policy.*` fields and `event:published`,
-  `event:took_effect`, `event:repealed`. Each row's preferred class is `official_legal_text`. For
+  `event:effective`, `event:repealed`. Each row's preferred class is `official_legal_text`. For
   `issuing_authority` and `measure_kinds`, `government_publication` (the agency's own pages) is
   acceptable. Standing is "party or originator", and freshness is `stable`, because a published text never
   changes;
@@ -279,10 +291,10 @@ pages (no page is built in S17).
 | PL-3 | `issued_in` that is not an existing `country` record (P-1) | `tests/test_data_entities.py` |
 | PL-4 | `amends` naming a missing record, a non-policy, itself, or forming a cycle | `tests/test_data_entities.py` |
 | PL-5 | a policy record citing a claim that is not `FACT` or `ATTRIBUTION` (P-5, LA-1) | `tests/test_data_entities.py` |
-| PL-6 | a `published`, `took_effect` or `repealed` event whose subject is not a policy; a `took_effect` or `repealed` event for a `proposed_rule` | `tests/test_data_events.py` |
+| PL-6 | a `published`, `effective` or `repealed` event whose subject is not a policy; an `effective` or `repealed` event for a `proposed_rule`; an event dated after its source, unless it is an `effective` date cited from the act's own text (D-164) | `tests/test_data_events.py` |
 | PL-7 | the status derivation, on fictional events: staged effect, effect before publication, repeal, proposal, an unknown, an announced rescission that changes nothing | `tests/test_policy_status.py` |
-| PL-8 | the new class missing from any matrix row, or a policy field or event type without its row | the existing `tests/test_source_policy.py` checks, which read the schemas |
-| PL-9 | a relationship with a policy endpoint (nothing until S18) | the existing relationship schema (prefixes) |
+| PL-8 | the new class missing from any matrix row, or a policy field or event type without its row; a policy row that does not prefer the official text; a policy date or repeal that a government publication could support; an earlier row that lets the new class support a record alone | `tests/test_source_policy.py` (reads the schemas) and `tests/test_policy_layer.py` |
+| PL-9 | a relationship with a policy endpoint (nothing until S18) | the relationship schema (prefixes), tested in `tests/test_policy_layer.py` |
 
 The existing checks that read every entity kind apply to policies unchanged:
 - references resolve;
@@ -320,6 +332,20 @@ and its dates. All of them are put to the human at H-2.
 
 ---
 
-## Rulings
+## Rulings (H-1, 2026-10-08)
 
-To be added item by item after H-1.
+Decided by the human on 2026-10-08, item by item; outcomes only (D-114).
+
+| Item | Outcome | Decision |
+|---|---|---|
+| P-1 Scope | chain-bound, non-EU instruments only; a country issuer is checked | D-154 |
+| P-2, P-3 Record | one published act per record, the seven fields | D-155 |
+| P-4 Status | derived from dated events, never stored | D-156 |
+| P-4 Effective dates | a date the act fixes in advance comes from the act's own text (asked after the three rounds, before any check was written) | D-164 |
+| P-5 Claim types | `FACT` for what the act fixes about itself, `ATTRIBUTION` for what it provides | D-157 |
+| P-6 Source class | a new class, `official_legal_text` | D-158 |
+| P-7 Institutions | stay reserved; the authority is text | D-159 |
+| P-8 S18 links | `restricts` and `supports` defined; `regulated_by` and `constrained_by` rejected | D-160 |
+| P-9 No advice | the five rules LA-1 to LA-5 | D-161 |
+| P-10 Checks | written first, with breaks | D-162 |
+| P-11 First records | the core five | D-163 |

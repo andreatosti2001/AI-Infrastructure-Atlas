@@ -3,7 +3,7 @@
   "query": "sql/accelerator_dependencies.sql",
   "query_sha256": "86815758cb5a569f29426c46adeec17888884072c61beb64e60118f600e93e18",
   "engine": "duckdb 1.5.6",
-  "input_digest": "0d3e5ffd9699b8cdd6eab0385a1e934e728d5e7cff038a8c43d27d0193fb7943",
+  "input_digest": "59e94c712560bc7c1b2ce6dba0de98f820bb05e457c8db130bc0a005ebac5ea4",
   "inputs": [
     {
       "path": "data/claims.json",
@@ -32,6 +32,10 @@
     {
       "path": "data/jurisdictions.json",
       "sha256": "b3322fc7fb6bac05a2a5b71c9ead49425b49e23a344a04d6337b74ab04404998"
+    },
+    {
+      "path": "data/policies.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
       "path": "data/products.json",

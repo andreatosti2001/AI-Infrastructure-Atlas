@@ -3,7 +3,7 @@
   "query": "sql/supplier_metrics.sql",
   "query_sha256": "8a3a18d3eb7b92dfef0f742ee8a3792379b7575e19b04571c6353a6c8f7fd5c9",
   "engine": "duckdb 1.5.6",
-  "input_digest": "cbf1343c37a5e773e0983f402794dc728e89fc503d4a5f2a9d553b185caedeb2",
+  "input_digest": "b4f6e13026c6625cf523610d59858195d82598a012bfebf5c314da9f39122afa",
   "inputs": [
     {
       "path": "data/claims.json",
@@ -32,6 +32,10 @@
     {
       "path": "data/jurisdictions.json",
       "sha256": "b3322fc7fb6bac05a2a5b71c9ead49425b49e23a344a04d6337b74ab04404998"
+    },
+    {
+      "path": "data/policies.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
       "path": "data/products.json",
