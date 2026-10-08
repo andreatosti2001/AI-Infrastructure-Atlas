@@ -2703,3 +2703,21 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
 - **Rejected:** leaving the archive to the human by hand (records get lost between sessions); an automated
   copy from CI (it would need the public repository to hold the records first, or a secret with write access
   to the private one).
+
+## D-153 — The first policy records are export controls; the harness improvements open the M5 audit
+
+- **Date:** 2026-10-08 · **Status:** accepted (decided by the human on 2026-10-08)
+- **Context:** S17 opens the policy layer (M5). Its prompt asked which kind of instrument to model first,
+  and when to schedule the three harness improvements kept as reminders by D-150.
+- **Decision:**
+  - the first policy records are **export controls** on advanced AI chips, high-bandwidth memory,
+    chipmaking tools and chip-design software: the US Bureau of Industry and Security's rules, read from the
+    Federal Register. The record design must still hold other kinds of instrument later;
+  - the three harness improvements (permanent fast tests with planted data, breaks chosen by the files a
+    session touches, breaks run in parallel copies) are **the first task of the M5 audit (S19)**, before
+    its full harness run. S17 and S18 choose their breaks by hand (D-150).
+- **Rejected:** public support for chip and memory plants first (it bears on companies and plants more
+  than parts, and an EU programme would need a supranational jurisdiction); a few of each kind (thinner
+  coverage and twice the research); building the harness improvements in S17 (a large engineering task
+  in a session that opens a new layer); leaving them to the engineering audit S22 (the M5 audit's full run
+  would take hours).
