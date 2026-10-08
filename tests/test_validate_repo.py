@@ -76,6 +76,30 @@ class ValidateRepoTests(unittest.TestCase):
         self.write("node_modules/x.md", "[gone](gone.md)\n")
         self.assertEqual(validate_repo.validate(self.root), [])
 
+    def test_session_records_are_refused_in_the_public_tree(self) -> None:
+        # D-152: session prompts, reports and their working folders belong in the private archive repository
+        cases = (("sessions/reports/SESSION-17-REPORT.md", "sessions/"), ("sessions/prompts/S17-PROMPT.md", "sessions/"),
+                 ("sessions/reports/SESSION-17-qa/x.md", "sessions/"), ("PROMPT-REGISTRY.md", "PROMPT-REGISTRY.md"),
+                 ("docs/SESSION-17.5-REPORT.md", "docs/SESSION-17.5-REPORT.md"), ("notes/S18-PROMPT.md", "notes/S18-PROMPT.md"))
+        for rel, reported in cases:
+            with self.subTest(path=rel):
+                self.write(rel, "# x\n")
+                self.assertEqual(
+                    validate_repo.validate(self.root),
+                    [f"session record in the public repository (D-152): {reported}"],
+                )
+                path = self.root / rel
+                path.unlink()
+                for parent in path.relative_to(self.root).parents:
+                    folder = self.root / parent
+                    if folder != self.root and not any(folder.iterdir()):
+                        folder.rmdir()
+
+    def test_documents_about_sessions_are_not_session_records(self) -> None:
+        self.write("SESSION-PROMPT-SPEC.md", "# spec\n")
+        self.write("docs/session-notes.md", "# not a record\n")
+        self.assertEqual(validate_repo.validate(self.root), [])
+
     def test_heading_anchors_follow_githubs_rule(self) -> None:
         text = ("# Human review record\n## Companies and jurisdictions, 2026-10-01\n## SK hynix HBM3 statement, 2026-10-07\n"
                 "### 4. Build/Audit cadence\n## `recorded_in` and D-151 — the rule\n## Twice\n## Twice\n")

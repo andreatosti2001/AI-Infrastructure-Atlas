@@ -3,7 +3,7 @@
 Where each governing document lives, what it holds, and its status. It also lists every audit artifact
 required by `PROJECT-EVALUATION-FRAMEWORK.md` §11; planned artifacts are listed rather than created as empty
 stubs (D-005). The repository holds the current system; session prompts and reports are kept in the private
-development archive (D-151).
+development archive, the private repository `atlas-dev-archive` (D-151, D-152).
 
 ## Constitutional documents (repository root)
 

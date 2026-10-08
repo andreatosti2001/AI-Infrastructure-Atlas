@@ -28,8 +28,8 @@ repository are logged in [`decisions.md`](./decisions.md).
 | Layer | Exists? | Introduced by (per `SESSION-ROADMAP.md`) |
 |---|---|---|
 | Constitutional documents | yes (repo root) | user, before S00 |
-| Session prompts and reports | kept in the private development archive, outside this repository (D-151) | S00 |
-| Repository integrity validator + CI | yes: Gate 0 (`tools/validate_repo.py`) checks the governing documents and that every relative Markdown link resolves (D-151); CI runs it with the test suite | S00 |
+| Session prompts and reports | kept in the private archive repository `atlas-dev-archive`, outside this repository; each session archives its own (D-151, D-152) | S00 |
+| Repository integrity validator + CI | yes: Gate 0 (`tools/validate_repo.py`) checks the governing documents, that every relative Markdown link resolves (D-151), and that no session record is committed here (D-152); CI runs it with the test suite | S00 |
 | Domain map / source register | yes, draft (S01) | S01 |
 | M0 milestone audit + EU-DP process benchmark | yes, draft (S02) | S02 |
 | S13 content and evidence depth audit | yes (S13): `docs/research/content-audit.md`; findings ruled, one blocking finding remediated (D-111), ten debt items with owners (D-112, D-113); maturity ratings accepted by the human on 2026-10-03 (S14 opening) | S13 |
