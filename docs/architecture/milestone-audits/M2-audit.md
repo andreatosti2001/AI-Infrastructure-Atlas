@@ -1,11 +1,14 @@
 # M2 Milestone Audit and S12 Data Architecture Audit
 
+> **Records cited.** This is a process audit (PEF §4). The session reports and prompts it cites are kept in the
+> private development archive, not in this repository (D-151); the decisions, documents and files it cites are here.
+
 **Status:** ACCEPTED (approved by the human on 2026-10-02, at the S13 opening). Proposed in S12; the remediation of Part 4's blocking finding was ruled in S12.
 **Date:** 2026-10-02
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §4 ("At every major milestone"), §5 (data
 architecture audit), §3 (maturity per dimension); `SESSION-ROADMAP.md` S12 ("Architecture Audit
 Report + remediation decisions").
-**Scope** (the human's answer at the start of S12, "One audit covering both (Recommended)"):
+**Scope** (the human's answer at the start of S12):
 
 - **Part 1:** the M2 milestone audit, S07 to S10 (`SESSION-ROADMAP.md` numbering, D-019), which
   ended without one;
@@ -13,11 +16,11 @@ Report + remediation decisions").
   against the roadmap's S12 list, S10's five items and S11's handoff.
 
 **Rulings the audit is measured against.** D-100 to D-108 (the S11 page rules) were accepted by
-the human at the start of S12 ("Rules binding, page unchanged (Recommended)"), before any finding
+the human at the start of S12, before any finding
 was written.
 
 **Written by:** Claude, as the Knowledge Architect (`docs/agents/contracts.md`: the audit report is
-in its S12 write list, Part B §10). The process ratings of Part 1 are the Portfolio Reviewer's kind
+in its S12 write list). The process ratings of Part 1 are the Portfolio Reviewer's kind
 of judgement; that role stays inactive (`roles.md`), as in the M1 audit (D-066).
 
 **Bases read.**
@@ -37,7 +40,7 @@ of judgement; that role stays inactive (`roles.md`), as in the M1 audit (D-066).
 - `INTERPRETATION`: this audit's own reading;
 - `IMPLICATION`: what follows for S13 and later.
 
-No external source was read (Part B §05). A finding that would need a fact about the world is
+No external source was read. A finding that would need a fact about the world is
 recorded as a gap, not answered.
 
 ---
@@ -75,7 +78,7 @@ All `FACT` as measured at `91f8342` (data unchanged since S10) unless a report i
   events; 5 relationships; staging empty.
 - **Decisions:** 46 (D-054 to D-099), all accepted at the human's reviews (`FACT`, status lines).
 - **Gates:** each met as the S10 report's "M2 completion" table records (`ATTRIBUTION`). S10 met
-  its gate with 5 edges, not the 10 to 12 its prompt expected (S10 Deviation 1).
+  its gate with 5 edges, not the 10 to 12 its prompt expected.
 
 ### 3. What changed, and why
 
@@ -102,7 +105,7 @@ artifact.
 - **That subsidiary lists yield `owns` edges.** D-057 rules out a subsidiary record from a
   parent's exhibit (S10).
 - **That TSMC → H100 would be an S10 edge.** F-1 makes its product-level evidence stale (S10).
-- **That 10 to 12 edges would exist.** The evidence supports 5 (S10 Deviation 1).
+- **That 10 to 12 edges would exist.** The evidence supports 5.
 - **That registered pages keep their bytes.** Four changed before S08 cited them again (S08
   Deviation 2).
 
@@ -111,12 +114,12 @@ artifact.
 - **Extraction and promotion scripts lived in the session scratchpad** (S07 debt). Their effects
   are checked in CI; the scripts are not in the repository.
 - **Per-record evidence in document tables** where the schema had no claim field: `instance_of`
-  (IO-1), facility kinds (FK-1) (S08 Deviation 3; D-081). See Part 2, finding N-2.
-- **ISO 3166 evidence as screenshots,** attested by reading (S07 Deviation 1; D-058).
-- **Extractor and Verifier were one agent** (S07 Deviation 10). S08 to S10 record no separate
+  (IO-1), facility kinds (FK-1). See Part 2, finding N-2.
+- **ISO 3166 evidence as screenshots,** attested by reading.
+- **Extractor and Verifier were one agent**. S08 to S10 record no separate
   Verifier either; each session was run by one Claude session. The human's review is the
   independent check.
-- **Approval by delegation** once: "pick your recommendations" (S09 Deviation 7).
+- **Approval by delegation** once.
 - **Checkpoint commits with known failures** on the feature branch, never on `main` (S07
   Deviation 8).
 
@@ -169,7 +172,7 @@ M3 began with S11 before this audit was written. What M3 inherits, besides Parts
 |---|---|---|
 | P-1 | **The D-018 commitments held through M2.** Every new check runs in CI (L-02); each report records its base (L-03); counts in prose are measured or labelled (L-04); prompts were on `main` before each session | `FACT`: `.github/workflows/ci.yml`; each report header; the merge commits before each session (`git log`) |
 | P-2 | **Fail-first runs and deliberate breaks were done every session, and reported a miss honestly.** S07 break 7b ("role asserted with a claim that does not state it") was NOT CAUGHT and recorded as debt; S10 break 9 first passed for the wrong reason and was corrected | `ATTRIBUTION`: S07 and S10 "Deliberate breaks" |
-| P-3 | **The human's rulings followed Claude's recommendation in every recorded answer.** Every answer quoted in the S07 to S11 ruling tables is the option marked "(Recommended)", a selection among items Claude flagged, or a delegation ("pick your recommendations"). The human's independent interventions were the S07 spot-check of three anchors (H-6) and the S08 hold on D-070 and D-076, released in S09. The S11 new-user test recorded Claude's proposals, agreed, not the human's own findings | `DERIVATION`: a search of the quoted answers in the S07 to S11 report tables (`grep` for `| "…" |` not containing "Recommended" returns only gate texts, a quoted table row, the S08 vendor/ASIC answer to Claude's two flagged rulings, the S09 delegation and the S10 ticked edges); S07 and S08 addenda; S11 report |
+| P-3 | **The human's rulings followed Claude's recommendation in every recorded answer.** Every answer quoted in the S07 to S11 ruling tables is the option marked as recommended, a selection among items Claude flagged, or a delegation. The human's independent interventions were the S07 spot-check of three anchors (H-6) and the S08 hold on D-070 and D-076, released in S09. The S11 new-user test recorded Claude's proposals, agreed, not the human's own findings | `DERIVATION`: a search of the quoted answers in the S07 to S11 report tables (`grep` for `| "…" |` not containing "Recommended" returns only gate texts, a quoted table row, the S08 vendor/ASIC answer to Claude's two flagged rulings, the S09 delegation and the S10 ticked edges); S07 and S08 addenda; S11 report |
 | P-4 | **In-session review cleared M1's backlog** (M1 P-5). At the end of M2 no record waited for a verdict; staging was empty. The pace was high: S07 to S11 ran on 2026-10-01 and 2026-10-02 | `FACT`: `data/staging/*.json` (each `[]`); `git log` dates |
 | P-5 | **Markdown-as-data grew in every M2 session, and no session consolidated it.** Each session recorded its own tables as debt (P-6 below lists them); the M1 audit had already named the pattern (O-5) and rejected a shared helper "for now" | `ATTRIBUTION`: S07 to S10 debt sections; M1 audit §2.4 |
 | P-6 | **Data migrations are not reproducible from the repository.** The scripts that wrote and promoted records lived in the scratchpad (S07 debt); only their effects are checked | `ATTRIBUTION`: S07 debt; no promotion script in `tools/` (`FACT`) |
@@ -495,14 +498,13 @@ are debt (DT-1).
 |---|---|---|---|
 | B-1 | The refused candidates are values about named records held in a Markdown table, read by two parsers and resolved to records by display name; one cell is stale (N-2, I-5, V-2) | records, checks, page (q1, q6) | D-109, with H-2 |
 
-**Remediation outcome** (S12, 2026-10-02). The human approved the design and the layout ("Own
-file, separate from real links (Recommended)") and the twelve migrated records ("Approve all").
+**Remediation outcome** (S12, 2026-10-02). The human approved the design and the layout (an own file, separate from real links) and the twelve migrated records.
 B-1 is remediated: `data/refused_candidates.json` holds the twelve candidates; RC-1 to RC-8 run in
 CI (`tests/test_data_candidates.py`); the page reads the records and no longer reads
 `edge-dataset.md` (which left its inputs); the build and `tests/test_page.py` no longer parse a
 Markdown table, so two of M-4's three table parsers are gone; endpoints are IDs, so renaming every
 company's display name no longer stops the build (before S12 it refused: "'TSMC' does not name one
-record"). Evidence in `sessions/reports/SESSION-12-REPORT.md`.
+record"). The checks are in `tests/test_data_candidates.py` and `tests/test_page.py`.
 
 **Debt** (each with an owner; not remediated in S12):
 

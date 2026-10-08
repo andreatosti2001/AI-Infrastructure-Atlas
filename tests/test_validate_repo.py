@@ -10,23 +10,12 @@ sys.path.insert(0, str(REPO_ROOT / "tools"))
 
 import validate_repo  # noqa: E402
 
-VALID_REPORT = "# Report\n\n" + "".join(
-    f"## {section}\n\ncontent\n\n" for section in validate_repo.REPORT_SECTIONS
-)
-
 
 def make_valid_repo(root: Path) -> None:
     for rel in validate_repo.REQUIRED_FILES:
         path = root / rel
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text("# placeholder\n", encoding="utf-8")
-    (root / "sessions/prompts/PROMPT-REGISTRY.md").write_text(
-        "| S00 | [`S00-PROMPT.md`](./S00-PROMPT.md) |\n", encoding="utf-8"
-    )
-    (root / "sessions/prompts/S00-PROMPT.md").write_text("# S00\n", encoding="utf-8")
-    reports = root / "sessions/reports"
-    reports.mkdir(parents=True)
-    (reports / "SESSION-00-REPORT.md").write_text(VALID_REPORT, encoding="utf-8")
 
 
 class ValidateRepoTests(unittest.TestCase):
@@ -38,6 +27,11 @@ class ValidateRepoTests(unittest.TestCase):
     def tearDown(self) -> None:
         self._tmp.cleanup()
 
+    def write(self, rel: str, text: str) -> None:
+        path = self.root / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8")
+
     def test_valid_repo_passes(self) -> None:
         self.assertEqual(validate_repo.validate(self.root), [])
 
@@ -48,86 +42,65 @@ class ValidateRepoTests(unittest.TestCase):
             ["missing required file: MASTER-ARCHITECTURE.md"],
         )
 
-    def test_report_missing_section_fails(self) -> None:
-        report = self.root / "sessions/reports/SESSION-00-REPORT.md"
-        report.write_text(VALID_REPORT.replace("## Deviations", "## Other"), encoding="utf-8")
-        self.assertEqual(
-            validate_repo.validate(self.root),
-            ["sessions/reports/SESSION-00-REPORT.md: missing section '## Deviations'"],
-        )
+    def test_the_human_review_record_is_required(self) -> None:
+        # D-151: canonical claims name it as the record of the human's verdicts
+        self.assertIn("docs/quality/human-reviews.md", validate_repo.REQUIRED_FILES)
 
-    def test_section_heading_match_is_case_insensitive(self) -> None:
-        report = self.root / "sessions/reports/SESSION-00-REPORT.md"
-        report.write_text(VALID_REPORT.upper(), encoding="utf-8")
+    def test_relative_links_resolve(self) -> None:
+        self.write("docs/a.md", "# A\n\n## Second part\n\nSee [b](b.md), [the root](../README.md) and [here](#second-part).\n")
+        self.write("docs/b.md", "# B\n\nBack to [a](./a.md#second-part); a folder: [docs](../docs/).\n")
         self.assertEqual(validate_repo.validate(self.root), [])
 
-    def test_section_must_be_level_two_heading(self) -> None:
-        report = self.root / "sessions/reports/SESSION-00-REPORT.md"
-        report.write_text(VALID_REPORT.replace("## Tests run", "### Tests run"), encoding="utf-8")
+    def test_a_link_to_a_missing_file_fails(self) -> None:
+        self.write("docs/a.md", "# A\n\nline two\n[gone](../sessions/reports/SESSION-07-REPORT.md)\n")
         self.assertEqual(
             validate_repo.validate(self.root),
-            ["sessions/reports/SESSION-00-REPORT.md: missing section '## Tests run'"],
+            ["docs/a.md:4: link to a missing file: ../sessions/reports/SESSION-07-REPORT.md"],
         )
 
-    def test_report_without_prompt_fails(self) -> None:
-        (self.root / "sessions/reports/SESSION-01-REPORT.md").write_text(VALID_REPORT, encoding="utf-8")
+    def test_a_link_to_a_missing_heading_fails(self) -> None:
+        self.write("docs/a.md", "# A\n\n## Kept\n")
+        self.write("docs/b.md", "[x](a.md#gone) [y](#nowhere)\n")
         self.assertEqual(
             validate_repo.validate(self.root),
-            ["sessions/reports/SESSION-01-REPORT.md: no matching prompt sessions/prompts/S01-PROMPT.md"],
+            ["docs/b.md:1: link to a missing heading: a.md#gone", "docs/b.md:1: link to a missing heading: #nowhere"],
         )
 
-    def test_unregistered_prompt_fails(self) -> None:
-        (self.root / "sessions/prompts/S01-PROMPT.md").write_text("# S01\n", encoding="utf-8")
-        self.assertEqual(
-            validate_repo.validate(self.root),
-            ["sessions/prompts/S01-PROMPT.md: not listed in PROMPT-REGISTRY.md"],
-        )
-
-    def test_misnamed_session_files_fail(self) -> None:
-        (self.root / "sessions/prompts/s02-prompt.md").write_text("x", encoding="utf-8")
-        (self.root / "sessions/reports/S00-REPORT.md").write_text("x", encoding="utf-8")
-        self.assertEqual(
-            validate_repo.validate(self.root),
-            [
-                "sessions/prompts/s02-prompt.md: name must match SNN-PROMPT.md",
-                "sessions/reports/S00-REPORT.md: name must match SESSION-NN-REPORT.md",
-            ],
-        )
-
-    def test_sub_session_numbers_are_accepted_and_paired(self) -> None:
-        # D-126: a session inserted between two others carries a one-digit suffix (S14.5)
-        registry = self.root / "sessions/prompts/PROMPT-REGISTRY.md"
-        registry.write_text(registry.read_text(encoding="utf-8") + "| S14.5 | [`S14.5-PROMPT.md`](./S14.5-PROMPT.md) |\n", encoding="utf-8")
-        (self.root / "sessions/prompts/S14.5-PROMPT.md").write_text("# S14.5\n", encoding="utf-8")
-        (self.root / "sessions/reports/SESSION-14.5-REPORT.md").write_text(VALID_REPORT, encoding="utf-8")
+    def test_external_links_code_and_fenced_blocks_are_not_checked(self) -> None:
+        self.write("docs/a.md", "# A\n\n[web](https://example.org/x) [mail](mailto:a@b.c) `[code](gone.md)`\n\n"
+                                "```text\n[fenced](gone.md)\n```\n")
         self.assertEqual(validate_repo.validate(self.root), [])
-        (self.root / "sessions/reports/SESSION-14.6-REPORT.md").write_text(VALID_REPORT, encoding="utf-8")
+
+    def test_git_and_scratch_folders_are_not_walked(self) -> None:
+        self.write(".git/x.md", "[gone](gone.md)\n")
+        self.write("node_modules/x.md", "[gone](gone.md)\n")
+        self.assertEqual(validate_repo.validate(self.root), [])
+
+    def test_heading_anchors_follow_githubs_rule(self) -> None:
+        text = ("# Human review record\n## Companies and jurisdictions, 2026-10-01\n## SK hynix HBM3 statement, 2026-10-07\n"
+                "### 4. Build/Audit cadence\n## `recorded_in` and D-151 — the rule\n## Twice\n## Twice\n")
         self.assertEqual(
-            validate_repo.validate(self.root),
-            ["sessions/reports/SESSION-14.6-REPORT.md: no matching prompt sessions/prompts/S14.6-PROMPT.md"],
+            validate_repo.markdown_anchors(text),
+            {"human-review-record", "companies-and-jurisdictions-2026-10-01", "sk-hynix-hbm3-statement-2026-10-07",
+             "4-buildaudit-cadence", "recorded_in-and-d-151--the-rule", "twice", "twice-1"},
         )
 
-    def test_malformed_sub_session_numbers_fail(self) -> None:
-        (self.root / "sessions/prompts/S14.55-PROMPT.md").write_text("x", encoding="utf-8")
-        (self.root / "sessions/reports/SESSION-14.-REPORT.md").write_text("x", encoding="utf-8")
-        self.assertEqual(
-            validate_repo.validate(self.root),
-            [
-                "sessions/prompts/S14.55-PROMPT.md: name must match SNN-PROMPT.md",
-                "sessions/reports/SESSION-14.-REPORT.md: name must match SESSION-NN-REPORT.md",
-            ],
-        )
-
-    def test_main_exit_status(self) -> None:
-        with redirect_stdout(io.StringIO()):
-            self.assertEqual(validate_repo.main(["validate_repo.py", str(self.root)]), 0)
-            (self.root / "CLAUDE.md").unlink()
-            self.assertEqual(validate_repo.main(["validate_repo.py", str(self.root)]), 1)
-
-
-class RealRepositoryTest(unittest.TestCase):
-    def test_repository_passes_its_own_integrity_check(self) -> None:
+    def test_the_repository_itself_passes(self) -> None:
         self.assertEqual(validate_repo.validate(REPO_ROOT), [])
+
+    def test_main_reports_status(self) -> None:
+        buffer = io.StringIO()
+        with redirect_stdout(buffer):
+            code = validate_repo.main(["validate_repo.py", str(self.root)])
+        self.assertEqual(code, 0)
+        self.assertIn("Repository integrity: OK", buffer.getvalue())
+
+        (self.root / "CLAUDE.md").unlink()
+        buffer = io.StringIO()
+        with redirect_stdout(buffer):
+            code = validate_repo.main(["validate_repo.py", str(self.root)])
+        self.assertEqual(code, 1)
+        self.assertIn("FAILED", buffer.getvalue())
 
 
 if __name__ == "__main__":

@@ -78,8 +78,7 @@ then class edges.
 its endpoints (record IDs, or an explicit `no_record` state with the name the table wrote), the
 relation type, what was read (claims, or a source sentence with the Verifier's read state), reason
 codes whose definitions live in the schema, the "why not" text that stood in this table, and the
-ruling. Twelve were migrated from this table, values unchanged
-([`SESSION-12-migration/`](../../sessions/reports/SESSION-12-migration/)), and accepted by the human
+ruling. Twelve were migrated from this table by a one-off script, values unchanged, and accepted by the human
 ("Approve all", 2026-10-02). This section keeps the rule above; the records keep the values. Checked
 by `tests/test_data_candidates.py` (RC-1 to RC-8).
 
@@ -90,8 +89,8 @@ document (company records).
 
 **Count.** 5 edges. The human's 10-edge review therefore covers the 5 edges, the staged
 TSMC → H100 derivation, and the refused candidates (now records, above), each traced from its sentence
-(`SESSION-10-REPORT.md`). Fewer than 10 edges exist because the evidence supports fewer: see
-the report's deviations.
+([the review's entry](../quality/human-reviews.md#first-relationships-2026-10-02)). Fewer than 10 edges
+exist because the evidence supports fewer (D-089).
 
 ## 2. Edge IDs (RI-1, machine-checked)
 
@@ -236,10 +235,10 @@ answers one of the questions); a stored adjacency list (a second home).
 
 As D-061, D-077 and D-087 (D-098): an edge becomes canonical only on the human's verdict, and
 only when every claim it cites, its endpoints and its `item` or `supplier` companies are
-canonical. CE-1 extends to edges. The human's verdicts go verbatim into
-`SESSION-10-REPORT.md`.
+canonical. CE-1 extends to edges. The human's verdicts are recorded in
+the human review record ([`human-reviews.md`](../quality/human-reviews.md), D-151).
 
-**Review.** For each edge on the sheet in the S10 report:
+**Review.** For each edge put to the human:
 
 1. Run `python tools/trace.py <edge ID>` (or `python tools/navigate.py evidence <edge ID>`).
 2. Open the source at the locator, and read the whole sentence.

@@ -243,9 +243,11 @@ Mandatory audits:
 
 ## 5. Session reports
 
-Each session must create a report at:
-
-`sessions/reports/SESSION-XX-REPORT.md`
+Each session must create a report, `SESSION-XX-REPORT.md`. Session reports and session prompts are kept in the
+private development archive, outside the public repository (`docs/architecture/decisions.md`, D-151). What a
+session settles reaches the repository as current state: decisions in `docs/architecture/decisions.md`, the
+human's verdicts on claims in `docs/quality/human-reviews.md`, and the documents, data, checks and pages it
+changes. No canonical record, document or check may depend on a session report.
 
 Minimum fields:
 
@@ -275,7 +277,7 @@ Do not silently rewrite history.
 
 Instead:
 
-1. preserve the original session prompt;
+1. preserve the original session prompt (in the private development archive);
 2. record the invalidated assumption in the report;
 3. create an explicit decision record;
 4. revise only future prompts;

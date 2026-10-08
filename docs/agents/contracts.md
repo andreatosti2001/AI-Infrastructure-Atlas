@@ -1,13 +1,14 @@
 # Agent contracts
 
-**Status:** ACCEPTED (human review of S06, 2026-09-30; D-052, D-010). **Session:** S06.
-Paths updated in S07 (Editorial, paths only, Part B §10): the staging entity files, `company-dataset.md` and the S07 test modules. Paths updated in S08 likewise: the staging technology, component and product files, `concept-dataset.md` and the S08 checks. Paths updated in S09 likewise: the staging facility and event files, `facility-dataset.md`, the proposed event schema, the S09 checks and `tools/facility_status.py`. Paths updated in S10 likewise: the staging relationship file, `edge-dataset.md`, the S10 checks and `tools/navigate.py`. S11 added the Editorial and QA contracts (D-107; accepted at the S12 opening review, 2026-10-02) and updated paths likewise: `vertical-slice.md`, the page checks, the build step and the generated page. Paths updated in S12 likewise: the staging candidate file and the audit report.
+**Status:** ACCEPTED (human review, 2026-09-30; D-052, D-010); the Editorial and QA contracts accepted on
+2026-10-02 (D-107). Paths are kept current when a file moves (Editorial, paths only); no role or boundary
+changes without a decision.
 
-MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. The Editorial and QA contracts were added in S11 (D-107) and accepted at the S12 opening review (H-0). Each contract has
+MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. Each contract has
 MA's nine fields, in MA's order.
 
-- **Paths are repository paths.** A role writes only its allowed paths. A session report
-  (`sessions/reports/`) may record any role's findings.
+- **Paths are repository paths.** A role writes only its allowed paths. The session report, kept in the
+  private development archive outside this repository (D-151), may record any role's findings.
 - **A validation gate is a test module that CI runs on every push** (L-02).
   `tests/test_agent_contracts.py` checks that each one exists.
 - **The human's review is outside every contract.** No role writes a `review` verdict or
@@ -21,7 +22,7 @@ MA's nine fields, in MA's order.
 | ROLE | Source Scout |
 | INPUTS | the session's question; the preferred classes for the matrix row it concerns (`source-policy.md` §7); the source records in `data/sources.json`, to avoid duplicates |
 | OUTPUTS | candidate URLs, each with the class it would have and the row it would serve; access gaps met (host, response, time) |
-| ALLOWED_WRITES | `sessions/reports/` (the candidate list and the access gaps) |
+| ALLOWED_WRITES | the session report, outside this repository (the candidate list and the access gaps); `docs/research/search-logs/` for a search log that a research document cites as its method (D-151) |
 | FORBIDDEN_WRITES | any file in `data/`; any schema; a claim's `review`; a class assigned without reading the source |
 | EVIDENCE_REQUIREMENTS | search results and snippets are discovery aids only, never cited (`source-policy.md` §2, MA §11.2); no circumvention of a refusal (RA-2); declaring an identity to a site is the human's (RA-7) |
 | HANDOFF_FORMAT | a report table: URL, proposed class, row served, why it is preferred, access result |
@@ -49,7 +50,7 @@ MA's nine fields, in MA's order.
 | ROLE | Verifier |
 | INPUTS | staged claims with `evidence_status: unverified`; the cited sources, re-retrieved or supplied by the human |
 | OUTPUTS | per claim: a status (`supported`, `partial`, `context_only`, or `disputed` with the competing claims), `verified_on`, and each citation's `read`; findings for the report |
-| ALLOWED_WRITES | `data/staging/claims.json`: only `evidence_status`, `verified_on`, `disputed_with` and each citation's `read`; `data/staging/refused_candidates.json`: only each considered sentence's `read` (S12, D-109); `sessions/reports/` |
+| ALLOWED_WRITES | `data/staging/claims.json`: only `evidence_status`, `verified_on`, `disputed_with` and each citation's `read`; `data/staging/refused_candidates.json`: only each considered sentence's `read` (D-109); the session report (D-151) |
 | FORBIDDEN_WRITES | a claim's `statement`, `claim_type`, citations' anchors or locators (a change is a new claim from the Extractor); a claim's `review`; `data/claims.json`; source records |
 | EVIDENCE_REQUIREMENTS | read the whole sentence at each locator and judge whether the statement exceeds it (`claim-model.md` §6); a class is never a verification (ER-10); record the bytes read; re-check anchors when a hash has changed (`source-policy.md` §12) |
 | HANDOFF_FORMAT | the updated claims, plus a report table: claim, status, what was read, and any wording that exceeds its evidence |
@@ -91,7 +92,7 @@ MA's nine fields, in MA's order.
 | ROLE | Editorial |
 | INPUTS | the page as built from canonical records; `docs/architecture/vertical-slice.md` (the composition, the text provenance rule); `claim-model.md` §13 (how claims are displayed); the schema definitions the page's terms render |
 | OUTPUTS | the page's framing (prose that states no fact and names no record) and its style; the state rows of the documentation, as each session prompt lists them |
-| ALLOWED_WRITES | `tools/page_template.html` (framing and style only); `README.md`, `docs/README.md` and `docs/architecture/baseline.md` (state rows); `sessions/reports/` |
+| ALLOWED_WRITES | `tools/page_template.html` (framing and style only); `README.md`, `docs/README.md` and `docs/architecture/baseline.md` (state rows); the session report (D-151) |
 | FORBIDDEN_WRITES | any file in `data/`; a claim's `review`; `site/hbm-chain/index.html` (generated, never edited by hand); a name, value, date, count or relation typed into the template; framing that names a record, holds a digit, or says "none" for a missing relationship; the labels and journey specification in `tools/build_page.py` (the Data Auditor's) |
 | EVIDENCE_REQUIREMENTS | framing adds no fact (NG-09, `claim-model.md` §13); every value reaches the page through the build from its home (D-105); a missing edge is "no recorded relationship" (RR-7); no "critical", "concentrated", share, rank or score (NG-11) |
 | HANDOFF_FORMAT | the template change and the rebuilt page in one commit, with the framing changes listed in the session report |
@@ -105,9 +106,9 @@ MA's nine fields, in MA's order.
 | ROLE | QA |
 | INPUTS | the generated page `site/hbm-chain/index.html`; `docs/architecture/vertical-slice.md` §7, §8; MA §14 (Gate 6, Gate 7) and the roadmap's four visual QA questions |
 | OUTPUTS | browser findings: screenshots at desktop and 375 px, the keyboard path to every panel, console and network logs, contrast measured on rendered text; the answers to the visual QA questions (truth, clarity, context, presentation) |
-| ALLOWED_WRITES | `sessions/reports/` (findings and screenshots) |
+| ALLOWED_WRITES | the session report, outside this repository (findings and screenshots; D-151) |
 | FORBIDDEN_WRITES | any file in `data/`; a claim's `review`; the page, the template or the build (a finding goes to the Editorial or the Data Auditor); a repository dependency for the browser run (D-106) |
 | EVIDENCE_REQUIREMENTS | every finding cites a screenshot, a log line or a measured value; no session is declared complete from visual inspection alone (MA §15); a browser run states the browser, the widths and the page's input digest |
 | HANDOFF_FORMAT | a report table: check, width, result, evidence |
-| VALIDATION_GATE | `tests/test_page.py` (PG-8 accessibility basics, PG-9 links and no network resource), run in CI; the browser run is recorded in the report, outside CI (H-3) |
+| VALIDATION_GATE | `tests/test_page.py` (PG-8 accessibility basics, PG-9 links and no network resource), run in CI; the browser run (`tests/browser/`) is recorded in the session report, outside CI (D-106) |
 | FAILURE_BEHAVIOUR | a failure is reported with its log and screenshot; a page that fails a check is not shown to the human as done, and never published (NG-13) |

@@ -1,15 +1,19 @@
 # Architecture Decision Log
 
 Append-only. A superseded decision is marked `superseded by D-NNN`, never rewritten
-(`SESSION-PROMPT-SPEC.md` §6).
+(`SESSION-PROMPT-SPEC.md` §6). References to a renamed document are updated so they still resolve. Paths
+under `sessions/` say where a file was when the entry was written; those files are kept in the private
+development archive, not in this repository (D-151).
 
 Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
+Each entry gives its date and status; the status records the outcome and its date, never the question as
+asked or the human's words (D-114). Status lines were condensed to this form once (D-151).
 
 ---
 
 ## D-001 — Constitutional documents stay at the repository root
 
-- **Session:** S00 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S00)
+- **Date:** 2026-09-29 · **Status:** accepted (2026-09-29)
 - **Context:** The user placed `CLAUDE.md`, `MASTER-ARCHITECTURE.md`,
   `SESSION-PROMPT-SPEC.md`, `PROJECT-EVALUATION-FRAMEWORK.md`, `SESSION-ROADMAP.md`,
   the operational roadmap and the bootstrap prompt at the root. Every document refers to
@@ -20,7 +24,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-002 — Session system layout
 
-- **Session:** S00 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S00)
+- **Date:** 2026-09-29 · **Status:** superseded by D-151 (2026-10-08); earlier: accepted (2026-09-29)
 - **Context:** The operational roadmap places prompts under `sessions/prompts/`;
   `SESSION-PROMPT-SPEC.md` §5 places reports at `sessions/reports/SESSION-XX-REPORT.md`.
   `PROMPT-REGISTRY.md` links to prompts as `./SNN-PROMPT.md`, which resolves only when
@@ -33,7 +37,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-003 — Tooling uses the Python standard library only
 
-- **Session:** S00 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S00); amended by D-026 (pinned test-only dependencies)
+- **Date:** 2026-09-29 · **Status:** accepted (2026-09-29); amended by D-026 (pinned test-only dependencies)
 - **Context:** Python is the intended language (MA §17). S00 needs only a structural
   validator and its tests.
 - **Decision:** `tools/validate_repo.py` and `tests/` use the standard library (`unittest`,
@@ -44,7 +48,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-004 — One CI job, read-only permissions
 
-- **Session:** S00 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S00)
+- **Date:** 2026-09-29 · **Status:** accepted (2026-09-29)
 - **Decision:** `.github/workflows/ci.yml` runs the unit tests and the Gate 0 validator on
   every push and pull request, on Python 3.11 (the version the S00 checks were run on),
   with `contents: read` permission.
@@ -53,7 +57,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-005 — No placeholder directories or stub documents
 
-- **Session:** S00 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S00)
+- **Date:** 2026-09-29 · **Status:** accepted (2026-09-29)
 - **Context:** CLAUDE.md §19 and MA §24 forbid adding infrastructure for appearance.
 - **Decision:** Do not create `data/`, `schemas/`, `web/`, `analysis/` or empty stub
   documents. `docs/README.md` lists each planned artifact with its status and owning
@@ -63,7 +67,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-006 — Independence from `Eu-Digital-Policy`
 
-- **Session:** S00 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S00; independence confirmed)
+- **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review; independence confirmed)
 - **Decision:** No file, code, folder structure, workflow or data was copied from
   `Eu-Digital-Policy`. That repository was not opened in S00. Methodological
   principles are taken only from this repository's own constitutional documents.
@@ -72,7 +76,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-007 — Baseline record references, not restates, the master architecture
 
-- **Session:** S00 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S00)
+- **Date:** 2026-09-29 · **Status:** accepted (2026-09-29)
 - **Decision:** `docs/architecture/baseline.md` cites MA/CLAUDE.md sections and records
   only repository state, gaps and uncertainties.
 - **Rejected:** copying MA content into the baseline — it would create a second home for
@@ -80,7 +84,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-008 — First analytical question: global first, EU lens later (resolves U-1)
 
-- **Session:** S00 (human review) · **Date:** 2026-09-29 · **Status:** accepted (human decision)
+- **Date:** 2026-09-29 · **Status:** accepted (human decision)
 - **Context:** CLAUDE.md §10/§20 and MA §25 frame the first question globally; MA §6.3
   and MA §22 M2 frame it as EU dependence on non-EU capabilities.
 - **Decision:** S01 onward answers *"Where are the critical dependencies behind AI
@@ -95,7 +99,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-009 — `OPUS-5.5-BOOTSTRAP-PROMPT.md` is superseded (resolves U-3)
 
-- **Session:** S00 (human review) · **Date:** 2026-09-29 · **Status:** accepted (human decision)
+- **Date:** 2026-09-29 · **Status:** superseded by D-151 (2026-10-08); earlier: accepted (human decision)
 - **Decision:** The session system (`SESSION-ROADMAP.md` + `sessions/prompts/`) governs
   sequencing and scope. The bootstrap prompt stays at the root, unmodified, as a
   historical reference. It does not set session scope.
@@ -103,7 +107,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-010 — Agent contracts are written in S06 under `docs/agents/`; no `AGENTS.md` (resolves U-4, U-5)
 
-- **Session:** S00 (human review) · **Date:** 2026-09-29 · **Status:** accepted (human decision)
+- **Date:** 2026-09-29 · **Status:** accepted (human decision)
 - **Decision:** S06 (evidence/claim system) writes `docs/agents/roles.md` and
   `docs/agents/contracts.md` in the MA §12 format, because that is when the
   staging → verification → canonical workflow first exists. This repository has no root
@@ -114,14 +118,14 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-011 — S01 prompt drafted by Claude, pending human review
 
-- **Session:** S00 (human review) · **Date:** 2026-09-29 · **Status:** accepted (human decision)
+- **Date:** 2026-09-29 · **Status:** accepted (human decision)
 - **Decision:** Claude drafts `sessions/prompts/S01-PROMPT.md` following
   `SESSION-PROMPT-SPEC.md` §2. The human reviews and may edit it before S01 starts. It
   becomes immutable only once S01 begins.
 
 ## D-012 — S01 prompt: human text governs, Claude's detail aligned beneath it
 
-- **Session:** S00 (human review) · **Date:** 2026-09-29 · **Status:** accepted (human instruction)
+- **Date:** 2026-09-29 · **Status:** accepted (human instruction)
 - **Context:** After D-011, the human supplied their own S01 prompt, in the S00 format, and
   asked for Claude's draft to be made compatible with it.
 - **Decision:** `sessions/prompts/S01-PROMPT.md` = **Part A**, the human prompt verbatim
@@ -141,7 +145,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-013 — Map "EDA/equipment" as two sub-layers (5a EDA, 5b SME)
 
-- **Session:** S01 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S01; TQ-05 answer)
+- **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review; TQ-05 answer)
 - **Context:** Part A names "EDA/equipment" as one layer. The retrieved sources treat
   EDA (design software) and semiconductor manufacturing equipment (capital tools) as
   separate production inputs (SRC-002 p.3, p.6). EDA is also co-dependent with foundry
@@ -155,7 +159,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-014 — S01 source retrieval: raw retrieval only; blocked sites are recorded, not worked around
 
-- **Session:** S01 · **Date:** 2026-09-29 · **Status:** superseded in part by D-039 (2026-09-30, human review of S05): the retrieval clause. Raw retrieval and no circumvention continue in D-039
+- **Date:** 2026-09-29 · **Status:** superseded in part by D-039 (2026-09-30): the retrieval clause. Raw retrieval and no circumvention continue in D-039
 - **Context:** At the start of S01 the environment blocked all primary-source hosts. The
   human widened network access mid-session. After that, several sites still refused
   plain HTTPS requests (HTTP 403 or a challenge page). A headless-browser fetch was
@@ -174,7 +178,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-015 — Provisional source tiers and the meaning of `verified` in research artifacts
 
-- **Session:** S01 · **Date:** 2026-09-29 · **Status:** superseded by D-036 (2026-09-30, human review of S05) for the tier order, and by D-048 (2026-09-30, human review of S06) for the meaning of `verified`, which D-048 confirms and extends
+- **Date:** 2026-09-29 · **Status:** superseded by D-036 (2026-09-30) for the tier order, and by D-048 (2026-09-30) for the meaning of `verified`, which D-048 confirms and extends
 - **Decision:** Until S05, source tiers follow the S01 prompt Part B §05 order (`T1`
   company documentation/filings … `T6` news). A `T1` company source is primary only for
   its own products and processes. Its comparative or superlative claims ("unique to",
@@ -188,7 +192,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-016 — S01 terminology review: working terms for S02–S04
 
-- **Session:** S01 (human review) · **Date:** 2026-09-29 · **Status:** accepted (human decision)
+- **Date:** 2026-09-29 · **Status:** accepted (human decision)
 - **Context:** Part A's "Human task" asked the human to challenge the domain map's
   terminology. The map listed 12 questions (TQ-01 to TQ-12).
 - **Decision:** The human's answers, recorded once in `docs/research/domain-map.md`
@@ -200,7 +204,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-017 — Project boundaries for v1.0
 
-- **Session:** S02 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S02: "Approvo la baseline")
+- **Date:** 2026-09-29 · **Status:** accepted (2026-09-29)
 - **Context:** The boundaries are scattered across MA §3, §6.4 and §25, D-008, D-013 and
   D-016. Some rest on decisions and some on prose. S01 marked four energy concepts `v1`,
   while MA §6.4 adds energy "after the base graph is reliable".
@@ -213,7 +217,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-018 — Lessons from `Eu-Digital-Policy` adopted as architecture commitments
 
-- **Session:** S02 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S02: "Approvo la baseline"); all nine items L-01 to L-09 accepted
+- **Date:** 2026-09-29 · **Status:** accepted (2026-09-29); all nine items L-01 to L-09 accepted
 - **Context:** The S02 process benchmark (`milestone-audits/M0-audit.md` Part 1) found
   eleven anti-patterns (A-1 to A-11) in EU-DP's history. This record is the one home of
   the commitments that follow. The audit holds the evidence.
@@ -249,7 +253,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-019 — Milestone label convention (resolves U-2)
 
-- **Session:** S02 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S02: "Approvo la baseline")
+- **Date:** 2026-09-29 · **Status:** accepted (2026-09-29)
 - **Context:** U-2. MA §22 M0–M7 are portfolio milestones. `SESSION-ROADMAP.md` M0–M7 are
   Atlas project milestones.
 - **Decision:** In documents written in this repository, a bare `M0`–`M7` means the
@@ -260,7 +264,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-020 — v1 concept classification is S03's starting input
 
-- **Session:** S02 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S02: "Approvo la baseline")
+- **Date:** 2026-09-29 · **Status:** accepted (2026-09-29)
 - **Decision:** The 40 `v1` concepts from S01 are classified as follows in
   `milestone-audits/M0-audit.md` Part 4 (the single home of the list):
   - 20 model;
@@ -278,7 +282,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-021 — Non-goals frozen for v1.0
 
-- **Session:** S02 · **Date:** 2026-09-29 · **Status:** accepted (2026-09-29, human review of S02: "Approvo la baseline"); non-goals frozen from this date
+- **Date:** 2026-09-29 · **Status:** accepted (2026-09-29); non-goals frozen from this date
 - **Decision:**
   - `baseline.md` §6 lists the non-goals NG-01 to NG-13. That list is their only home.
   - Once accepted, they are frozen until the v1.0 release (S25).
@@ -292,7 +296,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-022 — Entity taxonomy: six instantiable types, two reserved, four record kinds owned elsewhere
 
-- **Session:** S03 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S03); Event schema owner S09 confirmed
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30); Event schema owner S09 confirmed
 - **Context:**
   - `SESSION-ROADMAP.md` S03 lists twelve candidates. The human's S03 focus names ten.
   - MA §5.1 and §6.1 list more, some of them role or facility labels.
@@ -325,7 +329,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-023 — Dispositions of the MA entity-type lists
 
-- **Session:** S03 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S03)
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - MA §6.1 lists role-named types (`CloudProvider`, `EquipmentSupplier`) and
     facility-named types (`Fab`, `PackagingFacility`, `DataCentre`).
@@ -355,7 +359,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-024 — Actor roles are claim-backed, time-bounded values on Company; FAB-03 reclassified
 
-- **Session:** S03 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S03)
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Decision:**
   - What a firm does is recorded in the company's `roles` attribute. Each value cites
     claims and may carry `valid_from`/`valid_to`. A company may hold several roles.
@@ -385,7 +389,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-025 — Attribute value contract for entity records
 
-- **Session:** S03 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S03)
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Decision** (explained in taxonomy §7; the schema is the home of the shapes):
   - **Two groups of field.** Identity fields say *what the record is*. They include
     `identity_claim_ids`, which needs at least one claim. Attributes say *what is true of
@@ -418,8 +422,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-026 — Pinned test-only dependency for schema validation (amends D-003)
 
-- **Session:** S03 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human
-  decision on the S03 plan: "Schema + jsonschema tests")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human
+  decision on the S03 plan)
 - **Context:**
   - S03's registry gate is a stable entity schema.
   - A JSON Schema is only known to behave when records are validated against it.
@@ -438,7 +442,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-027 — S08 creates the first product records
 
-- **Session:** S03 (human review) · **Date:** 2026-09-30 · **Status:** accepted (human decision)
+- **Date:** 2026-09-30 · **Status:** accepted (human decision)
 - **Context:** Product is an instantiable type (D-022), but no roadmap session was
   assigned to create product records (`entity-taxonomy.md` §9).
 - **Decision:** S08 (technology + component dataset) creates the first product records.
@@ -451,7 +455,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-028 — Relationship record contract
 
-- **Session:** S04 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S04: "Approve all six")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - MA §5.4 shows a relationship with `id`, `source_entity`, `relation_type`,
     `target_entity`, `valid_from`, `valid_to` and `source_ids`.
@@ -488,7 +492,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-029 — Relationship vocabulary v1: eleven types at two levels
 
-- **Session:** S04 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S04: "Approve all six")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - `SESSION-ROADMAP.md` S04: "prevent accidental inference from co-occurrence"; gate
     "Every relationship has a clear semantic definition and evidence expectation."
@@ -527,7 +531,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-030 — Reconciliation of the three verb lists; one-home rulings on S03 fields
 
-- **Session:** S04 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S04: "Approve all six")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:** MA §6.2, the `SESSION-ROADMAP.md` S04 list and domain map §3 name
   different verbs (28 distinct, as measured at `1d0522c` by the parser in
   `tests/test_relationship_taxonomy.py`). `baseline.md` §4 asks S04 to reconcile them.
@@ -570,7 +574,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-031 — Unknown suppliers and non-public edges
 
-- **Session:** S04 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S04: "Approve all six")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - DEP-01 and HBM-06: which HBM maker supplies which accelerator is
     `not_publicly_determinable` from the product documentation retrieved.
@@ -599,7 +603,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-032 — Vendor-named packaging processes and constituent-level fabrication are not modelled in v1
 
-- **Session:** S04 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S04: "Approve all six")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - SK hynix describes CoWoS as "A TSMC proprietary packaging process" (PKG-04, SRC-014).
   - SK hynix plans to use TSMC's logic process for the HBM4 base die (DEP-04), so one
@@ -621,7 +625,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-033 — Role and edge conflicts are semantic warnings; validate-data rules for edges
 
-- **Session:** S04 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S04: "Approve all six")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - D-024 makes roles claim-backed and never derived. It foresaw "a later semantic check"
     when roles and relationships disagree.
@@ -645,7 +649,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-034 — Source classes: document kinds, one per source, in a vocabulary schema
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - `SESSION-ROADMAP.md` S05: "Create a source hierarchy tailored to industrial technology
     research".
@@ -653,7 +657,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
     press releases, product pages, newsroom explainers, government documents, national
     laboratory reports, policy briefs and an association report.
   - The human chose option (b) for machine-readability before S05 started, with (a) as the
-    fallback (S05 prompt Part B §16, H-2: "i follow your recommendations").
+    fallback (S05 prompt Part B §16, H-2).
 - **Decision:**
   - The classes, defined once in `schemas/sources.schema.json`: `company_filing`,
     `company_technical_documentation`, `company_press_release`, `company_marketing`,
@@ -679,7 +683,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-035 — Standing, attribution chains and independence
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:** D-015 made a company source primary "for its own products and processes".
   S04's worked examples showed a company can be first-hand about an edge with another firm
   (NVIDIA naming TSMC's process for NVIDIA's own chip, SRC-006), and a laboratory can be
@@ -706,7 +710,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-036 — Preference matrix; no global ranking; MA §10 and D-015 reconciled
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - The roadmap S05 gate: "Every material claim type has a preferred source class."
   - MA §10 and D-015 give two different global orders (`source-policy.md` §9).
@@ -731,7 +735,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-037 — Evidence rules ER-1 to ER-10, including the search rule for `not_publicly_determinable`
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:** S04 left three evidence rules without a policy home
   (`relationship-taxonomy.md` §12, §9): the process name as fabricator, the vendor as
   designer, and a single page's silence.
@@ -754,7 +758,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-038 — Conflict policy: kinds of conflict, never settled by rank
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:** Domain map §5 preserves CON-01 to CON-05. CLAUDE.md §9 makes "publication of
   unresolved material disputes" human-only.
 - **Decision:**
@@ -773,11 +777,10 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-039 — Retrieval and access; manual retrieval by the human (supersedes D-014's retrieval clause)
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - D-014 asked "whether manual retrieval by the human is acceptable".
-  - The human answered before S05 started (Part B §16, H-1: "i follow your
-    recommendations"): allowed, with conditions.
+  - The human answered before S05 started (Part B §16, H-1): allowed, with conditions.
 - **Decision:**
   - `source-policy.md` §11, RA-1 to RA-7. Raw retrieval and no circumvention continue from
     D-014.
@@ -799,7 +802,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-040 — Freshness: separate dates, byte changes trigger re-checks, a proposed 12-month horizon
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte"); the 12-month horizon approved ("12 mesi")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30); the 12-month horizon approved
 - **Context:** Undated live pages (register note 3); CSET's 2019 data; SK hynix's 2024 plan.
   S05 re-retrieved every registered source: some returned changed bytes, yet every anchor
   re-read was still at its locator (counts as measured on 2026-09-30 are in `source-policy.md` §12).
@@ -819,7 +822,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-041 — Where each source's class lives; the CSET decision
 
-- **Session:** S05 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S05: "Approva tutte")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:** The register holds S01's provisional `source_tier`. S06 migrates the register
   into source records and then freezes it. S05 may not edit the register without a
   human-approved decision (Part B §08).
@@ -834,7 +837,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-042 — Filings are taken from the filer's own published copy; no identity is declared to EDGAR
 
-- **Session:** S05 (human review) · **Date:** 2026-09-30 · **Status:** accepted (human decision: "Filing dai siti aziendali")
+- **Date:** 2026-09-30 · **Status:** accepted (human decision)
 - **Context:** SEC EDGAR refused plain requests, and the access policy it cites is behind the
   same refusal (`source-policy.md` §11, S05-A1). D-039 left the path to the human.
 - **Decision:**
@@ -847,7 +850,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-043 — External API dependency is a v1.0 non-goal (NG-14; amends the D-021 list)
 
-- **Session:** S05 (human review) · **Date:** 2026-09-30 · **Status:** accepted (human decision, given before the change: "Sì, non-obiettivo v1.0")
+- **Date:** 2026-09-30 · **Status:** accepted (human decision, given before the change)
 - **Context:** S00 listed "external API dependency" as a session non-goal. Baseline §6 left it
   to the human. D-039 recorded it as a question. D-021 lets the non-goal list change only
   through a decision the human approves before the work starts.
@@ -860,7 +863,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-044 — The claim record: one proposition, linked from records, row derived
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - Entity and relationship records already cite `claim_ids` (D-025, D-028), and the
     `claim-<slug>` format waits for the claim record (`entity-taxonomy.md` §7).
@@ -879,7 +882,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-045 — Claim types: the CLAUDE.md labels; MA §10's list reconciled
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:** CLAUDE.md §6 and the roadmap S06 require their labels. MA §10 lists its own
   types "at minimum".
 - **Decision** (`claim-model.md` §2, machine-checked against MA):
@@ -898,7 +901,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-046 — Evidence status vocabulary and the type × status rules
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:** L-06 requires claim type and evidence status as separate fields. S05 defined
   no status (`source-policy.md` §5, §16). MA §10 lists six statuses.
 - **Decision** (`claim-model.md` §3–§4):
@@ -917,7 +920,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-047 — Citations: locator, verbatim anchor, standing, chain and bytes read
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:** `source-policy.md` §4 and ER-6 leave standing and the attribution chain to
   S06. MA §5.2 has one `locator` for several `source_ids`, so it cannot say which source is
   at which place.
@@ -933,15 +936,14 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-048 — What `verified` means; staging, canonical and the human's review (H-1, H-2)
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - D-015's second part defines `verified` "until S06's claim model confirms or replaces
     it" (D-036).
   - CLAUDE.md §9 makes real claims class C: the human reviews them before they are
     canonical.
-  - Before S06 started, the human chose a staging seed of 5 to 10 real claims (H-1:
-    "Seed 5–10 in staging (Consigliato)") and one JSON array file per record kind (H-2:
-    "Un file JSON per tipo (Consigliato)").
+  - Before S06 started, the human chose a staging seed of 5 to 10 real claims (H-1) and one JSON array
+    file per record kind (H-2).
 - **Decision** (`claim-model.md` §6–§7):
   - **`verified` is confirmed and extended.**
     - For a claim that cites sources: the Verifier re-read each source at its locator,
@@ -964,7 +966,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-049 — The `not_publicly_determinable` search record
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:** ER-3 requires the search to be recorded. D-031 and D-025 require a
   `not_publicly_determinable` state to cite claims.
 - **Decision** (`claim-model.md` §8):
@@ -985,7 +987,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-050 — The source record; the register migrated and frozen
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - `source-policy.md` §16 lists the source fields.
   - D-041 moves each source's class to the source record at migration.
@@ -1013,11 +1015,11 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-051 — validate-data as CI tests; no validate-freshness code yet (H-4)
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - MA §15 asks for a documented `validate-data`.
   - D-026 keeps `tools/` standard library.
-  - Before S06 started, the human chose tests in CI (H-4: "Test in CI (Consigliato)").
+  - Before S06 started, the human chose tests in CI (H-4).
 - **Decision** (`claim-model.md` §10–§11):
   - `validate-data` is `tests/test_data_schema.py` (VD-2, pinned `jsonschema`) and
     `tests/test_data_integrity.py` (VD-1, VD-3 to VD-13, standard library). CI runs them
@@ -1031,12 +1033,12 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-052 — Agent roles and contracts (H-3; D-010)
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:**
   - D-010 assigns `docs/agents/roles.md` and `docs/agents/contracts.md` to S06, in the MA
     §12 format.
   - Before S06 started, the human chose full contracts for the roles active through S10
-    (H-3: "Pipeline fino a S10 (Consigliato)").
+    (H-3).
 - **Decision:**
   - `roles.md` lists every CLAUDE.md §8 role, and names the session that first
     activates each inactive one.
@@ -1049,7 +1051,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-053 — The trace command
 
-- **Session:** S06 · **Date:** 2026-09-30 · **Status:** accepted (2026-09-30, human review of S06: "Approve all")
+- **Date:** 2026-09-30 · **Status:** accepted (2026-09-30)
 - **Context:** the S06 gate: "The system can answer: 'What exactly supports this
   relationship?'" No relationship record exists before S10.
 - **Decision** (`claim-model.md` §12):
@@ -1065,10 +1067,10 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-054 — The company seed and the legal-entity rulings (H-1)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01)
 - **Context:** the roadmap's S07 target is "A small, high-quality seed set rather than
   maximum coverage". Before S07 started, the human chose eight companies, one per chain
-  layer (H-1: "8, one per layer (Recommended)"). `entity-taxonomy.md` §3.1 makes a record
+  layer (H-1). `entity-taxonomy.md` §3.1 makes a record
   "one record per legal entity as sources name it".
 - **Decision** (`company-dataset.md` §1–§2):
   - The seed is NVIDIA, SK hynix, Micron, Amkor, TSMC, ASML, Synopsys and Amazon.
@@ -1083,10 +1085,9 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-055 — Entity data layout: one file per entity type (H-2)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01)
 - **Context:** D-005 leaves each data layout to the session that first needs it. Before S07
-  started, the human chose one JSON array file per entity type (H-2: "One file per entity
-  type (Recommended)").
+  started, the human chose one JSON array file per entity type (H-2).
 - **Decision:** `data/companies.json` and `data/jurisdictions.json` hold canonical records.
   `data/staging/companies.json` and `data/staging/jurisdictions.json` hold staging records.
   Each joins `validate-data` in this session (L-05), and `tools/trace.py` reads them by
@@ -1096,7 +1097,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-056 — Company ID rule (ID-1)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01)
 - **Context:** the S07 gate requires "stable IDs". A renamed company keeps its ID
   (`entity-taxonomy.md` §3.1). The display name is editorial (§7).
 - **Decision** (`company-dataset.md` §3):
@@ -1112,7 +1113,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-057 — Claim patterns for company identity and attributes
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01)
 - **Context:** `claim-model.md` §16 and the S06 report hand S07 the claim shape. The rows are
   `identity:company` and `attr:company.*` (`source-policy.md` §7). R-5 forbids reading a
   headquarters off a facility or a listing, and D-024 forbids deriving roles from edges.
@@ -1137,16 +1138,16 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-058 — Jurisdiction records from ISO pages retrieved by the human (H-4, RA-4)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
-- **Context:** H-4 ("Create the needed ones (Recommended)") required ISO 3166-1 as ISO
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01)
+- **Context:** H-4 required ISO 3166-1 as ISO
   publishes it, and said to stop and ask if it could not be retrieved under RA-1/RA-2.
   `www.iso.org` refused plain requests (HTTP 403 challenge) on 2026-10-01, so S07 stopped and
-  asked. The human chose manual retrieval ("RA-4: you save ISO pages (Recommended)").
+  asked. The human chose manual retrieval.
 - **Decision** (`company-dataset.md` §5):
   - The human captures the ISO Online Browsing Platform entries for US, NL, KR and TW. Each
     capture is a source record with `standard_specification` class and method
     `manual_by_human`, and the file stays outside the repository. The human supplied
-    screenshots ("Can i send you the screens?"); each shows the `iso.org` host and the OBP
+    screenshots; each shows the `iso.org` host and the OBP
     header, and the Verifier reads its anchors off the image.
   - Each jurisdiction record's identity claim is a `FACT`, standing `originator`, whose
     anchor carries the alpha-2 code (J-1).
@@ -1158,11 +1159,11 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-059 — Regulator-hosted filings readable under RA-1 (SK hynix)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01)
 - **Context:** D-042 takes filings from the filer's own copy, because EDGAR refused plain
   requests and its access policy could not be read. SK hynix's IR site hosts no annual
   report and points readers to the regulator's English DART for disclosures. DART answered
-  plain HTTPS requests. The human chose the DART copy ("DART regulator copy (Recommended)").
+  plain HTTPS requests. The human chose the DART copy.
 - **Decision:**
   - D-042's filer-copy rule answers EDGAR's refusal. It does not forbid a regulator's copy
     that answers an ordinary request.
@@ -1174,9 +1175,9 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-060 — TSMC's 20-F by manual retrieval (RA-4)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01)
 - **Context:** every TSMC host and EDGAR answered with a challenge or refusal on 2026-10-01.
-  The human chose to download the 20-F ("RA-4: you download its 20-F (Recommended)").
+  The human chose to download the 20-F.
 - **Decision:** the human downloads TSMC's 2025 Form 20-F from `investor.tsmc.com` and
   supplies it. It is a source record with method `manual_by_human` and `filing_copy:
   filer_hosted_not_checked`. The Verifier reads the file the human supplies, and records its
@@ -1185,10 +1186,9 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-061 — Staging and canonical for entity records; the human's review in S07 (H-3)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01)
 - **Context:** the accepted entity schema has no review field, and Part B §08 forbids adding
-  one without approval. Before S07 started, the human chose to review inside S07 (H-3: "Your
-  review inside S07 (Recommended)").
+  one without approval. Before S07 started, the human chose to review inside S07 (H-3).
 - **Decision** (`company-dataset.md` §6):
   - A record's file says whether it is staging or canonical (D-055).
   - CE-1: a canonical record cites only canonical claims and canonical jurisdictions, and no
@@ -1201,10 +1201,10 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-062 — Anchors from new retrievals are Verifier-attested (H-6)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01)
 - **Context:** VD-11 machine-checks only anchors whose text is in the repository
   (`claim-model.md` §5, §16). Before S07 started, the human chose Verifier attestation with
-  a human sample (H-6: "Verifier + your sample (Recommended)").
+  a human sample (H-6).
 - **Decision** (`company-dataset.md` §7):
   - A citation read on or after the date in `company-dataset.md` §7 is attested. The
     Verifier found the anchor verbatim in text extracted from those bytes and read the
@@ -1217,7 +1217,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-063 — validate-data for entity records
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01)
 - **Context:** `relationship-taxonomy.md` §15 and `claim-model.md` §11 hand V-1, V-9 and
   V-10 to S07. `entity-taxonomy.md` §9 asks for jurisdiction IDs on the ISO list.
 - **Decision** (`company-dataset.md` §8): `tests/test_data_entities.py` adds V-1, V-4, V-9,
@@ -1230,7 +1230,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-064 — validate-freshness: the first rule (F-1)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01)
 - **Context:** D-040 sets a 12-month horizon for `time_sensitive` rows, "before its use in a
   canonical record". D-051 left the code to the first session with such records.
 - **Decision** (`company-dataset.md` §9): `tests/test_freshness.py` checks that every
@@ -1243,7 +1243,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-065 — `publisher_entity` is set for filings only
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01)
 - **Context:** D-050 left `publisher_entity` `not_researched` for company publishers until
   S07. The S07 prompt (§06 q11) allows it only where the evidence shows the legal entity.
 - **Decision** (`company-dataset.md` §10): a filing's `publisher_entity` names its filer's
@@ -1254,10 +1254,10 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-066 — The M1 milestone audit is written first in S07 (H-5)
 
-- **Session:** S07 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human review of S07: "Approve all (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01)
 - **Context:** PEF §4 requires a milestone audit "At every major milestone". M1 (S03–S06)
   closed with S06, and no session was assigned the audit. Before S07 started, the human
-  placed it as S07's first task (H-5: "First task of S07 (Recommended)").
+  placed it as S07's first task (H-5).
 - **Decision:** `docs/architecture/milestone-audits/M1-audit.md`, a document only, with a row
   in `docs/quality/audit-history.md`. Claude writes it in the Portfolio Reviewer role, which
   `docs/agents/roles.md` marks inactive and gives no contract. This is recorded as a
@@ -1268,8 +1268,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-067 — Concept scope: 15 of 17 concepts recorded; HBM-03 and HBM-04 are gaps (H-1)
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
-- **Context:** H-1 ("All v1 concepts (Recommended)"): every concept that `entity-taxonomy.md`
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-02)
+- **Context:** H-1: every concept that `entity-taxonomy.md`
   §5 maps to a technology or component, unless no definitional source of a sufficient class
   exists. The only sentences on the HBM base die and on TSVs as such come from vendors'
   marketing pages. JEDEC JESD238 was requested under RA-4 and had not arrived.
@@ -1282,7 +1282,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-068 — Technology and component IDs (CI-1)
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-02)
 - **Context:** S07's ID rule slugs a claim-backed legal name. A concept's name is editorial
   (Part B §06 q4).
 - **Decision** (`concept-dataset.md` §3): the ID is the record type plus the slug of the
@@ -1294,8 +1294,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-069 — Working definitions are always an INTERPRETATION (H-4; DEF-1, DEF-2)
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
-- **Context:** H-4 ("Reuse TQ answers (Recommended)"): each working definition is an
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-02)
+- **Context:** H-4: each working definition is an
   `INTERPRETATION` citing every side of its CON conflict. Part B §06 q3 asks what applies
   where no conflict exists.
 - **Decision** (`concept-dataset.md` §4): every technology and component definition cites
@@ -1308,7 +1308,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-070 — SME-03 becomes two records: EUV lithography and DUV lithography
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, S09 final review of the open S08 rulings: "Approve both (Recommended)"); earlier: not approved at the S08 review, left open at H-0
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-02); earlier: not approved at human review, left open at H-0
 - **Context:** §5 maps SME-03 "EUV and DUV lithography" to one technology record and leaves
   scanner equipment classes to S08. Part B §06 q2 names EUV vs DUV as a pair to keep apart.
 - **Decision** (`concept-dataset.md` §2, §3): two technology records, both with
@@ -1321,7 +1321,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-071 — `broader` assignments and acyclicity (B-1)
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-02)
 - **Context:** `entity-taxonomy.md` §3.3, §3.4 and §9: `broader` is taxonomy only, may have
   several parents, and must be acyclic.
 - **Decision** (`concept-dataset.md` §5): data-centre GPU and AI ASIC under AI accelerator;
@@ -1333,8 +1333,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-072 — Products: three records, their IDs (PI-1) and the `instance_of` basis (IO-1) (H-2)
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
-- **Context:** H-2 ("Few, from sources (Recommended)"): H100, Trainium2, Micron HBM, an ASML
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-02)
+- **Context:** H-2: H100, Trainium2, Micron HBM, an ASML
   EUV system. `instance_of` has no claim field in the schema.
 - **Decision** (`concept-dataset.md` §7): NVIDIA H100, AWS Trainium2 and Micron HBM4 36GB
   12H. No ASML product: its page names only families. A product ID is `product-`, the
@@ -1345,7 +1345,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-073 — The GH100 ruling
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-02)
 - **Context:** the canonical claim `claim-h100-gh100-process-name` is about the GH100 die
   that powers the H100 (S06 finding). Part B §06 q6 asks whether it supports the H100's
   `vendor_process_name`.
@@ -1358,7 +1358,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-074 — Trainium2's vendor is `company-amazon-com`
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human ruling at the S08 review: "Trainium2 vendor = Amazon")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-01, human ruling at human review)
 - **Context:** Part B §16 makes an unclear vendor legal entity a stop condition. AWS's page
   says Trainium2 is "from AWS". The canonical record `company-amazon-com` carries "AWS" and
   "Amazon Web Services" as aliases, accepted at the S07 review (the 10-K names AWS as a
@@ -1372,7 +1372,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-075 — A re-retrieval with changed bytes is a new source record
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-02)
 - **Context:** VD-11 (D-062) requires an attested read to be of the registered bytes.
   `src-006`, `src-010`, `src-013` and `src-015` returned changed bytes; their existing
   records are the home of S06 reads.
@@ -1384,7 +1384,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-076 — Class rulings for the new sources
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, S09 final review of the open S08 rulings: "Approve both (Recommended)"); earlier: not approved at the S08 review, left open at H-0
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-02); earlier: not approved at human review, left open at H-0
 - **Context:** `source-policy.md` §2 assigns each source one class.
 - **Decision** (`concept-dataset.md` §6): the IEEE EPS Heterogeneous Integration Roadmap
   chapter (`src-039`) is a `research_report`, and the NIST news article (`src-041`) is a
@@ -1400,9 +1400,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-077 — Layout, review and validate-data for concept and product records (H-3, H-6)
 
-- **Session:** S08 · **Date:** 2026-10-01 · **Status:** accepted (2026-10-02, human review of S08: "All except D-070, D-076 (Recommended)")
-- **Context:** H-3 ("One file per type (Recommended)") and H-6 ("Review inside S08
-  (Recommended)").
+- **Date:** 2026-10-01 · **Status:** accepted (2026-10-02)
+- **Context:** H-3 and H-6.
 - **Decision** (`concept-dataset.md` §8, §9): `data/technologies.json`,
   `data/components.json` and `data/products.json`, each with a staging copy; promotion as
   D-061, on the human's verdicts. `tests/test_data_entities.py` extends V-1, CE-1, V-9, V-4
@@ -1414,15 +1413,14 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-078 — Facility scope: filing-named sites; plans as events; ASML a gap (H-1)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)")
-- **Context:** H-1 ("Filings' fabs + packaging (Recommended)"). The registered filings were
-  re-retrieved (H-4). At the start of S09 the human answered the ASML stop condition with
-  "Gap + proposal (Recommended)" and agreed to re-supply TSMC's 20-F ("I'll re-supply it
-  (Recommended)").
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
+- **Context:** H-1. The registered filings were
+  re-retrieved (H-4). At the start of S09 the human ruled that ASML's sites stay a gap with a
+  proposal for a new facility kind, and agreed to re-supply TSMC's 20-F.
 - **Decision** (`facility-dataset.md` §1): a facility record needs a sentence, from a source
   its rows accept, that names one site, places it, and gives its kind. Records: Micron's fab
   in Manassas, Virginia and SK hynix's M16. TSMC's sites are a gap: its 20-F was not
-  re-supplied during S09, and the human chose "Close as a gap (Recommended)". Sites known
+  re-supplied during S09, and the human closed it as a gap. Sites known
   only from plans (Micron Boise and Clay, SK hynix M15X, Amkor Arizona) are events (ER-8). No
   site sentence (Micron's and Amkor's country tables), no jurisdiction record (Japan), or
   no kind evidence (SK hynix Cheongju) means no record. No data centre is named.
@@ -1431,7 +1429,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-079 — Facility ID rule (FI-1)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
 - **Context:** `entity-taxonomy.md` §3.2: one site at one location; the ID survives a change
   of owner or operator.
 - **Decision** (`facility-dataset.md` §2): `facility-`, the alpha-2 code of the one
@@ -1444,7 +1442,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-080 — Facility location rests on site sentences only (HQ-1)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)"); its flagged ruling (clause-only anchors that leave out a head-office clause or phrase) approved at the S09 review (2026-10-02: "pick your recommendations"; Claude's recommendation was to approve)
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02); its flagged ruling (clause-only anchors that leave out a head-office clause or phrase) approved at human review (2026-10-02)
 - **Context:** R-5; `source-policy.md` §7 rows `attr:facility.located_in`, `.locality`.
 - **Decision** (`facility-dataset.md` §3): `located_in` and `locality` rest on a sentence
   placing the site; a subdivision reaches the country by the D-057 `DERIVATION`; `locality`
@@ -1456,9 +1454,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-081 — Facility kinds rest on basis rows and listed words (FK-1)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)"); its flagged ruling ("fab"
-  and "fabrication plant" read as `wafer_fab`) approved at the S09 review (2026-10-02: "pick
-  your recommendations"; Claude's recommendation was to approve)
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02); its flagged ruling ("fab"
+  and "fabrication plant" read as `wafer_fab`) approved at the S09 review (2026-10-02)
 - **Context:** `facility_kinds` has no claim field; IO-1 (`concept-dataset.md` §7) is the
   precedent for a basis table.
 - **Decision** (`facility-dataset.md` §4): each kind of each record has a basis row naming an
@@ -1467,8 +1464,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-082 — Ownership, operation and production evidence for S10 (H-3)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)")
-- **Context:** H-3 ("Claims now, edges in S10 (Recommended)"); `relationship-taxonomy.md`
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
+- **Context:** H-3; `relationship-taxonomy.md`
   §4.3, §4.4, §5.
 - **Decision** (`facility-dataset.md` §5): the candidate sentences are staging claims, each
   marked against §5. Micron's "our fab" fails both `owns` and `operates`. SK hynix's
@@ -1479,9 +1476,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-083 — The event schema (H-2)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 review: "Approve
-  both (Recommended)"; its two flagged rulings, 준공 recorded as `opened` and the company as the
-  subject of a planned site's announcement, approved: "pick your recommendations")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, human review; its two flagged rulings, 준공 recorded as `opened` and the company as the
+  subject of a planned site's announcement, approved)
 - **Context:** D-022 assigns the event schema to S09; MA §5.5, §5.6; ER-8.
 - **Decision** (`schemas/events.schema.json`; `facility-dataset.md` §6): fields `id`,
   `event_type`, `subject`, `date`, `claim_ids`. Types `announced`, `opened`, `expanded`,
@@ -1494,9 +1490,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-084 — Event rows in the preference matrix
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (adding rows approved at the
-  start of S09: "Add the rows (Recommended)"; the rows' content at the S09 review, 2026-10-02:
-  "Approve both (Recommended)")
+- **Date:** 2026-10-02 · **Status:** accepted (adding rows approved at the
+  start of S09; the rows' content approved at the review on 2026-10-02)
 - **Context:** `source-policy.md` §7 and §16 left event rows to S09; the S09 prompt did not
   list the policy as modifiable, so the human was asked first.
 - **Decision:** one row per event type (`event:announced`, `event:opened`,
@@ -1509,7 +1504,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-085 — Facility status is derived by a tested function
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
 - **Context:** MA §5.6; R-8; Part B §06 q5.
 - **Decision** (`facility-dataset.md` §7): `tools/facility_status.py` derives `opened`,
   `closed`, `not_yet_opened`, `indeterminate` or `no_recorded_opening` on a date from the
@@ -1521,7 +1516,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-086 — Capacity and data centres (CAP-1)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
 - **Context:** TQ-10; the schema's `nameplate_it_capacity_mw`.
 - **Decision** (`facility-dataset.md` §8): `not_applicable` on any site that is not a data
   centre; on a data centre, a value needs an anchor carrying a §8 marker. No data-centre
@@ -1530,9 +1525,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-087 — Layout, review and validate-data for facilities and events (H-5, H-6)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)")
-- **Context:** H-5 ("One file per kind (Recommended)"), H-6 ("Review inside S09
-  (Recommended)").
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
+- **Context:** H-5, H-6.
 - **Decision** (`facility-dataset.md` §9 to §11): `data/facilities.json` and
   `data/events.json` with staging copies; promotion as D-061 on the human's verdicts.
   Checks FI-1, HQ-1, FK-1, CAP-1 in `tests/test_data_entities.py`; EV-1 to EV-4 and EI-1 in
@@ -1542,8 +1536,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-088 — Proposal: a facility kind for equipment manufacturing (not applied)
 
-- **Session:** S09 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S09 final review: "Approve all (Recommended)"): the gap stands and the proposal goes to a later session; no schema
-  is changed (at the start of S09 the human chose "Gap + proposal (Recommended)")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02): the gap stands and the proposal goes to a later session; no schema
+  is changed (the gap and the proposal chosen by the human at the start of S09)
 - **Context:** ASML's manufacturing sites (`claim-asml-manufacturing-sites`) assemble and
   test lithography systems; `vocab_facility_kind` has no fitting value.
 - **Proposal:** a later session adds a kind for sites that manufacture semiconductor
@@ -1553,8 +1547,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-089 — Edge scope: five edges, and the candidates that fail §5 (H-1)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
-- **Context:** H-1 ("I agree", 2026-10-02, to product and company edges first, then `operates`
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
+- **Context:** H-1 (agreed by the human on 2026-10-02: product and company edges first, then `operates`
   for M16, then class edges; about 10–12 edges). The registered filings and product pages were
   re-read (H-4, D-075).
 - **Decision** (`edge-dataset.md` §1): an edge needs claims meeting `relationship-taxonomy.md` §5
@@ -1569,7 +1563,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-090 — Edge ID rule (RI-1)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
 - **Context:** Part B §06 q2: a stable, non-editorial rule from the type and endpoints, with
   `item` where the type has one, machine-checked as FI-1 and EI-1 are.
 - **Decision** (`edge-dataset.md` §2): `rel-<source_entity>-<type, _ as ->-<target_entity>`, and
@@ -1580,8 +1574,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-091 — A class edge read out of a definition (the human's ruling)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)"; the edge approved as a
-  flagged ruling: "E5: HBM requires 3D die stacking (D-091)"); the ruling itself was given at the start of S10 (2026-10-02, a §16 stop condition: "Allow, as DERIVATION (Recommended)")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, human review; the edge approved as a
+  flagged ruling); the ruling itself was given at the start of S10 (2026-10-02, a §16 stop condition)
 - **Context:** `requires` needs necessity stated for the class (§5). The ECP report defines HBM
   as vertically stacked DRAM dies directly connected by TSVs; no source states "HBM requires 3D
   die stacking" in words, and ER-1 does not cover the step.
@@ -1593,8 +1587,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-092 — TSMC → H100 `fabricates` is a gap until fresh evidence (the human's ruling)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)"); the ruling was given at the
-  start of S10 (2026-10-02: "Gap until fresh evidence (Recommended)")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02); the ruling was given at the
+  start of S10 (2026-10-02)
 - **Context:** the edge meets §5 only as an ER-1 `DERIVATION` from "Using the TSMC 4N fabrication
   process enables H100" (`claim-h100-process-name`), whose source was last modified 2025-07-22.
   `rel:fabricates` is `time_sensitive`, so F-1 (extended to edges, D-096) fails. NVIDIA's live
@@ -1606,8 +1600,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-093 — "AWS-designed" gives a `designs` edge from `company-amazon-com` (the human's ruling)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)"); the ruling was given at the
-  start of S10 (2026-10-02: "company-amazon-com, as D-074 (Recommended)")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02); the ruling was given at the
+  start of S10 (2026-10-02)
 - **Context:** Amazon's release (`src-052`) names "Amazon Web Services, Inc. (AWS), an
   Amazon.com, Inc. company" announcing "two AWS-designed chip families—AWS Graviton4 and AWS
   Trainium2". There is no AWS company record; AWS is an accepted alias of `company-amazon-com`
@@ -1619,7 +1613,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-094 — Unknown HBM suppliers are `not_researched`
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
 - **Context:** `incorporates` requires `supplier` (D-031); ER-3 and D-049 set when
   `not_publicly_determinable` may be claimed.
 - **Decision** (`edge-dataset.md` §5): both `incorporates` edges carry `not_researched`; no
@@ -1631,8 +1625,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-095 — No new company records in S10 (H-3)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
-- **Context:** H-3 ("Only when an edge needs it (Recommended)").
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
+- **Context:** H-3.
 - **Decision** (`edge-dataset.md` §6): none is created. A subsidiary named in a parent's filing
   cannot meet D-057 (the filer's own statement of its legal name), and no supplier has a
   `supplies` edge whose item is a record. `owns` edges wait.
@@ -1640,7 +1634,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-096 — validate-data and validate-freshness for edges
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
 - **Context:** `relationship-taxonomy.md` §15 (V-1 to V-9), D-033, L-05, L-09; Part B §06 q8.
 - **Decision** (`edge-dataset.md` §7, §10): `tests/test_data_relationships.py` runs V-1 to V-6,
   V-9, V-10 (with the ER-3 search coverage), CE-1, RI-1 and four evidence guards (PL-1, EP-1,
@@ -1653,8 +1647,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-097 — Navigation from the JSON files (H-5)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
-- **Context:** H-5 ("Re-retrieve + RA-4; nav tool (Recommended)"); the roadmap gate "Graph-like
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
+- **Context:** H-5; the roadmap gate "Graph-like
   navigation is possible using relational data without introducing a graph database".
 - **Decision** (`edge-dataset.md` §8): `tools/navigate.py`, standard library, answers
   `depends-on`, `suppliers`, `actors`, `edges` and `evidence` (through the trace), canonical by
@@ -1664,8 +1658,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-098 — Layout, review and promotion for edges (H-2, H-6)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)")
-- **Context:** H-2 and H-6 ("One file, review in S10 (Recommended)").
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
+- **Context:** H-2 and H-6.
 - **Decision** (`edge-dataset.md` §9): `data/relationships.json` and
   `data/staging/relationships.json`, the relation type as a field. Promotion as D-061, on the
   human's verdicts, when every cited claim, endpoint, item and supplier company is canonical.
@@ -1674,7 +1668,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-099 — SK hynix `operates` M16 as a `DERIVATION` (flagged for the review)
 
-- **Session:** S10 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S10 review: "Approve all (Recommended)"; the edge approved as a flagged ruling: "E4: SK hynix operates M16 (D-099)")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, human review; the edge approved as a flagged ruling)
 - **Context:** D-082 left to S10 whether SK hynix's "생산공장을 설치ㆍ가동" (it operates its
   production plants in 경기도 이천시), with M16 listed as its plant in 이천, meets `operates`.
 - **Decision:** the edge rests on `claim-sk-hynix-operates-m16`, a `DERIVATION` from those
@@ -1684,11 +1678,10 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-100 — The first journey: the HBM dependency chain (H-1)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
-- **Context:** H-1 ("yes and merge into main", 2026-10-02, to the recommended HBM chain). At the
-  start of S11 the human ruled on two records the chain does not link: "Separate lane
-  (Recommended)" for SK hynix's M16, and "Yes, not-connected lane (Recommended)" for Micron's
-  HBM4 36GB 12H.
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
+- **Context:** H-1 (2026-10-02: the recommended HBM chain approved). At the start of S11 the human
+  ruled on two records the chain does not link: SK hynix's M16 is drawn in a separate lane, and
+  Micron's HBM4 36GB 12H in a lane marked as not connected.
 - **Decision** (`vertical-slice.md` §1): the journey answers "What does an AI accelerator's memory
   depend on, and who is known to make it?" over H100 and Trainium2 → HBM → 3D die stacking, with
   Amazon's `designs` edge, both `not_researched` suppliers and the TSMC → H100 gap. M16 and
@@ -1698,8 +1691,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-101 — Structured output for the walk and the trace (H-4)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
-- **Context:** H-4 (Claude's recommendation, as part of H-1); the S10 debt "the navigation tool
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
+- **Context:** H-4 (as part of H-1); the S10 debt "the navigation tool
   prints text only".
 - **Decision** (`vertical-slice.md` §2): `tools/navigate.py` computes each answer as data
   (`depends_on_tree`, `supplier_rows`, `actors_list`, `edges_at`) and renders its text from it;
@@ -1711,9 +1704,9 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-102 — The build step and its stamp (H-2)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
-- **Context:** H-2 ("Static, stdlib build, inline SVG (Recommended)"). Part B §11 asks the page to
-  state the data commit; the human ruled "Input digest (Recommended)".
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
+- **Context:** H-2. Part B §11 asks the page to
+  state the data commit; the human ruled that the page states an input digest instead.
 - **Decision:** `tools/build_page.py` (standard library) writes one self-contained file,
   `site/hbm-chain/index.html`, with inline CSS and SVG and no script, from `data/`, the schemas,
   `edge-dataset.md` §1, `decisions.md` and `tools/page_template.html`. Output is deterministic
@@ -1725,7 +1718,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-103 — The visual form and its encoding
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
 - **Context:** MA §16.1 (the grammar: flows and dependencies → flow diagrams); Part B §06 q3.
 - **Decision** (`vertical-slice.md` §3): a fixed vertical dependency diagram in inline SVG.
   Box fill and rule encode level (instance or class); the line style encodes the basis (solid:
@@ -1736,7 +1729,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-104 — Gap encoding and the lane
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)"); the lane rule superseded in part by D-148 (2026-10-07): the lane's note names only its facility and product
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, human review; the lane rule superseded in part by D-148 (2026-10-07): the lane's note names only its facility and product
 - **Context:** RR-7; D-092, D-094; the human's lane rulings (D-100).
 - **Decision** (`vertical-slice.md` §5): each `not_researched` supplier is a pill on its
   `incorporates` arrow; TSMC → H100 is a dotted line with no arrowhead and the pill "gap: no
@@ -1749,7 +1742,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-105 — The text provenance rule and validate-design for the page
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
 - **Context:** Part B §02 (five things the page must make impossible), §07 task 6; MA §15
   (`validate-design`).
 - **Decision** (`vertical-slice.md` §4, §8): every text node sits inside a record value
@@ -1761,8 +1754,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-106 — Browser QA in a scratch environment (H-3)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
-- **Context:** H-3 ("Scratch Playwright, no repo dep (Recommended)").
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, human review; amended by D-151 (2026-10-08): the scripts are kept in `tests/browser/`
+- **Context:** H-3.
 - **Decision:** browser checks run with the pre-installed Chromium and Playwright outside the
   repository: desktop and 375 px screenshots, overflow, the keyboard path to every panel, console
   and network logs, measured contrast. The script and results are recorded in the report. Static
@@ -1771,9 +1764,9 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-107 — Editorial and QA contracts (H-5)
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
-- **Context:** H-5 ("Contracts in S11, proposed (Recommended)"); the human's ruling "Yes, both
-  (Recommended)" on `tests/test_agent_contracts.py` and `tests/test_page.py`.
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
+- **Context:** H-5 (the contracts written in S11, as proposals); the human approved checking them in
+  both `tests/test_agent_contracts.py` and `tests/test_page.py`.
 - **Decision:** `docs/agents/contracts.md` gains Editorial and QA contracts with MA §12's fields;
   `roles.md` marks both active. Editorial writes the framing and style in
   `tools/page_template.html` and the state rows of `README.md`, `docs/README.md` and
@@ -1784,10 +1777,10 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-108 — Changes from the human's new-user test
 
-- **Session:** S11 · **Date:** 2026-10-02 · **Status:** accepted (2026-10-02, S12 opening review, H-0: "Rules binding, page unchanged (Recommended)")
-- **Context:** the human's new-user test. Asked for suggestions ("Gimme suggestions"), Claude
-  proposed seven changes; the human answered "I agree, follow the principle of “not
-  overreachment”" (2026-10-02).
+- **Date:** 2026-10-02 · **Status:** accepted (2026-10-02)
+- **Context:** the human's new-user test. Asked for suggestions, Claude
+  proposed seven changes; the human agreed, on the principle that the page must not overreach
+  (2026-10-02).
 - **Decision** (`vertical-slice.md` §4 to §6): (1) the rule codes quoted from `edge-dataset.md` §1
   (ER-, RR-, F-, D-) are listed under "Rules cited above", each with its one-line home (the bold
   rule of its table row, the **Rule** paragraph of the section titled with it, or the decision
@@ -1802,7 +1795,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
   supply link" replaces "instance of … an entity field, not an edge" in the lane; (7) a "Jump to"
   bar under the title. The build reads three more documents (the rule homes), so they join its
   inputs. PG-10 checks that every quoted rule code is listed.
-- **Not done** (the human's "not overreachment"): no plain-language rewrite of the design record's
+- **Not done** (the same principle: no overreach): no plain-language rewrite of the design record's
   reasons (they stay quoted verbatim); no definition for a bare section mark; no further cut of the
   evidence panels (each mark still opens its full evidence in one click).
 - **Rejected:** rewriting the "why not" cells in plain words (a second home for the reasons);
@@ -1810,11 +1803,10 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-109 — The refused candidates become records (H-1, H-2)
 
-- **Session:** S12 · **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02, at the S13 opening)
-- **Context:** H-1 ("Pick the recommended", end of S11: records); the S12 audit's blocking finding
-  B-1 (`milestone-audits/M2-audit.md` Part 2 N-2, I-5; Part 3 q1). The human's answer at S12, to
-  "Where should the 12 relationships the Atlas considered and refused … be stored": "Own file,
-  separate from real links (Recommended)".
+- **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02)
+- **Context:** H-1 (end of S11: records); the S12 audit's blocking finding B-1
+  (`milestone-audits/M2-audit.md` Part 2 N-2, I-5; Part 3 q1). The human decided at S12 that the 12
+  relationships the Atlas considered and refused are stored in their own file, separate from real links.
 - **Decision** (M2 audit, Part 3 q1 and q6): one record per `edge-dataset.md` §1 candidate row, in
   `data/refused_candidates.json` and `data/staging/refused_candidates.json`, against
   `schemas/refused_candidates.schema.json`. A record holds `id` (`cand-NNN` in row order, never
@@ -1836,10 +1828,9 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-110 — Values about named records live in data; rules live in their documents
 
-- **Session:** S12 · **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02, at the S13 opening)
-- **Context:** S12 Part B §06 q2; the M2 audit's N-2 and N-3. The human's answers at S12: "Rules
-  stay in documents (Recommended)" and, for the other document tables, "Later, before the SQL
-  layer (S14) (Recommended)".
+- **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02)
+- **Context:** S12 Part B §06 q2; the M2 audit's N-2 and N-3. The human decided at S12 that rules stay
+  in documents and that the other document tables move later, before the SQL layer (S14).
 - **Decision:** a value or evidence pointer about a named record is data and lives in `data/`; a
   rule that governs records (a vocabulary's word table, a matrix, a horizon, a rule line) lives in
   its design document, and code may read it. The rule lines and decision titles the page quotes
@@ -1852,8 +1843,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-111 — A refused candidate names every party its quoted sentence names (`cand-002` and Samsung)
 
-- **Session:** S13 · **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02, S13 review)
-- **Context:** content audit F-1 (`docs/research/content-audit-S13.md`). `cand-002` refuses
+- **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02)
+- **Context:** content audit F-1 (`docs/research/content-audit.md`). `cand-002` refuses
   "SK hynix and Micron supply memory to NVIDIA" from NVIDIA's 10-K (`src-024` p.8), whose quoted
   sentence is "We purchase memory from SK Hynix Inc., Micron Technology, Inc., and Samsung". The
   record and the page's card name two of the three firms. Samsung has no company record. S12 kept
@@ -1870,7 +1861,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-112 — The H100 memory figures keep their claim; the source's "preliminary" note is debt
 
-- **Session:** S13 · **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02, S13 review)
+- **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02)
 - **Context:** content audit F-3. `claim-h100-hbm-stacks` reproduces NVIDIA's sentences on the
   H100's 80 GB of HBM3 (five stacks) and 80 GB of HBM2e. The source, NVIDIA's 2022 Hopper
   architecture blog (`src-051`), notes under its H100 specification table "Preliminary
@@ -1885,7 +1876,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-113 — The S13 audit's debt and owners (DT-10 re-owned)
 
-- **Session:** S13 · **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02, S13 review)
+- **Date:** 2026-10-02 · **Status:** accepted (approved by the human on 2026-10-02)
 - **Context:** content audit Part 6, findings F-2 and F-4 to F-11. DT-10 (`publisher_entity`
   `not_researched` on 23 sources) was owned by S13.
 - **Decision:** each finding is documented debt with the owner Part 6 names. DT-10 is
@@ -1899,7 +1890,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-114 — The repository records the outcome of a human decision, never the conversation
 
-- **Session:** S13 · **Date:** 2026-10-03 · **Status:** accepted (the human's direction, 2026-10-03)
+- **Date:** 2026-10-03 · **Status:** accepted (the human's direction, 2026-10-03)
 - **Context:** reports, audits, decision statuses and session prompts have copied each question as
   asked and the human's answer word for word (`SESSION-PROMPT-SPEC.md` §9, last paragraph). The
   human does not want conversation content in the repository.
@@ -1920,7 +1911,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-115 — Every result a page computes with SQL carries a short SQL tutorial
 
-- **Session:** S13 · **Date:** 2026-10-03 · **Status:** accepted (the human's direction, 2026-10-03)
+- **Date:** 2026-10-03 · **Status:** accepted (the human's direction, 2026-10-03)
 - **Context:** S14 introduces SQL (DuckDB). The project is also a learning instrument for its owner
   (`CLAUDE.md` §1).
 - **Decision:** wherever a page shows a result computed with SQL, a small control next to it ("How
@@ -1937,7 +1928,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-116 — Reader experience first: meaning before mechanism
 
-- **Session:** S13 · **Date:** 2026-10-03 · **Status:** accepted (the human's direction, 2026-10-03)
+- **Date:** 2026-10-03 · **Status:** accepted (the human's direction, 2026-10-03)
 - **Context:** the page and the session documents have grown dense with rule codes and internal
   terms. The human prioritises a reader's experience over complexity.
 - **Decision:** every page and every document a person reads makes sense in the order it is read:
@@ -1954,8 +1945,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-117 — The document tables of per-record values become identity-basis rows in data (DT-1)
 
-- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted (the move decided by the human on
-  2026-10-03 at the S14 opening, H-1; the row shape accepted by the human on 2026-10-03, at the S14 review)
+- **Date:** 2026-10-03 · **Status:** accepted (the move decided by the human on
+  2026-10-03, H-1; the row shape accepted by the human on 2026-10-03, at the S14 review)
 - **Context:** D-110 puts values about named records in `data/` and rules in documents. Four
   document tables still held such values, read by checks that parsed Markdown (DT-1, DT-9;
   `M2-audit.md` N-2, M-2, M-4): the terms that CI-1, PI-1 and FI-1 build IDs from, and the claim
@@ -1987,8 +1978,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-118 — The SQL layer: DuckDB rebuilt in memory from the canonical files, results committed, page build unchanged
 
-- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted (the engine and its place decided by
-  the human on 2026-10-03 at the S14 opening, H-2; the rest accepted by the human on 2026-10-03, at the S14 review)
+- **Date:** 2026-10-03 · **Status:** accepted (the engine and its place decided by
+  the human on 2026-10-03, H-2; the rest accepted by the human on 2026-10-03, at the S14 review)
 - **Context:** the roadmap's S14 gate: "All published metrics can be regenerated from versioned
   inputs"; `MASTER-ARCHITECTURE.md` §17 names DuckDB. D-003 allows a new dependency only with a
   recorded reason.
@@ -2012,7 +2003,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-119 — Explicit states in SQL: value and state columns; NULL only beside a state
 
-- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted by the human on 2026-10-03, at the S14 review
+- **Date:** 2026-10-03 · **Status:** accepted by the human on 2026-10-03
 - **Context:** `MASTER-ARCHITECTURE.md` §5.7; `CLAUDE.md` §7 ("Unknown is never zero"); DT-4
   (`data/` needs flattening for SQL). The records never use JSON `null`.
 - **Decision** (`sql-layer.md` §3, §8):
@@ -2031,7 +2022,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-120 — The first query: each accelerator's links, their basis and their evidence dates
 
-- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted by the human on 2026-10-03, at the S14 review; the basis definitions superseded in part by D-148 (2026-10-07): a fourth basis, "reported"
+- **Date:** 2026-10-03 · **Status:** accepted by the human on 2026-10-03; the basis definitions superseded in part by D-148 (2026-10-07): a fourth basis, "reported"
 - **Context:** S13's recommended first question; its weaknesses that a query must show (content
   audit Part 5; DT-S13-1, -2, -4, -7).
 - **Decision** (`sql/accelerator_dependencies.sql`; `sql-layer.md` §7):
@@ -2065,8 +2056,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-121 — The SQL tutorial lives in the query file; the table is a section of the HBM page
 
-- **Session:** S14 · **Date:** 2026-10-03 · **Status:** accepted (the placement decided by the human
-  on 2026-10-03 at the S14 opening, H-3; the tutorial format accepted by the human on 2026-10-03, at the S14 review)
+- **Date:** 2026-10-03 · **Status:** accepted (the placement decided by the human
+  on 2026-10-03, H-3; the tutorial format accepted by the human on 2026-10-03, at the S14 review)
 - **Context:** D-115 (a "How this was computed" tutorial beside every SQL result, generated from the
   same query file); D-116 (meaning before mechanism).
 - **Decision** (`sql-layer.md` §6):
@@ -2084,11 +2075,11 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-122 — The visual benchmark and its pattern register
 
-- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06, at the S14.5 review
+- **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06
 - **Context:** the S14.5 prompt asks for a study of five data-intensive research products (Epoch AI, Our
   World in Data, IEA, Stanford AI Index, Datawrapper) across fourteen dimensions, each major pattern
   classified ADOPT, ADAPT or REJECT, with no branding, asset or layout copied.
-- **Decision** (`docs/research/visual-benchmark-S14.5.md`):
+- **Decision** (`docs/research/visual-benchmark.md`):
   - the pages are observed with the pre-installed headless browser at 1440 and 390 px; screenshots and
     the script stay outside the repository;
   - the IEA website refused automated access (403), so IEA is assessed through its *Energy and AI* report
@@ -2100,7 +2091,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-123 — The research-experience model, the visual principles and the minimal design system
 
-- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06, at the S14.5 review
+- **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06
 - **Context:** the S14.5 prompt's required outputs 1 to 9; `CLAUDE.md` §6A, §12; MA §16.1, §19.
 - **Decision** (`docs/architecture/visual-architecture.md` §1 to §9):
   - a research page reads `QUESTION → INSIGHT → VISUAL → EXPLORE → EVIDENCE → DATA → METHOD`. Each layer
@@ -2120,7 +2111,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-124 — From SQL results to visuals: the binding rule, and tallies of drawn rows
 
-- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted (the tallies with their denominators
+- **Date:** 2026-10-06 · **Status:** accepted (the tallies with their denominators
   decided by the human on 2026-10-06 during the session; the rule as a whole accepted by the human on
   2026-10-06, at the S14.5 review)
 - **Context:** the S14.5 prompt (required output 9; "Do not create an opaque dependency score"); NG-11
@@ -2143,7 +2134,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-125 — The S14.5 prototype: a generated research view of the HBM chain
 
-- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06, at the S14.5 review
+- **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06
 - **Context:** the S14.5 prompt's "Limited implementation": one controlled prototype from existing data,
   preferring the HBM slice, without replacing the current product, without a framework, without a
   general-purpose dashboard system, without new data.
@@ -2182,7 +2173,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-126 — Sub-session numbering: S14.5
 
-- **Session:** S14.5 · **Date:** 2026-10-06 · **Status:** accepted by the human on 2026-10-06, at the S14.5 review
+- **Date:** 2026-10-06 · **Status:** superseded by D-151 (2026-10-08); earlier: accepted by the human on 2026-10-06
 - **Context:** the human inserted a session between S14 and S15, numbered S14.5. `tools/validate_repo.py`
   accepted only two-digit session numbers (`SNN-PROMPT.md`, `SESSION-NN-REPORT.md`), so the session's
   prompt and report could not be recorded under its own number.
@@ -2195,7 +2186,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-127 — `sql-layer.md` §7: the inferred rows rest on two publishers
 
-- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (confirmed by the human on 2026-10-06 at the S15 opening)
+- **Date:** 2026-10-06 · **Status:** accepted (confirmed by the human on 2026-10-06)
 - **Context:** S14.5 found that `sql-layer.md` §7 said "every row today has one" publisher, while each
   inferred row rests on two (S14.5 report, invalidated assumptions). The S14 table's caveat flags were
   always correct.
@@ -2206,7 +2197,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-128 — Evidence coverage: per accelerator, over its links
 
-- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06, at the S15 review; the population decided by the human on 2026-10-06 at the S15 opening, H-2); the split superseded in part by D-148 (2026-10-07): a `reported` column
+- **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06; the population decided by the human on 2026-10-06; the split superseded in part by D-148 (2026-10-07): a `reported` column
 - **Context:** Part A's "evidence coverage"; S14's handover; S14.5's finding that 8 rows come from 5
   records.
 - **Decision** (`metrics.md` §2, §3; `sql/evidence_coverage.sql`):
@@ -2222,7 +2213,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-129 — Source age against a reference date, and where each evidence date comes from
 
-- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06, at the S15 review; the reference date decided by the human on 2026-10-06 at the S15 opening, H-3)
+- **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06; the reference date decided by the human on 2026-10-06)
 - **Context:**
   - Part A's "source age";
   - S14 refused clock ages, and S14.5's V-5 forbids ages relative to today;
@@ -2246,7 +2237,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-130 — The three supplier metrics: "cannot be computed yet", with why
 
-- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06, at the S15 review; the treatment decided by the human on 2026-10-06 at the S15 opening, H-1); the status rule superseded in part by D-148 (2026-10-07): a named supplier alone does not make a metric computable
+- **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06; the treatment decided by the human on 2026-10-06; the status rule superseded in part by D-148 (2026-10-07): a named supplier alone does not make a metric computable
 - **Context:** supplier count, geographic concentration and single-source relationships need a named
   supplier. The Atlas names none: both HBM `supplier` fields are `not_researched` (D-094), and no
   `supplies` edge exists.
@@ -2270,7 +2261,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-131 — Queries may build on queries; a metric's tutorial answers PEF §8
 
-- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted as built by the human on 2026-10-06, at the S15 review
+- **Date:** 2026-10-06 · **Status:** accepted as built by the human on 2026-10-06
 - **Context:** the metrics must count the rows the page draws, under the first query's definitions,
   without copying them. PEF §8's eight answers must sit beside each metric and in its tutorial.
 - **Decision** (`metrics.md` §8; `tools/warehouse.py`):
@@ -2289,7 +2280,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-132 — The metrics in the research view's indicator blocks
 
-- **Session:** S15 · **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06, at the S15 review; the placement decided by the human on 2026-10-06 at the S15 opening, H-4)
+- **Date:** 2026-10-06 · **Status:** accepted (as built by the human on 2026-10-06; the placement decided by the human on 2026-10-06)
 - **Context:** `visual-architecture.md` §7.5 (indicator blocks), §10 (D-124); the prototype's three
   hand counts (S14.5 handover).
 - **Decision** (`metrics.md` §6, §7; `tools/build_insight.py`, `tools/insight_template.html`):
@@ -2307,8 +2298,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-133 — Evidence coverage kept, its records line and its population reworded
 
-- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
-- **Context:** `analytical-audit-S16.md` §2, findings C-1 and C-3. Neither cold reader understood "rows
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:** `analytical-audit.md` §2, findings C-1 and C-3. Neither cold reader understood "rows
   drawn from 3 records, of which shared with another accelerator: 1". An independent reader given only the
   population and denominator lines counted the H100 as 5 links, not 4.
 - **Decision** (`sql/evidence_coverage.sql`; `tools/build_insight.py`):
@@ -2325,8 +2316,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-134 — Source age kept; the 12-month horizon said to apply only to time-sensitive links
 
-- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
-- **Context:** `analytical-audit-S16.md` §3, findings C-4 and C-6. The source policy (§12; D-040) applies
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:** `analytical-audit.md` §3, findings C-4 and C-6. The source policy (§12; D-040) applies
   its 12-month re-check only to `time_sensitive` rows (`rel:fabricates`, `rel:incorporates.supplier`,
   `rel:supplies`). `stable` rows (`rel:designs`, `rel:incorporates`, `rel:requires`) have no age limit.
   The block and its tutorial applied the horizon to every link, and the tutorial stated the rule wrongly.
@@ -2346,8 +2337,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-135 — The publishers tally retired
 
-- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
-- **Context:** `analytical-audit-S16.md` §4, §6 and finding C-7:
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:** `analytical-audit.md` §4, §6 and finding C-7:
   - the block's "1 to 2" was the range of a per-row count the page computed and never showed;
   - its "4 of 6" counted 6 rows from 5 records without saying so (both outside D-124);
   - its only "2" was the inferred link's two reasoning steps, which do not confirm one another;
@@ -2362,8 +2353,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-136 — The three supplier metrics kept as built
 
-- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
-- **Context:** `analytical-audit-S16.md` §5 and §6:
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:** `analytical-audit.md` §5 and §6:
   - both cold readers read the blocks as unknown, not zero;
   - each block's "needs" names different evidence;
   - probe P7 confirms that both builds stop, with named reasons, when a supplier is named.
@@ -2373,7 +2364,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-137 — The source-age reference date moves with each session that rebuilds the pages
 
-- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-4)
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
 - **Context:**
   - S15's debt row, "nobody is yet charged with moving it";
   - probes P5 and P6: a move changes only the ages and the "as of" date until a link crosses 12 months.
@@ -2391,8 +2382,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-138 — The S16 findings: remediated or debt with owners
 
-- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-3)
-- **Context:** `analytical-audit-S16.md` §8.
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:** `analytical-audit.md` §8.
 - **Decision:**
   - **remediated in S16:** C-1 and C-3 (D-133), C-4 and C-6 (D-134), C-7 (D-135);
   - **debt:**
@@ -2411,7 +2402,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-139 — A research session on the HBM suppliers (S16.5) precedes S17
 
-- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
 - **Context:** the S16 audit:
   - three metrics show "cannot be computed yet" because no source the Atlas holds names who supplies the
     HBM in the H100 or in Trainium2 (D-130, D-136);
@@ -2430,7 +2421,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-140 — The M3 and M4 milestone audits are written at S16.5's opening
 
-- **Session:** S16 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
 - **Context:** PEF §4 requires a milestone audit at every major milestone. M3 (S11 to S13) has none, and M4
   (S14 to S16) closes with S16 without one (S16 report, "Unresolved issues"; H-1 C was not chosen).
 - **Decision:**
@@ -2442,8 +2433,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-141 — The HBM supplier research: both suppliers stay unknown; SK hynix's 2022 statement kept as evidence
 
-- **Session:** S16.5 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-1/H-2)
-- **Context:** `docs/research/hbm-supplier-research-S16.5.md`; the search log (28 queries, 51 retrievals).
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:** `docs/research/hbm-supplier-research-original-rules.md`; the search log (28 queries, 51 retrievals).
   - **H100:** the only product-level statement by a party is SK hynix's press release of 2022-06-08
     (`src-053`): "HBM3 to be combined with NVIDIA H100 Tensor Core GPU". It is more than 12 months older
     than its verification, so F-1 refuses it as a supplier value.
@@ -2467,8 +2458,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-142 — A claim's review may be recorded in a sub-session report
 
-- **Session:** S16.5 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, with
-  D-141)
+- **Date:** 2026-10-07 · **Status:** superseded by D-151 (2026-10-08); earlier: accepted (decided by the human on
+  2026-10-07, with D-141)
 - **Context:** `schemas/claims.schema.json` accepted `recorded_in` only as `SESSION-NN-REPORT.md`. A claim
   reviewed in S16.5 could not name its own session's report. D-126 had widened the repository validator,
   not the claim schema.
@@ -2480,7 +2471,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-143 — The supplier-evidence rules are revised in their own session (S16.6) before S17
 
-- **Session:** S16.5 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
 - **Context:**
   - D-141 left both HBM suppliers unknown;
   - sources other than the companies exist (market research, news, independent teardowns), but the
@@ -2500,8 +2491,8 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-144 — Historical supplier values (R-1)
 
-- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-1)
-- **Context:** `docs/research/supplier-evidence-rules-S16.6.md` R-1. F-1 treats a product's supplier as
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Context:** `docs/research/supplier-evidence-rules.md` R-1. F-1 treats a product's supplier as
   present-tense, so a dated past supply could not be recorded (D-141).
 - **Decision** (`source-policy.md` §12, "Historical values of a `time_sensitive` row"):
   - a supplier assertion with `valid_to` states what its evidence supports up to that date. F-1 does not
@@ -2514,7 +2505,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-145 — An independent teardown as evidence of a product's part maker (R-2)
 
-- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-1)
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
 - **Context:** R-2. Only the two parties could support a supplier, and both are often silent.
 - **Decision** (`source-policy.md` §2 `research_report`, §7.1; the matrix row `rel:incorporates.supplier`):
   - a teardown of the named product is `research_report` with `originator` standing, and acceptable for
@@ -2527,7 +2518,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-146 — Retrieved sources are registered when retrieved (R-4)
 
-- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07, H-1)
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
 - **Context:** S16.5 found the Extractor's contract (sources straight to `data/sources.json`) in conflict
   with a prompt rule forbidding any `data/` edit before approval.
 - **Decision:**
@@ -2539,7 +2530,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-147 — Third-party evidence for a product's supplier, under the human's criteria (R-5)
 
-- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (criteria set by the human on 2026-10-07;
+- **Date:** 2026-10-07 · **Status:** accepted (criteria set by the human on 2026-10-07;
   the "reported" label decided by the human the same day)
 - **Context:**
   - the human's question whether sources other than the companies exist (S16.5), and the human's
@@ -2566,15 +2557,15 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-148 — How a reported supplier is shown (H-3)
 
-- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (the presentation chosen by the human on
-  2026-10-07, H-3: "as in the preview, built now")
+- **Date:** 2026-10-07 · **Status:** accepted (the presentation chosen by the human on
+  2026-10-07, H-3)
 - **Context:**
   - the human approved two supplier values on 2026-10-07 (H-2): SK hynix for the H100's HBM, historical to
     2024-03, reported by TrendForce; Samsung Electronics for Trainium2's HBM, reported by SemiAnalysis, with
     its recognition criterion not met;
   - both page builds stopped as soon as a supplier was named (D-130), and D-147 asked for the "reported"
     label with its presentation;
-  - the proposal and its mock-up: `docs/research/supplier-presentation-S16.6.md`.
+  - the proposal and its mock-up: `docs/research/supplier-presentation.md`.
 - **Decision:**
   - **the first query** (`sql/accelerator_dependencies.sql`): a named supplier is a row with its company. Its
     basis is **reported** when its claims include an `ATTRIBUTION` and no `FACT`. Two new columns: the
@@ -2606,7 +2597,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-149 — The refused NVIDIA memory-supplier card links Samsung's new record
 
-- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
 - **Context:**
   - the refused candidate `cand-002` (NVIDIA's 10-K: "We purchase memory from SK Hynix Inc., Micron
     Technology, Inc., and Samsung") held Samsung as a firm with no record (D-111), one of its two reasons;
@@ -2623,7 +2614,7 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
 
 ## D-150 — The full break harness runs at milestone audits
 
-- **Session:** S16.6 · **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
+- **Date:** 2026-10-07 · **Status:** accepted (decided by the human on 2026-10-07)
 - **Context:**
   - the merged harness had grown to 100 breaks. A full run takes three to four hours: each break rebuilds
     the pages and runs the whole suite, one after another;
@@ -2642,3 +2633,51 @@ Status values: `proposed` (awaiting human review) · `accepted` · `superseded`.
     - breaks run in parallel, each in its own copy.
   - S16.6's own full run was completed as its prompt asked.
 - **Rejected:** a full run in every session that changes checks or pages (the rule up to S16.6).
+
+## D-151 — The public repository holds the current system; development records are kept privately
+
+- **Date:** 2026-10-08 · **Status:** accepted (the boundary and the migration instructed by the human on
+  2026-10-08; the condensed status lines and the search-log rule decided by the human the same day)
+- **Context:**
+  - beside the product, the repository held the full record of how it was built: every session prompt and
+    report, a prompt registry, and per-session folders of screenshots, logs, fail-first outputs, one-off
+    migration scripts and research notes;
+  - three working parts of the system depended on that record: each canonical claim's `review.recorded_in`
+    named a session report as the record of the human's verdict; Gate 0 checked only session file names and
+    report headings; the break harness (D-150) and the browser QA scripts (D-106) lived in session folders.
+- **Decision:**
+  - **Boundary.** The public repository holds the current system: constitutional documents, current-state
+    documentation, data, schemas, SQL, tools, tests, generated pages, and the evidence that accepted audits
+    rest on. Session prompts, session reports, the prompt registry and per-session working files are kept in
+    the human's private development archive, outside this repository (`SESSION-PROMPT-SPEC.md` §5, §6).
+  - **Review provenance.** The human's verdicts are recorded in `docs/quality/human-reviews.md`, one entry
+    per review, stating its outcome in project terms. `review.recorded_in` names the entry
+    (`docs/quality/human-reviews.md#<entry>`, the anchor ending with the review date). Each of the six
+    reviews maps one-to-one onto the report that held it; every verdict, reviewer and date is unchanged.
+    Checked by `tests/test_claim_schema.py` (the form) and `tests/test_human_reviews.py` (HR-1 to HR-3: the
+    entry exists, its date is `reviewed_on`, its stated claim count is the data's), written first.
+  - **Gate 0** (`tools/validate_repo.py`) checks that the constitutional and governing documents exist and
+    that every relative link in the repository's Markdown resolves. It no longer checks session files.
+  - **Durable checks move to stable locations:** the break harness to `tests/regression/` (D-150 unchanged:
+    its full run is for milestone audits); the browser QA scripts to `tests/browser/` (D-106 unchanged: run
+    outside CI with the pre-installed browser; their results are reported, not committed).
+  - **Audit evidence** that accepted audits cite moves to `docs/quality/audit-evidence/`; research and audit
+    documents are named for what they cover, not for the session that wrote them.
+  - **Search logs:** a search log that a public research document cites as its method is kept beside it,
+    in `docs/research/search-logs/` (the Source Scout's contract), so a "searched and not found" result
+    keeps its public record.
+  - **This log is condensed once:** every entry's status line states its outcome and date only. The
+    "Session" field and the human's quoted answers are removed; where an answer carried the outcome, the
+    outcome is stated instead. Headings, decisions, contexts and evidence quotes are unchanged. This is the
+    one exception to "append-only, never rewritten", made so the log follows D-114 (outcomes, not
+    transcripts); new entries use the same form.
+  - The bootstrap prompt (D-009) and the operational roadmap are removed; `SESSION-ROADMAP.md` remains the
+    plan, unchanged.
+  - References to renamed documents are updated in place. Paths under `sessions/` named in earlier entries
+    say where a file was when the entry was written; they are not in the public tree. Git history keeps them.
+- **Supersedes:** D-002; D-009 (the bootstrap prompt is no longer kept); D-126 (the validator's session-name
+  rule); D-142. **Amends:** D-106 (the scripts are kept in `tests/browser/`).
+- **Rejected:** keeping the reports public as the provenance of reviews (they expose the whole working
+  process to cite one verdict); dropping `recorded_in` and keeping only the verdict and date (loses where
+  the review is recorded); a public archive of the same files under new names; rewriting Git history (a
+  separate publication decision, not taken here).

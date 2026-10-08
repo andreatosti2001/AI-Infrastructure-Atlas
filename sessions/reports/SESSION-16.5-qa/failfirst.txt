@@ -1,4 +1,0 @@
-FAIL: test_review_may_be_recorded_in_a_sub_session_report (test_claim_schema.ClaimSchemaTests.test_review_may_be_recorded_in_a_sub_session_report) (recorded_in='sessions/reports/SESSION-16.5-REPORT.md')
-AssertionError: False != True : ["{'verdict': 'accepted', 'reviewer': 'human', 'reviewed_on': '2026-10-01', 'recorded_in': 'sessions/reports/SESSION-16.5-REPORT.md'} is not valid under any of the given schemas"]
-Ran 10 tests in 0.578s
-FAILED (failures=1)

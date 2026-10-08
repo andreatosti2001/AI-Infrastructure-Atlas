@@ -1,7 +1,7 @@
 # The first metrics
 
 **Status:** ACCEPTED as built by the human on 2026-10-06 at the S15 review (D-127 to D-132).
-**Audited in S16 (2026-10-07,** [`analytical-audit-S16.md`](./analytical-audit-S16.md)**), decided by the human
+**Audited in S16 (2026-10-07,** [`analytical-audit.md`](./analytical-audit.md)**), decided by the human
 (H-3, H-4):**
 - evidence coverage: kept, with its records line and population reworded (D-133);
 - source age: kept, saying that the 12-month horizon applies only to time-sensitive links (D-134);

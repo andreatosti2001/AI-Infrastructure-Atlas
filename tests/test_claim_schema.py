@@ -87,12 +87,18 @@ class ClaimSchemaTests(unittest.TestCase):
             with self.subTest(criteria=bad):
                 self.assertNotEqual(self.errors(fact), [])
 
-    def test_review_may_be_recorded_in_a_sub_session_report(self) -> None:
-        # S16.5 (D-142): a review is recorded in the report of the session that took it, sub-sessions
-        # included, with D-126's one-digit suffix; anything else stays refused.
+    def test_review_is_recorded_in_the_human_review_record(self) -> None:
+        # D-151 (supersedes D-142): a review names its entry in the public human review record, an anchor that
+        # ends with the review date; a session report or any other file is refused. That the entry exists, and
+        # that its date is the claim's reviewed_on, is tests/test_human_reviews.py's (HR-1, HR-2).
         accepted = next(r for r in VALID.values() if isinstance(r.get("review"), dict) and r["review"].get("verdict") == "accepted")
-        for path, ok in (("sessions/reports/SESSION-16.5-REPORT.md", True), ("sessions/reports/SESSION-16-REPORT.md", True),
-                         ("sessions/reports/SESSION-16.55-REPORT.md", False), ("sessions/reports/SESSION-16.x-REPORT.md", False)):
+        for path, ok in (("docs/quality/human-reviews.md#companies-and-jurisdictions-2026-10-01", True),
+                         ("docs/quality/human-reviews.md#sk-hynix-hbm3-statement-2026-10-07", True),
+                         ("docs/quality/human-reviews.md#companies-and-jurisdictions", False),
+                         ("docs/quality/human-reviews.md", False),
+                         ("docs/quality/human-reviews.md#Companies-2026-10-01", False),
+                         ("docs/review.md#companies-2026-10-01", False),
+                         ("sessions/reports/SESSION-16.5-REPORT.md", False)):
             record = copy.deepcopy(accepted)
             record["review"]["recorded_in"] = path
             with self.subTest(recorded_in=path):

@@ -3,11 +3,11 @@
   "query": "sql/source_age.sql",
   "query_sha256": "90f0f06eb55c3df570a2fff4eb1b582e0baf29b77ed9c4c12cc42744b5855c68",
   "engine": "duckdb 1.5.6",
-  "input_digest": "8ef1b5983f8e8acd3b909b7166d8942ad6c32a9c2b21651cc31fdbe6170fcc0f",
+  "input_digest": "c51e14575f5df1fc8b0590525bce1ad44f60d9034128b331367d3392016e76b5",
   "inputs": [
     {
       "path": "data/claims.json",
-      "sha256": "22eea1abddb827fa58ebe3632e55a386739c6484bb875a4ed111aea9ca468e9b"
+      "sha256": "f78f10508cffac839f4c5dd1e4f57e9863ca15fe20a40e45811f16967ce31bf6"
     },
     {
       "path": "data/companies.json",

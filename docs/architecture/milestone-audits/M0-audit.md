@@ -1,5 +1,8 @@
 # M0 Milestone Audit — Project Constitution (S00–S02)
 
+> **Records cited.** This is a process audit (PEF §4). The session reports and prompts it cites are kept in the
+> private development archive, not in this repository (D-151); the decisions, documents and files it cites are here.
+
 **Status:** ACCEPTED. Written in S02. The human approved the baseline on 2026-09-29, and
 M0 is closed (`baseline.md` §8).
 **Date:** 2026-09-29
@@ -161,7 +164,7 @@ its one home; the table only maps lesson to commitment and shows what the Atlas 
    - placeholder directories (D-005);
    - a Python matrix and deploy jobs (D-004);
    - headless-browser retrieval (D-014);
-   - WebFetch summaries as evidence (S01 report).
+   - WebFetch summaries as evidence.
 8. **Carry into M1:**
    - the frozen non-goals and boundaries (baseline §2, §6);
    - D-018 commitments L-01 to L-09;

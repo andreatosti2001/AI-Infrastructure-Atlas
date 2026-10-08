@@ -1,7 +1,7 @@
 # Baseline Architecture Record
 
 **Status:** APPROVED by the human on 2026-09-29 (S02 gate, `SESSION-ROADMAP.md` S02; see §8).
-Created in S00, revised and approved in S02. S03 to S11 updated only the dated state rows (§1 table, §3, §4, §5). The S05 review added NG-14 to §6 through D-043, as D-021 requires, and updated the open items in §7 and §8.
+Created in S00, revised and approved in S02. Later changes update only the state rows (§1 table, §3, §4, §5). The S05 review added NG-14 to §6 through D-043, as D-021 requires, and updated the open items in §7 and §8.
 **Date:** 2026-09-29 (S00); revised 2026-09-29 (S02)
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` §4 ("At project start").
 
@@ -23,25 +23,25 @@ repository are logged in [`decisions.md`](./decisions.md).
   DuckDB + SQL for analysis, vanilla HTML/CSS/JS, GitHub Actions — MA §17, CLAUDE.md §11.
   No database server, graph database or frontend framework — MA §18.
 
-### State at end of S00, updated at S02, S03, S04, S05, S06, S07, S08, S09, S10 and S11
+### Current state
 
 | Layer | Exists? | Introduced by (per `SESSION-ROADMAP.md`) |
 |---|---|---|
 | Constitutional documents | yes (repo root) | user, before S00 |
-| Session system (`sessions/`) | yes | S00 |
-| Repository integrity validator + CI | yes | S00 |
+| Session prompts and reports | kept in the private development archive, outside this repository (D-151) | S00 |
+| Repository integrity validator + CI | yes: Gate 0 (`tools/validate_repo.py`) checks the governing documents and that every relative Markdown link resolves (D-151); CI runs it with the test suite | S00 |
 | Domain map / source register | yes, draft (S01) | S01 |
 | M0 milestone audit + EU-DP process benchmark | yes, draft (S02) | S02 |
-| S13 content and evidence depth audit | yes (S13): `docs/research/content-audit-S13.md`; findings ruled, one blocking finding remediated (D-111), ten debt items with owners (D-112, D-113); maturity ratings accepted by the human on 2026-10-03 (S14 opening) | S13 |
+| S13 content and evidence depth audit | yes (S13): `docs/research/content-audit.md`; findings ruled, one blocking finding remediated (D-111), ten debt items with owners (D-112, D-113); maturity ratings accepted by the human on 2026-10-03 (S14 opening) | S13 |
 | M2 milestone audit + data architecture audit | yes, accepted (S12; accepted at the S13 opening): `docs/architecture/milestone-audits/M2-audit.md`; one blocking finding remediated (D-109), debt with owners | S12 |
 | Entity schema | yes, accepted (S03): `schemas/entities.schema.json`, `entity-taxonomy.md` | S03 |
 | Relationship schema | yes, accepted (S04): `schemas/relationships.schema.json`, `relationship-taxonomy.md` | S04 |
 | Source/evidence policy | yes, accepted (S05 review): `docs/research/source-policy.md`, and the class vocabulary in `schemas/sources.schema.json` | S05 |
 | Claim/provenance implementation | yes, accepted (S06 review): `docs/architecture/claim-model.md`, `schemas/claims.schema.json`, the source record in `schemas/sources.schema.json`, `tools/trace.py` | S06 |
-| Canonical data | yes (S07 to S10, accepted by the human in the session): 52 source records (`data/sources.json`), 120 claims (`data/claims.json`), 8 companies, 4 jurisdictions, 7 components, 9 technologies, 3 products, 2 facilities, 4 events (`data/events.json`, schema `schemas/events.schema.json`) and 5 relationships (`data/relationships.json`), as measured at the S10 final commit; and (S12) 12 refused candidates (`data/refused_candidates.json`, schema `schemas/refused_candidates.schema.json`, D-109): relations the Atlas considered and refused, never edges; `cand-002` names Samsung as a third party with no record (S13, D-111); and (S14) 28 identity-basis rows (`data/identity_basis.json`, schema `schemas/identity_basis.schema.json`, D-117): the ID terms and the claims behind `instance_of` and facility kinds, moved from four document tables (DT-1). Staging is empty; and (S16.5, D-141) one more source (`src-053`, SK hynix, 2022-06-08) and one more claim, kept as evidence about the H100's memory supplier but linked to no edge: 53 sources and 121 claims; and (S16.6, D-144 to D-148) three more sources (`src-054` TrendForce, `src-055` SemiAnalysis, `src-056` Samsung Electronics's 2025 Business Report), six more claims and one more company (Samsung Electronics); the two HBM `supplier` fields now name SK hynix (historical, to 2024-03) and Samsung Electronics, each resting on a third party's report: 56 sources, 127 claims, 9 companies | S06 to S10, S12, S14, S16.5, S16.6 |
+| Canonical data | yes, every record accepted by the human (review record: `docs/quality/human-reviews.md`, D-151): 56 source records (`data/sources.json`), 127 claims (`data/claims.json`), 9 companies, 4 jurisdictions, 7 components, 9 technologies, 3 products, 2 facilities, 4 events (`data/events.json`, schema `schemas/events.schema.json`) and 5 relationships (`data/relationships.json`); 12 refused candidates (`data/refused_candidates.json`, schema `schemas/refused_candidates.schema.json`, D-109): relations the Atlas considered and refused, never edges; 28 identity-basis rows (`data/identity_basis.json`, schema `schemas/identity_basis.schema.json`, D-117): the ID terms and the claims behind `instance_of` and facility kinds. The two HBM `supplier` fields name SK hynix for the H100 (historical, to 2024-03) and Samsung Electronics for Trainium2, each resting on a third party's report and shown as "reported" (D-144 to D-148); SK hynix's 2022 statement is kept as evidence linked to no edge (D-141). Staging is empty. Counts measured on 2026-10-08 | S06 to S10, S12, S14, S16.5, S16.6 |
 | Presentation / UI | yes, accepted (S11; S12 opening review): one generated page, `site/hbm-chain/index.html`, built by `tools/build_page.py` from `data/` (`vertical-slice.md`, D-100 to D-107); from S14 it also shows the first SQL result, "The chain as a table", with its "How this was computed" tutorial (D-121, accepted 2026-10-03); not published (NG-13) | S11, S14 |
-| Visual and research-experience architecture | yes, accepted (S14.5 review, 2026-10-06): `docs/architecture/visual-architecture.md` (the seven-layer research view, visual principles, minimal design system, grammar, evidence-aware semantics, the SQL-to-visual binding rule) and `docs/research/visual-benchmark-S14.5.md` (five benchmarks, 29 patterns); one generated prototype, `site/hbm-insight/index.html`, built by `tools/build_insight.py` from the S14 result (D-122 to D-126); not published (NG-13) | S14.5 |
-| Metrics | yes, accepted (S15 review, 2026-10-06): `docs/architecture/metrics.md`; evidence coverage and source age computed in SQL over the table of links; supplier count, geographic concentration and single-source relationships shown as "cannot be computed yet" (no supplier recorded); no composite score (D-128 to D-132). Audited in S16 (`docs/architecture/analytical-audit-S16.md`, verdicts 2026-10-07): coverage and source age kept with wording corrected, the publishers tally retired, the supplier metrics kept, the reference date moved with each session that rebuilds the pages (D-133 to D-138) | S15, S16 |
+| Visual and research-experience architecture | yes, accepted (S14.5 review, 2026-10-06): `docs/architecture/visual-architecture.md` (the seven-layer research view, visual principles, minimal design system, grammar, evidence-aware semantics, the SQL-to-visual binding rule) and `docs/research/visual-benchmark.md` (five benchmarks, 29 patterns); one generated prototype, `site/hbm-insight/index.html`, built by `tools/build_insight.py` from the S14 result (D-122 to D-126); not published (NG-13) | S14.5 |
+| Metrics | yes, accepted (S15 review, 2026-10-06): `docs/architecture/metrics.md`; evidence coverage and source age computed in SQL over the table of links; supplier count, geographic concentration and single-source relationships shown as "cannot be computed yet" (no supplier recorded); no composite score (D-128 to D-132). Audited in S16 (`docs/architecture/analytical-audit.md`, verdicts 2026-10-07): coverage and source age kept with wording corrected, the publishers tally retired, the supplier metrics kept, the reference date moved with each session that rebuilds the pages (D-133 to D-138) | S15, S16 |
 | DuckDB / SQL layer | yes, accepted (S14 review, 2026-10-03): `tools/warehouse.py` rebuilds an in-memory DuckDB from the canonical files on every run; queries in `sql/`, results in `sql/results/` with their inputs' digests; DuckDB pinned in `requirements-analysis.txt` (`docs/architecture/sql-layer.md`, D-118 to D-120) | S14 |
 
 Directories for data, schemas, analysis and UI are **not** created until the session that
@@ -111,7 +111,8 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 | `validate-i18n` | not applicable in v1.0 (NG-10: English only) |
 | `validate-design` | **built for the S11 page** (D-105): `python -m unittest discover -s tests -p "test_page.py"`, run in CI; `python tools/build_page.py --check` compares the committed page with a rebuild. **And for the S14.5 prototype** (D-125): `tests/test_insight.py` (IN-1 to IN-9; IN-10 and IN-11 from S15; IN-12 from S16), run in CI; `python tools/build_insight.py --check` |
 | `validate-freshness` | **first rule built** (S07, D-064): F-1, the 12-month horizon for `time_sensitive` fields, `python -m unittest discover -s tests -p "test_freshness.py"`, run in CI. Scheduled re-checks wait for the Change Detector |
-| `qa-browser` | **scripted, outside the repository** (S11, D-106): the run and its results are in `sessions/reports/SESSION-11-REPORT.md`; a pinned, CI-run version waits for a decision (H-3's alternative) |
+| `qa-browser` | **scripted, outside CI** (D-106): one script per page in `tests/browser/`, run with the pre-installed Chromium and Playwright; results are reported, not committed; a pinned, CI-run version waits for a decision |
+| `regression breaks` | **scripted, outside CI** (D-150, D-151): `tests/regression/breaks.py` copies the repository, plants one fault per break, rebuilds and runs the suite, and counts a break only if the suite fails for the reason it names; controls must pass. The full run is for milestone audits; a change runs the breaks that touch its files (`tests/regression/README.md`) |
 
 ## 6. Explicit non-goals — frozen for v1.0 (D-021)
 
@@ -160,8 +161,9 @@ review. D-014 and D-015 (S01) were superseded in part at the S05 review (D-039, 
 - **U-3 — RESOLVED by D-009. First-session scope is stated three ways.** CLAUDE.md §20 and
   `OPUS-5.5-BOOTSTRAP-PROMPT.md` ask the first session for schema, vocabulary, source
   policy, agent contracts, seed data and a UI slice; `SESSION-ROADMAP.md` and
-  `S00-PROMPT.md` split that across S00–S11. S00 followed the session prompt. Whether
-  the bootstrap prompt is superseded is undecided.
+  the first session prompt split that across S00–S11. S00 followed the session prompt. Whether
+  the bootstrap prompt is superseded is undecided. (It was superseded by D-009 and is no longer kept,
+  D-151.)
 - **U-4 — RESOLVED by D-010. No owner for agent contracts.** CLAUDE.md §20 lists "an agent contract set" as a
   first-phase output and PROJECT-EVALUATION-FRAMEWORK §11 expects `docs/agents/`, but no
   session before S19 is assigned to produce it.

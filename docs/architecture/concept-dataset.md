@@ -269,9 +269,9 @@ definitions that rest on them. So do the five records they support: advanced pac
 2.5D packaging, 3D die stacking, and EUV and DUV lithography. They become canonical when
 the human approves the open rulings, or after new sources replace them.
 
-**Resolved at the end of S09** (2026-10-02, "Approve both (Recommended)"). The human approved
-D-070 and D-076. The 9 claims, whose verdicts the human had given at the S08 review, and the 5
-records moved to the canonical files; the S09 report's addendum records it.
+**Resolved** (2026-10-02). The human approved D-070 and D-076. The 9 claims, whose verdicts the human
+had given on 2026-10-01, and the 5 records moved to the canonical files
+([review record](../quality/human-reviews.md#facilities-events-and-the-held-concept-claims-2026-10-02)).
 
 ## 9. validate-data for concept and product records
 

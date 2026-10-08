@@ -1,7 +1,9 @@
 # M1 Milestone Audit — Domain + Evidence Foundation (S03–S06)
 
-**Status:** ACCEPTED (human review of S07, 2026-10-01: "Approve all"). Written in S07 as its first task (human answer H-5, 2026-09-30:
-"First task of S07 (Recommended)"). It is a document only, with no code change.
+> **Records cited.** This is a process audit (PEF §4). The session reports and prompts it cites are kept in the
+> private development archive, not in this repository (D-151); the decisions, documents and files it cites are here.
+
+**Status:** ACCEPTED (human review of S07, 2026-10-01). Written in S07 as its first task (human answer H-5, 2026-09-30). It is a document only, with no code change.
 **Date:** 2026-10-01
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §4 ("At every major milestone") and
 §12 (the Portfolio Reviewer's outputs).
@@ -9,7 +11,7 @@
 "portfolio M1" (Part 1, question 3).
 **Written by:** Claude, playing the Portfolio Reviewer role. `docs/agents/roles.md` marks
 that role inactive until S24, and it has no contract. Writing this audit is a recorded
-deviation from `roles.md` (S07 report), which Part B §10 of the S07 prompt anticipated.
+deviation from `roles.md`, which the S07 prompt anticipated.
 
 **Bases read.**
 
@@ -93,15 +95,14 @@ found. No accepted artifact was rewritten to hide it.
   was read (D-049; `claim-model.md` §8).
 - **"The H100 is fabricated using the TSMC 4N process"** (FAB-05, repeated in S04 §12 and
   S05 §13–§14). The sentence names the GH100 die that powers the H100. This was found only
-  by reading the sentence in S06 (S06 report, Evidence).
+  by reading the sentence in S06.
 - **That a registered locator stays valid.** SRC-006's bytes and heading changed between
-  S01 and S06 (S06 report).
+  S01 and S06.
 - **That primary sources and the regulator are reachable.** EDGAR refused (S05-A1). JEDEC,
   TSMC, Samsung and others had refused in S01 (`source-register.md`, "Not retrievable").
 - **That "primary" is a class.** It is a relation between a source and a claim (SP-3,
   D-035).
-- **That a prompt committed on a session branch reaches `main`.** The S04 prompt did not
-  (S04 Deviation 1). From S05, each prompt is on `main` before the session starts.
+- **That a prompt committed on a session branch reaches `main`.** The S04 prompt did not. From S05, each prompt is on `main` before the session starts.
 
 ### 5. Which shortcuts were taken
 
@@ -109,11 +110,11 @@ found. No accepted artifact was rewritten to hide it.
   Deviation 2). It is not a repository dependency.
 - S05-R1's anchors are verified by hand only. Its full text is outside the repository.
 - The register migration is a function inside a test (`migrated_records()`), because S06
-  allowed only one new command in `tools/` (S06 Deviation 5).
+  allowed only one new command in `tools/`.
 - Markdown tables in documents are parsed by the tests, with width assertions.
 - Test helpers are imported across test modules (S04 Deviation 3, kept at the S04 review).
 - The trace reads entities and relationships from `--records FILE`, because their layout
-  was S07's and S10's to choose (S06 Deviation 6).
+  was S07's and S10's to choose.
 
 ### 6. What technical and research debt was created
 
