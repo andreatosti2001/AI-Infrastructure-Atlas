@@ -73,7 +73,7 @@ anchors and review.
 | Control | What it checks |
 |---|---|
 | `python -m unittest discover -s tests` | schemas, data integrity (every reference resolves, no unreviewed claim is canonical, freshness), the human review record, the SQL results, and both pages (every text node has a home in the records or is marked framing, rebuild byte-identical, accessibility basics) |
-| `python tools/validate_repo.py` | Gate 0: the governing documents exist and every relative link in the repository's Markdown resolves |
+| `python tools/validate_repo.py` | Gate 0: the governing documents exist, every relative link in the repository's Markdown resolves, and no session record is committed here |
 | `--check` on `tools/warehouse.py`, `tools/build_page.py`, `tools/build_insight.py` | every committed result and page equals a fresh rebuild from `data/` |
 | [`tests/regression/`](tests/regression/README.md) | deliberate breaks: each plants one fault and must be caught by the suite for the reason it names |
 | [`tests/browser/`](tests/browser/README.md) | browser QA at 1280 and 375 px: errors, overflow, keyboard path, measured contrast |

@@ -5,7 +5,10 @@ Checks the repository's structural invariants (D-151):
 - the constitutional documents, the documentation map, the baseline, the decision log and the human
   review record exist;
 - every relative link in the repository's Markdown resolves: the file or folder exists, and a fragment
-  (`file.md#heading`, `#heading`) names a heading of the target document.
+  (`file.md#heading`, `#heading`) names a heading of the target document;
+- no session record is in the public tree (D-152): no `sessions/` folder, no session prompt
+  (`SNN-PROMPT.md`), session report (`SESSION-NN-REPORT.md`) or prompt registry. They belong in the private
+  archive repository (`SESSION-PROMPT-SPEC.md` §5).
 
 Data, schemas, SQL results and pages are validated by the test suite (`tests/`) and the `--check`
 commands of `tools/warehouse.py`, `tools/build_page.py` and `tools/build_insight.py`.
@@ -39,6 +42,7 @@ SKIPPED_DIRS = {".git", "node_modules", "__pycache__", ".venv", "venv"}
 LINK_RE = re.compile(r"(?<!!)\[[^\]]*\]\(([^)\s]+)\)")
 INLINE_CODE_RE = re.compile(r"`[^`]*`")
 EXTERNAL_RE = re.compile(r"^[a-z][a-z0-9+.-]*:", re.IGNORECASE)
+SESSION_RECORD_RE = re.compile(r"^(S\d{2}(\.\d+)?-PROMPT|SESSION-\d{2}(\.\d+)?-REPORT|PROMPT-REGISTRY)\.md$")
 
 
 def heading_anchor(heading: str) -> str:
@@ -108,10 +112,21 @@ def link_errors(root: Path) -> list[str]:
     return errors
 
 
+def session_record_errors(root: Path) -> list[str]:
+    errors = [f"session record in the public repository (D-152): sessions/"] if (root / "sessions").is_dir() else []
+    for path in sorted(root.rglob("*.md")):
+        rel = path.relative_to(root)
+        if SKIPPED_DIRS.intersection(rel.parts) or rel.parts[0] == "sessions":
+            continue
+        if SESSION_RECORD_RE.match(path.name):
+            errors.append(f"session record in the public repository (D-152): {rel.as_posix()}")
+    return errors
+
+
 def validate(root: Path) -> list[str]:
     """Return a list of human-readable errors; empty means valid."""
     errors = [f"missing required file: {rel}" for rel in REQUIRED_FILES if not (root / rel).is_file()]
-    return errors + link_errors(root)
+    return errors + session_record_errors(root) + link_errors(root)
 
 
 def main(argv: list[str]) -> int:

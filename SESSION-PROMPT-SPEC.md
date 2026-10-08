@@ -244,10 +244,29 @@ Mandatory audits:
 ## 5. Session reports
 
 Each session must create a report, `SESSION-XX-REPORT.md`. Session reports and session prompts are kept in the
-private development archive, outside the public repository (`docs/architecture/decisions.md`, D-151). What a
-session settles reaches the repository as current state: decisions in `docs/architecture/decisions.md`, the
-human's verdicts on claims in `docs/quality/human-reviews.md`, and the documents, data, checks and pages it
-changes. No canonical record, document or check may depend on a session report.
+private development archive, the private repository `andreatosti2001/atlas-dev-archive`, never in the public
+repository (`docs/architecture/decisions.md`, D-151, D-152). What a session settles reaches the public
+repository as current state: decisions in `docs/architecture/decisions.md`, the human's verdicts on claims in
+`docs/quality/human-reviews.md`, and the documents, data, checks and pages it changes. No canonical record,
+document or check may depend on a session report.
+
+**What every session copies to the archive** (D-152), with the session's number in place of `XX`:
+
+| When | What | Where in `atlas-dev-archive` |
+|---|---|---|
+| at the start, before any change | the session prompt, verbatim; a later revision is a new commit, never an edit of history | `sessions/prompts/SXX-PROMPT.md` |
+| at the end | the session report, with every addendum the human's later answers add | `sessions/reports/SESSION-XX-REPORT.md` |
+| at the end | the private working files: browser QA screenshots and results, fail-first output, break-run output, the human's answers as given, scratch notes, one-off scripts | `sessions/reports/SESSION-XX-<kind>/` (`-qa`, `-breaks`, `-research`, …) |
+| when a prompt is added | its row | `sessions/prompts/PROMPT-REGISTRY.md` |
+
+**What stays public instead:** decisions (outcomes and dates), the human review record, checks and their
+tests, durable scripts (`tests/regression/`, `tests/browser/`), research documents and the search logs they
+cite (`docs/research/search-logs/`), audit evidence that an accepted audit cites, and the documentation.
+
+**How:** the session works with both repositories attached. It commits to the archive on the archive's `main`
+branch and pushes; the final message gives the archive commit. If the archive cannot be attached or pushed,
+the session stops and asks the human; it never falls back to the public repository. Gate 0 fails if a session
+prompt, a session report, the registry or a `sessions/` folder is committed to the public repository.
 
 Minimum fields:
 

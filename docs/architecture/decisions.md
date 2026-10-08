@@ -2681,3 +2681,25 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   process to cite one verdict); dropping `recorded_in` and keeping only the verdict and date (loses where
   the review is recorded); a public archive of the same files under new names; rewriting Git history (a
   separate publication decision, not taken here).
+
+## D-152 — Every session archives its own records in the private archive repository
+
+- **Date:** 2026-10-08 · **Status:** accepted (decided by the human on 2026-10-08)
+- **Context:** D-151 moved session prompts, reports and working files out of the public repository into a
+  private development archive, but named no place and gave no session the task of filling it. The human
+  created the private repository `andreatosti2001/atlas-dev-archive` and asked that every session copy there
+  what belongs there.
+- **Decision:**
+  - every development session works with `atlas-dev-archive` attached. At its start it commits its prompt
+    there verbatim and reads the previous report from there; at its end it commits its report and its
+    private working files there, and its final message gives the archive commit (`CLAUDE.md` §4, §17;
+    `SESSION-PROMPT-SPEC.md` §5 lists what goes where);
+  - a session that cannot attach or push to the archive stops and asks the human; it never falls back to
+    the public repository;
+  - Gate 0 fails if a session prompt, a session report, the prompt registry or a `sessions/` folder is
+    committed to the public repository (`tests/test_validate_repo.py`, written first).
+- **Not changed:** what is public (D-151); the report's minimum fields; the decision log, the human review
+  record and the search logs stay public.
+- **Rejected:** leaving the archive to the human by hand (records get lost between sessions); an automated
+  copy from CI (it would need the public repository to hold the records first, or a secret with write access
+  to the private one).

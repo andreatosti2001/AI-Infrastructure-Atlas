@@ -58,9 +58,16 @@ Before editing anything:
 4. read the repository's `AGENTS.md` if present;
 5. read the relevant architecture/data/policy documents;
 6. inspect the actual files involved;
-7. run the relevant validators before changing the system when practical.
+7. run the relevant validators before changing the system when practical;
+8. for a development session (`SESSION-PROMPT-SPEC.md`): make sure the private archive repository
+   `andreatosti2001/atlas-dev-archive` is available (attach it if it is not; if that fails, stop and ask the
+   human), commit the session prompt there verbatim, and read the previous session report from it.
 
 Never infer the repository tree from a previous session.
+
+**Archive rule (D-152).** Session prompts, session reports and the session's private working files go to
+`atlas-dev-archive`, never to this repository (`SESSION-PROMPT-SPEC.md` §5 lists what goes where). Gate 0
+fails if one is committed here.
 
 ## 5. Evidence-first rule
 
@@ -517,6 +524,12 @@ Decisions already taken are recorded as outcomes and dates, never as transcripts
 ### Next recommended milestone
 
 One concrete next milestone only.
+
+### Archived
+
+Before the session ends, the report above and the session's private working files are committed and pushed
+to `atlas-dev-archive` (`SESSION-PROMPT-SPEC.md` §5), and the final message gives the archive commit. A
+session whose records are not archived is not finished.
 
 ## 18. Stop conditions
 

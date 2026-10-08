@@ -175,11 +175,21 @@ D151 = [
      edit(REVIEWS, "finds the anchor, reads the whole sentence", "finds the anchor, reads the full sentence"), [], []),
 ]
 
+# D-152: session records never in the public repository.
+D152 = [
+    ("D152-1", "a session report committed to the public repository",
+     lambda root: (root / "sessions/reports").mkdir(parents=True) or (root / "sessions/reports/SESSION-17-REPORT.md").write_text("# S17\n", encoding="utf-8"),
+     [], ["session record in the public repository (D-152): sessions/"]),
+    ("D152-2", "a session prompt committed beside the documents",
+     lambda root: (root / "docs/S17-PROMPT.md").write_text("# S17\n", encoding="utf-8"),
+     [], ["session record in the public repository (D-152): docs/S17-PROMPT.md"]),
+]
+
 S165_BREAKS = s165.breaks
 
 
 def breaks():
-    return [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151
+    return [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152
 
 
 if __name__ == "__main__":

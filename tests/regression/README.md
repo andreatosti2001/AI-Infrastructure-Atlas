@@ -31,8 +31,8 @@ removed; `breaks.py` is the complete harness and the only entry point.
 | `breaks_metrics.py` | the metrics; it also merges the three files above into one shape and holds the runner |
 | `breaks_metric_audit.py` | the remediations of the metric audit |
 | `breaks_supplier_freshness.py` | stale supplier evidence; the human review record's form |
-| `breaks.py` | the supplier-evidence rules and the reported supplier; the human review record and Gate 0's links |
+| `breaks.py` | the supplier-evidence rules and the reported supplier; the human review record and Gate 0's links; no session record in the public tree |
 
 **Break IDs** are stable labels, kept so that audits can cite them; the prefix names the layer that added the
-break (`S13-`, `S14-`, `S14.5-`, `S15-`, `S16-`, `S16.5-`, `S16.6-` after the roadmap phase, `D151-` after the
+break (`S13-`, `S14-`, `S14.5-`, `S15-`, `S16-`, `S16.5-`, `S16.6-` after the roadmap phase, `D151-`, `D152-` after the
 decision).
