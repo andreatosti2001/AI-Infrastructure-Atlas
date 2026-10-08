@@ -164,7 +164,7 @@ its one home; the table only maps lesson to commitment and shows what the Atlas 
    - placeholder directories (D-005);
    - a Python matrix and deploy jobs (D-004);
    - headless-browser retrieval (D-014);
-   - WebFetch summaries as evidence (S01 report).
+   - WebFetch summaries as evidence.
 8. **Carry into M1:**
    - the frozen non-goals and boundaries (baseline §2, §6);
    - D-018 commitments L-01 to L-09;

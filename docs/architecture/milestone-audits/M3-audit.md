@@ -40,7 +40,7 @@ The roadmap's M3, three sessions:
 **Against the gates:**
 
 - **S11's gate is met in part.** The page was reviewed by the human, but "the findings are Claude's
-  proposals, agreed, not the human's own walk-through" (S11 report, "Acceptance criterion 8 is met in part").
+  proposals, agreed, not the human's own walk-through".
 - **S13's gate is met.** Every weakness was corrected (F-1) or documented with an owner (D-113).
 
 ### 3. What changed, and why
@@ -52,7 +52,7 @@ The roadmap's M3, three sessions:
 - **How human decisions are recorded changed** (D-114): outcomes and dates, not verbatim answers. S13's
   files were rewritten that way the same day.
 - **The page grew a second consumer of its rules:** `source-policy.md`, `relationship-taxonomy.md` and
-  `company-dataset.md` became page inputs (S11, Deviation 4). Any change to them now requires a rebuild.
+  `company-dataset.md` became page inputs. Any change to them now requires a rebuild.
 
 ### 4. Which assumptions failed
 
@@ -69,14 +69,12 @@ The roadmap's M3, three sessions:
 
 - **The new-user test was replaced by Claude's proposals,** agreed by the human (S11). The project's own
   gate for S11, a person who did not build it, was not tested.
-- **A checkpoint with known failures was pushed** to satisfy the environment's stop hook (S12, Deviation 1;
-  CI run 103 failed). Nothing reached `main`.
-- **Only the 20 sampled sources were re-retrieved** for byte changes (S13, Deviation 3).
+- **A checkpoint with known failures was pushed** to satisfy the environment's stop hook. Nothing reached `main`.
+- **Only the 20 sampled sources were re-retrieved** for byte changes.
 - **Session harnesses live in `sessions/reports/`,** not `tools/`, with network bytes outside the
   repository (S12, S13). They are reproducible scripts, but not tested code. *(Since 2026-10-08, D-151: the
   break harness is in `tests/regression/` and the browser QA scripts in `tests/browser/`.)*
-- **No check was added for F-1,** because telling which words of a sentence are firms needs a reader
-  (S13, Deviation 5).
+- **No check was added for F-1,** because telling which words of a sentence are firms needs a reader.
 
 ### 6. What technical and research debt was created
 

@@ -44,7 +44,7 @@ The roadmap's M4:
 - **S15's mission is met in part.** Of the two concentration metrics it names, neither can be computed:
   no supplier is recorded. They are shown as gaps, not hidden (D-130).
 - **S16's gate is met.** Every metric was ruled on; the cold reading was taken by two fresh agents after
-  the human waived theirs (S16, Deviation 1).
+  the human waived theirs.
 
 ### 3. What changed, and why
 
@@ -77,8 +77,8 @@ The roadmap's M4:
 
 - **The research view stayed a prototype:** one slice, two accelerators, not published (NG-13).
 - **The human's reading of the SQL came after the page,** as questions with candidate answers, at the
-  human's request (S14, Deviation 4).
-- **S14.5 ran without a Part B** (S14.5, Deviation 1).
+  human's request.
+- **S14.5 ran without a Part B**.
 - **Breaks were re-run selectively** after wording changes, with a reasoned argument that stricter checks
   cannot uncatch a fault (S15). S16 ran the merged harness in full.
 - **The human's cold reading was waived** in S16. Two agents read instead, so a person's misreading
@@ -121,7 +121,7 @@ The roadmap's M4:
 
 ### 8. What should be carried into the next phase
 
-**The metric rules** (S16 report, "Implications"):
+**The metric rules**:
 
 - a question, population and denominator before any number;
 - a population line a stranger can reproduce from;

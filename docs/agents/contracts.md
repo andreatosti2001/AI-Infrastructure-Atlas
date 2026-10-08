@@ -22,7 +22,7 @@ MA's nine fields, in MA's order.
 | ROLE | Source Scout |
 | INPUTS | the session's question; the preferred classes for the matrix row it concerns (`source-policy.md` §7); the source records in `data/sources.json`, to avoid duplicates |
 | OUTPUTS | candidate URLs, each with the class it would have and the row it would serve; access gaps met (host, response, time) |
-| ALLOWED_WRITES | the session report, outside this repository (the candidate list and the access gaps; D-151) |
+| ALLOWED_WRITES | the session report, outside this repository (the candidate list and the access gaps); `docs/research/search-logs/` for a search log that a research document cites as its method (D-151) |
 | FORBIDDEN_WRITES | any file in `data/`; any schema; a claim's `review`; a class assigned without reading the source |
 | EVIDENCE_REQUIREMENTS | search results and snippets are discovery aids only, never cited (`source-policy.md` §2, MA §11.2); no circumvention of a refusal (RA-2); declaring an identity to a site is the human's (RA-7) |
 | HANDOFF_FORMAT | a report table: URL, proposed class, row served, why it is preferred, access result |
