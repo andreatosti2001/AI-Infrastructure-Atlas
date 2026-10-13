@@ -229,7 +229,7 @@ S17 = [
      ["a proposed rule never takes effect or is repealed"]),
     ("S17-7", "a later effective date resting on a text that is not the act's official text (D-164) (rebuilt)",
      jedit("data/sources.json", lambda d: src(d, "src-059").update(source_class="government_publication")), ALL,
-     ["dated 2023-11-17, after src-059", "no citation with a class and standing that event:effective allows"]),
+     ["dated 2023-11-17, after src-059", "event-us-fr-2023-23055-effective-2023-11-17: no citation with a class and"]),
     ("S17-8", "a publication date moved after the text that states it (EV-3) (rebuilt)",
      jedit(EVENTS, lambda d: next(e for e in d if e["id"] == "event-us-fr-2023-23049-published-2023-10-25").update(date="2023-10-26")), ALL,
      ["dated 2023-10-26, after src-060"]),
