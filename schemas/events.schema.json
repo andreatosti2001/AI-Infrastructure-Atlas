@@ -2,15 +2,15 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/andreatosti2001/AI-Infrastructure-Atlas/schemas/events.schema.json",
   "title": "Atlas facility event record",
-  "description": "One dated event in the life of a facility (S09; D-083, proposed: H-2 'Minimal event schema (Recommended)'). The records live in data/events.json (canonical) and data/staging/events.json (staging). This file is the one home of the event shape and of the event-type vocabulary. Why each type exists, how a plan differs from an occurrence, the ID rule and how a facility's status is derived from events are in docs/architecture/facility-dataset.md. There is deliberately no status, no planned date and no owner or operator field: status is derived from events by tools/facility_status.py and never stored (MA §5.6, R-8); a planned date lives only in the ATTRIBUTION claim that states the plan (ER-8); ownership and operation are S10 edges (R-5). An event is never an edge endpoint (relationship-taxonomy.md §10).",
+  "description": "One dated event in the life of a facility (S09) or, from S17, of a policy (D-156; policy-dataset.md P-4). S09: D-083, proposed: H-2 'Minimal event schema (Recommended)'). The records live in data/events.json (canonical) and data/staging/events.json (staging). This file is the one home of the event shape and of the event-type vocabulary. Why each type exists, how a plan differs from an occurrence, the ID rule and how a facility's status is derived from events are in docs/architecture/facility-dataset.md. There is deliberately no status, no planned date and no owner or operator field: status is derived from events by tools/facility_status.py and never stored (MA §5.6, R-8); a planned date lives only in the ATTRIBUTION claim that states the plan (ER-8); ownership and operation are S10 edges (R-5). An event is never an edge endpoint (relationship-taxonomy.md §10).",
   "type": "object",
   "required": ["id", "event_type", "subject", "date", "claim_ids"],
   "properties": {
     "id": { "type": "string", "pattern": "^event-[a-z0-9]+(-[a-z0-9]+)*$", "description": "event-, the subject's ID without its type prefix, the event type, and the date with its own precision (facility-dataset.md §6, EI-1)." },
     "event_type": { "$ref": "#/$defs/vocab_event_type" },
     "subject": {
-      "description": "What the event happened to. An occurrence (opened, expanded, closed) always has a facility as its subject. An announced event has the facility when the plan concerns an existing facility record, and otherwise the announcing company, because a site known only from a plan gets no facility record (ER-8; S09 Part B §16).",
-      "oneOf": [ { "$ref": "entities.schema.json#/$defs/ref_company" }, { "$ref": "#/$defs/ref_facility" } ]
+      "description": "What the event happened to. An occurrence (opened, expanded, closed) always has a facility as its subject. An announced event has the facility when the plan concerns an existing facility record, and otherwise the announcing company, because a site known only from a plan gets no facility record (ER-8; S09 Part B §16). From S17 (D-156): published, effective and repealed always have a policy as their subject, and an announced event may have a policy as its subject when the authority announces a plan about the act (e.g. to rescind it); an announcement never moves the derived status (ER-8).",
+      "oneOf": [ { "$ref": "entities.schema.json#/$defs/ref_company" }, { "$ref": "#/$defs/ref_facility" }, { "$ref": "entities.schema.json#/$defs/ref_policy" } ]
     },
     "date": { "$ref": "entities.schema.json#/$defs/partial_date", "description": "The date of the event at the precision the source gives (YYYY, YYYY-MM or YYYY-MM-DD). For announced, the date of the announcement, never the date the plan names." },
     "claim_ids": { "$ref": "entities.schema.json#/$defs/claim_ids", "description": "The claims that state the event. An occurrence rests on at least one FACT or DERIVATION; an announced event on ATTRIBUTION claims only (EV-2)." }
@@ -20,17 +20,24 @@
     {
       "if": { "properties": { "event_type": { "enum": ["opened", "expanded", "closed"] } }, "required": ["event_type"] },
       "then": { "properties": { "subject": { "$ref": "#/$defs/ref_facility" } } }
+    },
+    {
+      "if": { "properties": { "event_type": { "enum": ["published", "effective", "repealed"] } }, "required": ["event_type"] },
+      "then": { "properties": { "subject": { "$ref": "entities.schema.json#/$defs/ref_policy" } } }
     }
   ],
   "$defs": {
     "ref_facility": { "type": "string", "pattern": "^facility-[a-z0-9]+(-[a-z0-9]+)*$" },
     "vocab_event_type": {
-      "description": "Facility events only (H-2), taken from MA §5.5. Other MA §5.5 types (acquired, invested, restricted and the policy types) are not instantiable in v1.",
+      "description": "Facility events (H-2, S09) and, from S17, policy events (D-156), taken from MA §5.5. Each occurrence names the kind of record it happens to (x-subject). Other MA §5.5 types (acquired, invested, restricted) are not instantiable in v1.",
       "oneOf": [
         { "const": "announced", "description": "The subject made public a plan or decision about a facility (a new site, an expansion or a closure), on the date the cited source gives for the announcement. A plan, never a state (ER-8): it changes no derived status.", "x-occurrence": false },
-        { "const": "opened", "description": "The facility was completed or began operating, as a first-hand source states, on the date it gives. Which of the two the source says is recorded in the cited claim; neither is read as 'operating today'.", "x-occurrence": true },
-        { "const": "expanded", "description": "Added capacity or space at an existing facility was completed, as a first-hand source states. An expansion that is only planned is announced.", "x-occurrence": true },
-        { "const": "closed", "description": "The facility stopped operating, as a first-hand source states.", "x-occurrence": true }
+        { "const": "opened", "description": "The facility was completed or began operating, as a first-hand source states, on the date it gives. Which of the two the source says is recorded in the cited claim; neither is read as 'operating today'.", "x-occurrence": true, "x-subject": "facility" },
+        { "const": "expanded", "description": "Added capacity or space at an existing facility was completed, as a first-hand source states. An expansion that is only planned is announced.", "x-occurrence": true, "x-subject": "facility" },
+        { "const": "closed", "description": "The facility stopped operating, as a first-hand source states.", "x-occurrence": true, "x-subject": "facility" },
+        { "const": "published", "description": "The act appeared in the official journal on this date, as the journal's own record of it states (policy-dataset.md P-4).", "x-occurrence": true, "x-subject": "policy" },
+        { "const": "effective", "description": "All or part of the act has legal effect from this date, as the act's own text fixes it. An act taking effect in stages has one event per stated date. The act fixes its own effective date, so this event may be dated after the act's publication (D-164); it may also precede it.", "x-occurrence": true, "x-subject": "policy" },
+        { "const": "repealed", "description": "The act was repealed, rescinded or removed, as a later official text, or the authority's official notice of the repeal, states. An announced intention to rescind is announced, never repealed (ER-8).", "x-occurrence": true, "x-subject": "policy" }
       ]
     }
   }

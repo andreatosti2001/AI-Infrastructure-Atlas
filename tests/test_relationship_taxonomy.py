@@ -55,7 +55,7 @@ DISPOSITIONS = {
     "already an entity field",
     "an event",
     "a derivation",
-    "reserved for S17",
+    "defined for S18",
     "excluded by a non-goal",
     "rejected as vague",
 }
@@ -183,9 +183,16 @@ def all_refs(node) -> list[str]:
     return found
 
 
+POLICY_DATASET = (REPO_ROOT / "docs/architecture/policy-dataset.md").read_text(encoding="utf-8")
+
+
 def resolve(target: str) -> bool:
     if target.startswith("rel:"):
         return target[len("rel:") :] in VOCAB
+    if target.startswith("policy-link:"):
+        # the one home of an S18 link until S18 adds it to the schema: a row of policy-dataset.md P-8
+        body = POLICY_DATASET[POLICY_DATASET.index("## P-8") : POLICY_DATASET.index("## P-9")]
+        return f"| `{target[len('policy-link:'):]}` | **define" in body
     return resolve_target(target)
 
 
@@ -372,8 +379,10 @@ class ReconciliationTests(unittest.TestCase):
                     self.assertTrue(all(t.startswith("attribute:") for t in targets))
                 elif disposition == "an event":
                     self.assertEqual(targets, ["kind:event"])
-                elif disposition == "reserved for S17":
-                    self.assertEqual(targets, ["reserved:policy"])
+                elif disposition == "defined for S18":
+                    # S17 (D-160): a policy link is defined in policy-dataset.md P-8 and recorded from S18
+                    self.assertEqual(len(targets), 1)
+                    self.assertTrue(targets[0].startswith("policy-link:"))
                 else:
                     self.assertEqual(targets, ["none"])
                 if disposition == "excluded by a non-goal":

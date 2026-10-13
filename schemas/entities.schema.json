@@ -14,7 +14,8 @@
     { "if": { "properties": { "type": { "const": "technology" } } }, "then": { "$ref": "#/$defs/technology" } },
     { "if": { "properties": { "type": { "const": "component" } } }, "then": { "$ref": "#/$defs/component" } },
     { "if": { "properties": { "type": { "const": "product" } } }, "then": { "$ref": "#/$defs/product" } },
-    { "if": { "properties": { "type": { "const": "jurisdiction" } } }, "then": { "$ref": "#/$defs/jurisdiction" } }
+    { "if": { "properties": { "type": { "const": "jurisdiction" } } }, "then": { "$ref": "#/$defs/jurisdiction" } },
+    { "if": { "properties": { "type": { "const": "policy" } } }, "then": { "$ref": "#/$defs/policy" } }
   ],
   "$defs": {
 
@@ -143,6 +144,27 @@
       "additionalProperties": false
     },
 
+    "policy": {
+      "description": "One published legal act that acts on the chain: a rule as an official journal publishes it, or a codified regulation as a whole (S17; policy-dataset.md P-2, P-3; D-155). The fields identify the act; what it provides stays in claims attributed to its authority (D-157). There is deliberately no status (derived from events by tools/policy_status.py, D-156), no date (dates are events), no summary or content, no 'applies to' (an S18 link, D-160, D-161) and no notes. The id is policy-, the ISO code of the issuing jurisdiction and the official identifier as a slug (PL-2).",
+      "type": "object",
+      "required": ["id", "type", "name", "aliases", "identity_claim_ids", "official_title", "official_citation", "issued_in", "issuing_authority", "instrument_form", "measure_kinds", "amends"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^policy-[a-z]{2}-[a-z0-9]+(-[a-z0-9]+)*$" },
+        "type": { "const": "policy" },
+        "name": { "$ref": "#/$defs/display_name" },
+        "aliases": { "$ref": "#/$defs/aliases" },
+        "identity_claim_ids": { "$ref": "#/$defs/claim_ids" },
+        "official_title": { "$ref": "#/$defs/attr_text", "description": "The title as the act's text prints it." },
+        "official_citation": { "$ref": "#/$defs/attr_text", "description": "How the official journal or code cites the act (e.g. '87 FR 62186', '15 CFR parts 730-774')." },
+        "issued_in": { "$ref": "#/$defs/attr_jurisdiction", "description": "The jurisdiction whose authority issued the act. A country only until a decision creates a supranational jurisdiction (PL-3, D-154)." },
+        "issuing_authority": { "$ref": "#/$defs/attr_text", "description": "The issuing body as the text names it. Text, because institution stays reserved (D-159)." },
+        "instrument_form": { "$ref": "#/$defs/attr_instrument_form", "description": "What the act is, in the official journal's own label." },
+        "measure_kinds": { "$ref": "#/$defs/attr_measure_kind", "description": "What kind of measure the act's text says it is." },
+        "amends": { "$ref": "#/$defs/attr_policy", "description": "The acts this act's text says it amends; not_applicable for an act that amends none." }
+      },
+      "additionalProperties": false
+    },
+
     "display_name": {
       "description": "The label the Atlas displays. An editorial choice, not a sourced fact; the sourced legal name is a separate field where it matters.",
       "type": "string", "minLength": 1, "pattern": "^\\S(.*\\S)?$"
@@ -172,6 +194,7 @@
     "ref_technology": { "type": "string", "pattern": "^technology-[a-z0-9]+(-[a-z0-9]+)*$" },
     "ref_component": { "type": "string", "pattern": "^component-[a-z0-9]+(-[a-z0-9]+)*$" },
     "ref_jurisdiction": { "type": "string", "pattern": "^jurisdiction-[a-z]{2}$" },
+    "ref_policy": { "type": "string", "pattern": "^policy-[a-z]{2}-[a-z0-9]+(-[a-z0-9]+)*$" },
 
     "assertion": {
       "description": "One sourced value of an attribute. valid_from and valid_to bound the period the cited claims support; leave them out when the source gives no period.",
@@ -230,6 +253,24 @@
         { "$ref": "#/$defs/unresolved" }
       ]
     },
+    "attr_instrument_form": {
+      "oneOf": [
+        { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/assertion", "properties": { "value": { "$ref": "#/$defs/vocab_instrument_form" } } } },
+        { "$ref": "#/$defs/unresolved" }
+      ]
+    },
+    "attr_measure_kind": {
+      "oneOf": [
+        { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/assertion", "properties": { "value": { "$ref": "#/$defs/vocab_measure_kind" } } } },
+        { "$ref": "#/$defs/unresolved" }
+      ]
+    },
+    "attr_policy": {
+      "oneOf": [
+        { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/assertion", "properties": { "value": { "$ref": "#/$defs/ref_policy" } } } },
+        { "$ref": "#/$defs/unresolved" }
+      ]
+    },
     "attr_cooling_method": {
       "oneOf": [
         { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/assertion", "properties": { "value": { "$ref": "#/$defs/vocab_cooling_method" } } } },
@@ -238,14 +279,15 @@
     },
 
     "vocab_entity_type": {
-      "description": "Instantiable domain-entity types (D-022). Reserved types (institution, policy) and record kinds owned by other sessions (source, claim, event, relationship) are deliberately absent, so records of those kinds fail here.",
+      "description": "Instantiable domain-entity types (D-022; policy from S17, D-155). The reserved type (institution) and record kinds owned by other sessions (source, claim, event, relationship) are deliberately absent, so records of those kinds fail here.",
       "oneOf": [
         { "const": "company", "description": "entity-taxonomy.md §3.1" },
         { "const": "facility", "description": "entity-taxonomy.md §3.2" },
         { "const": "technology", "description": "entity-taxonomy.md §3.3" },
         { "const": "component", "description": "entity-taxonomy.md §3.4" },
         { "const": "product", "description": "entity-taxonomy.md §3.5" },
-        { "const": "jurisdiction", "description": "entity-taxonomy.md §3.6" }
+        { "const": "jurisdiction", "description": "entity-taxonomy.md §3.6" },
+        { "const": "policy", "description": "entity-taxonomy.md §3.7; policy-dataset.md" }
       ]
     },
     "vocab_actor_role": {
@@ -292,6 +334,21 @@
     "vocab_jurisdiction_kind": {
       "oneOf": [
         { "const": "country", "description": "A state or territory with its own ISO 3166-1 alpha-2 code. The code is used as an identifier; it states no position on sovereignty. Supranational jurisdictions are reserved for the EU lens (D-008, D-022)." }
+      ]
+    },
+    "vocab_instrument_form": {
+      "description": "The form of a legal act, as the official journal labels it (policy-dataset.md P-3, D-155). Values are added with the first record that needs one.",
+      "oneOf": [
+        { "const": "codified_regulation", "description": "A regulation as codified in an official code, taken as a whole (e.g. the Export Administration Regulations, 15 CFR parts 730-774): the standing text that rules amend." },
+        { "const": "interim_final_rule", "description": "A rule the official journal labels 'interim final rule': in effect on its stated date, with comments invited." },
+        { "const": "final_rule", "description": "A rule the official journal labels 'final rule'." },
+        { "const": "proposed_rule", "description": "A rule the official journal labels 'proposed rule'. A proposal never takes effect (PL-6)." }
+      ]
+    },
+    "vocab_measure_kind": {
+      "description": "What kind of measure a legal act is, as its text states (policy-dataset.md P-3, D-155). A kind is added by the session that records its first act; public support, investment screening and others are future values.",
+      "oneOf": [
+        { "const": "export_control", "description": "The act controls the export, re-export or transfer of items, software or technology (MA §6.1 ExportControl)." }
       ]
     },
     "vocab_cooling_method": {

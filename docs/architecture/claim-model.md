@@ -71,7 +71,7 @@ MA §10 lists seven claim types "at minimum". Each has one disposition. MA is no
 
 | MA §10 claim type | Disposition | Why |
 |---|---|---|
-| law / normative text | reserved: the policy layer (S17) | No v1 record states a rule. When S17 starts, it decides whether a normative text needs its own type or is an `ATTRIBUTION` to the issuing authority |
+| law / normative text | `FACT` for what an act's text fixes about itself; `ATTRIBUTION` to the issuing authority for what it provides (S17, D-157) | No new type: a dated fact about a published act is checkable like any `FACT`, with the authority as `originator`; what a rule requires is the authority's statement, true as an attribution whatever its later legal fate. A policy record cites only these two types (`policy-dataset.md` P-5) |
 | fact | `FACT` | The same idea. The Atlas adds the condition that the source is first-hand (§4) |
 | derived | `DERIVATION` | The same idea. MA also lists "derived" as an evidence status; that one is dropped (§3) |
 | attributed | `ATTRIBUTION` | The same idea |
@@ -557,4 +557,4 @@ records the verdict, the date and that entry (§7). An accepted claim moves to `
 | How anchors from new retrievals are machine-checked (VD-11 covers only S01 and S05 readings) | S07, by decision, with its first new source | §5 |
 | Whether the search block covers every preferred class of the row | S10, with the first `supplier` state | §8 |
 | A class for announcements by standards bodies or associations | the session that retrieves one | `source-policy.md` §2 |
-| Normative text as a claim type | S17 | §2 |
+| Normative text as a claim type | S17: settled, no new type (D-157) | §2 |

@@ -3,11 +3,11 @@
   "query": "sql/supplier_metrics.sql",
   "query_sha256": "8a3a18d3eb7b92dfef0f742ee8a3792379b7575e19b04571c6353a6c8f7fd5c9",
   "engine": "duckdb 1.5.6",
-  "input_digest": "cbf1343c37a5e773e0983f402794dc728e89fc503d4a5f2a9d553b185caedeb2",
+  "input_digest": "f98213f2bc7a90ef70c461f1f48d12cb8d0d1977790f77dd4ec25dabcb177517",
   "inputs": [
     {
       "path": "data/claims.json",
-      "sha256": "f78f10508cffac839f4c5dd1e4f57e9863ca15fe20a40e45811f16967ce31bf6"
+      "sha256": "537694948851307d88a3a81fdc8314d73bb3801e5f5e0e8ea0c04a034c34d284"
     },
     {
       "path": "data/companies.json",
@@ -19,7 +19,7 @@
     },
     {
       "path": "data/events.json",
-      "sha256": "145d550ee6432c9f8bcce461a4ef7295db7d5514af0e780df61fd0df4a8701f8"
+      "sha256": "350f7dd6d7ec2d08fa21f912522d4329cbc11d004ae8494d4df75c2b236a515a"
     },
     {
       "path": "data/facilities.json",
@@ -32,6 +32,10 @@
     {
       "path": "data/jurisdictions.json",
       "sha256": "b3322fc7fb6bac05a2a5b71c9ead49425b49e23a344a04d6337b74ab04404998"
+    },
+    {
+      "path": "data/policies.json",
+      "sha256": "1a123cb9108a5cefd24e6de57fe24411bbe22640aa392c216dd9e3309e0b6120"
     },
     {
       "path": "data/products.json",
@@ -47,7 +51,7 @@
     },
     {
       "path": "data/sources.json",
-      "sha256": "7e91880776b4b7134cc6f20d042ce6a9956beebd39ab8919c78b3d03227b1709"
+      "sha256": "9c8a0780d94d057650b56c5743819f97440a3b0a7a48fd5922713e2b79609a53"
     },
     {
       "path": "data/technologies.json",

@@ -50,7 +50,7 @@ vocabulary.
 | RR-6 | **Every edge cites at least one claim.** Claim type and evidence status live on the claim. There is no record-level `source_ids`, no confidence score and no stored status. | D-025 precedent; L-06; S06 gate "What exactly supports this relationship?" |
 | RR-7 | **A missing edge means "not recorded", never "no relationship".** No placeholder endpoint stands in for an unknown party. | MA §5.7; `SESSION-ROADMAP.md` S10 rule; §9 |
 | RR-8 | **An edge holds over an interval; an event happens at a date.** Plans and announcements are events plus claims. Events are not endpoints. | `entity-taxonomy.md` §4.2, §4.4 |
-| RR-9 | **Endpoints are instantiable entity types only.** Reserved types (policy, institution), record kinds (source, claim, event) and excluded domains (energy, networking) have no edges in v1. | D-022; NG-04; NG-05 |
+| RR-9 | **Endpoints are instantiable entity types only.** Reserved types (institution), record kinds (source, claim, event) and excluded domains (energy, networking) have no edges in v1. Policy became instantiable in S17, but has no edge until S18 adds the policy links (`policy-dataset.md` P-8; PL-9). | D-022; D-160; NG-04; NG-05 |
 | RR-10 | **A verb is adopted only with a definition and an evidence expectation.** A verb for which no evidence expectation can be written is rejected as vague. | `SESSION-ROADMAP.md` S04 gate |
 
 **Direction convention** (`INTERPRETATION`). Every edge reads as an English sentence,
@@ -373,15 +373,15 @@ three lists from their documents and checks this table against them.
 | `licenses` | MA | merge into another verb | `rel:supplies` | a software licence is supply of a software product (`item`, product kind `software`). IP licensing (EDA-02) is future scope | D-030 |
 | `invests_in` | MA | an event | `kind:event` | Investment is an event (D-023, MA §5.5 `invested`). Controlling ownership that results is `owns` | D-030 |
 | `acquired` | MA | an event | `kind:event` | a dated occurrence (MA §5.5 `acquired`); the ownership it creates is `owns` | D-030 |
-| `restricted_by` | MA | reserved for S17 | `reserved:policy` | the target would be a policy, a reserved type (D-022) | D-030 |
-| `regulated_by` | MA | reserved for S17 | `reserved:policy` | the target would be a policy; regulatory content also belongs to the governance repositories (baseline §2) | D-030 |
-| `supported_by` | MA | reserved for S17 | `reserved:policy` | the target would be a policy (subsidy programme) | D-030 |
+| `restricted_by` | MA | defined for S18 | `policy-link:restricts` | the inverse reading of `restricts`, stored from the policy to what its text names (S17, `policy-dataset.md` P-8); recorded from S18 | D-160 |
+| `regulated_by` | MA | rejected as vague | `none` | "regulated" covers every obligation an act can impose; no evidence expectation can be written (RR-10), and regulatory content belongs to the governance repositories (baseline §2). S17 ruling | D-160 |
+| `supported_by` | MA | defined for S18 | `policy-link:supports` | the inverse reading of `supports` (policy → company or facility), defined in `policy-dataset.md` P-8; instantiable only when a session records public-support instruments | D-160 |
 | `competes_with` | MA | a derivation | `none` | a view over vendors of products that are instances of the same class. Anything stronger is an interpretation, and it would be symmetric (RR-3) | D-030 |
 | `partners_with` | MA | rejected as vague | `none` | "partner" covers supply, joint development, licensing and joint ventures. Each is a specific edge, or an announcement event | D-030 |
 | `designs` | RM, DM | adopt | `rel:designs` | DEP-05, DEP-15; D-024 left design work (B-2) to this type | D-029 |
 | `packages` | RM, DM | adopt | `rel:packages` | DEP-02; B-3 | D-029 |
 | `fabricates` | RM, DM | adopt | `rel:fabricates` | DEP-05; TQ-06 | D-029 |
-| `constrained_by` | RM | reserved for S17 | `reserved:policy` | only definable against a policy. S17 must define it precisely or reject it. Its non-policy use ("constrained by die supply", DEP-11) is a claim about a market state, not an edge | D-030 |
+| `constrained_by` | RM | rejected as vague | `none` | no meaning beyond `restricts` against a policy; its non-policy use ("constrained by die supply", DEP-11) is a claim about a market state, not an edge. S17 ruling | D-160 |
 | `affected_by` | RM | rejected as vague | `none` | anything can "affect" anything; no evidence expectation can be written (RR-10). S17 may propose a precise verb | D-030 |
 | `houses` | DM | adopt | `rel:houses` | DEP-12 at instance level | D-029 |
 | `offered_via` | DM | merge into another verb | `rel:provides_access_to` | the same fact stored in the dependent → dependency direction; "offered via" is its inverse reading | D-030 |
@@ -616,7 +616,7 @@ Take one sentence type: "Company F makes Company D's chip."
 | Constituent-level fabrication (`part` qualifier); vendor-named packaging processes | S10, stop-and-propose (D-032) | §4.6, §4.7 |
 | First edges | S10 | "No relationship is published without evidence or an explicit non-published/unverified state" |
 | `depends_on`, concentration, single-sourcing | S15 | derived from edges; `supplier` lists give the multi-sourcing evidence |
-| Policy verbs (`restricted_by`, `regulated_by`, `supported_by`, `constrained_by`) | S17 | reserved; S17 defines or rejects them |
+| Policy verbs (`restricted_by`, `regulated_by`, `supported_by`, `constrained_by`) | S17 (done, D-160); S18 records `restricts` | `restricts` and `supports` defined in `policy-dataset.md` P-8; `regulated_by` and `constrained_by` rejected |
 
 **`validate-data` rules for relationships** (for S06/S07; none is a gate until CI runs it,
 L-02):

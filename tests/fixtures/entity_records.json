@@ -118,6 +118,54 @@
           "accessed_at": "2026-09-29T09:00Z",
           "sha256": "efefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef"
         }
+      },
+      {
+        "id": "src-917",
+        "source_class": "official_legal_text",
+        "title": "Example Controls on Example Items",
+        "publisher": "Example Official Gazette",
+        "publisher_entity": {
+          "state": "not_applicable"
+        },
+        "authors": {
+          "state": "not_researched"
+        },
+        "url": "https://example.com/src-917",
+        "stated_dates": [
+          {
+            "kind": "published",
+            "date": "2026-05-04"
+          }
+        ],
+        "retrieval": {
+          "method": "automated",
+          "accessed_at": "2026-09-29T09:00Z",
+          "sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+        }
+      },
+      {
+        "id": "src-918",
+        "source_class": "official_legal_text",
+        "title": "Example Code of Regulations, parts 1 to 9",
+        "publisher": "Example Official Gazette",
+        "publisher_entity": {
+          "state": "not_applicable"
+        },
+        "authors": {
+          "state": "not_researched"
+        },
+        "url": "https://example.com/src-918",
+        "stated_dates": [
+          {
+            "kind": "published",
+            "date": "2026-01-01"
+          }
+        ],
+        "retrieval": {
+          "method": "automated",
+          "accessed_at": "2026-09-29T09:00Z",
+          "sha256": "dededededededededededededededededededededededededededededededede"
+        }
       }
     ],
     "canonical_claims": [
@@ -618,6 +666,121 @@
         "review": {
           "state": "not_reviewed"
         }
+      },
+      {
+        "id": "claim-fixture-351",
+        "claim_type": "FACT",
+        "statement": "Example Bureau's rule “Example Controls on Example Items” is cited 1 EX 100 and is an interim final rule.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-917",
+            "locator": "p.100, heading",
+            "anchor": "Example Bureau. 1 EX 100. Example Controls on Example Items. ACTION: Interim final rule.",
+            "standing": "originator",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+            }
+          }
+        ],
+        "as_of": "2026-05-04",
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-352",
+        "claim_type": "ATTRIBUTION",
+        "statement": "Example Bureau's rule 1 EX 100 states that it imposes export controls on example items.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-917",
+            "locator": "p.100, SUMMARY",
+            "anchor": "This rule imposes export controls on example items.",
+            "standing": "originator",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+            }
+          }
+        ],
+        "as_of": "2026-05-04",
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-353",
+        "claim_type": "FACT",
+        "statement": "Example Bureau's rule 1 EX 100 amends the Example Code of Regulations.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-917",
+            "locator": "p.100, SUMMARY",
+            "anchor": "This rule amends the Example Code of Regulations.",
+            "standing": "originator",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+            }
+          }
+        ],
+        "as_of": "2026-05-04",
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-354",
+        "claim_type": "FACT",
+        "statement": "The Example Code of Regulations, parts 1 to 9, is issued by Example Bureau.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-918",
+            "locator": "title page",
+            "anchor": "Example Code of Regulations, parts 1 to 9. Example Bureau.",
+            "standing": "originator",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "dededededededededededededededededededededededededededededededede"
+            }
+          }
+        ],
+        "as_of": "2026-01-01",
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-355",
+        "claim_type": "FACT",
+        "statement": "Rule 1 EX 100 was published on 2026-05-04; part of it is effective 2026-05-01 and the rest 2026-06-01.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-917",
+            "locator": "p.100, DATES",
+            "anchor": "Published May 4, 2026. Effective May 1, 2026, instructions 1 and 2; effective June 1, 2026, all other instructions.",
+            "standing": "originator",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+            }
+          }
+        ],
+        "as_of": "2026-05-04",
+        "verified_on": "2026-09-30",
+        "review": {
+          "state": "not_reviewed"
+        }
       }
     ],
     "entities": {
@@ -786,7 +949,8 @@
               "state": "not_applicable"
             }
           }
-        ]
+        ],
+        "policies": []
       },
       "staging": {
         "companies": [
@@ -890,6 +1054,128 @@
               }
             ]
           }
+        ],
+        "policies": [
+          {
+            "id": "policy-xa-ex-1-100",
+            "type": "policy",
+            "name": "Example export-control rule",
+            "aliases": [],
+            "identity_claim_ids": [
+              "claim-fixture-351"
+            ],
+            "official_title": [
+              {
+                "value": "Example Controls on Example Items",
+                "claim_ids": [
+                  "claim-fixture-351"
+                ]
+              }
+            ],
+            "official_citation": [
+              {
+                "value": "1 EX 100",
+                "claim_ids": [
+                  "claim-fixture-351"
+                ]
+              }
+            ],
+            "issued_in": [
+              {
+                "value": "jurisdiction-xa",
+                "claim_ids": [
+                  "claim-fixture-351"
+                ]
+              }
+            ],
+            "issuing_authority": [
+              {
+                "value": "Example Bureau",
+                "claim_ids": [
+                  "claim-fixture-351"
+                ]
+              }
+            ],
+            "instrument_form": [
+              {
+                "value": "interim_final_rule",
+                "claim_ids": [
+                  "claim-fixture-351"
+                ]
+              }
+            ],
+            "measure_kinds": [
+              {
+                "value": "export_control",
+                "claim_ids": [
+                  "claim-fixture-352"
+                ]
+              }
+            ],
+            "amends": [
+              {
+                "value": "policy-xa-example-code-1-9",
+                "claim_ids": [
+                  "claim-fixture-353"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "policy-xa-example-code-1-9",
+            "type": "policy",
+            "name": "Example code of regulations",
+            "aliases": [],
+            "identity_claim_ids": [
+              "claim-fixture-354"
+            ],
+            "official_title": [
+              {
+                "value": "Example Code of Regulations",
+                "claim_ids": [
+                  "claim-fixture-354"
+                ]
+              }
+            ],
+            "official_citation": [
+              {
+                "value": "parts 1 to 9",
+                "claim_ids": [
+                  "claim-fixture-354"
+                ]
+              }
+            ],
+            "issued_in": [
+              {
+                "value": "jurisdiction-xa",
+                "claim_ids": [
+                  "claim-fixture-354"
+                ]
+              }
+            ],
+            "issuing_authority": [
+              {
+                "value": "Example Bureau",
+                "claim_ids": [
+                  "claim-fixture-354"
+                ]
+              }
+            ],
+            "instrument_form": [
+              {
+                "value": "codified_regulation",
+                "claim_ids": [
+                  "claim-fixture-354"
+                ]
+              }
+            ],
+            "measure_kinds": {
+              "state": "not_researched"
+            },
+            "amends": {
+              "state": "not_applicable"
+            }
+          }
         ]
       }
     },
@@ -922,6 +1208,33 @@
           "date": "2026-04-01",
           "claim_ids": [
             "claim-fixture-342"
+          ]
+        },
+        {
+          "id": "event-xa-ex-1-100-published-2026-05-04",
+          "event_type": "published",
+          "subject": "policy-xa-ex-1-100",
+          "date": "2026-05-04",
+          "claim_ids": [
+            "claim-fixture-355"
+          ]
+        },
+        {
+          "id": "event-xa-ex-1-100-effective-2026-05-01",
+          "event_type": "effective",
+          "subject": "policy-xa-ex-1-100",
+          "date": "2026-05-01",
+          "claim_ids": [
+            "claim-fixture-355"
+          ]
+        },
+        {
+          "id": "event-xa-ex-1-100-effective-2026-06-01",
+          "event_type": "effective",
+          "subject": "policy-xa-ex-1-100",
+          "date": "2026-06-01",
+          "claim_ids": [
+            "claim-fixture-355"
           ]
         }
       ]
@@ -1348,6 +1661,101 @@
         }
       ],
       "expect": "needs exactly one located_in value"
+    },
+    {
+      "name": "PL-2: a policy ID whose code is not its issuing jurisdiction's",
+      "action": "set_record_field",
+      "where": "staging",
+      "kind": "policies",
+      "index": 0,
+      "field": "id",
+      "value": "policy-xb-ex-1-100",
+      "expect": "not policy- plus the code of its issued_in"
+    },
+    {
+      "name": "PL-3: issued by a jurisdiction that is not a country record",
+      "action": "set_record_field",
+      "where": "staging",
+      "kind": "policies",
+      "index": 0,
+      "field": "issued_in",
+      "value": [
+        {
+          "value": "jurisdiction-xz",
+          "claim_ids": [
+            "claim-fixture-351"
+          ]
+        }
+      ],
+      "expect": "is not an existing country jurisdiction"
+    },
+    {
+      "name": "PL-4: an act that amends itself",
+      "action": "set_record_field",
+      "where": "staging",
+      "kind": "policies",
+      "index": 0,
+      "field": "amends",
+      "value": [
+        {
+          "value": "policy-xa-ex-1-100",
+          "claim_ids": [
+            "claim-fixture-353"
+          ]
+        }
+      ],
+      "expect": "amends itself"
+    },
+    {
+      "name": "PL-4: an act that amends a missing record",
+      "action": "set_record_field",
+      "where": "staging",
+      "kind": "policies",
+      "index": 0,
+      "field": "amends",
+      "value": [
+        {
+          "value": "policy-xa-ex-9-999",
+          "claim_ids": [
+            "claim-fixture-353"
+          ]
+        }
+      ],
+      "expect": "amends missing policy policy-xa-ex-9-999"
+    },
+    {
+      "name": "PL-4: two acts that amend each other",
+      "action": "set_record_field",
+      "where": "staging",
+      "kind": "policies",
+      "index": 1,
+      "field": "amends",
+      "value": [
+        {
+          "value": "policy-xa-ex-1-100",
+          "claim_ids": [
+            "claim-fixture-354"
+          ]
+        }
+      ],
+      "expect": "amends cycle"
+    },
+    {
+      "name": "PL-5: a policy field resting on the Atlas's own interpretation",
+      "action": "set_record_field",
+      "where": "staging",
+      "kind": "policies",
+      "index": 0,
+      "field": "measure_kinds",
+      "value": [
+        {
+          "value": "export_control",
+          "claim_ids": [
+            "claim-fixture-327"
+          ]
+        }
+      ],
+      "expect": "which is not FACT or ATTRIBUTION"
     }
   ],
   "event_faults": [
@@ -1426,6 +1834,54 @@
       "field": "source_class",
       "value": "company_marketing",
       "expect": "no citation with a class and standing that event:opened allows"
+    },
+    {
+      "name": "PL-6: a policy event whose subject is a company",
+      "where": "staging",
+      "index": 3,
+      "field": "subject",
+      "value": "company-example-foundry",
+      "expect": "needs a policy subject"
+    },
+    {
+      "name": "PL-6: a facility event whose subject is a policy",
+      "where": "staging",
+      "index": 0,
+      "field": "subject",
+      "value": "policy-xa-ex-1-100",
+      "expect": "needs a facility subject"
+    },
+    {
+      "name": "PL-6: a proposed rule with an effective date",
+      "where": "entity",
+      "kind": "policies",
+      "index": 0,
+      "field": "instrument_form",
+      "value": [
+        {
+          "value": "proposed_rule",
+          "claim_ids": [
+            "claim-fixture-351"
+          ]
+        }
+      ],
+      "expect": "a proposed rule never takes effect"
+    },
+    {
+      "name": "D-164: a later effective date cited from a text that is not the act's own",
+      "where": "source",
+      "source": "src-917",
+      "field": "source_class",
+      "value": "government_publication",
+      "expect": "dated 2026-06-01, after src-917"
+    },
+    {
+      "name": "D-164: a published date later than the act's own text",
+      "where": "staging",
+      "index": 2,
+      "field": "date",
+      "value": "2026-06-02",
+      "expect": "dated 2026-06-02, after src-917"
     }
   ]
 }

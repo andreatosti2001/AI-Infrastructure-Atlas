@@ -149,7 +149,9 @@
       "rated_power_w": { "state": "not_applicable" },
       "rack_scale": { "state": "not_applicable" },
       "cooling_method": { "state": "not_applicable" }
-    }
+    },
+    "policy_rule": {"id": "policy-zz-example-rule-2001-01", "type": "policy", "name": "Example export-control rule", "aliases": [], "identity_claim_ids": ["claim-fixture-040"], "official_title": [{"value": "Example Controls on Example Items", "claim_ids": ["claim-fixture-040"]}], "official_citation": [{"value": "1 EX 100", "claim_ids": ["claim-fixture-040"]}], "issued_in": [{"value": "jurisdiction-zz", "claim_ids": ["claim-fixture-040"]}], "issuing_authority": [{"value": "Example Bureau", "claim_ids": ["claim-fixture-040"]}], "instrument_form": [{"value": "interim_final_rule", "claim_ids": ["claim-fixture-040"]}], "measure_kinds": [{"value": "export_control", "claim_ids": ["claim-fixture-041"]}], "amends": [{"value": "policy-zz-example-code", "claim_ids": ["claim-fixture-041"]}]},
+    "policy_code": {"id": "policy-zz-example-code", "type": "policy", "name": "Example code of regulations", "aliases": [], "identity_claim_ids": ["claim-fixture-040"], "official_title": [{"value": "Example Controls on Example Items", "claim_ids": ["claim-fixture-040"]}], "official_citation": [{"value": "1 EX 100", "claim_ids": ["claim-fixture-040"]}], "issued_in": [{"value": "jurisdiction-zz", "claim_ids": ["claim-fixture-040"]}], "issuing_authority": [{"value": "Example Bureau", "claim_ids": ["claim-fixture-040"]}], "instrument_form": [{"value": "codified_regulation", "claim_ids": ["claim-fixture-042"]}], "measure_kinds": [{"value": "export_control", "claim_ids": ["claim-fixture-041"]}], "amends": {"state": "not_applicable"}}
   },
   "invalid": [
     { "case": "ma_status_field", "why": "MA §5.1 'status' is overloaded; status is derived from events (R-8)", "base": "company_foundry", "set": { "/status": "active" } },
@@ -204,6 +206,18 @@
     { "case": "jurisdiction_three_letter_id", "why": "the ID slug is the ISO 3166-1 alpha-2 code", "base": "jurisdiction", "set": { "/id": "jurisdiction-zzz" } },
     { "case": "jurisdiction_supranational", "why": "supranational is reserved for the EU lens (D-008)", "base": "jurisdiction", "set": { "/jurisdiction_kind": "supranational" } },
     { "case": "jurisdiction_iso_code_field", "why": "the code already lives in the ID; a second field is a second home", "base": "jurisdiction", "set": { "/iso_code": "ZZ" } },
-    { "case": "name_with_padding", "why": "names are trimmed", "base": "jurisdiction", "set": { "/name": " Example Jurisdiction" } }
+    { "case": "name_with_padding", "why": "names are trimmed", "base": "jurisdiction", "set": { "/name": " Example Jurisdiction" } },
+    {"case": "policy_status_field", "why": "status is derived from events, never stored (P-4, D-156)", "base": "policy_rule", "set": {"/status": "in_force"}},
+    {"case": "policy_effective_date_field", "why": "dates are events, never fields (P-4, D-156)", "base": "policy_rule", "set": {"/effective_date": "2001-01-01"}},
+    {"case": "policy_summary_field", "why": "content stays in claims, never a field (P-3, P-9; D-155, D-161)", "base": "policy_rule", "set": {"/summary": "Restricts example items."}},
+    {"case": "policy_applies_to_field", "why": "only an S18 link may say an act bears on a firm or product (P-9 LA-2, D-161)", "base": "policy_rule", "set": {"/applies_to": ["company-example-foundry"]}},
+    {"case": "policy_notes_field", "why": "no free-text notes (taxonomy §7)", "base": "policy_rule", "set": {"/notes": "x"}},
+    {"case": "policy_bad_id", "why": "the ID is policy-, a two-letter code and a slug (P-2, D-155)", "base": "policy_rule", "set": {"/id": "policy-example-rule"}},
+    {"case": "policy_unknown_form", "why": "instrument_form is a closed vocabulary (P-3)", "base": "policy_rule", "set": {"/instrument_form/0/value": "guidance"}},
+    {"case": "policy_unknown_measure_kind", "why": "measure_kinds holds only adopted kinds; public_support arrives with its first record (P-3)", "base": "policy_rule", "set": {"/measure_kinds/0/value": "public_support"}},
+    {"case": "policy_amends_a_company", "why": "amends points to policy records only", "base": "policy_rule", "set": {"/amends/0/value": "company-example-foundry"}},
+    {"case": "policy_issued_in_not_a_jurisdiction", "why": "issued_in points to a jurisdiction", "base": "policy_rule", "set": {"/issued_in/0/value": "Example Land"}},
+    {"case": "policy_missing_authority", "why": "every field is required; an unknown is a state, never a gap (R-7)", "base": "policy_rule", "remove": ["/issuing_authority"]},
+    {"case": "policy_authority_null", "why": "null is never accepted for an unknown (R-7)", "base": "policy_rule", "set": {"/issuing_authority": null}}
   ]
 }

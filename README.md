@@ -18,7 +18,7 @@ This is an independent repository. It shares no code, data or runtime with `Eu-D
 ## What it contains
 
 - **Canonical records** in `data/`: sources, claims, companies, jurisdictions, technologies, components,
-  products, facilities, dated events, relationships, the relations the Atlas considered and refused, and the
+  products, facilities, policy instruments, dated events, relationships, the relations the Atlas considered and refused, and the
   identity basis of rule-made IDs. Each kind has one home and one schema in `schemas/`. Current counts are in
   [`docs/architecture/baseline.md`](docs/architecture/baseline.md) §1.
 - **A SQL layer** (`sql/`, `tools/warehouse.py`): the records are loaded into a DuckDB database rebuilt from
@@ -67,6 +67,13 @@ anchors and review.
   date. The three supplier metrics (supplier count, geographic concentration, single-source relationships) are
   shown as "cannot be computed yet", because no source says a maker was the only one
   ([`metrics.md`](docs/architecture/metrics.md)).
+- **The first policy records** (M5): five US export-control acts, each recorded from its own official text on
+  govinfo.gov: the Export Administration Regulations and four rules of the Bureau of Industry and Security
+  (October 2022, two of October 2023, December 2024). Each record holds what identifies the act; what the act
+  provides stays in claims attributed to the authority; its dates are events, and its status on any day is
+  computed by `tools/policy_status.py` ("has taken effect; no repeal recorded in the Atlas", never "in force").
+  They are not yet linked to companies, parts or technologies
+  ([`policy-dataset.md`](docs/architecture/policy-dataset.md)).
 
 ## How quality is controlled
 
@@ -88,18 +95,22 @@ CI runs the unit tests and Gate 0 on every push and pull request.
   (who fabricates a product, who supplies a part): there, stale evidence leaves a gap (TSMC → H100) or a value
   bounded in time (the H100's supplier). Some publishers refuse automated retrieval; these are recorded as
   access gaps.
-- No policy, regulation or jurisdictional exposure is modelled yet: the schema rejects `policy` and
-  `institution` records.
+- Policy records describe; they never advise. No record or link says what anyone must do, and no technical
+  threshold is applied to a product (`policy-dataset.md` P-9). The five export-control records are not yet
+  linked to the chain, so no exposure is shown. Only acts issued by a country can be recorded; EU instruments
+  stay in `Eu-Digital-Policy`. A repeal the Atlas has not recorded would not show: the status says "no repeal
+  recorded in the Atlas". The end of a single instruction's effect (one 2023 instruction ran to 2026-01-01) is
+  stated in a claim, not as an event.
 - The open debt, each item with an owner, is listed in the latest audits
   ([M4](docs/architecture/milestone-audits/M4-audit.md), [analytical audit](docs/architecture/analytical-audit.md)).
 
 ## Next phase
 
-The next milestone (M5, [`SESSION-ROADMAP.md`](SESSION-ROADMAP.md)) adds a policy and geopolitical layer:
-policy instruments such as industrial policy, export controls and investment measures as evidence-backed records
-(S17), then their relationships to jurisdictions, companies and technologies (S18), then an agent architecture
-audit (S19). It references EU instruments where they bear on the chain, without becoming an EU digital-law
-database.
+M5 ([`SESSION-ROADMAP.md`](SESSION-ROADMAP.md)) is under way. S17 defined the policy record and recorded the
+first export-control acts. S18 links them to the parts, products, technologies and companies their texts name
+(`restricts`, defined in [`policy-dataset.md`](docs/architecture/policy-dataset.md) P-8), each link resting on
+the text's own words or a party's statement. S19 audits the agent architecture and, first, improves the break
+harness (D-153).
 
 ## Layout
 
@@ -108,7 +119,7 @@ CLAUDE.md, MASTER-ARCHITECTURE.md, ...   constitutional documents (see docs/READ
 data/            canonical records; staging/ holds records awaiting the human's review
 schemas/         JSON Schema for every record kind, with their controlled vocabularies
 sql/             SQL queries, each also its own tutorial; results/ holds their generated results
-tools/           Gate 0, the trace command, facility status, edge navigation, the SQL warehouse, the page builds
+tools/           Gate 0, the trace command, facility and policy status, edge navigation, the SQL warehouse, the page builds
 site/            generated pages (never edited by hand)
 tests/           unit tests with fictional fixtures; regression/ (deliberate breaks); browser/ (browser QA)
 docs/            documentation map, architecture, decisions, research, audits, agent contracts

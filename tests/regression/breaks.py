@@ -9,7 +9,8 @@ change runs the breaks that touch the files it changes, plus its own new breaks.
 The harness is built in layers, each loading the one before it and replacing the inherited breaks whose setup
 text its own changes removed (see tests/regression/README.md):
     breaks_records_and_page.py, breaks_sql.py, breaks_research_view.py  ->  breaks_metrics.py
-    -> breaks_metric_audit.py -> breaks_supplier_freshness.py -> this file (supplier evidence; review records).
+    -> breaks_metric_audit.py -> breaks_supplier_freshness.py -> this file (supplier evidence; review records;
+    S17's policy layer).
 
 Run with a virtualenv built from requirements-test.txt and requirements-analysis.txt, from the repository root:
     python tests/regression/breaks.py SCRATCH_DIR [ID ...]
@@ -107,6 +108,13 @@ REPLACED = {
                edit(INSIGHT_BUILD, '("parts_supplier_reported", "with a supplier reported by a third party;"))\n                    if r[column]',
                     '("parts_supplier_reported", "with a supplier reported by a third party;"))\n                    if True'), [INSIGHT_BUILD],
                ["a zero beside a supplier metric reads as 'no suppliers'"]),
+    # S17 (D-137): the reference date moved to 2026-10-08, so the two breaks that move the literal date move it
+    # from the new value, the same fault and the same control on the S17 tree.
+    "S15-M3": ("S15-M3", "the reference date moved, results not rebuilt",
+               edit("sql/source_age.sql", "DATE '2026-10-08' AS reference_date", "DATE '2027-10-08' AS reference_date"), [],
+               ["is not a fresh run of the current inputs"]),
+    "S16-C1": ("S16-C1", "control: the reference date moved one day, everything rebuilt (D-137's move)",
+               edit("sql/source_age.sql", "DATE '2026-10-08' AS reference_date", "DATE '2026-10-09' AS reference_date"), ALL, []),
     "S15-M9": ("S15-M9", "the supplier metrics' status loosened: computable once suppliers are named (rebuilt)",
                edit(SUP, "'cannot_be_computed_yet' AS status,", "'computable' AS status,"), ALL,
                ["a supplier metric became computable"]),
@@ -185,11 +193,65 @@ D152 = [
      [], ["session record in the public repository (D-152): docs/S17-PROMPT.md"]),
 ]
 
+# S17: the policy layer (D-154 to D-164; checks PL-1 to PL-9 in docs/architecture/policy-dataset.md P-10).
+POLICIES, EVENTS, POLICY_ROWS = "data/policies.json", "data/events.json", "docs/research/source-policy.md"
+RULE_2022, RULE_2023_AC, RULE_2023_SME, RULE_2024 = (f"policy-us-fr-{n}" for n in ("2022-21658", "2023-23055", "2023-23049", "2024-28270"))
+
+
+def policy(d, pid):
+    return next(p for p in d if p["id"] == pid)
+
+
+def src(d, sid):
+    return next(s for s in d if s["id"] == sid)
+
+
+EFFECTIVE_ROW = ("| `event:effective` | `official_legal_text` | none | `company_filing`, `company_technical_documentation`, "
+                 "`company_press_release`, `company_marketing`, `standard_specification`, `government_publication`, ")
+S17 = [
+    ("S17-1", "a policy record stores a status (PL-1) (rebuilt)",
+     jedit(POLICIES, lambda d: policy(d, RULE_2024).update(status="in_force")), ALL,
+     ["Additional properties are not allowed ('status' was unexpected)"]),
+    ("S17-2", "a policy ID whose code is not its issuing country's (PL-2) (rebuilt)",
+     jedit(POLICIES, lambda d: policy(d, RULE_2024).update(id="policy-nl-fr-2024-28270")), ALL,
+     ["policy-nl-fr-2024-28270: not policy- plus the code of its issued_in value"]),
+    ("S17-3", "a policy issued by a jurisdiction that is not a country record (PL-3, D-154) (rebuilt)",
+     jedit(POLICIES, lambda d: policy(d, RULE_2024)["issued_in"][0].update(value="jurisdiction-eu")), ALL,
+     ["issued_in jurisdiction-eu is not an existing country jurisdiction"]),
+    ("S17-4", "an act that amends itself (PL-4) (rebuilt)",
+     jedit(POLICIES, lambda d: policy(d, RULE_2024)["amends"][0].update(value=RULE_2024)), ALL,
+     [f"{RULE_2024} amends itself"]),
+    ("S17-5", "a policy field resting on the Atlas's own interpretation (PL-5, LA-1) (rebuilt)",
+     jedit(POLICIES, lambda d: policy(d, RULE_2024)["measure_kinds"][0].update(claim_ids=["claim-atlas-ai-accelerator-working-definition"])), ALL,
+     ["which is not FACT or ATTRIBUTION"]),
+    ("S17-6", "a rule relabelled a proposal while its effective dates stay (PL-6) (rebuilt)",
+     jedit(POLICIES, lambda d: policy(d, RULE_2022)["instrument_form"][0].update(value="proposed_rule")), ALL,
+     ["a proposed rule never takes effect or is repealed"]),
+    ("S17-7", "a later effective date resting on a text that is not the act's official text (D-164) (rebuilt)",
+     jedit("data/sources.json", lambda d: src(d, "src-059").update(source_class="government_publication")), ALL,
+     ["dated 2023-11-17, after src-059", "event-us-fr-2023-23055-effective-2023-11-17: no citation with a class and"]),
+    ("S17-8", "a publication date moved after the text that states it (EV-3) (rebuilt)",
+     jedit(EVENTS, lambda d: next(e for e in d if e["id"] == "event-us-fr-2023-23049-published-2023-10-25").update(date="2023-10-26")), ALL,
+     ["dated 2023-10-26, after src-060"]),
+    ("S17-9", "the status tool ignores a repeal (PL-7)",
+     edit("tools/policy_status.py", "    if repealed:\n", "    if False:\n"), [],
+     ["test_repeal"]),
+    ("S17-10", "a press release allowed to date an act (PL-8, D-158)",
+     edit(POLICY_ROWS, EFFECTIVE_ROW, EFFECTIVE_ROW.replace("| none | ", "| `government_publication` | ").replace("`government_publication`, ", "", 1)), [],
+     ["test_pl8_only_the_official_text_dates_or_repeals_an_act"]),
+    ("S17-11", "a relationship with a policy endpoint before S18 (PL-9) (rebuilt)",
+     jedit("data/relationships.json", lambda d: edge(d, "rel-company-amazon-com-designs-product-amazon-com-trainium2").update(source_entity=RULE_2024)), ALL,
+     ["policy-us-fr-2024-28270"]),
+    ("S17-C1", "control: a policy claim's statement reworded, everything rebuilt",
+     edit("data/claims.json", "The Code of Federal Regulations states that the EAR are issued by the United States",
+          "The Code of Federal Regulations says that the EAR are issued by the United States"), ALL, []),
+]
+
 S165_BREAKS = s165.breaks
 
 
 def breaks():
-    return [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152
+    return [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17
 
 
 if __name__ == "__main__":

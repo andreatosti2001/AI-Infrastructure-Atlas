@@ -31,7 +31,7 @@ from pathlib import Path
 DEFAULT_DATA = Path(__file__).resolve().parent.parent / "data"
 # The entity data files (S07, H-2 layout), canonical then staging; S09 adds facilities and the
 # event files, whose records cite claims the same way; S10 the relationship files (edge-dataset.md §8).
-ENTITY_KINDS = ("companies", "jurisdictions", "technologies", "components", "products", "facilities", "events", "relationships")
+ENTITY_KINDS = ("companies", "jurisdictions", "technologies", "components", "products", "facilities", "policies", "events", "relationships")
 ENTITY_FILES = tuple(f"{kind}.json" for kind in ENTITY_KINDS) + tuple(f"staging/{kind}.json" for kind in ENTITY_KINDS)
 
 

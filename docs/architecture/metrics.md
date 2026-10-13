@@ -7,7 +7,7 @@
 - source age: kept, saying that the 12-month horizon applies only to time-sensitive links (D-134);
 - the publishers count: **retired** (D-135); its history stays in §6;
 - the three supplier metrics: kept as built (D-136);
-- the reference date moves with each session that rebuilds the pages; S16 set it to 2026-10-07 (D-137).
+- the reference date moves with each session that rebuilds the pages; S16 set it to 2026-10-07, S17 to 2026-10-08 (D-137).
 **Decided by the human at the S15 opening (2026-10-06):**
 - the contract runs as written, with `sql-layer.md` §7's publisher sentence corrected (D-127);
 - the three supplier metrics are shown as "cannot be computed yet", with why (H-1, D-130);
@@ -93,7 +93,7 @@ Deviations).
 ## 4. Source age (D-129)
 
 - **The reference date** is written in the query and moves only by a commit (H-3). Each session that
-  rebuilds the pages sets it to the day it opened (D-137, S16): 2026-10-06 in S15, 2026-10-07 in S16. An age is "as of" that date. It is never relative to today, so S14.5's rule against clock
+  rebuilds the pages sets it to the day it opened (D-137, S16): 2026-10-06 in S15, 2026-10-07 in S16, 2026-10-08 in S17. An age is "as of" that date. It is never relative to today, so S14.5's rule against clock
   ages (V-5) holds and the result is byte-identical across runs. WH-13 moves the date and checks that
   only the reference date, the ages and the horizon flags change. Since S16 it moves whatever date the query
   holds.
