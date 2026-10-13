@@ -10,7 +10,7 @@ The harness is built in layers, each loading the one before it and replacing the
 text its own changes removed (see tests/regression/README.md):
     breaks_records_and_page.py, breaks_sql.py, breaks_research_view.py  ->  breaks_metrics.py
     -> breaks_metric_audit.py -> breaks_supplier_freshness.py -> this file (supplier evidence; review records;
-    S17's policy layer).
+    S17's policy layer; S18's policy links).
 
 Run with a virtualenv built from requirements-test.txt and requirements-analysis.txt, from the repository root:
     python tests/regression/breaks.py SCRATCH_DIR [ID ...]
@@ -247,11 +247,53 @@ S17 = [
           "The Code of Federal Regulations says that the EAR are issued by the United States"), ALL, []),
 ]
 
+# S18: the policy links (D-165 to D-174; checks PK-1 to PK-7 in docs/architecture/policy-links.md K-9).
+HBM_LINK = "rel-policy-us-fr-2024-28270-restricts-component-high-bandwidth-memory"
+SME_2022_LINK = "rel-policy-us-fr-2022-21658-restricts-component-semiconductor-manufacturing-equipment"
+HBM_ATTR, HBM_MATCH = "claim-bis-rule-2024-28270-controls-hbm-stacks", "claim-bis-rule-2024-28270-hbm-term-match"
+RESTRICTS_ROW = "| `rel:restricts` | `official_legal_text` | none | `company_filing`, "
+
+
+S18 = [
+    ("S18-1", "a policy link carrying a date (PK-1, K-4) (rebuilt)",
+     jedit("data/relationships.json", lambda d: edge(d, HBM_LINK).update(valid_to="2025-01")), ALL,
+     ["False schema does not allow '2025-01'"]),
+    ("S18-2", "a policy link from an act relabelled a proposed rule (PK-2) (rebuilt)",
+     jedit(POLICIES, lambda d: policy(d, RULE_2024)["instrument_form"][0].update(value="proposed_rule")), ALL,
+     [f"{HBM_LINK}: a link from a proposed rule"]),
+    ("S18-3", "a policy link's own quote moved to another act's text (PK-3) (rebuilt)",
+     jedit("data/claims.json", lambda d: claim(d, HBM_ATTR)["citations"][0].update(source_id="src-060")), ALL,
+     [f"{HBM_LINK}: no ATTRIBUTION resting only on its own act's official text"]),
+    ("S18-4", "a term match without the record's working definition (PK-3) (rebuilt)",
+     jedit("data/claims.json", lambda d: claim(d, HBM_MATCH).update(input_claim_ids=[HBM_ATTR])), ALL,
+     [f"{HBM_LINK}: no DERIVATION matching its own act's words"]),
+    ("S18-5", "an act's quote that never names the class (PK-4) (rebuilt)",
+     jedit("data/claims.json", lambda d: claim(d, HBM_ATTR)["citations"][0].update(anchor="BIS is adding a new ECCN control on memory stacks with a specific memory bandwidth density to ECCN 3A090.c.")), ALL,
+     [f"{HBM_LINK}: its own act's anchors never carry component-high-bandwidth-memory's name or an alias"]),
+    ("S18-6", "a press release allowed to support a policy link (PK-5)",
+     edit(POLICY_ROWS, RESTRICTS_ROW, "| `rel:restricts` | `official_legal_text` | `government_publication` | `company_filing`, "), [],
+     ["test_pk5_restricts_rests_on_the_official_text_only"]),
+    ("S18-7", "navigation reads a policy link as a dependency (PK-6)",
+     edit("tools/navigate.py", 'STRUCTURAL = ("requires", "has_part", "incorporates")', 'STRUCTURAL = ("requires", "has_part", "incorporates", "restricts")'), ALL,
+     ["test_pk6_a_policy_link_is_neither_a_dependency_nor_an_activity"]),
+    ("S18-8", "navigation drops the no-advice line (PK-6, LA-5)",
+     edit("tools/navigate.py", 'NO_ADVICE = "describes the text; does not advise (LA-5)"', 'NO_ADVICE = ""'), ALL,
+     ["test_pk6_edges_shows_a_policy_link_with_its_status_text_and_no_advice_line"]),
+    ("S18-9", "a policy ID written into the HBM page (PK-6) (rebuilt)",
+     edit("tools/page_template.html", "</main>", "<p>policy-us-fr-2024-28270</p></main>"), ALL,
+     ["test_pk6_the_page_shows_no_policy_link_or_policy"]),
+    ("S18-10", "a threshold refusal pointed at a class (PK-7) (rebuilt)",
+     jedit("data/refused_candidates.json", lambda d: cand(d, "cand-021").update(target_entities=["component-high-bandwidth-memory"])), ALL,
+     ["cand-021: applies_a_threshold needs a product or company target"]),
+    ("S18-C1", "control: a term match's reasoning reworded, everything rebuilt",
+     edit("data/claims.json", "The rule's word is the record's alias HBM, applied to stacks.", "The rule's word is the record's alias HBM, used of stacks."), ALL, []),
+]
+
 S165_BREAKS = s165.breaks
 
 
 def breaks():
-    return [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17
+    return [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18
 
 
 if __name__ == "__main__":
