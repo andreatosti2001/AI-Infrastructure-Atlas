@@ -34,6 +34,7 @@ on each claim whose `recorded_in` names it, or query `claims.review_recorded_in`
 | [SK hynix HBM3 statement](#sk-hynix-hbm3-statement-2026-10-07) | 2026-10-07 | 1 | accepted |
 | [Third-party supplier reports and Samsung Electronics](#third-party-supplier-reports-and-samsung-electronics-2026-10-07) | 2026-10-07 | 6 | all accepted |
 | [Export-control records](#export-control-records-2026-10-08) | 2026-10-08 | 37 | all accepted |
+| [First policy links](#first-policy-links-2026-10-13) | 2026-10-13 | 10 | all accepted |
 
 No claim has been rejected or found "wording too strong" at review.
 
@@ -150,3 +151,30 @@ No claim has been rejected or found "wording too strong" at review.
   became canonical, with eleven events: four publications and seven effective dates. No policy record is
   linked to a company, part or technology (S18).
 - **Decided at the same review:** none; the design rulings D-153 to D-164 were taken earlier the same day.
+
+## First policy links, 2026-10-13
+
+- **Reviewer:** the human. **Claims:** 10. **Verdict:** all accepted, link by link.
+- **What was reviewed**, under the link design decided the same day
+  ([`policy-links.md`](../architecture/policy-links.md); D-165 to D-174), from the drafts and the
+  [search log](../research/search-logs/policy-links/search-log.md), each sentence quoted with its page:
+  - four `restricts` links, each read as "does the act's own sentence name this class among the items it
+    controls, in the record's own word, and no more?": BIS rule 2024-28270 → high-bandwidth memory ("a new ECCN
+    control on HBM stacks", p.10); 2022-21658 → semiconductor manufacturing equipment (new ECCN 3B090, p.7),
+    shown with 2023-23049's removal of 3B090; 2023-23049 → semiconductor manufacturing equipment ("SME
+    controls", p.1; 3B001 and 3B002, p.14), shown with 2024-28270's changes to 3B001 and 3B002; 2024-28270 →
+    semiconductor manufacturing equipment ("new controls for certain semiconductor manufacturing equipment",
+    p.1);
+  - one point flagged first: the 2024 rule's HBM extends at one edge beyond the Atlas's working definition
+    (DRAM ICs whether or not they conform to the JEDEC standards); the term-match claim states it and the link
+    carries neither edge;
+  - nine refused candidates, each with its sentence and reason: HBM named only in a red flag (2023-23055);
+    SME only described as other rules' control (2023-23055); GPUs, ASICs and accelerators, broader than the
+    records (three rules); items for EUV and DUV lithography, one narrow kind of ECAD software and TSV etch
+    equipment for advanced packaging, not the technologies (2023-23049, 2024-28270); Micron's HBM4 36GB 12H,
+    which only the Atlas applying the 2024 rule's threshold could link (LA-3).
+- **What changed:** the 10 claims (six `ATTRIBUTION` to BIS, four `DERIVATION` term matches) and the four links
+  became canonical, with the refused candidates `cand-013` to `cand-021`. No page shows a policy link (D-173);
+  `tools/navigate.py edges` shows each with its act's status and the line "describes the text; does not
+  advise".
+- **Decided at the same review:** none; the design rulings D-165 to D-174 were taken earlier the same day.
