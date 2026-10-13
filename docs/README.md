@@ -42,7 +42,8 @@ Precedence follows `SESSION-PROMPT-SPEC.md` §1: higher rows win.
 
 | Document | What it holds | Status |
 |---|---|---|
-| [`research/source-policy.md`](./research/source-policy.md) | source classes, the preference matrix, evidence, conflict, retrieval and freshness rules, third-party criteria; the class of every registered source | accepted 2026-09-30 (D-034 to D-043); revised 2026-10-07 (D-144 to D-147) and 2026-10-08 (the official-legal-text class and the policy rows, D-158) |
+| [`architecture/policy-links.md`](./architecture/policy-links.md) | the policy links: `restricts` at a policy level from an act to a class its own text names, the term rule, scope kept in the text, later changes quoted, the `rel:restricts` row, refused candidates, pages and navigation, the checks PK-1 to PK-7 | accepted 2026-10-13 (D-165 to D-174) |
+| [`research/source-policy.md`](./research/source-policy.md) | source classes, the preference matrix, evidence, conflict, retrieval and freshness rules, third-party criteria; the class of every registered source | accepted 2026-09-30 (D-034 to D-043); revised 2026-10-07 (D-144 to D-147) and 2026-10-08 (the official-legal-text class and the policy rows, D-158); 2026-10-13 (`rel:restricts`, D-171) |
 | [`research/domain-map.md`](./research/domain-map.md), [`research/source-register.md`](./research/source-register.md) | the physical AI stack as first mapped; the original source register | domain map: draft (terminology reviewed, D-016). Register: frozen (D-050) |
 | [`research/visual-benchmark.md`](./research/visual-benchmark.md) | five data-intensive research products across fourteen dimensions; the adopt / adapt / reject register | accepted 2026-10-06 (D-122) |
 | [`research/supplier-evidence-rules.md`](./research/supplier-evidence-rules.md) | the rules for supplier evidence: historical values, teardowns, sources registered at retrieval, third parties under the human's criteria | decided 2026-10-07 (D-144 to D-147) |
@@ -50,6 +51,7 @@ Precedence follows `SESSION-PROMPT-SPEC.md` §1: higher rows win.
 | [`research/hbm-supplier-research-original-rules.md`](./research/hbm-supplier-research-original-rules.md) with [`research/search-logs/hbm-supplier-original-rules/`](./research/search-logs/hbm-supplier-original-rules/) | the same question under the earlier rules: the evidence found, why it could not name a supplier, the access gaps | outcome decided 2026-10-07 (D-141) |
 | [`research/supplier-presentation.md`](./research/supplier-presentation.md) | how a reported supplier is shown on both pages | decided 2026-10-07 (D-148) |
 | [`research/search-logs/policy-instruments/`](./research/search-logs/policy-instruments/) | the search plan and log for the first export-control records: the official texts retrieved, their hashes, what each states | records accepted 2026-10-08 |
+| [`research/search-logs/policy-links/`](./research/search-logs/policy-links/) | the search plan and log for the first policy links: the texts re-retrieved and re-hashed, every record's name searched, each hit's reading, the later changes to each entry | links accepted 2026-10-13 |
 
 ## Quality and audits (`PROJECT-EVALUATION-FRAMEWORK.md` §11)
 
