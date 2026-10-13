@@ -196,6 +196,10 @@ review stay the check (§9).
 | `supplies` | supply; supplier; purchase; sells; licenses |
 | `houses` | installed; deployed; houses |
 | `provides_access_to` | instances; available; access |
+| `restricts` | control; controls; controlled; restrict |
+
+The `restricts` row (S18, D-174) guards the policy link the same way: the act's sentence must say it
+controls or restricts. Its other guards, PK-3 and PK-4, are in `policy-links.md` K-9.
 
 `stacks` is in the `requires` row because a definition that says every instance stacks dies
 is the one class case S10 records (D-091). A future session that adds a class edge adds its

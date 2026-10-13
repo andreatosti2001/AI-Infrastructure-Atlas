@@ -108,13 +108,13 @@ REPLACED = {
                edit(INSIGHT_BUILD, '("parts_supplier_reported", "with a supplier reported by a third party;"))\n                    if r[column]',
                     '("parts_supplier_reported", "with a supplier reported by a third party;"))\n                    if True'), [INSIGHT_BUILD],
                ["a zero beside a supplier metric reads as 'no suppliers'"]),
-    # S17 (D-137): the reference date moved to 2026-10-08, so the two breaks that move the literal date move it
-    # from the new value, the same fault and the same control on the S17 tree.
+    # S17 and S18 (D-137): the reference date moved to 2026-10-08, then 2026-10-13, so the two breaks that move the
+    # literal date move it from the current value: the same fault and the same control on the S18 tree.
     "S15-M3": ("S15-M3", "the reference date moved, results not rebuilt",
-               edit("sql/source_age.sql", "DATE '2026-10-08' AS reference_date", "DATE '2027-10-08' AS reference_date"), [],
+               edit("sql/source_age.sql", "DATE '2026-10-13' AS reference_date", "DATE '2027-10-13' AS reference_date"), [],
                ["is not a fresh run of the current inputs"]),
     "S16-C1": ("S16-C1", "control: the reference date moved one day, everything rebuilt (D-137's move)",
-               edit("sql/source_age.sql", "DATE '2026-10-08' AS reference_date", "DATE '2026-10-09' AS reference_date"), ALL, []),
+               edit("sql/source_age.sql", "DATE '2026-10-13' AS reference_date", "DATE '2026-10-14' AS reference_date"), ALL, []),
     "S15-M9": ("S15-M9", "the supplier metrics' status loosened: computable once suppliers are named (rebuilt)",
                edit(SUP, "'cannot_be_computed_yet' AS status,", "'computable' AS status,"), ALL,
                ["a supplier metric became computable"]),

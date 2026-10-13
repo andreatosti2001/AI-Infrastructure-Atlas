@@ -1,11 +1,11 @@
 # Policy links: what an export-control text names
 
-**Status:** PROPOSED (H-1 pending). Nothing below changes a schema, a check or a record until the human
-decides it item by item.
+**Status:** ACCEPTED (the human's rulings of 2026-10-13, H-1): every item K-1 to K-9 as proposed (D-166 to
+D-174). The rulings are listed at the end. The text below is the design as decided.
 **Date:** 2026-10-13
-**Decided before this proposal** (H-0, 2026-10-13): the first links go from the five export-control records
-to the **classes** of parts and technologies their texts name. No named product or company is linked in
-this round.
+**Decided before this proposal** (H-0, 2026-10-13, D-165): the first links go from the five export-control
+records to the **classes** of parts and technologies their texts name. No named product or company is linked
+in this round.
 **Inputs:**
 - `policy-dataset.md` P-8 (the `restricts` link, D-160), P-9 (LA-1 to LA-5, D-161), P-4 (status, D-156);
 - `relationship-taxonomy.md` §1 (RR-1 to RR-10), §2, §5, §9, §10;
@@ -240,7 +240,7 @@ be tempted.
 | PK-2 | any relationship with a policy endpoint other than `restricts` from its source; a `restricts` from a `proposed_rule` (a proposal never takes effect) | `tests/test_policy_layer.py` (replaces PL-9) |
 | PK-3 | a link that does not cite at least one `ATTRIBUTION` resting only on its own act's official text (the source its identity claims cite), with originator standing, and one `DERIVATION` whose inputs are such an `ATTRIBUTION` and the target's working-definition claim; a link citing a `FACT`; an `ATTRIBUTION` on a link that rests on anything but the official text of an act the Atlas holds | `tests/test_data_relationships.py` |
 | PK-4 | a link whose own-act anchors never carry the target's name or an alias, or whose `DERIVATION` reasoning does not quote it (the term guard; guards, not proof, as `edge-dataset.md` §7) | `tests/test_data_relationships.py` |
-| PK-5 | the `rel:restricts` row missing, or preferring anything but `official_legal_text`, or not `originator` | `tests/test_policy_layer.py`, `tests/test_source_policy.py` |
+| PK-5 | the `rel:restricts` row missing, or preferring anything but `official_legal_text`, or not `originator` | `tests/test_policy_layer.py` (the matrix as `tests/test_source_policy.py` parses it) |
 | PK-6 | a built page containing a policy link's or a policy's ID; `depends-on` or `actors` returning a `restricts` link; `edges` on a policy link without the status line and the LA-5 note | `tests/test_page.py`, `tests/test_insight.py`, `tests/test_navigate.py` |
 | PK-7 | a refused `restricts` candidate whose source is not a policy; the two new reason codes undefined | `tests/test_data_candidates.py` (with RC-1 to RC-8) |
 
@@ -275,6 +275,18 @@ be tempted.
 Each one is researched, anchored in re-hashed bytes and put to the human at H-2. The table is a forecast,
 not a record.
 
-## Rulings (H-1)
+## Rulings (H-1, 2026-10-13)
 
-Pending.
+Decided by the human on 2026-10-13, item by item; outcomes only (D-114).
+
+| Item | Outcome | Decision |
+|---|---|---|
+| K-1 Level and targets | a policy level for `restricts`; component and technology targets only | D-166 |
+| K-2 Term matching | the record's name or an alias only; broader, narrower and related terms refused | D-167 |
+| K-3 Scope | no qualifier; scope stays in the quoted text | D-168 |
+| K-4 Time | no dates on the link; a later change to the same entry is an extra quoted claim | D-169 |
+| K-5 Jurisdictions | no jurisdiction relationship | D-170 |
+| K-6 Evidence row | `rel:restricts`: the official text only, originator, stable | D-171 |
+| K-7 Refusals | refused candidates with two new reasons, one product refusal included | D-172 |
+| K-8 Pages and navigation | pages show no policy link, checked; navigation shows status, text and the no-advice line | D-173 |
+| K-9 Checks | PK-1 to PK-7 written first, with breaks | D-174 |

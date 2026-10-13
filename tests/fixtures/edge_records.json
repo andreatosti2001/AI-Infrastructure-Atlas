@@ -232,6 +232,46 @@
         "review": {
           "state": "not_reviewed"
         }
+      },
+      {
+        "id": "claim-fixture-409",
+        "claim_type": "ATTRIBUTION",
+        "statement": "Example Bureau's Example Code of Regulations states that it controls certain Example GPU items under entry 9X999.",
+        "evidence_status": "supported",
+        "citations": [
+          {
+            "source_id": "src-918",
+            "locator": "part 9, entry 9X999",
+            "anchor": "Example Bureau controls certain Example GPU items under entry 9X999.",
+            "standing": "originator",
+            "read": {
+              "accessed_at": "2026-09-29T09:00Z",
+              "sha256": "dededededededededededededededededededededededededededededededede"
+            }
+          }
+        ],
+        "as_of": {
+          "state": "not_stated"
+        },
+        "verified_on": "2026-10-13",
+        "review": {
+          "state": "not_reviewed"
+        }
+      },
+      {
+        "id": "claim-fixture-410",
+        "claim_type": "DERIVATION",
+        "statement": "The code's term 'Example GPU' names the same class as the Atlas record Example GPU.",
+        "evidence_status": "supported",
+        "input_claim_ids": [
+          "claim-fixture-409",
+          "claim-fixture-327"
+        ],
+        "reasoning": "The code names 'Example GPU'; the record's working definition is 'an example accelerator for parallel work', named Example GPU. Same class; the code's limits stay in its text.",
+        "verified_on": "2026-10-13",
+        "review": {
+          "state": "not_reviewed"
+        }
       }
     ],
     "product_overrides": {
@@ -317,6 +357,16 @@
             "claim-fixture-407"
           ],
           "item": "component-example-gpu"
+        },
+        {
+          "id": "rel-policy-xa-example-code-1-9-restricts-component-example-gpu",
+          "relation_type": "restricts",
+          "source_entity": "policy-xa-example-code-1-9",
+          "target_entity": "component-example-gpu",
+          "claim_ids": [
+            "claim-fixture-409",
+            "claim-fixture-410"
+          ]
         }
       ]
     }
@@ -510,6 +560,71 @@
       "field": "anchor",
       "value": "example accelerators and example stacking are listed in the glossary",
       "expect": "no relation word"
+    },
+    {
+      "name": "a policy link from a proposed rule (PK-2)",
+      "action": "set_record_field",
+      "record": "policy-xa-example-code-1-9",
+      "field": "instrument_form",
+      "value": [
+        {
+          "value": "proposed_rule",
+          "claim_ids": [
+            "claim-fixture-354"
+          ]
+        }
+      ],
+      "expect": "a link from a proposed rule"
+    },
+    {
+      "name": "a policy link citing a FACT in the Atlas's voice (PK-3)",
+      "action": "set_claim_field",
+      "claim": "claim-fixture-409",
+      "field": "claim_type",
+      "value": "FACT",
+      "expect": "a policy link rests on ATTRIBUTION and DERIVATION only"
+    },
+    {
+      "name": "a policy link resting on a company filing, not the act's text (PK-3)",
+      "action": "set_citation_field",
+      "claim": "claim-fixture-409",
+      "field": "source_id",
+      "value": "src-911",
+      "expect": "rests on something other than the official text of an act the Atlas holds"
+    },
+    {
+      "name": "a policy link resting on reported standing (PK-3)",
+      "action": "set_citation_field",
+      "claim": "claim-fixture-409",
+      "field": "standing",
+      "value": "reporter",
+      "expect": "no ATTRIBUTION resting only on its own act's official text"
+    },
+    {
+      "name": "a policy link with no term match to the target's definition (PK-3)",
+      "action": "set_claim_field",
+      "claim": "claim-fixture-410",
+      "field": "input_claim_ids",
+      "value": [
+        "claim-fixture-409"
+      ],
+      "expect": "no DERIVATION matching its own act's words"
+    },
+    {
+      "name": "a policy link whose act never names the target (PK-4)",
+      "action": "set_citation_field",
+      "claim": "claim-fixture-409",
+      "field": "anchor",
+      "value": "Example Bureau controls certain example items under entry 9X999.",
+      "expect": "never carry component-example-gpu's name or an alias"
+    },
+    {
+      "name": "a term match that does not quote the term (PK-4)",
+      "action": "set_claim_field",
+      "claim": "claim-fixture-410",
+      "field": "reasoning",
+      "value": "The words match the record.",
+      "expect": "does not quote the matched term"
     }
   ],
   "warnings": [

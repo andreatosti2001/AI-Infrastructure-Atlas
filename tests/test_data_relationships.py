@@ -28,7 +28,16 @@ concept-dataset.md §7. The checks, by ID:
 - PL-1 a product edge rests on an anchor carrying the first word of the product's term (ER-9);
 - EP-1 a `fabricates` edge never cites directly a claim serving a `vendor_process_name` (ER-1);
 - PE-1 an edge cites a FACT or DERIVATION, and no claim of an `announced` event (ER-8);
-- RV-1 an anchor the edge reaches carries a word of its type's row (RR-1).
+- RV-1 an anchor the edge reaches carries a word of its type's row (RR-1);
+- PK-2 a `restricts` link never starts from a `proposed_rule` (a proposal never takes effect; policy-links.md
+       K-9);
+- PK-3 a `restricts` link cites only ATTRIBUTION and DERIVATION claims; at least one ATTRIBUTION rests only on
+       its own act's official text (a source its identity claims cite), with originator standing; every
+       ATTRIBUTION it cites rests only on the official text of an act the Atlas holds (a later change, K-4);
+       at least one DERIVATION takes such an own-act ATTRIBUTION and the target's working-definition claim
+       as inputs (the term match, K-2);
+- PK-4 the term guard: an own-act anchor carries the target's name or an alias, and the DERIVATION's
+       reasoning quotes that term (K-2; a guard, not proof).
 
 The check functions take record lists, so the same checks run on the fictional fixtures.
 """
@@ -66,7 +75,8 @@ EDGE_FIXTURES = json.loads((REPO_ROOT / "tests/fixtures/edge_records.json").read
 VOCAB = REL_SCHEMA["$defs"]["vocab_relation_type"]["oneOf"]
 TYPES = {v["const"] for v in VOCAB}
 LEVEL = {v["const"]: v["x-level"] for v in VOCAB}
-PREFIX_TYPE = {"company": "company", "facility": "facility", "technology": "technology", "component": "component", "product": "product"}
+PREFIX_TYPE = {"company": "company", "facility": "facility", "technology": "technology", "component": "component", "product": "product", "policy": "policy"}
+LEGAL = "official_legal_text"
 
 
 def edge_files() -> tuple[Path, Path]:
@@ -432,6 +442,96 @@ def check_relation_words(edges, staging_claims, canonical_claims, words) -> list
     return errors
 
 
+def policy_links(edges) -> list[dict]:
+    return [e for _, e in all_edges(edges) if e["relation_type"] == "restricts"]
+
+
+def own_text_sources(policy: dict, claims: dict) -> set[str]:
+    """The sources a policy's identity claims cite: its own official text (K-6)."""
+    return {c["source_id"] for cid in policy.get("identity_claim_ids", []) for c in claims.get(cid, {}).get("citations", [])}
+
+
+def own_attributions(edge: dict, records: dict, classes: dict, claims: dict) -> list[dict]:
+    """The ATTRIBUTION claims of a link that rest only on its own act's official text, as originator."""
+    policy = records.get(edge["source_entity"])
+    own = own_text_sources(policy[1], claims) if policy else set()
+    found = []
+    for cid in edge["claim_ids"]:
+        claim = claims.get(cid, {})
+        citations = claim.get("citations", [])
+        if claim.get("claim_type") == "ATTRIBUTION" and citations and all(
+            c["source_id"] in own and classes.get(c["source_id"]) == LEGAL and c["standing"] == "originator" for c in citations
+        ):
+            found.append(claim)
+    return found
+
+
+def definition_claims(record: dict) -> set[str]:
+    value = record.get("definition")
+    return {cid for a in value for cid in a["claim_ids"]} if isinstance(value, list) else set()
+
+
+def check_policy_links(edges, entities, sources, staging_claims, canonical_claims) -> list[str]:
+    """PK-2 (data) and PK-3."""
+    records = records_by_id(entities)
+    classes = {s["id"]: s["source_class"] for s in sources}
+    claims = {c["id"]: c for c in staging_claims + canonical_claims}
+    held = {s for where, r in all_records(entities) if r["type"] == "policy" for s in own_text_sources(r, claims)}
+    errors = []
+    for edge in policy_links(edges):
+        policy, target = records.get(edge["source_entity"]), records.get(edge["target_entity"])
+        form = policy[1].get("instrument_form") if policy else None
+        if isinstance(form, list) and any(a["value"] == "proposed_rule" for a in form):
+            errors.append(f"{edge['id']}: a link from a proposed rule; a proposal never takes effect (PK-2)")
+        cited = [claims.get(cid, {}) for cid in edge["claim_ids"]]
+        for claim in cited:
+            if claim.get("claim_type") not in ("ATTRIBUTION", "DERIVATION"):
+                errors.append(f"{edge['id']}: cites {claim.get('id')}, a {claim.get('claim_type')}; a policy link rests on ATTRIBUTION and DERIVATION only (PK-3)")
+            elif claim["claim_type"] == "ATTRIBUTION" and not all(
+                classes.get(c["source_id"]) == LEGAL and c["source_id"] in held for c in claim.get("citations", [])
+            ):
+                errors.append(f"{edge['id']}: {claim['id']} rests on something other than the official text of an act the Atlas holds (PK-3)")
+        own = {c["id"] for c in own_attributions(edge, records, classes, claims)}
+        if not own:
+            errors.append(f"{edge['id']}: no ATTRIBUTION resting only on its own act's official text, as originator (PK-3)")
+        definitions = definition_claims(target[1]) if target else set()
+        if not any(
+            c.get("claim_type") == "DERIVATION" and set(c.get("input_claim_ids", [])) & own and set(c.get("input_claim_ids", [])) & definitions
+            for c in cited
+        ):
+            errors.append(f"{edge['id']}: no DERIVATION matching its own act's words to the target's working definition (PK-3)")
+    return errors
+
+
+def term_pattern(term: str) -> re.Pattern:
+    words = re.split(r"[\s\-]+", term.strip())
+    return re.compile(r"\b" + r"[\s\-]+".join(re.escape(w) for w in words) + r"\b", re.I)
+
+
+def check_policy_terms(edges, entities, sources, staging_claims, canonical_claims) -> list[str]:
+    """PK-4."""
+    records = records_by_id(entities)
+    classes = {s["id"]: s["source_class"] for s in sources}
+    claims = {c["id"]: c for c in staging_claims + canonical_claims}
+    errors = []
+    for edge in policy_links(edges):
+        target = records.get(edge["target_entity"])
+        if target is None:
+            continue
+        terms = [target[1]["name"], *target[1].get("aliases", [])]
+        own = own_attributions(edge, records, classes, claims)
+        anchors = [c["anchor"] for claim in own for c in claim["citations"]]
+        matched = [term for term in terms if any(term_pattern(term).search(a) for a in anchors)]
+        if not matched:
+            errors.append(f"{edge['id']}: its own act's anchors never carry {target[1]['id']}'s name or an alias (PK-4)")
+            continue
+        own_ids = {c["id"] for c in own}
+        reasonings = [claims[cid].get("reasoning", "") for cid in edge["claim_ids"] if claims.get(cid, {}).get("claim_type") == "DERIVATION" and set(claims[cid].get("input_claim_ids", [])) & own_ids]
+        if not any(term_pattern(term).search(r) for term in matched for r in reasonings):
+            errors.append(f"{edge['id']}: the DERIVATION does not quote the matched term ({', '.join(matched)}) (PK-4)")
+    return errors
+
+
 def edge_errors(edges, entities, events, sources, staging_claims, canonical_claims, terms) -> list[str]:
     errors = check_edge_references(edges, entities, staging_claims, canonical_claims)
     errors += check_edge_kinds(edges, entities)
@@ -447,6 +547,8 @@ def edge_errors(edges, entities, events, sources, staging_claims, canonical_clai
     errors += check_process_names(edges, entities)
     errors += check_edge_plans(edges, events, staging_claims, canonical_claims)
     errors += check_relation_words(edges, staging_claims, canonical_claims, relation_words())
+    errors += check_policy_links(edges, entities, sources, staging_claims, canonical_claims)
+    errors += check_policy_terms(edges, entities, sources, staging_claims, canonical_claims)
     return errors
 
 
@@ -487,6 +589,11 @@ def apply_fault(world, fault) -> None:
         edges["canonical"].append(edges[fault["from"]].pop(fault["index"]))
     elif action == "set_citation_field":
         claims[fault["claim"]]["citations"][0][fault["field"]] = fault["value"]
+    elif action == "set_claim_field":
+        claims[fault["claim"]][fault["field"]] = fault["value"]
+    elif action == "set_record_field":
+        record = next(r for _, r in all_records(world[1]) if r["id"] == fault["record"])
+        record[fault["field"]] = fault["value"]
     elif action == "drop_search_class":
         search = claims[fault["claim"]]["search"]
         search["classes"] = [c for c in search["classes"] if c["source_class"] != fault["source_class"]]
@@ -614,6 +721,12 @@ class EdgeDataTests(unittest.TestCase):
     def test_rv1_relation_words(self) -> None:
         self.assertEqual(check_relation_words(self.edges, self.staging, self.canonical, relation_words()), [])
 
+    def test_pk2_pk3_policy_links_rest_on_their_own_text(self) -> None:
+        self.assertEqual(check_policy_links(self.edges, self.entities, self.sources, self.staging, self.canonical), [])
+
+    def test_pk4_policy_links_name_their_target(self) -> None:
+        self.assertEqual(check_policy_terms(self.edges, self.entities, self.sources, self.staging, self.canonical), [])
+
 
 class EdgeFixtureTests(unittest.TestCase):
     """The checks accept the fictional edges and catch a planted fault of each kind."""
@@ -623,9 +736,15 @@ class EdgeFixtureTests(unittest.TestCase):
         edges, entities, *_ = edge_fixture_world()
         self.assertEqual(edge_warnings(edges, entities), [])
 
+    def test_the_fictional_world_holds_a_policy_link(self) -> None:
+        # PK-3, PK-4 are checked on a fictional link before any real one exists (checks first, D-162).
+        edges, *_ = edge_fixture_world()
+        self.assertTrue(policy_links(edges))
+
     def test_planted_faults_are_caught(self) -> None:
         faults = EDGE_FIXTURES["faults"]
         self.assertTrue(faults)
+        self.assertTrue({"PK-2", "PK-3", "PK-4"} <= {c for f in faults for c in re.findall(r"PK-\d", f["name"])})
         for fault in faults:
             with self.subTest(fault=fault["name"]):
                 world = edge_fixture_world()

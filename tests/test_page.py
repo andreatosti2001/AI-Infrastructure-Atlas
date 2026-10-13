@@ -801,6 +801,26 @@ class PageTests(unittest.TestCase):
             self.assertTrue(any(n.attrs.get("data-ref") == f"doc:decisions#{decision}" for n in self.nodes), f"{decision} not shown")
 
 
+class PolicyLinkAbsenceTests(unittest.TestCase):
+    """PK-6 (policy-links.md K-8): no page shows a policy link or a policy record until the human approves a
+    design. The page is rebuilt when its inputs change, so the guard reads the committed page."""
+
+    def test_pk6_the_page_shows_no_policy_link_or_policy(self) -> None:
+        data = REPO_ROOT / "data"
+        ids = set()
+        for folder in (data, data / "staging"):
+            path = folder / "policies.json"
+            ids |= {r["id"] for r in json.loads(path.read_text(encoding="utf-8"))} if path.exists() else set()
+            path = folder / "relationships.json"
+            ids |= {e["id"] for e in json.loads(path.read_text(encoding="utf-8")) if e["relation_type"] == "restricts"} if path.exists() else set()
+        self.assertTrue(ids, "no policy record to look for")
+        page = PAGE.read_text(encoding="utf-8")
+        for ref in sorted(ids):
+            with self.subTest(ref=ref):
+                self.assertNotIn(ref, page)
+        self.assertNotIn("vocab_relation_type/restricts", page)
+
+
 class BuildRefusalTests(unittest.TestCase):
     """The build refuses to draw what the records do not support (vertical-slice.md §2)."""
 

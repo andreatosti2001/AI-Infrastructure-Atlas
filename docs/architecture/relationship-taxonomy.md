@@ -43,14 +43,14 @@ vocabulary.
 | ID | Rule | Why |
 |---|---|---|
 | RR-1 | **An edge states one activity or one structural fact.** Two names appearing in the same source is never an edge. The source must state the relation itself (§5). | `SESSION-ROADMAP.md` S04 mission: "prevent accidental inference from co-occurrence" |
-| RR-2 | **One verb, one level.** A type connects either vendor-neutral classes (class level) or named things (instance level), never both. | The two levels need different evidence (domain map §3, "structural" vs "contingent"); §3 |
+| RR-2 | **One verb, one level.** A type connects vendor-neutral classes (class level), named things (instance level), or a named act to what its own text names (policy level, S18), never two of these. | The levels need different evidence (domain map §3, "structural" vs "contingent"; an act's own text for the policy level, `policy-links.md` K-1, D-166); §3 |
 | RR-3 | **Every type is directed and stored in one direction.** The inverse reading ("fabricated by") is display text. There are no symmetric types in v1. | A stored inverse is a second copy of the same fact (CLAUDE.md §7) |
 | RR-4 | **A fact held by an entity field is never restated as an edge.** | One home (CLAUDE.md §7; D-018 L-05; §7) |
 | RR-5 | **Nothing derived is stored.** No `depends_on`, no transitive edges, no inverses, no roles inferred from edges, no edge inferred from a role. | R-8; MA §5.6; D-024 |
 | RR-6 | **Every edge cites at least one claim.** Claim type and evidence status live on the claim. There is no record-level `source_ids`, no confidence score and no stored status. | D-025 precedent; L-06; S06 gate "What exactly supports this relationship?" |
 | RR-7 | **A missing edge means "not recorded", never "no relationship".** No placeholder endpoint stands in for an unknown party. | MA §5.7; `SESSION-ROADMAP.md` S10 rule; §9 |
 | RR-8 | **An edge holds over an interval; an event happens at a date.** Plans and announcements are events plus claims. Events are not endpoints. | `entity-taxonomy.md` §4.2, §4.4 |
-| RR-9 | **Endpoints are instantiable entity types only.** Reserved types (institution), record kinds (source, claim, event) and excluded domains (energy, networking) have no edges in v1. Policy became instantiable in S17, but has no edge until S18 adds the policy links (`policy-dataset.md` P-8; PL-9). | D-022; D-160; NG-04; NG-05 |
+| RR-9 | **Endpoints are instantiable entity types only.** Reserved types (institution), record kinds (source, claim, event) and excluded domains (energy, networking) have no edges in v1. Policy became instantiable in S17; from S18 it is an endpoint only as the source of `restricts` (`policy-links.md` K-1; PK-2, which replaced PL-9). | D-022; D-160; D-166; NG-04; NG-05 |
 | RR-10 | **A verb is adopted only with a definition and an evidence expectation.** A verb for which no evidence expectation can be written is rejected as vague. | `SESSION-ROADMAP.md` S04 gate |
 
 **Direction convention** (`INTERPRETATION`). Every edge reads as an English sentence,
@@ -66,8 +66,8 @@ and "who does what to X?" by the activity edges that point into X.
 
 ## 2. The v1 relation types at a glance (machine-checked)
 
-Eleven types: two at class level, nine at instance level (D-029). The "Inverse reading"
-column is display text only.
+Twelve types: two at class level, nine at instance level, one at policy level (D-029; the policy
+link `restricts`, S18, D-166). The "Inverse reading" column is display text only.
 
 | Type | Level | Source | Target | Qualifier | Inverse reading | DEPs |
 |---|---|---|---|---|---|---|
@@ -82,6 +82,7 @@ column is display text only.
 | `supplies` | instance | company | company | `item` | supplied by | DEP-07, DEP-09 |
 | `houses` | instance | facility | product | — | housed in | DEP-12 |
 | `provides_access_to` | instance | product | product | — | accessible through | DEP-14 |
+| `restricts` | policy | policy | technology, component | — | named among the items controlled by | — |
 
 **The record** (D-028; the schema holds the exact shapes):
 
@@ -135,6 +136,11 @@ but HBM as the *solution* is contingent. So the class-level fact is recorded onl
 source states necessity (`requires`), and a product's use of HBM is an instance-level
 `incorporates` edge. A general statement such as "current accelerators use HBM" is then
 a `DERIVATION` over product edges (S15), not a stored class edge.
+
+**A third level: policy** (S18, `policy-links.md` K-1, D-166). A policy link goes from a named act to a
+class its own text names. Its evidence is the act's text, and its time comes from the act's events, never
+from the link. It is neither structural nor contingent, so it has its own level. Its only type is
+`restricts`.
 
 **Classes and instances meet only through entity fields.** `product.instance_of` links a
 product to its class, and `broader` builds the class hierarchy. Neither is an edge
@@ -327,6 +333,27 @@ is in the §5 table, the one home of evidence expectations.
   - `designs`: a cloud provider designing its own accelerator (DEP-15, B-2) is a separate
     fact from offering it as a service (DEP-14).
 
+### 4.12 `restricts`
+
+- **Definition:** the source act's own text names the target class among the items it controls. That is
+  all it states. It does not state that every member of the class is controlled, that any product or firm
+  is, for which destinations or under which licence policy, or that the control is in effect today
+  (`policy-links.md` K-3; LA-1 to LA-4).
+- **Direction:** act → class. Displayed inversely as "named among the items controlled by" (RR-3). MA's
+  `restricted_by` is that inverse reading (§6), reworded so that it does not read as a ban.
+- **Endpoints:** policy → component or technology. Product and company targets, defined by D-160, wait
+  for their evidence row (K-1, D-166).
+- **Level:** policy (§3).
+- **Time:** none on the edge. When the act took effect, and whether a repeal is recorded, are derived from
+  its events (`tools/policy_status.py`, P-4). A later act the Atlas holds that changes the same entry is an
+  extra `ATTRIBUTION` claim cited by the edge, quoting the later text (K-4, D-169).
+- **Not to be confused with:**
+  - the act's issuing country: the field `issued_in` (RR-4; K-5);
+  - a destination the control names: scope in the text, not an edge (K-3, K-5);
+  - `requires`: a class needing another is a fact about technology; an act naming it is a fact about a
+    text;
+  - an Atlas finding that a product meets a threshold: refused (LA-3, K-7).
+
 ## 5. Evidence expectations (one home; handoff to S05)
 
 What a source must show before an edge of each type may be recorded. **S04 states what the
@@ -346,6 +373,7 @@ evidence must show. S05 decides which source classes are preferred** (S05 gate).
 | `supplies` | supplier, customer and item named, and a supply or licence relation stated between them | co-mention of both companies; the supplier's role; a customer's product using the item class | volumes; contract terms; the installed tool base per fab (DEP-07); tool licences per designer (DEP-09) |
 | `houses` | the named site and the named product, with installation or deployment at that site stated | the operator's use of the product somewhere; a region or availability zone (not a site, D-022) | deployment counts per site (DEP-12: LBNL, SRC-021 p.17) |
 | `provides_access_to` | the provider's own service documentation naming the hardware product as available through the named service (e.g. SRC-008, DC-03) | a provider designing or buying the hardware | capacity and location behind the service |
+| `restricts` | the act's own text naming the class among the items it controls, in the record's name or an alias, and a `DERIVATION` matching that term to the record's working definition (`policy-links.md` K-2) | a summary, press release or news report of the act; a broader or narrower term ("GPUs" for data-centre GPU); a mention that controls nothing (a red flag naming the class); a product meeting the act's threshold (LA-3) | how the act applies to a named product, firm or transaction (licence decisions and classifications are not published) |
 
 **Entity identity evidence** (from S03, D-025; repeated here as S05's second input):
 `identity_claim_ids` needs at least one claim establishing that the thing exists and is
@@ -394,6 +422,8 @@ three lists from their documents and checks this table against them.
 - `has_part`: composition, which S03 left to S04 (`entity-taxonomy.md` §9);
 - `incorporates`: the precise replacement for DEP-01's `uses`;
 - `provides_access_to`: `offered_via` stored in the convention's direction.
+- `restricts` (introduced by S18, not S04; D-160, D-166): MA's `restricted_by` stored from the act to
+  what its text names, the activity direction (RR-3). §4.12.
 
 **Conflicts with MA recorded, not resolved by editing MA.**
 
@@ -616,7 +646,7 @@ Take one sentence type: "Company F makes Company D's chip."
 | Constituent-level fabrication (`part` qualifier); vendor-named packaging processes | S10, stop-and-propose (D-032) | §4.6, §4.7 |
 | First edges | S10 | "No relationship is published without evidence or an explicit non-published/unverified state" |
 | `depends_on`, concentration, single-sourcing | S15 | derived from edges; `supplier` lists give the multi-sourcing evidence |
-| Policy verbs (`restricted_by`, `regulated_by`, `supported_by`, `constrained_by`) | S17 (done, D-160); S18 records `restricts` | `restricts` and `supports` defined in `policy-dataset.md` P-8; `regulated_by` and `constrained_by` rejected |
+| Policy verbs (`restricted_by`, `regulated_by`, `supported_by`, `constrained_by`) | S17 (done, D-160); S18 (done: `restricts` in the schema, D-166) | `restricts` and `supports` defined in `policy-dataset.md` P-8; `restricts` built at the policy level (`policy-links.md`); `supports` not yet instantiable; `regulated_by` and `constrained_by` rejected |
 
 **`validate-data` rules for relationships** (for S06/S07; none is a gate until CI runs it,
 L-02):

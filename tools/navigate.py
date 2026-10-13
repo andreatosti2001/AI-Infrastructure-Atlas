@@ -11,35 +11,48 @@ Usage:
     suppliers ID    Who supplies this component? supplies edges whose item is ID; for each
                     incorporates edge into ID, its supplier values or state; a product's vendor.
     actors ID       Who does what to this record? The activity edges that point into ID.
-    edges ID        Every recorded edge at ID, both directions; the inverse is display text.
+    edges ID        Every recorded edge at ID, both directions; the inverse is display text. A policy
+                    link (restricts, S18) is shown with its act's status on the --on date, the act's
+                    official text and the line "describes the text; does not advise" (LA-5).
     evidence REL    What evidence supports the edge? The trace (tools/trace.py).
 
     --data              directory holding the data files (default: the repository's data/)
     --include-staging   also read staging edges and records, each marked "staging"
     --json              print the answer as data (S11, D-101): the structure the page build reads
+    --on DATE           the date of a policy link's status (default: today); never stored
 
 Canonical records only by default. A missing edge is "no recorded relationship", never
-"none" (RR-7). Exit status: 0, or 2 when ID is unknown. Standard library only (D-003, D-026).
+"none" (RR-7). A policy link is neither a dependency nor an activity: depends-on, suppliers and
+actors never read it (policy-links.md K-8, D-173). Exit status: 0, or 2 when ID is unknown. Standard library only (D-003, D-026).
 """
 
 from __future__ import annotations
 
 import argparse
+import datetime
 import json
 import sys
 from pathlib import Path
 
+import policy_status
 import trace
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DATA = REPO_ROOT / "data"
 SCHEMA = json.loads((REPO_ROOT / "schemas/relationships.schema.json").read_text(encoding="utf-8"))
 VOCAB = {v["const"]: v for v in SCHEMA["$defs"]["vocab_relation_type"]["oneOf"]}
-ENTITY_KINDS = ("companies", "jurisdictions", "technologies", "components", "products", "facilities")
+ENTITY_KINDS = ("companies", "jurisdictions", "technologies", "components", "products", "facilities", "policies")
 # relationship-taxonomy.md §1, direction convention: structural edges point from the dependent to
 # its dependency, activity edges from the actor to what it acts on.
 STRUCTURAL = ("requires", "has_part", "incorporates")
 ACTIVITY = ("owns", "operates", "designs", "fabricates", "packages", "supplies")
+# policy-links.md K-8, LA-5: shown wherever a policy link is shown
+NO_ADVICE = "describes the text; does not advise (LA-5)"
+STATUS_WORDS = {
+    "has_taken_effect": "has taken effect on the date its text fixes; no repeal recorded in the Atlas",
+    "no_recorded_effect": "no effective date recorded in the Atlas: unknown, not 'not in effect'",
+    "proposed": "proposed; a proposal never takes effect",
+}
 
 
 def load(path: Path) -> list[dict]:
@@ -47,18 +60,22 @@ def load(path: Path) -> list[dict]:
 
 
 class Atlas:
-    def __init__(self, data: Path, include_staging: bool) -> None:
+    def __init__(self, data: Path, include_staging: bool, on: str | None = None) -> None:
         self.data = data
+        self.on = on or datetime.date.today().isoformat()
         places = ["canonical"] + (["staging"] if include_staging else [])
         self.records: dict[str, tuple[dict, str]] = {}
         self.edges: list[tuple[dict, str]] = []
         self.claims: dict[str, tuple[dict, str]] = {}
+        self.events: list[dict] = []
+        self.sources = {s["id"]: s for s in load(data / "sources.json")}
         for where in places:
             folder = data if where == "canonical" else data / "staging"
             for kind in ENTITY_KINDS:
                 for record in load(folder / f"{kind}.json"):
                     self.records[record["id"]] = (record, where)
             self.edges += [(edge, where) for edge in load(folder / "relationships.json")]
+            self.events += load(folder / "events.json")
         for where, path in (("staging", data / "staging" / "claims.json"), ("canonical", data / "claims.json")):
             for claim in load(path):
                 self.claims[claim["id"]] = (claim, where)
@@ -87,6 +104,33 @@ class Atlas:
             else:
                 claims.append({"id": claim_id, "missing": True})
         return {"edge": edge, "where": where, "level": level, "period": period, "claims": claims}
+
+    # --- a policy link's act (S18; policy-links.md K-4, K-8) ------------------------------------
+
+    def policy_status(self, policy_id: str) -> tuple[str, list[str]]:
+        """The act's status on self.on, derived from its events (tools/policy_status.py); never stored."""
+        record = self.records[policy_id][0]
+        form = record.get("instrument_form")
+        forms = {a["value"] for a in form} if isinstance(form, list) else set()
+        return policy_status.derive_status(policy_id, self.events, self.on, forms)
+
+    def official_texts(self, policy_id: str) -> list[str]:
+        """The URLs of the official texts the act's identity claims cite (LA-5)."""
+        urls = []
+        for claim_id in self.records[policy_id][0].get("identity_claim_ids", []):
+            for citation in self.claims.get(claim_id, ({}, ""))[0].get("citations", []):
+                source = self.sources.get(citation["source_id"], {})
+                if source.get("source_class") == "official_legal_text" and source.get("url") not in urls:
+                    urls.append(source["url"])
+        return urls
+
+    def act(self, edge: dict) -> dict | None:
+        """For a policy link: its act's status on self.on, its official texts and the no-advice line."""
+        policy_id = edge["source_entity"]
+        if VOCAB[edge["relation_type"]]["x-level"] != "policy" or policy_id not in self.records:
+            return None
+        status, basis = self.policy_status(policy_id)
+        return {"policy": policy_id, "on": self.on, "status": status, "events": basis, "official_texts": self.official_texts(policy_id), "note": NO_ADVICE}
 
     def into(self, ref: str, types) -> list[tuple[dict, str]]:
         return [(e, w) for e, w in self.edges if e["target_entity"] == ref and e["relation_type"] in types]
@@ -135,6 +179,9 @@ class Atlas:
             if reading:
                 item = self.entry(edge, where)
                 item["reading"] = reading
+                act = self.act(edge)
+                if act:
+                    item["act"] = act
                 found.append(item)
         return found
 
@@ -217,6 +264,12 @@ class Atlas:
                 self.show(lines, 1, item, f"{self.name(ref)} {reading} {self.name(edge['source_entity'])} (inverse reading, display only, RR-3)")
             else:
                 self.show(lines, 1, item, f"item of: {self.sentence(edge)}")
+            if "act" in item:
+                act = item["act"]
+                words = STATUS_WORDS.get(act["status"])
+                lines.append("    " + f"status of {act['policy']} on {act['on']}: {act['status']}" + (f" ({words})" if words else ""))
+                lines += ["    " + f"official text: {url}" for url in act["official_texts"]]
+                lines.append("    " + act["note"])
         if not found:
             lines.append(f"  no recorded relationship at {ref} (RR-7)")
         return lines
@@ -258,8 +311,9 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--data", type=Path, default=DEFAULT_DATA)
     parser.add_argument("--include-staging", action="store_true")
     parser.add_argument("--json", action="store_true", help="print the answer as JSON (D-101)")
+    parser.add_argument("--on", help="date of a policy link's status, YYYY-MM-DD (default: today)")
     args = parser.parse_args(argv[1:])
-    atlas = Atlas(args.data, args.include_staging)
+    atlas = Atlas(args.data, args.include_staging, args.on)
     if args.json:
         data, status = navigate_data(args.command, args.id, atlas)
         print(json.dumps(data, ensure_ascii=False, indent=1, sort_keys=True))
