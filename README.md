@@ -72,8 +72,16 @@ anchors and review.
   (October 2022, two of October 2023, December 2024). Each record holds what identifies the act; what the act
   provides stays in claims attributed to the authority; its dates are events, and its status on any day is
   computed by `tools/policy_status.py` ("has taken effect; no repeal recorded in the Atlas", never "in force").
-  They are not yet linked to companies, parts or technologies
   ([`policy-dataset.md`](docs/architecture/policy-dataset.md)).
+- **The first policy links** (M5): four `restricts` links say that an act's own text names a class among the
+  items it controls: the December 2024 rule names high-bandwidth memory, and the 2022, 2023 and 2024 rules
+  name semiconductor manufacturing equipment. Each rests on the act's quoted sentence and a recorded match
+  between its word and the Atlas's record; a later rule that changed the same entry is quoted beside it (the
+  2023 rule removed the 2022 entry). Nine candidates were refused, among them GPUs, ASICs and accelerators
+  (broader words than the records) and a named HBM product (only the Atlas applying the rule's threshold
+  could link it). `python tools/navigate.py edges component-high-bandwidth-memory` shows each link with its
+  act's status and "describes the text; does not advise". No page shows them yet
+  ([`policy-links.md`](docs/architecture/policy-links.md)).
 
 ## How quality is controlled
 
@@ -96,8 +104,10 @@ CI runs the unit tests and Gate 0 on every push and pull request.
   bounded in time (the H100's supplier). Some publishers refuse automated retrieval; these are recorded as
   access gaps.
 - Policy records describe; they never advise. No record or link says what anyone must do, and no technical
-  threshold is applied to a product (`policy-dataset.md` P-9). The five export-control records are not yet
-  linked to the chain, so no exposure is shown. Only acts issued by a country can be recorded; EU instruments
+  threshold is applied to a product (`policy-dataset.md` P-9). A policy link says only that an act's text
+  names a class among the items it controls: never that every member, a product or a firm is controlled, for
+  which destination, or that the control is in effect today; no exposure is shown. Products and companies
+  are not linked to acts yet, and later rules the Atlas does not hold were not searched for changes. Only acts issued by a country can be recorded; EU instruments
   stay in `Eu-Digital-Policy`. A repeal the Atlas has not recorded would not show: the status says "no repeal
   recorded in the Atlas". The end of a single instruction's effect (one 2023 instruction ran to 2026-01-01) is
   stated in a claim, not as an event.
@@ -107,10 +117,9 @@ CI runs the unit tests and Gate 0 on every push and pull request.
 ## Next phase
 
 M5 ([`SESSION-ROADMAP.md`](SESSION-ROADMAP.md)) is under way. S17 defined the policy record and recorded the
-first export-control acts. S18 links them to the parts, products, technologies and companies their texts name
-(`restricts`, defined in [`policy-dataset.md`](docs/architecture/policy-dataset.md) P-8), each link resting on
-the text's own words or a party's statement. S19 audits the agent architecture and, first, improves the break
-harness (D-153).
+first export-control acts; S18 linked them to the classes their texts name
+([`policy-links.md`](docs/architecture/policy-links.md)). S19 audits the agent architecture and the M5
+milestone and, first, improves the break harness (D-153).
 
 ## Layout
 

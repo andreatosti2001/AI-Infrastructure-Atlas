@@ -198,9 +198,10 @@ fails the tests until it has a row:
   technology and component.
 - every event type in `events.schema.json` (`event:<type>`), added in S09 (D-084).
 
-The matrix has 47 rows: 11 relation types, 1 edge qualifier, 7 identity rows, 21
+The matrix has 48 rows: 12 relation types, 1 edge qualifier, 7 identity rows, 21
 attribute rows and 7 event rows. S17 added the policy rows: `identity:policy`, seven `attr:policy.*`
-rows and the three policy events (D-158).
+rows and the three policy events (D-158). S18 added `rel:restricts`, the policy link, which rests on the
+act's own text only (`policy-links.md` K-6, D-171).
 
 **How to read a row.**
 
@@ -231,6 +232,7 @@ rows and the three policy events (D-158).
 | `rel:supplies` | `company_filing` | `company_press_release`, `company_technical_documentation` | `company_marketing`, `standard_specification`, `government_publication`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media`, `official_legal_text` | party | time_sensitive | taxonomy §5 `supplies`; ER-9 |
 | `rel:houses` | `company_press_release`, `company_technical_documentation` | `company_filing`, `government_publication` | `company_marketing`, `standard_specification`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media`, `official_legal_text` | party | time_sensitive | taxonomy §5 `houses`; ER-3 (deployment is usually non-public) |
 | `rel:provides_access_to` | `company_technical_documentation` | `company_marketing`, `company_press_release` | `company_filing`, `standard_specification`, `government_publication`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media`, `official_legal_text` | party | time_sensitive | taxonomy §5 `provides_access_to` |
+| `rel:restricts` | `official_legal_text` | none | `company_filing`, `company_technical_documentation`, `company_press_release`, `company_marketing`, `standard_specification`, `government_publication`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media` | originator | stable | taxonomy §5 `restricts`; `policy-links.md` K-2, K-6. Stable: a published text never changes; whether the act has effect is derived from its events (P-4) |
 | `identity:company` | `company_filing`, `government_publication` | `company_technical_documentation`, `company_press_release`, `company_marketing` | `standard_specification`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media`, `official_legal_text` | party or originator | stable | taxonomy §5 entity identity; entity taxonomy §7 |
 | `identity:facility` | `company_filing`, `government_publication` | `company_press_release`, `company_marketing`, `company_technical_documentation` | `standard_specification`, `research_report`, `policy_research_brief`, `industry_association`, `market_research_consultancy`, `news_media`, `official_legal_text` | party or originator | stable | entity taxonomy §7; a region or zone is not a facility (D-022) |
 | `identity:technology` | `standard_specification`, `government_publication`, `research_report` | `company_technical_documentation`, `policy_research_brief` | `company_filing`, `company_press_release`, `company_marketing`, `industry_association`, `market_research_consultancy`, `news_media`, `official_legal_text` | originator | stable | entity taxonomy §7; a vendor's named offering is not a technology (R-4) |

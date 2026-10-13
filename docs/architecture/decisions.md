@@ -2850,3 +2850,107 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   text fixes; no later act changing it recorded in the Atlas".
 - **Rejected:** counting a future effective date only once a later official text confirms it (more research
   per record; acts would stay "not yet confirmed").
+
+## D-165 — The first policy links go to the classes the texts name
+
+- **Date:** 2026-10-13 · **Status:** accepted (decided by the human on 2026-10-13)
+- **Context:** S18 opens the links between the five export-control records and the chain (D-160). Read
+  before the decision, in the five texts re-retrieved on 2026-10-13 with their registered hashes: none names
+  any of the Atlas's nine companies or three products. 89 FR 96790 adds a control "on HBM stacks", and the
+  equipment rules name semiconductor manufacturing equipment.
+- **Decision:** the first `restricts` links go from the acts to the **classes** of parts and technologies
+  their own texts name. No named product or company is linked in S18.
+- **Rejected:** named products and companies first (each needs the party's own statement that a specific
+  rule applies to its product; none is retrieved, and none may exist); both kinds in one session (twice the
+  research and review, with the product half possibly empty).
+
+## D-166 — A policy level for `restricts`, with class targets only (K-1)
+
+- **Date:** 2026-10-13 · **Status:** accepted (decided by the human on 2026-10-13)
+- **Decision:** `restricts` is the only type of a third level, `policy`: from a named act to a class its own
+  text names, evidenced by that text, with no dates on the link. RR-2 names three levels; RR-9 admits a
+  policy only as the source of `restricts`. Targets admitted now: component and technology. Product and
+  company targets (defined by D-160) are admitted by the session that records the first one, with their
+  evidence row. Schema: `schemas/relationships.schema.json` (`rel_restricts`, `endpoint_policy`); checks PK-1,
+  PK-2. `docs/architecture/policy-links.md` K-1.
+- **Rejected:** all four target kinds now (an evidence row written before any party statement is read); two
+  verbs (one relation split in two, although the evidence is the same text).
+
+## D-167 — A link needs the act's own term for the record's class (K-2)
+
+- **Date:** 2026-10-13 · **Status:** accepted (decided by the human on 2026-10-13)
+- **Decision:** a link is recorded only when the act's text uses the record's name or an alias and nothing
+  in the text makes it a different kind of thing. Words that limit which members are controlled ("certain",
+  "specified", a parameter) are scope. A `DERIVATION` with two inputs (the act's `ATTRIBUTION` and the
+  record's working-definition claim) quotes both words and concludes only that they name the same kind of
+  thing: never that every member, a product or a firm is controlled, for which destination, or that the
+  control is in effect. A broader term ("GPUs" for data-centre GPU), a narrower one, or an item used for the
+  class (EUV pellicles for EUV lithography) is refused as `term_not_matched`. Check PK-3, PK-4.
+- **Rejected:** accepting a broader term that contains the record (each link would say more than the text;
+  ER-9 already refuses that step for suppliers).
+
+## D-168 — A control's scope stays in the text (K-3)
+
+- **Date:** 2026-10-13 · **Status:** accepted (decided by the human on 2026-10-13)
+- **Decision:** no qualifier on `restricts`. Parameters, destinations, licence policy and exclusions stay in
+  the act, quoted where a claim needs them. The link reads "the text of <act> names <class> among the items
+  it controls"; the inverse reading shown is "named among the items controlled by".
+- **Rejected:** structured scope fields (legal content copied into fields, stale with every amending rule,
+  and an invitation to the threshold comparisons LA-3 forbids).
+
+## D-169 — A later change to the same entry is quoted, never dated on the link (K-4)
+
+- **Date:** 2026-10-13 · **Status:** accepted (decided by the human on 2026-10-13)
+- **Context:** 88 FR 73424 (2023) removes ECCN 3B090, the equipment entry 87 FR 62186 (2022) created.
+- **Decision:** a link has no dates; the act's status comes from its events. A later act the Atlas holds that
+  changes the same entry is one more `ATTRIBUTION` claim cited by the earlier link, quoting the later text.
+  Later acts the Atlas holds are searched for the entry's identifier and the search is logged; acts it does
+  not hold are not searched, which is debt for the M5 audit. An amendment of an entry is not a repeal of the
+  act.
+- **Rejected:** an end date on the link (the Atlas's own inference about legal effect); refusing a link whose
+  entry was later removed (it would lose what the earlier text named).
+
+## D-170 — No jurisdiction relationship (K-5)
+
+- **Date:** 2026-10-13 · **Status:** accepted (decided by the human on 2026-10-13)
+- **Decision:** S18 adds no relationship to a jurisdiction. An act's issuing country is its `issued_in`
+  field (RR-4); the destinations a control names are scope in the text (D-168).
+- **Rejected:** none proposed.
+
+## D-171 — The evidence row `rel:restricts` (K-6)
+
+- **Date:** 2026-10-13 · **Status:** accepted (decided by the human on 2026-10-13)
+- **Decision:** a 48th row in `docs/research/source-policy.md` §7: preferred `official_legal_text`,
+  acceptable none, every other class never sufficient alone; standing originator; freshness stable. The
+  session that admits product or company targets revisits it. Check PK-5.
+- **Rejected:** none proposed.
+
+## D-172 — Refused policy candidates are records, with two new reasons (K-7)
+
+- **Date:** 2026-10-13 · **Status:** accepted (decided by the human on 2026-10-13)
+- **Decision:** a policy-link candidate the evidence cannot support is a refused candidate (D-109). The
+  schema admits `restricts` and a policy source in a candidate, and two reasons: `term_not_matched` (D-167)
+  and `applies_a_threshold` (LA-3). One product candidate is recorded as refused: 89 FR 96790 states that
+  all HBM stacks in production exceed its threshold, and linking Micron's HBM4 on that ground would be the
+  Atlas applying the threshold. Check PK-7.
+- **Rejected:** class refusals only (the threshold temptation would be documented only in prose); refusals
+  only in the search log (not checkable data).
+
+## D-173 — Pages show no policy link; navigation shows each with its act's status (K-8)
+
+- **Date:** 2026-10-13 · **Status:** accepted (decided by the human on 2026-10-13)
+- **Decision:** no page shows a policy link or a policy record until a page design is approved; a check
+  fails if a built page contains one. `tools/navigate.py` reads the policy records; `depends-on`,
+  `suppliers` and `actors` never return `restricts`; `edges` shows each policy link with its act's status
+  on a date (derived by `tools/policy_status.py`, default today, never stored), the act's official text and
+  the line "describes the text; does not advise" (LA-5). Check PK-6.
+- **Rejected:** navigation ignoring policy links (they would answer no question from the tools).
+
+## D-174 — The policy link's checks are written first, with breaks (K-9)
+
+- **Date:** 2026-10-13 · **Status:** accepted (decided by the human on 2026-10-13)
+- **Decision:** PK-1 to PK-7 (`policy-links.md` K-9), shown failing for their reasons before the schema
+  changed, replace S17's PL-9; RV-1 gains a `restricts` word row (`edge-dataset.md` §7). Each check gets a
+  planted-fault break (`S18-…`) in `tests/regression/`, run with the breaks that touch the changed files
+  (D-150).
+- **Rejected:** none proposed.

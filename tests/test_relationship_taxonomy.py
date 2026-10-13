@@ -212,7 +212,7 @@ class SchemaStructureTests(unittest.TestCase):
         for relation_type, item in VOCAB.items():
             with self.subTest(type=relation_type):
                 self.assertTrue(item.get("description", "").strip())
-                self.assertIn(item.get("x-level"), {"class", "instance"})
+                self.assertIn(item.get("x-level"), {"class", "instance", "policy"})
                 self.assertIsInstance(item.get("x-deps"), list)
                 self.assertTrue(item.get("x-inverse-reading", "").strip())
 
@@ -252,6 +252,13 @@ class SchemaStructureTests(unittest.TestCase):
             with self.subTest(type=relation_type, level=item["x-level"]):
                 if item["x-level"] == "class":
                     self.assertTrue(ends <= CLASS_TYPES)
+                    for field in DATES:
+                        self.assertIs(props.get(field), False)
+                elif item["x-level"] == "policy":
+                    # S18 (policy-links.md K-1, K-4): from a named act to a class the text names; time comes
+                    # from the act's events, never from the link
+                    self.assertEqual(endpoint_types(props["source_entity"]), {"policy"})
+                    self.assertTrue(endpoint_types(props["target_entity"]) <= CLASS_TYPES)
                     for field in DATES:
                         self.assertIs(props.get(field), False)
                 else:
@@ -338,14 +345,16 @@ class CountTests(unittest.TestCase):
 
     def test_type_counts_in_prose_match_the_schema(self) -> None:
         levels = [item["x-level"] for item in VOCAB.values()]
-        match = re.search(r"^(\w+) types: (\w+) at class level, (\w+) at instance level", TAXONOMY, re.M)
+        match = re.search(r"^(\w+) types: (\w+) at class level, (\w+) at instance level(?:, (\w+) at policy level)?", TAXONOMY, re.M)
         self.assertIsNotNone(match, "taxonomy §2 count sentence not found")
-        total, at_class, at_instance = map(self.number, match.groups())
-        self.assertEqual((total, at_class, at_instance),
-                         (len(VOCAB), levels.count("class"), levels.count("instance")))
+        total, at_class, at_instance = map(self.number, match.groups()[:3])
+        at_policy = self.number(match.group(4)) if match.group(4) else 0
+        self.assertEqual((total, at_class, at_instance, at_policy),
+                         (len(VOCAB), levels.count("class"), levels.count("instance"), levels.count("policy")))
+        # D-029 named the v1 chain vocabulary (class and instance levels); the policy level came later (S18)
         decisions = (REPO_ROOT / "docs/architecture/decisions.md").read_text(encoding="utf-8")
         title = re.search(r"^## D-029 — Relationship vocabulary v1: (\w+) types", decisions, re.M)
-        self.assertEqual(self.number(title.group(1)), len(VOCAB))
+        self.assertEqual(self.number(title.group(1)), levels.count("class") + levels.count("instance"))
 
 
 class ReconciliationTests(unittest.TestCase):

@@ -133,6 +133,13 @@
       "source_entity": "product-example-cloud-service",
       "target_entity": "product-example-accelerator",
       "claim_ids": ["claim-fixture-121"]
+    },
+    "restricts": {
+      "id": "rel-policy-xa-example-rule-restricts-component-example-memory",
+      "relation_type": "restricts",
+      "source_entity": "policy-xa-example-rule",
+      "target_entity": "component-example-memory",
+      "claim_ids": ["claim-fixture-122", "claim-fixture-123"]
     }
   },
   "invalid": [
@@ -206,6 +213,10 @@
     { "case": "endpoint_list", "why": "one edge connects exactly two records; several parties are several edges", "base": "fabricates", "set": { "/source_entity": ["company-example-foundry", "company-example-operator"] } },
     { "case": "missing_target", "why": "an edge with one endpoint is not an edge", "base": "designs", "remove": ["/target_entity"] },
     { "case": "symmetric_flag", "why": "every v1 type is directed; there is no symmetric flag (RR-3)", "base": "supplies", "set": { "/symmetric": true } },
+    { "case": "restricts_to_a_product", "why": "product targets wait for a party's evidence row (policy-links.md K-1)", "base": "restricts", "set": { "/target_entity": "product-example-accelerator" } },
+    { "case": "restricts_from_a_company", "why": "a policy link starts from an act (PK-1)", "base": "restricts", "set": { "/source_entity": "company-example-foundry" } },
+    { "case": "restricts_with_a_date", "why": "a policy link has no dates; time comes from the act's events (K-4)", "base": "restricts", "set": { "/valid_to": "2023-11" } },
+    { "case": "policy_as_a_target", "why": "a policy is an endpoint only as the source of restricts (PK-2)", "base": "designs", "set": { "/target_entity": "policy-xa-example-rule" } },
     { "case": "inverse_reading_stored", "why": "the inverse reading is display text from the vocabulary, not a record field", "base": "fabricates", "set": { "/inverse": "fabricated by" } }
   ]
 }

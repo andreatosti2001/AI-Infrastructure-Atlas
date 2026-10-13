@@ -263,6 +263,10 @@ inverse readings shown to readers.
 RR-2 ("one verb, one level") would forbid that. S18 amends RR-2 for policy links: the evidence is the same
 either way (the text naming the target), so a third "policy" level is proposed.
 
+**Built in S18** ([`policy-links.md`](policy-links.md), D-165 to D-174): `restricts` at the policy level,
+with component and technology targets only for now; the term rule, scope, time, evidence row, refusals,
+pages and checks are decided there.
+
 **Time.** A link carries no dates of its own. While the act has effect is derived from its events (P-4).
 Whether a later rule narrowed the target is S18's to model.
 
@@ -294,7 +298,7 @@ pages (no page is built in S17).
 | PL-6 | a `published`, `effective` or `repealed` event whose subject is not a policy; an `effective` or `repealed` event for a `proposed_rule`; an event dated after its source, unless it is an `effective` date cited from the act's own text (D-164) | `tests/test_data_events.py` |
 | PL-7 | the status derivation, on fictional events: staged effect, effect before publication, repeal, proposal, an unknown, an announced rescission that changes nothing | `tests/test_policy_status.py` |
 | PL-8 | the new class missing from any matrix row, or a policy field or event type without its row; a policy row that does not prefer the official text; a policy date or repeal that a government publication could support; an earlier row that lets the new class support a record alone | `tests/test_source_policy.py` (reads the schemas) and `tests/test_policy_layer.py` |
-| PL-9 | a relationship with a policy endpoint (nothing until S18) | the relationship schema (prefixes), tested in `tests/test_policy_layer.py` |
+| PL-9 | a relationship with a policy endpoint (nothing until S18). **Replaced in S18 by PK-2** (`policy-links.md` K-9, D-174): a policy is an endpoint only as the source of `restricts` | the relationship schema (prefixes), tested in `tests/test_policy_layer.py` |
 
 The existing checks that read every entity kind apply to policies unchanged:
 - references resolve;

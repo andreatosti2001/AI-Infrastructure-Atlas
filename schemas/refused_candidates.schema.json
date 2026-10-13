@@ -127,7 +127,9 @@
         { "const": "company_level_only", "description": "The sentence is about a company in general, not the product or item the edge would name (ER-9)." },
         { "const": "endpoint_has_no_record", "description": "A party has no record, and this evidence cannot create one." },
         { "const": "item_has_no_record", "description": "The item has no record, and the Atlas does not stretch it to one that exists (ER-9)." },
-        { "const": "evidence_not_fresh", "description": "The relation type is time-sensitive and the evidence is older than the freshness horizon (F-1)." }
+        { "const": "evidence_not_fresh", "description": "The relation type is time-sensitive and the evidence is older than the freshness horizon (F-1)." },
+        { "const": "term_not_matched", "description": "restricts only (S18; policy-links.md K-2): the act's term does not name the same class as the record. It is broader, narrower, or names an item used for the record's class; the Atlas does not stretch a term to a record (ER-9)." },
+        { "const": "applies_a_threshold", "description": "restricts only (S18; policy-links.md K-7): the link would need the Atlas to apply a threshold, definition or exemption of the act to a product or firm, which is a legal determination (LA-3)." }
       ]
     }
   }

@@ -19,6 +19,9 @@ RC-6  no considered claim supports an edge of the same type between the same end
       is never both used and refused for one relation)
 RC-7  every rule code (ER-, RR-, F-, D-) quoted in a reasoning has its home
 RC-8  the navigation and the trace never read candidates as edges or records
+PK-7  a refused `restricts` candidate starts from a policy record; `term_not_matched` and
+      `applies_a_threshold` are reasons only for a `restricts` candidate, and `applies_a_threshold` names a
+      product or company target (LA-3; policy-links.md K-7)
 
 Uses the pinned jsonschema for RC-1 (D-026); the rest is standard library.
 Run alone: python -m unittest discover -s tests -p "test_data_candidates.py" -v
@@ -207,6 +210,26 @@ def check_rule_codes(cands) -> list[str]:
     return errors
 
 
+POLICY_REASONS = ("term_not_matched", "applies_a_threshold")
+
+
+def check_policy_candidates(cands) -> list[str]:
+    """PK-7."""
+    errors = []
+    for _, cand in all_candidates(cands):
+        policy_link = "restricts" in cand["relation_types"]
+        if policy_link and not all(isinstance(s, str) and s.startswith("policy-") for s in cand["source_entities"]):
+            errors.append(f"{cand['id']}: a restricts candidate whose source is not a policy record")
+        for reason in POLICY_REASONS:
+            if reason in cand["reasons"] and not policy_link:
+                errors.append(f"{cand['id']}: {reason} is a reason only for a restricts candidate")
+        if "applies_a_threshold" in cand["reasons"] and not any(
+            isinstance(t, str) and t.startswith(("product-", "company-")) for t in cand["target_entities"]
+        ):
+            errors.append(f"{cand['id']}: applies_a_threshold needs a product or company target (LA-3)")
+    return errors
+
+
 def candidate_errors(cands, edges, entities, sources, staging_claims, canonical_claims) -> list[str]:
     errors = check_references(cands, entities, sources, staging_claims, canonical_claims)
     errors += check_canonical(cands, entities, canonical_claims)
@@ -214,6 +237,7 @@ def candidate_errors(cands, edges, entities, sources, staging_claims, canonical_
     errors += check_reasons(cands, matrix())
     errors += check_used_and_refused(cands, edges)
     errors += check_rule_codes(cands)
+    errors += check_policy_candidates(cands)
     return errors
 
 
@@ -260,6 +284,10 @@ class CandidateSchemaTests(unittest.TestCase):
 
         check = validator(REL_SCHEMA)
         self.assertNotEqual(list(check.iter_errors(FIXTURES["valid"]["canonical"][0])), [])
+
+    def test_pk7_the_policy_reasons_are_defined(self) -> None:
+        codes = {item["const"] for item in CAND_SCHEMA["$defs"]["vocab_reason"]["oneOf"]}
+        self.assertTrue(set(POLICY_REASONS) <= codes, set(POLICY_REASONS) - codes)
 
     def test_reason_codes_are_defined(self) -> None:
         for item in CAND_SCHEMA["$defs"]["vocab_reason"]["oneOf"]:

@@ -30,11 +30,12 @@ sys.path.insert(0, str(REPO_ROOT / "tools"))
 
 import navigate  # noqa: E402
 
-KINDS = ("companies", "jurisdictions", "technologies", "components", "products", "facilities")
+KINDS = ("companies", "jurisdictions", "technologies", "components", "products", "facilities", "policies")
+POLICY_LINK = "rel-policy-xa-example-code-1-9-restricts-component-example-gpu"
 
 
 def write_world(root: Path) -> None:
-    edges, entities, _, sources, staging, canonical, _ = edge_fixture_world()
+    edges, entities, events, sources, staging, canonical, _ = edge_fixture_world()
     (root / "staging").mkdir(parents=True)
     (root / "sources.json").write_text(json.dumps(sources), encoding="utf-8")
     (root / "claims.json").write_text(json.dumps(canonical), encoding="utf-8")
@@ -43,6 +44,7 @@ def write_world(root: Path) -> None:
         for kind in KINDS:
             (folder / f"{kind}.json").write_text(json.dumps(entities[where][kind]), encoding="utf-8")
         (folder / "relationships.json").write_text(json.dumps(edges[where]), encoding="utf-8")
+        (folder / "events.json").write_text(json.dumps(events[where]), encoding="utf-8")
 
 
 class FixtureNavigationTests(unittest.TestCase):
@@ -55,8 +57,35 @@ class FixtureNavigationTests(unittest.TestCase):
         self.tmp.cleanup()
 
     def ask(self, command: str, ref: str, staging: bool = False) -> tuple[str, int]:
-        lines, status = navigate.navigate(command, ref, navigate.Atlas(self.root, staging))
+        lines, status = navigate.navigate(command, ref, navigate.Atlas(self.root, staging, on="2026-10-13"))
         return "\n".join(lines), status
+
+    def test_pk6_a_policy_link_is_neither_a_dependency_nor_an_activity(self) -> None:
+        # policy-links.md K-8: restricts says what an act's text names; it is not something the class depends on,
+        # and not something done to it
+        for command in ("depends-on", "actors", "suppliers"):
+            with self.subTest(command=command):
+                text, status = self.ask(command, "component-example-gpu", staging=True)
+                self.assertEqual(status, 0, text)
+                self.assertNotIn(POLICY_LINK, text)
+
+    def test_pk6_edges_shows_a_policy_link_with_its_status_text_and_no_advice_line(self) -> None:
+        for ref in ("component-example-gpu", "policy-xa-example-code-1-9"):
+            with self.subTest(ref=ref):
+                text, status = self.ask("edges", ref, staging=True)
+                self.assertEqual(status, 0, text)
+                self.assertIn(POLICY_LINK, text)
+                self.assertIn("· staging · policy", text)
+                self.assertIn("status of policy-xa-example-code-1-9 on 2026-10-13: no_recorded_effect", text)
+                self.assertIn("official text: https://example.com/src-918", text)
+                self.assertIn("describes the text; does not advise (LA-5)", text)
+        text, _ = self.ask("edges", "component-example-gpu", staging=True)
+        self.assertIn("component-example-gpu (Example GPU) named among the items controlled by policy-xa-example-code-1-9", text)
+
+    def test_pk6_the_status_follows_the_act_events(self) -> None:
+        atlas = navigate.Atlas(self.root, True, on="2026-10-13")
+        self.assertEqual(atlas.policy_status("policy-xa-ex-1-100")[0], "has_taken_effect")
+        self.assertEqual(navigate.Atlas(self.root, True, on="2026-04-01").policy_status("policy-xa-ex-1-100")[0], "not_yet_published")
 
     def test_what_depends_on_a_technology(self) -> None:
         text, status = self.ask("depends-on", "technology-example-stacking")
@@ -135,6 +164,10 @@ class RealNavigationTests(unittest.TestCase):
                         self.assertIn(edge["id"], self.ask("edges", end)[0])
                     text, status = self.ask("evidence", edge["id"])
                     self.assertEqual(status, 0, text)
+                    if edge["relation_type"] == "restricts":
+                        # PK-6: never read as a dependency or an activity
+                        for command in ("depends-on", "actors"):
+                            self.assertNotIn(edge["id"], self.ask(command, edge["target_entity"])[0])
 
 
 def edge_ids_in(node) -> set[str]:

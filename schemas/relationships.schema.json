@@ -28,7 +28,8 @@
     { "if": { "properties": { "relation_type": { "const": "incorporates" } } }, "then": { "$ref": "#/$defs/rel_incorporates" } },
     { "if": { "properties": { "relation_type": { "const": "supplies" } } }, "then": { "$ref": "#/$defs/rel_supplies" } },
     { "if": { "properties": { "relation_type": { "const": "houses" } } }, "then": { "$ref": "#/$defs/rel_houses" } },
-    { "if": { "properties": { "relation_type": { "const": "provides_access_to" } } }, "then": { "$ref": "#/$defs/rel_provides_access_to" } }
+    { "if": { "properties": { "relation_type": { "const": "provides_access_to" } } }, "then": { "$ref": "#/$defs/rel_provides_access_to" } },
+    { "if": { "properties": { "relation_type": { "const": "restricts" } } }, "then": { "$ref": "#/$defs/rel_restricts" } }
   ],
   "$defs": {
 
@@ -127,6 +128,14 @@
         "item": false, "supplier": false
       }
     },
+    "rel_restricts": {
+      "description": "Policy level (S18; docs/architecture/policy-links.md K-1). From a named act to a class its own text names among the items it controls. No dates: when the act took effect is derived from its events (P-4, K-4). No scope qualifier: parameters, destinations and licence policy stay in the text (K-3). Product and company targets wait for their evidence row (K-1).",
+      "properties": {
+        "source_entity": { "$ref": "#/$defs/endpoint_policy" },
+        "target_entity": { "anyOf": [ { "$ref": "#/$defs/endpoint_component" }, { "$ref": "#/$defs/endpoint_technology" } ] },
+        "valid_from": false, "valid_to": false, "item": false, "supplier": false
+      }
+    },
 
     "not_placeholder": {
       "description": "An endpoint names a real, identified record. A placeholder such as company-unknown-supplier would turn 'not recorded' into a fake entity (D-028). An unknown supplier is an explicit state (D-031).",
@@ -137,9 +146,11 @@
     "endpoint_technology": { "allOf": [ { "$ref": "entities.schema.json#/$defs/ref_technology" }, { "$ref": "#/$defs/not_placeholder" } ] },
     "endpoint_component": { "allOf": [ { "$ref": "entities.schema.json#/$defs/ref_component" }, { "$ref": "#/$defs/not_placeholder" } ] },
     "endpoint_product": { "allOf": [ { "$ref": "entities.schema.json#/$defs/product/properties/id" }, { "$ref": "#/$defs/not_placeholder" } ] },
+    "endpoint_policy": { "allOf": [ { "$ref": "entities.schema.json#/$defs/ref_policy" }, { "$ref": "#/$defs/not_placeholder" } ] },
     "endpoint_any": {
-      "description": "Any instantiable entity type that some relation type uses. Jurisdiction is deliberately absent: location, incorporation and headquarters are entity fields (D-030). Reserved types and record kinds are never endpoints (D-028).",
+      "description": "Any instantiable entity type that some relation type uses. Jurisdiction is deliberately absent: location, incorporation and headquarters are entity fields (D-030). Reserved types and record kinds are never endpoints (D-028). A policy is an endpoint only as the source of restricts (S18, PK-2): every type's branch names its own endpoint types.",
       "anyOf": [
+        { "$ref": "#/$defs/endpoint_policy" },
         { "$ref": "#/$defs/endpoint_company" },
         { "$ref": "#/$defs/endpoint_facility" },
         { "$ref": "#/$defs/endpoint_technology" },
@@ -161,7 +172,7 @@
     },
 
     "vocab_relation_type": {
-      "description": "Relation types adopted in v1 (D-029). Generic verbs (associated_with, related_to, uses, depends_on, ...), stored inverses (fabricated_by, part_of, ...), taxonomic verbs (is_a, instance_of, ...) and policy or energy verbs are deliberately absent, so records using them fail here. x-level is class or instance; x-deps lists the domain-map dependencies the type covers; x-inverse-reading is display text only, never a stored type.",
+      "description": "Relation types adopted in v1 (D-029), and the policy link restricts (S18). Generic verbs (associated_with, related_to, uses, depends_on, ...), stored inverses (fabricated_by, part_of, ...), taxonomic verbs (is_a, instance_of, ...) the policy verbs other than restricts, and energy verbs are deliberately absent, so records using them fail here. x-level is class, instance or policy; x-deps lists the domain-map dependencies the type covers; x-inverse-reading is display text only, never a stored type.",
       "oneOf": [
         { "const": "requires", "x-level": "class", "x-deps": ["DEP-02", "DEP-03", "DEP-06", "DEP-07", "DEP-08", "DEP-09", "DEP-18"], "x-inverse-reading": "required by",
           "description": "Making or operating any instance of the source class is not possible, at the state of technology the cited source describes, without the target class. Necessity, not current practice." },
@@ -184,7 +195,9 @@
         { "const": "houses", "x-level": "instance", "x-deps": ["DEP-12"], "x-inverse-reading": "housed in",
           "description": "Units of the target hardware product are installed and run at the source data-centre facility." },
         { "const": "provides_access_to", "x-level": "instance", "x-deps": ["DEP-14"], "x-inverse-reading": "accessible through",
-          "description": "The source service product lets its users run workloads on the target hardware product, as the provider's documentation states." }
+          "description": "The source service product lets its users run workloads on the target hardware product, as the provider's documentation states." },
+        { "const": "restricts", "x-level": "policy", "x-deps": [], "x-inverse-reading": "named among the items controlled by",
+          "description": "The source act's own text names the target class among the items it controls (S18; policy-links.md). Never that every member of the class, or any product or firm, is controlled; never for which destination or under which licence policy; never that the control is in effect today." }
       ]
     }
   }
