@@ -1,1 +1,334 @@
-[]
+[
+  {
+    "id": "cand-013",
+    "relation_types": [
+      "restricts"
+    ],
+    "source_entities": [
+      "policy-us-fr-2023-23055"
+    ],
+    "target_entities": [
+      "component-high-bandwidth-memory"
+    ],
+    "considered": [
+      {
+        "source_id": "src-059",
+        "locator": "p.31, supplement no. 3 to part 732, red flag 19",
+        "anchor": "will incorporate (A) more than 50 billion transistors and (B) high-bandwidth memory (HBM). This raises a red flag that needs to be resolved",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      }
+    ],
+    "reasons": [
+      "relation_not_stated"
+    ],
+    "reasoning": "The rule names high-bandwidth memory only as a feature of the chips that raise a red flag: it does not name HBM among the items it controls (RR-1; policy-links.md K-2).",
+    "ruling": "D-089"
+  },
+  {
+    "id": "cand-014",
+    "relation_types": [
+      "restricts"
+    ],
+    "source_entities": [
+      "policy-us-fr-2023-23055"
+    ],
+    "target_entities": [
+      "component-semiconductor-manufacturing-equipment"
+    ],
+    "considered": [
+      {
+        "source_id": "src-059",
+        "locator": "p.1, SUPPLEMENTARY INFORMATION, background of the October 7 IFR",
+        "anchor": "Second, it established a new ECCN for certain semiconductor manufacturing equipment (SME)",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      }
+    ],
+    "reasons": [
+      "relation_not_stated"
+    ],
+    "reasoning": "The sentence describes the October 7 IFR (rule 2022-21658), not a control this rule adds; the rule's other mentions of SME refer to that IFR and to the companion SME IFR (rule 2023-23049), which have their own links (RR-1).",
+    "ruling": "D-089"
+  },
+  {
+    "id": "cand-015",
+    "relation_types": [
+      "restricts"
+    ],
+    "source_entities": [
+      "policy-us-fr-2022-21658",
+      "policy-us-fr-2023-23055",
+      "policy-us-fr-2024-28270"
+    ],
+    "target_entities": [
+      "component-data-centre-gpu"
+    ],
+    "considered": [
+      {
+        "source_id": "src-058",
+        "locator": "p.26, ECCN 3A090, note to 3A090.a",
+        "anchor": "Integrated circuits specified by 3A090.a include graphical processing units (GPUs)",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      },
+      {
+        "source_id": "src-059",
+        "locator": "p.46, ECCN 3A090, Note 1 to 3A090",
+        "anchor": "Integrated circuits specified by 3A090 include graphical processing units (GPUs)",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      },
+      {
+        "source_id": "src-061",
+        "locator": "p.31, ECCN 3A090, Note 2 to 3A090.a and 3A090.b",
+        "anchor": "Integrated circuits specified by 3A090 include graphical processing units (GPUs)",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      }
+    ],
+    "reasons": [
+      "term_not_matched"
+    ],
+    "reasoning": "The rules name graphical processing units (GPUs), a broader term than the record's data-centre GPU; the Atlas records a term exactly as broad as the text says and never stretches it to a narrower record (ER-9; policy-links.md K-2).",
+    "ruling": "D-167"
+  },
+  {
+    "id": "cand-016",
+    "relation_types": [
+      "restricts"
+    ],
+    "source_entities": [
+      "policy-us-fr-2022-21658",
+      "policy-us-fr-2023-23055",
+      "policy-us-fr-2024-28270"
+    ],
+    "target_entities": [
+      "component-ai-asic"
+    ],
+    "considered": [
+      {
+        "source_id": "src-058",
+        "locator": "p.26, ECCN 3A090, note to 3A090.a",
+        "anchor": "and application-specific integrated circuits (ASICs)",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      },
+      {
+        "source_id": "src-059",
+        "locator": "p.46, ECCN 3A090, Note 1 to 3A090",
+        "anchor": "and application-specific integrated circuits (ASICs)",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      },
+      {
+        "source_id": "src-061",
+        "locator": "p.31, ECCN 3A090, Note 2 to 3A090.a and 3A090.b",
+        "anchor": "and application-specific integrated circuits (ASICs)",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      }
+    ],
+    "reasons": [
+      "term_not_matched"
+    ],
+    "reasoning": "The rules name application-specific integrated circuits (ASICs), a broader term than the record's AI ASIC (ER-9; policy-links.md K-2).",
+    "ruling": "D-167"
+  },
+  {
+    "id": "cand-017",
+    "relation_types": [
+      "restricts"
+    ],
+    "source_entities": [
+      "policy-us-fr-2022-21658",
+      "policy-us-fr-2023-23055",
+      "policy-us-fr-2024-28270"
+    ],
+    "target_entities": [
+      "component-ai-accelerator"
+    ],
+    "considered": [
+      {
+        "source_id": "src-058",
+        "locator": "p.26, ECCN 3A090, note to 3A090.a",
+        "anchor": "co-processors/accelerators",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b"
+        }
+      },
+      {
+        "source_id": "src-059",
+        "locator": "p.46, ECCN 3A090, Note 1 to 3A090",
+        "anchor": "co-processors/accelerators",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1"
+        }
+      },
+      {
+        "source_id": "src-061",
+        "locator": "p.31, ECCN 3A090, Note 2 to 3A090.a and 3A090.b",
+        "anchor": "co-processors/accelerators",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      }
+    ],
+    "reasons": [
+      "term_not_matched"
+    ],
+    "reasoning": "The rules name co-processors/accelerators, a broader term than the record's AI accelerator, which is limited to AI training or inference (ER-9; policy-links.md K-2).",
+    "ruling": "D-167"
+  },
+  {
+    "id": "cand-018",
+    "relation_types": [
+      "restricts"
+    ],
+    "source_entities": [
+      "policy-us-fr-2023-23049",
+      "policy-us-fr-2024-28270"
+    ],
+    "target_entities": [
+      "technology-euv-lithography"
+    ],
+    "considered": [
+      {
+        "source_id": "src-060",
+        "locator": "p.17, section C.1, ECCN 3B001.l and m",
+        "anchor": "ECCN 3B001.l is added to establish controls on ‘‘EUV’’ pellicles and ECCN 3B001.m is added to establish controls on equipment for manufacturing ‘‘EUV’’ pellicles.",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db"
+        }
+      },
+      {
+        "source_id": "src-061",
+        "locator": "p.16, section E.1, ECCN 3B001.r",
+        "anchor": "3B001.r.is created to control equipment designed for deposition or removal processes that improve the overall patterning achieved by EUV lithography.",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      }
+    ],
+    "reasons": [
+      "term_not_matched"
+    ],
+    "reasoning": "The rules control pellicles and equipment used for EUV lithography, not the lithography technology the record names: an item used for a class is not the class (policy-links.md K-2).",
+    "ruling": "D-167"
+  },
+  {
+    "id": "cand-019",
+    "relation_types": [
+      "restricts"
+    ],
+    "source_entities": [
+      "policy-us-fr-2024-28270"
+    ],
+    "target_entities": [
+      "technology-duv-lithography"
+    ],
+    "considered": [
+      {
+        "source_id": "src-061",
+        "locator": "p.17, section D.4, the commodities moved to 3B993",
+        "anchor": "3B001.f.1 (less-advanced DUV photolithography equipment)",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      }
+    ],
+    "reasons": [
+      "term_not_matched"
+    ],
+    "reasoning": "The rule controls DUV photolithography equipment, not the lithography technology the record names (policy-links.md K-2).",
+    "ruling": "D-167"
+  },
+  {
+    "id": "cand-020",
+    "relation_types": [
+      "restricts"
+    ],
+    "source_entities": [
+      "policy-us-fr-2024-28270"
+    ],
+    "target_entities": [
+      "technology-electronic-design-automation",
+      "technology-advanced-packaging"
+    ],
+    "considered": [
+      {
+        "source_id": "src-061",
+        "locator": "p.19, section D.7, ECCN 3D992.b",
+        "anchor": "3D992.b is added to control electronic computer-aided design (ECAD) software for advanced semiconductor packaging involving multiple chips or chiplets co-packaged in a single device.",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      },
+      {
+        "source_id": "src-061",
+        "locator": "p.15, section E.1, TSV etch equipment",
+        "anchor": "which BIS believes describes the TSVs used in advanced packaging applications",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      }
+    ],
+    "reasons": [
+      "term_not_matched"
+    ],
+    "reasoning": "The rule controls one narrow kind of ECAD software and TSV etch equipment used for advanced packaging. ECAD software for multi-chip packaging is narrower than the record's electronic design automation, the class of all chip-design software, and the rule's term is not the record's; equipment and software used for advanced packaging are not the packaging technology (policy-links.md K-2).",
+    "ruling": "D-167"
+  },
+  {
+    "id": "cand-021",
+    "relation_types": [
+      "restricts"
+    ],
+    "source_entities": [
+      "policy-us-fr-2024-28270"
+    ],
+    "target_entities": [
+      "product-micron-technology-hbm4-36gb-12h"
+    ],
+    "considered": [
+      {
+        "source_id": "src-061",
+        "locator": "p.11, section C.1, after the 3A090.c threshold",
+        "anchor": "All HBM stacks currently in production exceed this threshold.",
+        "read": {
+          "accessed_at": "2026-10-13T18:45Z",
+          "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
+        }
+      }
+    ],
+    "reasons": [
+      "applies_a_threshold"
+    ],
+    "reasoning": "The rule states that all HBM stacks in production exceed its threshold, and the Atlas holds Micron's HBM4 36GB 12H. Linking them would be the Atlas applying the rule's threshold to a named product, a legal determination (LA-3; policy-links.md K-7).",
+    "ruling": "D-172"
+  }
+]
