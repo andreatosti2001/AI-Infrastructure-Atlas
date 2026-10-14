@@ -32,7 +32,7 @@ M5 Policy / Geopolitical Layer
   S17–S19
        ↓
 M6 Client Product
-  S20–S21
+  S20, S20.5, S21
        ↓
 M7 Final Audits + Release
   S22–S25
@@ -471,6 +471,25 @@ Each major UI feature maps to a documented user question.
 
 ### Visual UX requirement
 The interface should favour analytical storytelling over dashboard clutter: clear hierarchy, appropriately selected charts, annotations, contextual figures and visible evidence/provenance.
+
+---
+
+## S20.5 — Frontend architecture assessment and framework decision
+**Type:** ARCHITECTURE (added 2026-10-14 by the human's decision, D-199)
+
+### Mission
+Decide, on the evidence of the frontend as it stands after S20, whether the Atlas keeps its static, script-free,
+generated pages and improves them, adopts a framework (Vue.js is the candidate) in one bounded place, or defers
+the decision; implement only what that decision justifies and the human approves.
+
+### Inputs
+- S20's frontend baseline and its handoff to S20.5 (the session report, in the private archive);
+- the accepted visual architecture (`docs/architecture/visual-architecture.md`, D-122 to D-126, D-189 to D-198);
+- the non-goals NG-07 (no frontend framework without a recorded requirement) and NG-13, NG-14.
+
+### Gate
+One outcome is decided and recorded with its evidence; any change keeps every page's text provenance checkable in
+CI, the build byte-reproducible, and nothing loaded from the network; no site-wide migration.
 
 ---
 

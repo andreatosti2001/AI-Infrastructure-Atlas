@@ -3212,3 +3212,13 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   - JR-3 also recomputes the number of classes named (`named-classes`).
 - **Rejected:** hiding evidence panels behind a toggle and adding a web font or colour accent (each would change
   an accepted rule; the human chose a pass within the rules); leaving the design to S20.5.
+
+## D-199 — S20.5 runs between S20 and S21
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, at the close of S20)
+- **Context:** the human's addendum to S20 announced S20.5, a frontend architecture assessment and framework
+  decision; S20 left its baseline and handoff, and recommended deciding its place before S21 adds client briefs.
+- **Decision:** `SESSION-ROADMAP.md` gains S20.5 (ARCHITECTURE) between S20 and S21 in M6, with its mission, inputs
+  and gate. S21 starts after S20.5. Its prompt is in the private archive (D-152).
+- **Rejected:** folding the assessment into S22 and starting S21 on the current stack (a later change of stack
+  would then also touch the briefs).
