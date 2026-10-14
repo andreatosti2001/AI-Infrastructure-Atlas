@@ -87,10 +87,10 @@ anchors and review.
 
 | Control | What it checks |
 |---|---|
-| `python -m unittest discover -s tests` | schemas, data integrity (every reference resolves, no unreviewed claim is canonical, freshness), the human review record, the SQL results, and both pages (every text node has a home in the records or is marked framing, rebuild byte-identical, accessibility basics) |
+| `python -m unittest discover -s tests` | schemas, data integrity (every reference resolves, no unreviewed claim is canonical, freshness), the human review record, the SQL results, and both pages (every text node has a home in the records or is marked framing, rebuild byte-identical, accessibility basics); 28 planted data faults the record checks must name (D-176); every file has an owner role (D-180) |
 | `python tools/validate_repo.py` | Gate 0: the governing documents exist, every relative link in the repository's Markdown resolves, and no session record is committed here |
 | `--check` on `tools/warehouse.py`, `tools/build_page.py`, `tools/build_insight.py` | every committed result and page equals a fresh rebuild from `data/` |
-| [`tests/regression/`](tests/regression/README.md) | deliberate breaks: each plants one fault and must be caught by the suite for the reason it names |
+| [`tests/regression/`](tests/regression/README.md) | deliberate breaks (130): each plants one fault in its own copy and must be caught by the suite for the reason it names; run in parallel, selected by the files a change touches (D-177, D-178) |
 | [`tests/browser/`](tests/browser/README.md) | browser QA at 1280 and 375 px: errors, overflow, keyboard path, measured contrast |
 | [Audits](docs/quality/audit-history.md) | milestone, content, analytical and process audits under `PROJECT-EVALUATION-FRAMEWORK.md` |
 
@@ -107,19 +107,22 @@ CI runs the unit tests and Gate 0 on every push and pull request.
   threshold is applied to a product (`policy-dataset.md` P-9). A policy link says only that an act's text
   names a class among the items it controls: never that every member, a product or a firm is controlled, for
   which destination, or that the control is in effect today; no exposure is shown. Products and companies
-  are not linked to acts yet, and later rules the Atlas does not hold were not searched for changes. Only acts issued by a country can be recorded; EU instruments
+  are not linked to acts yet, and later rules the Atlas does not hold were not searched for changes (after 5
+  December 2024; D-175). Only acts issued by a country can be recorded; EU instruments
   stay in `Eu-Digital-Policy`. A repeal the Atlas has not recorded would not show: the status says "no repeal
   recorded in the Atlas". The end of a single instruction's effect (one 2023 instruction ran to 2026-01-01) is
   stated in a claim, not as an event.
 - The open debt, each item with an owner, is listed in the latest audits
-  ([M4](docs/architecture/milestone-audits/M4-audit.md), [analytical audit](docs/architecture/analytical-audit.md)).
+  ([M5](docs/architecture/milestone-audits/M5-audit.md), [agent audit](docs/architecture/agent-audit.md),
+  [M4](docs/architecture/milestone-audits/M4-audit.md), [analytical audit](docs/architecture/analytical-audit.md)).
 
 ## Next phase
 
-M5 ([`SESSION-ROADMAP.md`](SESSION-ROADMAP.md)) is under way. S17 defined the policy record and recorded the
-first export-control acts; S18 linked them to the classes their texts name
-([`policy-links.md`](docs/architecture/policy-links.md)). S19 audits the agent architecture and the M5
-milestone and, first, improves the break harness (D-153).
+M5 is closed ([`M5-audit.md`](docs/architecture/milestone-audits/M5-audit.md), D-187): S17 defined the policy
+record and recorded the first export-control acts; S18 linked them to the classes their texts name; S19 improved
+the break harness, ran it in full and audited the agent roles ([`agent-audit.md`](docs/architecture/agent-audit.md):
+the Analyst is now active, every file has an owner, no runtime orchestrator). Next is M6, the client product
+([`SESSION-ROADMAP.md`](SESSION-ROADMAP.md)): S20, researcher and analyst journeys.
 
 ## Layout
 

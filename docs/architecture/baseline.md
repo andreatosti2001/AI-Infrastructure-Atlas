@@ -76,8 +76,9 @@ the boundaries; the sources it cites keep their own wording.
 Roles and the contract format are defined in CLAUDE.md §8 and MA §11–12. S06 wrote
 `docs/agents/roles.md` and `docs/agents/contracts.md` (accepted at the S06 review, D-052): the roles active
 through S11 have contracts (Editorial and QA added in S11, D-107, accepted at the S12 opening review), and the others name the session that first activates them. There is no root `AGENTS.md`
-(decision D-010). Until S19 finds a manual workflow that needs one, agents are contracts
-plus deterministic validators, with no agent runtime (D-018 L-01; NG-08).
+(decision D-010). Agents are contracts plus deterministic validators, with no agent runtime (D-018 L-01; NG-08):
+S19's agent audit found no workflow that needs one, so NG-08 holds for v1.0 (`agent-audit.md`, D-184). From S19 the
+Analyst is active with a contract (D-181) and every tracked file has an owner, checked in CI (D-180).
 
 ## 4. Initial data model
 
@@ -113,7 +114,7 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 | `validate-design` | **built for the S11 page** (D-105): `python -m unittest discover -s tests -p "test_page.py"`, run in CI; `python tools/build_page.py --check` compares the committed page with a rebuild. **And for the S14.5 prototype** (D-125): `tests/test_insight.py` (IN-1 to IN-9; IN-10 and IN-11 from S15; IN-12 from S16), run in CI; `python tools/build_insight.py --check` |
 | `validate-freshness` | **first rule built** (S07, D-064): F-1, the 12-month horizon for `time_sensitive` fields, `python -m unittest discover -s tests -p "test_freshness.py"`, run in CI. Scheduled re-checks wait for the Change Detector |
 | `qa-browser` | **scripted, outside CI** (D-106): one script per page in `tests/browser/`, run with the pre-installed Chromium and Playwright; results are reported, not committed; a pinned, CI-run version waits for a decision |
-| `regression breaks` | **scripted, outside CI** (D-150, D-151): `tests/regression/breaks.py` copies the repository, plants one fault per break, rebuilds and runs the suite, and counts a break only if the suite fails for the reason it names; controls must pass. The full run is for milestone audits; a change runs the breaks that touch its files (`tests/regression/README.md`) |
+| `regression breaks` | **scripted, outside CI** (D-150, D-151): `tests/regression/breaks.py` copies the repository, plants one fault per break, rebuilds and runs the suite, and counts a break only if the suite fails for the reason it names; controls must pass. The full run is for milestone audits and for a change to a check, schema, Gate 0 or the harness; otherwise a change runs the breaks it selects, measured from the files each setup touches (D-177). Breaks run in parallel copies with one summary (D-178); 28 data breaks also run in CI as `tests/test_planted_faults.py` (D-176). M5's full run (S19): see `M5-audit.md` |
 
 ## 6. Explicit non-goals — frozen for v1.0 (D-021)
 
