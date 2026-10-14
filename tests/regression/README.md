@@ -57,7 +57,7 @@ removed; `breaks.py` is the complete harness and the only entry point.
 | `breaks_metric_audit.py` | the remediations of the metric audit |
 | `breaks_supplier_freshness.py` | stale supplier evidence; the human review record's form |
 | `runner.py` | not a layer: the runner `breaks.py` uses (parallel copies, the summary, measured selection) |
-| `breaks.py` | the supplier-evidence rules and the reported supplier; the human review record and Gate 0's links; no session record in the public tree; the policy layer (S17: PL-1 to PL-9, D-164); the policy links (S18); the research journeys (S20: C-2, C-5, JR-1 to JR-12). A break that rebuilds the results or the HBM page also rebuilds the journey pages, which read both (`with_journeys`, D-190) |
+| `breaks.py` | the supplier-evidence rules and the reported supplier; the human review record and Gate 0's links; no session record in the public tree; the policy layer (S17: PL-1 to PL-9, D-164); the policy links (S18); the research journeys (S20: C-2, C-5, JR-1 to JR-12); the research view's filter guard (S20.5: IN-14, D-200). A break that rebuilds the results or the HBM page also rebuilds the journey pages, which read both (`with_journeys`, D-190) |
 
 **Break IDs** are stable labels, kept so that audits can cite them; the prefix names the layer that added the
 break (`S13-`, `S14-`, `S14.5-`, `S15-`, `S16-`, `S16.5-`, `S16.6-`, `S17-` after the roadmap phase, `D151-`, `D152-` after the

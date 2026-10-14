@@ -34,6 +34,8 @@ IN-12 (S16, D-133 to D-135) the publishers block is retired and computes nothing
       on one publisher keeps its flag; the coverage block says, with its own cells, how many records its
       links come from and how many are counted under another accelerator; the age block says that the
       twelve months is a reading aid, which the re-check rule applies only to time-sensitive links.
+IN-14 (S20.5, D-200) the basis filter works by CSS :has(); where a browser does not support it, a CSS rule hides the
+      filter, so no control changes and silently does nothing (every row stays shown).
 """
 
 from __future__ import annotations
@@ -531,6 +533,15 @@ class InsightTests(unittest.TestCase):
         self.assertNotRegex(css, r"@import|url\(")
         kicker = [n for n in self.nodes if "kicker" in n.attrs.get("class", "").split()]
         self.assertTrue(kicker and "Prototype" in kicker[0].text(), "the page is not marked as a prototype")
+
+    # IN-14
+    def test_in14_the_filter_is_hidden_where_it_cannot_work(self) -> None:
+        css = "".join("".join(t for t, _ in n.texts()) for n in self.nodes if n.tag == "style")
+        self.assertIsNotNone(re.search(r"body:has\(#f-[a-z]+:checked\)", css), "the filter no longer works by :has(); revisit IN-14 with D-200")
+        fieldsets = [n for n in self.nodes if n.tag == "fieldset"]
+        self.assertTrue(fieldsets and all("filter" in f.attrs.get("class", "").split() for f in fieldsets), "the filter's fieldset is not the one the guard hides")
+        guard = r"@supports\s+not\s+selector\(\s*:has\(\*\)\s*\)\s*\{\s*fieldset\.filter\s*\{\s*display\s*:\s*none\s*;?\s*\}\s*\}"
+        self.assertIsNotNone(re.search(guard, css), "where :has() is unsupported the filter would change and do nothing; it must be hidden (D-200)")
 
 
 class PolicyLinkAbsenceTests(unittest.TestCase):

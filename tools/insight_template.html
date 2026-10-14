@@ -101,6 +101,7 @@ a.slot.reported { color: var(--ink-body); background: var(--surface-page); borde
 a.link:hover, a.link:focus-visible, a.slot:hover, a.slot:focus-visible { outline: 3px solid var(--line-focus); outline-offset: 2px; }
 body:has(#f-stated:checked) [data-mark][data-basis="stated"], body:has(#f-inferred:checked) [data-mark][data-basis="inferred"], body:has(#f-gap:checked) [data-mark][data-basis="gap"], body:has(#f-reported:checked) [data-mark][data-basis="reported"] { outline: 3px solid var(--line-focus); outline-offset: 2px; }
 body:has(#f-stated:checked) tr[data-basis]:not([data-basis="stated"]), body:has(#f-inferred:checked) tr[data-basis]:not([data-basis="inferred"]), body:has(#f-gap:checked) tr[data-basis]:not([data-basis="gap"]), body:has(#f-reported:checked) tr[data-basis]:not([data-basis="reported"]) { display: none; }
+@supports not selector(:has(*)) { fieldset.filter { display: none; } }
 tr:target { outline: 3px solid var(--line-focus); outline-offset: -3px; }
 ul.evidence-index { padding-left: 1.2em; max-width: 80ch; }
 ul.evidence-index li { margin: 8px 0; }
