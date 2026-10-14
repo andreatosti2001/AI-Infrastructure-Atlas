@@ -2,12 +2,16 @@
 
 **Status:** ACCEPTED (human review, 2026-09-30; D-052, D-010); the Editorial and QA contracts accepted on
 2026-10-02 (D-107). Paths are kept current when a file moves (Editorial, paths only); no role or boundary
-changes without a decision.
+changes without a decision. S19's agent audit (`docs/architecture/agent-audit.md`): every file has an owner,
+checked (D-180); the Analyst's contract (D-181); the Verifier re-scoped (D-182); drafts always in staging (D-183),
+all accepted on 2026-10-14.
 
 MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. Each contract has
 MA's nine fields, in MA's order.
 
-- **Paths are repository paths.** A role writes only its allowed paths. The session report, kept in the
+- **Paths are repository paths.** A role writes only its allowed paths. A path ending in `/` covers its folder;
+  `*` matches within one name. Every tracked file is in some role's allowed writes or in the list "Outside every
+  contract" below; `tests/test_agent_contracts.py` fails otherwise (D-180). The session report, kept in the
   private development archive outside this repository (D-151), may record any role's findings.
 - **A validation gate is a test module that CI runs on every push** (L-02).
   `tests/test_agent_contracts.py` checks that each one exists.
@@ -22,7 +26,7 @@ MA's nine fields, in MA's order.
 | ROLE | Source Scout |
 | INPUTS | the session's question; the preferred classes for the matrix row it concerns (`source-policy.md` §7); the source records in `data/sources.json`, to avoid duplicates |
 | OUTPUTS | candidate URLs, each with the class it would have and the row it would serve; access gaps met (host, response, time) |
-| ALLOWED_WRITES | the session report, outside this repository (the candidate list and the access gaps); `docs/research/search-logs/` for a search log that a research document cites as its method (D-151) |
+| ALLOWED_WRITES | the session report, outside this repository (the candidate list and the access gaps); `docs/research/search-logs/` for a search log that a research document cites as its method (D-151); the research documents `docs/research/domain-map.md`, `docs/research/source-register.md`, `docs/research/hbm-supplier-research.md` and `docs/research/hbm-supplier-research-original-rules.md` (S19, D-180) |
 | FORBIDDEN_WRITES | any file in `data/`; any schema; a claim's `review`; a class assigned without reading the source |
 | EVIDENCE_REQUIREMENTS | search results and snippets are discovery aids only, never cited (`source-policy.md` §2, MA §11.2); no circumvention of a refusal (RA-2); declaring an identity to a site is the human's (RA-7) |
 | HANDOFF_FORMAT | a report table: URL, proposed class, row served, why it is preferred, access result |
@@ -36,12 +40,12 @@ MA's nine fields, in MA's order.
 | ROLE | Extractor |
 | INPUTS | a retrieved source (bytes, access time, hash) or a manual retrieval by the human (RA-4); the claim model and the schemas |
 | OUTPUTS | a source record; candidate claims with citations (locator, verbatim anchor, standing, originator for a chain) or input claims with reasoning; all with `evidence_status: unverified` and `review: not_reviewed` |
-| ALLOWED_WRITES | `data/sources.json` (new records, registered when retrieved and before any review, while their claims wait in staging: S16.6, D-146; `publisher_entity` per D-065); `data/staging/claims.json` (new claims); `data/staging/companies.json`, `data/staging/jurisdictions.json` (staging entity records, S07, D-055); `data/staging/technologies.json`, `data/staging/components.json`, `data/staging/products.json` (S08, D-077); `data/staging/facilities.json`, `data/staging/events.json` (S09, D-087); `data/staging/relationships.json` (S10, D-098); `data/staging/refused_candidates.json` (S12, D-109) |
+| ALLOWED_WRITES | `data/sources.json` (new records, registered when retrieved and before any review, while their claims wait in staging: S16.6, D-146; `publisher_entity` per D-065); `data/staging/claims.json` (new claims); `data/staging/companies.json`, `data/staging/jurisdictions.json` (staging entity records, S07, D-055); `data/staging/technologies.json`, `data/staging/components.json`, `data/staging/products.json` (S08, D-077); `data/staging/facilities.json`, `data/staging/events.json` (S09, D-087); `data/staging/relationships.json` (S10, D-098); `data/staging/refused_candidates.json` (S12, D-109); `data/staging/identity_basis.json` (S14, D-117); `data/staging/policies.json` (S17, D-155) |
 | FORBIDDEN_WRITES | `data/claims.json`; a claim's `review`; `evidence_status` other than `unverified`; `verified_on` or a citation's `read`; migrated source values (a change needs a decision, VD-9) |
 | EVIDENCE_REQUIREMENTS | every candidate keeps its provenance (MA §11.3); the anchor is copied verbatim; the type follows `claim-model.md` §2 and ER-1 to ER-10; unknowns are explicit states, never null or zero |
 | HANDOFF_FORMAT | the records themselves, plus a report list of new IDs for the Verifier |
-| VALIDATION_GATE | `tests/test_data_schema.py` (VD-2) and `tests/test_data_integrity.py` (VD-1, VD-3 to VD-13); for entity records, `tests/test_data_entities.py` (V-1, V-4, V-9, V-10, CE-1, ID-1, J-1, S07; CI-1, DEF-1, DEF-2, B-1, PI-1, IO-1, S08; FI-1, HQ-1, FK-1, CAP-1, S09); for events, `tests/test_data_events.py` (EV-1 to EV-4, EI-1, S09); for edges, `tests/test_data_relationships.py` (V-1 to V-10, CE-1, RI-1, PL-1, EP-1, PE-1, RV-1, S10) |
-| FAILURE_BEHAVIOUR | a value the source does not give is left as an explicit state; a sentence that cannot be quoted is not cited; the problem is reported, never patched with an inference |
+| VALIDATION_GATE | `tests/test_data_schema.py` (VD-2) and `tests/test_data_integrity.py` (VD-1, VD-3 to VD-13); for entity records, `tests/test_data_entities.py` (V-1, V-4, V-9, V-10, CE-1, ID-1, J-1, S07; CI-1, DEF-1, DEF-2, B-1, PI-1, IO-1, S08; FI-1, HQ-1, FK-1, CAP-1, S09); for events, `tests/test_data_events.py` (EV-1 to EV-4, EI-1, S09); for edges, `tests/test_data_relationships.py` (V-1 to V-10, CE-1, RI-1, PN-1, EP-1, PE-1, RV-1, S10) |
+| FAILURE_BEHAVIOUR | a value the source does not give is left as an explicit state; a sentence that cannot be quoted is not cited; the problem is reported, never patched with an inference; drafts always land in `data/staging/` before the human's review, and a session prompt cannot keep them elsewhere (S19, D-183) |
 
 ## Verifier
 
@@ -52,7 +56,7 @@ MA's nine fields, in MA's order.
 | OUTPUTS | per claim: a status (`supported`, `partial`, `context_only`, or `disputed` with the competing claims), `verified_on`, and each citation's `read`; findings for the report |
 | ALLOWED_WRITES | `data/staging/claims.json`: only `evidence_status`, `verified_on`, `disputed_with` and each citation's `read`; `data/staging/refused_candidates.json`: only each considered sentence's `read` (D-109); the session report (D-151) |
 | FORBIDDEN_WRITES | a claim's `statement`, `claim_type`, citations' anchors or locators (a change is a new claim from the Extractor); a claim's `review`; `data/claims.json`; source records |
-| EVIDENCE_REQUIREMENTS | read the whole sentence at each locator and judge whether the statement exceeds it (`claim-model.md` §6); a class is never a verification (ER-10); record the bytes read; re-check anchors when a hash has changed (`source-policy.md` §12) |
+| EVIDENCE_REQUIREMENTS | its authority is the re-read: each anchor found on its stated page in the bytes whose hash is the registered one, by a script whose output is kept, and a written list of every statement whose wording exceeds its anchor; read the whole sentence at each locator (`claim-model.md` §6); a class is never a verification (ER-10); record the bytes read; re-check anchors when a hash has changed (`source-policy.md` §12). When the session that drafted the claims also verifies them, the judgement of wording is not independent: the human's review of every claim is the independent check (D-182) |
 | HANDOFF_FORMAT | the updated claims, plus a report table: claim, status, what was read, and any wording that exceeds its evidence |
 | VALIDATION_GATE | `tests/test_data_integrity.py` (VD-6, VD-7, VD-11, VD-12) and `tests/test_data_schema.py` (VD-2) |
 | FAILURE_BEHAVIOUR | a source that cannot be re-read leaves the claim `unverified` (SP-7); an anchor not found makes it `context_only`; the Verifier never invents replacement evidence (MA §11.4) |
@@ -64,7 +68,7 @@ MA's nine fields, in MA's order.
 | ROLE | Knowledge Architect |
 | INPUTS | the session prompt; the schemas; the taxonomies, the source policy and the claim model; the decision log |
 | OUTPUTS | schema and vocabulary changes, each with a decision; one-home rulings; ID formats |
-| ALLOWED_WRITES | `schemas/`; `docs/architecture/claim-model.md`; `docs/architecture/company-dataset.md` (S07); `docs/architecture/concept-dataset.md` (S08); `docs/architecture/facility-dataset.md` (S09); `docs/architecture/edge-dataset.md` (S10); `docs/architecture/vertical-slice.md` (S11); `docs/architecture/milestone-audits/` (S12, the audit report); `docs/architecture/decisions.md` (append only) |
+| ALLOWED_WRITES | `schemas/`; `docs/architecture/claim-model.md`; `docs/architecture/company-dataset.md` (S07); `docs/architecture/concept-dataset.md` (S08); `docs/architecture/facility-dataset.md` (S09); `docs/architecture/edge-dataset.md` (S10); `docs/architecture/vertical-slice.md` (S11); `docs/architecture/milestone-audits/` (S12, the audit report; S19: also when the Portfolio Reviewer is inactive); `docs/architecture/decisions.md` (append only); `docs/architecture/entity-taxonomy.md`, `docs/architecture/relationship-taxonomy.md`; `docs/architecture/policy-dataset.md` (S17), `docs/architecture/policy-links.md` (S18); `docs/research/source-policy.md` (rows and rules, each with a decision); `docs/research/supplier-evidence-rules.md`, `docs/research/supplier-presentation.md` (S16.6); the audit record: `docs/architecture/agent-audit.md` (S19), `docs/research/content-audit.md` (S13), `docs/quality/audit-history.md`, `docs/quality/audit-evidence/` (D-180) |
 | FORBIDDEN_WRITES | any file in `data/`; a claim's `review`; an accepted vocabulary value or field without a decision the human approves first; the root constitutional documents |
 | EVIDENCE_REQUIREMENTS | a vocabulary value needs a used case (M0 audit A-1, L-09); where a choice rests on the domain, it cites the concept or source that shows it |
 | HANDOFF_FORMAT | a decision record (`proposed`) and the changed schema, with fixtures |
@@ -78,12 +82,26 @@ MA's nine fields, in MA's order.
 | ROLE | Data Auditor |
 | INPUTS | `data/`, the schemas, the claim model's §4 tables, the source policy's matrix |
 | OUTPUTS | the `validate-data` checks and their results; findings of broken references, duplicates, impossible dates and missing provenance (MA §11.7) |
-| ALLOWED_WRITES | `tests/`; `tests/fixtures/`; `tools/` (standard library only, D-026), except the framing and style in `tools/page_template.html` (Editorial); `site/hbm-chain/index.html`, written only by the build step `tools/build_page.py` (S11, D-102) |
+| ALLOWED_WRITES | `tests/`; `tests/fixtures/`; `tools/` (standard library only, D-026), except the framing and style in `tools/page_template.html` (Editorial); `site/hbm-chain/index.html`, written only by the build step `tools/build_page.py` (S11, D-102); `site/hbm-insight/index.html`, written only by `tools/build_insight.py` (S14.5, D-125); the CI workflow `.github/workflows/ci.yml`, the pins `requirements-test.txt` and `requirements-analysis.txt` (a new dependency needs a decision), `.gitignore` (D-180) |
 | FORBIDDEN_WRITES | any file in `data/`: the Auditor reports, and the Extractor or Verifier fixes; a claim's `review`; a check weakened to make data pass |
 | EVIDENCE_REQUIREMENTS | each check is shown to catch a planted fault before it is trusted (deliberate breaks); prose counts are tested or labelled as measured (L-04) |
 | HANDOFF_FORMAT | failing test output naming the record and the rule, in the session report |
 | VALIDATION_GATE | `tests/test_data_integrity.py`, `tests/test_data_schema.py`, `tests/test_data_entities.py`, `tests/test_freshness.py`, `tests/test_trace.py`, `tests/test_agent_contracts.py`; from S09, `tests/test_data_events.py` and `tests/test_facility_status.py`; from S10, `tests/test_data_relationships.py` and `tests/test_navigate.py`; from S11, `tests/test_page.py` |
 | FAILURE_BEHAVIOUR | a failure that cannot be explained stops the session (CLAUDE.md §18); no test is skipped or loosened to get green |
+
+## Analyst
+
+| Field | Value |
+|---|---|
+| ROLE | Analyst |
+| INPUTS | the canonical records, read by `tools/warehouse.py`; the analytical question, its population and denominator (`metrics.md`); PEF §8 |
+| OUTPUTS | SQL queries with their tutorial headers; their results, computed by `tools/warehouse.py`; the metric and SQL-layer documents; analytical audits |
+| ALLOWED_WRITES | `sql/*.sql`; `sql/results/`, written only by `tools/warehouse.py`; `docs/architecture/sql-layer.md`, `docs/architecture/metrics.md`, `docs/architecture/analytical-audit.md` (S14 to S16; D-181) |
+| FORBIDDEN_WRITES | any file in `data/`; a claim's `review`; a result typed or edited by hand; the warehouse loader and the checks (the Data Auditor's); a metric without its question, population and denominator; a composite score, rank or share (NG-11) |
+| EVIDENCE_REQUIREMENTS | every number is recomputed from versioned inputs (WH-2) and by an independent computation in the checks (WH-10 to WH-14); an unknown is a gap, never a zero; each query states what it does not prove (PEF §8) |
+| HANDOFF_FORMAT | the query, its result and the page rebuilt in one commit, with the question and denominator stated in the query's header |
+| VALIDATION_GATE | `tests/test_warehouse.py` (WH-1 to WH-15) and `tests/test_insight.py` (the research view's cells equal their results) |
+| FAILURE_BEHAVIOUR | a metric that cannot be computed is shown as "cannot be computed yet", never estimated (D-130); a result that differs from a fresh run stops the build |
 
 ## Editorial
 
@@ -92,7 +110,7 @@ MA's nine fields, in MA's order.
 | ROLE | Editorial |
 | INPUTS | the page as built from canonical records; `docs/architecture/vertical-slice.md` (the composition, the text provenance rule); `claim-model.md` §13 (how claims are displayed); the schema definitions the page's terms render |
 | OUTPUTS | the page's framing (prose that states no fact and names no record) and its style; the state rows of the documentation, as each session prompt lists them |
-| ALLOWED_WRITES | `tools/page_template.html` (framing and style only); `README.md`, `docs/README.md` and `docs/architecture/baseline.md` (state rows); the session report (D-151) |
+| ALLOWED_WRITES | `tools/page_template.html` and `tools/insight_template.html` (framing and style only); the visual design documents `docs/architecture/visual-architecture.md` and `docs/research/visual-benchmark.md` (S14.5, D-122 to D-126; D-180); `README.md`, `docs/README.md` and `docs/architecture/baseline.md` (state rows); the session report (D-151) |
 | FORBIDDEN_WRITES | any file in `data/`; a claim's `review`; `site/hbm-chain/index.html` (generated, never edited by hand); a name, value, date, count or relation typed into the template; framing that names a record, holds a digit, or says "none" for a missing relationship; the labels and journey specification in `tools/build_page.py` (the Data Auditor's) |
 | EVIDENCE_REQUIREMENTS | framing adds no fact (NG-09, `claim-model.md` §13); every value reaches the page through the build from its home (D-105); a missing edge is "no recorded relationship" (RR-7); no "critical", "concentrated", share, rank or score (NG-11) |
 | HANDOFF_FORMAT | the template change and the rebuilt page in one commit, with the framing changes listed in the session report |
@@ -112,3 +130,17 @@ MA's nine fields, in MA's order.
 | HANDOFF_FORMAT | a report table: check, width, result, evidence |
 | VALIDATION_GATE | `tests/test_page.py` (PG-8 accessibility basics, PG-9 links and no network resource), run in CI; the browser run (`tests/browser/`) is recorded in the session report, outside CI (D-106) |
 | FAILURE_BEHAVIOUR | a failure is reported with its log and screenshot; a page that fails a check is not shown to the human as done, and never published (NG-13) |
+
+## Outside every contract
+
+Files written only on the human's decision, in a session, never by a role on its own (CLAUDE.md §9, class C and
+D; D-180). A path here is changed only to apply a recorded decision or verdict.
+
+- `CLAUDE.md`, `MASTER-ARCHITECTURE.md`, `PROJECT-EVALUATION-FRAMEWORK.md`, `SESSION-PROMPT-SPEC.md`,
+  `SESSION-ROADMAP.md`: the constitutional documents;
+- `docs/agents/`: the roles and these contracts;
+- `data/claims.json`, `data/companies.json`, `data/jurisdictions.json`, `data/technologies.json`,
+  `data/components.json`, `data/products.json`, `data/facilities.json`, `data/events.json`, `data/policies.json`,
+  `data/relationships.json`, `data/refused_candidates.json`, `data/identity_basis.json`: canonical records, moved
+  from staging on the human's recorded verdict (a deterministic migration needs a decision);
+- `docs/quality/human-reviews.md`: the human's verdicts, recorded as given.

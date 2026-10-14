@@ -4,7 +4,9 @@
 > not in this repository (D-151); the decisions, documents, commits and files it cites are here. Audit evidence that
 > can be re-run is in [`../quality/audit-evidence/agent-audit/`](../quality/audit-evidence/agent-audit/).
 
-**Status:** PROPOSED (S19, 2026-10-14); the human rules each finding and each role at S19's H-2.
+**Status:** ACCEPTED by the human on 2026-10-14 (S19 H-2, D-187). Rulings: F-1 debt, remediated by a contract rule
+(D-183); F-2 and F-3 blocking, remediated in S19 (D-180, D-181); F-4 re-scoped, its tool is debt (D-182); F-5, F-6,
+F-8 by the rows of `roles.md` (D-184); F-7, F-9 kept; F-10 resolved (D-177).
 **Required by:** `SESSION-ROADMAP.md` S19 ("Any unnecessary agent or duplicate responsibility must be removed or
 justified"); `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §7.
 **Base read:** `claude/new-session-vv78en` @ `cc4f44e` (public `main` = `f6e6357` plus S19's harness work).
@@ -42,7 +44,7 @@ authority comes from deterministic re-reading and the human's review, not from b
 ## 3. Findings
 
 Each finding is marked **blocking** (the roadmap's gate is not met until it is ruled and acted on) or **debt**
-(recorded with an owner). The proposed ruling is the auditor's; the human decides at H-2.
+(recorded with an owner). Each ruling below was proposed by the auditor and accepted by the human at H-2 (2026-10-14).
 
 ### F-1 — Two sessions wrote canonical records without staging (debt; the review path held)
 
@@ -60,7 +62,7 @@ Each finding is marked **blocking** (the roadmap's gate is not met until it is r
   `f6d7dd0`); a refused card changed on the human's ruling (`cc0f665`, D-111); the review-path rewrite
   of 114 claims ordered by the human (`e9e036d`, D-151); the identity-basis migration (`bed8bce`, D-117, a
   deterministic migration); the card change approved by the human (`f24cc7b`, D-149).
-- **Proposed ruling:** debt. `contracts.md` states that drafts always land in `data/staging/` and that a session
+- **Ruling (accepted 2026-10-14):** debt. `contracts.md` states that drafts always land in `data/staging/` and that a session
   prompt cannot forbid it; no check is added (history is not checkable in CI). This does not change how claims
   become canonical: it restores the path the contracts already describe.
 
@@ -82,7 +84,7 @@ Each finding is marked **blocking** (the roadmap's gate is not met until it is r
   - CI and the pinned engine: `.github/workflows/ci.yml`, `requirements-analysis.txt`.
 - **What it means.** `contracts.md` says "a role writes only its allowed paths", but no check reads that
   sentence, and it has been false since S12. A permission boundary that is not checked cannot be audited.
-- **Proposed ruling:** blocking, remediated in S19. Each path gets an owner in `contracts.md` (or in a new list of
+- **Ruling (accepted 2026-10-14):** blocking, remediated in S19. Each path gets an owner in `contracts.md` (or in a new list of
   files written only on the human's decision), and a check written first fails if any tracked file has no owner.
 
 ### F-3 — The Analyst's work was done without an active Analyst (blocking, with F-2)
@@ -91,7 +93,7 @@ Each finding is marked **blocking** (the roadmap's gate is not met until it is r
   the warehouse and its queries (D-117 to D-121), S15 the metrics (D-127 to D-132), S16 the analytical audit
   (D-133 to D-138): derived, reproducible analysis, which is MA §11.8's mission. No contract bounded it; the Data
   Auditor's `tools/` covered `tools/warehouse.py` only.
-- **Proposed ruling:** activate the Analyst with a contract: writes `sql/*.sql`, `sql/results/` (by
+- **Ruling (accepted 2026-10-14):** activate the Analyst with a contract: writes `sql/*.sql`, `sql/results/` (by
   `tools/warehouse.py` only), `metrics.md`, `sql-layer.md`, `analytical-audit.md`; validation gate
   `tests/test_warehouse.py` and `tests/test_insight.py`; forbidden: `data/`, a result typed by hand, a metric
   without its question and denominator (NG-11).
@@ -110,7 +112,7 @@ Each finding is marked **blocking** (the roadmap's gate is not met until it is r
 - **What it means.** The Verifier's mechanical half is real and deterministic, but lives in a private, rewritten
   script. Its judgement half (does the wording exceed the evidence?) is the same model checking its own draft; the
   independent check of that judgement is the human's review of every claim at H-2.
-- **Proposed ruling:** keep the Verifier, re-scoped in `roles.md`: its authority is the re-read (bytes, hash,
+- **Ruling (accepted 2026-10-14):** keep the Verifier, re-scoped in `roles.md`: its authority is the re-read (bytes, hash,
   anchor at locator) and a written list of wording that exceeds evidence; independence comes from the human's
   review, which stays outside every contract. Debt: a durable re-read tool in `tools/`, taking the extracted text
   pages as input (standard library; PDF extraction stays a retrieval step). Owner: the next session that adds
@@ -123,7 +125,7 @@ Each finding is marked **blocking** (the roadmap's gate is not met until it is r
   a dispatcher, queue or autonomous write: every canonical write was a human-reviewed promotion (F-1). Worker
   restarts in S17, S18 and S19 were recovered from pushed commits and archived answers, not from a control
   plane (F-7). A runtime would add a write path that itself needs a contract, a check and an audit.
-- **Proposed ruling:** the Orchestrator stays inactive; its duties are the session prompt's and the human's.
+- **Ruling (accepted 2026-10-14):** the Orchestrator stays inactive; its duties are the session prompt's and the human's.
   NG-08 holds for v1.0. `roles.md` replaces "S19 decides" with that outcome.
 
 ### F-6 — The Change Detector has never been needed yet; its first task now exists (debt)
@@ -132,7 +134,7 @@ Each finding is marked **blocking** (the roadmap's gate is not met until it is r
   session compared two versions of a source or of the data to emit candidate changes. S18's re-retrievals compared
   hashes as part of verification. The first true change-detection task is D-175's gap: later BIS rules that would
   change the entries the Atlas holds.
-- **Proposed ruling:** stays inactive; its first session becomes the one that takes D-175's later-rule search. A
+- **Ruling (accepted 2026-10-14):** stays inactive; its first session becomes the one that takes D-175's later-rule search. A
   merge into the Source Scout was considered: the search is the Scout's, but deciding that a later text changes an
   entry is a comparison the Scout's contract does not allow (it asserts nothing).
 
@@ -144,14 +146,14 @@ Each finding is marked **blocking** (the roadmap's gate is not met until it is r
   were caught by process, not by a role: a commit made while four tests failed, its exit code hidden by a pipe
   (S17, amended before push); a pop-up that carried unverified context (S17, corrected in the archived answers).
   Background runs do not survive a restart; the long break runs are re-runnable by ID.
-- **Proposed ruling:** keep the practice; no role or runtime change.
+- **Ruling (accepted 2026-10-14):** keep the practice; no role or runtime change.
 
 ### F-8 — Milestone audits: the Knowledge Architect writes what PEF §12 gives the Portfolio Reviewer (justified)
 
 - **Evidence.** PEF §12 gives milestone findings to the Portfolio Reviewer, inactive until S24; the Knowledge
   Architect's list holds `milestone-audits/` (S12), and M4's audit says "as the Knowledge Architect, with the
   Portfolio Reviewer's process judgement".
-- **Proposed ruling:** justified, stated in `roles.md`: the Knowledge Architect writes the audit document, the
+- **Ruling (accepted 2026-10-14):** justified, stated in `roles.md`: the Knowledge Architect writes the audit document, the
   ratings are the human's to accept, and the human's review stands in for the Portfolio Reviewer until S24
   (baseline §5, Gate 8).
 
@@ -169,9 +171,9 @@ Each finding is marked **blocking** (the roadmap's gate is not met until it is r
 - **Evidence.** S17 and S18 each selected breaks with a private script that could not read five setups.
 - **Ruling already taken:** D-177 (measured selection, public, no blind spot on S18's files).
 
-## 4. Proposed role rulings
+## 4. Role rulings (accepted 2026-10-14)
 
-| Role | Status now | Proposed | What changes in `roles.md` / `contracts.md` / the test |
+| Role | Status before | Ruling | What changes in `roles.md` / `contracts.md` / the test |
 |---|---|---|---|
 | Orchestrator | inactive | kept inactive (F-5) | row: "no runtime (NG-08 holds for v1.0); the session prompt and the human coordinate" |
 | Source Scout | active | kept | allowed writes add `docs/research/` research documents and `source-register.md` (F-2) |
@@ -180,7 +182,7 @@ Each finding is marked **blocking** (the roadmap's gate is not met until it is r
 | Change Detector | inactive | kept inactive (F-6) | first session: the one that takes D-175's later-rule search |
 | Knowledge Architect | active | kept | allowed writes add the design documents of S14.5 to S18, `source-policy.md`, `audit-history.md`, `audit-evidence/`, `agent-audit.md` (F-2, F-8) |
 | Data Auditor | active | kept | allowed writes add `site/hbm-insight/index.html` (by its build), CI and requirements (F-2) |
-| Analyst | inactive | **activated**, new contract (F-3) | a contract; the test's active set gains the Analyst |
+| Analyst | inactive | **activated**, new contract (F-3, D-181) | a contract; the test's active set gains the Analyst |
 | Editorial | active | kept | none |
 | Client Output | inactive | kept inactive (S21) | none |
 | QA | active | kept | none |

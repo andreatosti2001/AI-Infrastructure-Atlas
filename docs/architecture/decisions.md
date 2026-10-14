@@ -3003,3 +3003,81 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   failing tests must be identical, or the session stops. The new runner's run is M5's full run (D-150). Each
   permanent test is shown failing with the checks disconnected and against a check loosened on purpose.
 - **Rejected:** a sample of about 20 breaks.
+
+## D-180 — Every file has an owner, checked
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; agent audit F-2)
+- **Context:** 63 files changed since S06 lay in no active role's `ALLOWED_WRITES`, and nothing checked the
+  sentence "a role writes only its allowed paths" (`docs/architecture/agent-audit.md` F-2).
+- **Decision:** `docs/agents/contracts.md` names an owner for every path: a role's `ALLOWED_WRITES`, or the new
+  list "Outside every contract" (the constitutional documents, `docs/agents/`, the canonical data files moved on the
+  human's verdict, `docs/quality/human-reviews.md`). `tests/test_agent_contracts.py` fails if a tracked file has no
+  owner, or if an entry of that list owns no file. A path ending in `/` covers its folder; `*` matches within one
+  name.
+- **Rejected:** correcting the lists once without a check (they drifted unnoticed from S12 to S18); debt for S22.
+
+## D-181 — The Analyst is active, with a contract
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; agent audit F-3)
+- **Decision:** the Analyst writes `sql/*.sql`, `sql/results/` (only through `tools/warehouse.py`), `sql-layer.md`,
+  `metrics.md` and `analytical-audit.md`; its gate is `tests/test_warehouse.py` and `tests/test_insight.py`; it never
+  writes `data/`, a result by hand, the loader or the checks, or a metric without its question, population and
+  denominator. The active set is eight roles.
+- **Rejected:** the Data Auditor absorbing the SQL work (the role that writes the checks would also write the
+  analysis they check).
+
+## D-182 — The Verifier's authority is the re-read; the human's review is the independent check
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; agent audit F-4)
+- **Decision:** the Verifier's contract and row say that its authority is the re-read of each anchor in the bytes
+  whose hash is the registered one, by a script whose output is kept, plus a written list of wording that exceeds its
+  anchor; when the drafting session also verifies, the human's review of every claim is the independent check.
+  Debt: a durable re-read tool in `tools/`, owned by the next session that adds claims from a new retrieval.
+- **Rejected:** merging the Extractor and the Verifier (the rule that the checker may not edit a claim's wording or
+  anchor would go); leaving both contracts unchanged.
+
+## D-183 — Drafts always land in staging
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; agent audit F-1)
+- **Context:** S16.5 and S16.6 held drafts in private research folders and wrote them to `data/` after the human's
+  verdict, so the record checks did not run on them before the review.
+- **Decision:** the Extractor's contract states that drafts always land in `data/staging/` before the human's review,
+  and that a session prompt cannot keep them elsewhere. How claims become canonical is unchanged. No check (Git
+  history is not checked in CI).
+- **Rejected:** recording the two sessions as exceptions only.
+
+## D-184 — The inactive roles: no runtime; the Change Detector's first task; who writes milestone audits
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; agent audit F-5, F-6, F-8)
+- **Decision:** `docs/agents/roles.md`:
+  - **Orchestrator:** no runtime, dispatcher, queue or autonomous write path is justified; NG-08 holds for v1.0. The
+    session prompt and the human coordinate;
+  - **Change Detector:** stays inactive; its first task is D-175's dated search for later rules changing the acts the
+    Atlas holds, no earlier than S20. S07's freshness rule is a check, the Data Auditor's;
+  - **Portfolio Reviewer:** stays inactive until S24; the Knowledge Architect writes milestone audits, and the human
+    accepts their findings and ratings.
+  The Source Scout, Extractor, Knowledge Architect, Data Auditor, Editorial and QA are kept; Client Output stays
+  inactive until S21.
+- **Rejected:** recording the Orchestrator's outcome only.
+
+## D-185 — The edge check PL-1 becomes PN-1
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; M5 audit M5-P3)
+- **Decision:** the S10 edge guard "a product edge names the product" (`edge-dataset.md` §7) is PN-1; PL-1 means only
+  the policy record's shape (`policy-dataset.md` P-10). Earlier decisions keep their wording.
+- **Rejected:** leaving both for S22.
+
+## D-186 — The edge fixture world's source is `src-919`
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; M5 audit M5-P3)
+- **Decision:** `tests/fixtures/edge_records.json` names its fictional source `src-919`, so no ID is defined twice
+  across the fixture worlds (`src-917` stays the entity world's).
+- **Rejected:** leaving it for S22.
+
+## D-187 — M5 closes with its audit
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2)
+- **Decision:** `docs/architecture/milestone-audits/M5-audit.md` and `docs/architecture/agent-audit.md` are accepted
+  as written, with the remediations D-180 to D-186 done in S19 and the debt owners of the M5 audit's Part 1 §6. M5
+  closes; S20 opens M6.
+- **Rejected:** keeping M5 open until the human has read both documents.

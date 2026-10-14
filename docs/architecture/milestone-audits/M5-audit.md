@@ -3,7 +3,7 @@
 > **Records cited.** This is a process audit (PEF §4). The session reports and prompts it cites are kept in the
 > private development archive, not in this repository (D-151); the decisions, documents and files it cites are here.
 
-**Status:** PROPOSED (S19, 2026-10-14); the human rules each finding at S19's H-2.
+**Status:** ACCEPTED by the human on 2026-10-14 (S19 H-2); M5 closes with this audit (D-187).
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §4; `SESSION-PROMPT-SPEC.md` §4 (mandatory "after the first
 policy layer" and "after any foundational schema change": the policy entity in S17, the policy level in S18).
 **Written by:** Claude, as the Knowledge Architect; the human's review stands in for the Portfolio Reviewer
@@ -44,7 +44,8 @@ The roadmap's M5:
   `DERIVATION` matching the act's word to the record's name (PK-3, PK-4); the act's status is derived on a date,
   never stored (PL-1, D-156); navigation prints "describes the text; does not advise" (PK-6, LA-5). Jurisdictions
   are linked as issuers (PL-3), not by relationships (D-170), and companies are not linked (D-166).
-- **S19's gate:** ruled at H-2 (`agent-audit.md` §4).
+- **S19's gate is met:** every role has a ruling, the Analyst is activated, every file has an owner, checked
+  (`agent-audit.md` §4; D-180 to D-184).
 
 **Counts** (recounted from `data/` at each merge): canonical records, sources included, 238 → 296 (S17) → 319
 (S18). Tests 374 → 396 → 411 → 413 (S19). Breaks 107 → 119 → 130.
@@ -103,8 +104,6 @@ The roadmap's M5:
 | Product and company targets, and their party-statement evidence row | the session that records the first one | D-166 |
 | No page design for policy links | S20 or the human | D-173 |
 | The term guard is a word match | the session that adds the next policy link; the Verifier and the human stay the check | S18; PK-4 |
-| PL-1 names two checks | S19 if scheduled at H-2, else S22 | this audit, M5-P3 |
-| `src-917` defined twice in the fixture worlds | S19 if scheduled at H-2, else S22 | this audit, M5-P3 |
 | The EAR record has no dates | the next policy research | S17 |
 | 2023-23055's instruction-level end date lives only in a claim | the session that links that instruction | S17 |
 | Three rules' country joins two texts; an official text's publisher is an edition's name | S22 | S17 |
@@ -114,7 +113,8 @@ The roadmap's M5:
 
 **Resolved in M5:** D-022, D-023 and D-030's policy reservations (S17); the normative-text question (S17); S17-11's
 navigation interaction (S18); computed break selection's blind spots (D-177); the three harness improvements
-(D-176 to D-179).
+(D-176 to D-179); PL-1's double use (renamed PN-1, D-185); `src-917` defined twice (the edge fixture's is
+`src-919`, D-186); the unowned files and the Analyst without a contract (D-180, D-181).
 
 ### 7. What was removed or rejected
 
@@ -147,11 +147,11 @@ navigation interaction (S18); computed break selection's blind spots (D-177); th
 
 ## Part 2 — Process findings (PEF §4, §12)
 
-| ID | Finding | Evidence | Disposition (proposed) |
+| ID | Finding | Evidence | Disposition |
 |---|---|---|---|
 | M5-P1 | **Reading the source before asking made decisions concrete.** S17's EV-3 gap and S18's "no text names a product" were found by reading, and settled faster than abstract options | S17 D-164; S18 H-0 | standing practice |
 | M5-P2 | **Checks written first found a real bug**: the status tool ignored a repeal whose month contains the date | S17 report, "After the schema" | standing practice (D-162, D-174) |
-| M5-P3 | **Duplicate identifiers survived review**: the check ID PL-1 twice, the fixture `src-917` twice. No check reads either | `edge-dataset.md` §7, `policy-dataset.md` P-10; `tests/fixtures/` | debt, or remediated in S19 if the human schedules it |
+| M5-P3 | **Duplicate identifiers survived review**: the check ID PL-1 twice, the fixture `src-917` twice. No check reads either | `edge-dataset.md` §7, `policy-dataset.md` P-10; `tests/fixtures/` | remediated in S19 (D-185, D-186) |
 | M5-P4 | **The milestone audit was planned this time** (M4-P3): S19 carried it in its prompt | S19 prompt; this file | resolved |
 | M5-P5 | **Session tooling was private and rewritten each time**: break selection (resolved, D-177) and the Verifier's re-read (`agent-audit.md` F-4) | S17, S18 research and break folders | see F-4 |
 
@@ -161,10 +161,10 @@ navigation interaction (S18); computed break selection's blind spots (D-177); th
 |---|---|---|
 | Data architecture: outcome | **3, Controlled** | status derived from events (`policy_status.py`, PL-7); no stored status (PL-1 schema); temporal change handled as quoted claims (D-169); refusals as records (PK-7); every rule checked in CI |
 | Content & review: outcome (policy layer) | **3, Controlled**, with a stated limit | every policy claim from an official text, re-read in registered bytes, reviewed by the human; limit: no search after 5 December 2024 (D-175) |
-| Agent architecture: process | **2, Defined** | contracts exist and some are checked; the write boundaries drifted unchecked since S12 (`agent-audit.md` F-2). Rises to 3 only if F-2's check is built |
+| Agent architecture: process | **3, Controlled** (2 at the audit) | contracts exist and are checked; the write boundaries drifted unchecked from S12 to S18 (`agent-audit.md` F-2) and are now checked: every tracked file has an owner (D-180) |
 | Code / engineering: process | **3, Controlled** | checks written first in S17 and S18; 28 data faults in CI; selection without blind spots; equivalence shown break by break (D-179) |
 
 ## Part 4 — Findings and debt
 
-Findings are proposed, for the human's ruling at H-2: the agent audit's F-2 and F-3 are **blocking**; M5-P3 and
-the rest are **debt** with the owners in Part 1 §6. **M5 closes** when the human accepts this audit.
+The agent audit's F-2 and F-3 were **blocking** and are remediated (D-180, D-181); M5-P3 is remediated (D-185,
+D-186); the rest is **debt** with the owners in Part 1 §6. **M5 is closed** with this audit (D-187).
