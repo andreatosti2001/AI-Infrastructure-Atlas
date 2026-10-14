@@ -1,4 +1,4 @@
-"""The break harness's runner: parallel copies, one combined result, and selection by measured files (D-175 to D-177).
+"""The break harness's runner: parallel copies, one combined result, and selection by measured files (D-177, D-178).
 
 Every break is (id, what, mutate(root), build steps, expected fragments); `breaks.py` builds the list. The runner
 copies the repository (without .git) into SCRATCH/NNN-ID, one folder per break, numbered because some IDs name two
@@ -7,10 +7,11 @@ whole suite, and counts the break only if the suite fails with every expected fr
 counts only if the suite passes. The method and the rule are those of the earlier runner (breaks_metrics.run);
 only the scheduling changes: N breaks at a time, lines printed in the harness's order, then one summary.
 
-Selection (D-176): a break's files are measured, never declared. Its setup is applied to a scratch copy and the
+Selection (D-177): a break's files are measured, never declared. Its setup is applied to a scratch copy and the
 files whose bytes change, appear or disappear are its files. A break is selected when one of its files, or a tool
-its build steps run, is among the changed files. A change to a check module, a schema, Gate 0 or the harness
-selects every break: selection by setup files cannot see a check that was loosened.
+its build steps run, is among the changed files. A change to a check module, a schema, Gate 0 or the harness's
+code selects every break: selection by setup files cannot see a check that was loosened. The harness's
+documentation does not (D-188).
 
 Standard library only (D-003).
 """
@@ -29,8 +30,9 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 IGNORE = shutil.ignore_patterns(".git", "__pycache__", "*.png")
-# A change to one of these selects the full harness (D-176): the checks, the schemas they apply, Gate 0, the harness.
-FULL_RUN_PATTERNS = ("tests/test_*.py", "schemas/*", "tools/validate_repo.py", "tests/regression/*")
+# A change to one of these selects the full harness (D-177): the checks, the schemas they apply, Gate 0, the harness's
+# code. Not the harness's documentation (D-188): no check reads it, and Gate 0 checks its links on every push.
+FULL_RUN_PATTERNS = ("tests/test_*.py", "schemas/*", "tools/validate_repo.py", "tests/regression/*.py")
 
 
 def folder(index: int, bid: str) -> str:
@@ -142,9 +144,14 @@ def changed_since(rev: str) -> list[str]:
     return sorted(set(diff.stdout.split()) | set(new.stdout.split()))
 
 
+def full_run_trigger(changed: list[str]) -> list[str]:
+    """The changed files that select the full harness (D-177, D-188): a check, a schema, Gate 0 or the harness's code."""
+    return [c for c in changed if any(fnmatch.fnmatch(c, p) for p in FULL_RUN_PATTERNS)]
+
+
 def select(breaks, changed: list[str]) -> tuple[list[str], list[str]]:
-    """(selected IDs in the harness's order, the reasons printed). D-176."""
-    full = [c for c in changed if any(fnmatch.fnmatch(c, p) for p in FULL_RUN_PATTERNS)]
+    """(selected IDs in the harness's order, the reasons printed). D-177."""
+    full = full_run_trigger(changed)
     if full:
         return list(dict.fromkeys(b[0] for b in breaks)), [f"full harness: a check, schema, Gate 0 or harness file changed ({', '.join(full)})"]
     wanted, reasons = {}, []

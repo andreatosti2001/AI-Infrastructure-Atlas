@@ -13,10 +13,10 @@ text its own changes removed (see tests/regression/README.md):
     S17's policy layer; S18's policy links).
 
 Run with a virtualenv built from requirements-test.txt and requirements-analysis.txt, from the repository root
-(the runner is tests/regression/runner.py: parallel copies, one summary, selection by measured files, D-175 to
-D-177):
+(the runner is tests/regression/runner.py: parallel copies, one summary, selection by measured files, D-177,
+D-178):
     python tests/regression/breaks.py SCRATCH_DIR [ID ...] [--jobs N] [--out FILE]
-    python tests/regression/breaks.py SCRATCH_DIR --since main        # the breaks a change selects (D-176)
+    python tests/regression/breaks.py SCRATCH_DIR --since main        # the breaks a change selects (D-177)
     python tests/regression/breaks.py --changed PATH ... --select-only
     python tests/regression/breaks.py SCRATCH_DIR --setup-only
 """
@@ -313,8 +313,8 @@ def main(argv: list[str]) -> int:
     p.add_argument("--setup-only", action="store_true", help="check that every edit still applies; run nothing")
     p.add_argument("--jobs", type=int, default=os.cpu_count() or 1, help="breaks run at a time (default: processors)")
     p.add_argument("--out", type=Path, help="also write the lines and the summary to this file")
-    p.add_argument("--changed", nargs="+", metavar="PATH", help="run the breaks these changed files select (D-176)")
-    p.add_argument("--since", metavar="REV", help="run the breaks the files changed since REV select (D-176)")
+    p.add_argument("--changed", nargs="+", metavar="PATH", help="run the breaks these changed files select (D-177)")
+    p.add_argument("--since", metavar="REV", help="run the breaks the files changed since REV select (D-177)")
     p.add_argument("--select-only", action="store_true", help="with --changed or --since: print the selection, run nothing")
     p.add_argument("--touched", action="store_true", help="print every break's measured files and build steps")
     a = p.parse_args(argv)

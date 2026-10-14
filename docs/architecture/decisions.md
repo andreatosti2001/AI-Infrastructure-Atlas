@@ -3081,3 +3081,13 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   as written, with the remediations D-180 to D-186 done in S19 and the debt owners of the M5 audit's Part 1 §6. M5
   closes; S20 opens M6.
 - **Rejected:** keeping M5 open until the human has read both documents.
+
+## D-188 — The harness's documentation does not select the full harness
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, after S19; amends D-177)
+- **Context:** D-177 selects the full harness for any change under `tests/regression/`. S19's last commit, a
+  correction to that folder's README, therefore cost a 35-minute full run, though no check reads the README.
+- **Decision:** the trigger covers the harness's code only (`tests/regression/*.py`), with the check modules, the
+  schemas and Gate 0 as before. A change to `tests/regression/README.md` selects the breaks whose setup touches it
+  (none today); Gate 0 still checks its links on every push. `tests/test_break_selection.py` checks the trigger.
+- **Rejected:** keeping D-177 as it was (a full run for every edit of the harness's documentation).

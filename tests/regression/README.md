@@ -28,8 +28,10 @@ split by hand, about 87 minutes one after another).
   its own checks. A break is selected when a file its setup changes, or a tool its build steps run, is among the
   changed files. The files are **measured** (the setup applied to a scratch copy), never declared, so they cannot
   drift from what the setup edits;
-- a change to a check module (`tests/test_*.py`), a schema, Gate 0 (`tools/validate_repo.py`) or this folder
-  selects the full harness: selection by setup files cannot see a check that was loosened.
+- a change to a check module (`tests/test_*.py`), a schema, Gate 0 (`tools/validate_repo.py`) or the harness's
+  code (`tests/regression/*.py`) selects the full harness: selection by setup files cannot see a check that was
+  loosened. A change to this README does not (D-188): no check reads it, and Gate 0 checks its links on every
+  push. `tests/test_break_selection.py` checks the trigger.
 
 A break whose setup text a change removes is replaced by the same fault on the new text (the layer files show
 how), never dropped.
