@@ -3091,3 +3091,134 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   schemas and Gate 0 as before. A change to `tests/regression/README.md` selects the breaks whose setup touches it
   (none today); Gate 0 still checks its links on every push. `tests/test_break_selection.py` checks the trigger.
 - **Rejected:** keeping D-177 as it was (a full run for every edit of the harness's documentation).
+
+## D-189 — A first page view of the policy links in S20
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S20 H-0; amends D-173)
+- **Context:** no page showed a policy link (D-173, PK-6); the M5 audit lists this as a limit a UX must show
+  (`M5-audit.md` Part 1 §8).
+- **Decision:** S20 builds a first page view of the policy links. The check that no page shows a policy link or
+  record (PK-6) is replaced by checks for that view (D-191); the HBM page and the research view still show none.
+- **Rejected:** keeping the journeys on the supply chain and the policy links tool-only.
+
+## D-190 — The research journeys S20 builds
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S20 H-1)
+- **Decision** (`visual-architecture.md` §15):
+  - the roadmap's six journeys are answered by: the two built pages (explore a dependency); a new export-control
+    page (compare layers, and a temporal relationship in a timeline, D-191); 9 company pages and 4 place pages
+    (D-192); the evidence panels on every page (inspect evidence); and an entry page (D-193);
+  - pages live at `site/index.html`, `site/questions/export-control-texts/`, `site/companies/<id>/` and
+    `site/places/<id>/`; the two built pages keep their paths;
+  - one build `tools/build_journeys.py`, subclassing `build_page.Page`, writes the 15 new pages from canonical
+    records, one committed SQL cell (the as-of date) and the template `tools/journey_template.html`; no script, no
+    dependency; checks JR-1 to JR-12 (`tests/test_journeys.py`);
+  - what the records cannot answer is said on each page's method layer, never filled with framing.
+- **Rejected:** one build per page kind; a search box (needs a script); diagrams on profiles; a map; moving the two
+  built pages.
+
+## D-191 — The export-control page
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S20 H-1; amends D-109 and
+  D-124 for this page only)
+- **Decision:**
+  - **a matrix** of the acts (rows) by every class or product that a policy link or a policy refused candidate pairs
+    with an act (columns). A cell is "named in the text" (a link), "refused" with its reason in words, no line and no
+    mark (a refused candidate; **amends D-109 and `visual-architecture.md` §9 for this matrix**: a refusal may appear
+    in a visual as a word in a cell, linked to its card), or "no recorded relationship";
+  - **each act's status** on the as-of date is derived by `tools/policy_status.py`, the one home of the rule
+    (D-156), shown with the date and the rule's name; **amends D-124 rule 3 for this page**: a status derived by
+    that tool is allowed beside the copy, tally, minimum–maximum and grouping. The check recomputes it with the same
+    module;
+  - **the as-of date** is the source-age reference date, read as a cell of `sql/results/source_age.json` (D-137);
+  - **a timeline** of the acts' `published` and `effective` events, with the as-of date marked;
+  - **a cross-layer comparison:** each class of the HBM chain with its policy state;
+  - **wording** (LA-1 to LA-5, K-3): every act shows its official text link and the line that the page describes
+    and does not advise; status words are P-4's only; "in force", "compliant", "licence required", "prohibited",
+    "banned" and "restricted" never appear in the Atlas's own voice;
+  - **PK-6** becomes: the HBM page and the research view show no policy ID; the export-control page and the
+    United States place page show policy records only with the official text link and the no-advice line (JR-6).
+- **Rejected:** refusals only as cards (a cell would read "no recorded relationship" where the Atlas holds a
+  refusal); dates without a status; a SQL re-implementation of the status rule (a second home).
+
+## D-192 — Company and place profiles
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S20 H-1)
+- **Decision:** one page per company record (9) and per jurisdiction record (4), in the seven layers
+  (`visual-architecture.md` §15.4): record values with their state words; links, supplier namings, products,
+  refused candidates (as cards, never links) and events; tallies of the rows drawn, never a bare zero; evidence
+  panels; a table with every ID; what the page cannot answer. "Gap" is never counted on these pages.
+- **Rejected:** no profiles in S20.
+
+## D-193 — An entry page, linked from the built pages
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S20 H-1)
+- **Decision:** `site/index.html` asks "What are you trying to understand?" and links every research page; the HBM
+  page and the research view each gain one link to it (a fixed label).
+- **Rejected:** no entry page.
+
+## D-194 — C-2: the coverage block names each gap's reason
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S20 H-1; settles C-2, D-138;
+  supersedes the rejection of this wording in D-133)
+- **Decision:** on the research view, the coverage block's gap count is followed by each gap's reason in words,
+  grouped from the first result's `gap_reason` column (D-124 rule d). The first query's definition of the basis
+  `gap` is unchanged.
+- **Rejected:** splitting `gap` into two bases in the first query; leaving it as debt.
+
+## D-195 — C-5: the age tally leaves out recorded gaps, and says so
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S20 H-1; settles C-5, D-138)
+- **Decision:** on the research view, the age block tallies the dated links whose basis is not `gap`, and states
+  beside the tally how many recorded gaps it leaves out. `sql/source_age.sql`, its result and the age table are
+  unchanged.
+- **Rejected:** giving a refused link no age in the query (a change to the metric's definition); leaving it as
+  debt.
+
+## D-196 — The research view's CSS filter is kept
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S20 H-1)
+- **Context:** S20's probe: in Chromium the filter works from the keyboard; without `:has()` it shows every row,
+  but the control still changes; no keyboard or screen-reader failure was demonstrated; Firefox and Safari were
+  not run.
+- **Decision:** no change. The probe goes to S20.5 as baseline evidence; cross-browser runs go to S22.
+- **Rejected:** a framing sentence about older browsers; a script.
+
+## D-197 — Owners of the journey files
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S20 H-1; D-180)
+- **Decision:** the Data Auditor owns `tools/build_journeys.py`, its checks and the 15 pages, each written only by
+  that build; the Editorial owns the framing and style of `tools/journey_template.html`, as for the two existing
+  templates.
+- **Rejected:** the Editorial owning the build and pages.
+
+## D-198 — A design pass on the research journeys, within the accepted rules
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S20, after reviewing the pages)
+- **Context:** the pages built under D-190 to D-193 passed every check, but read as technical documents: the
+  answer below the fold, a matrix of small words with no visible pattern, an entry page of link lists, a sparse
+  timeline with overlapping dots, and repeated framing boxes.
+- **Decision** (`tools/journey_template.html`, `tools/build_journeys.py`), within V-1 to V-11, the palette and
+  system fonts, with no script and no new dependency:
+  - each page leads with the answer: a row of stat tiles (each number with its unit and denominator in the same
+    line) and the findings as sentences;
+  - the matrix shows its pattern at a glance: a "named" cell is tinted with a filled mark, a "refused" cell
+    hatched with an outlined mark, an empty cell plain; every cell keeps its words;
+  - the timeline is larger, with year bands, and stacks events closer than one dot's width downwards in their
+    lane (a beeswarm: x is the date, y only the stacking);
+  - the entry page's cards are equal, each with what its page shows and a button; companies and places as chips;
+  - profiles open with a summary card and stat tiles; refused candidates are neutral cards (amber stays for gaps);
+  - explanations of how to read a visual are folded into "How to read …" toggles; limits stay visible;
+  - JR-3 also recomputes the number of classes named (`named-classes`).
+- **Rejected:** hiding evidence panels behind a toggle and adding a web font or colour accent (each would change
+  an accepted rule; the human chose a pass within the rules); leaving the design to S20.5.
+
+## D-199 — S20.5 runs between S20 and S21
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, at the close of S20)
+- **Context:** the human's addendum to S20 announced S20.5, a frontend architecture assessment and framework
+  decision; S20 left its baseline and handoff, and recommended deciding its place before S21 adds client briefs.
+- **Decision:** `SESSION-ROADMAP.md` gains S20.5 (ARCHITECTURE) between S20 and S21 in M6, with its mission, inputs
+  and gate. S21 starts after S20.5. Its prompt is in the private archive (D-152).
+- **Rejected:** folding the assessment into S22 and starting S21 on the current stack (a later change of stack
+  would then also touch the briefs).

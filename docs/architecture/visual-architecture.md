@@ -533,3 +533,163 @@ whenever the research view changes.
 | A "dependency score", traffic lights, confidence bars | never (`CLAUDE.md` §19; SESSION-ROADMAP S15) |
 | A map of the two facilities | decoration at this size (§7.3) |
 | Dark mode | doubles the contrast surface; S22 |
+
+---
+
+## 15. The research journeys (S20)
+
+**Status:** ACCEPTED by the human on 2026-10-14 (S20 H-1), every item as proposed: the journeys and layout
+(D-190), the export-control page with both departures below (D-191), the profiles (D-192), the entry page
+(D-193), C-2 (D-194), C-5 (D-195), the filter kept (D-196), the owners (D-197); then, after the human reviewed the
+pages, a design pass within the accepted rules (D-198): stat tiles and findings first, a matrix whose pattern
+shows at a glance, a beeswarm timeline, equal entry cards, "How to read …" toggles. **Decided before it:** S20's H-0
+(D-189): a first page view of the policy links is built in S20, and the check that no page shows one (PK-6) is
+replaced by checks for that view.
+**Claim label:** design (`INTERPRETATION`); every count below was read from `data/` and `sql/results/` on
+2026-10-14 at `138a940`.
+
+### 15.1 Six journeys, six questions
+
+The roadmap's six journeys (`SESSION-ROADMAP.md`, S20), each as the question a researcher would type, what the
+records can and cannot answer, and where it lives. A journey the records cannot answer is shown as a gap, never
+filled with framing.
+
+| # | Journey | The user question | Reads | Page | Decided |
+|---|---|---|---|---|---|
+| J1 | explore a dependency | "What does an AI accelerator's memory depend on, and who is known to make it?" | the 5 chain links, the S14 to S15 results | `site/hbm-chain/` and `site/hbm-insight/` (built) | unchanged, except C-2 and C-5 (§15.6) and a link to the hub |
+| J2 | compare layers | "Which parts and technologies does each recorded US export-control text name among the items it controls?" | the 5 policy records, the 4 `restricts` links, the 9 policy refused candidates (`cand-013` to `cand-021`), their claims and sources; the 3 classes of the HBM chain | `site/questions/export-control-texts/` (new) | new page (H-0) |
+| J6 | a temporal relationship, in an editorial visual | "When did each of those texts take effect, and what was each one's status on the Atlas's as-of date?" | the 11 dated events of the 4 rules; the status rule `tools/policy_status.py` (D-156) | the same page, its second visual | with J2 |
+| J3 | investigate a company | "What does the Atlas record about *this company*, and on what evidence?" | the company record; links that name it, as an end or as a named supplier; products it is the vendor of; refused candidates that name it; its events | `site/companies/<company-id>/`, 9 pages (new) | new pages |
+| J4 | investigate a country | "What does the Atlas record as incorporated, headquartered, located or issued in *this place*, and on what evidence?" | the jurisdiction; companies' `incorporated_in` and `headquartered_in`; facilities' `located_in`; policies' `issued_in` | `site/places/<jurisdiction-id>/`, 4 pages (new) | new pages |
+| J5 | inspect evidence | "How does the Atlas know this, and how was it checked?" | `trace.trace_data` (the evidence panels) | every page carries the panels of the records it shows (the existing pattern); no page of its own | no new page |
+| — | the entry point | "What are you trying to understand?" (MA §19) | the names of the records each page is about | `site/index.html` (new) | new page |
+
+**What the records cannot answer** (each said on its page, in its method layer):
+
+- **J1:** any chain but the HBM one. The Atlas records the classes "semiconductor manufacturing equipment",
+  "assembly, packaging and wafer-level packaging tools", "accelerated server" and nine technologies, but no
+  dependency link between them and an accelerator. "What does an accelerator need besides memory?" is
+  unanswerable today.
+- **J2, J6:**
+  - whether any product or company is controlled: never (LA-3; `cand-021` records the refusal);
+  - destinations, licence policy and thresholds: they stay in the texts (K-3);
+  - any act published after 5 December 2024: none was searched (D-175);
+  - any jurisdiction but the United States, and no EU act (D-154).
+- **J3:** market share, revenue, capacity, customers or ownership. "No recorded relationship" never means "does
+  not supply" or "does not own"; ownership candidates were refused (`cand-009`, `cand-010`, `cand-012`).
+- **J4:** whether a state controls or influences a firm; any law of the place except the five US acts; the
+  incorporation of SK hynix and Samsung Electronics (`not researched`).
+- **J5:** a home of its own for one claim (`evidence/<claim>/` in §4). Each page shows the panels of its own
+  records; the same claim may therefore be rendered on two pages, from one record.
+- **Search** (MA §9.1 "question → search → …"): needs a script or a server; not proposed (U-8). The entry page
+  lists every page instead.
+
+### 15.2 Where the pages live, and how they are built
+
+- **Layout** (§4): `site/index.html`; `site/questions/export-control-texts/`; `site/companies/<id>/`;
+  `site/places/<id>/`. The two built pages keep their paths (`site/hbm-chain/`, `site/hbm-insight/`): moving
+  them would be a restructure for its own sake (addendum §1). A page's path is its record's ID (§4: URLs are
+  IDs).
+- **One build** `tools/build_journeys.py` writes all 15 new pages. Like the research view, it subclasses
+  `build_page.Page`, so record values, labels, derived values, claim cards, evidence panels and the palette keep
+  one home. Build order: `warehouse.py`, `build_page.py`, `build_insight.py`, `build_journeys.py` (the entry
+  page and the profiles link to the two built pages, and the build refuses a link with no target).
+- **One template** `tools/journey_template.html`: one skeleton and the framing of each page kind, which the build
+  picks by kind (as `build_insight.py` already reads the S11 style block from `page_template.html`). Framing
+  states no fact and names no record (PG-6).
+- **No script, no SVG library, no dependency.** The timeline (J6) is inline SVG written by the build, as the HBM
+  page's diagram is. The matrix (J2) and every table are HTML tables, turning into labelled cards at 760 px.
+- **One check module** `tests/test_journeys.py` (JR-1 to JR-12, §15.5) and one browser script
+  `tests/browser/journeys.qa.js` (1280 and 375 px, every new page). New breaks in the S20 list of
+  `tests/regression/breaks.py` (as built: no new layer file was needed).
+
+### 15.3 The export-control page (J2, J6), layer by layer
+
+| Layer | Content | Comes from |
+|---|---|---|
+| 1 QUESTION | the J2 question; scope: the 5 acts recorded, their issuing country, the 16 classes (7 components, 9 technologies), the as-of date | records; the as-of date is the source-age reference date, a cell of `sql/results/source_age.json` (D-137: each rebuilding session sets it to its opening day) |
+| 2 INSIGHT | a finding composed from the links: each class named, with the acts that name it ("High Bandwidth Memory: named by 1 of 5 acts"); three tallies (links, refused candidates by reason, statuses on the as-of date), each with its denominator; **the cross-layer comparison:** the 3 classes of the HBM chain, each with its policy state (HBM named by the 2024 rule; AI accelerator refused, the texts' term is broader; 3D die stacking, no recorded relationship) | links, candidates, `policy_status` |
+| 3 VISUAL a | **a matrix**, acts as rows (in order of their first dated event; the EAR, with no dated event, last), the classes and products that any link or refused candidate pairs with an act as columns (9 classes, 1 product): a cell is **named in the text** (solid mark, the entry the text names, e.g. "ECCN 3A090.c"), **refused** (the reason in words, no mark, neutral) or **no recorded relationship** (neutral dashed); 21 of 50 cells are filled | links and candidates |
+| 3 VISUAL b | **a timeline** 2022 to the as-of date: one lane per act, its `published` and `effective` events as dots at their dates (a partial date as its period), a marker at the as-of date; the later text that changed an entry (2023-23049 removing ECCN 3B090, K-4) drawn as a note on the 2022 lane; the EAR listed beside the axis, "no dated event recorded" | events; the claims cited by the links |
+| 4 EXPLORE | none: 5 rows, nothing to narrow. Said in the method layer | — |
+| 5 EVIDENCE | a panel for each act (its official text link and the line "This page describes what the text says; it does not advise", LA-5), each link (the act's sentence quoted, its locator, the term-match `DERIVATION`, any later act's sentence) and each refused candidate (reasoning, ruling) | `trace.trace_data`; the candidates |
+| 6 DATA | one row per filled matrix cell: act, class, state, reason, entry, claims, sources, IDs | records (no SQL query: nothing is computed but a join) |
+| 7 METHOD | how the page is built; the status rule and its seven words (P-4), derived by `tools/policy_status.py` on the as-of date; "the Atlas holds no act published after *the latest published date*; later changes were not searched" (D-175); rulings; input digest; reproduce (`navigate.py edges`, `policy_status.py`) | the tool, `decisions.md`, the build |
+
+**Wording** (LA-1 to LA-5; K-3): the forward reading is "the text of *act* names *class* among the items it
+controls"; the inverse, "named among the items controlled by". "In force", "legal", "compliant", "licence
+required", "prohibited", "banned" and "restricted" never appear in the Atlas's own voice (a check, JR-9). Status
+words are P-4's only.
+
+**Two departures from accepted rules, both approved for this page only (D-191):**
+
+1. **A refused candidate in a visual.** §9 and D-109: a refused candidate for a reason other than stale evidence is
+   "not drawn in a visual; listed as a card". The matrix would show it as a word in a cell ("refused: term not
+   matched"), with no line or mark, linked to its card. Why: without it, the cell for 2023-23055 × HBM would read
+   "no recorded relationship" although the Atlas holds a record of that pair (the refusal); that would misstate
+   the records. Alternative: the matrix keeps only "named" and "no recorded relationship", and a cell with a
+   refusal shows "see refused candidate" (still a word in a cell).
+2. **A status that is neither a cell nor a tally.** D-124 rule 3 lets a build copy, tally, take a minimum and
+   maximum, or group. An act's status on a date is derived by a rule. Proposed: the build calls
+   `tools/policy_status.py`, the one home of the rule (D-156); the check recomputes with the same module; the
+   page names the rule and the date beside each status. Alternative: a SQL query that re-implements the rule (a
+   second home of the rule; rejected), or no status on the page (the reader would see dates but not what the
+   Atlas derives from them).
+
+### 15.4 Company and place profiles (J3, J4)
+
+- **Seven layers:** 1 the question with the record's name; 2 a composed line of record values (role,
+  incorporated in, headquartered in, each with its state word when unknown) and tallies (recorded links, named as
+  a supplier, refused candidates, events), each "*n* *unit*", never a bare zero: "no recorded relationship"
+  instead; 3 the links in words with their basis styles (no diagram: never more than three links, §8); 4 none;
+  5 panels; 6 a table of every field and link, IDs in a closed disclosure; 7 method and what the page cannot
+  answer (§15.1).
+- **A company page** lists: recorded links (e.g. Amazon designs AWS Trainium2, stated); **named as a supplier**
+  (SK hynix for the H100's HBM, reported, historical to 2024-03; Samsung Electronics for Trainium2's HBM,
+  reported, with its unmet criterion), never drawn as a company-to-company link; products it is the vendor of;
+  **refused candidates** naming it, as cards with their reasons (never as links); events; and "not researched"
+  fields.
+- **A place page** lists, for one jurisdiction: companies incorporated there, companies headquartered there
+  (with "incorporation not researched" where so recorded), facilities located there, and acts issued there, each
+  act with its official text link and the LA-5 line, and a link to the export-control page.
+- **"Gap" is never counted on these pages** (the C-2 lesson): every unknown is named with its own state word.
+
+### 15.5 Checks, written first (JR-1 to JR-12)
+
+| Check | What fails |
+|---|---|
+| JR-1 | a text node with no record value, label, derived value or framing behind it (PG-1 pattern, every new page) |
+| JR-2 | a record value that differs from its home; a label holding a digit or a record's name |
+| JR-3 | a derived value (tally, as-of date, status, timeline position) that an independent recomputation does not give |
+| JR-4 | a matrix cell whose state differs from the records (a link, a candidate's reason, or no record), or a missing pair |
+| JR-5 | a timeline dot at a date that is not its event's, or an event with no dot; the as-of marker not at the as-of date |
+| JR-6 | an act shown without its official text link and the LA-5 line beside it (replaces PK-6 for this page) |
+| JR-7 | a status not equal to `policy_status.derive_status` on the as-of date, or shown without its date |
+| JR-8 | a profile missing a link, a supplier naming, a candidate or an event that names its record; a refused candidate drawn as a link |
+| JR-9 | a forbidden word in the Atlas's own voice ("in force", "compliant", "licence required", "prohibited", "banned", "restricted") outside a quoted text |
+| JR-10 | an evidence or internal link with no target; anything loaded from the network; a `<script>` |
+| JR-11 | accessibility basics: one `h1`, `lang`, landmarks, table headers with `scope`, palette and contrast (PG-8 pattern) |
+| JR-12 | a committed page that differs from a rebuild; two builds that differ |
+
+**PK-6 is replaced** by: the HBM page and the research view still show no policy ID (their PK-6 tests stay);
+the export-control page and the US place page show policy records only under JR-6; no other page shows one.
+
+### 15.6 The three debt items (owned by S20, D-138, S14.5), as decided
+
+| Item | Today (checked 2026-10-14) | Disposition |
+|---|---|---|
+| **C-2:** "gap" mixes "not researched" with "refused as stale" | The first query's basis `gap` still covers both. Since S16.6 named both suppliers, the data hold one gap row (the H100's TSMC fabrication, evidence not fresh). Every gap mark already carries its reason in words; only the coverage block's split line ("1 gap") hides it | **presentation** (D-194): the coverage block names each gap's reason beside the count ("1 gap: evidence not fresh"), grouped from the result's `gap_reason` column (D-124 rule d); the query unchanged. Supersedes D-133's rejection of exactly this |
+| **C-5:** the H100's age tally includes its recorded gap | Still true: the age block reads "4 of 4 dated links: newest evidence older than twelve months" for the H100, and one of the four is the gap refused *because* its evidence is old | **presentation** (D-195): the tally counts dated links that are not gaps and says how many recorded gaps it leaves out ("3 of 3 …; 1 recorded gap not counted: refused because its evidence is old"); `sql/source_age.sql` and the age table unchanged |
+| **The filter's `:has()`** | Works in Chromium 1194 by keyboard; without `:has()` it shows every row (degrades as designed) but the control still changes, silently; hidden rows leave the accessibility tree; no keyboard or screen-reader failure demonstrated; Firefox and Safari not run (S20 probe) | **unchanged** (D-196); the probe is evidence for S20.5; cross-browser runs to S22 |
+
+### 15.7 Rejected alternatives
+
+| Alternative | Why not |
+|---|---|
+| One build per page kind | three more copies of the machinery `build_page.Page` already holds |
+| A framework, a component library or a client-side router | the addendum §1; NG-07; nothing here needs state beyond links and `details` |
+| A search box | needs a script (U-8) or a server; the entry page lists every page |
+| A diagram on each profile | three links or fewer: text reads faster (§8) |
+| A map on the place pages | four places and two facilities: a list (§7.3) |
+| Showing the policy link on the HBM page itself | the HBM page's rules are accepted (D-100 to D-108); the export-control page compares the layers and both pages link to it through the entry page |
+| A SQL query for the policy matrix | nothing is computed but a join; a query would add a tutorial with nothing to explain |
