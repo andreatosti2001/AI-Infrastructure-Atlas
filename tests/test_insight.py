@@ -76,7 +76,7 @@ SLOTS = {1: "actor", 2: "part", 3: "supplier", 4: "process"}
 DERIVED_KINDS = {
     "sql-cell", "sql-flag", "sql-question", "sql-reading", "sql-step-title", "sql-step-text", "sql-step-code", "sql-file", "sql-digest",
     "sql-header", "input-file", "input-digest", "acc-count", "date-first", "date-last", "shown-in", "age-beyond", "age-dated",
-    "age-accessed",
+    "age-accessed", "age-gaps",
 }
 # S16 (D-135): the publishers block is retired; none of its tallies may come back
 RETIRED_KINDS = {"pub-min", "pub-max", "one-pub-count", "sourced-count"}
@@ -219,11 +219,15 @@ class InsightTests(unittest.TestCase):
             self.assertTrue(self.derived(kind), f"{kind} is not shown")
         ages = self.results["source_age"]["rows"]
         for acc in self.accelerators():
-            dated = [r for r in ages if r["accelerator_id"] == acc and r["age_days"] != "not_applicable"]
+            # S20 (D-195, C-5): a recorded gap is not a dated link; the tally leaves it out and says how many it left out
+            mine = [r for r in ages if r["accelerator_id"] == acc and r["age_days"] != "not_applicable"]
+            dated = [r for r in mine if r["basis"] != "gap"]
+            gaps = len(mine) - len(dated)
             with self.subTest(accelerator=acc):
                 self.assertEqual([n.text() for n in self.derived("age-beyond", accelerator=acc)], [str(sum(r["beyond_horizon"] == "yes" for r in dated))])
                 self.assertEqual([n.text() for n in self.derived("age-accessed", accelerator=acc)], [str(sum(r["newest_evidence_basis"] == "accessed" for r in dated))])
                 self.assertEqual({n.text() for n in self.derived("age-dated", accelerator=acc)}, {str(len(dated))}, "an age tally without its denominator")
+                self.assertEqual([n.text() for n in self.derived("age-gaps", accelerator=acc)], [str(gaps)] if gaps else [], "a recorded gap counted as a dated link, or left out without saying so")
         for record in {r["record_id"] for r in rows}:
             with self.subTest(record=record):
                 self.assertEqual([n.text() for n in self.derived("shown-in", record=record)], [str(sum(r["record_id"] == record for r in rows))])
@@ -474,6 +478,19 @@ class InsightTests(unittest.TestCase):
                 self.assertIn(f"The {r['links']} links come from {r['records']} records; {r['shared']} {agree} also counted under another accelerator", text)
                 recs = [n for n in line.walk() if n.attrs.get("data-query") == "evidence_coverage" and n.attrs.get("data-column") in ("records", "shared")]
                 self.assertEqual({n.attrs["data-column"] for n in recs}, {"records", "shared"}, "a records count typed, not copied from its cell")
+
+    def test_in12_the_coverage_block_names_each_gaps_reason(self) -> None:
+        # S20 (D-194, C-2): "gap" covers "not researched" and "refused as stale"; a gap count is followed by the reason
+        # of each gap it counts, each a cell of the first result from a gap row of that accelerator
+        for r in self.results["evidence_coverage"]["rows"]:
+            line = next(n for n in self.nodes if n.attrs.get("data-coverage") == r["accelerator_id"])
+            want = sorted({x["gap_reason"].replace("_", " ") for x in self.rows if x["accelerator_id"] == r["accelerator_id"] and x["basis"] == "gap"})
+            cells = [n for n in line.walk() if n.attrs.get("data-query") == SQL_QUERY and n.attrs.get("data-column") == "gap_reason"]
+            with self.subTest(accelerator=r["accelerator_id"]):
+                self.assertEqual(sorted({n.text() for n in cells}), want, "a gap counted without its reason")
+                for n in cells:
+                    row = self.rows[int(n.attrs["data-row"])]
+                    self.assertEqual((row["accelerator_id"], row["basis"]), (r["accelerator_id"], "gap"), "a reason taken from another row")
 
     def test_in12_the_age_block_says_where_the_horizon_applies(self) -> None:
         block = next(n for n in self.nodes if n.attrs.get("data-metric") == "source_age" and "indicator" in n.attrs.get("class", "").split())

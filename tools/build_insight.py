@@ -106,6 +106,8 @@ LABELS = build_page.LABELS | frozenset(
         "reported: no cited claim is a FACT, and one reports what a third party says",
         "with a supplier reported by a third party;", "with a supplier stated by a party;", "with supplier not known:",
         "no part has its full set of suppliers stated",
+        # S20 (D-194, D-195): a gap count names its reasons; the age tally says how many recorded gaps it leaves out
+        "recorded gap left out: a gap is not a dated link", "recorded gaps left out: a gap is not a dated link",
     }
 )
 
@@ -323,7 +325,8 @@ class Insight(build_page.Page):
                 f'<li data-coverage="{esc(c["accelerator_id"])}">{self.mcell("evidence_coverage", j, "accelerator", cls="who")} '
                 f'<span class="tally">{m("stated")} {self.label("of")} {m("links")} {self.label("links stated")}</span>'
                 f'<span class="units">{units}</span>'
-                f'<span class="split">{m("inferred")} {self.label("inferred,")} {m("reported")} {self.label("reported,")} {m("gap")} {self.label("gap" if c["gap"] == 1 else "gaps")}</span>'
+                f'<span class="split">{m("inferred")} {self.label("inferred,")} {m("reported")} {self.label("reported,")} {m("gap")} {self.label("gap" if c["gap"] == 1 else "gaps")}'
+                f'{self.gap_reasons(c["accelerator_id"])}</span>'
                 f'<span class="recs">{self.label("The")} {m("links")} {self.label("links come from")} {m("records")} {self.label("records;")} {m("shared")} '
                 f'{self.label("record is also counted under another accelerator" if c["shared"] == 1 else "records are also counted under another accelerator")}</span></li>'
             )
@@ -337,7 +340,15 @@ class Insight(build_page.Page):
         lines = []
         for acc in self.accelerators():
             mine = [r for r in age if r["accelerator_id"] == acc]
-            dated = [r for r in mine if r["age_days"] != "not_applicable"]
+            # S20 (D-195, C-5): a recorded gap is not a dated link: it is left out of the tally, and the block says how many
+            aged = [r for r in mine if r["age_days"] != "not_applicable"]
+            dated = [r for r in aged if r["basis"] != "gap"]
+            gaps = len(aged) - len(dated)
+            left_out = (
+                f'<span class="recs">{self.derived("age-gaps", str(gaps), data_accelerator=acc)} '
+                f'{self.label("recorded gap left out: a gap is not a dated link" if gaps == 1 else "recorded gaps left out: a gap is not a dated link")}</span>'
+                if gaps else ""
+            )
             name = next(i for i, r in enumerate(age) if r["accelerator_id"] == acc)
             lines.append(
                 f'<li>{self.mcell("source_age", name, "accelerator", cls="who")} '
@@ -345,7 +356,7 @@ class Insight(build_page.Page):
                 f'{self.derived("age-dated", str(len(dated)), data_accelerator=acc)}</span>'
                 f'<span class="split">{self.label("dated links: newest evidence older than twelve months")}</span>'
                 f'<span class="recs">{self.derived("age-accessed", str(sum(r["newest_evidence_basis"] == "accessed" for r in dated)), data_accelerator=acc)} {self.label("of")} '
-                f'{self.derived("age-dated", str(len(dated)), data_accelerator=acc)} {self.label("dated links: dated only by the day a page was read")}</span></li>'
+                f'{self.derived("age-dated", str(len(dated)), data_accelerator=acc)} {self.label("dated links: dated only by the day a page was read")}</span>{left_out}</li>'
             )
         k2 = (
             f'<div class="indicator" data-metric="source_age">{self.label("Evidence age", tag="h4")}'
@@ -377,6 +388,17 @@ class Insight(build_page.Page):
             f'{self.label("Indicators", tag="h3", cls="indicators-h")}<div class="indicators">{k1}{k2}</div>'
             f'{self.label("Cannot be computed yet", tag="h3", cls="indicators-h")}<div class="indicators">{"".join(blocks)}</div>'
         )
+
+    def gap_reasons(self, acc: str) -> str:
+        """S20 (D-194, C-2): after a gap count, the reason of each gap it counts, grouped from the first result's
+        gap_reason column (D-124 rule d): one cell per distinct reason, from the first row giving it."""
+        first: dict[str, int] = {}
+        for i, r in enumerate(self.rows):
+            if r["accelerator_id"] == acc and r["basis"] == "gap":
+                first.setdefault(r["gap_reason"], i)
+        if not first:
+            return ""
+        return ": " + "; ".join(self.cell(i, "gap_reason", fmt="state") for _, i in sorted(first.items()))
 
     # --- layer 3 and 4: the visual and its filter ----------------------------------------------------
 

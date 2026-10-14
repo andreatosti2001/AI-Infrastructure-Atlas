@@ -10,7 +10,7 @@ The harness is built in layers, each loading the one before it and replacing the
 text its own changes removed (see tests/regression/README.md):
     breaks_records_and_page.py, breaks_sql.py, breaks_research_view.py  ->  breaks_metrics.py
     -> breaks_metric_audit.py -> breaks_supplier_freshness.py -> this file (supplier evidence; review records;
-    S17's policy layer; S18's policy links).
+    S17's policy layer; S18's policy links; S20's research journeys).
 
 Run with a virtualenv built from requirements-test.txt and requirements-analysis.txt, from the repository root
 (the runner is tests/regression/runner.py: parallel copies, one summary, selection by measured files, D-177,
@@ -99,11 +99,13 @@ REPLACED_BY_WHAT = {
 }
 
 REPLACED = {
-    "S14.5-T1": ("S14.5-T1", "a tally hand-edited on the page (H100: 4 of 4 dated links older -> 3 of 4)",
-                 edit(INSIGHT, f'data-derived="age-beyond" data-accelerator="{H100}">4<', f'data-derived="age-beyond" data-accelerator="{H100}">3<'), [],
+    # S20 (D-195): the H100's tally is 3 of 3 once its recorded gap is left out; the hand edit moves it to 2 of 3
+    "S14.5-T1": ("S14.5-T1", "a tally hand-edited on the page (H100: 3 of 3 dated links older -> 2 of 3)",
+                 edit(INSIGHT, f'data-derived="age-beyond" data-accelerator="{H100}">3<', f'data-derived="age-beyond" data-accelerator="{H100}">2<'), [],
                  ["test_in3_derived_values_are_recomputed", "test_in8_rebuild_is_byte_identical"]),
+    # S20 (D-195): the H100's age tally leaves its recorded gap out, so its denominator is 3, not 4
     "S14.5-T2": ("S14.5-T2", "a tally's denominator removed from its block (the age block)",
-                 edit(INSIGHT, f' <span data-label>of</span> <span data-derived="age-dated" data-accelerator="{H100}">4</span></span>', "</span>"), [],
+                 edit(INSIGHT, f' <span data-label>of</span> <span data-derived="age-dated" data-accelerator="{H100}">3</span></span>', "</span>"), [],
                  ["a tally whose denominator is not in the same block"]),
     "S14.5-L1": ("S14.5-L1", "a label in the headline hand-edited ('What does an' -> 'What does every')",
                  edit(INSIGHT, "<span data-label>What does an</span>", "<span data-label>What does every</span>"), [],
@@ -293,11 +295,21 @@ S18 = [
      edit("data/claims.json", "The rule's word is the record's alias HBM, applied to stacks.", "The rule's word is the record's alias HBM, used of stacks."), ALL, []),
 ]
 
+# S20: the research journeys (D-189 to D-197; checks IN-3, IN-12 for C-2 and C-5; JR-1 to JR-12 in tests/test_journeys.py).
+S20 = [
+    ("S20-1", "the coverage block's gap count loses its reason (C-2, D-194) (rebuilt)",
+     edit(INSIGHT_BUILD, "f'{self.gap_reasons(c[\"accelerator_id\"])}</span>'", "'</span>'"), [INSIGHT_BUILD],
+     ["a gap counted without its reason"]),
+    ("S20-2", "the age tally counts a recorded gap as a dated link again (C-5, D-195) (rebuilt)",
+     edit(INSIGHT_BUILD, 'dated = [r for r in aged if r["basis"] != "gap"]', "dated = aged"), [INSIGHT_BUILD],
+     ["test_in3_derived_values_are_recomputed"]),
+]
+
 S165_BREAKS = s165.breaks
 
 
 def breaks():
-    return [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18
+    return [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20
 
 
 def main(argv: list[str]) -> int:
