@@ -117,6 +117,15 @@ LABELS = build_page.LABELS | frozenset(
         "what each text names", "its evidence", "facility kind", "evidence", "company page",
         # the headings inside the template's framing blocks (the Editorial's)
         "How to read the matrix", "How to read the timeline", "What a status means", "What this page cannot answer",
+        # the design pass (S20, D-198): cards, buttons, tiles, toggles
+        "is", "Classes named", "classes recorded", "How to read the links", "the as-of date", "Open the dependency journey",
+        "Open the research view", "Open the comparison", "Named as a supplier", "Products", "Events",
+        "recorded link names it as supplier", "recorded links name it as supplier", "product it is the vendor of",
+        "products it is the vendor of",
+        "A chain diagram from the accelerator to its memory and the process that memory needs, with the evidence for every link.",
+        "A matrix of the export-control texts the Atlas records against the parts and technologies they name, with a timeline of when each took effect.",
+        "One page per company: its identity, its links, where a source names it as a supplier, and the candidates the Atlas refused.",
+        "One page per place: the companies incorporated or headquartered there, the facilities located there and the acts issued there.",
         # singular forms: a count of one takes the singular (S20 browser QA)
         "link from", "refused candidate", "candidate", "recorded link", "product", "refused candidate names it",
         "recorded event", "company incorporated here", "company headquartered here", "facility located here",
@@ -200,6 +209,13 @@ class Journey(build_page.Page):
         if name not in self.framings:
             raise BuildError(f"the template has no framing block {name!r}")
         return self.framings[name]
+
+    def howto(self, name: str, title: str) -> str:
+        """A framing block folded behind its question (S20 design pass): the explanation one click away."""
+        return f'<details class="howto"><summary>{self.label(title)}</summary>{self.framing(name)}</details>'
+
+    def tile(self, title: str, body: str) -> str:
+        return f'<div class="tile">{self.label(title, tag="h3")}{body}</div>'
 
     def count(self, n: int, what: str, key: str | None = None, cls: str = "tally") -> str:
         extra = {"data_count": what} | ({"data_key": key} if key else {})
@@ -317,31 +333,31 @@ class Journey(build_page.Page):
 
     def render_index(self) -> dict:
         question = f'{self.label("What does an")} {self.name("component-ai-accelerator")}{self.label("’s memory depend on, and who is known to make it?")}'
-        names = lambda records, link: "".join(f"<li>{link(r['id'])}</li>" for r in sorted(records, key=lambda r: r["name"].lower()))  # noqa: E731
+        chips = lambda records, link: "".join(f"<li>{link(r['id'])}</li>" for r in sorted(records, key=lambda r: r["name"].lower()))  # noqa: E731
+        button = lambda target, words: f'<a class="button" href="{self.href(target)}">{self.label(words)}</a>'  # noqa: E731
         cards = [
-            (
-                "Explore a dependency", question,
-                f'<p><a href="{self.href(CHAIN_PAGE)}">{self.label("the dependency journey")}</a> · '
-                f'<a href="{self.href(INSIGHT_PAGE)}">{self.label("the research view")}</a></p>',
-            ),
-            (
-                "Compare layers", self.label("Which parts and technologies does each recorded export-control text name among the items it controls, and when did each take effect?"),
-                f'<p><a href="{self.href(EXPORT)}">{self.label("Compare layers")}</a></p>',
-            ),
-            ("Investigate a company", self.label("What does the Atlas record about a company, and on what evidence?"), f'<ul class="name-list">{names(self.companies, self.company_link)}</ul>'),
-            ("Investigate a place", self.label("What does the Atlas record as incorporated, headquartered, located or issued in a place?"), f'<ul class="name-list">{names(self.places, self.place_link)}</ul>'),
-            ("Inspect evidence", self.label("How does the Atlas know a value, and how was it checked?"), self.label("Every value on every research page opens its evidence: the claim, the quoted source sentence, the source and its dates.", tag="p")),
+            ("Explore a dependency", question,
+             "A chain diagram from the accelerator to its memory and the process that memory needs, with the evidence for every link.",
+             button(CHAIN_PAGE, "Open the dependency journey") + button(INSIGHT_PAGE, "Open the research view")),
+            ("Compare layers", self.label("Which parts and technologies does each recorded export-control text name among the items it controls, and when did each take effect?"),
+             "A matrix of the export-control texts the Atlas records against the parts and technologies they name, with a timeline of when each took effect.",
+             button(EXPORT, "Open the comparison")),
+            ("Investigate a company", self.label("What does the Atlas record about a company, and on what evidence?"),
+             "One page per company: its identity, its links, where a source names it as a supplier, and the candidates the Atlas refused.",
+             f'<ul class="chips">{chips(self.companies, self.company_link)}</ul>'),
+            ("Investigate a place", self.label("What does the Atlas record as incorporated, headquartered, located or issued in a place?"),
+             "One page per place: the companies incorporated or headquartered there, the facilities located there and the acts issued there.",
+             f'<ul class="chips">{chips(self.places, self.place_link)}</ul>'),
+            ("Inspect evidence", self.label("How does the Atlas know a value, and how was it checked?"),
+             "Every value on every research page opens its evidence: the claim, the quoted source sentence, the source and its dates.", ""),
         ]
-        items = "".join(f'<li>{self.label(kick, cls="k")}<h3>{q}</h3>{body}</li>' for kick, q, body in cards)
+        items = "".join(f'<li>{self.label(kick, cls="k")}<h3>{q}</h3>{self.label(what, tag="p", cls="what")}<div class="go">{go}</div></li>' for kick, q, what, go in cards)
         structural = ("requires", "has_part", "incorporates")
         touched = {x for e in self.edges if e["relation_type"] in structural for x in (e["source_entity"], e["target_entity"])}
-        chainless = "".join(
-            f'<li data-no-chain="{esc(c["id"])}">{self.name(c["id"])} · {self.ref(c["id"], "/type")} · {self.label("no recorded relationship", cls="none-word")}</li>'
-            for c in self.classes if c["id"] not in touched
-        )
+        chainless = "".join(f'<li data-no-chain="{esc(c["id"])}"><span>{self.name(c["id"])}</span></li>' for c in self.classes if c["id"] not in touched)
         main = (
             self.section("questions", "Questions", f'<ul class="question-cards">{items}</ul>')
-            + self.section("limits", "Where the records stop", f'{self.framing("index-limits")}{self.label("Recorded classes with no dependency link", tag="h3")}<ul class="name-list">{chainless}</ul>')
+            + self.section("limits", "Where the records stop", f'{self.label("Recorded classes with no dependency link", tag="h3")}<ul class="chips quiet">{chainless}</ul>{self.framing("index-limits")}')
             + self.section("method", "Method and limitations", self.method() + self.reproduce([]))
         )
         return {
@@ -351,7 +367,7 @@ class Journey(build_page.Page):
             "h1": self.label("What are you trying to understand?"),
             "scope": "",
             "framing_top": self.framing("index-top"),
-            "jump": self.jump([("questions", "Questions"), ("limits", "Where the records stop"), ("method", "Method and limitations")]),
+            "jump": "",
             "main": main,
         }
 
@@ -399,43 +415,64 @@ class Journey(build_page.Page):
             rows.append(f'<tr data-target="{esc(target)}"><th scope="row">{self.name(target)} <span class="meta">{self.ref(target, "/type")}</span></th>{"".join(cells)}</tr>')
         corner = f'<th scope="col">{self.label("Class or product")}</th>'
         key = (
-            f'<ul class="key"><li>{self.label("named in the text", cls="cell-named")} {self.label("the text names the class among the items it controls")}</li>'
+            f'<ul class="key"><li>{self.label("named in the text", cls="cell-named")}: {self.label("the text names the class among the items it controls")}</li>'
             f'<li>{self.label("refused:", cls="cell-refused")} {self.label("the Atlas considered the pair and recorded why not")}</li>'
-            f'<li>{self.label("no recorded relationship", cls="cell-none")} {self.label("no record either way")}</li></ul>'
+            f'<li>{self.label("no recorded relationship", cls="cell-none")}: {self.label("no record either way")}</li></ul>'
         )
         return f'{key}<div class="table-wrap"><table class="matrix"><thead><tr>{corner}{head}</tr></thead><tbody>{"".join(rows)}</tbody></table></div>'
 
     def timeline(self, acts: list[dict]) -> str:
+        """One lane per act with a dated event; each event a dot at its date on one linear scale (a partial date as a bar
+        over its period). Dots closer than one dot's width are stacked downwards in their lane (a beeswarm), so that no
+        event hides another: x is the date, y carries nothing but the stacking."""
         dated = [a for a in acts if any(e["subject"] == a["id"] for e in self.events)]
         events = sorted((e for e in self.events if e["subject"] in {a["id"] for a in dated}), key=lambda e: (period(e["date"])[0], e["id"]))
         start = f"{min(period(e['date'])[0] for e in events)[:4]}-01-01"
         end = f"{max([period(e['date'])[1] for e in events] + [self.on])[:4]}-12-31"
-        x0, x1, lane_h, top = 190.0, 980.0, 46, 40
+        x0, x1, top, step, pad = 150.0, 985.0, 34, 18, 16
         d0, d1 = datetime.date.fromisoformat(start).toordinal(), datetime.date.fromisoformat(end).toordinal()
         x = lambda d: x0 + (datetime.date.fromisoformat(d).toordinal() - d0) * (x1 - x0) / (d1 - d0)  # noqa: E731
-        height = top + lane_h * len(dated) + 34
-        out = []
-        for year in range(int(start[:4]), int(end[:4]) + 1):
-            xy = x(f"{year}-01-01")
-            out.append(f'<line class="axis" x1="{xy:.2f}" y1="{top - 14}" x2="{xy:.2f}" y2="{height - 22}"/>')
-            out.append(self.derived("year", str(year), tag="text", cls="year", x=f"{xy + 4:.2f}", y=str(top - 18)))
-        for i, a in enumerate(dated):
-            y = top + lane_h * i + lane_h // 2
-            out.append(f'<line class="lane" x1="{x0:.2f}" y1="{y}" x2="{x1:.2f}" y2="{y}"/>')
-            out.append(f'<a href="#ev-{esc(a["id"])}">{self.ref(a["id"], "/official_citation/0/value", tag="text", cls="lane-name", x="8", y=str(y + 4))}</a>')
+        lanes, y = [], top
+        for a in dated:
+            placed: list[tuple[float, int]] = []
+            marks = []
             for e in (e for e in events if e["subject"] == a["id"]):
+                cx = x(period(e["date"])[0])
+                row = 0
+                while any(abs(cx - px) < 15 and pr == row for px, pr in placed):
+                    row += 1
+                placed.append((cx, row))
+                marks.append((e, row))
+            rows = max(r for _, r in marks) + 1
+            height = pad * 2 + (rows - 1) * step
+            lanes.append((a, marks, y, height))
+            y += height
+        bottom = y
+        out = []
+        years = range(int(start[:4]), int(end[:4]) + 1)
+        for year in years:
+            xa, xb = x(f"{year}-01-01"), x(f"{year}-12-31")
+            if year % 2:
+                out.append(f'<rect class="band" x="{xa:.2f}" y="{top}" width="{xb - xa:.2f}" height="{bottom - top}"/>')
+            out.append(self.derived("year", str(year), tag="text", cls="year", x=f"{xa + 6:.2f}", y=str(top - 10)))
+        out.append(f'<line class="axis" x1="{x0:.2f}" y1="{top}" x2="{x1:.2f}" y2="{top}"/>')
+        for a, marks, ly, height in lanes:
+            out.append(f'<line class="lane" x1="{x0:.2f}" y1="{ly + height}" x2="{x1:.2f}" y2="{ly + height}"/>')
+            out.append(f'<a href="#ev-{esc(a["id"])}">{self.ref(a["id"], "/official_citation/0/value", tag="text", cls="lane-name", x="4", y=str(ly + pad + 4))}</a>')
+            for e, row in marks:
                 first, last = period(e["date"])
-                dy = -8 if e["event_type"] == "published" else 8
+                cy = ly + pad + row * step
                 cls = {"published": "ev-published", "effective": "ev-effective"}.get(e["event_type"], "ev-other")
                 if first == last:
-                    shape = f'<circle class="{cls}" cx="{x(first):.2f}" cy="{y + dy}" r="5.5"/>'
+                    shape = f'<circle class="{cls}" cx="{x(first):.2f}" cy="{cy}" r="6.5"/>'
                 else:
                     w = x(last) - x(first) + (x1 - x0) / (d1 - d0)
-                    shape = f'<rect class="{cls}" x="{x(first):.2f}" y="{y + dy - 5}" width="{w:.2f}" height="10" rx="3"/>'
+                    shape = f'<rect class="{cls}" x="{x(first):.2f}" y="{cy - 6}" width="{w:.2f}" height="12" rx="3"/>'
                 out.append(f'<a class="tl-mark" href="#ev-{esc(e["id"])}" data-event="{esc(e["id"])}" aria-labelledby="tw-{esc(e["id"])}">{shape}</a>')
         xa = x(self.on)
-        out.append(f'<line class="asof" data-asof x1="{xa:.2f}" y1="{top - 10}" x2="{xa:.2f}" y2="{height - 18}"/>')
-        out.append(f'<text class="asof-text" x="{xa - 4:.2f}" y="{height - 4}" text-anchor="end">{self.label("as of", tag="tspan")} {self.as_of(tag="tspan")}</text>')
+        out.append(f'<line class="asof" data-asof x1="{xa:.2f}" y1="{top - 4}" x2="{xa:.2f}" y2="{bottom + 6}"/>')
+        out.append(f'<text class="asof-text" x="{xa - 6:.2f}" y="{bottom + 22}" text-anchor="end">{self.label("as of", tag="tspan")} {self.as_of(tag="tspan")}</text>')
+        height = bottom + 30
         title = self.label("Timeline of the acts", tag="title", id="tl-title")
         svg = (
             f'<svg class="timeline" viewBox="0 0 1000 {height}" role="group" aria-labelledby="tl-title" aria-describedby="tl-words" '
@@ -448,13 +485,14 @@ class Journey(build_page.Page):
         )
         undated = "".join(f'<li data-undated="{esc(a["id"])}">{self.act_link(a["id"], "/name")} · {self.label("no dated event recorded", cls="none-word")}</li>' for a in acts if a not in dated)
         key = (
-            f'<ul class="key"><li>{self.label("hollow: published")}</li><li>{self.label("filled: effective")}</li>'
-            f'<li>{self.label("dashed line: the as-of date")}</li></ul>'
+            f'<ul class="key"><li><span class="key-dot" aria-hidden="true"></span>{self.label("published")}</li>'
+            f'<li><span class="key-dot filled" aria-hidden="true"></span>{self.label("effective")}</li>'
+            f'<li><span class="key-line" aria-hidden="true"></span>{self.label("the as-of date")}</li></ul>'
         )
         return (
             f'{key}<figure class="timeline-fig">{svg}</figure>'
             + (f'<p>{self.label("Acts with no dated event:", cls="k")}</p><ul class="name-list">{undated}</ul>' if undated else "")
-            + f'{self.label("The timeline in words", tag="h3")}<ol class="timeline-words" id="tl-words">{words}</ol>'
+            + f'<details class="howto"><summary>{self.label("The timeline in words")}</summary><ol class="timeline-words" id="tl-words">{words}</ol></details>'
         )
 
     def chain_classes(self) -> list[str]:
@@ -483,7 +521,7 @@ class Journey(build_page.Page):
                 )
             else:
                 state, body = "none", self.label("no recorded relationship", cls="none-word")
-            items.append(f'<li data-chain-class="{esc(target)}" data-state="{state}">{self.name(target)} · {body}</li>')
+            items.append(f'<li data-chain-class="{esc(target)}" data-state="{state}"><span>{self.name(target)}</span> · {body}</li>')
         return (
             f'{self.framing("export-layers")}<ul class="layers">{"".join(items)}</ul>'
             f'<p><a href="{self.href(CHAIN_PAGE)}">{self.label("the dependency journey")}</a></p>'
@@ -540,8 +578,8 @@ class Journey(build_page.Page):
             links = [e for e in self.links if e["target_entity"] == target]
             if links:
                 named.append(
-                    f'<li>{self.name(target)} · {self.ref("schema:relationships#vocab_relation_type/restricts", "/x-inverse-reading")} '
-                    f'{self.count(len(links), "named-by", target, cls="")} {self.label("of")} {self.count(n_acts, "acts", cls="")} {self.label("acts")}: '
+                    f'<li>{self.name(target)} {self.label("is")} {self.ref("schema:relationships#vocab_relation_type/restricts", "/x-inverse-reading")} '
+                    f'{self.count(len(links), "named-by", target)} {self.label("of")} {self.count(n_acts, "acts")} {self.label("acts")}: '
                     + ", ".join(self.act_link(e["source_entity"]) for e in links) + "</li>"
                 )
         statuses: dict[str, int] = {}
@@ -552,15 +590,20 @@ class Journey(build_page.Page):
         for c in self.policy_candidates:
             for r in c["reasons"]:
                 reasons[r] = reasons.get(r, 0) + 1
-        indicators = (
-            f'<div class="indicators">'
-            f'<div class="indicator">{self.label("Links", tag="h3")}<p>{self.count(len(self.links), "links")} {self.unit(len(self.links), "link from", "links from")} '
-            f'{self.count(len({e["source_entity"] for e in self.links}), "link-acts")} {self.label("of")} {self.count(n_acts, "acts")} {self.label("acts")}</p></div>'
-            f'<div class="indicator">{self.label("Refused candidates", tag="h3")}<p>{self.count(len(self.policy_candidates), "candidates")} {self.unit(len(self.policy_candidates), "refused candidate", "refused candidates")}</p><ul>'
-            + "".join(f'<li>{self.ref(f"schema:refused_candidates#vocab_reason/{r}", "/const", fmt="state")}: {self.count(n, "candidates-reason", r)} {self.unit(n, "candidate", "candidates")}</li>' for r, n in sorted(reasons.items()))
-            + f'</ul></div><div class="indicator">{self.label("Status on", tag="h3")}<p>{self.as_of()}</p><ul>'
-            + "".join(f'<li>{self.label(s.replace("_", " "))}: {self.count(n, "status", s)} {self.label("of")} {self.count(n_acts, "acts")} {self.label("acts")}</li>' for s, n in sorted(statuses.items()))
-            + "</ul></div></div>"
+        n_named = len({e["target_entity"] for e in self.links})
+        n_acts_linking = len({e["source_entity"] for e in self.links})
+        tiles = (
+            '<div class="tiles">'
+            + self.tile("Classes named", f'<p class="stat">{self.count(n_named, "named-classes")} {self.label("of")} {self.count(len(self.classes), "classes", cls="tally-s")} {self.label("classes recorded")}</p>')
+            + self.tile("Links", f'<p class="stat">{self.count(len(self.links), "links")} {self.unit(len(self.links), "link from", "links from")} '
+                        f'{self.count(n_acts_linking, "link-acts", cls="tally-s")} {self.label("of")} {self.count(n_acts, "acts", cls="tally-s")} {self.label("acts")}</p>')
+            + self.tile("Refused candidates", f'<p class="stat">{self.count(len(self.policy_candidates), "candidates")} {self.unit(len(self.policy_candidates), "refused candidate", "refused candidates")}</p><ul>'
+                        + "".join(f'<li>{self.ref(f"schema:refused_candidates#vocab_reason/{r}", "/const", fmt="state")}: {self.count(n, "candidates-reason", r, cls="tally-s")} {self.unit(n, "candidate", "candidates")}</li>' for r, n in sorted(reasons.items()))
+                        + "</ul>")
+            + self.tile("Status on", f'<p class="stat">{self.as_of()}</p><ul>'
+                        + "".join(f'<li>{self.label(s.replace("_", " "))}: {self.count(n, "status", s, cls="tally-s")} {self.label("of")} {self.count(n_acts, "acts", cls="tally-s")} {self.label("acts")}</li>' for s, n in sorted(statuses.items()))
+                        + "</ul>")
+            + "</div>"
         )
         statuses_list = "".join(f'<li>{self.act_link(a["id"])} · {self.label("status on")} {self.as_of()}: {self.status(a["id"])}</li>' for a in acts)
         latest = max(e["date"] for e in self.events if e["event_type"] == "published" and e["subject"] in {p["id"] for p in self.policies})
@@ -579,12 +622,12 @@ class Journey(build_page.Page):
         evidence = (
             self.label("Acts", tag="h3") + "".join(self.act_panel(a) for a in acts)
             + self.label("Policy links", tag="h3") + "".join(self.link_panel(e) for e in self.links)
-            + self.label("Refused candidates", tag="h3") + f'<ul class="cards">{"".join(self.card(c) for c in self.policy_candidates)}</ul>'
+            + self.label("Refused candidates", tag="h3") + f'<ul class="cards refusals">{"".join(self.card(c) for c in self.policy_candidates)}</ul>'
             + self.label("Events", tag="h3") + "".join(self.event_panel(e) for e in sorted(self.events, key=lambda e: (e["date"], e["id"])) if e["subject"] in {p["id"] for p in self.policies})
         )
         hbm = "component-high-bandwidth-memory"
         method = (
-            self.framing("export-limits")
+            self.label("What this page cannot answer", tag="h3") + self.framing("export-limits")
             + f'<p>{self.label("the latest publication date of an act the Atlas holds:")} {self.derived("latest-published", latest)}</p>'
             + self.method()
             + self.reproduce([
@@ -593,11 +636,11 @@ class Journey(build_page.Page):
             ])
         )
         main = (
-            self.section("answer", "What the records show", f'{self.label("Named in the texts", tag="h3")}<ul class="answer">{"".join(named)}</ul>{self.label("Indicators", tag="h3")}{indicators}')
+            self.section("answer", "What the records show", f'{tiles}<ul class="findings">{"".join(named)}</ul>')
             + self.section("layers", "On the dependency journey", self.layers())
-            + self.section("matrix", "The matrix", self.framing("export-matrix") + self.matrix(acts))
-            + self.section("timeline", "The timeline", self.framing("export-timeline") + self.timeline(acts))
-            + self.section("statuses", "Statuses", self.framing("export-status") + f'<ul class="answer">{statuses_list}</ul>')
+            + self.section("matrix", "The matrix", self.howto("export-matrix", "How to read the matrix") + self.matrix(acts))
+            + self.section("timeline", "The timeline", self.howto("export-timeline", "How to read the timeline") + self.timeline(acts))
+            + self.section("statuses", "Statuses", self.howto("export-status", "What a status means") + f'<ul class="items">{statuses_list}</ul>')
             + self.section("evidence", "Evidence", evidence)
             + self.section("data", "The pairs as a table", self.table(("Act", "Class or product", "State", "Reasons", "Record"), table_rows))
             + self.section("method", "Method and limitations", method)
@@ -628,10 +671,10 @@ class Journey(build_page.Page):
     def unit(self, n: int, one: str, many: str) -> str:
         return self.label(one if n == 1 else many)
 
-    def tally(self, n: int, what: str, words: tuple[str, str], none: str) -> str:
+    def tally(self, n: int, what: str, words: tuple[str, str], none: str, title: str) -> str:
         if n:
-            return f'<li>{self.count(n, what)} {self.unit(n, *words)}</li>'
-        return f'<li>{self.label(none, cls="none-word")}</li>'
+            return self.tile(title, f'<p class="stat">{self.count(n, what)} {self.unit(n, *words)}</p>')
+        return self.tile(title, f'<p class="stat">{self.label(none, cls="none-word")}</p>')
 
     def render_company(self) -> dict:
         cid = self.subject
@@ -647,19 +690,19 @@ class Journey(build_page.Page):
             if isinstance(roles, list) else self.ref(cid, "/roles/state", fmt="state", cls="state-word")
         )
         facts = (
-            f'<ul class="facts-line"><li>{self.label("recorded role", cls="k")} {role_words}</li>'
-            f'<li>{self.label("legal name", cls="k")} {self.values(cid, "legal_name")}</li>'
-            f'<li>{self.label("incorporated in", cls="k")} {self.values(cid, "incorporated_in", self.place_link)}</li>'
-            f'<li>{self.label("headquartered in", cls="k")} {self.values(cid, "headquartered_in", self.place_link)}</li></ul>'
+            f'<div class="summary-card"><dl><div><dt>{self.label("recorded role")}</dt><dd>{role_words}</dd></div>'
+            f'<div><dt>{self.label("legal name")}</dt><dd>{self.values(cid, "legal_name")}</dd></div>'
+            f'<div><dt>{self.label("incorporated in")}</dt><dd>{self.values(cid, "incorporated_in", self.place_link)}</dd></div>'
+            f'<div><dt>{self.label("headquartered in")}</dt><dd>{self.values(cid, "headquartered_in", self.place_link)}</dd></div></dl></div>'
         )
         tallies = (
-            '<ul class="facts-line">'
-            + self.tally(len(own), "links", ("recorded link", "recorded links"), "no recorded relationship")
-            + (f'<li>{self.label("named as a supplier on")} {self.count(len(named), "supplier")} {self.unit(len(named), "recorded link", "recorded links")}</li>' if named else f'<li>{self.label("named as a supplier on no recorded link", cls="none-word")}</li>')
-            + (f'<li>{self.label("vendor of")} {self.count(len(products), "products")} {self.unit(len(products), "product", "products")}</li>' if products else f'<li>{self.label("vendor of no recorded product", cls="none-word")}</li>')
-            + self.tally(len(cands), "candidates", ("refused candidate names it", "refused candidates name it"), "no refused candidate names it")
-            + self.tally(len(events), "events", ("recorded event", "recorded events"), "no recorded event")
-            + "</ul>"
+            '<div class="tiles">'
+            + self.tally(len(own), "links", ("recorded link", "recorded links"), "no recorded relationship", "Links")
+            + self.tally(len(named), "supplier", ("recorded link names it as supplier", "recorded links name it as supplier"), "named as a supplier on no recorded link", "Named as a supplier")
+            + self.tally(len(products), "products", ("product it is the vendor of", "products it is the vendor of"), "vendor of no recorded product", "Products")
+            + self.tally(len(cands), "candidates", ("refused candidate names it", "refused candidates name it"), "no refused candidate names it", "Refused candidates")
+            + self.tally(len(events), "events", ("recorded event", "recorded events"), "no recorded event", "Events")
+            + "</div>"
         )
         items = []
         for e in own:
@@ -679,7 +722,7 @@ class Journey(build_page.Page):
         for p in products:
             items.append(f'<li data-product="{esc(p["id"])}">{self.name(p["id"])} · {self.label("vendor")}: {self.name(cid)} {self.ev(p["id"])}</li>')
         links = f'<ul class="items">{"".join(items)}</ul>' if items else f'<p>{self.label("no recorded relationship", cls="none-word")}</p>'
-        cards = f'<ul class="cards">{"".join(self.card(c) for c in cands)}</ul>' if cands else f'<p>{self.label("no refused candidate names it", cls="none-word")}</p>'
+        cards = f'<ul class="cards refusals">{"".join(self.card(c) for c in cands)}</ul>' if cands else f'<p>{self.label("no refused candidate names it", cls="none-word")}</p>'
         ev_items = "".join(f'<li data-event="{esc(e["id"])}">{self.ref(e["id"], "/date")} · {self.ref(e["id"], "/event_type", fmt="state")} {self.ev(e["id"])}</li>' for e in events)
         events_html = f'<ul class="items">{ev_items}</ul>' if events else f'<p>{self.label("no recorded event", cls="none-word")}</p>'
         panels = [self.node_panel(cid)]
@@ -694,13 +737,13 @@ class Journey(build_page.Page):
         rows += [(self.label("candidate"), ", ".join(self.ref(c["id"], f"/relation_types/{i}") for i in range(len(c["relation_types"]))), self.reasons(c), f'<code>{self.ref(c["id"], "/id")}</code>') for c in cands]
         rows += [(self.label("event"), self.ref(e["id"], "/event_type", fmt="state"), self.ref(e["id"], "/date"), f'<code>{self.ref(e["id"], "/id")}</code>') for e in events]
         main = (
-            self.section("answer", "What the records show", facts + self.label("Indicators", tag="h3") + tallies)
-            + self.section("links", "Links and namings", self.framing("company-links") + links)
+            self.section("answer", "What the records show", facts + tallies)
+            + self.section("links", "Links and namings", self.howto("company-links", "How to read the links") + links)
             + self.section("candidates", "Refused candidates", cards)
             + self.section("events", "Events", events_html)
             + self.section("evidence", "Evidence", "".join(panels))
             + self.section("data", "The pairs as a table", self.table(("Kind", "What", "Basis or state", "Record"), rows))
-            + self.section("method", "Method and limitations", self.framing("company-limits") + self.method() + self.reproduce([
+            + self.section("method", "Method and limitations", self.label("What this page cannot answer", tag="h3") + self.framing("company-limits") + self.method() + self.reproduce([
                 ("this record’s links:", f'{self.label("python tools/navigate.py edges")} {self.ref(cid, "/id")}'),
                 ("the evidence for one record:", f'{self.label("python tools/trace.py")} {self.ref(cid, "/id")}'),
             ]))
@@ -727,17 +770,18 @@ class Journey(build_page.Page):
         located = [f for f in self.facilities if held(f, "located_in")]
         issued = [p for p in self.policies if held(p, "issued_in")]
         unknown = [c for c in hq if not isinstance(c["incorporated_in"], list)]
+        hq_body = (
+            f'<p class="stat">{self.count(len(hq), "headquartered")} {self.unit(len(hq), "company headquartered here", "companies headquartered here")}</p>'
+            + (f'<p class="stat">{self.count(len(unknown), "incorporation-unknown", cls="tally-s")} {self.label("of them with incorporation not held by the Atlas")}</p>' if unknown else "")
+            if hq else f'<p class="stat">{self.label("no company recorded as headquartered here", cls="none-word")}</p>'
+        )
         tallies = (
-            '<ul class="facts-line">'
-            + self.tally(len(inc), "incorporated", ("company incorporated here", "companies incorporated here"), "no company recorded as incorporated here")
-            + (
-                f'<li>{self.count(len(hq), "headquartered")} {self.unit(len(hq), "company headquartered here", "companies headquartered here")}'
-                + (f'; {self.count(len(unknown), "incorporation-unknown")} {self.label("of them with incorporation not held by the Atlas")}' if unknown else "")
-                + "</li>" if hq else f'<li>{self.label("no company recorded as headquartered here", cls="none-word")}</li>'
-            )
-            + self.tally(len(located), "located", ("facility located here", "facilities located here"), "no facility recorded as located here")
-            + self.tally(len(issued), "issued", ("act issued here", "acts issued here"), "no act recorded as issued here")
-            + "</ul>"
+            '<div class="tiles">'
+            + self.tally(len(inc), "incorporated", ("company incorporated here", "companies incorporated here"), "no company recorded as incorporated here", "Incorporated here")
+            + self.tile("Headquartered here", hq_body)
+            + self.tally(len(located), "located", ("facility located here", "facilities located here"), "no facility recorded as located here", "Located here")
+            + self.tally(len(issued), "issued", ("act issued here", "acts issued here"), "no act recorded as issued here", "Issued here")
+            + "</div>"
         )
 
         def company_item(c: dict, attr: str) -> str:
@@ -774,10 +818,10 @@ class Journey(build_page.Page):
         to_act = lambda p, field: f'<a href="#act-{esc(p["id"])}">{self.ref(p["id"], field)}</a>'  # noqa: E731
         rows += [(self.label("issued in"), to_act(p, "/official_citation/0/value"), "", f'<code>{to_act(p, "/id")}</code>') for p in issued]
         main = (
-            self.section("answer", "What the records show", self.label("Indicators", tag="h3") + tallies + lists)
+            self.section("answer", "What the records show", tallies + lists)
             + self.section("evidence", "Evidence", "".join(panels))
             + self.section("data", "The pairs as a table", self.table(("Kind", "What", "Basis or state", "Record"), rows))
-            + self.section("method", "Method and limitations", self.framing("place-limits") + self.method() + self.reproduce([
+            + self.section("method", "Method and limitations", self.label("What this page cannot answer", tag="h3") + self.framing("place-limits") + self.method() + self.reproduce([
                 ("the evidence for one record:", f'{self.label("python tools/trace.py")} {self.ref(pid, "/id")}'),
             ]))
         )

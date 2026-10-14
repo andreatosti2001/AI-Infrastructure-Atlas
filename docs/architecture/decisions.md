@@ -3191,3 +3191,24 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   that build; the Editorial owns the framing and style of `tools/journey_template.html`, as for the two existing
   templates.
 - **Rejected:** the Editorial owning the build and pages.
+
+## D-198 — A design pass on the research journeys, within the accepted rules
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S20, after reviewing the pages)
+- **Context:** the pages built under D-190 to D-193 passed every check, but read as technical documents: the
+  answer below the fold, a matrix of small words with no visible pattern, an entry page of link lists, a sparse
+  timeline with overlapping dots, and repeated framing boxes.
+- **Decision** (`tools/journey_template.html`, `tools/build_journeys.py`), within V-1 to V-11, the palette and
+  system fonts, with no script and no new dependency:
+  - each page leads with the answer: a row of stat tiles (each number with its unit and denominator in the same
+    line) and the findings as sentences;
+  - the matrix shows its pattern at a glance: a "named" cell is tinted with a filled mark, a "refused" cell
+    hatched with an outlined mark, an empty cell plain; every cell keeps its words;
+  - the timeline is larger, with year bands, and stacks events closer than one dot's width downwards in their
+    lane (a beeswarm: x is the date, y only the stacking);
+  - the entry page's cards are equal, each with what its page shows and a button; companies and places as chips;
+  - profiles open with a summary card and stat tiles; refused candidates are neutral cards (amber stays for gaps);
+  - explanations of how to read a visual are folded into "How to read …" toggles; limits stay visible;
+  - JR-3 also recomputes the number of classes named (`named-classes`).
+- **Rejected:** hiding evidence panels behind a toggle and adding a web font or colour accent (each would change
+  an accepted rule; the human chose a pass within the rules); leaving the design to S20.5.

@@ -540,7 +540,9 @@ whenever the research view changes.
 
 **Status:** ACCEPTED by the human on 2026-10-14 (S20 H-1), every item as proposed: the journeys and layout
 (D-190), the export-control page with both departures below (D-191), the profiles (D-192), the entry page
-(D-193), C-2 (D-194), C-5 (D-195), the filter kept (D-196), the owners (D-197). **Decided before it:** S20's H-0
+(D-193), C-2 (D-194), C-5 (D-195), the filter kept (D-196), the owners (D-197); then, after the human reviewed the
+pages, a design pass within the accepted rules (D-198): stat tiles and findings first, a matrix whose pattern
+shows at a glance, a beeswarm timeline, equal entry cards, "How to read …" toggles. **Decided before it:** S20's H-0
 (D-189): a first page view of the policy links is built in S20, and the check that no page shows one (PK-6) is
 replaced by checks for that view.
 **Claim label:** design (`INTERPRETATION`); every count below was read from `data/` and `sql/results/` on

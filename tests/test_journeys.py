@@ -76,7 +76,7 @@ DERIVED_KINDS = {"count", "policy-status", "latest-published", "sql-cell", "inpu
 COUNT_UNITS = {
     # data-count -> the unit that must follow the number in its own line (V-4: a number shows its unit); the singular
     # stem, so that a count of one may read "1 link" (S20 browser QA found "1 links")
-    "acts": "act", "classes": "class", "links": "link", "link-acts": "act", "named-by": "of", "candidates": "refused candidate",
+    "acts": "act", "classes": "class", "named-classes": "of", "links": "link", "link-acts": "act", "named-by": "of", "candidates": "refused candidate",
     "candidates-reason": "", "status": "of", "supplier": "", "products": "", "events": "", "incorporated": "", "headquartered": "",
     "located": "", "issued": "", "incorporation-unknown": "",
 }
@@ -309,6 +309,7 @@ class JourneyTests(unittest.TestCase):
             out[("acts", None)] = len(r.policies)
             out[("classes", None)] = len(r.classes)
             out[("links", None)] = len(r.links)
+            out[("named-classes", None)] = len({e["target_entity"] for e in r.links})  # S20 design pass (D-198)
             out[("link-acts", None)] = len({e["source_entity"] for e in r.links})
             out[("candidates", None)] = len(r.policy_candidates)
             for target in {e["target_entity"] for e in r.links}:
