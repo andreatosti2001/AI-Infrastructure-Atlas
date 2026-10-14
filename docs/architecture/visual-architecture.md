@@ -536,12 +536,13 @@ whenever the research view changes.
 
 ---
 
-## 15. The research journeys (S20) — PROPOSAL, not yet decided
+## 15. The research journeys (S20)
 
-**Status:** PROPOSED on 2026-10-14 by S20 for the human's ruling (H-1). Nothing in this section binds until
-the human decides it, journey by journey; the decisions will be recorded in `decisions.md` and this section
-rewritten as decided. **Decided before it:** S20's H-0 (2026-10-14): a first page view of the policy links is
-built in S20, and the check that no page shows one (PK-6) is replaced by checks for that view.
+**Status:** ACCEPTED by the human on 2026-10-14 (S20 H-1), every item as proposed: the journeys and layout
+(D-190), the export-control page with both departures below (D-191), the profiles (D-192), the entry page
+(D-193), C-2 (D-194), C-5 (D-195), the filter kept (D-196), the owners (D-197). **Decided before it:** S20's H-0
+(D-189): a first page view of the policy links is built in S20, and the check that no page shows one (PK-6) is
+replaced by checks for that view.
 **Claim label:** design (`INTERPRETATION`); every count below was read from `data/` and `sql/results/` on
 2026-10-14 at `138a940`.
 
@@ -551,7 +552,7 @@ The roadmap's six journeys (`SESSION-ROADMAP.md`, S20), each as the question a r
 records can and cannot answer, and where it lives. A journey the records cannot answer is shown as a gap, never
 filled with framing.
 
-| # | Journey | The user question | Reads | Page | Proposed |
+| # | Journey | The user question | Reads | Page | Decided |
 |---|---|---|---|---|---|
 | J1 | explore a dependency | "What does an AI accelerator's memory depend on, and who is known to make it?" | the 5 chain links, the S14 to S15 results | `site/hbm-chain/` and `site/hbm-insight/` (built) | unchanged, except C-2 and C-5 (§15.6) and a link to the hub |
 | J2 | compare layers | "Which parts and technologies does each recorded US export-control text name among the items it controls?" | the 5 policy records, the 4 `restricts` links, the 9 policy refused candidates (`cand-013` to `cand-021`), their claims and sources; the 3 classes of the HBM chain | `site/questions/export-control-texts/` (new) | new page (H-0) |
@@ -618,7 +619,7 @@ controls"; the inverse, "named among the items controlled by". "In force", "lega
 required", "prohibited", "banned" and "restricted" never appear in the Atlas's own voice (a check, JR-9). Status
 words are P-4's only.
 
-**Two departures from accepted rules, each needing the human's ruling:**
+**Two departures from accepted rules, both approved for this page only (D-191):**
 
 1. **A refused candidate in a visual.** §9 and D-109: a refused candidate for a reason other than stale evidence is
    "not drawn in a visual; listed as a card". The matrix would show it as a word in a cell ("refused: term not
@@ -671,13 +672,13 @@ words are P-4's only.
 **PK-6 is replaced** by: the HBM page and the research view still show no policy ID (their PK-6 tests stay);
 the export-control page and the US place page show policy records only under JR-6; no other page shows one.
 
-### 15.6 The three debt items (owned by S20, D-138, S14.5)
+### 15.6 The three debt items (owned by S20, D-138, S14.5), as decided
 
-| Item | Today (checked 2026-10-14) | Proposed disposition |
+| Item | Today (checked 2026-10-14) | Disposition |
 |---|---|---|
-| **C-2:** "gap" mixes "not researched" with "refused as stale" | The first query's basis `gap` still covers both. Since S16.6 named both suppliers, the data hold one gap row (the H100's TSMC fabrication, evidence not fresh). Every gap mark already carries its reason in words; only the coverage block's split line ("1 gap") hides it | **presentation:** the coverage block names each gap's reason beside the count ("1 gap: evidence not fresh"), grouped from the result's `gap_reason` column (D-124 rule d); the query unchanged. Supersedes D-133's rejection of exactly this |
-| **C-5:** the H100's age tally includes its recorded gap | Still true: the age block reads "4 of 4 dated links: newest evidence older than twelve months" for the H100, and one of the four is the gap refused *because* its evidence is old | **presentation:** the tally counts dated links that are not gaps and says how many recorded gaps it leaves out ("3 of 3 …; 1 recorded gap not counted: refused because its evidence is old"); `sql/source_age.sql` and the age table unchanged |
-| **The filter's `:has()`** | Works in Chromium 1194 by keyboard; without `:has()` it shows every row (degrades as designed) but the control still changes, silently; hidden rows leave the accessibility tree; no keyboard or screen-reader failure demonstrated; Firefox and Safari not run (S20 probe) | **unchanged**; the probe is evidence for S20.5; cross-browser runs to S22 |
+| **C-2:** "gap" mixes "not researched" with "refused as stale" | The first query's basis `gap` still covers both. Since S16.6 named both suppliers, the data hold one gap row (the H100's TSMC fabrication, evidence not fresh). Every gap mark already carries its reason in words; only the coverage block's split line ("1 gap") hides it | **presentation** (D-194): the coverage block names each gap's reason beside the count ("1 gap: evidence not fresh"), grouped from the result's `gap_reason` column (D-124 rule d); the query unchanged. Supersedes D-133's rejection of exactly this |
+| **C-5:** the H100's age tally includes its recorded gap | Still true: the age block reads "4 of 4 dated links: newest evidence older than twelve months" for the H100, and one of the four is the gap refused *because* its evidence is old | **presentation** (D-195): the tally counts dated links that are not gaps and says how many recorded gaps it leaves out ("3 of 3 …; 1 recorded gap not counted: refused because its evidence is old"); `sql/source_age.sql` and the age table unchanged |
+| **The filter's `:has()`** | Works in Chromium 1194 by keyboard; without `:has()` it shows every row (degrades as designed) but the control still changes, silently; hidden rows leave the accessibility tree; no keyboard or screen-reader failure demonstrated; Firefox and Safari not run (S20 probe) | **unchanged** (D-196); the probe is evidence for S20.5; cross-browser runs to S22 |
 
 ### 15.7 Rejected alternatives
 

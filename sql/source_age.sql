@@ -33,7 +33,7 @@
 -- give the same result. The horizon is the freshness rule's 12 months; that rule applies it only to
 -- time-sensitive links, so for the others the flag below is a reading aid, not a re-check.
 WITH params AS (
-    SELECT DATE '2026-10-13' AS reference_date, INTERVAL 12 MONTH AS horizon
+    SELECT DATE '2026-10-14' AS reference_date, INTERVAL 12 MONTH AS horizon
 ),
 
 -- step: Take the newest evidence date of each link
