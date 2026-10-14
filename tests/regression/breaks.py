@@ -12,8 +12,12 @@ text its own changes removed (see tests/regression/README.md):
     -> breaks_metric_audit.py -> breaks_supplier_freshness.py -> this file (supplier evidence; review records;
     S17's policy layer; S18's policy links).
 
-Run with a virtualenv built from requirements-test.txt and requirements-analysis.txt, from the repository root:
-    python tests/regression/breaks.py SCRATCH_DIR [ID ...]
+Run with a virtualenv built from requirements-test.txt and requirements-analysis.txt, from the repository root
+(the runner is tests/regression/runner.py: parallel copies, one summary, selection by measured files, D-175 to
+D-177):
+    python tests/regression/breaks.py SCRATCH_DIR [ID ...] [--jobs N] [--out FILE]
+    python tests/regression/breaks.py SCRATCH_DIR --since main        # the breaks a change selects (D-176)
+    python tests/regression/breaks.py --changed PATH ... --select-only
     python tests/regression/breaks.py SCRATCH_DIR --setup-only
 """
 
@@ -296,7 +300,44 @@ def breaks():
     return [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18
 
 
+def main(argv: list[str]) -> int:
+    import argparse
+    import os
+
+    spec = importlib.util.spec_from_file_location("runner", REPO / "tests/regression/runner.py")
+    runner = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(runner)
+    p = argparse.ArgumentParser(description="The full break harness (tests/regression/README.md).")
+    p.add_argument("scratch", nargs="?", type=Path, help="a scratch folder outside the repository")
+    p.add_argument("ids", nargs="*", help="break IDs to run (default: every break)")
+    p.add_argument("--setup-only", action="store_true", help="check that every edit still applies; run nothing")
+    p.add_argument("--jobs", type=int, default=os.cpu_count() or 1, help="breaks run at a time (default: processors)")
+    p.add_argument("--out", type=Path, help="also write the lines and the summary to this file")
+    p.add_argument("--changed", nargs="+", metavar="PATH", help="run the breaks these changed files select (D-176)")
+    p.add_argument("--since", metavar="REV", help="run the breaks the files changed since REV select (D-176)")
+    p.add_argument("--select-only", action="store_true", help="with --changed or --since: print the selection, run nothing")
+    p.add_argument("--touched", action="store_true", help="print every break's measured files and build steps")
+    a = p.parse_args(argv)
+    all_breaks = breaks()
+    if a.touched:
+        for bid, what, files, steps in runner.touched(all_breaks):
+            print(f"{bid:10} {', '.join(files)} | steps: {', '.join(steps) or '-'} | {what}")
+        return 0
+    wanted = set(a.ids)
+    if a.changed or a.since:
+        changed = list(a.changed or []) + (runner.changed_since(a.since) if a.since else [])
+        picked, reasons = runner.select(all_breaks, changed)
+        print("\n".join(reasons) or "no break touches the changed files")
+        print(f"selected: {len(picked)} IDs: {' '.join(picked)}", flush=True)
+        if a.select_only or not picked:
+            return 0
+        wanted |= set(picked)
+    if a.scratch is None:
+        p.error("a scratch folder is needed to run breaks")
+    if a.scratch.resolve().is_relative_to(REPO):
+        p.error("the scratch folder must be outside the repository")
+    return 1 if runner.run(all_breaks, a.scratch, wanted, a.setup_only, a.jobs, a.out) else 0
+
+
 if __name__ == "__main__":
-    s15.breaks = breaks
-    args = [a for a in sys.argv[2:] if a != "--setup-only"]
-    sys.exit(1 if s15.run(Path(sys.argv[1]), set(args), "--setup-only" in sys.argv) else 0)
+    sys.exit(main(sys.argv[1:]))

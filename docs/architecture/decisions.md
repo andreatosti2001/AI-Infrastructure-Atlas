@@ -2954,3 +2954,52 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   planted-fault break (`S18-…`) in `tests/regression/`, run with the breaks that touch the changed files
   (D-150).
 - **Rejected:** none proposed.
+
+## D-175 — The M5 audit records the later-rule gap; it does not search
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-13, S19 H-0)
+- **Context:** each `restricts` link and each act's status say "no later change recorded in the Atlas"; the Atlas
+  has not looked for BIS rules after 5 December 2024 that change entries 3A090.c, 3B001, 3B002 or 3B993 or
+  repeal one of the five acts (S17 and S18 debt; D-156, D-169).
+- **Decision:** the M5 audit records the unsearched period as a finding with an owner
+  (`docs/architecture/milestone-audits/M5-audit.md`). No search, no new record, no data change in S19.
+- **Rejected:** a dated search of the Federal Register's official texts now (a research step and a review inside
+  an audit session, with likely new records).
+
+## D-176 — Permanent planted-fault tests: 28 breaks on every commit
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-1; D-153)
+- **Decision:** `tests/test_planted_faults.py` runs 28 of the harness's breaks inside the suite, so on every push
+  and in CI. Each applies the break's own setup (one home: `tests/regression/breaks.py`) to a temporary copy of
+  `data/`, runs the record checks in memory and passes only if every fragment the break expects is among the
+  errors, and none is among the real data's errors. Criterion: the break plants a fault in the records; its setup
+  edits `data/` only and its fault is named by a check's message; its setup finds the records by ID. The harness
+  keeps the 28. The CI workflow is unchanged (it runs the suite). Added time: about 3 s.
+- **Rejected:** only the 15 policy-layer breaks (older data checks unguarded between audits); no per-commit tests.
+
+## D-177 — Breaks are selected by the files they measurably touch; a check change runs the full harness
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-1; amends D-150)
+- **Decision:** `breaks.py --changed PATH ...` or `--since REV` selects a break when a file its setup changes
+  (measured on a scratch copy, never declared) or a tool its build steps run is among the changed files. A change
+  to a check module (`tests/test_*.py`), a schema, Gate 0 (`tools/validate_repo.py`) or the harness
+  (`tests/regression/`) selects the full harness. D-150's milestone full run stays.
+- **Rejected:** measured selection with D-150 unchanged (a loosened check outside the selected breaks would wait for
+  the next milestone audit); declared file lists (they drift from what a setup edits).
+
+## D-178 — The harness runs breaks in parallel copies, with one combined result
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-1)
+- **Decision:** `tests/regression/runner.py` (standard library only, D-003) runs `--jobs N` breaks at a time (default:
+  the processors), each in its own numbered copy (four S13 IDs name two breaks each), prints the lines in the
+  harness's order and one summary (faults caught as named, controls passing, stale setups). The method and the
+  pass rule of each break are unchanged.
+- **Rejected:** one break at a time, split across processes by hand.
+
+## D-179 — The new harness is accepted only on an identical verdict for every break
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-1)
+- **Decision:** the old runner and the new one run all 130 breaks on the same tree; every break's verdict and set of
+  failing tests must be identical, or the session stops. The new runner's run is M5's full run (D-150). Each
+  permanent test is shown failing with the checks disconnected and against a check loosened on purpose.
+- **Rejected:** a sample of about 20 breaks.
