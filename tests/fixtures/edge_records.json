@@ -1,9 +1,9 @@
 {
-  "_about": "Fictional edges over the fictional entity world of tests/fixtures/entity_records.json (S10; edge-dataset.md §10). They assert nothing about the world. 'sources' and the claims are added to that world; 'product_overrides' sets fields of its products (Chip One's process name, for EP-1); 'product_terms' is this world's product table (PL-1). Each fault is one change that one check must catch; each warning one record that must raise a warning and no error of its kind.",
+  "_about": "Fictional edges over the fictional entity world of tests/fixtures/entity_records.json (S10; edge-dataset.md §10). They assert nothing about the world. 'sources' and the claims are added to that world; 'product_overrides' sets fields of its products (Chip One's process name, for EP-1); 'product_terms' is this world's product table (PN-1). Each fault is one change that one check must catch; each warning one record that must raise a warning and no error of its kind.",
   "valid": {
     "sources": [
       {
-        "id": "src-917",
+        "id": "src-919",
         "source_class": "company_technical_documentation",
         "title": "Example Designer Chip One architecture page",
         "publisher": "Example Designer Inc.",
@@ -13,7 +13,7 @@
         "authors": {
           "state": "not_researched"
         },
-        "url": "https://example.com/src-917",
+        "url": "https://example.com/src-919",
         "stated_dates": {
           "state": "undated"
         },
@@ -60,7 +60,7 @@
         "evidence_status": "supported",
         "citations": [
           {
-            "source_id": "src-917",
+            "source_id": "src-919",
             "locator": "section 'Process'",
             "anchor": "Chip One is fabricated using the Example Foundry 3X process",
             "standing": "party",
@@ -118,7 +118,7 @@
         "evidence_status": "supported",
         "citations": [
           {
-            "source_id": "src-917",
+            "source_id": "src-919",
             "locator": "section 'Memory'",
             "anchor": "Chip One contains example GPU memory stacks",
             "standing": "party",
@@ -213,7 +213,7 @@
               "source_class": "company_technical_documentation",
               "outcome": "no_answer",
               "source_ids": [
-                "src-917"
+                "src-919"
               ]
             },
             {
@@ -521,7 +521,7 @@
       "value": "rel-designer-designs-chip-one"
     },
     {
-      "name": "a product edge resting on a company-level sentence (PL-1, ER-9)",
+      "name": "a product edge resting on a company-level sentence (PN-1, ER-9)",
       "action": "set_edge_field",
       "where": "staging",
       "index": 0,

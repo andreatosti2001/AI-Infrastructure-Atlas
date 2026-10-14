@@ -7,12 +7,16 @@
 - every allowed write is a path that exists, or a file in a directory that exists;
 - every validation gate names test files that exist, and CI runs them (L-02);
 - no contract grants a write to canonical claims (data/claims.json) or allows a verdict:
-  class C review is the human's (CLAUDE.md §9).
+  class C review is the human's (CLAUDE.md §9);
+- every tracked file has an owner: a role whose ALLOWED_WRITES names it, or the list of files written only on
+  the human's decision ("Outside every contract"). A path ending in / owns the folder; * matches within a name
+  (S19, agent audit F-2, D-180).
 
 Standard library only.
 """
 
 import re
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -70,6 +74,32 @@ def contracts() -> dict[str, dict[str, str]]:
     return result
 
 
+def human_only() -> list[str]:
+    """The paths of contracts.md's "Outside every contract" list: written only on the human's decision."""
+    body = CONTRACTS.partition("## Outside every contract")[2].split("\n## ")[0]
+    items = re.split(r"^- ", body, flags=re.M)[1:]  # one item: a bullet and its continuation lines
+    return [p for item in items for p in re.findall(r"`([^`]+)`", item.split(": ", 1)[0])]
+
+
+def owned(path: str, patterns: list[str]) -> bool:
+    def match(p: str) -> bool:
+        if p.endswith("/"):
+            return path.startswith(p)
+        return re.fullmatch(re.escape(p).replace(r"\*", "[^/]*"), path) is not None
+    return any(match(p) for p in patterns)
+
+
+def tracked_files() -> list[str]:
+    try:
+        out = subprocess.run(["git", "ls-files"], cwd=REPO_ROOT, capture_output=True, text=True, check=True).stdout.split()
+    except (OSError, subprocess.CalledProcessError):
+        out = []
+    if not out:  # a copy without .git (the break harness): every file in the tree
+        out = [p.relative_to(REPO_ROOT).as_posix() for p in REPO_ROOT.rglob("*")
+               if p.is_file() and ".git" not in p.parts and "__pycache__" not in p.parts and p.suffix != ".png"]
+    return sorted(out)
+
+
 class RoleTests(unittest.TestCase):
     def test_every_claude_md_role_is_listed_once(self) -> None:
         names = [row[0] for row in role_rows()]
@@ -80,7 +110,8 @@ class RoleTests(unittest.TestCase):
         active = {row[0] for row in role_rows() if row[1] == "active"}
         self.assertEqual(active, set(contracts()))
         # S11 (D-107; the human's ruling "Yes, both (Recommended)"): Editorial and QA join the five.
-        self.assertEqual(active, {"Source Scout", "Extractor", "Verifier", "Knowledge Architect", "Data Auditor", "Editorial", "QA"})
+        # S19 (D-181): the Analyst, whose work S14 to S16 did without a contract.
+        self.assertEqual(active, {"Source Scout", "Extractor", "Verifier", "Knowledge Architect", "Data Auditor", "Editorial", "QA", "Analyst"})
 
     def test_inactive_roles_name_their_first_session(self) -> None:
         for row in role_rows():
@@ -116,6 +147,18 @@ class ContractTests(unittest.TestCase):
                 self.assertTrue(gates, "no CI-run test named")
                 for gate in gates:
                     self.assertTrue((REPO_ROOT / gate).is_file(), gate)
+
+    def test_every_tracked_file_has_an_owner(self) -> None:
+        patterns = [p for c in contracts().values() for p in re.findall(r"`([^`]+)`", c["ALLOWED_WRITES"])] + human_only()
+        self.assertTrue(human_only(), "contracts.md has no 'Outside every contract' list")
+        orphans = [f for f in tracked_files() if not owned(f, patterns)]
+        self.assertEqual(orphans, [], "files no role and no human-only entry owns (agent audit F-2)")
+
+    def test_owner_patterns_resolve(self) -> None:
+        files = tracked_files()
+        for pattern in human_only():
+            with self.subTest(pattern=pattern):
+                self.assertTrue([f for f in files if owned(f, [pattern])], f"{pattern} owns no file")
 
     def test_no_contract_writes_canonical_claims_or_verdicts(self) -> None:
         for role, contract in contracts().items():

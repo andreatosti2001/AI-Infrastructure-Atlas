@@ -2954,3 +2954,140 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   planted-fault break (`S18-…`) in `tests/regression/`, run with the breaks that touch the changed files
   (D-150).
 - **Rejected:** none proposed.
+
+## D-175 — The M5 audit records the later-rule gap; it does not search
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-13, S19 H-0)
+- **Context:** each `restricts` link and each act's status say "no later change recorded in the Atlas"; the Atlas
+  has not looked for BIS rules after 5 December 2024 that change entries 3A090.c, 3B001, 3B002 or 3B993 or
+  repeal one of the five acts (S17 and S18 debt; D-156, D-169).
+- **Decision:** the M5 audit records the unsearched period as a finding with an owner
+  (`docs/architecture/milestone-audits/M5-audit.md`). No search, no new record, no data change in S19.
+- **Rejected:** a dated search of the Federal Register's official texts now (a research step and a review inside
+  an audit session, with likely new records).
+
+## D-176 — Permanent planted-fault tests: 28 breaks on every commit
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-1; D-153)
+- **Decision:** `tests/test_planted_faults.py` runs 28 of the harness's breaks inside the suite, so on every push
+  and in CI. Each applies the break's own setup (one home: `tests/regression/breaks.py`) to a temporary copy of
+  `data/`, runs the record checks in memory and passes only if every fragment the break expects is among the
+  errors, and none is among the real data's errors. Criterion: the break plants a fault in the records; its setup
+  edits `data/` only and its fault is named by a check's message; its setup finds the records by ID. The harness
+  keeps the 28. The CI workflow is unchanged (it runs the suite). Added time: about 3 s.
+- **Rejected:** only the 15 policy-layer breaks (older data checks unguarded between audits); no per-commit tests.
+
+## D-177 — Breaks are selected by the files they measurably touch; a check change runs the full harness
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-1; amends D-150)
+- **Decision:** `breaks.py --changed PATH ...` or `--since REV` selects a break when a file its setup changes
+  (measured on a scratch copy, never declared) or a tool its build steps run is among the changed files. A change
+  to a check module (`tests/test_*.py`), a schema, Gate 0 (`tools/validate_repo.py`) or the harness
+  (`tests/regression/`) selects the full harness. D-150's milestone full run stays.
+- **Rejected:** measured selection with D-150 unchanged (a loosened check outside the selected breaks would wait for
+  the next milestone audit); declared file lists (they drift from what a setup edits).
+
+## D-178 — The harness runs breaks in parallel copies, with one combined result
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-1)
+- **Decision:** `tests/regression/runner.py` (standard library only, D-003) runs `--jobs N` breaks at a time (default:
+  the processors), each in its own numbered copy (four S13 IDs name two breaks each), prints the lines in the
+  harness's order and one summary (faults caught as named, controls passing, stale setups). The method and the
+  pass rule of each break are unchanged.
+- **Rejected:** one break at a time, split across processes by hand.
+
+## D-179 — The new harness is accepted only on an identical verdict for every break
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-1)
+- **Decision:** the old runner and the new one run all 130 breaks on the same tree; every break's verdict and set of
+  failing tests must be identical, or the session stops. The new runner's run is M5's full run (D-150). Each
+  permanent test is shown failing with the checks disconnected and against a check loosened on purpose.
+- **Rejected:** a sample of about 20 breaks.
+
+## D-180 — Every file has an owner, checked
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; agent audit F-2)
+- **Context:** 63 files changed since S06 lay in no active role's `ALLOWED_WRITES`, and nothing checked the
+  sentence "a role writes only its allowed paths" (`docs/architecture/agent-audit.md` F-2).
+- **Decision:** `docs/agents/contracts.md` names an owner for every path: a role's `ALLOWED_WRITES`, or the new
+  list "Outside every contract" (the constitutional documents, `docs/agents/`, the canonical data files moved on the
+  human's verdict, `docs/quality/human-reviews.md`). `tests/test_agent_contracts.py` fails if a tracked file has no
+  owner, or if an entry of that list owns no file. A path ending in `/` covers its folder; `*` matches within one
+  name.
+- **Rejected:** correcting the lists once without a check (they drifted unnoticed from S12 to S18); debt for S22.
+
+## D-181 — The Analyst is active, with a contract
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; agent audit F-3)
+- **Decision:** the Analyst writes `sql/*.sql`, `sql/results/` (only through `tools/warehouse.py`), `sql-layer.md`,
+  `metrics.md` and `analytical-audit.md`; its gate is `tests/test_warehouse.py` and `tests/test_insight.py`; it never
+  writes `data/`, a result by hand, the loader or the checks, or a metric without its question, population and
+  denominator. The active set is eight roles.
+- **Rejected:** the Data Auditor absorbing the SQL work (the role that writes the checks would also write the
+  analysis they check).
+
+## D-182 — The Verifier's authority is the re-read; the human's review is the independent check
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; agent audit F-4)
+- **Decision:** the Verifier's contract and row say that its authority is the re-read of each anchor in the bytes
+  whose hash is the registered one, by a script whose output is kept, plus a written list of wording that exceeds its
+  anchor; when the drafting session also verifies, the human's review of every claim is the independent check.
+  Debt: a durable re-read tool in `tools/`, owned by the next session that adds claims from a new retrieval.
+- **Rejected:** merging the Extractor and the Verifier (the rule that the checker may not edit a claim's wording or
+  anchor would go); leaving both contracts unchanged.
+
+## D-183 — Drafts always land in staging
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; agent audit F-1)
+- **Context:** S16.5 and S16.6 held drafts in private research folders and wrote them to `data/` after the human's
+  verdict, so the record checks did not run on them before the review.
+- **Decision:** the Extractor's contract states that drafts always land in `data/staging/` before the human's review,
+  and that a session prompt cannot keep them elsewhere. How claims become canonical is unchanged. No check (Git
+  history is not checked in CI).
+- **Rejected:** recording the two sessions as exceptions only.
+
+## D-184 — The inactive roles: no runtime; the Change Detector's first task; who writes milestone audits
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; agent audit F-5, F-6, F-8)
+- **Decision:** `docs/agents/roles.md`:
+  - **Orchestrator:** no runtime, dispatcher, queue or autonomous write path is justified; NG-08 holds for v1.0. The
+    session prompt and the human coordinate;
+  - **Change Detector:** stays inactive; its first task is D-175's dated search for later rules changing the acts the
+    Atlas holds, no earlier than S20. S07's freshness rule is a check, the Data Auditor's;
+  - **Portfolio Reviewer:** stays inactive until S24; the Knowledge Architect writes milestone audits, and the human
+    accepts their findings and ratings.
+  The Source Scout, Extractor, Knowledge Architect, Data Auditor, Editorial and QA are kept; Client Output stays
+  inactive until S21.
+- **Rejected:** recording the Orchestrator's outcome only.
+
+## D-185 — The edge check PL-1 becomes PN-1
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; M5 audit M5-P3)
+- **Decision:** the S10 edge guard "a product edge names the product" (`edge-dataset.md` §7) is PN-1; PL-1 means only
+  the policy record's shape (`policy-dataset.md` P-10). Earlier decisions keep their wording.
+- **Rejected:** leaving both for S22.
+
+## D-186 — The edge fixture world's source is `src-919`
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2; M5 audit M5-P3)
+- **Decision:** `tests/fixtures/edge_records.json` names its fictional source `src-919`, so no ID is defined twice
+  across the fixture worlds (`src-917` stays the entity world's).
+- **Rejected:** leaving it for S22.
+
+## D-187 — M5 closes with its audit
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S19 H-2)
+- **Decision:** `docs/architecture/milestone-audits/M5-audit.md` and `docs/architecture/agent-audit.md` are accepted
+  as written, with the remediations D-180 to D-186 done in S19 and the debt owners of the M5 audit's Part 1 §6. M5
+  closes; S20 opens M6.
+- **Rejected:** keeping M5 open until the human has read both documents.
+
+## D-188 — The harness's documentation does not select the full harness
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, after S19; amends D-177)
+- **Context:** D-177 selects the full harness for any change under `tests/regression/`. S19's last commit, a
+  correction to that folder's README, therefore cost a 35-minute full run, though no check reads the README.
+- **Decision:** the trigger covers the harness's code only (`tests/regression/*.py`), with the check modules, the
+  schemas and Gate 0 as before. A change to `tests/regression/README.md` selects the breaks whose setup touches it
+  (none today); Gate 0 still checks its links on every push. `tests/test_break_selection.py` checks the trigger.
+- **Rejected:** keeping D-177 as it was (a full run for every edit of the harness's documentation).

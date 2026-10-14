@@ -25,7 +25,7 @@ concept-dataset.md §7. The checks, by ID:
        `supplier` companies; edge IDs are unique, and none is both staging and canonical;
 - RI-1 an edge ID is `rel-`, the source ID, the type (`_` as `-`), the target ID and, for
        `supplies`, the item ID (edge-dataset.md §2);
-- PL-1 a product edge rests on an anchor carrying the first word of the product's term (ER-9);
+- PN-1 a product edge rests on an anchor carrying the first word of the product's term (ER-9);
 - EP-1 a `fabricates` edge never cites directly a claim serving a `vendor_process_name` (ER-1);
 - PE-1 an edge cites a FACT or DERIVATION, and no claim of an `announced` event (ER-8);
 - RV-1 an anchor the edge reaches carries a word of its type's row (RR-1);
@@ -383,7 +383,7 @@ def check_edge_ids(edges) -> list[str]:
 
 
 def check_product_named(edges, staging_claims, canonical_claims, terms) -> list[str]:
-    """PL-1."""
+    """PN-1 (named PL-1 until S19, D-185)."""
     claims = {c["id"]: c for c in staging_claims + canonical_claims}
     errors = []
     for _, edge in all_edges(edges):
@@ -709,7 +709,7 @@ class EdgeDataTests(unittest.TestCase):
     def test_ri1_edge_ids_follow_the_rule(self) -> None:
         self.assertEqual(check_edge_ids(self.edges), [])
 
-    def test_pl1_product_edges_name_the_product(self) -> None:
+    def test_pn1_product_edges_name_the_product(self) -> None:
         self.assertEqual(check_product_named(self.edges, self.staging, self.canonical, product_terms()), [])
 
     def test_ep1_no_fabricates_from_a_process_name(self) -> None:

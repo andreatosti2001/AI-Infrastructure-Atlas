@@ -36,7 +36,7 @@ Precedence follows `SESSION-PROMPT-SPEC.md` §1: higher rows win.
 | [`architecture/metrics.md`](./architecture/metrics.md) | the metrics: evidence coverage, source age, the three supplier metrics shown as "cannot be computed yet"; rows vs records; placement | accepted 2026-10-06 (D-127 to D-132); revised after the analytical audit (D-133 to D-137) and for reported suppliers (D-148) |
 | [`architecture/vertical-slice.md`](./architecture/vertical-slice.md) with [`../tools/build_page.py`](../tools/build_page.py), [`../tools/page_template.html`](../tools/page_template.html) and [`../site/hbm-chain/index.html`](../site/hbm-chain/index.html) | the HBM journey: question and scope, the visual specification, the text provenance rule, gaps, evidence panels, accessibility, page checks | accepted 2026-10-02 (D-100 to D-108) |
 | [`architecture/visual-architecture.md`](./architecture/visual-architecture.md) with [`../tools/build_insight.py`](../tools/build_insight.py), [`../tools/insight_template.html`](../tools/insight_template.html) and [`../site/hbm-insight/index.html`](../site/hbm-insight/index.html) | the research view: seven layers from question to method, visual and UX principles, the minimal design system, the SQL-to-visual binding rule | accepted 2026-10-06 (D-123 to D-126) |
-| [`agents/roles.md`](./agents/roles.md), [`agents/contracts.md`](./agents/contracts.md) | every agent role; the contracts of the active roles (inputs, outputs, allowed writes, gates) | accepted 2026-09-30 (D-052); Editorial and QA 2026-10-02 (D-107) |
+| [`agents/roles.md`](./agents/roles.md), [`agents/contracts.md`](./agents/contracts.md) | every agent role; the contracts of the active roles (inputs, outputs, allowed writes, gates) | accepted 2026-09-30 (D-052); Editorial and QA 2026-10-02 (D-107); S19's rulings 2026-10-14: the Analyst active, every file has an owner (checked), the Verifier re-scoped, drafts always in staging, no runtime (D-180 to D-184) |
 
 ## Research
 
@@ -63,10 +63,13 @@ Precedence follows `SESSION-PROMPT-SPEC.md` §1: higher rows win.
 | [`architecture/milestone-audits/M1-audit.md`](./architecture/milestone-audits/M1-audit.md) | accepted 2026-10-01: domain and evidence foundation |
 | [`architecture/milestone-audits/M2-audit.md`](./architecture/milestone-audits/M2-audit.md) | accepted 2026-10-02 (D-109, D-110): canonical dataset and data architecture; its blocking finding remediated |
 | [`architecture/milestone-audits/M3-audit.md`](./architecture/milestone-audits/M3-audit.md), [`M4-audit.md`](./architecture/milestone-audits/M4-audit.md) | accepted 2026-10-07 (D-140); M4 closed |
+| [`architecture/milestone-audits/M5-audit.md`](./architecture/milestone-audits/M5-audit.md) | accepted 2026-10-14 (D-187): the policy layer (S17, S18) and S19; M5 closed |
+| [`architecture/agent-audit.md`](./architecture/agent-audit.md) with [`quality/audit-evidence/agent-audit/`](./quality/audit-evidence/agent-audit/) | agent architecture audit (PEF §7): rulings accepted 2026-10-14 (D-180 to D-184) |
 | [`research/content-audit.md`](./research/content-audit.md) with [`quality/audit-evidence/content-audit/`](./quality/audit-evidence/content-audit/) | content and evidence depth audit (PEF §6): findings ruled 2026-10-02 (D-111 to D-113); maturity accepted 2026-10-03 |
 | [`architecture/analytical-audit.md`](./architecture/analytical-audit.md) with [`quality/audit-evidence/analytical-audit/`](./quality/audit-evidence/analytical-audit/) | analytical depth audit (PEF §8): verdicts decided 2026-10-07 (D-133 to D-138) |
 | `research/content-review-log.md` | planned |
 | `quality/evaluation-framework.md` | satisfied by the root `PROJECT-EVALUATION-FRAMEWORK.md` (not duplicated) |
 
-Executable quality controls: the unit tests and Gate 0 run in CI; [`../tests/regression/`](../tests/regression/README.md)
-holds the deliberate breaks and [`../tests/browser/`](../tests/browser/README.md) the browser QA scripts.
+Executable quality controls: the unit tests and Gate 0 run in CI, among them 28 planted data faults
+(`tests/test_planted_faults.py`, D-176); [`../tests/regression/`](../tests/regression/README.md) holds the deliberate
+breaks, run in parallel and selected by the files a change touches (D-177, D-178), and [`../tests/browser/`](../tests/browser/README.md) the browser QA scripts.

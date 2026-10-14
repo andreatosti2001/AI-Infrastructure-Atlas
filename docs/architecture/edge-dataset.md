@@ -176,7 +176,7 @@ review stay the check (§9).
 
 | Guard | What it checks | Rule it guards |
 |---|---|---|
-| PL-1 | an edge with a product endpoint rests on at least one anchor that carries the first word of that product's term (`concept-dataset.md` §7) | ER-9: a company-level sentence that never names the product cannot support a product edge |
+| PN-1 (named PL-1 until S19, D-185) | an edge with a product endpoint rests on at least one anchor that carries the first word of that product's term (`concept-dataset.md` §7) | ER-9: a company-level sentence that never names the product cannot support a product edge |
 | EP-1 | a `fabricates` edge never cites directly a claim that serves a product's `vendor_process_name` | ER-1: a process name supports fabrication only through a `DERIVATION` |
 | PE-1 | an edge cites at least one `FACT` or `DERIVATION`, and no claim of an `announced` event | ER-8: a plan or an announcement is never a state |
 | RV-1 | at least one anchor the edge reaches carries a word of its type's row below | RR-1: two names in one sentence are not a relation |
@@ -278,7 +278,7 @@ including `claim-tsmc-fabricates-h100`, which supports no edge (D-092). Staging 
 | V-10 | each edge rests on a citation whose class and standing its `rel:<type>` row allows; each `supplier` assertion on `rel:incorporates.supplier`; a `not_publicly_determinable` supplier's search covers every preferred class of that row | same |
 | CE-1 | a canonical edge cites canonical claims, and its endpoints, `item` and `supplier` companies are canonical; no edge ID is both staging and canonical; IDs are unique | same |
 | RI-1 | §2 | same |
-| PL-1, EP-1, PE-1, RV-1 | §7 | same |
+| PN-1, EP-1, PE-1, RV-1 | §7 | same |
 | F-1 | §4 | `tests/test_freshness.py` |
 
 V-7 and V-8 are warnings (D-033): they are reported, never failures, and nothing is corrected
