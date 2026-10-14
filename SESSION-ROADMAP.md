@@ -38,6 +38,10 @@ M7 Final Audits + Release
   S22–S25
 ```
 
+**After v1.0** (D-201): v1.5, visual intelligence (S26 onward), then v2, coverage of the global AI infrastructure
+chain (S32 onward), are planned in [`VERSION-ROADMAP.md`](VERSION-ROADMAP.md). Their sessions enter this roadmap when
+each version opens, on the human's approval; v1 sessions read that plan for direction only.
+
 ---
 
 # Cross-cutting capability — Visual Intelligence & Data Storytelling

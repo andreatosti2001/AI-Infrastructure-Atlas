@@ -3245,3 +3245,23 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
     that text drawn in the browser can be checked.
 - **Rejected:** Vue.js on the research view's filter (a script and a dependency on a page that needs neither, and
   text the CI checks could not see); no change (the filter would keep failing silently).
+
+## D-201 — After v1.0: a v1.5 for visual intelligence, then a v2 for the global chain
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, after S20.5)
+- **Context:** S20.5 found that the Atlas's pages are far from the benchmark products' look (D-122), chiefly
+  because the Atlas holds almost no quantitative data and covers one path of the chain (15 of the 40 first-version
+  concepts of its domain map recorded, 5 with a supply-chain link), and partly because of design and the no-script
+  rule. Widening coverage was estimated at about 30 to 35 sessions.
+- **Decision:**
+  - v1.0 completes as planned (S21 to S25), with its non-goals frozen until S25 (D-021);
+  - **v1.5** follows, focused on visual intelligence: infographic layouts, an overview dashboard, reusable visual
+    components and interaction, at the benchmark's quality, within v1's coverage plus one measured-data slice inside
+    the current scope; its opening session decides the rule changes it needs (scripts, hover, a chart layer or
+    framework, browser checks in CI, a record kind for measured values);
+  - **v2** follows, covering the global AI infrastructure chain with v1's method; its opening session decides the
+    coverage non-goals, the v2 domain map, new record types, review capacity and agent workflows;
+  - the plan is kept in `VERSION-ROADMAP.md` (a constitutional document, beside `SESSION-ROADMAP.md`); its session
+    lists are provisional and enter `SESSION-ROADMAP.md` when each version opens.
+- **Rejected:** widening coverage before v1.0 (it would reopen frozen non-goals and delay the release); folding the
+  visual work into v2 (the visual gap is visible now, and v2's presentation at scale needs v1.5's components).

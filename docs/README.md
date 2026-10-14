@@ -15,6 +15,7 @@ Precedence follows `SESSION-PROMPT-SPEC.md` §1: higher rows win.
 | [`CLAUDE.md`](../CLAUDE.md) | Project constitution and agent working rules |
 | [`MASTER-ARCHITECTURE.md`](../MASTER-ARCHITECTURE.md) | Portfolio and Atlas architecture |
 | [`SESSION-ROADMAP.md`](../SESSION-ROADMAP.md) | The plan: milestones M0–M7 and their sessions S00–S25 |
+| [`VERSION-ROADMAP.md`](../VERSION-ROADMAP.md) | After v1.0: v1.5 (visual intelligence) and v2 (coverage of the global chain), planned (D-201) |
 | [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) | How a development session is specified, run and reported |
 
 ## Architecture and data model
