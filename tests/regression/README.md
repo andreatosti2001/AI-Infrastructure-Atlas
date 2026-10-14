@@ -19,7 +19,8 @@ python tests/regression/breaks.py --touched                     # every break's 
 processors); `--out FILE` also writes the lines and the summary to a file. Each break runs in its own numbered
 copy, `SCRATCH_DIR/NNN-ID`. Lines are printed in the harness's order, then one summary: faults caught as named,
 controls passing, stale setups. The exit status is 0 only if every break is caught as named and every control
-passes. On 4 processors the full run takes about 25 minutes.
+passes. Measured in S19 on 4 processors: the full run took 34.5 minutes with `--jobs 4` (36 minutes as four processes
+split by hand, about 87 minutes one after another).
 
 **When to run what** (D-150, D-177):
 - the full harness at a milestone audit;

@@ -47,6 +47,11 @@ The roadmap's M5:
 - **S19's gate is met:** every role has a ruling, the Analyst is activated, every file has an owner, checked
   (`agent-audit.md` §4; D-180 to D-184).
 
+**M5's full harness run** (D-150, D-179), on `04166fc`, the tree after S19's remediations: **116 of 116 faults
+caught as named, 14 of 14 controls passing**, with the new runner (`--jobs 4`, 34.5 minutes). The old runner, run on
+the same tree as four processes split by hand (36 minutes), gave the same verdict and the same failing tests for all
+130 breaks. The 28 permanent breaks are among the caught.
+
 **Counts** (recounted from `data/` at each merge): canonical records, sources included, 238 → 296 (S17) → 319
 (S18). Tests 374 → 396 → 411 → 413 (S19). Breaks 107 → 119 → 130.
 
