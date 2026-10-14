@@ -643,7 +643,7 @@ class Journey(build_page.Page):
         events = sorted((e for e in self.events if e["subject"] == cid), key=lambda e: (e["date"], e["id"]))
         roles = record.get("roles")
         role_words = (
-            ", ".join(f'{self.ref(cid, f"/roles/{i}/value", fmt="state")} <span class="cite">({self.ref(f"schema:entities#vocab_actor_role/{a["value"]}", "/description")})</span>' for i, a in enumerate(roles))
+            ", ".join(f'{self.ref(cid, f"/roles/{i}/value", fmt="state")} <span class="cite">({self.ref("schema:entities#vocab_actor_role/" + a["value"], "/description")})</span>' for i, a in enumerate(roles))
             if isinstance(roles, list) else self.ref(cid, "/roles/state", fmt="state", cls="state-word")
         )
         facts = (
@@ -744,7 +744,8 @@ class Journey(build_page.Page):
             note = ""
             if attr == "headquartered" and not isinstance(c["incorporated_in"], list):
                 note = f' · {self.label("incorporation:")} {self.ref(c["id"], "/incorporated_in/state", fmt="state", cls="state-word")}'
-            return f'<li data-{attr}="{esc(c["id"])}">{self.company_link(c["id"])}{note} {self.ev(c["id"], f"site/companies/{c["id"]}/index.html")}</li>'
+            page = "site/companies/" + c["id"] + "/index.html"
+            return f'<li data-{attr}="{esc(c["id"])}">{self.company_link(c["id"])}{note} {self.ev(c["id"], page)}</li>'
 
         def facility_item(f: dict) -> str:
             ops = [e for e in self.edges if e["relation_type"] == "operates" and e["target_entity"] == f["id"]]
@@ -755,7 +756,7 @@ class Journey(build_page.Page):
         def act_item(p: dict) -> str:
             return (
                 f'<li id="act-{esc(p["id"])}" data-issued="{esc(p["id"])}" data-act="{esc(p["id"])}">{self.ref(p["id"], "/name")} · {self.ref(p["id"], "/official_citation/0/value")} '
-                f'{self.act_block(p["id"])}<a href="{self.href(EXPORT, f"ev-{p["id"]}")}">{self.label("what each text names")}</a></li>'
+                f'{self.act_block(p["id"])}<a href="{self.href(EXPORT, "ev-" + p["id"])}">{self.label("what each text names")}</a></li>'
             )
 
         lists = (
