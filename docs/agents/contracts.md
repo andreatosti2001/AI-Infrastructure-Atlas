@@ -137,7 +137,7 @@ Files written only on the human's decision, in a session, never by a role on its
 D; D-180). A path here is changed only to apply a recorded decision or verdict.
 
 - `CLAUDE.md`, `MASTER-ARCHITECTURE.md`, `PROJECT-EVALUATION-FRAMEWORK.md`, `SESSION-PROMPT-SPEC.md`,
-  `SESSION-ROADMAP.md`: the constitutional documents;
+  `SESSION-ROADMAP.md`, `VERSION-ROADMAP.md`: the constitutional documents;
 - `docs/agents/`: the roles and these contracts;
 - `data/claims.json`, `data/companies.json`, `data/jurisdictions.json`, `data/technologies.json`,
   `data/components.json`, `data/products.json`, `data/facilities.json`, `data/events.json`, `data/policies.json`,

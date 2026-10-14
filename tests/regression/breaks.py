@@ -10,7 +10,7 @@ The harness is built in layers, each loading the one before it and replacing the
 text its own changes removed (see tests/regression/README.md):
     breaks_records_and_page.py, breaks_sql.py, breaks_research_view.py  ->  breaks_metrics.py
     -> breaks_metric_audit.py -> breaks_supplier_freshness.py -> this file (supplier evidence; review records;
-    S17's policy layer; S18's policy links; S20's research journeys).
+    S17's policy layer; S18's policy links; S20's research journeys; S20.5's filter guard).
 
 Run with a virtualenv built from requirements-test.txt and requirements-analysis.txt, from the repository root
 (the runner is tests/regression/runner.py: parallel copies, one summary, selection by measured files, D-177,
@@ -368,6 +368,19 @@ S20 += [
      edit("data/claims.json", "January 25, 2026 has the exact name", "January 25, 2026 bears the exact name"), ALL, []),
 ]
 
+# S20.5: the script-free pages are kept; the research view's filter is hidden where :has() is unsupported (D-200; IN-14).
+GUARD = "@supports not selector(:has(*)) { fieldset.filter { display: none; } }\n"
+S205 = [
+    ("S20.5-1", "the filter's guard dropped from the research view's template (IN-14) (rebuilt)",
+     edit("tools/insight_template.html", GUARD, ""), [INSIGHT_BUILD],
+     ["it must be hidden (D-200)"]),
+    ("S20.5-2", "the guard hides another element than the filter (IN-14) (rebuilt)",
+     edit("tools/insight_template.html", GUARD, GUARD.replace("fieldset.filter", "fieldset.basis")), [INSIGHT_BUILD],
+     ["it must be hidden (D-200)"]),
+    ("S20.5-C1", "control: the guard's last declaration written without its semicolon, research view rebuilt",
+     edit("tools/insight_template.html", GUARD, GUARD.replace("display: none; }", "display: none }")), [INSIGHT_BUILD], []),
+]
+
 S165_BREAKS = s165.breaks
 
 
@@ -381,7 +394,7 @@ def with_journeys(brk):
 
 
 def breaks():
-    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20
+    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205
     return [with_journeys(b) for b in found]
 
 

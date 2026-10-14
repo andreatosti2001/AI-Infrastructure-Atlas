@@ -206,7 +206,7 @@ builds it; S14.5 builds none of it except the one prototype page.
 | U-5 | **Scope and limits travel with the finding** into every export, card and indicator (S21) |
 | U-6 | **Phone first for reading, desktop first for comparing.** At 375 px every layer reads in one column, with no sideways scroll; desktop aligns small multiples for comparison |
 | U-7 | **Keyboard and screen reader are first-class.** Native links, `details` and radio groups only; a visible focus ring; no custom widgets |
-| U-8 | **No script unless a question needs it.** The prototype's filter is CSS (`:has()`); without it, everything is shown (graceful degradation) |
+| U-8 | **No script unless a question needs it.** The prototype's filter is CSS (`:has()`); without it, everything is shown and the filter itself is hidden, so no control does nothing (graceful degradation; D-200) |
 
 ## 6. Component inventory
 
@@ -681,6 +681,9 @@ the export-control page and the US place page show policy records only under JR-
 | **C-2:** "gap" mixes "not researched" with "refused as stale" | The first query's basis `gap` still covers both. Since S16.6 named both suppliers, the data hold one gap row (the H100's TSMC fabrication, evidence not fresh). Every gap mark already carries its reason in words; only the coverage block's split line ("1 gap") hides it | **presentation** (D-194): the coverage block names each gap's reason beside the count ("1 gap: evidence not fresh"), grouped from the result's `gap_reason` column (D-124 rule d); the query unchanged. Supersedes D-133's rejection of exactly this |
 | **C-5:** the H100's age tally includes its recorded gap | Still true: the age block reads "4 of 4 dated links: newest evidence older than twelve months" for the H100, and one of the four is the gap refused *because* its evidence is old | **presentation** (D-195): the tally counts dated links that are not gaps and says how many recorded gaps it leaves out ("3 of 3 …; 1 recorded gap not counted: refused because its evidence is old"); `sql/source_age.sql` and the age table unchanged |
 | **The filter's `:has()`** | Works in Chromium 1194 by keyboard; without `:has()` it shows every row (degrades as designed) but the control still changes, silently; hidden rows leave the accessibility tree; no keyboard or screen-reader failure demonstrated; Firefox and Safari not run (S20 probe) | **unchanged** (D-196); the probe is evidence for S20.5; cross-browser runs to S22 |
+
+**S20.5 (D-200):** the pages stay script-free; where `:has()` is unsupported the filter is now hidden, so every row stays
+shown and no control changes silently (IN-14). Cross-browser runs stay with S22.
 
 ### 15.7 Rejected alternatives
 
