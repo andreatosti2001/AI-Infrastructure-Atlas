@@ -444,8 +444,8 @@ presentation S15 can keep, replace with SQL columns, or retire.
 | Must not | define a metric; add data; replace the HBM page; build navigation, search or a component library | add a composite score (never); show a metric without its denominator, tutorial and the weaknesses of `sql-layer.md` §9 | change the grammar's evidence semantics (§9) without a decision; let any page bypass the binding rule (§10) |
 | Gate | the acceptance question of the S14.5 prompt (§13) | S15: all metrics regenerate from versioned inputs; S16: the analytical audit | every UI feature maps to a documented user question |
 
-S21 (client briefs) inherits U-5 and P-18. S22 (engineering audit) inherits the browser checks, dark
-mode and visual regression.
+S21 (client briefs) inherits U-5 and P-18 (built: [`client-brief.md`](./client-brief.md) §5, D-203). S22
+(engineering audit) inherits the browser checks, dark mode and visual regression.
 
 ## 12. The prototype
 

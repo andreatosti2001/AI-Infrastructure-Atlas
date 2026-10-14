@@ -34,7 +34,13 @@ This is an independent repository. It shares no code, data or runtime with `Eu-D
     classes each recorded export-control text names among the items it controls, refused pairs with their
     reasons, a timeline of the acts' dates, and each act's status on the as-of date;
   - a profile per company (`site/companies/<id>/`, 9) and per place (`site/places/<id>/`, 4): what the Atlas
-    records about it, and on what evidence.
+    records about it, and on what evidence;
+  - [`site/briefs/accelerator-memory/`](site/briefs/accelerator-memory/index.html) (S21), the first client brief:
+    one printable page answering "What does an AI accelerator's memory depend on, who is reported to supply it,
+    and which recorded export-control texts name those parts?", with its scope and limits, an executive summary
+    composed from the records, the dependency map, the export-control comparison, the gaps, the method, and an
+    evidence and source appendix ([`client-brief.md`](docs/architecture/client-brief.md)). It describes the
+    records; it is not legal, investment or procurement advice.
 
 The pages are not published (NG-13): they are built and checked in the repository.
 
@@ -94,11 +100,11 @@ anchors and review.
 
 | Control | What it checks |
 |---|---|
-| `python -m unittest discover -s tests` | schemas, data integrity (every reference resolves, no unreviewed claim is canonical, freshness), the human review record, the SQL results, and every page (every text node has a home in the records or is marked framing, every count recomputed, rebuild byte-identical, accessibility basics; on the export-control page, every matrix cell, timeline mark and status against the records, and the no-advice line beside every act); 28 planted data faults the record checks must name (D-176); every file has an owner role (D-180) |
+| `python -m unittest discover -s tests` | schemas, data integrity (every reference resolves, no unreviewed claim is canonical, freshness), the human review record, the SQL results, and every page (every text node has a home in the records or is marked framing, every count recomputed, rebuild byte-identical, accessibility basics; on the export-control page, every matrix cell, timeline mark and status against the records, and the no-advice line beside every act; on the client brief, every summary sentence recomputed from its rows, scope and limits in its first section and in print, and every cited source in its appendix); 28 planted data faults the record checks must name (D-176); every file has an owner role (D-180) |
 | `python tools/validate_repo.py` | Gate 0: the governing documents exist, every relative link in the repository's Markdown resolves, and no session record is committed here |
-| `--check` on `tools/warehouse.py`, `tools/build_page.py`, `tools/build_insight.py`, `tools/build_journeys.py` | every committed result and page equals a fresh rebuild from `data/` |
-| [`tests/regression/`](tests/regression/README.md) | deliberate breaks (149): each plants one fault in its own copy and must be caught by the suite for the reason it names; run in parallel, selected by the files a change touches (D-177, D-178) |
-| [`tests/browser/`](tests/browser/README.md) | browser QA at 1280 and 375 px: errors, overflow, keyboard path, measured contrast |
+| `--check` on `tools/warehouse.py`, `tools/build_page.py`, `tools/build_insight.py`, `tools/build_journeys.py`, `tools/build_brief.py` | every committed result and page equals a fresh rebuild from `data/` |
+| [`tests/regression/`](tests/regression/README.md) | deliberate breaks (172): each plants one fault in its own copy and must be caught by the suite for the reason it names; run in parallel, selected by the files a change touches (D-177, D-178) |
+| [`tests/browser/`](tests/browser/README.md) | browser QA at 1280 and 375 px: errors, overflow, keyboard path, measured contrast; the brief also printed on A4 and Letter |
 | [Audits](docs/quality/audit-history.md) | milestone, content, analytical and process audits under `PROJECT-EVALUATION-FRAMEWORK.md` |
 
 CI runs the unit tests and Gate 0 on every push and pull request.
@@ -127,11 +133,12 @@ CI runs the unit tests and Gate 0 on every push and pull request.
 
 ## Next phase
 
-M6, the client product, is under way ([`SESSION-ROADMAP.md`](SESSION-ROADMAP.md)). S20 built the researcher and
-analyst journeys ([`visual-architecture.md`](docs/architecture/visual-architecture.md) §15, D-189 to D-197): an
-entry page, the export-control page (the first page view of the policy links), and company and place profiles;
-it also corrected two readings of the research view (C-2, C-5). Next: S20.5, an assessment of the frontend as it
-now stands, with a framework decision; then S21, client briefs.
+M6, the client product, closes with S21 ([`SESSION-ROADMAP.md`](SESSION-ROADMAP.md)). S20 built the researcher and
+analyst journeys ([`visual-architecture.md`](docs/architecture/visual-architecture.md) §15, D-189 to D-197); S20.5
+kept the script-free generated pages (D-200) and set the plan after v1.0 ([`VERSION-ROADMAP.md`](VERSION-ROADMAP.md),
+D-201); S21 built the first client brief and activated the Client Output role
+([`client-brief.md`](docs/architecture/client-brief.md), D-202 to D-206). Next: M7, the final audits and the v1.0
+release (S22 to S25), starting with S22, the code and engineering audit.
 
 ## Layout
 
@@ -159,7 +166,8 @@ python tools/validate_repo.py                                    # Gate 0: repos
 python tools/warehouse.py --check                                # every SQL result equals a fresh run from data/
 python tools/build_page.py --check                               # the HBM page equals a rebuild
 python tools/build_insight.py --check                            # the research view equals a rebuild (build it after the HBM page)
-python tools/build_journeys.py --check                           # the 15 journey pages equal a rebuild (build them last)
+python tools/build_journeys.py --check                           # the 15 journey pages equal a rebuild
+python tools/build_brief.py --check                              # the client brief equals a rebuild (build it last)
 python tools/trace.py company-nvidia                             # what supports a record or claim
 python tools/facility_status.py facility-kr-m16 --on 2026-10-02  # a facility's derived status
 python tools/navigate.py depends-on technology-3d-die-stacking   # what depends on a record; --json for data

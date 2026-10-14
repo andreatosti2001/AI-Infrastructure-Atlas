@@ -10,7 +10,7 @@ The harness is built in layers, each loading the one before it and replacing the
 text its own changes removed (see tests/regression/README.md):
     breaks_records_and_page.py, breaks_sql.py, breaks_research_view.py  ->  breaks_metrics.py
     -> breaks_metric_audit.py -> breaks_supplier_freshness.py -> this file (supplier evidence; review records;
-    S17's policy layer; S18's policy links; S20's research journeys; S20.5's filter guard).
+    S17's policy layer; S18's policy links; S20's research journeys; S20.5's filter guard; S21's client brief).
 
 Run with a virtualenv built from requirements-test.txt and requirements-analysis.txt, from the repository root
 (the runner is tests/regression/runner.py: parallel copies, one summary, selection by measured files, D-177,
@@ -381,6 +381,81 @@ S205 = [
      edit("tools/insight_template.html", GUARD, GUARD.replace("display: none; }", "display: none }")), [INSIGHT_BUILD], []),
 ]
 
+# S21: the client brief (client-brief.md; D-202 to D-206; BR-1 to BR-12 in tests/test_brief.py).
+BRIEF = "tools/build_brief.py"
+BT = "tools/brief_template.html"
+BRIEF_PAGE = "site/briefs/accelerator-memory/index.html"
+
+
+def stray_brief(root):
+    """A page in site/briefs/ that the brief's build does not write."""
+    (root / "site" / "briefs" / "other").mkdir(parents=True)
+    (root / "site" / "briefs" / "other" / "index.html").write_text("<!doctype html>", encoding="utf-8")
+
+
+S21 = [
+    ("S21-1", "a sentence typed into the brief template outside a framing block (BR-1) (rebuilt)",
+     edit(BT, "<main>\n${main}", "<main>\n<p>The memory market is concentrated.</p>\n${main}"), [BRIEF],
+     ["test_br1_every_text_node_has_a_home", "text with no record, label, derived value or framing behind it"]),
+    ("S21-2", "a supplier's name hand-edited in the brief (BR-2)",
+     edit(BRIEF_PAGE, 'data-field="/name">SK hynix<', 'data-field="/name">SK Hynix Inc<'), [],
+     ["test_br2_every_record_value_equals_its_home"]),
+    ("S21-3", "the brief counts one accelerator too many (BR-3) (rebuilt)",
+     edit(BRIEF, 'self.count(len(accs), "accelerators")', 'self.count(len(accs) + 1, "accelerators")'), [BRIEF],
+     ["a count that differs from the records"]),
+    ("S21-4", "a mark of the brief's map hand-edited from stated to inferred (BR-4)",
+     edit(BRIEF_PAGE, 'data-target="rel-company-amazon-com-designs-product-amazon-com-trainium2" data-basis="stated"',
+          'data-target="rel-company-amazon-com-designs-product-amazon-com-trainium2" data-basis="inferred"'), [],
+     ["the brief's map differs from the HBM page's figure"]),
+    ("S21-5", "the summary phrases the recorded gap as a link (BR-5) (rebuilt)",
+     edit(BRIEF, '            if r["basis"] == "gap":\n                parts.append(', '            if False:\n                parts.append('), [BRIEF],
+     ["a gap without its reason"]),
+    ("S21-6", "the summary drops a reported supplier's period (BR-5) (rebuilt)",
+     edit(BRIEF, 'if r["period_to"] != "not_applicable":', "if False:"), [BRIEF],
+     ["a period shown exactly when the row has one"]),
+    ("S21-7", "a policy cell hand-edited from named to no record (BR-6)",
+     edit(BRIEF_PAGE, 'data-cell="named" data-link="rel-policy', 'data-cell="none" data-link="rel-policy'), [],
+     ["test_br6_the_matrix_equals_the_records"]),
+    ("S21-8", "statuses derived on another date than the as-of date (BR-6) (rebuilt)",
+     edit(BRIEF, 'super().__init__(PAGE, "brief", None, data)', 'super().__init__(PAGE, "brief", None, data)\n        self.atlas.on = "2023-11-01"'), [BRIEF],
+     ["test_br6_statuses_are_derived_on_the_as_of_date"]),
+    ("S21-9", "the boundary line dropped from the brief's header (BR-7, the Boundary) (rebuilt)",
+     edit(BRIEF, """"boundary": f'<p class="boundary" data-boundary data-label>{esc(self.label_text(BOUNDARY))}</p>',""", '"boundary": "",'), [BRIEF],
+     ["the boundary line is not in the brief's header"]),
+    ("S21-10", "the as-of date and digest moved after the limits, off the first printed page (BR-7, U-5) (rebuilt)",
+     edit(BRIEF, "return f'{identity}{self.framing(\"brief-scope\")}{line}{limits}'", "return f'{self.framing(\"brief-scope\")}{line}{limits}{identity}'"), [BRIEF],
+     ["they would print after the first page"]),
+    ("S21-11", "print hides the out-of-scope list (BR-7, U-5) (rebuilt)",
+     edit(BT, "  nav.jump, .crumbs, p.back { display: none; }", "  nav.jump, .crumbs, p.back, .limits { display: none; }"), [BRIEF],
+     ["print hides what must travel with the brief"]),
+    ("S21-12", "a source dropped from the source appendix (BR-8) (rebuilt)",
+     edit(BRIEF, "for sid in sorted(self.sources_shown):", "for sid in sorted(self.sources_shown)[1:]:"), [BRIEF],
+     ["the source appendix does not list exactly the sources the shown claims cite"]),
+    ("S21-13", "'should' in the brief's framing (BR-9, NG-12) (rebuilt)",
+     edit(BT, "It is not a list of things to watch.", "A reader should watch each of these."), [BRIEF],
+     ["test_br9_no_forbidden_word_in_the_atlas_voice", "in the Atlas's own voice"]),
+    ("S21-14", "a script added to the brief template (BR-10) (rebuilt)",
+     edit(BT, "</body>", "<script></script></body>"), [BRIEF],
+     ["test_br10_links_resolve_and_nothing_loads", "<script> on a self-contained page"]),
+    ("S21-15", "a subsection headed one level too deep (BR-11) (rebuilt)",
+     edit(BRIEF, 'self.label("The classes against the acts", tag="h3")', 'self.label("The classes against the acts", tag="h4")'), [BRIEF],
+     ["test_br11_document_structure", "a skipped heading level"]),
+    ("S21-16", "a stray page in site/briefs/ (BR-12)",
+     stray_brief, [],
+     ["a stray file in site/briefs/"]),
+    ("S21-17", "the entry page's card for the brief loses its link (JR-8, D-206) (rebuilt)",
+     edit(JOURNEYS, 'button(BRIEF, "Open the brief")', '""'), [JOURNEYS],
+     ["test_jr8_the_entry_page_links_every_page_and_names_the_chainless_classes"]),
+    ("S21-18", "the Client Output marked inactive again (D-205)",
+     edit("docs/agents/roles.md", "| Client Output | active |", "| Client Output | inactive |"), [],
+     ["test_active_roles_are_exactly_the_contracted_roles"]),
+    ("S21-C1", "control: a framing sentence of the brief template reworded, brief rebuilt",
+     edit(BT, "A printed copy keeps each address in full.", "A printed copy keeps every address in full."), [BRIEF], []),
+    ("S21-C2", "control: a working-definition claim reworded, everything rebuilt",
+     edit("data/claims.json", "Making any High Bandwidth Memory stack requires 3D die stacking.",
+          "Making any High Bandwidth Memory stack needs 3D die stacking."), ALL, []),
+]
+
 S165_BREAKS = s165.breaks
 
 
@@ -393,9 +468,18 @@ def with_journeys(brk):
     return (bid, what, mutate, steps, expected)
 
 
+def with_brief(brk):
+    """S21 (D-203): a break that rebuilds the results, the HBM page or the journeys also rebuilds the brief, which reads
+    all three (and their templates); declared in its steps, so selection by measured files still sees it (D-177)."""
+    bid, what, mutate, steps, expected = brk
+    if set(steps) & {WH, PAGE_BUILD, JOURNEYS} and BRIEF not in steps:
+        steps = [*steps, BRIEF]
+    return (bid, what, mutate, steps, expected)
+
+
 def breaks():
-    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205
-    return [with_journeys(b) for b in found]
+    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205 + S21
+    return [with_brief(with_journeys(b)) for b in found]
 
 
 def main(argv: list[str]) -> int:

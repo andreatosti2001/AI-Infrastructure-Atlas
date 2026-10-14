@@ -4,7 +4,7 @@
 2026-10-02 (D-107). Paths are kept current when a file moves (Editorial, paths only); no role or boundary
 changes without a decision. S19's agent audit (`docs/architecture/agent-audit.md`): every file has an owner,
 checked (D-180); the Analyst's contract (D-181); the Verifier re-scoped (D-182); drafts always in staging (D-183),
-all accepted on 2026-10-14.
+all accepted on 2026-10-14. S21: the Client Output's contract, for the client brief (D-205), accepted on 2026-10-14.
 
 MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. Each contract has
 MA's nine fields, in MA's order.
@@ -82,11 +82,11 @@ MA's nine fields, in MA's order.
 | ROLE | Data Auditor |
 | INPUTS | `data/`, the schemas, the claim model's §4 tables, the source policy's matrix |
 | OUTPUTS | the `validate-data` checks and their results; findings of broken references, duplicates, impossible dates and missing provenance (MA §11.7) |
-| ALLOWED_WRITES | `tests/`; `tests/fixtures/`; `tools/` (standard library only, D-026), except the framing and style in `tools/page_template.html`, `tools/insight_template.html` and `tools/journey_template.html` (Editorial); `site/hbm-chain/index.html`, written only by the build step `tools/build_page.py` (S11, D-102); `site/hbm-insight/index.html`, written only by `tools/build_insight.py` (S14.5, D-125); `site/index.html`, `site/questions/export-control-texts/index.html`, `site/companies/` and `site/places/` (one `index.html` per record), written only by `tools/build_journeys.py` (S20, D-190, D-197); the CI workflow `.github/workflows/ci.yml`, the pins `requirements-test.txt` and `requirements-analysis.txt` (a new dependency needs a decision), `.gitignore` (D-180) |
+| ALLOWED_WRITES | `tests/`; `tests/fixtures/`; `tools/` (standard library only, D-026), except the framing and style in `tools/page_template.html`, `tools/insight_template.html`, `tools/journey_template.html` and `tools/brief_template.html` (Editorial), and the brief's build `tools/build_brief.py` (Client Output, S21, D-205); `site/hbm-chain/index.html`, written only by the build step `tools/build_page.py` (S11, D-102); `site/hbm-insight/index.html`, written only by `tools/build_insight.py` (S14.5, D-125); `site/index.html`, `site/questions/export-control-texts/index.html`, `site/companies/` and `site/places/` (one `index.html` per record), written only by `tools/build_journeys.py` (S20, D-190, D-197); the CI workflow `.github/workflows/ci.yml`, the pins `requirements-test.txt` and `requirements-analysis.txt` (a new dependency needs a decision), `.gitignore` (D-180) |
 | FORBIDDEN_WRITES | any file in `data/`: the Auditor reports, and the Extractor or Verifier fixes; a claim's `review`; a check weakened to make data pass |
 | EVIDENCE_REQUIREMENTS | each check is shown to catch a planted fault before it is trusted (deliberate breaks); prose counts are tested or labelled as measured (L-04) |
 | HANDOFF_FORMAT | failing test output naming the record and the rule, in the session report |
-| VALIDATION_GATE | `tests/test_data_integrity.py`, `tests/test_data_schema.py`, `tests/test_data_entities.py`, `tests/test_freshness.py`, `tests/test_trace.py`, `tests/test_agent_contracts.py`; from S09, `tests/test_data_events.py` and `tests/test_facility_status.py`; from S10, `tests/test_data_relationships.py` and `tests/test_navigate.py`; from S11, `tests/test_page.py`; from S20, `tests/test_journeys.py` (D-197) |
+| VALIDATION_GATE | `tests/test_data_integrity.py`, `tests/test_data_schema.py`, `tests/test_data_entities.py`, `tests/test_freshness.py`, `tests/test_trace.py`, `tests/test_agent_contracts.py`; from S09, `tests/test_data_events.py` and `tests/test_facility_status.py`; from S10, `tests/test_data_relationships.py` and `tests/test_navigate.py`; from S11, `tests/test_page.py`; from S20, `tests/test_journeys.py` (D-197); from S21, `tests/test_brief.py`, the client brief's checks, which the Data Auditor writes and the Client Output does not (D-205) |
 | FAILURE_BEHAVIOUR | a failure that cannot be explained stops the session (CLAUDE.md §18); no test is skipped or loosened to get green |
 
 ## Analyst
@@ -110,12 +110,26 @@ MA's nine fields, in MA's order.
 | ROLE | Editorial |
 | INPUTS | the page as built from canonical records; `docs/architecture/vertical-slice.md` (the composition, the text provenance rule); `claim-model.md` §13 (how claims are displayed); the schema definitions the page's terms render |
 | OUTPUTS | the page's framing (prose that states no fact and names no record) and its style; the state rows of the documentation, as each session prompt lists them |
-| ALLOWED_WRITES | `tools/page_template.html`, `tools/insight_template.html` and `tools/journey_template.html` (framing and style only; S20, D-197); the visual design documents `docs/architecture/visual-architecture.md` and `docs/research/visual-benchmark.md` (S14.5, D-122 to D-126; D-180); `README.md`, `docs/README.md` and `docs/architecture/baseline.md` (state rows); the session report (D-151) |
+| ALLOWED_WRITES | `tools/page_template.html`, `tools/insight_template.html`, `tools/journey_template.html` and `tools/brief_template.html` (framing and style only; S20, D-197; S21, D-205); the visual design documents `docs/architecture/visual-architecture.md` and `docs/research/visual-benchmark.md` (S14.5, D-122 to D-126; D-180) and the brief's design `docs/architecture/client-brief.md` (S21, D-205); `README.md`, `docs/README.md` and `docs/architecture/baseline.md` (state rows); the session report (D-151) |
 | FORBIDDEN_WRITES | any file in `data/`; a claim's `review`; `site/hbm-chain/index.html` and every other page under `site/` (generated, never edited by hand); a name, value, date, count or relation typed into the template; framing that names a record, holds a digit, or says "none" for a missing relationship; the labels and journey specification in `tools/build_page.py` (the Data Auditor's) |
 | EVIDENCE_REQUIREMENTS | framing adds no fact (NG-09, `claim-model.md` §13); every value reaches the page through the build from its home (D-105); a missing edge is "no recorded relationship" (RR-7); no "critical", "concentrated", share, rank or score (NG-11) |
 | HANDOFF_FORMAT | the template change and the rebuilt page in one commit, with the framing changes listed in the session report |
-| VALIDATION_GATE | `tests/test_page.py` (PG-1 every text node has a home, PG-6 framing marked and naming no record, PG-7 rebuild, PG-8 style and contrast); `tests/test_journeys.py` (JR-1, JR-9 the Atlas's own voice, JR-11) for `tools/journey_template.html` (S20, D-197) |
+| VALIDATION_GATE | `tests/test_page.py` (PG-1 every text node has a home, PG-6 framing marked and naming no record, PG-7 rebuild, PG-8 style and contrast); `tests/test_journeys.py` (JR-1, JR-9 the Atlas's own voice, JR-11) for `tools/journey_template.html` (S20, D-197); `tests/test_brief.py` (BR-1, BR-9, BR-11) for `tools/brief_template.html` (S21, D-205) |
 | FAILURE_BEHAVIOUR | a sentence that needs a fact becomes a gap on the page or a question to the human, never framing; a failing check is reported, never loosened |
+
+## Client Output
+
+| Field | Value |
+|---|---|
+| ROLE | Client Output |
+| INPUTS | the canonical records, through `tools/build_page.py`'s and `tools/build_journeys.py`'s machinery; the committed SQL results `sql/results/accelerator_dependencies.json` and `sql/results/source_age.json`; the status rule `tools/policy_status.py`; accepted decisions; the brief's design `docs/architecture/client-brief.md` (D-202, D-203) |
+| OUTPUTS | the client brief: its specification, labels and composition, and the page they produce; a summary composed only by copying values, tallying the rows it shows, taking the first and last of a column, and grouping rows (D-124 rules a to d), with statuses from the status rule on the as-of date |
+| ALLOWED_WRITES | `tools/build_brief.py` (S21, D-205); `site/briefs/`, written only by `tools/build_brief.py` |
+| FORBIDDEN_WRITES | any file in `data/`; `sql/` and `sql/results/`; a claim's `review`; the checks (`tests/`, the Data Auditor's) and the other builds; the template's framing (the Editorial's); a value, count or date typed into the build or the template; a sentence that no check can recompute (V-2); a recommendation, a compliance determination, or a statement that a product or firm is controlled (LA-1 to LA-5, NG-12) |
+| EVIDENCE_REQUIREMENTS | it may summarise and never alters a record (MA §11.10); every value reaches the brief from its home (D-105); scope, limits, the as-of date and the input digest travel with the brief (U-5); every citation resolves to a source record; a recorded gap is phrased as a gap, never as a link; unknown is never zero |
+| HANDOFF_FORMAT | the build change and the rebuilt brief in one commit, with any new label or summary sentence listed in the session report |
+| VALIDATION_GATE | `tests/test_brief.py` (BR-1 to BR-12), run in CI; `python tools/build_brief.py --check` |
+| FAILURE_BEHAVIOUR | a section the records cannot fill states its gap, never framing that fills it; rows that do not fit the brief's compositions make the build refuse, never draw; a failing check is reported, never loosened |
 
 ## QA
 

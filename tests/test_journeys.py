@@ -23,7 +23,8 @@ JR-7  every status equals policy_status.derive_status on the as-of date, which i
       a cell of its committed result;
 JR-8  each profile shows every link, supplier naming, product, refused candidate and event that names its record
       (a company), or every company, facility and act recorded in it (a place); a refused candidate is never drawn
-      as a link; the entry page links every research page and lists every class with no dependency link;
+      as a link; the entry page links every research page and the client brief (S21, D-206) and lists every class
+      with no dependency link;
 JR-9  no forbidden word in the Atlas's own voice (labels, derived values, framing): "in force", "compliant",
       "licence required", "prohibited", "banned", "restricted", "critical";
 JR-10 every link resolves (a fragment into another page names an element there); only record URLs and official
@@ -54,6 +55,7 @@ SITE = REPO_ROOT / "site"
 INDEX = "site/index.html"
 EXPORT = "site/questions/export-control-texts/index.html"
 BUILT = ("site/hbm-chain/index.html", "site/hbm-insight/index.html")
+BRIEFS = ("site/briefs/accelerator-memory/index.html",)  # S21 (D-206): the entry page links the client brief too
 AGE_RESULT = REPO_ROOT / "sql" / "results" / "source_age.json"
 INPUT_GLOBS = ("data/*.json", "data/staging/*.json", "schemas/*.json", "sql/*.sql", "sql/results/*.json")
 INPUT_FILES = (
@@ -550,7 +552,7 @@ class JourneyTests(unittest.TestCase):
     def test_jr8_the_entry_page_links_every_page_and_names_the_chainless_classes(self) -> None:
         page = self.pages[INDEX]
         hrefs = {(page.path.parent / n.attrs["href"]).resolve() for n in page.nodes if n.tag == "a" and "href" in n.attrs and not n.attrs["href"].startswith(("#", "http"))}
-        for rel in [p for p in self.records.pages() if p != INDEX] + list(BUILT):
+        for rel in [p for p in self.records.pages() if p != INDEX] + list(BUILT) + list(BRIEFS):
             with self.subTest(target=rel):
                 self.assertIn((REPO_ROOT / rel).resolve(), hrefs, "a research page the entry page does not link")
         listed = [n.attrs["data-no-chain"] for n in page.nodes if "data-no-chain" in n.attrs]
