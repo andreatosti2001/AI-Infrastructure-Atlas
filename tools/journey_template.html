@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>${title}</title>
+<!--
+  Template of the S20 research journeys (visual-architecture.md §15; D-190 to D-193). The Editorial's file
+  (contracts.md, D-197): framing and style only. Framing states no fact and names no record (JR-1, JR-9); every
+  value comes from tools/build_journeys.py through a named slot. The base style is the S11 page's
+  (tools/page_template.html), read by the build so that the Atlas has one stylesheet home. The framing blocks
+  after the page are picked by name by the build. The pages this produces are generated: never edit them by hand.
+-->
+<style>
+${base_style}
+/* --- research-journey components (visual-architecture.md §15) --- */
+.crumbs { margin: 0 0 12px; font-size: 0.92rem; }
+.qline { margin: 0 0 8px; font-size: 1.02rem; color: var(--ink-body); max-width: 72ch; }
+.scope { max-width: 72ch; margin: 6px 0 10px; }
+.facts-line { list-style: none; padding: 0; margin: 10px 0; max-width: 80ch; }
+.facts-line li { padding: 6px 0; border-bottom: 1px solid var(--line-rule); }
+.indicators { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 14px; margin: 12px 0 6px; }
+.indicator { background: var(--surface-panel); border-top: 3px solid var(--line-ink); border-radius: 0 0 6px 6px; padding: 8px 14px 12px; }
+.indicator h3 { margin: 4px 0 6px; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
+.indicator ul { list-style: none; padding: 0; margin: 4px 0; }
+.indicator li { margin: 6px 0; }
+.tally { font-size: 1.2rem; font-weight: 600; color: var(--ink-strong); }
+.none-word { color: var(--ink-muted); font-style: italic; }
+ul.items { list-style: none; padding: 0; margin: 8px 0; max-width: 80ch; }
+ul.items li { padding: 8px 0; border-bottom: 1px solid var(--line-rule); }
+ul.items li .meta { display: block; }
+.basis.reported { border-style: double; border-width: 3px; }
+.state-word { display: inline-block; font-size: 0.78rem; padding: 0 8px; border-radius: 10px; border: 1px dashed var(--line-gap); background: var(--surface-gap); color: var(--ink-gap); font-weight: 600; }
+.act-block { background: var(--surface-panel); border: 1px solid var(--line-rule); border-left: 4px solid var(--line-ink); border-radius: 6px; padding: 6px 14px; margin: 8px 0; }
+.act-block p { margin: 4px 0; }
+.no-advice { font-size: 0.86rem; font-weight: 600; color: var(--ink-strong); }
+a.official { font-size: 0.86rem; overflow-wrap: anywhere; }
+ul.question-cards { list-style: none; padding: 0; margin: 12px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+ul.question-cards > li { background: var(--surface-panel); border-top: 3px solid var(--line-ink); border-radius: 0 0 6px 6px; padding: 10px 16px 14px; }
+ul.question-cards h3 { margin: 6px 0 8px; font-size: 1.08rem; }
+ul.question-cards .k { display: block; }
+ul.name-list { padding-left: 1.2em; margin: 6px 0; }
+ul.name-list li { margin: 4px 0; }
+table.matrix { min-width: 0; width: 100%; max-width: 1080px; font-size: 0.88rem; }
+table.matrix th[scope="row"] { font-weight: 600; color: var(--ink-strong); min-width: 150px; }
+table.matrix thead th { vertical-align: bottom; }
+table.matrix thead th .meta { display: block; font-weight: 400; }
+table.matrix td { min-width: 104px; }
+.cell-named { display: inline-block; padding: 2px 8px; border: 2px solid var(--line-ink); border-radius: 4px; background: var(--surface-page); color: var(--ink-strong); font-weight: 600; }
+.cell-refused { display: inline-block; padding: 2px 6px; border: 1px solid var(--line-rule); border-radius: 4px; color: var(--ink-body); }
+.cell-none { display: inline-block; padding: 2px 6px; border: 1px dashed var(--line-rule); border-radius: 4px; color: var(--ink-muted); font-size: 0.8rem; }
+table.matrix .cell-k { display: none; }
+ul.layers { list-style: none; padding: 0; margin: 8px 0; max-width: 80ch; }
+ul.layers li { padding: 8px 0; border-bottom: 1px solid var(--line-rule); }
+figure.timeline-fig { margin: 8px 0; max-width: 1000px; }
+svg.timeline { width: 100%; height: auto; display: block; }
+svg .axis { stroke: var(--line-rule); stroke-width: 1; }
+svg .lane { stroke: var(--line-rule); stroke-width: 1; stroke-dasharray: 2 4; }
+svg .year { font-size: 12px; fill: var(--ink-muted); }
+svg .lane-name { font-size: 12.5px; font-weight: 700; fill: var(--ink-strong); }
+svg .ev-published { fill: var(--surface-page); stroke: var(--line-ink); stroke-width: 2; }
+svg .ev-effective { fill: var(--line-ink); stroke: var(--line-ink); stroke-width: 2; }
+svg .ev-other { fill: var(--surface-panel); stroke: var(--line-ink); stroke-width: 1.5; }
+svg .asof { stroke: var(--line-focus); stroke-width: 2; stroke-dasharray: 6 4; }
+svg .asof-text { font-size: 12px; font-weight: 700; fill: var(--ink-strong); }
+svg a.tl-mark:hover circle, svg a.tl-mark:focus-visible circle, svg a.tl-mark:hover rect, svg a.tl-mark:focus-visible rect { stroke: var(--line-focus); stroke-width: 3.5; }
+svg a.tl-mark:focus-visible { outline: none; }
+ul.key { list-style: none; padding: 0; margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 0.88rem; }
+ul.key li { display: flex; align-items: center; gap: 8px; }
+ol.timeline-words { padding-left: 1.3em; max-width: 80ch; }
+ol.timeline-words li { margin: 4px 0; }
+@media (max-width: 760px) {
+  table.matrix thead { display: none; }
+  table.matrix, table.matrix tbody, table.matrix tr, table.matrix td, table.matrix th { display: block; width: 100%; }
+  table.matrix tr { border: 1px solid var(--line-rule); border-radius: 6px; margin: 12px 0; padding: 6px 12px; }
+  table.matrix td, table.matrix th { border-bottom: 0; padding: 4px 0; }
+  table.matrix .cell-k { display: block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-muted); }
+}
+</style>
+</head>
+<body ${body_attrs}>
+<div class="wrap">
+<header class="masthead" id="top">
+<p class="kicker">${kicker}</p>
+${crumbs}
+${question_line}
+<h1>${h1}</h1>
+${scope}
+${framing_top}
+${jump}
+</header>
+
+<main>
+${main}
+</main>
+</div>
+</body>
+</html>
+<!-- framing: index-top -->
+<div class="framing dek" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>Each card below is one question the Atlas’s records can answer today, with the page that answers it. Every page is generated from the records by a tested build step; nothing on it is typed by hand, and every value links to the evidence behind it.</p>
+</div>
+<!-- framing: index-limits -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>Searching across the records would need a script or a server, so the Atlas lists every page instead. The classes listed here are recorded, but no dependency link starts or ends at them, so a question about what they depend on cannot be answered yet. A missing link means the Atlas has not recorded one; it never means that none exists.</p>
+</div>
+<!-- framing: export-top -->
+<div class="framing dek" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>This page compares two layers of the Atlas: the export-control texts it records, and the parts and technologies its supply-chain pages rest on. For each pair it says whether the text’s own words name the class among the items it controls, whether the Atlas considered the pair and refused it, or whether it holds no record either way. It describes what the texts say. It does not advise, and it never says that a product, a firm or a transaction is controlled.</p>
+</div>
+<!-- framing: export-matrix -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<h3 data-label>How to read the matrix</h3>
+<p>Each row is a class or product that a recorded text names, or that the Atlas considered for a text and refused. Each column is one act, in the order of its first dated event. “Named in the text” means the act’s own words name the class among the items it controls; the evidence quotes them, with the Atlas’s own step matching the words to its record. “Refused” gives the reason the Atlas recorded for not linking the pair, for example a term in the text that is broader than the class. A cell with no record says so: it never means that a text does not cover the class.</p>
+</div>
+<!-- framing: export-layers -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>The dependency journey follows one chain from the accelerator class to the memory inside accelerators and the process that memory needs. Each of its classes is listed here with what the export-control layer records about it.</p>
+</div>
+<!-- framing: export-timeline -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<h3 data-label>How to read the timeline</h3>
+<p>Each lane is one act. A hollow dot marks the day it was published; a filled dot marks a day from which its text says it has effect, in stages where there are several. Dates are placed on one scale, so the gap between two dots is the time between them. The dashed vertical line marks the date this page is read as of. An act with no dated event is listed beside the axis, never placed at a guessed date.</p>
+</div>
+<!-- framing: export-status -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<h3 data-label>What a status means</h3>
+<p>A status is derived on the as-of date from the act’s dated events, by the Atlas’s status rule. “Has taken effect” means that an effective date recorded for the act lies before that date and that no repeal is recorded in the Atlas; it never says that the act applies to anyone. “No recorded effect” means that the Atlas holds no effective date for the act: unknown, not “not in effect”. A later act that changes an entry is quoted in the evidence of the link it concerns; the Atlas never infers an end date from it.</p>
+</div>
+<!-- framing: export-limits -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<h3 data-label>What this page cannot answer</h3>
+<p>Whether any product or company is controlled, for which destinations and under which licence policy: those conditions stay in the texts, and the Atlas never applies a threshold to a product or a firm. Only acts the Atlas holds were read; acts published after the latest date below were not searched. Each count on this page counts the Atlas’s records, never the world.</p>
+</div>
+<!-- framing: company-top -->
+<div class="framing dek" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>This page gathers what the Atlas records about one company: its identity, the links that name it, where a source names it as a supplier, and the candidates the Atlas considered and refused. Each item opens its evidence. A missing item means the Atlas has not recorded it; it never means that the company does not do it.</p>
+</div>
+<!-- framing: company-links -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>A link is a relationship the Atlas records, with its basis: stated by a party, reported by a third party, or inferred by the Atlas. A supplier named on a link is a value of that link, not a link between companies. A refused candidate is a relationship the Atlas considered and did not record; it is shown as a card with its reason, never as a link.</p>
+</div>
+<!-- framing: company-limits -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<h3 data-label>What this page cannot answer</h3>
+<p>Market share, revenue, capacity, customers or ownership: the Atlas records none of them. An ownership link it considered is a refused candidate, shown above with its reason. Each count on this page counts the Atlas’s records about the company, never its activity.</p>
+</div>
+<!-- framing: place-top -->
+<div class="framing dek" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>This page gathers what the Atlas records as incorporated, headquartered, located or issued in one place. It lists records and their evidence. It does not say that the place controls or influences any company or facility listed.</p>
+</div>
+<!-- framing: place-limits -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<h3 data-label>What this page cannot answer</h3>
+<p>Whether a state controls or influences a firm, and any law of the place other than the acts listed. Incorporation and headquarters are where a company’s own filings place it; a company whose incorporation the Atlas has not researched is listed under its headquarters, with that state in words. A missing entry means the Atlas has not recorded one; it never means that none exists.</p>
+</div>
+<!-- framing: method -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>The page is generated from the Atlas’s data files by a tested build step; nothing on it is typed by hand. Only canonical records appear: records awaiting review are left out. The digest identifies the exact inputs; rebuilding from the same inputs gives the same page, byte for byte.</p>
+</div>
+<!-- end framing -->

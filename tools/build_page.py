@@ -133,6 +133,7 @@ LABELS = frozenset(
         "python tools/warehouse.py --check",
         "dated by the day the page was read", "Population", "Denominator", "Assumptions", "Missing data",
         "Reproduce", "Sensitivity", "What it does not prove",
+        "All research pages",  # S20 (D-193): the link to the entry page
     }
 )
 
@@ -219,6 +220,10 @@ class BuildError(Exception):
 
 
 class Page:
+    # Where the page sits and where a panel's "back" link goes; a subclass writing pages elsewhere sets its own (S20).
+    to_root = TO_ROOT
+    back = ("#chain", "back to the diagram")
+
     def __init__(self, data: Path = DATA) -> None:
         self.atlas = navigate.Atlas(data, False)
         self.store = trace.Store(data, [])
@@ -722,7 +727,7 @@ class Page:
             )
         table = (
             f'<p class="cite">{self.label("the rule that refuses candidates:")} '
-            f'<a href="{TO_ROOT}docs/architecture/edge-dataset.md">{self.label("edge design record")}</a></p>{self.candidate_cards(j)}'
+            f'<a href="{self.to_root}docs/architecture/edge-dataset.md">{self.label("edge design record")}</a></p>{self.candidate_cards(j)}'
         )
         none_recorded = []
         for col in j["columns"]:
@@ -790,7 +795,7 @@ class Page:
             home = RULE_HOMES[code.split("-")[0]]
             items.append(
                 f'<div><dt>{self.ref(f"doc:rules#{code}", "code", tag="strong")}</dt><dd>{self.ref(f"doc:rules#{code}", "rule")} '
-                f'<span class="cite">{self.label("defined in")} <a href="{TO_ROOT}{home}">{self.derived("rule-home", home, tag="code", data_target=code)}</a></span></dd></div>'
+                f'<span class="cite">{self.label("defined in")} <a href="{self.to_root}{home}">{self.derived("rule-home", home, tag="code", data_target=code)}</a></span></dd></div>'
             )
         return f'{self.label("Rules cited above", tag="h3")}<dl class="terms rules">{"".join(items)}</dl>'
 
@@ -843,7 +848,7 @@ class Page:
             record += (
                 f' · {self.label("review:")} {c("/review/verdict")} {self.label("by the")} {c("/review/reviewer")} '
                 f'{self.label("on")} {c("/review/reviewed_on")} · {self.label("recorded in")} '
-                f'{self.ref(claim_id, "/review/recorded_in", tag="a", href=TO_ROOT + review["recorded_in"])}'
+                f'{self.ref(claim_id, "/review/recorded_in", tag="a", href=self.to_root + review["recorded_in"])}'
             )
         out.append(f'<p class="meta claim-record">{record}</p>')
         inputs = claim.get("input_claim_ids", [])
@@ -918,7 +923,7 @@ class Page:
             if context:
                 rest = "".join(cited(p) for p in context)
                 out.append(f'<details class="inputs"><summary>{self.label("other claims in this record’s trace")}</summary>{rest}</details>')
-        out.append(f'<p class="back"><a href="#chain">{self.label("back to the diagram")}</a></p></article>')
+        out.append(f'<p class="back"><a href="{self.back[0]}">{self.label(self.back[1])}</a></p></article>')
         return "".join(out)
 
     def edge_panel(self, item: dict) -> str:
@@ -1088,7 +1093,7 @@ class Page:
 
     def method(self) -> str:
         paths = input_paths()
-        files = "".join(f'<li><a href="{TO_ROOT}{esc(p)}">{self.derived("input-file", p, tag="code")}</a></li>' for p in paths)
+        files = "".join(f'<li><a href="{self.to_root}{esc(p)}">{self.derived("input-file", p, tag="code")}</a></li>' for p in paths)
         verified = sorted(self.store.claims[c]["verified_on"] for c in self.claims_shown)
         accessed = sorted(self.store.sources[s]["retrieval"]["accessed_at"] for s in self.sources_shown)
         rulings = "".join(f"<li>{self.decision(key)}</li>" for key in JOURNEY["decisions"])

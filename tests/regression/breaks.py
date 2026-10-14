@@ -1,7 +1,7 @@
 """The full break harness: every deliberate fault the Atlas's checks must catch, and the controls they must pass.
 
 Each break copies the repository (without .git) into SCRATCH_DIR, makes one edit, runs its build steps in the
-order results -> HBM page -> research view, runs the full suite, and counts only if the suite fails with every
+order results -> HBM page -> research view -> research journeys, runs the full suite, and counts only if the suite fails with every
 expected fragment in its output (the fault is caught for the reason it names). A control counts only if the
 suite passes. The harness tests the checks, not the evidence (D-150): its full run is for milestone audits; a
 change runs the breaks that touch the files it changes, plus its own new breaks.
@@ -305,11 +305,84 @@ S20 = [
      ["test_in3_derived_values_are_recomputed"]),
 ]
 
+JOURNEYS = "tools/build_journeys.py"
+JT = "tools/journey_template.html"
+NVIDIA_PAGE = "site/companies/company-nvidia/index.html"
+
+
+def stray_page(root):
+    """A page in a journey folder that no record calls for."""
+    (root / "site" / "companies" / "company-nobody").mkdir(parents=True)
+    (root / "site" / "companies" / "company-nobody" / "index.html").write_text("<!doctype html>", encoding="utf-8")
+
+
+S20 += [
+    ("S20-J1", "a sentence typed into the journey template outside a framing block (JR-1) (rebuilt)",
+     edit(JT, "<main>\n${main}", "<main>\n<p>The memory market is concentrated.</p>\n${main}"), [JOURNEYS],
+     ["text with no record, label, derived value or framing behind it"]),
+    ("S20-J2", "a company's name hand-edited on its page (JR-2)",
+     edit(NVIDIA_PAGE, 'data-field="/name">NVIDIA<', 'data-field="/name">Nvidia Corp<'), [],
+     ["test_jr2_every_record_value_equals_its_home"]),
+    ("S20-J3", "the export page counts one link too many (JR-3) (rebuilt)",
+     edit(JOURNEYS, 'self.count(len(self.links), "links")', 'self.count(len(self.links) + 1, "links")'), [JOURNEYS],
+     ["a count that differs from the records"]),
+    ("S20-J4", "a zero shown as a count on a profile (JR-3) (rebuilt)",
+     edit(JOURNEYS, "    def tally(self, n: int, what: str, words: str, none: str) -> str:\n        if n:", "    def tally(self, n: int, what: str, words: str, none: str) -> str:\n        if True:"), [JOURNEYS],
+     ["a zero shown as a count"]),
+    ("S20-J5", "a refusal drawn as 'no recorded relationship' in the matrix (JR-4) (rebuilt)",
+     edit(JOURNEYS, 'return ("refused", cand) if cand else ("none", None)', 'return ("none", None)'), [JOURNEYS],
+     ["test_jr4_the_matrix_equals_the_records"]),
+    ("S20-J6", "a timeline dot drawn twelve units off its date (JR-5) (rebuilt)",
+     edit(JOURNEYS, 'cx="{x(first):.2f}"', 'cx="{x(first) + 12:.2f}"'), [JOURNEYS],
+     ["test_jr5_the_timeline_draws_every_dated_event_at_its_date"]),
+    ("S20-J7", "the no-advice line dropped from the act blocks (JR-6, LA-5) (rebuilt)",
+     edit(JOURNEYS, '{self.label(NO_ADVICE, tag="p", cls="no-advice")}</div>', "</div>"), [JOURNEYS],
+     ["no no-advice line (LA-5)"]),
+    ("S20-J8", "a policy ID written into a company page (JR-6, PK-6)",
+     edit(NVIDIA_PAGE, "</main>", "<p>policy-us-fr-2024-28270</p></main>"), [],
+     ["a policy ID on a page with no policy view (PK-6)"]),
+    ("S20-J9", "statuses derived on another date than the as-of date (JR-7) (rebuilt)",
+     edit(JOURNEYS, "self.atlas.on = self.on", 'self.atlas.on = "2023-11-01"'), [JOURNEYS],
+     ["test_jr7_statuses_are_derived_on_the_as_of_date"]),
+    ("S20-J10", "a refused candidate left off its company's page (JR-8) (rebuilt)",
+     edit(JOURNEYS, "cands = [c for c in self.candidates.values() if cid in", "cands = [c for c in list(self.candidates.values())[1:] if cid in"), [JOURNEYS],
+     ["candidate: the page and the records differ"]),
+    ("S20-J11", "'restricted' in the export page's framing (JR-9) (rebuilt)",
+     edit(JT, "It describes what the texts say.", "It describes which items are restricted."), [JOURNEYS],
+     ["in the Atlas's own voice"]),
+    ("S20-J12", "a script added to the journey template (JR-10) (rebuilt)",
+     edit(JT, "</body>", "<script></script></body>"), [JOURNEYS],
+     ["<script> on a self-contained page"]),
+    ("S20-J13", "sections headed one level too deep (JR-11) (rebuilt)",
+     edit(JOURNEYS, 'self.label(title, tag="h2", id=f"{sid}-h")', 'self.label(title, tag="h3", id=f"{sid}-h")'), [JOURNEYS],
+     ["a skipped heading level"]),
+    ("S20-J14", "a stray page in a journey folder (JR-12)",
+     stray_page, [],
+     ["a stray file in the journey folders"]),
+    ("S20-J15", "the entry page's link dropped from the HBM page (JR-8, D-193) (rebuilt)",
+     edit("tools/page_template.html", '<p class="crumbs"><a href="../index.html"><span data-label>All research pages</span></a></p>\n', ""), [PAGE_BUILD, JOURNEYS],
+     ["a built page with no link to the entry page (D-193)"]),
+    ("S20-JC1", "control: a framing sentence of the journey template reworded, journeys rebuilt",
+     edit(JT, "Each item opens its evidence.", "Each item links to its evidence."), [JOURNEYS], []),
+    ("S20-JC2", "control: a company identity claim reworded, everything rebuilt",
+     edit("data/claims.json", "January 25, 2026 has the exact name", "January 25, 2026 bears the exact name"), ALL, []),
+]
+
 S165_BREAKS = s165.breaks
 
 
+def with_journeys(brk):
+    """S20 (D-190): a break that rebuilds the results or the HBM page also rebuilds the journey pages, which read
+    both; declared in its steps, so selection by measured files still sees the build it runs (D-177)."""
+    bid, what, mutate, steps, expected = brk
+    if set(steps) & {WH, PAGE_BUILD} and JOURNEYS not in steps:
+        steps = [*steps, JOURNEYS]
+    return (bid, what, mutate, steps, expected)
+
+
 def breaks():
-    return [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20
+    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20
+    return [with_journeys(b) for b in found]
 
 
 def main(argv: list[str]) -> int:

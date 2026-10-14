@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>What are you trying to understand?</title>
+<!--
+  Template of the S20 research journeys (visual-architecture.md §15; D-190 to D-193). The Editorial's file
+  (contracts.md, D-197): framing and style only. Framing states no fact and names no record (JR-1, JR-9); every
+  value comes from tools/build_journeys.py through a named slot. The base style is the S11 page's
+  (tools/page_template.html), read by the build so that the Atlas has one stylesheet home. The framing blocks
+  after the page are picked by name by the build. The pages this produces are generated: never edit them by hand.
+-->
+<style>
+:root { --surface-page: #ffffff; --surface-panel: #f6f7f9; --surface-class: #e9eef4; --surface-gap: #fff3df; --surface-framing: #f3f1ec; --ink-strong: #141d29; --ink-body: #27313d; --ink-muted: #4d5865; --ink-gap: #713c00; --ink-link: #174a86; --line-ink: #2b4769; --line-gap: #9c5800; --line-rule: #6f7b88; --line-focus: #0b57d0; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--surface-page); color: var(--ink-body); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+a { color: var(--ink-link); text-underline-offset: 2px; }
+a:focus-visible { outline: 3px solid var(--line-focus); outline-offset: 2px; }
+a:hover, a:focus-visible { text-decoration-thickness: 2px; }
+code, .digest { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.86em; overflow-wrap: anywhere; }
+.skip { position: absolute; left: 8px; top: -48px; background: var(--surface-page); padding: 8px 12px; border: 2px solid var(--line-focus); }
+.skip:focus-visible { top: 8px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+header.masthead { padding: 28px 0 6px; }
+.kicker { margin: 0 0 10px; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+.kicker span + span::before { content: " · "; }
+h1, h2, h3 { color: var(--ink-strong); font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; line-height: 1.2; }
+h1 { font-size: clamp(1.7rem, 4.2vw, 2.6rem); margin: 0 0 14px; max-width: 28ch; }
+h2 { font-size: 1.45rem; margin: 44px 0 12px; padding-top: 14px; border-top: 2px solid var(--line-ink); }
+h3 { font-size: 1.12rem; margin: 26px 0 8px; }
+section { scroll-margin-top: 12px; }
+.framing { background: var(--surface-framing); border-left: 4px solid var(--line-rule); padding: 10px 16px 12px; margin: 14px 0; max-width: 72ch; }
+.framing p { margin: 6px 0; }
+.framing .framing-tag { margin: 0 0 4px; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+.dek { font-size: 1.1rem; }
+.lede { font-size: 1.12rem; line-height: 1.6; max-width: 72ch; color: var(--ink-strong); margin: 12px 0 8px; }
+nav.jump { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; margin: 16px 0 0; font-size: 0.92rem; }
+ul.answer { list-style: none; padding: 0; margin: 12px 0; max-width: 72ch; }
+ul.answer li { padding: 8px 0; border-bottom: 1px solid var(--line-rule); }
+.rel { font-weight: 600; font-style: italic; color: var(--ink-strong); }
+.basis { display: inline-block; font-size: 0.78rem; padding: 0 8px; border-radius: 10px; border: 1px solid var(--line-ink); color: var(--ink-strong); }
+.basis.inferred { border-style: dashed; }
+.basis.gap { background: var(--surface-gap); border: 1px dashed var(--line-gap); color: var(--ink-gap); font-weight: 600; }
+.ev-link { font-size: 0.85rem; white-space: nowrap; }
+.chain-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px 40px; align-items: start; }
+@media (min-width: 900px) { .chain-grid { grid-template-columns: minmax(0, 470px) minmax(0, 1fr); } }
+figure { margin: 0; }
+svg.chain { width: 100%; height: auto; display: block; max-width: 470px; }
+svg .box { fill: var(--surface-page); stroke: var(--line-ink); stroke-width: 1.5; }
+.class-level .box { fill: var(--surface-class); }
+svg .class-rule { fill: var(--line-ink); }
+svg .node-type { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--ink-muted); }
+svg .node-name { font-size: 13.5px; font-weight: 700; fill: var(--ink-strong); }
+svg .line { stroke: var(--line-ink); stroke-width: 2; fill: none; }
+.inferred .line { stroke-dasharray: 6 4; }
+.gap .line { stroke: var(--line-gap); stroke-dasharray: 2 4; stroke-linecap: round; }
+svg .arrowhead { fill: var(--line-ink); }
+svg .edge-type { font-size: 12px; font-style: italic; font-weight: 600; fill: var(--ink-strong); }
+svg .edge-basis { font-size: 11.5px; fill: var(--ink-muted); }
+svg .pill { fill: var(--surface-gap); stroke: var(--line-gap); stroke-width: 1.5; stroke-dasharray: 4 3; }
+svg .pill-head { font-size: 11px; fill: var(--ink-gap); }
+svg .pill-text { font-size: 11.5px; font-weight: 700; fill: var(--ink-gap); }
+svg .class-level .pill-text { fill: var(--ink-muted); font-weight: 600; font-size: 11px; }
+svg .pill.named { fill: var(--surface-panel); stroke: var(--line-ink); stroke-dasharray: 8 3 2 3; }
+svg .supplier .pill-head { fill: var(--ink-body); }
+svg .supplier .pill-text { fill: var(--ink-strong); }
+svg .hit { fill: transparent; }
+svg .lane-box { fill: none; stroke: var(--line-rule); stroke-width: 1.5; stroke-dasharray: 6 5; }
+svg .lane-head { font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--ink-muted); }
+svg .lane-note { font-size: 11.5px; font-weight: 700; fill: var(--ink-strong); }
+svg .lane-ref { font-size: 12px; font-style: italic; fill: var(--ink-strong); }
+svg .halo { paint-order: stroke; stroke: var(--surface-page); stroke-width: 5px; stroke-linejoin: round; }
+svg a.mark { cursor: pointer; }
+svg a.mark:hover .box, svg a.mark:focus-visible .box, svg a.mark:hover .pill, svg a.mark:focus-visible .pill { stroke: var(--line-focus); stroke-width: 3; }
+svg a.mark:hover .line, svg a.mark:focus-visible .line { stroke: var(--line-focus); stroke-width: 3.5; }
+svg a.mark:focus-visible { outline: none; }
+ul.legend { list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 6px; font-size: 0.9rem; }
+ul.legend li { display: flex; align-items: center; gap: 10px; }
+svg.swatch { width: 36px; height: 26px; flex: none; }
+ol.words, ul.words { padding-left: 1.3em; margin: 8px 0; }
+ol.words li, ul.words li { margin: 6px 0; }
+.lane-words { margin: 14px 0 0; font-size: 0.92rem; }
+ul.quotes, ul.gaps, ul.rulings { padding-left: 1.2em; max-width: 80ch; }
+ul.quotes li, ul.gaps li, ul.rulings li { margin: 8px 0; }
+ul.quotes q { display: block; margin: 2px 0; }
+.who { font-weight: 600; }
+.type-tag, .tag, .status { font-size: 0.74rem; letter-spacing: 0.04em; padding: 1px 6px; border-radius: 3px; border: 1px solid var(--line-rule); color: var(--ink-strong); white-space: nowrap; }
+.type-derivation, .type-interpretation, .type-implication { border-style: dashed; }
+dl.defs .def, dl.terms div, dl.facts div { margin: 8px 0; }
+dl.defs dt, dl.terms dt { font-weight: 600; color: var(--ink-strong); }
+dl.defs dd, dl.terms dd { margin: 2px 0 0 0; max-width: 80ch; }
+.cite { font-size: 0.85rem; color: var(--ink-muted); }
+.meaning { font-size: 0.92rem; max-width: 80ch; }
+.table-wrap { overflow-x: auto; max-width: 100%; }
+section.reason { margin: 14px 0 6px; }
+section.reason h4 { font-size: 0.98rem; margin: 18px 0 2px; color: var(--ink-strong); }
+ul.cards { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 10px; max-width: 80ch; }
+li.card { background: var(--surface-gap); border: 1px solid var(--line-gap); border-left-width: 4px; border-radius: 6px; padding: 8px 14px; overflow-wrap: anywhere; }
+li.card p { margin: 4px 0; }
+.card-head { font-weight: 600; color: var(--ink-strong); }
+table { border-collapse: collapse; font-size: 0.92rem; min-width: 560px; max-width: 980px; }
+caption { text-align: left; padding: 4px 0 8px; color: var(--ink-muted); font-size: 0.85rem; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line-rule); }
+thead th { color: var(--ink-strong); border-bottom: 2px solid var(--line-ink); }
+article.panel { background: var(--surface-panel); border: 1px solid var(--line-rule); border-radius: 6px; padding: 4px 18px 12px; margin: 18px 0; scroll-margin-top: 12px; }
+article.panel:target { border: 2px solid var(--line-focus); }
+article.panel h3 { margin-top: 14px; }
+dl.facts { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 24px; margin: 6px 0 10px; font-size: 0.92rem; }
+@media (min-width: 700px) { dl.facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+dl.facts dt { color: var(--ink-muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+dl.facts dd { margin: 0; overflow-wrap: anywhere; }
+.cited-at { margin: 14px 0 4px; font-size: 0.8rem; color: var(--ink-muted); }
+.claim { background: var(--surface-page); border: 1px solid var(--line-rule); border-radius: 4px; padding: 6px 14px; margin: 6px 0 10px; }
+.claim .claim { margin-left: 0; }
+.claim p { margin: 6px 0; overflow-wrap: anywhere; }
+.claim-head code { font-weight: 600; }
+.review, .meta { font-size: 0.86rem; color: var(--ink-muted); }
+.k { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-muted); margin-right: 4px; }
+.statement { font-size: 1rem; color: var(--ink-strong); }
+.claim-record { border-top: 1px solid var(--line-rule); padding-top: 6px; }
+li.citation blockquote.anchor { margin-top: 2px; }
+.reasoning { font-size: 0.93rem; border-left: 3px dashed var(--line-ink); padding-left: 10px; }
+ol.citations { padding-left: 1.2em; margin: 6px 0; }
+li.citation { margin: 8px 0 12px; }
+.src cite { font-style: normal; font-weight: 600; }
+blockquote.anchor { margin: 6px 0; padding: 6px 12px; border-left: 3px solid var(--line-ink); background: var(--surface-panel); color: var(--ink-strong); overflow-wrap: anywhere; }
+details.inputs { margin: 8px 0; }
+details.inputs summary { cursor: pointer; font-weight: 600; color: var(--ink-link); padding: 4px 0; }
+details.inputs summary:focus-visible { outline: 3px solid var(--line-focus); outline-offset: 2px; }
+.back { font-size: 0.85rem; margin: 10px 0 4px; }
+pre { background: var(--surface-panel); border: 1px solid var(--line-rule); padding: 12px 14px; overflow-x: auto; font-size: 0.86rem; line-height: 1.7; }
+pre code { overflow-wrap: normal; }
+ul.files { columns: 2 260px; padding-left: 1.2em; }
+table.sql { min-width: 0; width: 100%; max-width: none; }
+table.sql td { overflow-wrap: break-word; }
+table.sql .who { font-weight: 600; color: var(--ink-strong); }
+table.sql .cell-k { display: none; }
+details.ids summary, details.sql-tutorial summary { cursor: pointer; font-weight: 600; color: var(--ink-link); padding: 4px 0; }
+details.ids summary:focus-visible, details.sql-tutorial summary:focus-visible { outline: 3px solid var(--line-focus); outline-offset: 2px; }
+details.ids p { margin: 4px 0; font-size: 0.85rem; }
+details.sql-tutorial { margin: 14px 0; border: 1px solid var(--line-rule); border-radius: 6px; padding: 6px 16px; max-width: 980px; }
+details.sql-tutorial[open] { background: var(--surface-panel); }
+.tutorial ol.steps { padding-left: 1.3em; }
+.tutorial ol.steps h4 { margin: 18px 0 4px; font-size: 1rem; color: var(--ink-strong); }
+.tutorial p { max-width: 80ch; }
+.tutorial pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface-page); }
+@media (max-width: 760px) {
+  table.sql thead { display: none; }
+  table.sql td.empty { display: none; }
+  table.sql, table.sql tbody, table.sql tr, table.sql td { display: block; width: 100%; }
+  table.sql tr { border: 1px solid var(--line-rule); border-radius: 6px; margin: 12px 0; padding: 6px 12px; }
+  table.sql td { border-bottom: 0; padding: 4px 0; }
+  table.sql .cell-k { display: block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-muted); }
+}
+footer { margin-top: 48px; border-top: 1px solid var(--line-rule); padding-top: 12px; font-size: 0.85rem; color: var(--ink-muted); }
+
+/* --- research-journey components (visual-architecture.md §15) --- */
+.crumbs { margin: 0 0 12px; font-size: 0.92rem; }
+.qline { margin: 0 0 8px; font-size: 1.02rem; color: var(--ink-body); max-width: 72ch; }
+.scope { max-width: 72ch; margin: 6px 0 10px; }
+.facts-line { list-style: none; padding: 0; margin: 10px 0; max-width: 80ch; }
+.facts-line li { padding: 6px 0; border-bottom: 1px solid var(--line-rule); }
+.indicators { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 14px; margin: 12px 0 6px; }
+.indicator { background: var(--surface-panel); border-top: 3px solid var(--line-ink); border-radius: 0 0 6px 6px; padding: 8px 14px 12px; }
+.indicator h3 { margin: 4px 0 6px; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
+.indicator ul { list-style: none; padding: 0; margin: 4px 0; }
+.indicator li { margin: 6px 0; }
+.tally { font-size: 1.2rem; font-weight: 600; color: var(--ink-strong); }
+.none-word { color: var(--ink-muted); font-style: italic; }
+ul.items { list-style: none; padding: 0; margin: 8px 0; max-width: 80ch; }
+ul.items li { padding: 8px 0; border-bottom: 1px solid var(--line-rule); }
+ul.items li .meta { display: block; }
+.basis.reported { border-style: double; border-width: 3px; }
+.state-word { display: inline-block; font-size: 0.78rem; padding: 0 8px; border-radius: 10px; border: 1px dashed var(--line-gap); background: var(--surface-gap); color: var(--ink-gap); font-weight: 600; }
+.act-block { background: var(--surface-panel); border: 1px solid var(--line-rule); border-left: 4px solid var(--line-ink); border-radius: 6px; padding: 6px 14px; margin: 8px 0; }
+.act-block p { margin: 4px 0; }
+.no-advice { font-size: 0.86rem; font-weight: 600; color: var(--ink-strong); }
+a.official { font-size: 0.86rem; overflow-wrap: anywhere; }
+ul.question-cards { list-style: none; padding: 0; margin: 12px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+ul.question-cards > li { background: var(--surface-panel); border-top: 3px solid var(--line-ink); border-radius: 0 0 6px 6px; padding: 10px 16px 14px; }
+ul.question-cards h3 { margin: 6px 0 8px; font-size: 1.08rem; }
+ul.question-cards .k { display: block; }
+ul.name-list { padding-left: 1.2em; margin: 6px 0; }
+ul.name-list li { margin: 4px 0; }
+table.matrix { min-width: 0; width: 100%; max-width: 1080px; font-size: 0.88rem; }
+table.matrix th[scope="row"] { font-weight: 600; color: var(--ink-strong); min-width: 150px; }
+table.matrix thead th { vertical-align: bottom; }
+table.matrix thead th .meta { display: block; font-weight: 400; }
+table.matrix td { min-width: 104px; }
+.cell-named { display: inline-block; padding: 2px 8px; border: 2px solid var(--line-ink); border-radius: 4px; background: var(--surface-page); color: var(--ink-strong); font-weight: 600; }
+.cell-refused { display: inline-block; padding: 2px 6px; border: 1px solid var(--line-rule); border-radius: 4px; color: var(--ink-body); }
+.cell-none { display: inline-block; padding: 2px 6px; border: 1px dashed var(--line-rule); border-radius: 4px; color: var(--ink-muted); font-size: 0.8rem; }
+table.matrix .cell-k { display: none; }
+ul.layers { list-style: none; padding: 0; margin: 8px 0; max-width: 80ch; }
+ul.layers li { padding: 8px 0; border-bottom: 1px solid var(--line-rule); }
+figure.timeline-fig { margin: 8px 0; max-width: 1000px; }
+svg.timeline { width: 100%; height: auto; display: block; }
+svg .axis { stroke: var(--line-rule); stroke-width: 1; }
+svg .lane { stroke: var(--line-rule); stroke-width: 1; stroke-dasharray: 2 4; }
+svg .year { font-size: 12px; fill: var(--ink-muted); }
+svg .lane-name { font-size: 12.5px; font-weight: 700; fill: var(--ink-strong); }
+svg .ev-published { fill: var(--surface-page); stroke: var(--line-ink); stroke-width: 2; }
+svg .ev-effective { fill: var(--line-ink); stroke: var(--line-ink); stroke-width: 2; }
+svg .ev-other { fill: var(--surface-panel); stroke: var(--line-ink); stroke-width: 1.5; }
+svg .asof { stroke: var(--line-focus); stroke-width: 2; stroke-dasharray: 6 4; }
+svg .asof-text { font-size: 12px; font-weight: 700; fill: var(--ink-strong); }
+svg a.tl-mark:hover circle, svg a.tl-mark:focus-visible circle, svg a.tl-mark:hover rect, svg a.tl-mark:focus-visible rect { stroke: var(--line-focus); stroke-width: 3.5; }
+svg a.tl-mark:focus-visible { outline: none; }
+ul.key { list-style: none; padding: 0; margin: 10px 0; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 0.88rem; }
+ul.key li { display: flex; align-items: center; gap: 8px; }
+ol.timeline-words { padding-left: 1.3em; max-width: 80ch; }
+ol.timeline-words li { margin: 4px 0; }
+@media (max-width: 760px) {
+  table.matrix thead { display: none; }
+  table.matrix, table.matrix tbody, table.matrix tr, table.matrix td, table.matrix th { display: block; width: 100%; }
+  table.matrix tr { border: 1px solid var(--line-rule); border-radius: 6px; margin: 12px 0; padding: 6px 12px; }
+  table.matrix td, table.matrix th { border-bottom: 0; padding: 4px 0; }
+  table.matrix .cell-k { display: block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-muted); }
+}
+</style>
+</head>
+<body data-page-kind="index">
+<div class="wrap">
+<header class="masthead" id="top">
+<p class="kicker"><span data-label>AI Infrastructure Atlas</span><span data-label>Research pages</span></p>
+
+
+<h1><span data-label>What are you trying to understand?</span></h1>
+
+<div class="framing dek" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>Each card below is one question the Atlas’s records can answer today, with the page that answers it. Every page is generated from the records by a tested build step; nothing on it is typed by hand, and every value links to the evidence behind it.</p>
+</div>
+<nav class="jump" aria-label="Sections"><span class="k" data-label>Jump to</span><a href="#questions"><span data-label>Questions</span></a><a href="#limits"><span data-label>Where the records stop</span></a><a href="#method"><span data-label>Method and limitations</span></a></nav>
+</header>
+
+<main>
+<section id="questions" aria-labelledby="questions-h"><h2 id="questions-h" data-label>Questions</h2><ul class="question-cards"><li><span class="k" data-label>Explore a dependency</span><h3><span data-label>What does an</span> <span data-ref="component-ai-accelerator" data-field="/name">AI accelerator</span><span data-label>’s memory depend on, and who is known to make it?</span></h3><p><a href="hbm-chain/index.html"><span data-label>the dependency journey</span></a> · <a href="hbm-insight/index.html"><span data-label>the research view</span></a></p></li><li><span class="k" data-label>Compare layers</span><h3><span data-label>Which parts and technologies does each recorded export-control text name among the items it controls, and when did each take effect?</span></h3><p><a href="questions/export-control-texts/index.html"><span data-label>Compare layers</span></a></p></li><li><span class="k" data-label>Investigate a company</span><h3><span data-label>What does the Atlas record about a company, and on what evidence?</span></h3><ul class="name-list"><li><a href="companies/company-amazon-com/index.html"><span data-ref="company-amazon-com" data-field="/name">Amazon</span></a></li><li><a href="companies/company-amkor-technology/index.html"><span data-ref="company-amkor-technology" data-field="/name">Amkor Technology</span></a></li><li><a href="companies/company-asml-holding/index.html"><span data-ref="company-asml-holding" data-field="/name">ASML</span></a></li><li><a href="companies/company-micron-technology/index.html"><span data-ref="company-micron-technology" data-field="/name">Micron Technology</span></a></li><li><a href="companies/company-nvidia/index.html"><span data-ref="company-nvidia" data-field="/name">NVIDIA</span></a></li><li><a href="companies/company-samsung-electronics-co-ltd/index.html"><span data-ref="company-samsung-electronics-co-ltd" data-field="/name">Samsung Electronics</span></a></li><li><a href="companies/company-sk-hynix/index.html"><span data-ref="company-sk-hynix" data-field="/name">SK hynix</span></a></li><li><a href="companies/company-synopsys/index.html"><span data-ref="company-synopsys" data-field="/name">Synopsys</span></a></li><li><a href="companies/company-taiwan-semiconductor-manufacturing-company/index.html"><span data-ref="company-taiwan-semiconductor-manufacturing-company" data-field="/name">TSMC</span></a></li></ul></li><li><span class="k" data-label>Investigate a place</span><h3><span data-label>What does the Atlas record as incorporated, headquartered, located or issued in a place?</span></h3><ul class="name-list"><li><a href="places/jurisdiction-nl/index.html"><span data-ref="jurisdiction-nl" data-field="/name">Netherlands</span></a></li><li><a href="places/jurisdiction-kr/index.html"><span data-ref="jurisdiction-kr" data-field="/name">Republic of Korea</span></a></li><li><a href="places/jurisdiction-tw/index.html"><span data-ref="jurisdiction-tw" data-field="/name">Taiwan</span></a></li><li><a href="places/jurisdiction-us/index.html"><span data-ref="jurisdiction-us" data-field="/name">United States</span></a></li></ul></li><li><span class="k" data-label>Inspect evidence</span><h3><span data-label>How does the Atlas know a value, and how was it checked?</span></h3><p data-label>Every value on every research page opens its evidence: the claim, the quoted source sentence, the source and its dates.</p></li></ul></section><section id="limits" aria-labelledby="limits-h"><h2 id="limits-h" data-label>Where the records stop</h2><div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>Searching across the records would need a script or a server, so the Atlas lists every page instead. The classes listed here are recorded, but no dependency link starts or ends at them, so a question about what they depend on cannot be answered yet. A missing link means the Atlas has not recorded one; it never means that none exists.</p>
+</div><h3 data-label>Recorded classes with no dependency link</h3><ul class="name-list"><li data-no-chain="component-ai-accelerator"><span data-ref="component-ai-accelerator" data-field="/name">AI accelerator</span> · <span data-ref="component-ai-accelerator" data-field="/type">component</span> · <span class="none-word" data-label>no recorded relationship</span></li><li data-no-chain="component-data-centre-gpu"><span data-ref="component-data-centre-gpu" data-field="/name">Data-centre GPU</span> · <span data-ref="component-data-centre-gpu" data-field="/type">component</span> · <span class="none-word" data-label>no recorded relationship</span></li><li data-no-chain="component-ai-asic"><span data-ref="component-ai-asic" data-field="/name">AI ASIC</span> · <span data-ref="component-ai-asic" data-field="/type">component</span> · <span class="none-word" data-label>no recorded relationship</span></li><li data-no-chain="component-semiconductor-manufacturing-equipment"><span data-ref="component-semiconductor-manufacturing-equipment" data-field="/name">Semiconductor manufacturing equipment</span> · <span data-ref="component-semiconductor-manufacturing-equipment" data-field="/type">component</span> · <span class="none-word" data-label>no recorded relationship</span></li><li data-no-chain="component-assembly-packaging-and-wafer-level-packaging-tools"><span data-ref="component-assembly-packaging-and-wafer-level-packaging-tools" data-field="/name">Assembly, packaging and wafer-level packaging tools</span> · <span data-ref="component-assembly-packaging-and-wafer-level-packaging-tools" data-field="/type">component</span> · <span class="none-word" data-label>no recorded relationship</span></li><li data-no-chain="component-accelerated-server"><span data-ref="component-accelerated-server" data-field="/name">Accelerated server</span> · <span data-ref="component-accelerated-server" data-field="/type">component</span> · <span class="none-word" data-label>no recorded relationship</span></li><li data-no-chain="technology-multi-die-accelerator"><span data-ref="technology-multi-die-accelerator" data-field="/name">Multi-die accelerator</span> · <span data-ref="technology-multi-die-accelerator" data-field="/type">technology</span> · <span class="none-word" data-label>no recorded relationship</span></li><li data-no-chain="technology-multi-die-package"><span data-ref="technology-multi-die-package" data-field="/name">Multi-die package</span> · <span data-ref="technology-multi-die-package" data-field="/type">technology</span> · <span class="none-word" data-label>no recorded relationship</span></li><li data-no-chain="technology-electronic-design-automation"><span data-ref="technology-electronic-design-automation" data-field="/name">Electronic design automation</span> · <span data-ref="technology-electronic-design-automation" data-field="/type">technology</span> · <span class="none-word" data-label>no recorded relationship</span></li><li data-no-chain="technology-cloud-computing"><span data-ref="technology-cloud-computing" data-field="/name">Cloud computing</span> · <span data-ref="technology-cloud-computing" data-field="/type">technology</span> · <span class="none-word" data-label>no recorded relationship</span></li><li data-no-chain="technology-advanced-packaging"><span data-ref="technology-advanced-packaging" data-field="/name">Advanced packaging</span> · <span data-ref="technology-advanced-packaging" data-field="/type">technology</span> · <span class="none-word" data-label>no recorded relationship</span></li><li data-no-chain="technology-2-5d-packaging-with-an-interposer"><span data-ref="technology-2-5d-packaging-with-an-interposer" data-field="/name">2.5D packaging with an interposer</span> · <span data-ref="technology-2-5d-packaging-with-an-interposer" data-field="/type">technology</span> · <span class="none-word" data-label>no recorded relationship</span></li><li data-no-chain="technology-euv-lithography"><span data-ref="technology-euv-lithography" data-field="/name">EUV lithography</span> · <span data-ref="technology-euv-lithography" data-field="/type">technology</span> · <span class="none-word" data-label>no recorded relationship</span></li><li data-no-chain="technology-duv-lithography"><span data-ref="technology-duv-lithography" data-field="/name">DUV lithography</span> · <span data-ref="technology-duv-lithography" data-field="/type">technology</span> · <span class="none-word" data-label>no recorded relationship</span></li></ul></section><section id="method" aria-labelledby="method-h"><h2 id="method-h" data-label>Method and limitations</h2><div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>The page is generated from the Atlas’s data files by a tested build step; nothing on it is typed by hand. Only canonical records appear: records awaiting review are left out. The digest identifies the exact inputs; rebuilding from the same inputs gives the same page, byte for byte.</p>
+</div><h3 data-label>Rulings these pages depend on</h3><ul class="rulings"><li><strong data-ref="doc:decisions#D-123" data-field="id">D-123</strong> <span data-ref="doc:decisions#D-123" data-field="title">The research-experience model, the visual principles and the minimal design system</span></li><li><strong data-ref="doc:decisions#D-190" data-field="id">D-190</strong> <span data-ref="doc:decisions#D-190" data-field="title">The research journeys S20 builds</span></li><li><strong data-ref="doc:decisions#D-193" data-field="id">D-193</strong> <span data-ref="doc:decisions#D-193" data-field="title">An entry page, linked from the built pages</span></li></ul><h3 data-label>Built from</h3><p><span class="k" data-label>input digest</span> <code data-derived="input-digest" class="digest">f6a0b12f2c01a60aa250af3c7f5587b8c142dcb815019efcae2f38caa1ec03ee</code></p><details class="inputs"><summary><span data-label>input files</span></summary><ul class="files"><li><a href="../data/claims.json"><code data-derived="input-file">data/claims.json</code></a></li><li><a href="../data/companies.json"><code data-derived="input-file">data/companies.json</code></a></li><li><a href="../data/components.json"><code data-derived="input-file">data/components.json</code></a></li><li><a href="../data/events.json"><code data-derived="input-file">data/events.json</code></a></li><li><a href="../data/facilities.json"><code data-derived="input-file">data/facilities.json</code></a></li><li><a href="../data/identity_basis.json"><code data-derived="input-file">data/identity_basis.json</code></a></li><li><a href="../data/jurisdictions.json"><code data-derived="input-file">data/jurisdictions.json</code></a></li><li><a href="../data/policies.json"><code data-derived="input-file">data/policies.json</code></a></li><li><a href="../data/products.json"><code data-derived="input-file">data/products.json</code></a></li><li><a href="../data/refused_candidates.json"><code data-derived="input-file">data/refused_candidates.json</code></a></li><li><a href="../data/relationships.json"><code data-derived="input-file">data/relationships.json</code></a></li><li><a href="../data/sources.json"><code data-derived="input-file">data/sources.json</code></a></li><li><a href="../data/staging/claims.json"><code data-derived="input-file">data/staging/claims.json</code></a></li><li><a href="../data/staging/companies.json"><code data-derived="input-file">data/staging/companies.json</code></a></li><li><a href="../data/staging/components.json"><code data-derived="input-file">data/staging/components.json</code></a></li><li><a href="../data/staging/events.json"><code data-derived="input-file">data/staging/events.json</code></a></li><li><a href="../data/staging/facilities.json"><code data-derived="input-file">data/staging/facilities.json</code></a></li><li><a href="../data/staging/identity_basis.json"><code data-derived="input-file">data/staging/identity_basis.json</code></a></li><li><a href="../data/staging/jurisdictions.json"><code data-derived="input-file">data/staging/jurisdictions.json</code></a></li><li><a href="../data/staging/policies.json"><code data-derived="input-file">data/staging/policies.json</code></a></li><li><a href="../data/staging/products.json"><code data-derived="input-file">data/staging/products.json</code></a></li><li><a href="../data/staging/refused_candidates.json"><code data-derived="input-file">data/staging/refused_candidates.json</code></a></li><li><a href="../data/staging/relationships.json"><code data-derived="input-file">data/staging/relationships.json</code></a></li><li><a href="../data/staging/technologies.json"><code data-derived="input-file">data/staging/technologies.json</code></a></li><li><a href="../data/technologies.json"><code data-derived="input-file">data/technologies.json</code></a></li><li><a href="../docs/architecture/company-dataset.md"><code data-derived="input-file">docs/architecture/company-dataset.md</code></a></li><li><a href="../docs/architecture/decisions.md"><code data-derived="input-file">docs/architecture/decisions.md</code></a></li><li><a href="../docs/architecture/relationship-taxonomy.md"><code data-derived="input-file">docs/architecture/relationship-taxonomy.md</code></a></li><li><a href="../docs/research/source-policy.md"><code data-derived="input-file">docs/research/source-policy.md</code></a></li><li><a href="../schemas/claims.schema.json"><code data-derived="input-file">schemas/claims.schema.json</code></a></li><li><a href="../schemas/entities.schema.json"><code data-derived="input-file">schemas/entities.schema.json</code></a></li><li><a href="../schemas/events.schema.json"><code data-derived="input-file">schemas/events.schema.json</code></a></li><li><a href="../schemas/identity_basis.schema.json"><code data-derived="input-file">schemas/identity_basis.schema.json</code></a></li><li><a href="../schemas/refused_candidates.schema.json"><code data-derived="input-file">schemas/refused_candidates.schema.json</code></a></li><li><a href="../schemas/relationships.schema.json"><code data-derived="input-file">schemas/relationships.schema.json</code></a></li><li><a href="../schemas/sources.schema.json"><code data-derived="input-file">schemas/sources.schema.json</code></a></li><li><a href="../sql/accelerator_dependencies.sql"><code data-derived="input-file">sql/accelerator_dependencies.sql</code></a></li><li><a href="../sql/evidence_coverage.sql"><code data-derived="input-file">sql/evidence_coverage.sql</code></a></li><li><a href="../sql/results/accelerator_dependencies.json"><code data-derived="input-file">sql/results/accelerator_dependencies.json</code></a></li><li><a href="../sql/results/evidence_coverage.json"><code data-derived="input-file">sql/results/evidence_coverage.json</code></a></li><li><a href="../sql/results/source_age.json"><code data-derived="input-file">sql/results/source_age.json</code></a></li><li><a href="../sql/results/supplier_metrics.json"><code data-derived="input-file">sql/results/supplier_metrics.json</code></a></li><li><a href="../sql/source_age.sql"><code data-derived="input-file">sql/source_age.sql</code></a></li><li><a href="../sql/supplier_metrics.sql"><code data-derived="input-file">sql/supplier_metrics.sql</code></a></li><li><a href="../tools/build_journeys.py"><code data-derived="input-file">tools/build_journeys.py</code></a></li><li><a href="../tools/build_page.py"><code data-derived="input-file">tools/build_page.py</code></a></li><li><a href="../tools/facility_status.py"><code data-derived="input-file">tools/facility_status.py</code></a></li><li><a href="../tools/journey_template.html"><code data-derived="input-file">tools/journey_template.html</code></a></li><li><a href="../tools/navigate.py"><code data-derived="input-file">tools/navigate.py</code></a></li><li><a href="../tools/page_template.html"><code data-derived="input-file">tools/page_template.html</code></a></li><li><a href="../tools/policy_status.py"><code data-derived="input-file">tools/policy_status.py</code></a></li><li><a href="../tools/trace.py"><code data-derived="input-file">tools/trace.py</code></a></li></ul></details><h3 data-label>Reproduce</h3><pre><code><span data-label>rebuild these pages:</span>
+<span data-label>python tools/build_journeys.py --check</span></code></pre></section>
+</main>
+</div>
+</body>
+</html>

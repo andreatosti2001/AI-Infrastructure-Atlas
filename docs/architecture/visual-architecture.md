@@ -598,8 +598,8 @@ filled with framing.
 - **No script, no SVG library, no dependency.** The timeline (J6) is inline SVG written by the build, as the HBM
   page's diagram is. The matrix (J2) and every table are HTML tables, turning into labelled cards at 760 px.
 - **One check module** `tests/test_journeys.py` (JR-1 to JR-12, §15.5) and one browser script
-  `tests/browser/journeys.qa.js` (1280 and 375 px, every new page). New breaks in
-  `tests/regression/breaks_journeys.py`.
+  `tests/browser/journeys.qa.js` (1280 and 375 px, every new page). New breaks in the S20 list of
+  `tests/regression/breaks.py` (as built: no new layer file was needed).
 
 ### 15.3 The export-control page (J2, J6), layer by layer
 

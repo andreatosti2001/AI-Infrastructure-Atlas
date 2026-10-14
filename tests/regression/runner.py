@@ -2,7 +2,7 @@
 
 Every break is (id, what, mutate(root), build steps, expected fragments); `breaks.py` builds the list. The runner
 copies the repository (without .git) into SCRATCH/NNN-ID, one folder per break, numbered because some IDs name two
-breaks. It plants the edit, runs the build steps in their order (results -> HBM page -> research view), runs the
+breaks. It plants the edit, runs the build steps in their order (results -> HBM page -> research view -> research journeys), runs the
 whole suite, and counts the break only if the suite fails with every expected fragment in its output; a control
 counts only if the suite passes. The method and the rule are those of the earlier runner (breaks_metrics.run);
 only the scheduling changes: N breaks at a time, lines printed in the harness's order, then one summary.
