@@ -117,6 +117,10 @@ LABELS = build_page.LABELS | frozenset(
         "what each text names", "its evidence", "facility kind", "evidence", "company page",
         # the headings inside the template's framing blocks (the Editorial's)
         "How to read the matrix", "How to read the timeline", "What a status means", "What this page cannot answer",
+        # singular forms: a count of one takes the singular (S20 browser QA)
+        "link from", "refused candidate", "candidate", "recorded link", "product", "refused candidate names it",
+        "recorded event", "company incorporated here", "company headquartered here", "facility located here",
+        "act issued here", "of them with incorporation not held by the Atlas",
     }
     | set(STATUS_WORDS)
     | {NO_ADVICE}
@@ -550,10 +554,10 @@ class Journey(build_page.Page):
                 reasons[r] = reasons.get(r, 0) + 1
         indicators = (
             f'<div class="indicators">'
-            f'<div class="indicator">{self.label("Links", tag="h3")}<p>{self.count(len(self.links), "links")} {self.label("links from")} '
+            f'<div class="indicator">{self.label("Links", tag="h3")}<p>{self.count(len(self.links), "links")} {self.unit(len(self.links), "link from", "links from")} '
             f'{self.count(len({e["source_entity"] for e in self.links}), "link-acts")} {self.label("of")} {self.count(n_acts, "acts")} {self.label("acts")}</p></div>'
-            f'<div class="indicator">{self.label("Refused candidates", tag="h3")}<p>{self.count(len(self.policy_candidates), "candidates")} {self.label("refused candidates")}</p><ul>'
-            + "".join(f'<li>{self.ref(f"schema:refused_candidates#vocab_reason/{r}", "/const", fmt="state")}: {self.count(n, "candidates-reason", r)} {self.label("candidates")}</li>' for r, n in sorted(reasons.items()))
+            f'<div class="indicator">{self.label("Refused candidates", tag="h3")}<p>{self.count(len(self.policy_candidates), "candidates")} {self.unit(len(self.policy_candidates), "refused candidate", "refused candidates")}</p><ul>'
+            + "".join(f'<li>{self.ref(f"schema:refused_candidates#vocab_reason/{r}", "/const", fmt="state")}: {self.count(n, "candidates-reason", r)} {self.unit(n, "candidate", "candidates")}</li>' for r, n in sorted(reasons.items()))
             + f'</ul></div><div class="indicator">{self.label("Status on", tag="h3")}<p>{self.as_of()}</p><ul>'
             + "".join(f'<li>{self.label(s.replace("_", " "))}: {self.count(n, "status", s)} {self.label("of")} {self.count(n_acts, "acts")} {self.label("acts")}</li>' for s, n in sorted(statuses.items()))
             + "</ul></div></div>"
@@ -621,9 +625,12 @@ class Journey(build_page.Page):
             return self.ref(rid, f"/{field}/state", fmt="state", cls="state-word")
         return ", ".join(link(a["value"]) if link else self.ref(rid, f"/{field}/{i}/value", fmt=fmt) for i, a in enumerate(value))
 
-    def tally(self, n: int, what: str, words: str, none: str) -> str:
+    def unit(self, n: int, one: str, many: str) -> str:
+        return self.label(one if n == 1 else many)
+
+    def tally(self, n: int, what: str, words: tuple[str, str], none: str) -> str:
         if n:
-            return f'<li>{self.count(n, what)} {self.label(words)}</li>'
+            return f'<li>{self.count(n, what)} {self.unit(n, *words)}</li>'
         return f'<li>{self.label(none, cls="none-word")}</li>'
 
     def render_company(self) -> dict:
@@ -647,11 +654,11 @@ class Journey(build_page.Page):
         )
         tallies = (
             '<ul class="facts-line">'
-            + self.tally(len(own), "links", "recorded links", "no recorded relationship")
-            + (f'<li>{self.label("named as a supplier on")} {self.count(len(named), "supplier")} {self.label("recorded links")}</li>' if named else f'<li>{self.label("named as a supplier on no recorded link", cls="none-word")}</li>')
-            + (f'<li>{self.label("vendor of")} {self.count(len(products), "products")} {self.label("products")}</li>' if products else f'<li>{self.label("vendor of no recorded product", cls="none-word")}</li>')
-            + self.tally(len(cands), "candidates", "refused candidates name it", "no refused candidate names it")
-            + self.tally(len(events), "events", "recorded events", "no recorded event")
+            + self.tally(len(own), "links", ("recorded link", "recorded links"), "no recorded relationship")
+            + (f'<li>{self.label("named as a supplier on")} {self.count(len(named), "supplier")} {self.unit(len(named), "recorded link", "recorded links")}</li>' if named else f'<li>{self.label("named as a supplier on no recorded link", cls="none-word")}</li>')
+            + (f'<li>{self.label("vendor of")} {self.count(len(products), "products")} {self.unit(len(products), "product", "products")}</li>' if products else f'<li>{self.label("vendor of no recorded product", cls="none-word")}</li>')
+            + self.tally(len(cands), "candidates", ("refused candidate names it", "refused candidates name it"), "no refused candidate names it")
+            + self.tally(len(events), "events", ("recorded event", "recorded events"), "no recorded event")
             + "</ul>"
         )
         items = []
@@ -722,14 +729,14 @@ class Journey(build_page.Page):
         unknown = [c for c in hq if not isinstance(c["incorporated_in"], list)]
         tallies = (
             '<ul class="facts-line">'
-            + self.tally(len(inc), "incorporated", "companies incorporated here", "no company recorded as incorporated here")
+            + self.tally(len(inc), "incorporated", ("company incorporated here", "companies incorporated here"), "no company recorded as incorporated here")
             + (
-                f'<li>{self.count(len(hq), "headquartered")} {self.label("companies headquartered here")}'
+                f'<li>{self.count(len(hq), "headquartered")} {self.unit(len(hq), "company headquartered here", "companies headquartered here")}'
                 + (f'; {self.count(len(unknown), "incorporation-unknown")} {self.label("of them with incorporation not held by the Atlas")}' if unknown else "")
                 + "</li>" if hq else f'<li>{self.label("no company recorded as headquartered here", cls="none-word")}</li>'
             )
-            + self.tally(len(located), "located", "facilities located here", "no facility recorded as located here")
-            + self.tally(len(issued), "issued", "acts issued here", "no act recorded as issued here")
+            + self.tally(len(located), "located", ("facility located here", "facilities located here"), "no facility recorded as located here")
+            + self.tally(len(issued), "issued", ("act issued here", "acts issued here"), "no act recorded as issued here")
             + "</ul>"
         )
 

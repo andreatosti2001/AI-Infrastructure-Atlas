@@ -74,8 +74,9 @@ NO_ADVICE = "This page describes what the text says; it does not advise."
 FORBIDDEN = ("in force", "compliant", "licence required", "license required", "prohibited", "banned", "restricted", "critical")
 DERIVED_KINDS = {"count", "policy-status", "latest-published", "sql-cell", "input-file", "input-digest", "pointer", "bytes-match", "year"}
 COUNT_UNITS = {
-    # data-count -> the words that must follow the number in its own line (V-4: a number shows its unit)
-    "acts": "acts", "classes": "classes", "links": "links", "link-acts": "acts", "named-by": "of", "candidates": "refused candidates",
+    # data-count -> the unit that must follow the number in its own line (V-4: a number shows its unit); the singular
+    # stem, so that a count of one may read "1 link" (S20 browser QA found "1 links")
+    "acts": "act", "classes": "class", "links": "link", "link-acts": "act", "named-by": "of", "candidates": "refused candidate",
     "candidates-reason": "", "status": "of", "supplier": "", "products": "", "events": "", "incorporated": "", "headquartered": "",
     "located": "", "issued": "", "incorporation-unknown": "",
 }
