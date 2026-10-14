@@ -24,11 +24,17 @@ This is an independent repository. It shares no code, data or runtime with `Eu-D
 - **A SQL layer** (`sql/`, `tools/warehouse.py`): the records are loaded into a DuckDB database rebuilt from
   `data/` on every run and never stored. Each query is also its own tutorial; its result is committed in
   `sql/results/` with the SHA-256 of every input, so a stale result is detected.
-- **Two generated pages** (`site/`, never edited by hand):
+- **Generated research pages** (`site/`, never edited by hand), each answering one question; start at
+  [`site/index.html`](site/index.html), "What are you trying to understand?":
   - [`site/hbm-chain/`](site/hbm-chain/index.html), the HBM journey: the chain from each accelerator to its
     memory, its maker and the technology it requires, with an evidence panel on every mark;
   - [`site/hbm-insight/`](site/hbm-insight/index.html), the research view: the same chain read in seven layers,
-    question → insight → visual → explore → evidence → data → method, with the first metrics.
+    question → insight → visual → explore → evidence → data → method, with the first metrics;
+  - [`site/questions/export-control-texts/`](site/questions/export-control-texts/index.html) (S20): which
+    classes each recorded export-control text names among the items it controls, refused pairs with their
+    reasons, a timeline of the acts' dates, and each act's status on the as-of date;
+  - a profile per company (`site/companies/<id>/`, 9) and per place (`site/places/<id>/`, 4): what the Atlas
+    records about it, and on what evidence.
 
 The pages are not published (NG-13): they are built and checked in the repository.
 
@@ -80,17 +86,18 @@ anchors and review.
   2023 rule removed the 2022 entry). Nine candidates were refused, among them GPUs, ASICs and accelerators
   (broader words than the records) and a named HBM product (only the Atlas applying the rule's threshold
   could link it). `python tools/navigate.py edges component-high-bandwidth-memory` shows each link with its
-  act's status and "describes the text; does not advise". No page shows them yet
-  ([`policy-links.md`](docs/architecture/policy-links.md)).
+  act's status and "describes the text; does not advise"; since S20 the export-control page shows them too,
+  each act with its official text and the same line ([`policy-links.md`](docs/architecture/policy-links.md),
+  D-189, D-191).
 
 ## How quality is controlled
 
 | Control | What it checks |
 |---|---|
-| `python -m unittest discover -s tests` | schemas, data integrity (every reference resolves, no unreviewed claim is canonical, freshness), the human review record, the SQL results, and both pages (every text node has a home in the records or is marked framing, rebuild byte-identical, accessibility basics); 28 planted data faults the record checks must name (D-176); every file has an owner role (D-180) |
+| `python -m unittest discover -s tests` | schemas, data integrity (every reference resolves, no unreviewed claim is canonical, freshness), the human review record, the SQL results, and every page (every text node has a home in the records or is marked framing, every count recomputed, rebuild byte-identical, accessibility basics; on the export-control page, every matrix cell, timeline mark and status against the records, and the no-advice line beside every act); 28 planted data faults the record checks must name (D-176); every file has an owner role (D-180) |
 | `python tools/validate_repo.py` | Gate 0: the governing documents exist, every relative link in the repository's Markdown resolves, and no session record is committed here |
-| `--check` on `tools/warehouse.py`, `tools/build_page.py`, `tools/build_insight.py` | every committed result and page equals a fresh rebuild from `data/` |
-| [`tests/regression/`](tests/regression/README.md) | deliberate breaks (130): each plants one fault in its own copy and must be caught by the suite for the reason it names; run in parallel, selected by the files a change touches (D-177, D-178) |
+| `--check` on `tools/warehouse.py`, `tools/build_page.py`, `tools/build_insight.py`, `tools/build_journeys.py` | every committed result and page equals a fresh rebuild from `data/` |
+| [`tests/regression/`](tests/regression/README.md) | deliberate breaks (149): each plants one fault in its own copy and must be caught by the suite for the reason it names; run in parallel, selected by the files a change touches (D-177, D-178) |
 | [`tests/browser/`](tests/browser/README.md) | browser QA at 1280 and 375 px: errors, overflow, keyboard path, measured contrast |
 | [Audits](docs/quality/audit-history.md) | milestone, content, analytical and process audits under `PROJECT-EVALUATION-FRAMEWORK.md` |
 
@@ -98,7 +105,9 @@ CI runs the unit tests and Gate 0 on every push and pull request.
 
 ## Limitations
 
-- Coverage is one chain for two accelerators, by design. The Atlas does not claim global coverage.
+- Coverage is one chain for two accelerators, by design. The Atlas does not claim global coverage. The entry
+  page lists the recorded classes no dependency link reaches yet. There is no search: it would need a script
+  (D-190).
 - Much of the evidence is more than twelve months old. The 12-month horizon applies to time-sensitive links
   (who fabricates a product, who supplies a part): there, stale evidence leaves a gap (TSMC → H100) or a value
   bounded in time (the H100's supplier). Some publishers refuse automated retrieval; these are recorded as
@@ -118,11 +127,11 @@ CI runs the unit tests and Gate 0 on every push and pull request.
 
 ## Next phase
 
-M5 is closed ([`M5-audit.md`](docs/architecture/milestone-audits/M5-audit.md), D-187): S17 defined the policy
-record and recorded the first export-control acts; S18 linked them to the classes their texts name; S19 improved
-the break harness, ran it in full and audited the agent roles ([`agent-audit.md`](docs/architecture/agent-audit.md):
-the Analyst is now active, every file has an owner, no runtime orchestrator). Next is M6, the client product
-([`SESSION-ROADMAP.md`](SESSION-ROADMAP.md)): S20, researcher and analyst journeys.
+M6, the client product, is under way ([`SESSION-ROADMAP.md`](SESSION-ROADMAP.md)). S20 built the researcher and
+analyst journeys ([`visual-architecture.md`](docs/architecture/visual-architecture.md) §15, D-189 to D-197): an
+entry page, the export-control page (the first page view of the policy links), and company and place profiles;
+it also corrected two readings of the research view (C-2, C-5). Next: S20.5, an assessment of the frontend as it
+now stands, with a framework decision; then S21, client briefs.
 
 ## Layout
 
@@ -150,6 +159,7 @@ python tools/validate_repo.py                                    # Gate 0: repos
 python tools/warehouse.py --check                                # every SQL result equals a fresh run from data/
 python tools/build_page.py --check                               # the HBM page equals a rebuild
 python tools/build_insight.py --check                            # the research view equals a rebuild (build it after the HBM page)
+python tools/build_journeys.py --check                           # the 15 journey pages equal a rebuild (build them last)
 python tools/trace.py company-nvidia                             # what supports a record or claim
 python tools/facility_status.py facility-kr-m16 --on 2026-10-02  # a facility's derived status
 python tools/navigate.py depends-on technology-3d-die-stacking   # what depends on a record; --json for data

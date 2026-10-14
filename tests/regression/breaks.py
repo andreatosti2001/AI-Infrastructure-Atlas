@@ -327,7 +327,7 @@ S20 += [
      edit(JOURNEYS, 'self.count(len(self.links), "links")', 'self.count(len(self.links) + 1, "links")'), [JOURNEYS],
      ["a count that differs from the records"]),
     ("S20-J4", "a zero shown as a count on a profile (JR-3) (rebuilt)",
-     edit(JOURNEYS, "    def tally(self, n: int, what: str, words: str, none: str) -> str:\n        if n:", "    def tally(self, n: int, what: str, words: str, none: str) -> str:\n        if True:"), [JOURNEYS],
+     edit(JOURNEYS, "    def tally(self, n: int, what: str, words: tuple[str, str], none: str) -> str:\n        if n:", "    def tally(self, n: int, what: str, words: tuple[str, str], none: str) -> str:\n        if True:"), [JOURNEYS],
      ["a zero shown as a count"]),
     ("S20-J5", "a refusal drawn as 'no recorded relationship' in the matrix (JR-4) (rebuilt)",
      edit(JOURNEYS, 'return ("refused", cand) if cand else ("none", None)', 'return ("none", None)'), [JOURNEYS],
