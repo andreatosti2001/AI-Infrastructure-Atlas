@@ -3265,3 +3265,83 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
     lists are provisional and enter `SESSION-ROADMAP.md` when each version opens.
 - **Rejected:** widening coverage before v1.0 (it would reopen frozen non-goals and delay the release); folding the
   visual work into v2 (the visual gap is visible now, and v2's presentation at scale needs v1.5's components).
+
+## D-202 — The first client brief: its question, scope and form
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S21 H-0)
+- **Context:** the S21 roadmap entry ("a reproducible, evidence-backed technology dependency brief from a defined
+  question and scope"); MA §20; `CLAUDE.md` §13; U-5; D-200 (the stack).
+- **Decision** (`docs/architecture/client-brief.md` §1):
+  - the brief answers "What does an AI accelerator's memory depend on, who is reported to supply it, and which
+    recorded export-control texts name those parts?" ("reported", not "known": both supplier namings rest on
+    third-party reports, D-148);
+  - its scope is the dependency result (`sql/results/accelerator_dependencies.json`: the two accelerators recorded,
+    their memory, its reported suppliers, the recorded fabrication gap, the process the memory requires) and the five
+    recorded US acts, read on the as-of date; what is out of scope is stated in the brief;
+  - it is one printable, script-free page in the current stack, `site/briefs/accelerator-memory/index.html`; printing
+    to PDF is the reader's browser's.
+- **Rejected:** the memory chain alone and the export-control texts alone (each repeats an existing page); a
+  Markdown export (a second output and check for no new capability); a PDF (a new dependency against D-003 and
+  D-026, and timestamped bytes against the identical-rebuild check).
+
+## D-203 — The brief's design: twelve sections, a summary composed from groups and tallies, five classes compared
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S21 H-1)
+- **Context:** D-202; `CLAUDE.md` §13's nine sections and the roadmap's six outputs; V-2 (a summary sentence no
+  check can recompute is not allowed); D-124; D-175; NG-12; the Boundary of the S21 roadmap entry.
+- **Decision** (`docs/architecture/client-brief.md` §2 to §5):
+  - twelve sections: question and scope, executive summary, dependency map, export-control texts, key entities,
+    recent changes, evidence gaps and caveats, what this brief does not track, methodology, evidence appendix, source
+    appendix with a ready-made citation, terms;
+  - the executive summary is composed by the build from groups of the dependency result's rows and tallies of drawn
+    rows (D-124 rules a to d), one sentence per group, each marked so that `tests/test_brief.py` recomputes it; a
+    recorded gap is phrased as a gap, never as a link;
+  - the policy section compares the **five** classes the chain reaches (each accelerator's class, the class it is
+    narrower than, and every class at an end of a row), not the three of the journey page (D-191): the accelerators'
+    own classes carry two refusals that concern this chain; products are never compared with a text (LA-3);
+  - "recent changes" lists the recorded dated events of the acts shown, the latest publication date held and the
+    chain's evidence date range, and says that a later change is unknown to the Atlas, not absent;
+  - "monitoring considerations" becomes "What this brief does not track", one framing block naming no record that
+    describes the Atlas's coverage, never what a reader should watch;
+  - scope, the out-of-scope list, the boundary line, the as-of date and the input digest are in the first section,
+    outside any disclosure, and print (U-5); "rows shown of rows in the result" and the citation carry P-18;
+  - checks BR-1 to BR-12; the forbidden words of JR-9 plus "should", "must", "recommend", "is controlled", "are
+    controlled" and "subject to the" in the Atlas's voice.
+- **Rejected:** a free-text summary; a SQL query for the summary (nothing is computed beyond grouping and tallying);
+  a new diagram (the HBM figure is accepted and checked); evidence only linked to other pages (a printed brief would
+  lose it); three classes; one gap line each for "recent changes" and monitoring; leaving the monitoring section out.
+
+## D-204 — One composition mechanism for new templates
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S21 H-1, with the brief's design)
+- **Context:** A-3 (three templates, each composed differently; S20.5, D-200: "one composition mechanism for
+  templates to S21, when it adds one").
+- **Decision:** a template is one skeleton with named slots (`${name}`), plus named framing blocks after `</html>`
+  (`<!-- framing: name -->`) that the build picks by name; a style shared with another template is filled into a named
+  style slot from its one home. The journey template already works this way; `tools/brief_template.html` follows it;
+  any new template uses it. The S11 and S14.5 templates are not migrated now (their pages would change for no reader's
+  benefit); A-3 stays open for them, with S22.
+- **Rejected:** migrating all templates in S21 (outside the brief's scope).
+
+## D-205 — The Client Output becomes active, with a contract; owners of the brief's files
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S21 H-1; D-180)
+- **Context:** `docs/agents/roles.md` (Client Output inactive until S21); MA §11.10 ("It may summarise. It must not
+  silently alter factual records."); D-180 (every file has an owner; a role writes only under a contract).
+- **Decision:**
+  - the Client Output is active with an MA §12 contract (`docs/agents/contracts.md`): it owns `tools/build_brief.py`
+    and `site/briefs/` (written only by that build); it summarises by copying, tallying, taking first and last, and
+    grouping; it never writes `data/`, `sql/`, a check or another build; its gate is `tests/test_brief.py`;
+  - the Editorial owns `tools/brief_template.html` (framing and style) and `docs/architecture/client-brief.md`; the
+    Data Auditor owns `tests/test_brief.py` and the brief's breaks: the role that writes the brief does not write its
+    checks;
+  - `tests/test_agent_contracts.py` lists the Client Output among the active roles.
+- **Rejected:** the Data Auditor owning the build and the page, as for the journeys (D-197), with the Client Output
+  left inactive.
+
+## D-206 — The entry page links the client brief
+
+- **Date:** 2026-10-14 · **Status:** accepted (decided by the human on 2026-10-14, S21 H-1; extends D-193)
+- **Decision:** `site/index.html` gains one card with the brief's question and a button to it (`tools/build_journeys.py`
+  and its labels); JR-8 also requires the link. The brief links back to the entry page.
+- **Rejected:** leaving the entry page unchanged (the brief would be reachable only by its path).

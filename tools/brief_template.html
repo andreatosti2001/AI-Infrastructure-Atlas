@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>${title}</title>
+<!--
+  Template of the S21 client brief (docs/architecture/client-brief.md; D-203, D-204). The Editorial's file
+  (contracts.md, D-205): framing and style only. Framing states no fact and names no record (BR-1, BR-9); every
+  value comes from tools/build_brief.py through a named slot. This is the documented composition mechanism (D-204):
+  named slots in one skeleton; named framing blocks after the page, picked by name by the build; a style shared with
+  another template filled into a named style slot from its one home (the S11 base style, the journeys' components).
+  The page this produces is generated: never edit it by hand.
+-->
+<style>
+${base_style}
+${journey_style}
+/* --- the client brief (client-brief.md; S21) --- */
+/* hierarchy: the question and its boundary, the scope and limits, the answer, then the map, texts and evidence */
+.boundary { margin: 8px 0 12px; padding: 8px 14px; border: 2px solid var(--line-ink); border-radius: 6px; max-width: 80ch; font-weight: 600; color: var(--ink-strong); background: var(--surface-page); }
+ul.scope-list { list-style: none; padding: 0; margin: 8px 0; max-width: 84ch; }
+ul.scope-list li { padding: 6px 0; border-bottom: 1px solid var(--line-rule); }
+.limits { background: var(--surface-panel); border-radius: 8px; padding: 4px 16px 10px; margin: 12px 0; max-width: 84ch; }
+.limits h3 { margin-top: 10px; }
+.limits .framing { background: var(--surface-page); }
+.limits .framing ul { margin: 4px 0; padding-left: 1.2em; }
+.identity { font-size: 0.88rem; color: var(--ink-body); max-width: 84ch; }
+.digest { overflow-wrap: anywhere; word-break: break-all; }
+h3.visually-quiet { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); margin: 6px 0 0; }
+ul.findings.summary li { font-size: 1rem; line-height: 1.5; }
+.framing ul { padding-left: 1.2em; }
+table.entities td, table.sources td { vertical-align: top; }
+table.sources a.url, table.sources cite { overflow-wrap: anywhere; }
+.cite-this { background: var(--surface-panel); border-radius: 8px; padding: 6px 16px 10px; margin: 16px 0; max-width: 84ch; }
+.cite-this p { overflow-wrap: anywhere; }
+/* refused candidates are neutral cards; amber stays for gaps (D-198) */
+#gaps ul.cards li.card { background: var(--surface-page); border: 1px solid var(--line-rule); border-left: 4px solid var(--line-rule); }
+@page { margin: 16mm 14mm; }
+@media print {
+  nav.jump, .crumbs, p.back { display: none; }
+  body { font-size: 10pt; background: var(--surface-page); }
+  .wrap { max-width: none; padding: 0; }
+  a { color: var(--ink-strong); text-decoration: none; }
+  h1 { font-size: 18pt; max-width: none; }
+  h2 { font-size: 13pt; margin-top: 18pt; break-after: avoid-page; }
+  h3, h4 { break-after: avoid-page; }
+  li.card, .tile, ul.findings li, table tr, .limits, .boundary, .cite-this, li.citation { break-inside: avoid; }
+  /* the appendices: a new page, compact type; a panel may break across pages, so no page is left half empty */
+  #evidence, #sources { break-before: page; }
+  #evidence, #sources, #terms { font-size: 8pt; line-height: 1.35; }
+  #evidence article.panel { padding: 2pt 8pt 6pt; margin: 6pt 0; }
+  #evidence article.panel h3 { margin-top: 6pt; font-size: 10pt; }
+  #evidence h3 { font-size: 11pt; }
+  #evidence .claim { padding: 2pt 8pt; margin: 3pt 0 5pt; }
+  #evidence .claim p, #evidence li.citation { margin: 2pt 0; }
+  #evidence blockquote.anchor { margin: 2pt 0; padding: 2pt 8pt; }
+  #evidence dl.facts { font-size: 8pt; margin: 2pt 0 4pt; }
+  .chain-grid { display: block; }
+  svg.chain { max-width: 95mm; }
+  table { font-size: 8.5pt; }
+  .stat .tally { font-size: 18pt; }
+}
+</style>
+</head>
+<body ${body_attrs}>
+<div class="wrap">
+<header class="masthead" id="top">
+<p class="kicker">${kicker}</p>
+${crumbs}
+<h1>${h1}</h1>
+${boundary}
+${framing_top}
+${jump}
+</header>
+
+<main>
+${main}
+</main>
+</div>
+</body>
+</html>
+<!-- framing: brief-top -->
+<div class="framing dek" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>This brief answers one question from the Atlas’s records, over the scope stated below. Every value in it is generated from a record or a computed result by a tested build step and opens its evidence; the Atlas’s own explanations are marked as framing, like this box.</p>
+</div>
+<!-- framing: brief-scope -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>The scope is what the brief reads. The chain is the dependency result: each link the Atlas records from an accelerator to the memory inside it and to the process that memory needs, with who designs, fabricates or supplies each part. The policy layer is every export-control text the Atlas records, compared with the classes that chain reaches.</p>
+</div>
+<!-- framing: brief-out-of-scope -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<ul>
+<li>Accelerators other than those named above, and stages of the chain beyond memory: fabrication beyond the recorded gap, packaging, equipment, servers and cloud.</li>
+<li>Destinations, licence policy, thresholds and exemptions: they stay in the texts.</li>
+<li>Whether any product, firm or transaction falls under a text: the Atlas never makes that determination.</li>
+<li>The law of any other jurisdiction.</li>
+<li>Market share, price, volume, capacity or customers.</li>
+</ul>
+</div>
+<!-- framing: brief-summary -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>Each sentence above groups rows of the dependency result or of the policy records and states them with their basis: stated by a party, reported by a third party, inferred by the Atlas, or a recorded gap with its reason. A count counts the Atlas’s records, never the world. A class with no recorded relationship to a text is unknown to the Atlas, not outside the text.</p>
+</div>
+<!-- framing: brief-map -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>The diagram is the dependency journey’s, drawn by the same code from the same records. Each box is a record and each line a link: solid where a party states it, dashed where the Atlas infers it. An amber mark is a gap, with its reason. The box at the foot holds records the Atlas keeps nearby that are not linked to this chain. Every mark opens its evidence in the appendix, and the table below lists the same links row by row.</p>
+</div>
+<!-- framing: brief-texts -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>Each row is a class the chain reaches; each column is a recorded act. “Named in the text” means the act’s own words name the class among the items it controls, as quoted in the evidence. “Refused” gives the reason the Atlas recorded for not linking the pair, for example a term in the text that is broader than the class. The Atlas never compares a product with a text: whether a product meets a text’s parameters is a legal determination.</p>
+</div>
+<!-- framing: brief-status -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>A status is derived on the as-of date from the act’s dated events, by the Atlas’s status rule. “Has taken effect” means that an effective date recorded for the act lies before that date and that no repeal is recorded in the Atlas; it never says that the act applies to anyone. “No recorded effect” means that the Atlas holds no effective date for the act: unknown, not “not in effect”.</p>
+</div>
+<!-- framing: brief-entities -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>The companies and products at an end of a link on the chain, or named as a supplier on one, with what the chain records about each. A company that is not listed may still take part in the chain: the Atlas has not recorded it.</p>
+</div>
+<!-- framing: brief-changes -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>The Atlas runs no change detection. It lists here the dated events it holds for the recorded acts, and the dates of the evidence on the chain. Acts or amendments published after the latest date shown were not searched: a change after it is unknown to the Atlas, not absent.</p>
+</div>
+<!-- framing: brief-gaps -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>What the records leave open, each with its reason: values the Atlas could not determine, candidate links it considered and refused, and pairs with no record either way. A gap is never a zero and never a “no”.</p>
+</div>
+<!-- framing: brief-not-tracked -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<ul>
+<li>Acts, amendments or guidance published after the latest publication date shown in this brief.</li>
+<li>Changes of supplier, design or fabrication after the dates of the evidence shown.</li>
+<li>Accelerators, memory products and stages of the chain outside the scope.</li>
+<li>Quantities: market share, price, volume, capacity, customers.</li>
+<li>Whether any product, firm or transaction falls under a text, and what anyone would need to do about it.</li>
+</ul>
+<p>This list describes the Atlas’s coverage. It is not a list of things to watch.</p>
+</div>
+<!-- framing: brief-method -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>The brief is generated from the Atlas’s data files and its computed results by a tested build step; nothing on it is typed by hand. Only canonical records appear: records awaiting review are left out. The summary copies values, counts the rows it shows, takes the first and last of a date column, and groups rows; it computes nothing else. A status comes from the Atlas’s status rule on the as-of date. The digest identifies the exact inputs; rebuilding from the same inputs gives the same brief, byte for byte.</p>
+</div>
+<!-- framing: brief-sources -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>Every source that a claim in this brief cites, with the address it was read at. A printed copy keeps each address in full.</p>
+</div>
+<!-- end framing -->

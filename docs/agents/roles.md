@@ -1,6 +1,6 @@
 # Agent roles
 
-**Status:** ACCEPTED (human review of S06, 2026-09-30; D-052, D-010); S19's rulings accepted on 2026-10-14 (D-180 to D-184). **Session:** S06.
+**Status:** ACCEPTED (human review of S06, 2026-09-30; D-052, D-010); S19's rulings accepted on 2026-10-14 (D-180 to D-184); the Client Output active from S21 (D-205). **Session:** S06.
 
 The roles are CLAUDE.md §8's; their duties are MA §11's. This file says which roles are
 active and where each active role's contract is. It does not restate the duties.
@@ -25,6 +25,9 @@ active with a contract, for the SQL layer and the metrics S14 to S16 built (D-18
 owner, checked (D-180); the Verifier was re-scoped (D-182); the other roles were kept, the inactive ones with the
 rows below (D-184).
 
+S21 activates the Client Output for the client brief (D-205): it writes the brief's build and page; the Data Auditor
+writes the brief's checks.
+
 | Role | Status | Mission (MA §11) | Contract | First active |
 |---|---|---|---|---|
 | Orchestrator | inactive | Decompose and assign tasks, and request human approval; never alter sources or facts | none | none in v1.0: S19 found no runtime justified (NG-08, D-184). The session prompt and the human coordinate |
@@ -36,6 +39,6 @@ rows below (D-184).
 | Data Auditor | active | Check schemas, references, duplicates, dates and missing provenance | [contracts.md](./contracts.md#data-auditor) | S06 |
 | Analyst | active | Produce reproducible derived analysis | [contracts.md](./contracts.md#analyst) | S14 (SQL layer), S15 (metrics), S16 (analytical audit); contract from S19 (D-181) |
 | Editorial | active | Turn validated material into readable pages, keeping claim boundaries | [contracts.md](./contracts.md#editorial) | S11 (the first page; contract accepted at the S12 opening review, D-107). Before S11 its session work was limited to recording state rows |
-| Client Output | inactive | Produce briefs and exports from validated data | none | S21 (client briefs) |
+| Client Output | active | Produce briefs and exports from validated data; summarise, never alter a record | [contracts.md](./contracts.md#client-output) | S21 (the client brief; contract accepted at S21 H-1, D-205) |
 | QA | active | Test rendering, links, accessibility and browser behaviour | [contracts.md](./contracts.md#qa) | S11 (the first UI; contract accepted at the S12 opening review, D-107). Data and code checks stay the Data Auditor's |
 | Portfolio Reviewer | inactive | Judge whether a feature shows a real capability | none | S24 (capability audit). Until then, the human's review at each session (baseline §5, Gate 8); the Knowledge Architect writes the milestone audits, and the human accepts their findings and ratings (D-184) |

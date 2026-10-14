@@ -45,6 +45,7 @@ AGE_QUERY = "source_age"
 INDEX = "site/index.html"
 EXPORT = "site/questions/export-control-texts/index.html"
 CHAIN_PAGE, INSIGHT_PAGE = "site/hbm-chain/index.html", "site/hbm-insight/index.html"
+BRIEF = "site/briefs/accelerator-memory/index.html"  # S21 (D-206): the client brief, written by tools/build_brief.py
 INPUT_GLOBS = build_page.INPUT_GLOBS
 INPUT_FILES = (
     "docs/architecture/company-dataset.md",
@@ -122,6 +123,10 @@ LABELS = build_page.LABELS | frozenset(
         "Open the research view", "Open the comparison", "Named as a supplier", "Products", "Events",
         "recorded link names it as supplier", "recorded links name it as supplier", "product it is the vendor of",
         "products it is the vendor of",
+        # S21 (D-206): the entry page's card for the client brief
+        "Read a client brief", "Open the brief",
+        "’s memory depend on, who is reported to supply it, and which recorded export-control texts name those parts?",
+        "One printable brief: the memory chain, the export-control texts that name its parts, the gaps, the method and every source.",
         "A chain diagram from the accelerator to its memory and the process that memory needs, with the evidence for every link.",
         "A matrix of the export-control texts the Atlas records against the parts and technologies they name, with a timeline of when each took effect.",
         "One page per company: its identity, its links, where a source names it as a supplier, and the candidates the Atlas refused.",
@@ -200,7 +205,7 @@ class Journey(build_page.Page):
     # --- shared pieces ----------------------------------------------------------------------------
 
     def href(self, target: str, fragment: str | None = None) -> str:
-        if not (REPO_ROOT / target).exists() and target not in {p for p, _, _ in pages()}:
+        if not (REPO_ROOT / target).exists() and target not in {p for p, _, _ in pages()} | {BRIEF}:
             raise BuildError(f"a link to {target}, which does not exist")
         path = os.path.relpath(REPO_ROOT / target, (REPO_ROOT / self.rel).parent).replace(os.sep, "/")
         return esc(path + (f"#{fragment}" if fragment else ""))
@@ -342,6 +347,9 @@ class Journey(build_page.Page):
             ("Compare layers", self.label("Which parts and technologies does each recorded export-control text name among the items it controls, and when did each take effect?"),
              "A matrix of the export-control texts the Atlas records against the parts and technologies they name, with a timeline of when each took effect.",
              button(EXPORT, "Open the comparison")),
+            ("Read a client brief", f'{self.label("What does an")} {self.name("component-ai-accelerator")}{self.label("’s memory depend on, who is reported to supply it, and which recorded export-control texts name those parts?")}',
+             "One printable brief: the memory chain, the export-control texts that name its parts, the gaps, the method and every source.",
+             button(BRIEF, "Open the brief")),
             ("Investigate a company", self.label("What does the Atlas record about a company, and on what evidence?"),
              "One page per company: its identity, its links, where a source names it as a supplier, and the candidates the Atlas refused.",
              f'<ul class="chips">{chips(self.companies, self.company_link)}</ul>'),
