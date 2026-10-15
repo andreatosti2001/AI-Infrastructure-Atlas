@@ -326,5 +326,137 @@
         ]
       }
     ]
+  },
+  {
+    "id": "policy-us-fr-2025-00636",
+    "type": "policy",
+    "name": "BIS rule of 15 January 2025 on a framework for artificial intelligence diffusion",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-bis-rule-2025-00636-title",
+      "claim-bis-rule-2025-00636-document-number"
+    ],
+    "official_title": [
+      {
+        "value": "Framework for Artificial Intelligence Diffusion",
+        "claim_ids": [
+          "claim-bis-rule-2025-00636-title"
+        ]
+      }
+    ],
+    "official_citation": [
+      {
+        "value": "90 FR 4544",
+        "claim_ids": [
+          "claim-bis-rule-2025-00636-citation"
+        ]
+      }
+    ],
+    "issued_in": [
+      {
+        "value": "jurisdiction-us",
+        "claim_ids": [
+          "claim-bis-rule-2025-00636-issued-in-us"
+        ]
+      }
+    ],
+    "issuing_authority": [
+      {
+        "value": "Bureau of Industry and Security, Department of Commerce",
+        "claim_ids": [
+          "claim-bis-rule-2025-00636-title"
+        ]
+      }
+    ],
+    "instrument_form": [
+      {
+        "value": "interim_final_rule",
+        "claim_ids": [
+          "claim-bis-rule-2025-00636-form"
+        ]
+      }
+    ],
+    "measure_kinds": [
+      {
+        "value": "export_control",
+        "claim_ids": [
+          "claim-bis-rule-2025-00636-export-controls"
+        ]
+      }
+    ],
+    "amends": [
+      {
+        "value": "policy-us-15-cfr-730-774",
+        "claim_ids": [
+          "claim-bis-rule-2025-00636-amends-ear"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "policy-us-fr-2025-00711",
+    "type": "policy",
+    "name": "BIS rule of 16 January 2025 on due diligence for advanced computing integrated circuits",
+    "aliases": [],
+    "identity_claim_ids": [
+      "claim-bis-rule-2025-00711-title",
+      "claim-bis-rule-2025-00711-document-number"
+    ],
+    "official_title": [
+      {
+        "value": "Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period",
+        "claim_ids": [
+          "claim-bis-rule-2025-00711-title"
+        ]
+      }
+    ],
+    "official_citation": [
+      {
+        "value": "90 FR 5298",
+        "claim_ids": [
+          "claim-bis-rule-2025-00711-citation"
+        ]
+      }
+    ],
+    "issued_in": [
+      {
+        "value": "jurisdiction-us",
+        "claim_ids": [
+          "claim-bis-rule-2025-00711-issued-in-us"
+        ]
+      }
+    ],
+    "issuing_authority": [
+      {
+        "value": "Bureau of Industry and Security, Department of Commerce",
+        "claim_ids": [
+          "claim-bis-rule-2025-00711-title"
+        ]
+      }
+    ],
+    "instrument_form": [
+      {
+        "value": "interim_final_rule",
+        "claim_ids": [
+          "claim-bis-rule-2025-00711-form"
+        ]
+      }
+    ],
+    "measure_kinds": [
+      {
+        "value": "export_control",
+        "claim_ids": [
+          "claim-bis-rule-2025-00711-export-controls"
+        ]
+      }
+    ],
+    "amends": [
+      {
+        "value": "policy-us-15-cfr-730-774",
+        "claim_ids": [
+          "claim-bis-rule-2025-00711-amends-ear"
+        ]
+      }
+    ]
   }
 ]

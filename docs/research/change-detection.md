@@ -1,6 +1,6 @@
 # Change detection
 
-**Status:** ACTIVE from S21.5 (D-207). **Owner:** the Change Detector (`docs/agents/contracts.md`).
+**Status:** ACTIVE from S21.5 (D-207); rules CD-1 to CD-7 accepted on 2026-10-15 (D-209). **Owner:** the Change Detector (`docs/agents/contracts.md`).
 
 This file holds the rules the Change Detector keeps and the comparisons it has ruled. A comparison is a
 **candidate change**: what a later official text does to an entry or an act the Atlas holds, quoted from both
@@ -74,4 +74,5 @@ those sentences, and the later texts still name "High bandwidth memory" and semi
 act is "in force"; that the AI Diffusion rule is or is not rescinded. The Atlas records what the texts say and the
 dates they fix.
 
-**Status:** candidates, awaiting the human's verdict on each staged record (2026-10-15).
+**Status:** all candidates accepted by the human on 2026-10-15 and made canonical (D-209;
+`docs/quality/human-reviews.md`). The rules CD-1 to CD-7 bind every later comparison.

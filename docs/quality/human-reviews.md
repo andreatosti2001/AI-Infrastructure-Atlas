@@ -35,6 +35,7 @@ on each claim whose `recorded_in` names it, or query `claims.review_recorded_in`
 | [Third-party supplier reports and Samsung Electronics](#third-party-supplier-reports-and-samsung-electronics-2026-10-07) | 2026-10-07 | 6 | all accepted |
 | [Export-control records](#export-control-records-2026-10-08) | 2026-10-08 | 37 | all accepted |
 | [First policy links](#first-policy-links-2026-10-13) | 2026-10-13 | 10 | all accepted |
+| [Later rules found by the change-detection search](#later-rules-found-by-the-change-detection-search-2026-10-15) | 2026-10-15 | 22 | all accepted |
 
 No claim has been rejected or found "wording too strong" at review.
 
@@ -178,3 +179,25 @@ No claim has been rejected or found "wording too strong" at review.
   `tools/navigate.py edges` shows each with its act's status and the line "describes the text; does not
   advise".
 - **Decided at the same review:** none; the design rulings D-165 to D-174 were taken earlier the same day.
+
+## Later rules found by the change-detection search, 2026-10-15
+
+- **Reviewer:** the human. **Claims:** 22. **Verdict:** all accepted (option A), with the Change Detector's rules.
+- **What was reviewed**, from the drafts, the comparisons ([`change-detection.md`](../research/change-detection.md)
+  §1, C-1 to C-5) and the [search log](../research/search-logs/later-rules/search-log.md), each claim listed with
+  one plain sentence:
+  - two later acts, each from its official text with its identity, citation, document number, form, the EAR parts
+    it amends, its measure kind, issuing country and stated effective date: BIS rule 2025-00636 (90 FR 4544, the
+    AI Diffusion rule, published 15 January 2025, effective 13 January 2025) and BIS rule 2025-00711 (90 FR 5298,
+    published and effective 16 January 2025);
+  - four quoted changes to entries the links rest on: 3A090.c re-issued without "(HBM)" (2025-00636) and with
+    "(HBM)" and "Technical Note 1" (2025-00711); 3B001.f.6 added and 3B001.f headed "Lithography commodities";
+    3B993.f.4 added and 3B993's heading extended to components and accessories (both 2025-00711);
+  - the AI Diffusion rule's § 742.6 "Worldwide license requirement", and the July 2026 rule's (2026-14132)
+    statement that BIS enforces it only for certain country groups;
+  - the seven change-detection rules CD-1 to CD-7.
+- **What changed:** the 22 claims, the two policy records and their four events became canonical. The HBM link
+  (2024-28270) cites the two 3A090.c claims; the 2023 equipment link (2023-23049) cites the 3B001 and 3B993 claims.
+  No link carries a date; the term matches are unchanged. The export-control page, the client brief and the
+  profiles that list acts were rebuilt with seven acts. CD-1 to CD-7 bind every later comparison (D-209).
+- **Decided at the same review:** D-209.

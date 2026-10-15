@@ -3386,3 +3386,24 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
     search again, or the check fails.
 - **Rejected:** keeping the old sentence until S22 (untrue in the meantime); leaving the pages to S22 (newly accepted
   acts would not appear).
+
+## D-209 — The later-rule search's outcome: two later acts recorded, their changes quoted beside the links; the change-detection rules bind
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, S21.5 review; closes D-175)
+- **Context:** S21.5's dated search (2024-12-06 to 2026-10-15; `docs/research/change-detection.md` §1) found two
+  later BIS rules that change the wording of entries the `restricts` links rest on, no repeal of the five acts, and
+  no official text rescinding the AI Diffusion rule.
+- **Decision:**
+  - BIS rules 2025-00636 (90 FR 4544) and 2025-00711 (90 FR 5298) are policy records from their official texts, with
+    their published and effective dates as events and their status derived (D-156); the AI Diffusion debt of D-163
+    and the M5 audit is closed by recording the rule;
+  - each change is an `ATTRIBUTION` quoting the later text, cited by the link whose evidence names the entry
+    (D-169): the 2024 HBM link cites the two 3A090.c claims; the 2023 equipment link cites the 3B001 and 3B993 claims.
+    No link is dated; no term match is re-ruled, because no later text changes the sentences the matches rest on;
+  - the July 2026 rule's (2026-14132) enforcement statement is a canonical `ATTRIBUTION` with no record field; no
+    `repealed` event is recorded, since no repealing text exists in the window;
+  - the Change Detector's rules CD-1 to CD-7 (`change-detection.md`) bind every later comparison;
+  - the EAR's dates stay unrecorded, a named gap for the next policy session (search log, step 9).
+- **Rejected:** recording only 2025-00711 (the AI Diffusion rule would stay unrecorded debt); keeping the comparisons
+  without records; recording the acts with the links unchanged (a reader of a link would not see the later
+  amendment); a repeal or end date from the July 2026 statement (it repeals nothing).

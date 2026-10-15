@@ -68,7 +68,9 @@
     "target_entity": "component-high-bandwidth-memory",
     "claim_ids": [
       "claim-bis-rule-2024-28270-controls-hbm-stacks",
-      "claim-bis-rule-2024-28270-hbm-term-match"
+      "claim-bis-rule-2024-28270-hbm-term-match",
+      "claim-bis-rule-2025-00636-revises-3a090",
+      "claim-bis-rule-2025-00711-revises-3a090"
     ]
   },
   {
@@ -90,7 +92,9 @@
     "claim_ids": [
       "claim-bis-rule-2023-23049-sme-controls",
       "claim-bis-rule-2023-23049-sme-term-match",
-      "claim-bis-rule-2024-28270-revises-3b001-3b002"
+      "claim-bis-rule-2024-28270-revises-3b001-3b002",
+      "claim-bis-rule-2025-00711-adds-3b001-f6",
+      "claim-bis-rule-2025-00711-revises-3b993"
     ]
   },
   {
