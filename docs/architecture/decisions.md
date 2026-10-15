@@ -3407,3 +3407,28 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
 - **Rejected:** recording only 2025-00711 (the AI Diffusion rule would stay unrecorded debt); keeping the comparisons
   without records; recording the acts with the links unchanged (a reader of a link would not see the later
   amendment); a repeal or end date from the July 2026 statement (it repeals nothing).
+
+## D-210 — S21.5's open debt: a search tool, the EAR's dates, the July 2026 statement on the pages, a compact printed appendix
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, after S21.5's report); each item is
+  work for the session named, which brings its design to the human before building
+- **Context:** S21.5's report left four open items: the later-rule search must be re-run whenever the as-of date moves
+  (D-208), but exists only as archived session scripts; the EAR record has no dates; the July 2026 enforcement
+  statement (`claim-bis-rule-2026-14132-enforcement-statement`) is canonical but on no page; the printed brief grew to
+  79 A4 pages, 66 of them evidence appendices (A-4).
+- **Decision:**
+  - **a repository tool re-runs the later-rule search** (S22): standard library; it queries the Federal Register index
+    and the CFR finding aids, writes a dated log and lists candidate texts; recording any act still goes through
+    staging and the human's verdict (D-183). The Verifier's anchor re-read (agent audit F-4) is considered for the same
+    tool;
+  - **the EAR's dates come from the 1996 reissue** (the next policy research session): the Federal Register rule the
+    CFR names as the EAR's source (61 FR 12714, 25 March 1996) is retrieved, and its publication and effective dates
+    become events under the existing model; no schema change;
+  - **the pages show the July 2026 statement under the AI Diffusion rule** (S22, with the page builds): a "later
+    statements about this act" line quoting BIS in that act's evidence on the export-control page and the client brief;
+    the act's status stays derived from its own events (D-156);
+  - **the printed brief lists each claim once** (S22, with the page builds): in print only, a compact evidence list
+    (statement, source, page) replaces the repeated panels; the screen version is unchanged; print checks follow.
+- **Rejected:** re-running the search by hand each session; freezing the pages' as-of date until a search runs; dating
+  the EAR by the CFR edition read (a new event kind); leaving the EAR undated by rule; keeping the July 2026 statement
+  off the pages; keeping the full printed appendix; deferring the print length to v1.5.
