@@ -3603,3 +3603,112 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   release; break S22.5-10. The Data Auditor owns the workflow, as before.
 - **Rejected:** upgrading the actions while pinning them (a change of behaviour outside F-12); pip hashes (exact pins
   and a clean `pip check` suffice at this scale, the audit's own disposition).
+
+## D-218 — The release content audit: its method, its acceptance and the dispositions of its findings
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15: S23 H-0 the sample, H-1 the PDF
+  reading, H-2 the findings and dispositions)
+- **Context:** S23, the research depth and content audit before v1.0 (roadmap S23; PEF §4, §6), audited the content
+  as a system for the first time since S13, which read the HBM page alone. Its debt rows came from D-213 and the M6
+  audit.
+- **Decision:**
+  - **the method:** every claim a page result rests on (59, traced mechanically) plus 30 drawn by type are read in
+    full, and the anchor of every citation (203) is searched for in bytes retrieved on the audit's day; PDF text comes
+    from the machine's poppler `pdftotext`, called by a standard-library script in the audit's evidence folder, its
+    version recorded with every result. No repository dependency is added and D-026 is unchanged; the Verifier's
+    re-read tool (agent audit F-4) still decides its own PDF reading;
+  - **the audit** (`docs/research/release-content-audit.md`) **is accepted** with its ratings: research and content,
+    process 3, outcome 2 (unchanged since S13). No blocking finding: 178 of 178 readable anchors found at their
+    locators, 0 of 85 judged claims exceeding their evidence; ten sources are access gaps;
+  - **C-1** is remediated in S23 (D-220); **C-2** in S23 (D-221); the inherited `not_researched` wording in S23
+    (D-219);
+  - **wording only, no data change:** `claim-model.md` §10 says that a source's retrieval date dates an undated
+    source and a citation's read date records a re-read (closes the analytical audit's C-8); `policy-dataset.md` says
+    that `issued_in` may rest on two official texts joined by the bureau both name, and that an official text's
+    `publisher` names its edition (closes the M5 audit's two data rows); `company-dataset.md` §3 says why
+    `company-samsung-electronics-co-ltd` keeps "co-ltd" and that "Co., Ltd." joins the legal-form list only by a
+    decision that keeps existing IDs valid;
+  - **debt with owners, nothing built:** C-3 (this audit's text hashes are the baseline for the next re-read of an
+    HTML source; the Verifier's re-read tool records a text hash), C-4 (Amkor's two sources re-read from a file the
+    human supplies, RA-4, when next relied on), C-5 (single-voice values: a stated limitation), C-6 (narrow coverage:
+    the release's coverage statement; v2, D-201), C-7 (the concept layer on no page: v1.5), C-9 (the Verifier's tool
+    tolerates PDF extraction artefacts), C-10 and E-1 (kept); "the working definition of HBM" is closed with no change
+    (the difference with the 2024 rule's HBM is stated in the term-match claim on the pages);
+  - **C-8, debt owned by sessions that do not exist before v1.0** (the EAR's dates, the May 2026 BIS guidance, a
+    current H100 supplier and fabricator, a recognised source for Trainium2's memory maker, newer evidence for values
+    past the horizon, `cand-001`): S25 lists each as a v1.0 known limitation with what is missing, and each moves to a
+    named research session after the release. The roadmap is unchanged.
+- **Rejected:** every claim read in full (twice the reading for a bound the anchor search already narrows); only the
+  weight-bearing claims (nothing could be said of the rest); a pinned PDF reader in the test requirements; PDF anchors
+  by hand; reclassifying the five `issued_in` claims as `DERIVATION` and renaming eight official sources' publishers
+  (data changes for a wording question); adding a research session before S25.
+
+## D-219 — `not_researched` covers a partial search (vocabulary wording)
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, S23 H-2; release content audit,
+  Part 6 row 4)
+- **Context:** The vocabulary defined `not_researched` as "No source has been checked for this value yet", while
+  ER-3 keeps the state after a search that did not cover every preferred class (`hbm-supplier-research-original-rules.md`;
+  D-213 sent the wording to S23). SK hynix's `incorporated_in` is such a case: its annual report was read and names
+  no country.
+- **Decision:** the description of `not_researched` in `schemas/entities.schema.json` reads "No research has
+  established this value: no source has been checked yet, or a search did not cover every preferred class
+  (source-policy.md ER-3). Says nothing about whether the value is public." Only the description changes: the value,
+  the validation and every record stay as they were; the pages that print the description (the HBM page, for a
+  supplier left unknown) print the new text when such a value appears. A schema file changed, so the full break
+  harness runs (D-177).
+- **Rejected:** a second state for a partial search (a schema and data change); explaining the use in ER-3 only,
+  leaving the vocabulary contradicting it.
+
+## D-220 — BIS's announcement about the AI Diffusion rule is recorded as an `announced` event; the timeline names every kind of event it draws
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, S23 H-2 "record it now", and the
+  verdict on the three records, `docs/quality/human-reviews.md`)
+- **Context:** The release content audit's C-1: the export-control page and the client brief show the AI Diffusion
+  rule (`policy-us-fr-2025-00636`) as "has taken effect" without BIS's own announcement of 13 May 2025, held only as a
+  pointer (CD-7) inside 2026-14132's sentence. The model already had its place: an `announced` event on a policy
+  (`events.schema.json`), supported by a `government_publication` (`event:announced`), which never moves a status
+  (ER-8; PL-7).
+- **Decision:**
+  - three records, accepted by the human: the source `src-065` (the bis.gov press release of 13 May 2025, the page
+    91 FR 43034 cites; retrieved 2026-10-15, four anchors found); the claim
+    `claim-bis-ai-diffusion-rescission-announced-2025-05-13` (`ATTRIBUTION`, party standing: what the release states,
+    and that it does not itself rescind the rule); the event `event-us-fr-2025-00636-announced-2025-05-13`;
+  - the Change Detector rules which act the announcement concerns, in a new table of `change-detection.md` §1,
+    "Announcements about acts held": the release's name and issue date for the rule, and 91 FR 43034's citation of
+    the same address. A PDF copy on `media.bis.gov` that differs from the page (12 May, "initiated", "a Federal
+    Register notice") is not registered;
+  - the rule's status stays "has taken effect": no text in the searched window repeals it (D-209), and an
+    announcement never moves a status (D-156);
+  - the export-control timeline's key names exactly the kinds of event the timeline draws, the unusual ones by their
+    vocabulary value (`events.schema.json`), so the new `announced` mark is explained; JR-15, written first and shown
+    failing on the rebuilt page; break S23-1.
+- **Rejected:** leaving the announcement out of v1.0 (H-2's alternative); registering the `media.bis.gov` PDF (it is
+  not the page the official text cites, and it differs from it); a repeal or end date from the announcement (ER-8,
+  D-209); a "later statements" row for it (that table holds official texts' statements, D-214).
+
+## D-221 — Company pages mark values whose newest evidence is past the freshness horizon on the as-of date
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, S23 H-2 "mark any value past 12
+  months"; release content audit C-2)
+- **Context:** Micron's legal name, incorporation, headquarters and role rest on its 10-K signed 2025-10-03, which
+  passed the 12-month horizon (`source-policy.md` §12) on 2026-10-03 with no signal: F-1 measures age at verification
+  by design, the source-age query (D-129) ages only the chain's links, and the Atlas-wide ageing report (DT-S13-4)
+  had no owner able to build it. V-5 forbids ages from a clock.
+- **Decision:**
+  - `tools/evidence_age.py` (Data Auditor; standard library) says, for one value of a `time_sensitive` matrix row,
+    whether the newest evidence the row accepts is dated more than the horizon before the reference date. It reads
+    each input from its one home: the reference date from `sql/source_age.sql`, the horizon and the matrix from
+    `source-policy.md`, evidence dates by §12's rule; a historical value (`valid_to`, D-144) is never marked. The
+    journeys build stops if the reference date differs from the source-age result's;
+  - each company page marks such a value beside it: "(newest evidence <date>, more than <12> months before the as-of
+    date)", the date and the horizon as derived values, with a framing block saying what the mark does and does not
+    mean; no age is computed and no value is called current or stale (V-5). Today it marks Micron's four values;
+  - JR-16 recomputes the marks with the freshness check's own helpers (`tests/test_freshness.py`), with the as-of date
+    in place of the verification date; written first and shown failing on Micron's page; JR-3 knows the two new
+    derived values; break S23-2. The build's and the tests' input lists gain the module;
+  - the Atlas-wide ageing report of DT-S13-4 is discharged for company values; the other `time_sensitive` rows
+    (edges, facilities) are aged by the source-age query (chain links) or carry no current value outside it.
+- **Rejected:** refreshing Micron from its FY2026 10-K (fixes one company once; new research for a named session after
+  v1.0, D-218); listing the four values as a limitation only; a mark computed from today's date (V-5); an SQL query and
+  its tutorial for a comparison of two dates.

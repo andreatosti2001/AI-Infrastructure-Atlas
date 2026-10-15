@@ -40,6 +40,13 @@ JR-14 (S22, D-210, D-214) every later statement the Change Detector's table in c
       about acts held") assigns to an act is shown in that act's evidence panel on the export-control page, under its
       own heading and framing, as a whole claim card; no other act panel has such a block; the act's status stays the
       one derived from its own events.
+JR-15 (S23, D-220) the timeline's key names every kind of event the timeline draws: each drawn event's type, in words,
+      is the text of one key entry, and the key has no entry for a type it does not draw (besides the as-of line).
+JR-16 (S23, D-221) each company page marks exactly the values on time_sensitive matrix rows whose newest accepted
+      evidence is dated more than the freshness horizon (source-policy.md §12) before the as-of date, each mark giving
+      that newest date, recomputed here with the freshness check's own helpers (tests/test_freshness.py) with the
+      as-of date in place of the verification date; a historical value (valid_to) is never marked; the page carries
+      the framing that explains the mark whenever it shows one.
 """
 
 from __future__ import annotations
@@ -77,6 +84,7 @@ INPUT_FILES = (
     "docs/research/source-policy.md",
     "tools/build_journeys.py",
     "tools/build_page.py",
+    "tools/evidence_age.py",
     "tools/facility_status.py",
     "tools/journey_template.html",
     "tools/navigate.py",
@@ -86,7 +94,8 @@ INPUT_FILES = (
 )
 NO_ADVICE = "This page describes what the text says; it does not advise."
 FORBIDDEN = ("in force", "compliant", "licence required", "license required", "prohibited", "banned", "restricted", "critical")
-DERIVED_KINDS = {"count", "policy-status", "latest-published", "searched-to", "sql-cell", "input-file", "input-digest", "pointer", "bytes-match", "year"}
+DERIVED_KINDS = {"count", "policy-status", "latest-published", "searched-to", "sql-cell", "input-file", "input-digest", "pointer", "bytes-match", "year",
+                 "evidence-newest", "horizon-months"}  # S23 (D-221): recomputed by JR-16 and below
 COUNT_UNITS = {
     # data-count -> the unit that must follow the number in its own line (V-4: a number shows its unit); the singular
     # stem, so that a count of one may read "1 link" (S20 browser QA found "1 links")
@@ -421,6 +430,11 @@ class JourneyTests(unittest.TestCase):
                             registered = self.homes.canonical[citation["source_id"]]["retrieval"]["sha256"]
                             same = citation["read"]["sha256"].startswith(registered) or registered.startswith(citation["read"]["sha256"])
                             self.assertEqual(node.text(), "same bytes as registered" if same else "bytes changed since registration")
+                        elif kind == "horizon-months":
+                            from test_freshness import horizon_months
+                            self.assertEqual(node.text(), str(horizon_months()))
+                        elif kind == "evidence-newest":
+                            self.assertTrue(any("data-past-horizon" in a.attrs for a in node.ancestors()), "an evidence date outside a JR-16 mark")
                         elif kind == "year":
                             svg = next(a for a in node.ancestors() if a.tag == "svg")
                             years = range(int(svg.attrs["data-from"][:4]), int(svg.attrs["data-to"][:4]) + 1)
@@ -748,6 +762,53 @@ class JourneyTests(unittest.TestCase):
             self.assertTrue([n for n in block.walk() if n.tag == "h4"], "the later statements have no heading")
             derived = [n.text() for n in panel.walk() if n.attrs.get("data-derived") == "policy-status"]
             self.assertEqual(derived, [self.records.status(act, self.on).replace("_", " ")], "the act's status is not the one its own events give")
+
+    # JR-15
+    def test_jr15_the_timeline_key_names_every_kind_of_event_drawn(self) -> None:
+        page = self.pages[EXPORT]
+        r = self.records
+        drawn = {e["event_type"].replace("_", " ") for e in r.events if e["subject"] in r.policy_ids}
+        figure = [n for n in page.nodes if n.tag == "figure" and "timeline-fig" in n.attrs.get("class", "").split()]
+        self.assertEqual(len(figure), 1)
+        keys = [n for n in figure[0].parent.children if n.tag == "ul" and "key" in n.attrs.get("class", "").split()]
+        self.assertEqual(len(keys), 1, "the timeline has no key beside it, or more than one")
+        entries = {n.text().strip() for n in keys[0].walk() if n.tag == "li"}
+        self.assertEqual(entries - {"the as-of date"}, drawn, "the timeline's key and the kinds of event it draws differ")
+
+    # JR-16
+    def test_jr16_company_pages_mark_values_whose_evidence_is_past_the_horizon(self) -> None:
+        from test_data_entities import fields, leaf_citations, load_entities, matrix
+        from test_data_integrity import load_data
+        from test_freshness import evidence_date, horizon_months, months_before
+
+        sources, _, canonical = load_data()
+        by_id = {s["id"]: s for s in sources}
+        claims = {c["id"]: c for c in canonical}
+        rows, limit = matrix(), months_before(self.on, horizon_months())
+        for record in load_entities()["canonical"]["companies"]:
+            expected = {}
+            for field, row_key, assertions in fields(record):
+                row = rows[row_key]
+                if row["freshness"] != "time_sensitive":
+                    continue
+                for i, (assertion, ids) in enumerate(assertions):
+                    if assertion is None or "valid_to" in assertion:
+                        continue
+                    dates = [evidence_date(c, by_id[ci["source_id"]]) for cid in ids for c, ci in leaf_citations(cid, claims)
+                             if by_id[ci["source_id"]]["source_class"] in row["sufficient"] and ci["standing"] in row["standings"]]
+                    if dates and max(dates) < limit:
+                        expected[f"{field}/{i}"] = max(dates)
+            page = self.pages[f"site/companies/{record['id']}/index.html"]
+            shown = {}
+            for n in page.nodes:
+                if "data-past-horizon" in n.attrs:
+                    shown[n.attrs["data-past-horizon"]] = [m.text() for m in n.walk() if m.attrs.get("data-derived") == "evidence-newest"]
+            with self.subTest(company=record["id"]):
+                self.assertEqual({k: v[0] if len(v) == 1 else v for k, v in shown.items()}, expected,
+                                 "the values marked as past the horizon differ from a recomputation")
+                if expected:
+                    self.assertTrue([n for n in page.nodes if n.attrs.get("data-framing") == "evidence-age"],
+                                    "a page marks a value past the horizon without the framing that explains it")
 
 
 if __name__ == "__main__":

@@ -100,6 +100,13 @@ anchors and review.
   not fail, is fixed and those checks now run in CI (D-212). S22.5 closed the findings left for v1.5's opening, checks
   first: a named build error for a value outside its vocabulary, a break for each check module never shown failing,
   CI's actions pinned to commit hashes, and the search tool's main function split by step (D-216, D-217).
+- **The release content audit** (S23): every claim a page result rests on, plus a drawn sample, re-read against
+  freshly retrieved sources, and every quoted passage searched for again
+  ([`release-content-audit.md`](docs/research/release-content-audit.md), D-218): 178 of 178 readable passages found
+  where their locators say, no claim saying more than its source; depth of method, narrow coverage, single-voice
+  values. Remediated: BIS's own May 2025 announcement about the AI Diffusion rule is recorded and shown under the act,
+  whose status is unchanged (D-220); company pages mark values whose newest evidence is past the freshness horizon on
+  the as-of date (D-221); `not_researched` is reworded to cover a partial search (D-219).
 - **The first policy links** (M5): four `restricts` links say that an act's own text names a class among the
   items it controls: the December 2024 rule names high-bandwidth memory, and the 2022, 2023 and 2024 rules
   name semiconductor manufacturing equipment. Each rests on the act's quoted sentence and a recorded match
@@ -156,8 +163,8 @@ D-201); S21 built the first client brief and activated the Client Output role
 ([`client-brief.md`](docs/architecture/client-brief.md), D-202 to D-206). S21.5, added by the human (D-207), activates
 the Change Detector and runs its first task, the dated search for later export-control texts after 5 December 2024
 ([`change-detection.md`](docs/research/change-detection.md)). M7, the final audits and the v1.0 release (S22 to
-S25), opened with S22, the code and engineering audit, and S22.5, which closed its findings outside v1.5; next is S23,
-the research depth and content audit.
+S25), opened with S22, the code and engineering audit, and S22.5, which closed its findings outside v1.5; S23, the
+research depth and content audit, is done (D-218 to D-221); next is S24, the portfolio and capability audit.
 
 ## Layout
 

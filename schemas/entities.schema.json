@@ -360,7 +360,7 @@
     "vocab_unresolved_state": {
       "description": "MA §5.7 states for a value that is not recorded. 'verified' and 'disputed' describe evidence, so they live on claims (S06), not here.",
       "oneOf": [
-        { "const": "not_researched", "description": "No source has been checked for this value yet. Says nothing about whether the value is public." },
+        { "const": "not_researched", "description": "No research has established this value: no source has been checked yet, or a search did not cover every preferred class (source-policy.md ER-3). Says nothing about whether the value is public." },
         { "const": "not_publicly_determinable", "description": "Research found the value is not publicly disclosed. The cited claims show why." },
         { "const": "not_applicable", "description": "The attribute does not apply to this record, e.g. nameplate IT capacity for a wafer fab." }
       ]

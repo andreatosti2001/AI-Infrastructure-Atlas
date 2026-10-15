@@ -71,6 +71,7 @@ INPUT_FILES = (
     "tools/build_brief.py",
     "tools/build_journeys.py",
     "tools/build_page.py",
+    "tools/evidence_age.py",
     "tools/facility_status.py",
     "tools/journey_template.html",
     "tools/navigate.py",

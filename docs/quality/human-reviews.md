@@ -36,6 +36,7 @@ on each claim whose `recorded_in` names it, or query `claims.review_recorded_in`
 | [Export-control records](#export-control-records-2026-10-08) | 2026-10-08 | 37 | all accepted |
 | [First policy links](#first-policy-links-2026-10-13) | 2026-10-13 | 10 | all accepted |
 | [Later rules found by the change-detection search](#later-rules-found-by-the-change-detection-search-2026-10-15) | 2026-10-15 | 22 | all accepted |
+| [BIS announcement about the AI Diffusion rule](#bis-announcement-about-the-ai-diffusion-rule-2026-10-15) | 2026-10-15 | 1 | accepted |
 
 No claim has been rejected or found "wording too strong" at review.
 
@@ -201,3 +202,21 @@ No claim has been rejected or found "wording too strong" at review.
   No link carries a date; the term matches are unchanged. The export-control page, the client brief and the
   profiles that list acts were rebuilt with seven acts. CD-1 to CD-7 bind every later comparison (D-209).
 - **Decided at the same review:** D-209.
+
+## BIS announcement about the AI Diffusion rule, 2026-10-15
+
+- **Reviewer:** the human. **Claims:** 1. **Verdict:** accepted, with its source and event.
+- **What was reviewed**, from the drafts and the release content audit's finding C-1
+  ([`release-content-audit.md`](../research/release-content-audit.md); the
+  [search log](../research/search-logs/release-content-audit/search-log.md)), shown with the claim's full wording:
+  - the source `src-065`: BIS's press release of 13 May 2025 on bis.gov, the page 91 FR 43034 (2026-14132) cites as
+    guidance, retrieved on 2026-10-15 (all four anchors found);
+  - the claim `claim-bis-ai-diffusion-rescission-announced-2025-05-13` (`ATTRIBUTION`): what the release states (a
+    rescission announced, the rule's issue and compliance dates as the release gives them, a regulation planned to
+    formalise it, enforcement officials instructed not to enforce it), and that it is an announcement of intent,
+    which does not itself rescind the rule (ER-8);
+  - the event `event-us-fr-2025-00636-announced-2025-05-13`: `announced`, on the AI Diffusion rule.
+- **What changed:** the claim and its event became canonical and the source was registered. The export-control page
+  and the client brief show the announcement under the rule; the rule's status is unchanged ("has taken effect"),
+  because an announcement never moves a status and no text in the searched window repeals the rule (D-156, D-209).
+- **Decided at the same review:** D-220.

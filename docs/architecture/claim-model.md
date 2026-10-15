@@ -384,6 +384,16 @@ anchor was re-checked, as `source-policy.md` §12 requires. The anchor was still
 the section heading had changed (§14). The first session with `time_sensitive` canonical
 records (S07) builds the check.
 
+**Two access dates are two events, not a conflict** (S23, D-218; analytical audit C-8). A source
+record's `retrieval.accessed_at` says when the Atlas obtained the bytes the record describes; a
+citation's `read.accessed_at` says when the Verifier read bytes to check that one citation. A read
+may come later than the retrieval. When its hash equals the retrieval's, the bytes are the same, and
+only the first date matters for dating: **an undated source is dated by its record's
+`retrieval.accessed_at`** (`source-policy.md` §12; `sql/accelerator_dependencies.sql` reads it). When
+the hashes differ, the source changed and the anchor was re-checked (the `read` schema). `src-043`
+shows the first case: retrieved 2026-10-01, read for `claim-trainium2-hbm-capacity` on 2026-10-02,
+same hash.
+
 ## 11. validate-data
 
 MA §15 asks for a documented equivalent of `validate-data`. Here it is two test modules

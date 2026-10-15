@@ -131,6 +131,13 @@ code does for jurisdictions.
 **Every field is required.** A value the text does not state is `not_researched` or `not_applicable`,
 never left out (R-7).
 
+**`issued_in` may rest on two official texts** (S23, D-218; M5 audit §6). A Federal Register rule's AGENCY
+line names its bureau without the country ("Bureau of Industry and Security, Commerce"). Its `issued_in`
+claim then quotes that line and the CFR's § 730.1 ("The EAR are issued by the United States Department of
+Commerce, Bureau of Industry and Security"), the code the rule amends. Each half is a verbatim anchor; the
+join is the identity of the bureau both texts name, read from the texts, not inferred, so the claim stays a
+`FACT`. A rule whose own text names the U.S. Department of Commerce (2023-23049) cites that text alone.
+
 **Deliberately absent:**
 - no status;
 - no dates (they are events, P-4);
@@ -218,6 +225,13 @@ rescinds" is an announcement (ER-8). A separate class lets the matrix demand the
 dates and the repeal. It also stops a press release from making an act look repealed or in effect.
 
 **Neighbour test** (§3): *Is the document the act itself, as the official journal or code publishes it?*
+
+**What `publisher` holds for an official text** (S23, D-218; M5 audit §6). For an `official_legal_text`
+source, `publisher` names the official edition and its host ("Federal Register (official edition,
+govinfo.gov)", "Code of Federal Regulations, annual edition (govinfo.gov)"), because the edition is what
+makes the text official. The bodies that compile it (the Office of the Federal Register and the Government
+Publishing Office) are not named there, and the body that issued the act is the policy record's sourced
+`issuing_authority`, never the source's publisher.
 
 **What changes in `source-policy.md`:**
 - §2 gains the class and its "primary for" line;

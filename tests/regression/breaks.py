@@ -601,6 +601,25 @@ S225 = [
      [PAGE_BUILD, INSIGHT_BUILD], []),
 ]
 
+# S23: the release content audit's remediations (D-220, D-221): the timeline's key names every kind of event it draws
+# (JR-15); company pages mark values whose newest evidence is past the freshness horizon on the as-of date (JR-16).
+S23 = [
+    ("S23-1", "the timeline's key names only published and effective again, pages rebuilt (JR-15)",
+     edit(JOURNEYS, '        kinds = [k for k in dot if any(e["event_type"] == k for e in events)] + sorted({e["event_type"] for e in events} - set(dot))\n',
+          '        kinds = [k for k in dot if any(e["event_type"] == k for e in events)]\n'), [JOURNEYS],
+     ["test_jr15_the_timeline_key_names_every_kind_of_event_drawn", "the timeline's key and the kinds of event it draws differ"]),
+    ("S23-2", "company pages drop the mark beside a value past the horizon, pages rebuilt (JR-16)",
+     edit(JOURNEYS, "        newest = self.ages.past_horizon(self.homes[rid], field, i)\n", "        newest = None\n"), [JOURNEYS],
+     ["test_jr16_company_pages_mark_values_whose_evidence_is_past_the_horizon", "differ from a recomputation"]),
+    ("S23-3", "the mark ignores the horizon and marks every time-sensitive value, pages rebuilt (JR-16)",
+     edit("tools/evidence_age.py", "        return newest if newest is not None and newest < self.limit else None\n",
+          "        return newest\n"), [JOURNEYS],
+     ["test_jr16_company_pages_mark_values_whose_evidence_is_past_the_horizon", "company-nvidia"]),
+    ("S23-C1", "control: the evidence-age framing reworded, pages rebuilt",
+     edit(JT, "The date shown is the newest evidence the Atlas holds for it.", "The date shown is the newest evidence that the Atlas holds for it."),
+     [JOURNEYS], []),
+]
+
 S165_BREAKS = s165.breaks
 
 
@@ -623,7 +642,7 @@ def with_brief(brk):
 
 
 def breaks():
-    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205 + S21 + S215 + S22 + S225
+    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205 + S21 + S215 + S22 + S225 + S23
     return [with_brief(with_journeys(b)) for b in found]
 
 

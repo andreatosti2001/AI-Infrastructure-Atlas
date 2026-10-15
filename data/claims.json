@@ -5467,5 +5467,61 @@
       "reviewed_on": "2026-10-15",
       "recorded_in": "docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15"
     }
+  },
+  {
+    "id": "claim-bis-ai-diffusion-rescission-announced-2025-05-13",
+    "claim_type": "ATTRIBUTION",
+    "statement": "BIS's press release of 13 May 2025 states that the Department of Commerce announced a rescission of the AI Diffusion Rule, which the release says was issued on 15 January 2025 with compliance requirements set to come into effect on 15 May 2025; that BIS plans to publish a regulation formalizing the rescission and will issue a replacement rule; and that the Under Secretary for Industry and Security has instructed BIS enforcement officials not to enforce the rule. It is an announcement of intent (ER-8): it does not itself rescind the rule.",
+    "evidence_status": "supported",
+    "citations": [
+      {
+        "source_id": "src-065",
+        "locator": "body, the paragraph after the dateline 'WASHINGTON, D.C. —', its first sentence",
+        "anchor": "Today, the Department of Commerce (DOC) announced a rescission of the Biden Administration’s AI Diffusion Rule",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-15T21:06Z",
+          "sha256": "aa94c08641fdc27c40300184825741b800b641ba370ced531fb409f00e93d5ec"
+        }
+      },
+      {
+        "source_id": "src-065",
+        "locator": "body, the second paragraph, its first sentence",
+        "anchor": "The AI Diffusion Rule was issued on January 15, 2025, with compliance requirements that were set to come into effect on May 15, 2025.",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-15T21:06Z",
+          "sha256": "aa94c08641fdc27c40300184825741b800b641ba370ced531fb409f00e93d5ec"
+        }
+      },
+      {
+        "source_id": "src-065",
+        "locator": "body, the third paragraph",
+        "anchor": "BIS plans to publish a regulation formalizing the rescission and will issue a replacement rule in the future.",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-15T21:06Z",
+          "sha256": "aa94c08641fdc27c40300184825741b800b641ba370ced531fb409f00e93d5ec"
+        }
+      },
+      {
+        "source_id": "src-065",
+        "locator": "body, the fourth paragraph, the words before the quotation",
+        "anchor": "Under Secretary of Commerce for Industry and Security Jeffery Kessler has instructed BIS enforcement officials not to enforce the Biden Administration’s AI Diffusion Rule",
+        "standing": "party",
+        "read": {
+          "accessed_at": "2026-10-15T21:06Z",
+          "sha256": "aa94c08641fdc27c40300184825741b800b641ba370ced531fb409f00e93d5ec"
+        }
+      }
+    ],
+    "as_of": "2025-05-13",
+    "verified_on": "2026-10-15",
+    "review": {
+      "verdict": "accepted",
+      "reviewer": "human",
+      "reviewed_on": "2026-10-15",
+      "recorded_in": "docs/quality/human-reviews.md#bis-announcement-about-the-ai-diffusion-rule-2026-10-15"
+    }
   }
 ]

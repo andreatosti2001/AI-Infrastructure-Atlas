@@ -88,6 +88,21 @@ dates they fix.
 **Status:** all candidates accepted by the human on 2026-10-15 and made canonical (D-209;
 `docs/quality/human-reviews.md`). The rules CD-1 to CD-7 bind every later comparison.
 
+### Announcements about acts held (S23, D-220)
+
+An authority's announcement about an act the Atlas holds is not a later text (CD-7): it is recorded as an
+`announced` event on the act, which never moves the act's status (ER-8, D-156), and its claim is an `ATTRIBUTION` of
+intent. The Change Detector rules which act it concerns.
+
+| Act | Announcement | Why it is this act |
+|---|---|---|
+| `policy-us-fr-2025-00636` | `event-us-fr-2025-00636-announced-2025-05-13` (`claim-bis-ai-diffusion-rescission-announced-2025-05-13`, `src-065`, BIS press release of 13 May 2025) | the release names "the Biden Administration's AI Diffusion Rule" and says it "was issued on January 15, 2025"; the Atlas holds one act of that name published that day (90 FR 4544, "Framework for Artificial Intelligence Diffusion"); and 91 FR 43034 (p.3) cites this release's address as the guidance of 13 May 2025 about § 742.6(a)(6)(iii)(A), which 90 FR 4544 added |
+
+The pointer of C-5 to the guidance of 13 May 2025 is now read; the one to the guidance of 31 May 2026 is not (its
+printed address returned 404 on 2026-10-15; release content audit, search log). A PDF on `media.bis.gov` titled as
+the same release differs from the page in its date (12 May), its verb ("initiated") and what BIS plans ("a Federal
+Register notice"); it is not registered, and the page the official text cites is the source.
+
 ## §2 — Later runs of the search (S22 onward, D-211)
 
 Each run of `tools/later_rule_search.py` writes its log in [`search-logs/later-rules/`](search-logs/later-rules/).
