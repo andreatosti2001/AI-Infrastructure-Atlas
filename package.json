@@ -1,0 +1,8 @@
+{
+  "name": "ai-infrastructure-atlas-browser-checks",
+  "private": true,
+  "description": "Test-only: the pinned Playwright the browser checks run with in CI (D-212). No page loads a script.",
+  "devDependencies": {
+    "playwright": "1.56.1"
+  }
+}

@@ -76,6 +76,7 @@ RULINGS = {
 LABELS = build_page.LABELS | frozenset(
     {
         "Research pages", "Compare layers", "Company profile", "Place profile", "All research pages", "The question",
+        "Later statements about this act",  # S22 (D-210, D-214)
         "What are you trying to understand?", "Questions", "Where the records stop", "Explore a dependency",
         "Investigate a company", "Investigate a place", "Inspect evidence", "the dependency journey", "the research view",
         "Which parts and technologies does each recorded export-control text name among the items it controls, and when did each take effect?",
@@ -183,6 +184,21 @@ def searched_to() -> str:
         raise BuildError("docs/research/change-detection.md states no 'Searched to' date (D-208)")
     return found.group(1)
 
+def later_statements() -> dict[str, list[str]]:
+    """{act ID: [claim IDs]}: later official texts' statements about acts the Atlas holds. Their one home is the Change
+    Detector's table "Later statements about acts held" in change-detection.md §1 (S22, D-210, D-214)."""
+    text = CHANGE_DETECTION.read_text(encoding="utf-8")
+    head = "### Later statements about acts held"
+    if head not in text:
+        raise BuildError(f"docs/research/change-detection.md has no table {head[4:]!r} (D-214)")
+    found: dict[str, list[str]] = {}
+    for line in text.partition(head)[2].split("\n#")[0].splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 2 and cells[0].startswith("`policy-"):
+            found.setdefault(cells[0].strip("`"), []).extend(re.findall(r"`(claim-[^`]+)`", cells[1]))
+    return found
+
+
 class Journey(build_page.Page):
     back = ("#top", "back to the top")
 
@@ -207,6 +223,17 @@ class Journey(build_page.Page):
         self.links = [e for e in self.edges if e["relation_type"] == "restricts"]
         ids = {p["id"] for p in self.policies}
         self.policy_candidates = [c for c in self.candidates.values() if any(isinstance(s, str) and s in ids for s in c["source_entities"])]
+        self.later = later_statements()
+        for pid, claims in self.later.items():
+            if pid not in ids:
+                raise BuildError(f"change-detection.md: a later statement about {pid}, which is not an act the Atlas holds")
+            own = set(self.official_sources(pid))
+            for cid in claims:
+                claim = self.store.claims.get(cid)
+                if claim is None or self.store.where[cid] != "canonical" or claim["claim_type"] != "ATTRIBUTION":
+                    raise BuildError(f"change-detection.md: {cid} is not a canonical ATTRIBUTION")
+                if any(c["source_id"] in own for c in claim["citations"]):
+                    raise BuildError(f"change-detection.md: {cid} cites {pid}'s own text; a later statement comes from a later text")
 
     @staticmethod
     def label_text(text: str) -> str:
@@ -570,8 +597,17 @@ class Journey(build_page.Page):
             ("issued in", ", ".join(self.place_link(a["value"]) for a in policy["issued_in"])),
             ("status on", f"{self.as_of()}: {self.status(pid)}"),
         ]
-        out = self.panel(pid, self.ref(pid, "/name"), details, intro=self.act_block(pid))
+        out = self.panel(pid, self.ref(pid, "/name"), details, intro=self.act_block(pid) + self.later_block(pid))
         return out.replace(f'<article class="panel" id="ev-{esc(pid)}">', f'<article class="panel" id="ev-{esc(pid)}" data-act="{esc(pid)}">', 1)
+
+    def later_block(self, pid: str) -> str:
+        """A later official text's statement about the act, under its own heading (D-210); never a status input."""
+        claims = self.later.get(pid, [])
+        if not claims:
+            return ""
+        shown: set[str] = set()
+        cards = "".join(self.claim_card(cid, pid, shown) for cid in claims)
+        return f'<div class="later" data-later>{self.label("Later statements about this act", tag="h4")}{self.framing("later-statements")}{cards}</div>'
 
     def event_panel(self, event: dict) -> str:
         eid = event["id"]

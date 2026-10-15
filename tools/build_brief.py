@@ -62,6 +62,7 @@ BOUNDARY = "This brief describes what the Atlas’s records hold. It is not lega
 LABELS = build_journeys.LABELS | frozenset(
     {
         BOUNDARY, "Client brief", "built by", "tools/build_brief.py", "read as of",
+        "Evidence, each claim once", "derived from",  # S22: the printed evidence list (D-210, D-214)
         "’s memory depend on, who is reported to supply it, and which recorded export-control texts name those parts?",
         "Question and scope", "Executive summary", "Dependency map", "Export-control texts", "Key entities",
         "Recent changes", "Evidence gaps and caveats", "What this brief does not track", "Methodology",
@@ -405,6 +406,28 @@ class Brief(build_journeys.Journey):
             + self.label("Policy events", tag="h3") + "".join(self.event_panel(e) for e in events)
         )
 
+    def claim_card(self, claim_id: str, panel: str, shown: set[str]) -> str:
+        if getattr(self, "appendix_claims", None) is not None and claim_id not in self.appendix_claims:
+            self.appendix_claims.append(claim_id)
+        return super().claim_card(claim_id, panel, shown)
+
+    def print_list(self, claims: list[str]) -> str:
+        """In print only, the evidence appendix as one list: each claim once, with its statement and, per citation, the
+        source and the locator (D-210, D-214; BR-13). The screen keeps the panels; print hides them."""
+        items = []
+        for cid in claims:
+            claim = self.store.claims[cid]
+            if claim.get("citations"):
+                where = "; ".join(
+                    f'{self.ref(c["source_id"], "/title", tag="cite")} ({self.ref(c["source_id"], "/id", tag="code")}), {self.ref(cid, f"/citations/{k}/locator")}'
+                    for k, c in enumerate(claim["citations"]))
+                meta = f'{self.label("source", cls="k")} {where}'
+            else:
+                meta = f'{self.label("derived from", cls="k")} ' + ", ".join(self.ref(cid, f"/input_claim_ids/{k}", tag="code") for k in range(len(claim.get("input_claim_ids", []))))
+            items.append(f'<li data-claim="{esc(cid)}"><p>{self.ref(cid, "/statement")}</p><p class="meta">{self.ref(cid, "/id", tag="code")} · {meta}</p></li>')
+        body = self.framing("brief-evidence-print") + f'<ol class="print-list">{"".join(items)}</ol>'
+        return self.section("evidence-print", "Evidence, each claim once", body).replace('<section id="evidence-print"', '<section id="evidence-print" class="print-only"', 1)
+
     def sources_section(self) -> str:
         heads = ("Source", "Publisher", "Class", "Stated dates", "Accessed", "URL")
         k = {h: self.label(h, cls="cell-k") for h in heads}
@@ -435,7 +458,10 @@ class Brief(build_journeys.Journey):
         acts = self.acts_in_order()
         figure = self.figure(j)
         # the evidence is rendered before the method and sources: they list what the panels show
+        self.appendix_claims: list[str] | None = []  # the claims the appendix shows, in order of first appearance
         evidence = self.evidence_section(j, acts)
+        printed = self.print_list(self.appendix_claims)
+        self.appendix_claims = None
         main = (
             self.section("scope", "Question and scope", self.scope())
             + self.section("summary", "Executive summary", self.summary())
@@ -448,6 +474,7 @@ class Brief(build_journeys.Journey):
             + self.section("not-tracked", "What this brief does not track", self.framing("brief-not-tracked"))
             + self.section("method", "Methodology", self.method_section(acts))
             + self.section("evidence", "Evidence appendix", evidence)
+            + printed
             + self.section("sources", "Source appendix", self.sources_section())
         )
         main += self.terms_section()

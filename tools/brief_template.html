@@ -36,6 +36,7 @@ table.sources a.url, table.sources cite { overflow-wrap: anywhere; }
 .cite-this p { overflow-wrap: anywhere; }
 /* refused candidates are neutral cards; amber stays for gaps (D-198) */
 #gaps ul.cards li.card { background: var(--surface-page); border: 1px solid var(--line-rule); border-left: 4px solid var(--line-rule); }
+.print-only { display: none; }
 @page { margin: 16mm 14mm; }
 @media print {
   nav.jump, .crumbs, p.back { display: none; }
@@ -60,6 +61,13 @@ table.sources a.url, table.sources cite { overflow-wrap: anywhere; }
   svg.chain { max-width: 95mm; }
   table { font-size: 8.5pt; }
   .stat .tally { font-size: 18pt; }
+  #evidence { display: none; /* S22 (D-210, D-214; BR-13): the panels give way to one list, each claim once */ }
+  .print-only { display: block; }
+  #evidence-print { break-before: page; font-size: 8pt; line-height: 1.35; }
+  ol.print-list { padding-left: 1.6em; margin: 4pt 0; }
+  ol.print-list li { margin: 0 0 4pt; break-inside: avoid; }
+  ol.print-list p { margin: 0; font-size: 8.5pt; }
+  ol.print-list p.meta, ol.print-list p.meta cite, ol.print-list p.meta code, ol.print-list p.meta .k { font-size: 7pt; }
 }
 </style>
 </head>
@@ -80,6 +88,16 @@ ${main}
 </div>
 </body>
 </html>
+<!-- framing: brief-evidence-print -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>In print, each claim of the evidence appendix appears once, with its source and the place in the source where it is read. The screen version keeps every record’s panel, with each quoted passage and the hash of the bytes read.</p>
+</div>
+<!-- framing: later-statements -->
+<div class="framing" data-framing>
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>A later official text’s own words about this act, as the Change Detector ruled them. They change neither the act’s recorded dates nor its status, which the Atlas derives only from the act’s own dated events, and the Atlas does not say what they mean for anyone.</p>
+</div>
 <!-- framing: brief-top -->
 <div class="framing dek" data-framing>
 <p class="framing-tag" data-label>Atlas framing</p>

@@ -1,0 +1,37 @@
+# Check modules failed by the breaks of S21.5's full harness run (158 faults on 046e0e7; output in the private archive,
+# SESSION-21.5-breaks/full-run.txt), mapped to the modules defining each failed test (tree 5c492b2). Breaks per module:
+   4  tests/test_agent_contracts.py
+  54  tests/test_brief.py
+   1  tests/test_claim_schema.py
+  11  tests/test_data_candidates.py
+   5  tests/test_data_entities.py
+   5  tests/test_data_events.py
+   1  tests/test_data_integrity.py
+   9  tests/test_data_relationships.py
+   3  tests/test_data_schema.py
+   3  tests/test_freshness.py
+   4  tests/test_human_reviews.py
+  76  tests/test_insight.py
+  50  tests/test_journeys.py
+   3  tests/test_navigate.py
+  51  tests/test_page.py
+  32  tests/test_planted_faults.py
+   2  tests/test_policy_layer.py
+   2  tests/test_policy_status.py
+   2  tests/test_source_policy.py
+   4  tests/test_validate_repo.py
+  36  tests/test_warehouse.py
+
+# Check modules no break failed (with their test count and lines naming a fault case inside the module):
+  tests/test_break_selection.py: 3 tests; 0 fault-case lines
+  tests/test_claim_model.py: 21 tests; 0 fault-case lines
+  tests/test_data_identity_basis.py: 12 tests; 9 fault-case lines
+  tests/test_entity_schema.py: 4 tests; 15 fault-case lines
+  tests/test_entity_taxonomy.py: 12 tests; 0 fault-case lines
+  tests/test_facility_status.py: 9 tests; 0 fault-case lines
+  tests/test_later_rule_search.py: 11 tests; 5 fault-case lines
+  tests/test_relationship_schema.py: 7 tests; 20 fault-case lines
+  tests/test_relationship_taxonomy.py: 25 tests; 0 fault-case lines
+  tests/test_source_record_schema.py: 7 tests; 25 fault-case lines
+  tests/test_source_schema.py: 3 tests; 7 fault-case lines
+  tests/test_trace.py: 13 tests; 3 fault-case lines

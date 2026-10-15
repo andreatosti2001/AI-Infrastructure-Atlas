@@ -1,0 +1,1048 @@
+{
+ "size": {
+  "tools/*.py": {
+   "files": 11,
+   "lines": 5190,
+   "bytes": 306744
+  },
+  "tools/*.html (templates)": {
+   "files": 4,
+   "lines": 847,
+   "bytes": 60712
+  },
+  "tests/test_*.py": {
+   "files": 33,
+   "lines": 10662,
+   "bytes": 568539
+  },
+  "tests/regression/*.py": {
+   "files": 8,
+   "lines": 1589,
+   "bytes": 97070
+  },
+  "tests/browser/*.js": {
+   "files": 4,
+   "lines": 517,
+   "bytes": 38847
+  },
+  "sql/*.sql": {
+   "files": 4,
+   "lines": 481,
+   "bytes": 31158
+  },
+  "schemas/": {
+   "files": 7,
+   "lines": 1173,
+   "bytes": 87949
+  },
+  "data/*.json": {
+   "files": 25,
+   "lines": 9597,
+   "bytes": 351333
+  },
+  "site/ (generated)": {
+   "files": 18,
+   "lines": 6288,
+   "bytes": 2994524
+  },
+  "docs/ (markdown)": {
+   "files": 55,
+   "lines": 15898,
+   "bytes": 1271965
+  }
+ },
+ "size_per_tool": {
+  "tools/build_brief.py": 505,
+  "tools/build_insight.py": 610,
+  "tools/build_journeys.py": 902,
+  "tools/build_page.py": 1188,
+  "tools/facility_status.py": 89,
+  "tools/later_rule_search.py": 580,
+  "tools/navigate.py": 327,
+  "tools/policy_status.py": 108,
+  "tools/trace.py": 342,
+  "tools/validate_repo.py": 145,
+  "tools/warehouse.py": 394
+ },
+ "functions": {
+  "tools_count": 294,
+  "tools_median_length": 7,
+  "tools_over_50_lines": 11,
+  "tools_over_100_lines": 1,
+  "tools_complexity_over_15": 13,
+  "longest_tools": [
+   {
+    "file": "tools/later_rule_search.py",
+    "name": "search",
+    "line": 329,
+    "length": 104,
+    "complexity": 56
+   },
+   {
+    "file": "tools/warehouse.py",
+    "name": "load",
+    "line": 160,
+    "length": 100,
+    "complexity": 41
+   },
+   {
+    "file": "tools/build_journeys.py",
+    "name": "render_export",
+    "line": 583,
+    "length": 97,
+    "complexity": 31
+   },
+   {
+    "file": "tools/build_insight.py",
+    "name": "indicators",
+    "line": 307,
+    "length": 84,
+    "complexity": 19
+   },
+   {
+    "file": "tools/build_journeys.py",
+    "name": "render_company",
+    "line": 700,
+    "length": 83,
+    "complexity": 35
+   },
+   {
+    "file": "tools/later_rule_search.py",
+    "name": "render",
+    "line": 461,
+    "length": 78,
+    "complexity": 30
+   },
+   {
+    "file": "tools/build_journeys.py",
+    "name": "render_place",
+    "line": 786,
+    "length": 74,
+    "complexity": 31
+   },
+   {
+    "file": "tools/build_journeys.py",
+    "name": "timeline",
+    "line": 444,
+    "length": 73,
+    "complexity": 22
+   },
+   {
+    "file": "tools/build_page.py",
+    "name": "figure",
+    "line": 507,
+    "length": 62,
+    "complexity": 11
+   },
+   {
+    "file": "tools/build_page.py",
+    "name": "sql_section",
+    "line": 1003,
+    "length": 53,
+    "complexity": 21
+   },
+   {
+    "file": "tools/build_page.py",
+    "name": "claim_card",
+    "line": 809,
+    "length": 51,
+    "complexity": 14
+   },
+   {
+    "file": "tools/build_page.py",
+    "name": "gaps",
+    "line": 701,
+    "length": 44,
+    "complexity": 8
+   }
+  ],
+  "most_complex_tools": [
+   {
+    "file": "tools/later_rule_search.py",
+    "name": "search",
+    "line": 329,
+    "length": 104,
+    "complexity": 56
+   },
+   {
+    "file": "tools/warehouse.py",
+    "name": "load",
+    "line": 160,
+    "length": 100,
+    "complexity": 41
+   },
+   {
+    "file": "tools/build_journeys.py",
+    "name": "render_company",
+    "line": 700,
+    "length": 83,
+    "complexity": 35
+   },
+   {
+    "file": "tools/build_page.py",
+    "name": "journey",
+    "line": 332,
+    "length": 42,
+    "complexity": 35
+   },
+   {
+    "file": "tools/build_journeys.py",
+    "name": "render_export",
+    "line": 583,
+    "length": 97,
+    "complexity": 31
+   },
+   {
+    "file": "tools/build_journeys.py",
+    "name": "render_place",
+    "line": 786,
+    "length": 74,
+    "complexity": 31
+   },
+   {
+    "file": "tools/later_rule_search.py",
+    "name": "render",
+    "line": 461,
+    "length": 78,
+    "complexity": 30
+   },
+   {
+    "file": "tools/build_journeys.py",
+    "name": "timeline",
+    "line": 444,
+    "length": 73,
+    "complexity": 22
+   },
+   {
+    "file": "tools/build_page.py",
+    "name": "sql_section",
+    "line": 1003,
+    "length": 53,
+    "complexity": 21
+   },
+   {
+    "file": "tools/policy_status.py",
+    "name": "derive_status",
+    "line": 48,
+    "length": 29,
+    "complexity": 21
+   },
+   {
+    "file": "tools/trace.py",
+    "name": "trace_data",
+    "line": 285,
+    "length": 38,
+    "complexity": 20
+   },
+   {
+    "file": "tools/build_insight.py",
+    "name": "indicators",
+    "line": 307,
+    "length": 84,
+    "complexity": 19
+   }
+  ]
+ },
+ "classes_tools": [
+  {
+   "file": "tools/build_brief.py",
+   "name": "Brief",
+   "bases": [
+    "build_journeys.Journey"
+   ],
+   "methods": 31
+  },
+  {
+   "file": "tools/build_insight.py",
+   "name": "Insight",
+   "bases": [
+    "build_page.Page"
+   ],
+   "methods": 31
+  },
+  {
+   "file": "tools/build_journeys.py",
+   "name": "Journey",
+   "bases": [
+    "build_page.Page"
+   ],
+   "methods": 43
+  },
+  {
+   "file": "tools/build_page.py",
+   "name": "BuildError",
+   "bases": [
+    "Exception"
+   ],
+   "methods": 0
+  },
+  {
+   "file": "tools/build_page.py",
+   "name": "Page",
+   "bases": [],
+   "methods": 50
+  },
+  {
+   "file": "tools/later_rule_search.py",
+   "name": "Response",
+   "bases": [],
+   "methods": 0
+  },
+  {
+   "file": "tools/later_rule_search.py",
+   "name": "_NoRedirect",
+   "bases": [
+    "urllib.request.HTTPRedirectHandler"
+   ],
+   "methods": 1
+  },
+  {
+   "file": "tools/later_rule_search.py",
+   "name": "LiveFetcher",
+   "bases": [],
+   "methods": 3
+  },
+  {
+   "file": "tools/later_rule_search.py",
+   "name": "ReplayFetcher",
+   "bases": [],
+   "methods": 3
+  },
+  {
+   "file": "tools/later_rule_search.py",
+   "name": "Term",
+   "bases": [],
+   "methods": 0
+  },
+  {
+   "file": "tools/later_rule_search.py",
+   "name": "OfficialDoc",
+   "bases": [],
+   "methods": 1
+  },
+  {
+   "file": "tools/later_rule_search.py",
+   "name": "Candidate",
+   "bases": [],
+   "methods": 0
+  },
+  {
+   "file": "tools/later_rule_search.py",
+   "name": "Result",
+   "bases": [],
+   "methods": 0
+  },
+  {
+   "file": "tools/navigate.py",
+   "name": "Atlas",
+   "bases": [],
+   "methods": 20
+  },
+  {
+   "file": "tools/trace.py",
+   "name": "Store",
+   "bases": [],
+   "methods": 2
+  },
+  {
+   "file": "tools/trace.py",
+   "name": "Printer",
+   "bases": [],
+   "methods": 10
+  },
+  {
+   "file": "tools/trace.py",
+   "name": "Collector",
+   "bases": [],
+   "methods": 3
+  },
+  {
+   "file": "tools/warehouse.py",
+   "name": "UnknownKey",
+   "bases": [
+    "ValueError"
+   ],
+   "methods": 0
+  }
+ ],
+ "imports_tools_graph": {
+  "tools/build_brief.py": [
+   "build_journeys",
+   "build_page"
+  ],
+  "tools/build_insight.py": [
+   "build_page"
+  ],
+  "tools/build_journeys.py": [
+   "build_page",
+   "facility_status",
+   "navigate"
+  ],
+  "tools/build_page.py": [
+   "navigate",
+   "trace"
+  ],
+  "tools/facility_status.py": [],
+  "tools/later_rule_search.py": [],
+  "tools/navigate.py": [
+   "policy_status",
+   "trace"
+  ],
+  "tools/policy_status.py": [
+   "facility_status"
+  ],
+  "tools/trace.py": [],
+  "tools/validate_repo.py": [],
+  "tools/warehouse.py": []
+ },
+ "third_party_imports": {
+  "pypdf": [
+   "docs/quality/audit-evidence/content-audit/reread.py"
+  ],
+  "jsonschema": [
+   "tests/test_claim_schema.py",
+   "tests/test_data_candidates.py",
+   "tests/test_data_identity_basis.py",
+   "tests/test_entity_schema.py",
+   "tests/test_policy_layer.py",
+   "tests/test_relationship_schema.py",
+   "tests/test_source_record_schema.py",
+   "tests/test_source_schema.py"
+  ],
+  "referencing": [
+   "tests/test_claim_schema.py",
+   "tests/test_data_candidates.py",
+   "tests/test_data_identity_basis.py",
+   "tests/test_policy_layer.py",
+   "tests/test_relationship_schema.py",
+   "tests/test_source_record_schema.py"
+  ],
+  "duckdb": [
+   "tools/warehouse.py"
+  ]
+ },
+ "record_ids_in_code": {
+  "tools/build_brief.py": {
+   "count": 4,
+   "ids": [
+    "company-dataset",
+    "component-ai-accelerator",
+    "component-high-bandwidth-memory",
+    "event-word"
+   ]
+  },
+  "tools/build_insight.py": {
+   "count": 2,
+   "ids": [
+    "company-dataset",
+    "component-ai-accelerator"
+   ]
+  },
+  "tools/build_journeys.py": {
+   "count": 8,
+   "ids": [
+    "company-dataset",
+    "company-limits",
+    "company-links",
+    "company-top",
+    "component-ai-accelerator",
+    "component-high-bandwidth-memory",
+    "event-word",
+    "policy-status"
+   ]
+  },
+  "tools/build_page.py": {
+   "count": 10,
+   "ids": [
+    "cand-001",
+    "cand-002",
+    "cand-007",
+    "cand-011",
+    "claim-record",
+    "claim-tsmc-fabricates-h100",
+    "company-dataset",
+    "component-ai-accelerator",
+    "rel-company-sk-hynix-operates-facility-kr-m16",
+    "technology-3d-die-stacking"
+   ]
+  },
+  "tools/journey_template.html": {
+   "count": 3,
+   "ids": [
+    "company-limits",
+    "company-links",
+    "company-top"
+   ]
+  },
+  "tools/page_template.html": {
+   "count": 2,
+   "ids": [
+    "claim-head",
+    "claim-record"
+   ]
+  }
+ },
+ "labels": {
+  "tools/build_page.py": {
+   "LABELS": 166
+  },
+  "tools/build_insight.py": {
+   "LABELS": 90
+  },
+  "tools/build_journeys.py": {
+   "LABELS": 193
+  },
+  "tools/build_brief.py": {
+   "LABELS": 82
+  }
+ },
+ "label_text_definitions": {
+  "tools/build_page.py": 1,
+  "tools/build_insight.py": 1,
+  "tools/build_journeys.py": 1,
+  "tools/build_brief.py": 1
+ },
+ "endpoint_signatures": {
+  "tools/build_page.py": [
+   "self, cand_id: str, pointer: str, value, panels: set[str]"
+  ],
+  "tools/build_journeys.py": [
+   "self, cand_id: str, pointer: str, value"
+  ],
+  "tools/build_brief.py": [
+   "self, cand_id: str, pointer: str, value, panels: set[str] | None = None"
+  ]
+ },
+ "duplication": {
+  "window_lines": 6,
+  "windows_in_two_or_more_tools": 23,
+  "pairs": [
+   [
+    "tools/build_brief.py + tools/build_journeys.py",
+    11
+   ],
+   [
+    "tools/build_insight.py + tools/build_page.py",
+    9
+   ],
+   [
+    "tools/build_insight.py + tools/build_journeys.py",
+    2
+   ],
+   [
+    "tools/build_brief.py + tools/build_insight.py + tools/build_page.py",
+    1
+   ]
+  ],
+  "examples": [
+   "import html",
+   "INPUT_GLOBS = build_page.INPUT_GLOBS",
+   "INPUT_FILES = (",
+   "\"tools/build_journeys.py\",",
+   "\"tools/build_page.py\",",
+   "\"tools/facility_status.py\",",
+   "skeleton, _, rest = text.partition(\"<!-- framing: \")",
+   "blocks = {}"
+  ]
+ },
+ "tests": {
+  "tests/test_agent_contracts.py": {
+   "tests": 9,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_break_selection.py": {
+   "tests": 3,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_brief.py": {
+   "tests": 26,
+   "rules_in_docstring": 12,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_claim_model.py": {
+   "tests": 21,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_claim_schema.py": {
+   "tests": 11,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_data_candidates.py": {
+   "tests": 9,
+   "rules_in_docstring": 9,
+   "rules_without_a_named_test": [
+    "RC-2",
+    "RC-3",
+    "RC-4",
+    "RC-5",
+    "RC-6",
+    "RC-7"
+   ]
+  },
+  "tests/test_data_entities.py": {
+   "tests": 38,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_data_events.py": {
+   "tests": 13,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_data_identity_basis.py": {
+   "tests": 12,
+   "rules_in_docstring": 4,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_data_integrity.py": {
+   "tests": 18,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_data_relationships.py": {
+   "tests": 31,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_data_schema.py": {
+   "tests": 6,
+   "rules_in_docstring": 1,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_entity_schema.py": {
+   "tests": 4,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_entity_taxonomy.py": {
+   "tests": 12,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_facility_status.py": {
+   "tests": 9,
+   "rules_in_docstring": 1,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_freshness.py": {
+   "tests": 12,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_human_reviews.py": {
+   "tests": 3,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_insight.py": {
+   "tests": 27,
+   "rules_in_docstring": 14,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_journeys.py": {
+   "tests": 20,
+   "rules_in_docstring": 13,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_later_rule_search.py": {
+   "tests": 11,
+   "rules_in_docstring": 11,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_navigate.py": {
+   "tests": 18,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_page.py": {
+   "tests": 25,
+   "rules_in_docstring": 11,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_planted_faults.py": {
+   "tests": 2,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_policy_layer.py": {
+   "tests": 12,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_policy_status.py": {
+   "tests": 10,
+   "rules_in_docstring": 1,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_relationship_schema.py": {
+   "tests": 7,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_relationship_taxonomy.py": {
+   "tests": 25,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_source_policy.py": {
+   "tests": 25,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_source_record_schema.py": {
+   "tests": 7,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_source_schema.py": {
+   "tests": 3,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_trace.py": {
+   "tests": 13,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_validate_repo.py": {
+   "tests": 13,
+   "rules_in_docstring": 0,
+   "rules_without_a_named_test": []
+  },
+  "tests/test_warehouse.py": {
+   "tests": 22,
+   "rules_in_docstring": 15,
+   "rules_without_a_named_test": []
+  }
+ },
+ "tests_total_methods": 477,
+ "breaks": {
+  "total": 189,
+  "faults": 168,
+  "controls": 21,
+  "faults_naming_only_a_message": 120,
+  "faults_per_test_module": {
+   "tests/test_agent_contracts.py": 2,
+   "tests/test_brief.py": 7,
+   "tests/test_claim_schema.py": 1,
+   "tests/test_human_reviews.py": 1,
+   "tests/test_insight.py": 6,
+   "tests/test_journeys.py": 5,
+   "tests/test_later_rule_search.py": 8,
+   "tests/test_navigate.py": 2,
+   "tests/test_page.py": 5,
+   "tests/test_policy_layer.py": 2,
+   "tests/test_policy_status.py": 1,
+   "tests/test_source_policy.py": 1,
+   "tests/test_warehouse.py": 8
+  },
+  "test_modules_no_break_names": [
+   "tests/test_break_selection.py",
+   "tests/test_claim_model.py",
+   "tests/test_data_candidates.py",
+   "tests/test_data_entities.py",
+   "tests/test_data_events.py",
+   "tests/test_data_identity_basis.py",
+   "tests/test_data_integrity.py",
+   "tests/test_data_relationships.py",
+   "tests/test_data_schema.py",
+   "tests/test_entity_schema.py",
+   "tests/test_entity_taxonomy.py",
+   "tests/test_facility_status.py",
+   "tests/test_freshness.py",
+   "tests/test_planted_faults.py",
+   "tests/test_relationship_schema.py",
+   "tests/test_relationship_taxonomy.py",
+   "tests/test_source_record_schema.py",
+   "tests/test_source_schema.py",
+   "tests/test_trace.py",
+   "tests/test_validate_repo.py"
+  ],
+  "permanent_in_suite": 28
+ },
+ "clock_or_environment_in_tools": {
+  "tools/later_rule_search.py": {
+   "datetime.datetime.now": 2
+  },
+  "tools/navigate.py": {
+   "date.today": 1
+  }
+ },
+ "pages": {
+  "site/briefs/accelerator-memory/index.html": {
+   "bytes": 884401,
+   "gzip": 81580,
+   "elements": 11637,
+   "svg": 9,
+   "data_ref": 3962,
+   "data_derived": 648,
+   "details": 36,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/companies/company-amazon-com/index.html": {
+   "bytes": 105291,
+   "gzip": 15433,
+   "elements": 1308,
+   "svg": 0,
+   "data_ref": 386,
+   "data_derived": 79,
+   "details": 5,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/companies/company-amkor-technology/index.html": {
+   "bytes": 74971,
+   "gzip": 13018,
+   "elements": 876,
+   "svg": 0,
+   "data_ref": 218,
+   "data_derived": 69,
+   "details": 4,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/companies/company-asml-holding/index.html": {
+   "bytes": 64026,
+   "gzip": 11234,
+   "elements": 742,
+   "svg": 0,
+   "data_ref": 163,
+   "data_derived": 64,
+   "details": 3,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/companies/company-micron-technology/index.html": {
+   "bytes": 97996,
+   "gzip": 15093,
+   "elements": 1234,
+   "svg": 0,
+   "data_ref": 350,
+   "data_derived": 74,
+   "details": 5,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/companies/company-nvidia/index.html": {
+   "bytes": 92950,
+   "gzip": 14553,
+   "elements": 1149,
+   "svg": 0,
+   "data_ref": 326,
+   "data_derived": 73,
+   "details": 5,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/companies/company-samsung-electronics-co-ltd/index.html": {
+   "bytes": 83800,
+   "gzip": 14368,
+   "elements": 965,
+   "svg": 0,
+   "data_ref": 252,
+   "data_derived": 70,
+   "details": 4,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/companies/company-sk-hynix/index.html": {
+   "bytes": 108092,
+   "gzip": 17455,
+   "elements": 1300,
+   "svg": 0,
+   "data_ref": 380,
+   "data_derived": 79,
+   "details": 5,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/companies/company-synopsys/index.html": {
+   "bytes": 74606,
+   "gzip": 12130,
+   "elements": 849,
+   "svg": 0,
+   "data_ref": 220,
+   "data_derived": 67,
+   "details": 5,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/companies/company-taiwan-semiconductor-manufacturing-company/index.html": {
+   "bytes": 84393,
+   "gzip": 13652,
+   "elements": 1001,
+   "svg": 0,
+   "data_ref": 271,
+   "data_derived": 72,
+   "details": 4,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/hbm-chain/index.html": {
+   "bytes": 346874,
+   "gzip": 41370,
+   "elements": 4445,
+   "svg": 9,
+   "data_ref": 1420,
+   "data_derived": 300,
+   "details": 26,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/hbm-insight/index.html": {
+   "bytes": 144268,
+   "gzip": 22905,
+   "elements": 1543,
+   "svg": 0,
+   "data_ref": 18,
+   "data_derived": 481,
+   "details": 13,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/index.html": {
+   "bytes": 39241,
+   "gzip": 8378,
+   "elements": 348,
+   "svg": 0,
+   "data_ref": 35,
+   "data_derived": 54,
+   "details": 1,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/places/jurisdiction-kr/index.html": {
+   "bytes": 69723,
+   "gzip": 12094,
+   "elements": 787,
+   "svg": 0,
+   "data_ref": 186,
+   "data_derived": 68,
+   "details": 3,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/places/jurisdiction-nl/index.html": {
+   "bytes": 43448,
+   "gzip": 9283,
+   "elements": 434,
+   "svg": 0,
+   "data_ref": 51,
+   "data_derived": 58,
+   "details": 1,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/places/jurisdiction-tw/index.html": {
+   "bytes": 43884,
+   "gzip": 9299,
+   "elements": 434,
+   "svg": 0,
+   "data_ref": 51,
+   "data_derived": 58,
+   "details": 1,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/places/jurisdiction-us/index.html": {
+   "bytes": 76063,
+   "gzip": 12199,
+   "elements": 990,
+   "svg": 0,
+   "data_ref": 196,
+   "data_derived": 66,
+   "details": 3,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  },
+  "site/questions/export-control-texts/index.html": {
+   "bytes": 560497,
+   "gzip": 44753,
+   "elements": 7528,
+   "svg": 1,
+   "data_ref": 2546,
+   "data_derived": 314,
+   "details": 13,
+   "script": 0,
+   "on_handlers": 0,
+   "external_src": 0,
+   "blank_targets_without_noopener": 0
+  }
+ },
+ "pages_total_bytes": 2994524,
+ "security": {
+  "ci_permissions": [
+   "contents: read"
+  ],
+  "actions": [
+   "actions/checkout@v4",
+   "actions/setup-python@v5"
+  ],
+  "actions_pinned_to_sha": false,
+  "risky_calls": {},
+  "pins": {
+   "requirements-test.txt": [
+    "jsonschema==4.26.0",
+    "attrs==26.1.0",
+    "jsonschema-specifications==2025.9.1",
+    "referencing==0.37.0",
+    "rpds-py==2026.6.3",
+    "typing_extensions==4.16.0"
+   ],
+   "requirements-analysis.txt": [
+    "duckdb==1.5.6"
+   ]
+  },
+  "pins_exact": true,
+  "pins_with_hashes": false,
+  "expat": "expat_2.6.1"
+ },
+ "git": {
+  "commits": 197,
+  "merges": 40,
+  "reverts": 0,
+  "non_merge": 157,
+  "median_files_per_commit": 6,
+  "commits_over_50_files": 1,
+  "decisions": 211
+ }
+}

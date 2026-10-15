@@ -34,7 +34,12 @@ JR-11 document structure (lang, one h1 equal to the title, landmarks, no skipped
 JR-12 every committed page equals a rebuild; two builds are identical; no other page sits in the journey folders;
 JR-13 the export-control page shows how far later texts were searched: the "Searched to" date of
       docs/research/change-detection.md, which equals the end of the search log's window and is no earlier than the as-of
-      date (S21.5, D-208).
+      date (S21.5, D-208). From S22 (D-211) every log in search-logs/later-rules/ counts: S21.5's and the search tool's
+      runs. A log whose outcome is incomplete covers nothing; the others' windows join without a gap up to the date.
+JR-14 (S22, D-210, D-214) every later statement the Change Detector's table in change-detection.md §1 ("Later statements
+      about acts held") assigns to an act is shown in that act's evidence panel on the export-control page, under its
+      own heading and framing, as a whole claim card; no other act panel has such a block; the act's status stays the
+      one derived from its own events.
 """
 
 from __future__ import annotations
@@ -62,7 +67,7 @@ BRIEFS = ("site/briefs/accelerator-memory/index.html",)  # S21 (D-206): the entr
 AGE_RESULT = REPO_ROOT / "sql" / "results" / "source_age.json"
 # S21.5 (D-208): the one home of the date up to which later texts were searched, and the log it summarises.
 CHANGE_DETECTION = REPO_ROOT / "docs" / "research" / "change-detection.md"
-SEARCH_LOG = REPO_ROOT / "docs" / "research" / "search-logs" / "later-rules" / "search-log.md"
+SEARCH_LOGS = REPO_ROOT / "docs" / "research" / "search-logs" / "later-rules"  # S21.5's log and the tool's runs (D-211)
 INPUT_GLOBS = ("data/*.json", "data/staging/*.json", "schemas/*.json", "sql/*.sql", "sql/results/*.json")
 INPUT_FILES = (
     "docs/architecture/company-dataset.md",
@@ -121,6 +126,42 @@ def searched_to() -> str:
     text = CHANGE_DETECTION.read_text(encoding="utf-8") if CHANGE_DETECTION.is_file() else ""
     found = re.search(r"^\*\*Searched to:\*\* (\d{4}-\d{2}-\d{2})$", text, re.M)
     return found.group(1) if found else ""
+
+
+def search_windows() -> list[tuple[str, str, bool, str]]:
+    """(first day, last day, complete, file) of every log of the later-rule search (D-208, D-211). A log is incomplete
+    when its outcome says so (an access gap left part of its window unsearched); S21.5's log has no outcome line."""
+    found = []
+    for path in sorted(SEARCH_LOGS.glob("*.md")) if SEARCH_LOGS.is_dir() else []:
+        text = path.read_text(encoding="utf-8")
+        window = re.search(r"\*\*Window searched: (\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})\*\*", text)
+        if window:
+            outcome = re.search(r"^\*\*Outcome:\*\* (.*)$", text, re.M)
+            found.append((window.group(1), window.group(2), not (outcome and outcome.group(1).startswith("incomplete")), path.name))
+    return found
+
+
+def later_statements() -> dict[str, list[str]]:
+    """{act ID: [claim IDs]} from change-detection.md §1's table of later statements, read independently of the build."""
+    text = CHANGE_DETECTION.read_text(encoding="utf-8") if CHANGE_DETECTION.is_file() else ""
+    table = text.partition("### Later statements about acts held")[2].split("\n#")[0]
+    found: dict[str, list[str]] = {}
+    for line in table.splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 2 and cells[0].startswith("`policy-"):
+            found.setdefault(cells[0].strip("`"), []).extend(re.findall(r"`(claim-[^`]+)`", cells[1]))
+    return found
+
+
+def later_blocks(page) -> dict[str, list[str]]:
+    """{act ID: [claim IDs whose statement the act panel's later-statements block shows]} on a built page."""
+    shown: dict[str, list[str]] = {}
+    for panel in [n for n in page.nodes if "data-act" in n.attrs and n.tag == "article"]:
+        blocks = [n for n in panel.walk() if "data-later" in n.attrs]
+        if blocks:
+            shown[panel.attrs["data-act"]] = [n.attrs["data-ref"] for b in blocks for n in b.walk()
+                                              if n.attrs.get("data-field") == "/statement" and n.attrs.get("data-ref", "").startswith("claim-")]
+    return shown
 
 
 class Records:
@@ -680,13 +721,33 @@ class JourneyTests(unittest.TestCase):
     def test_jr13_the_search_window_is_shown_and_reaches_the_as_of_date(self) -> None:
         to = searched_to()
         self.assertRegex(to, r"^\d{4}-\d{2}-\d{2}$", "change-detection.md states no 'Searched to' date")
-        log = SEARCH_LOG.read_text(encoding="utf-8") if SEARCH_LOG.is_file() else ""
-        window = re.search(r"\*\*Window searched: (\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})\*\*", log)
-        self.assertTrue(window and window.group(2) == to, "the search log's window does not end on the 'Searched to' date")
+        windows = search_windows()
+        ending = [w for w in windows if w[1] == to]
+        self.assertTrue(ending, "the search log's window does not end on the 'Searched to' date")
+        self.assertTrue([w for w in ending if w[2]], "the only search logs ending on the 'Searched to' date are incomplete")
+        covered = None
+        for first, last, _, name in sorted(w for w in windows if w[2] and w[0] <= to):
+            if covered is not None and day(first) > day(covered) + 1:
+                self.fail(f"a gap in the searched windows: nothing searched between {covered} and {first} ({name})")
+            covered = last if covered is None else max(covered, last)
         on = json.loads(AGE_RESULT.read_text(encoding="utf-8"))["rows"][0]["reference_date"]
         self.assertGreaterEqual(to, on, "the as-of date is later than the searched window: run the later-rule search again or keep the date (D-208)")
         shown = [n.text() for n in self.pages[EXPORT].find(data_derived="searched-to")]
         self.assertEqual(shown, [to], "the export-control page does not show the date up to which later texts were searched")
+
+    # JR-14
+    def test_jr14_later_statements_sit_in_their_act_panel(self) -> None:
+        expected = later_statements()
+        self.assertTrue(expected, "change-detection.md assigns no later statement to an act (D-210)")
+        page = self.pages[EXPORT]
+        self.assertEqual(later_blocks(page), expected, "the export-control page's later statements differ from the Change Detector's table")
+        for act in expected:
+            panel = [n for n in page.nodes if n.tag == "article" and n.attrs.get("data-act") == act][0]
+            block = [n for n in panel.walk() if "data-later" in n.attrs][0]
+            self.assertTrue([n for n in block.walk() if "data-framing" in n.attrs], "the later statements carry no framing")
+            self.assertTrue([n for n in block.walk() if n.tag == "h4"], "the later statements have no heading")
+            derived = [n.text() for n in panel.walk() if n.attrs.get("data-derived") == "policy-status"]
+            self.assertEqual(derived, [self.records.status(act, self.on).replace("_", " ")], "the act's status is not the one its own events give")
 
 
 if __name__ == "__main__":

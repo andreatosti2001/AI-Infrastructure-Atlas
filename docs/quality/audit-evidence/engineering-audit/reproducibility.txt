@@ -1,0 +1,54 @@
+# Measured on 5c492b2, 2026-10-15 (S22). Compile check: every tracked .py file compiled with Python 3.11.17
+3.11.17: 57 tracked .py files compiled, 0 syntax errors
+
+
+# builds --check on other interpreters (no third-party needed)
+python3.12 build_page: page: up to date
+python3.12 build_insight: page: up to date
+python3.12 build_journeys: pages: up to date
+python3.12 build_brief: brief: up to date
+python3.13 build_page: page: up to date
+python3.13 build_insight: page: up to date
+python3.13 build_journeys: pages: up to date
+python3.13 build_brief: brief: up to date
+# pip check / freeze (3.11 venv)
+No broken requirements found.
+attrs==26.1.0
+duckdb==1.5.6
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+referencing==0.37.0
+rpds-py==2026.6.3
+typing_extensions==4.16.0
+# requires
+Name: jsonschema
+Requires: attrs, jsonschema-specifications, referencing, rpds-py
+Name: duckdb
+Requires: 
+
+# timings on Python 3.11.17 (start of S22, 6c19501)
+base: 6c19501e952813c79d8d71c987d90f932f406ebb 2026-10-15T14:37:10Z Python 3.11.17
+# suite
+----------------------------------------------------------------------
+Ran 466 tests in 61.596s
+
+OK
+wall 62.283s
+# gate0
+Repository integrity: OK
+wall 0.122s
+# warehouse --check
+results: up to date
+wall 2.212s
+# build_page --check
+page: up to date
+wall 0.123s
+# build_insight --check
+page: up to date
+wall 0.087s
+# build_journeys --check
+pages: up to date
+wall 0.322s
+# build_brief --check
+brief: up to date
+wall 0.164s

@@ -1,0 +1,889 @@
+{
+ "chromium": "141.0.7390.37",
+ "pages": {
+  "site/hbm-chain/index.html": {
+   "320": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "chain-title",
+      "width": 288,
+      "scale": 0.8,
+      "minTextPx": 8.8,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "375": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "chain-title",
+      "width": 343,
+      "scale": 0.95,
+      "minTextPx": 10.5,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "768": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "chain-title",
+      "width": 470,
+      "scale": 1.31,
+      "minTextPx": 14.4,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "1024": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "chain-title",
+      "width": 470,
+      "scale": 1.31,
+      "minTextPx": 14.4,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "1440": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "chain-title",
+      "width": 470,
+      "scale": 1.31,
+      "minTextPx": 14.4,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "screenshotsIdentical": true,
+   "screenshotSha": "77cad113fb73988ce6e80d079436d14aa10710e27744d4bc78a03c91ce9315c6"
+  },
+  "site/hbm-insight/index.html": {
+   "320": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 10.1824
+   },
+   "375": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 10.1824
+   },
+   "768": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 10.1824
+   },
+   "1024": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 10.1824
+   },
+   "1440": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 10.1824
+   },
+   "screenshotsIdentical": true,
+   "screenshotSha": "2239d9293b5d0aa6256829ff25da0fc8379de5c9da06241a27ae24aca7dbaa46"
+  },
+  "site/questions/export-control-texts/index.html": {
+   "320": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "tl-title",
+      "width": 288,
+      "scale": 0.29,
+      "minTextPx": 3.6,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "375": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "tl-title",
+      "width": 343,
+      "scale": 0.34,
+      "minTextPx": 4.3,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "768": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "tl-title",
+      "width": 736,
+      "scale": 0.74,
+      "minTextPx": 9.2,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "1024": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "tl-title",
+      "width": 992,
+      "scale": 0.99,
+      "minTextPx": 12.4,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "1440": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "tl-title",
+      "width": 1040,
+      "scale": 1.04,
+      "minTextPx": 13,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "screenshotsIdentical": true,
+   "screenshotSha": "2b748f7226e7ae2d593eebc1e5d721d13f2b35b4eaaa9e93e1aaf47f92bfe71a"
+  },
+  "site/briefs/accelerator-memory/index.html": {
+   "320": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "chain-title",
+      "width": 288,
+      "scale": 0.8,
+      "minTextPx": 8.8,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "375": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "chain-title",
+      "width": 343,
+      "scale": 0.95,
+      "minTextPx": 10.5,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "768": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "chain-title",
+      "width": 470,
+      "scale": 1.31,
+      "minTextPx": 14.4,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "1024": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "chain-title",
+      "width": 470,
+      "scale": 1.31,
+      "minTextPx": 14.4,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "1440": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [
+     {
+      "label": "chain-title",
+      "width": 470,
+      "scale": 1.31,
+      "minTextPx": 14.4,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     },
+     {
+      "label": "svg",
+      "width": 36,
+      "scale": 1,
+      "minTextPx": null,
+      "inScroller": false
+     }
+    ],
+    "minHtmlTextPx": 11.008
+   },
+   "screenshotsIdentical": true,
+   "screenshotSha": "adc93cc143be0a62cf01ccf17fc587c6c8de92bf713c29d7996c7b4df16ce53f"
+  },
+  "site/companies/company-sk-hynix/index.html": {
+   "320": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 11.008
+   },
+   "375": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 11.008
+   },
+   "768": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 11.008
+   },
+   "1024": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 11.008
+   },
+   "1440": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 11.008
+   },
+   "screenshotsIdentical": true,
+   "screenshotSha": "6400b902e1fda6d9e7a53e0717dcafae4dcaf6dc7c85de446da0f624ac5baff2"
+  },
+  "site/index.html": {
+   "320": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 11.52
+   },
+   "375": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 11.52
+   },
+   "768": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 11.52
+   },
+   "1024": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 11.52
+   },
+   "1440": {
+    "overflow": 0,
+    "wide": [],
+    "svgs": [],
+    "minHtmlTextPx": 11.52
+   },
+   "screenshotsIdentical": true,
+   "screenshotSha": "cba0454a92940f2b65fd1d73801fe4fbba128a2323bf8c9c012ab9ce471b0fe9"
+  }
+ }
+}

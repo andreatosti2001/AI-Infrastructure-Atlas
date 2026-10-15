@@ -66,6 +66,17 @@ Both re-read on the stated page by the Verifier (40 of 40 anchors found in the r
 | C-4 | 3B993 | 89 FR 96790 p.36: "3B993 Specified semiconductor manufacturing equipment as follows (see list of items controls)."; paragraph f headed "Lithography equipment as follows" (p.37) | 90 FR 5298 p.9: "This rule amends the headings for ECCNs 3B993 and 3B994 …"; p.21: "3B993 Specified semiconductor manufacturing equipment as follows (see list of items controls), and ‘‘specially designed’’ ‘‘components’’ and ‘‘accessories’’ therefor."; p.22: "f. Lithography commodities as follows:", "f.4. Commodities not specified by 3B993.f.1 …" | adds "specially designed" components and accessories to the heading; adds paragraph f.4; heads paragraph f "Lithography commodities" | `claim-bis-rule-2025-00711-revises-3b993` | the 2023 SME link, as C-3 (its evidence names 3B993, through `claim-bis-rule-2024-28270-revises-3b001-3b002`) |
 | C-5 | the AI Diffusion rule (its status) | 90 FR 4544 p.18: § 742.6(a)(6)(iii)(A), "Worldwide license requirement" | 91 FR 43034 (`src-064`) p.3: "Although § 742.6(a)(6)(iii)(A) of the EAR specifies a worldwide license requirement … BIS is only enforcing this license requirement to destinations in Country Groups D:1, D:4, or D:5 …" | states the requirement is still specified in the EAR and how BIS enforces it; neither repeals nor amends the AI Diffusion rule | `claim-bis-rule-2025-00636-worldwide-requirement`, `claim-bis-rule-2026-14132-enforcement-statement`; no event (a repeal comes only from a repealing text, D-156) | none (no record field or link holds it) |
 
+### Later statements about acts held
+
+A later official text's statement about an act the Atlas holds, as ruled in a comparison above. The export-control
+page and the client brief show each claim in its act's evidence, under "Later statements about this act" (D-210,
+D-214); the act's status stays derived from its own events (D-156, CD-6). A row is added only with the comparison that
+rules it and the human's verdict on its claim.
+
+| Act | Later statement | Comparison |
+|---|---|---|
+| `policy-us-fr-2025-00636` | `claim-bis-rule-2026-14132-enforcement-statement` | C-5 |
+
 **Term matches (PK-3, PK-4) are not re-ruled.** Each link's `DERIVATION` matches the word of its own act's sentence
 ("HBM stacks" in 89 FR 96790 p.10; "semiconductor manufacturing equipment" in the SME acts); no later text changes
 those sentences, and the later texts still name "High bandwidth memory" and semiconductor manufacturing equipment.
@@ -76,3 +87,14 @@ dates they fix.
 
 **Status:** all candidates accepted by the human on 2026-10-15 and made canonical (D-209;
 `docs/quality/human-reviews.md`). The rules CD-1 to CD-7 bind every later comparison.
+
+## §2 — Later runs of the search (S22 onward, D-211)
+
+Each run of `tools/later_rule_search.py` writes its log in [`search-logs/later-rules/`](search-logs/later-rules/).
+The "Searched to" date of §1 moves to a run's last day only when the run is complete and every candidate it lists is
+ruled here (CD-4, CD-6); JR-13 checks that the complete windows join without a gap up to that date.
+
+| Window | Log | Outcome | Ruling |
+|---|---|---|---|
+| 2026-10-15 to 2026-10-15 | [`run-2026-10-15-to-2026-10-15.md`](search-logs/later-rules/run-2026-10-15-to-2026-10-15.md) | none found in the searched window; the eight registered official texts unchanged | none needed; "Searched to" stays 2026-10-15 (the run re-checks S21.5's last day: S22 opened on the day S21.5's search ran) |
+
