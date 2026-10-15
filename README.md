@@ -91,6 +91,13 @@ anchors and review.
   as acts, whose changes to 3A090.c, 3B001 and 3B993 are quoted beside the links; no repeal; no official text
   rescinding the AI Diffusion rule ([`change-detection.md`](docs/research/change-detection.md), D-209). The pages
   state the date up to which the search ran, and a check keeps it at or after their as-of date (D-208).
+  From S22 the search is a repository tool (`tools/later_rule_search.py`, D-211) that reads the Federal Register index
+  and the official daily edition and writes a dated log; its first run (15 October 2026) found nothing new. A July 2026
+  BIS statement about how the AI Diffusion rule is enforced is shown under that act, without changing its status
+  (D-214).
+- **The engineering audit** (S22): the repository audited as a software system, with measured evidence
+  ([`engineering-audit.md`](docs/architecture/engineering-audit.md)); its blocking finding, browser checks that could
+  not fail, is fixed and those checks now run in CI (D-212).
 - **The first policy links** (M5): four `restricts` links say that an act's own text names a class among the
   items it controls: the December 2024 rule names high-bandwidth memory, and the 2022, 2023 and 2024 rules
   name semiconductor manufacturing equipment. Each rests on the act's quoted sentence and a recorded match
@@ -113,7 +120,8 @@ anchors and review.
 | [`tests/browser/`](tests/browser/README.md) | browser QA at 1280 and 375 px: errors, overflow, keyboard path, measured contrast; the brief also printed on A4 and Letter |
 | [Audits](docs/quality/audit-history.md) | milestone, content, analytical and process audits under `PROJECT-EVALUATION-FRAMEWORK.md` |
 
-CI runs the unit tests and Gate 0 on every push and pull request.
+CI runs the unit tests and Gate 0, and in a second job the browser checks (Chromium; the research view's filter also in
+Firefox and WebKit, D-212), on every push and pull request.
 
 ## Limitations
 
