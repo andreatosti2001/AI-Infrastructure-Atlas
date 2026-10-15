@@ -117,6 +117,8 @@ svg a.tl-mark:hover circle, svg a.tl-mark:focus-visible circle, svg a.tl-mark:ho
 svg a.tl-mark:focus-visible { outline: none; }
 .key-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 2.5px solid var(--line-ink); background: var(--surface-page); }
 .key-dot.filled { background: var(--line-ink); }
+.aged { color: var(--ink-muted); }
+.key-dot.other { background: var(--surface-panel); border-width: 1.5px; }
 .key-line { display: inline-block; width: 22px; height: 0; border-top: 2px dashed var(--line-focus); }
 ol.timeline-words { padding-left: 2.2em; max-width: 80ch; font-size: 0.92rem; }
 ol.timeline-words li { margin: 4px 0; }
@@ -202,6 +204,11 @@ ${main}
 <div class="framing dek" data-framing>
 <p class="framing-tag" data-label>Atlas framing</p>
 <p>This page gathers what the Atlas records about one company: its identity, the links that name it, where a source names it as a supplier, and the candidates the Atlas considered and refused. Each item opens its evidence. A missing item means the Atlas has not recorded it; it never means that the company does not do it.</p>
+</div>
+<!-- framing: evidence-age -->
+<div class="framing" data-framing="evidence-age">
+<p class="framing-tag" data-label>Atlas framing</p>
+<p>A value marked “newest evidence … months before the as-of date” rests on evidence dated earlier than the source policy’s freshness horizon allows for this kind of value, counted back from the as-of date. It does not mean the value has changed: the Atlas has not yet re-checked it against newer evidence. The date shown is the newest evidence the Atlas holds for it.</p>
 </div>
 <!-- framing: company-links -->
 <div class="framing" data-framing>

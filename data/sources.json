@@ -1486,5 +1486,27 @@
       "accessed_at": "2026-10-15T07:13Z",
       "sha256": "4e4b5555a41f7799f4e4dfe192a3a159c6fbb023da36ffacd76e4bbb80c5d9d5"
     }
+  },
+  {
+    "id": "src-065",
+    "source_class": "government_publication",
+    "title": "Department of Commerce Announces Rescission of Biden-Era Artificial Intelligence Diffusion Rule, Strengthens Chip-Related Export Controls (press release)",
+    "publisher": "Bureau of Industry and Security (BIS), U.S. Department of Commerce (bis.gov)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "Office of Congressional and Public Affairs",
+    "url": "https://www.bis.gov/press-release/department-commerce-announces-rescission-biden-era-artificial-intelligence-diffusion-rule-strengthens",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2025-05-13"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-15T21:06Z",
+      "sha256": "aa94c08641fdc27c40300184825741b800b641ba370ced531fb409f00e93d5ec"
+    }
   }
 ]

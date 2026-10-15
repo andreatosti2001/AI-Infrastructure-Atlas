@@ -169,5 +169,14 @@
     "claim_ids": [
       "claim-bis-rule-2025-00711-effective-2025-01-16"
     ]
+  },
+  {
+    "id": "event-us-fr-2025-00636-announced-2025-05-13",
+    "event_type": "announced",
+    "subject": "policy-us-fr-2025-00636",
+    "date": "2025-05-13",
+    "claim_ids": [
+      "claim-bis-ai-diffusion-rescission-announced-2025-05-13"
+    ]
   }
 ]

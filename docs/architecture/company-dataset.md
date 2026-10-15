@@ -145,6 +145,10 @@ claim-backed, and it changes only by an event (a rename).
 - `company-asml-holding` keeps "Holding", because "Holding" is part of the name, not a
   legal form.
 - `company-amazon-com` keeps ".com" as `-com`.
+- `company-samsung-electronics-co-ltd` keeps "co-ltd" (S23, D-218): "Co., Ltd." was not a listed
+  designation when the record was made (S16.6), and an ID never changes. Adding "Co., Ltd." to the
+  table would make ID-1 require the slug without "-co-ltd", so it is added only by a decision that
+  also keeps existing IDs valid, when a new record first needs it.
 
 ## 4. Which sentence supports which field
 

@@ -36,6 +36,7 @@ import sys
 from pathlib import Path
 
 import build_page
+import evidence_age
 import navigate
 from build_page import DATA, PALETTE, REPO_ROOT, BuildError, esc, input_digest
 from facility_status import period
@@ -55,6 +56,7 @@ INPUT_FILES = (
     "docs/research/source-policy.md",
     "tools/build_journeys.py",
     "tools/build_page.py",
+    "tools/evidence_age.py",
     "tools/facility_status.py",
     "tools/journey_template.html",
     "tools/navigate.py",
@@ -77,6 +79,7 @@ LABELS = build_page.LABELS | frozenset(
     {
         "Research pages", "Compare layers", "Company profile", "Place profile", "All research pages", "The question",
         "Later statements about this act",  # S22 (D-210, D-214)
+        "newest evidence", "more than", "months before the as-of date",  # S23 (D-221)
         "What are you trying to understand?", "Questions", "Where the records stop", "Explore a dependency",
         "Investigate a company", "Investigate a place", "Inspect evidence", "the dependency journey", "the research view",
         "Which parts and technologies does each recorded export-control text name among the items it controls, and when did each take effect?",
@@ -212,6 +215,9 @@ class Journey(build_page.Page):
             raise BuildError(f"sql/results/{AGE_QUERY}.json was computed from another version of its query (python tools/warehouse.py)")
         self.on = self.age["rows"][0]["reference_date"]
         self.atlas.on = self.on  # statuses are derived on the as-of date, never on the build's clock
+        self.ages = evidence_age.Ages(data)  # values past the freshness horizon on the as-of date (S23, D-221)
+        if self.ages.on != self.on:
+            raise BuildError(f"sql/source_age.sql's reference date {self.ages.on} differs from its result's {self.on} (python tools/warehouse.py)")
         self.skeleton, self.framings = template_parts()
         recs = lambda kind: [r for r, where in self.atlas.records.values() if where == "canonical" and r.get("type") == kind]  # noqa: E731
         self.companies, self.places, self.policies = recs("company"), recs("jurisdiction"), recs("policy")
@@ -531,10 +537,15 @@ class Journey(build_page.Page):
             for e in events
         )
         undated = "".join(f'<li data-undated="{esc(a["id"])}">{self.act_link(a["id"], "/name")} · {self.label("no dated event recorded", cls="none-word")}</li>' for a in acts if a not in dated)
+        # The key names each kind of event the timeline draws, and no other (JR-15, S23, D-220): an announcement
+        # (ER-8) is drawn as the plain mark and named by its type.
+        dot = {"published": "key-dot", "effective": "key-dot filled"}
+        kinds = [k for k in dot if any(e["event_type"] == k for e in events)] + sorted({e["event_type"] for e in events} - set(dot))
         key = (
-            f'<ul class="key"><li><span class="key-dot" aria-hidden="true"></span>{self.label("published")}</li>'
-            f'<li><span class="key-dot filled" aria-hidden="true"></span>{self.label("effective")}</li>'
-            f'<li><span class="key-line" aria-hidden="true"></span>{self.label("the as-of date")}</li></ul>'
+            '<ul class="key">'
+            + "".join(f'<li><span class="{dot.get(k, "key-dot other")}" aria-hidden="true"></span>'
+                      f'{self.label(k) if k in dot else self.ref(f"schema:events#vocab_event_type/{k}", "/const", fmt="state")}</li>' for k in kinds)
+            + f'<li><span class="key-line" aria-hidden="true"></span>{self.label("the as-of date")}</li></ul>'
         )
         return (
             f'{key}<figure class="timeline-fig">{svg}</figure>'
@@ -716,14 +727,26 @@ class Journey(build_page.Page):
 
     # --- a company (D-192) -----------------------------------------------------------------------------
 
-    def values(self, rid: str, field: str, link=None, fmt: str | None = None) -> str:
-        """A record's multi-valued field in words, or its state when unknown."""
+    def values(self, rid: str, field: str, link=None, fmt: str | None = None, aged: bool = False) -> str:
+        """A record's multi-valued field in words, or its state when unknown; with aged, each value whose evidence is
+        past the freshness horizon carries its mark (S23, D-221)."""
         value = self.homes[rid].get(field)
         if value is None:
             return self.absent(rid, f"/{field}", "no record in the Atlas")
         if isinstance(value, dict):
             return self.ref(rid, f"/{field}/state", fmt="state", cls="state-word")
-        return ", ".join(link(a["value"]) if link else self.ref(rid, f"/{field}/{i}/value", fmt=fmt) for i, a in enumerate(value))
+        return ", ".join((link(a["value"]) if link else self.ref(rid, f"/{field}/{i}/value", fmt=fmt)) + (self.aged(rid, field, i) if aged else "")
+                         for i, a in enumerate(value))
+
+    def aged(self, rid: str, field: str, i: int) -> str:
+        """The mark beside a value whose newest accepted evidence is dated more than the horizon before the as-of date
+        (tools/evidence_age.py; JR-16 recomputes it). It gives that date and the horizon, never an age (V-5)."""
+        newest = self.ages.past_horizon(self.homes[rid], field, i)
+        if newest is None:
+            return ""
+        return (f' <span class="aged" data-past-horizon="{esc(field)}/{i}">({self.label("newest evidence")} '
+                f'{self.derived("evidence-newest", newest)}, {self.label("more than")} '
+                f'{self.derived("horizon-months", str(evidence_age.horizon_months()))} {self.label("months before the as-of date")})</span>')
 
     def unit(self, n: int, one: str, many: str) -> str:
         return self.label(one if n == 1 else many)
@@ -743,15 +766,17 @@ class Journey(build_page.Page):
         events = sorted((e for e in self.events if e["subject"] == cid), key=lambda e: (e["date"], e["id"]))
         roles = record.get("roles")
         role_words = (
-            ", ".join(f'{self.ref(cid, f"/roles/{i}/value", fmt="state")} <span class="cite">({self.ref("schema:entities#vocab_actor_role/" + a["value"], "/description")})</span>' for i, a in enumerate(roles))
+            ", ".join(f'{self.ref(cid, f"/roles/{i}/value", fmt="state")} <span class="cite">({self.ref("schema:entities#vocab_actor_role/" + a["value"], "/description")})</span>{self.aged(cid, "roles", i)}' for i, a in enumerate(roles))
             if isinstance(roles, list) else self.ref(cid, "/roles/state", fmt="state", cls="state-word")
         )
         facts = (
             f'<div class="summary-card"><dl><div><dt>{self.label("recorded role")}</dt><dd>{role_words}</dd></div>'
-            f'<div><dt>{self.label("legal name")}</dt><dd>{self.values(cid, "legal_name")}</dd></div>'
-            f'<div><dt>{self.label("incorporated in")}</dt><dd>{self.values(cid, "incorporated_in", self.place_link)}</dd></div>'
-            f'<div><dt>{self.label("headquartered in")}</dt><dd>{self.values(cid, "headquartered_in", self.place_link)}</dd></div></dl></div>'
+            f'<div><dt>{self.label("legal name")}</dt><dd>{self.values(cid, "legal_name", aged=True)}</dd></div>'
+            f'<div><dt>{self.label("incorporated in")}</dt><dd>{self.values(cid, "incorporated_in", self.place_link, aged=True)}</dd></div>'
+            f'<div><dt>{self.label("headquartered in")}</dt><dd>{self.values(cid, "headquartered_in", self.place_link, aged=True)}</dd></div></dl></div>'
         )
+        if 'data-past-horizon="' in facts:
+            facts += self.framing("evidence-age")
         tallies = (
             '<div class="tiles">'
             + self.tally(len(own), "links", ("recorded link", "recorded links"), "no recorded relationship", "Links")

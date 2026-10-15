@@ -1,0 +1,1185 @@
+{
+  "verifier": "S23 re-read, 2026-10-15; verdicts per release-content-audit.md Part 3",
+  "claims": [
+    {
+      "claim": "claim-h100-hbm-stacks",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "2 of 2 found",
+      "sources": [
+        "src-051"
+      ],
+      "bytes_equal_registered": [
+        "False"
+      ],
+      "wording_exceeds_evidence": false,
+      "note": "holds; the source still calls H100 memory data rates \"not finalized\" (Figure 18 note), as S13 F-3 recorded"
+    },
+    {
+      "claim": "claim-trendforce-h100-hbm3-primarily-sk-hynix-2024",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-054"
+      ],
+      "bytes_equal_registered": [
+        "False"
+      ],
+      "wording_exceeds_evidence": false,
+      "note": "holds; the same paragraph reports Samsung entering NVIDIA's supply chain in late 2023 (\"initially minor\"), not for the H100 by name"
+    },
+    {
+      "claim": "claim-trainium2-hbm-capacity",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-043"
+      ],
+      "bytes_equal_registered": [
+        "False"
+      ],
+      "wording_exceeds_evidence": false,
+      "note": "holds; anchor is a table row (S13 F-9)"
+    },
+    {
+      "claim": "claim-semianalysis-trn2-hbm-samsung-2025",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "2 of 2 found",
+      "sources": [
+        "src-055"
+      ],
+      "bytes_equal_registered": [
+        "False"
+      ],
+      "wording_exceeds_evidence": false,
+      "note": "holds; \"speed deficiency ... due to using memory supplied by Samsung\"; DIGITIMES 2023-12-07 (a plan, paywalled) names Samsung and SK hynix: recorded in S16.6, not resolved"
+    },
+    {
+      "claim": "claim-aws-designed-trainium2",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "2 of 2 found",
+      "sources": [
+        "src-052"
+      ],
+      "bytes_equal_registered": [
+        "False"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-sk-hynix-operates-m16",
+      "claim_type": "DERIVATION",
+      "set": "weight_bearing",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-hbm-requires-3d-die-stacking",
+      "claim_type": "DERIVATION",
+      "set": "weight_bearing",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-controls-hbm-stacks",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-061"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-hbm-term-match",
+      "claim_type": "DERIVATION",
+      "set": "weight_bearing",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false,
+      "note": "step follows; states that the rule's HBM (JEDEC-independent, p.11) and the Atlas's may differ at their edges"
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-revises-3a090",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "3 of 3 found",
+      "sources": [
+        "src-062"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-revises-3a090",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "2 of 2 found",
+      "sources": [
+        "src-063"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-adds-sme-3b090",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "2 of 2 found",
+      "sources": [
+        "src-058"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-sme-term-match",
+      "claim_type": "DERIVATION",
+      "set": "weight_bearing",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-removes-3b090",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "2 of 2 found",
+      "sources": [
+        "src-060"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-sme-controls",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "2 of 2 found",
+      "sources": [
+        "src-060"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-sme-term-match",
+      "claim_type": "DERIVATION",
+      "set": "weight_bearing",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-revises-3b001-3b002",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "3 of 3 found",
+      "sources": [
+        "src-061"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false,
+      "found_by_hand": "p.15, section E.1; the Federal Register page footer is extracted inside the sentence"
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-adds-3b001-f6",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "5 of 5 found",
+      "sources": [
+        "src-063"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-revises-3b993",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "5 of 5 found",
+      "sources": [
+        "src-063"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-new-sme-controls",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-061"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-sme-term-match",
+      "claim_type": "DERIVATION",
+      "set": "weight_bearing",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-atlas-trainium2-ai-asic",
+      "claim_type": "INTERPRETATION",
+      "set": "weight_bearing",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-h100-identity",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-042"
+      ],
+      "bytes_equal_registered": [
+        "False"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-h100-process-name",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-042"
+      ],
+      "bytes_equal_registered": [
+        "False"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-tsmc-fabricates-h100",
+      "claim_type": "DERIVATION",
+      "set": "weight_bearing",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false,
+      "note": "step follows as ER-1 requires; a gap, not an edge (D-092)"
+    },
+    {
+      "claim": "claim-sk-hynix-m16-completed-icheon",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-046"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-sk-hynix-m15x-plan-disclosed",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-048"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-micron-second-idaho-fab-announced",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-025"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-amkor-arizona-phase-2-announced",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "not_retrievable",
+      "anchors": "0 of 1 found; 1 access gap(s)",
+      "sources": [
+        "src-050"
+      ],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": null,
+      "note": "not re-read: src-050 refused (403, Akamai) though registered by automated retrieval"
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-citation",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-058"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-effective-2022-10-07",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-058"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-effective-2022-10-12",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-058"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-effective-2022-10-21",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-058"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2023-23055-citation",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-059"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2023-23055-effective-2023-11-17",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-059"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false,
+      "found_by_hand": "p.1, DATES; the text runs in a column interleaved with \"Background\""
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-citation",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-060"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-effective-2023-11-17",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-060"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-citation",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-061"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-effective-2024-12-02",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-061"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-citation",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-062"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-effective-2025-01-13",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-062"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-citation",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-063"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-effective-2025-01-16",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-063"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2026-14132-enforcement-statement",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-064"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false,
+      "note": "holds; the guidance it cites (13 May 2025) is retrievable today, see C-1"
+    },
+    {
+      "claim": "claim-sk-hynix-production-plants-icheon-cheongju",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-047"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-sk-hynix-m16-fabrication-plant",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-049"
+      ],
+      "bytes_equal_registered": [
+        "False"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-ecp-hbm-definition",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-040"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-atlas-3d-die-stacking-working-definition",
+      "claim_type": "INTERPRETATION",
+      "set": "weight_bearing",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-atlas-high-bandwidth-memory-working-definition",
+      "claim_type": "INTERPRETATION",
+      "set": "weight_bearing",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-atlas-semiconductor-manufacturing-equipment-working-definition",
+      "claim_type": "INTERPRETATION",
+      "set": "weight_bearing",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-trainium2-identity",
+      "claim_type": "FACT",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-043"
+      ],
+      "bytes_equal_registered": [
+        "False"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-cset-asic-definition",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-002"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-lbnl-asic-definition",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-021"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-atlas-ai-asic-working-definition",
+      "claim_type": "INTERPRETATION",
+      "set": "weight_bearing",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-hir-3d-architecture-definition",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-039"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-cset-sme-definition",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-002"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-atlas-ai-accelerator-working-definition",
+      "claim_type": "INTERPRETATION",
+      "set": "weight_bearing",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-cset-ai-chip-definition",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-003"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-lbnl-ai-accelerator-accounting",
+      "claim_type": "ATTRIBUTION",
+      "set": "weight_bearing",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-021"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-document-number",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-061"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-micron-registrant-name",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-025"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-ear-issued-by-bis",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-057"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-form",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-058"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-document-number",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-058"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-amends-ear",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-061"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-issued-in-us",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "2 of 2 found",
+      "sources": [
+        "src-057",
+        "src-062"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-title",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "2 of 2 found",
+      "sources": [
+        "src-061"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-sk-hynix-legal-name",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-030"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-document-number",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-063"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-title",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "2 of 2 found",
+      "sources": [
+        "src-060"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-issued-in-us",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "2 of 2 found",
+      "sources": [
+        "src-057",
+        "src-063"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-iso-3166-1-us",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "not_retrievable",
+      "anchors": "0 of 1 found; 1 access gap(s)",
+      "sources": [
+        "src-032"
+      ],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": null,
+      "note": "not re-read: src-032 is ISO OBP (403 challenge), registered by manual retrieval (RA-4)"
+    },
+    {
+      "claim": "claim-bis-rule-2023-23055-form",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-059"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-tsmc-incorporated-roc",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "not_retrievable",
+      "anchors": "0 of 3 found; 3 access gap(s)",
+      "sources": [
+        "src-031"
+      ],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": null,
+      "note": "not re-read: src-031 is the TSMC 20-F (403 challenge), registered by manual retrieval (RA-4)"
+    },
+    {
+      "claim": "claim-iso-3166-2-us-id",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "not_retrievable",
+      "anchors": "0 of 1 found; 1 access gap(s)",
+      "sources": [
+        "src-033"
+      ],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": null,
+      "note": "not re-read: src-033 is ISO OBP (403 challenge), registered by manual retrieval (RA-4)"
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-amends-ear",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-058"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-asml-holding-nv-company",
+      "claim_type": "FACT",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-029"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-hir-2x-names-no-technical-basis",
+      "claim_type": "ATTRIBUTION",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-039"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-lbnl-accelerated-servers-category",
+      "claim_type": "ATTRIBUTION",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-021"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-export-controls",
+      "claim_type": "ATTRIBUTION",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-060"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-lbnl-reports-idc-gpu-die-supply",
+      "claim_type": "ATTRIBUTION",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-021"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-sk-hynix-chiplet-description",
+      "claim_type": "ATTRIBUTION",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-045"
+      ],
+      "bytes_equal_registered": [
+        "False"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-cset-assembly-packaging-tools",
+      "claim_type": "ATTRIBUTION",
+      "set": "drawn",
+      "verdict": "holds",
+      "anchors": "1 of 1 found",
+      "sources": [
+        "src-002"
+      ],
+      "bytes_equal_registered": [
+        "True"
+      ],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-amkor-incorporated-in-us",
+      "claim_type": "DERIVATION",
+      "set": "drawn",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false,
+      "note": "step follows; two of its three inputs (ISO OBP) are access gaps today"
+    },
+    {
+      "claim": "claim-micron-incorporated-in-us",
+      "claim_type": "DERIVATION",
+      "set": "drawn",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false,
+      "note": "step follows; two of its three inputs (ISO OBP) are access gaps today"
+    },
+    {
+      "claim": "claim-micron-manassas-fab-in-us",
+      "claim_type": "DERIVATION",
+      "set": "drawn",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false,
+      "note": "step follows; two of its three inputs (ISO OBP) are access gaps today"
+    },
+    {
+      "claim": "claim-atlas-data-centre-gpu-working-definition",
+      "claim_type": "INTERPRETATION",
+      "set": "drawn",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-atlas-advanced-packaging-working-definition",
+      "claim_type": "INTERPRETATION",
+      "set": "drawn",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    },
+    {
+      "claim": "claim-atlas-2-5d-packaging-with-an-interposer-working-definition",
+      "claim_type": "INTERPRETATION",
+      "set": "drawn",
+      "verdict": "step_follows",
+      "anchors": "no citation of its own (reasoning from its inputs)",
+      "sources": [],
+      "bytes_equal_registered": [],
+      "wording_exceeds_evidence": false
+    }
+  ]
+}

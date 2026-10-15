@@ -1,0 +1,3004 @@
+{
+  "pdftotext": "pdftotext version 24.02.0",
+  "citations": [
+    {
+      "claim": "claim-nvidia-registrant-name",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-024",
+      "locator": "p.1, cover page, the name printed above the label '(Exact name of registrant as specified in its charter)'",
+      "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "062ecb1c5f6f2ac9d1305c51728ab27858d228cbc919ef375646cabd6f5e6ee2",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-nvidia-incorporation-history",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-024",
+      "locator": "p.5, Item 1 'Business', the sentence beginning 'Headquartered in Santa Clara, California'",
+      "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "062ecb1c5f6f2ac9d1305c51728ab27858d228cbc919ef375646cabd6f5e6ee2",
+      "anchor": "exact",
+      "pages": [
+        5,
+        36,
+        56
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-nvidia-headquarters-santa-clara",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-024",
+      "locator": "p.5, Item 1 'Business', the sentence beginning 'Headquartered in Santa Clara, California'",
+      "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "062ecb1c5f6f2ac9d1305c51728ab27858d228cbc919ef375646cabd6f5e6ee2",
+      "anchor": "exact",
+      "pages": [
+        5,
+        36,
+        56
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-nvidia-fabless-strategy",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-024",
+      "locator": "p.8, 'Manufacturing', the sentence beginning 'We utilize a fabless and contracting manufacturing strategy'",
+      "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "062ecb1c5f6f2ac9d1305c51728ab27858d228cbc919ef375646cabd6f5e6ee2",
+      "anchor": "exact",
+      "pages": [
+        8
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-nvidia-fabless-strategy",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-024",
+      "locator": "p.8, 'Manufacturing', the sentence beginning 'As a result, we can focus our resources'",
+      "sha256": "a056b59e4170c0123217a8e861a39af4a4a48d2df0d27b641017a618a280a396",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "062ecb1c5f6f2ac9d1305c51728ab27858d228cbc919ef375646cabd6f5e6ee2",
+      "anchor": "exact",
+      "pages": [
+        8
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-micron-registrant-name",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-025",
+      "locator": "p.1, cover page, the name printed above the label '(Exact name of registrant as specified in its charter)'",
+      "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "1c3938bf71b34b268465adccbc6e649430784897cc4a465879d5cd2ad12842e9",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-micron-incorporation-state",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-025",
+      "locator": "p.1, cover page, the field labelled '(State or other jurisdiction of incorporation or organization)', whose value is 'Delaware'; the number printed beside it is the IRS Employer Identification No.",
+      "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "1c3938bf71b34b268465adccbc6e649430784897cc4a465879d5cd2ad12842e9",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-micron-headquarters-boise",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-025",
+      "locator": "p.47, Item 2 'Properties', the first sentence",
+      "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "1c3938bf71b34b268465adccbc6e649430784897cc4a465879d5cd2ad12842e9",
+      "anchor": "exact",
+      "pages": [
+        47
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-micron-manufactures-memory",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-025",
+      "locator": "p.13, 'Manufacturing', the first sentence",
+      "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "1c3938bf71b34b268465adccbc6e649430784897cc4a465879d5cd2ad12842e9",
+      "anchor": "exact",
+      "pages": [
+        13
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-micron-manufactures-memory",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-025",
+      "locator": "p.13, 'Manufacturing', the sentence beginning 'Our DRAM, NAND, and NOR products'",
+      "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "1c3938bf71b34b268465adccbc6e649430784897cc4a465879d5cd2ad12842e9",
+      "anchor": "exact",
+      "pages": [
+        13
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-amkor-registrant-name",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-026",
+      "locator": "p.1, cover page, the name printed above the label '(Exact name of registrant as specified in its charter)'",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-amkor-incorporation-state",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-026",
+      "locator": "p.1, cover page, the field labelled '(State or other jurisdiction of incorporation or organization)', whose value is 'Delaware'; the number printed beside it is the I.R.S. Employer Identification Number",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-amkor-us-headquartered-osat",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-026",
+      "locator": "p.7, Item 1 'Business', the sentence beginning 'As a U.S. headquartered OSAT'",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-amkor-us-headquartered-osat",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-026",
+      "locator": "p.4, Item 1 'Business', 'Overview', the first sentence, where the abbreviation is defined (the sentence's superlative is not adopted, ER-5)",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-synopsys-registrant-name",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-027",
+      "locator": "p.1, cover page, the name printed above the label '(Exact name of registrant as specified in its charter)'",
+      "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "a3e427effb8fd5da6105d0726391d2004b1d8a6330903a6a85df87023819d0a9",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-synopsys-incorporation-state",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-027",
+      "locator": "p.1, cover page, the field labelled '(State or other jurisdiction of incorporation or organization)', whose value is 'Delaware'; the number printed beside it is the I.R.S. Employer Identification No.",
+      "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "a3e427effb8fd5da6105d0726391d2004b1d8a6330903a6a85df87023819d0a9",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-synopsys-headquarters-sunnyvale",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-027",
+      "locator": "p.6, Item 1 'Business', 'Corporate Information', the first sentence",
+      "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "a3e427effb8fd5da6105d0726391d2004b1d8a6330903a6a85df87023819d0a9",
+      "anchor": "exact",
+      "pages": [
+        6
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-synopsys-sells-eda",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-027",
+      "locator": "p.7, 'Products and Services', 'Design Automation Segment', the first sentence",
+      "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "a3e427effb8fd5da6105d0726391d2004b1d8a6330903a6a85df87023819d0a9",
+      "anchor": "exact",
+      "pages": [
+        7
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-synopsys-sells-eda",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-027",
+      "locator": "p.7, the sentence beginning 'Our EDA products increase designer productivity'",
+      "sha256": "f9ee4e270742e7d364fc911adff20682eda7f8c2a43ee6fee90ff16d8718a905",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "a3e427effb8fd5da6105d0726391d2004b1d8a6330903a6a85df87023819d0a9",
+      "anchor": "exact",
+      "pages": [
+        7
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-amazon-registrant-name",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-028",
+      "locator": "p.12 (the Form 10-K's cover page, which follows the shareholder letter), the name printed above the label '(Exact name of registrant as specified in its charter)'",
+      "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "0e5b83076d8fe5e13a0baa1659bec618562914dd7f390c3b020d1dbde7d2c1ef",
+      "anchor": "exact",
+      "pages": [
+        12
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-amazon-incorporation-state",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-028",
+      "locator": "p.12 (the Form 10-K's cover page), the field labelled '(State or other jurisdiction of incorporation or organization)', whose value is 'Delaware'; the number printed beside it is the I.R.S. Employer Identification No.",
+      "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "0e5b83076d8fe5e13a0baa1659bec618562914dd7f390c3b020d1dbde7d2c1ef",
+      "anchor": "exact",
+      "pages": [
+        12
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-amazon-headquarters-washington-virginia",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-028",
+      "locator": "p.29, Form 10-K Item 2 'Properties', the sentence after the facilities tables",
+      "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "0e5b83076d8fe5e13a0baa1659bec618562914dd7f390c3b020d1dbde7d2c1ef",
+      "anchor": "exact",
+      "pages": [
+        29
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-amazon-provides-cloud-services",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-028",
+      "locator": "p.23, Form 10-K Item 1A, under 'Our Commercial Agreements, Strategic Alliances, and Other Business Relationships Expose Us to Risks', the first sentence",
+      "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "0e5b83076d8fe5e13a0baa1659bec618562914dd7f390c3b020d1dbde7d2c1ef",
+      "anchor": "exact",
+      "pages": [
+        23
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-amazon-provides-cloud-services",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-028",
+      "locator": "p.14, Form 10-K Item 1 'Business', 'Developers and Enterprises'",
+      "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "0e5b83076d8fe5e13a0baa1659bec618562914dd7f390c3b020d1dbde7d2c1ef",
+      "anchor": "exact",
+      "pages": [
+        14,
+        52
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-amazon-operates-data-centers",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-028",
+      "locator": "p.29, Form 10-K Item 2 'Properties', the first sentence",
+      "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "0e5b83076d8fe5e13a0baa1659bec618562914dd7f390c3b020d1dbde7d2c1ef",
+      "anchor": "exact",
+      "pages": [
+        29
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-amazon-operates-data-centers",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-028",
+      "locator": "p.29, Form 10-K Item 2 'Properties', first table, column 'Description of Use', the rows for North America and International",
+      "sha256": "63196177ef83756ddfaff5aacda547f0eabac4669c0f6144bcee8401cd8cfbfc",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "0e5b83076d8fe5e13a0baa1659bec618562914dd7f390c3b020d1dbde7d2c1ef",
+      "anchor": "exact",
+      "pages": [
+        29
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-asml-holding-nv-company",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-029",
+      "locator": "p.76, 'Corporate governance', the sentence beginning 'ASML Holding N.V. is a public limited liability company'",
+      "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "ae3ddbf91542e074e7eb75370e3152700a94bf3322bfc597b1e88c843e4d3bae",
+      "anchor": "exact",
+      "pages": [
+        76
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-asml-incorporated-netherlands",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-029",
+      "locator": "p.309, Note on income taxes, 'Global Minimum Tax', the first sentence",
+      "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "ae3ddbf91542e074e7eb75370e3152700a94bf3322bfc597b1e88c843e4d3bae",
+      "anchor": "exact",
+      "pages": [
+        309
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-asml-headquarters-veldhoven",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-029",
+      "locator": "p.327, 'Facilities in EMEA', the first sentence",
+      "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "ae3ddbf91542e074e7eb75370e3152700a94bf3322bfc597b1e88c843e4d3bae",
+      "anchor": "exact",
+      "pages": [
+        327
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-asml-semiconductor-equipment",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-029",
+      "locator": "p.287, Note 3 'Segment disclosure', the first sentence",
+      "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "ae3ddbf91542e074e7eb75370e3152700a94bf3322bfc597b1e88c843e4d3bae",
+      "anchor": "exact",
+      "pages": [
+        287
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-sk-hynix-legal-name",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-030",
+      "locator": "I.1 'Company overview', item 나 (the company's legal and commercial names), the first sentence",
+      "sha256": "b067389a5f3c7d88fb7c3d91b7fef948e924a2d49791736ce8a92327fd4b6f2c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "ccb2f60e5d7667d2900457b316dfe354a1e4d079371af34923076f1bc85c61ea",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-sk-hynix-head-office-gyeonggi",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-030",
+      "locator": "I.1 'Company overview', item 라 (head office address, telephone number and website), its heading and the address line",
+      "sha256": "b067389a5f3c7d88fb7c3d91b7fef948e924a2d49791736ce8a92327fd4b6f2c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "ccb2f60e5d7667d2900457b316dfe354a1e4d079371af34923076f1bc85c61ea",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-sk-hynix-memory-products",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-030",
+      "locator": "I.1 'Company overview', item 바 (main business), the first sentence",
+      "sha256": "b067389a5f3c7d88fb7c3d91b7fef948e924a2d49791736ce8a92327fd4b6f2c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "ccb2f60e5d7667d2900457b316dfe354a1e4d079371af34923076f1bc85c61ea",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-h100-gh100-process-name",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-006",
+      "locator": "section 'NVIDIA H100 GPU architecture in-depth' (the register's 'H100 GPU hardware architecture in-depth'), the sentence beginning 'The full GH100 GPU that powers the H100 GPU'",
+      "sha256": "f6088ac0ff1133f900e49705150dbe8cb587a16abfa02bca6b9357943adbb5a5",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "8b0edac062404b73b0d844741cd4f0ff27a323ec6c2a5d126d956b0a1aab5269",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-asml-euv-unique-to-asml",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-017",
+      "locator": "opening paragraph, the sentence beginning 'The technology, which is unique to ASML'",
+      "sha256": "00f4dfdb5c93b177d435f19341daa4932279852947580b852757afb068fb3682",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "26dfc5431fd23d456f092db452d2c1b3b950ec5217d0fd644f27ba1ed7afb512",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-lbnl-reports-idc-gpu-die-supply",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-021",
+      "locator": "p.18, §3.1.2 'AI Accelerator Shipments', under 'Functional Unit for GPU Forecasts', the sentence beginning 'Because the market is currently constrained', in the paragraph that reports what 'IDC analysts advised us' and ends '(IDC, 2026)'",
+      "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "e6551ac4055215d43784c1011a54f60109f891233c1cadc9472c95bcf9b0c4c9",
+      "anchor": "exact",
+      "pages": [
+        18
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-cset-ai-chip-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-003",
+      "locator": "p.4, footnote *",
+      "sha256": "0f80b4fa16509e838b5a3e172b29d9fdb69a042815a9d326a3b8b9e46393842c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "b12917cede16ca7bd3ea9497cd61662cf13e3be15bb2d6f9cb830c7298dd56aa",
+      "anchor": "exact",
+      "pages": [
+        4
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-lbnl-ai-accelerator-accounting",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-021",
+      "locator": "p.16, §3.1.2 'AI Accelerator Shipments', the sentence beginning 'The analogous dataset used in the 2024 Report'",
+      "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "e6551ac4055215d43784c1011a54f60109f891233c1cadc9472c95bcf9b0c4c9",
+      "anchor": "exact",
+      "pages": [
+        16
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-nist-cloud-location-independence",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-001",
+      "locator": "p.6, essential characteristic 'Resource pooling', the sentence beginning 'There is a sense of location independence'",
+      "sha256": "7b0c1a9fdfc67218b8ba2098f448c100c27070db91736b3c87fed63bfa21d418",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "8d0611c84974c3756f04eb45e29f3a816167658f2866ac686e4c51533235293a",
+      "anchor": "exact",
+      "pages": [
+        6
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-aws-availability-zone-data-centers",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-020",
+      "locator": "section 'Availability Zones', the sentence beginning 'Each Availability Zone consists of'",
+      "sha256": "1f172d6e220c740279a04165d30d6de3ac639c642b8cda575832c57a085abb87",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "d2772c71a7abd69b395fe582e35bea7a4918cc333f374d6b09d4b1d8ca5c6415",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-iso-3166-1-us",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-032",
+      "locator": "screenshot of the OBP entry, below 'Standard: ISO 3166', rows 'Alpha-2 code' and 'Short name'",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-iso-3166-1-nl",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-035",
+      "locator": "screenshot of the OBP entry, below 'Standard: ISO 3166', rows 'Alpha-2 code' and 'Short name'",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-iso-3166-1-kr",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-036",
+      "locator": "screenshot of the OBP entry, below 'Standard: ISO 3166', rows 'Alpha-2 code' and 'Short name'",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-iso-3166-2-us-ca",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-033",
+      "locator": "screenshot of the subdivision table, the row for US-CA",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-iso-3166-2-us-de",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-033",
+      "locator": "screenshot of the subdivision table, the row for US-DE",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-iso-3166-2-us-id",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-033",
+      "locator": "screenshot of the subdivision table, the row for US-ID",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-iso-3166-2-us-va",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-034",
+      "locator": "screenshot of the subdivision table, the row for US-VA",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-iso-3166-2-us-wa",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-034",
+      "locator": "screenshot of the subdivision table, the row for US-WA",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-iso-3166-2-kr-41",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-037",
+      "locator": "screenshot of the subdivision table, the row for KR-41",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-iso-3166-1-tw",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-038",
+      "locator": "screenshot of the OBP entry, below 'Standard: ISO 3166', rows 'Alpha-2 code' and 'Short name'",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-tsmc-legal-name",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-031",
+      "locator": "p.179, Exhibit 1.1, Articles of Incorporation, Article 1",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-tsmc-legal-name",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-031",
+      "locator": "p.20, Item 4, 'Our History and Structure', the first sentence",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-tsmc-legal-name",
+      "claim_type": "FACT",
+      "citation": 3,
+      "source_id": "src-031",
+      "locator": "p.1, cover page, the name printed above the label '(Exact Name of Registrant as Specified in Its Charter)'",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-tsmc-legal-name",
+      "claim_type": "FACT",
+      "citation": 4,
+      "source_id": "src-031",
+      "locator": "p.1, cover page, the English name and its label; the text runs on into the jurisdiction field beside it",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-tsmc-incorporated-roc",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-031",
+      "locator": "p.179, Exhibit 1.1, Articles of Incorporation, Article 1",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-tsmc-incorporated-roc",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-031",
+      "locator": "p.20, Item 4, 'Our History and Structure', the second sentence",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-tsmc-incorporated-roc",
+      "claim_type": "FACT",
+      "citation": 3,
+      "source_id": "src-031",
+      "locator": "p.108, Note 1 'General', the first sentence",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-tsmc-head-office-taiwan",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-031",
+      "locator": "p.180, Exhibit 1.1, Articles of Incorporation, Article 3",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-tsmc-head-office-taiwan",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-031",
+      "locator": "p.21, Item 4, 'Our Semiconductor Facilities', the second sentence",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-tsmc-foundry",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-031",
+      "locator": "p.21, Item 4, 'Business Overview of the Company', the first sentence",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-cset-asic-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-002",
+      "locator": "p.65, Appendix B: Glossary, entry 'Application-specific integrated circuits (ASICs)'",
+      "sha256": "319d942ba53468a6d5af97c9e46f6134fda2bf03958237e966bdc8c9cc8098ff",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "4499695c95eda892cb05e02e641814fa34f5757ecec9a7dbb8bcd0f2d969fa3b",
+      "anchor": "exact",
+      "pages": [
+        65
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-cset-assembly-packaging-tools",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-002",
+      "locator": "p.45, section 'Assembly and Packaging', first sentence",
+      "sha256": "319d942ba53468a6d5af97c9e46f6134fda2bf03958237e966bdc8c9cc8098ff",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "4499695c95eda892cb05e02e641814fa34f5757ecec9a7dbb8bcd0f2d969fa3b",
+      "anchor": "exact",
+      "pages": [
+        45
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-cset-eda-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-002",
+      "locator": "p.66, Appendix B: Glossary, entry 'Electronic design automation (EDA)'",
+      "sha256": "319d942ba53468a6d5af97c9e46f6134fda2bf03958237e966bdc8c9cc8098ff",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "4499695c95eda892cb05e02e641814fa34f5757ecec9a7dbb8bcd0f2d969fa3b",
+      "anchor": "exact",
+      "pages": [
+        66
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-cset-gpu-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-002",
+      "locator": "p.66, Appendix B: Glossary, entry 'Graphics processing units (GPUs)'",
+      "sha256": "319d942ba53468a6d5af97c9e46f6134fda2bf03958237e966bdc8c9cc8098ff",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "4499695c95eda892cb05e02e641814fa34f5757ecec9a7dbb8bcd0f2d969fa3b",
+      "anchor": "exact",
+      "pages": [
+        66
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-cset-photolithography-grades",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-002",
+      "locator": "p.32, section on lithography tools, the sentence beginning 'Photolithography tools are used in high-volume chip production'",
+      "sha256": "319d942ba53468a6d5af97c9e46f6134fda2bf03958237e966bdc8c9cc8098ff",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "4499695c95eda892cb05e02e641814fa34f5757ecec9a7dbb8bcd0f2d969fa3b",
+      "anchor": "exact",
+      "pages": [
+        32
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-cset-sme-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-002",
+      "locator": "p.67, Appendix B: Glossary, entry 'Semiconductor manufacturing equipment'",
+      "sha256": "319d942ba53468a6d5af97c9e46f6134fda2bf03958237e966bdc8c9cc8098ff",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "4499695c95eda892cb05e02e641814fa34f5757ecec9a7dbb8bcd0f2d969fa3b",
+      "anchor": "exact",
+      "pages": [
+        67
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-ecp-hbm-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-040",
+      "locator": "p.5 (printed p.1), §1 'Introduction', second sentence",
+      "sha256": "8a9e0dd19680df611754313dade196f95ca80c945fa3e0dc011c1c63801e8be8",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "046fabfc01ed3ed82b986170cc0fcd324b639db2a40b72a0efe110e77b779094",
+      "anchor": "exact",
+      "pages": [
+        5
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-h100-identity",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-042",
+      "locator": "section 'Introducing the NVIDIA H100 Tensor Core GPU', first sentence",
+      "sha256": "0433f64a0170dc96e64eadbb2b21dd9027d8bac5eea59ec5b64eb972832c0772",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "8b0edac062404b73b0d844741cd4f0ff27a323ec6c2a5d126d956b0a1aab5269",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-h100-process-name",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-042",
+      "locator": "after the GH100 specification list, the sentence beginning 'Using the TSMC 4N fabrication process'",
+      "sha256": "0433f64a0170dc96e64eadbb2b21dd9027d8bac5eea59ec5b64eb972832c0772",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "8b0edac062404b73b0d844741cd4f0ff27a323ec6c2a5d126d956b0a1aab5269",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-lbnl-accelerated-servers-category",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-021",
+      "locator": "p.16, §3.1.1, the sentence beginning 'This reflects the shift'",
+      "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "e6551ac4055215d43784c1011a54f60109f891233c1cadc9472c95bcf9b0c4c9",
+      "anchor": "exact",
+      "pages": [
+        16
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-lbnl-asic-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-021",
+      "locator": "p.6, glossary, entry 'ASIC (Application-Specific Integrated Circuit)'",
+      "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "e6551ac4055215d43784c1011a54f60109f891233c1cadc9472c95bcf9b0c4c9",
+      "anchor": "exact",
+      "pages": [
+        6
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-lbnl-gpu-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-021",
+      "locator": "p.7, glossary, entry 'GPU (Graphics Processing Unit)'",
+      "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "e6551ac4055215d43784c1011a54f60109f891233c1cadc9472c95bcf9b0c4c9",
+      "anchor": "exact",
+      "pages": [
+        7
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-lbnl-server-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-021",
+      "locator": "p.7, glossary, entry 'Server'",
+      "sha256": "1108b5a0f829a4e398a3f364ab064de0fdd70743123de08ca979c88dee5be012",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "e6551ac4055215d43784c1011a54f60109f891233c1cadc9472c95bcf9b0c4c9",
+      "anchor": "exact",
+      "pages": [
+        7
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-micron-hbm4-identity",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-044",
+      "locator": "section 'Micron HBM4 in high-volume production', first sentence",
+      "sha256": "959cebfb7e0e43396694e5d00b9f00bc031676c3822e2b0ace17970937aa07cd",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "e6a535c0391ec253e885e364519587b8909be1ef438b4807f9073172440b5f2e",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-nist-advanced-packaging-scope",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-004",
+      "locator": "p.4, 'Opportunities in Advanced Packaging', the sentence beginning 'Advanced packaging and capabilities'",
+      "sha256": "bb83ae40b64004a77ec5754e374f129ea8426a7bc5dc63d50bb423cdb0c52cf7",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "7320793c66b77c91991de468215dfc6ad547600fb92ff1e328f5b3c38bf537b1",
+      "anchor": "exact",
+      "pages": [
+        4
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-nist-chiplet-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-004",
+      "locator": "p.7, bullet 'Developing a chiplet ecosystem', the sentence beginning 'Chiplets refer to'",
+      "sha256": "bb83ae40b64004a77ec5754e374f129ea8426a7bc5dc63d50bb423cdb0c52cf7",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "7320793c66b77c91991de468215dfc6ad547600fb92ff1e328f5b3c38bf537b1",
+      "anchor": "exact",
+      "pages": [
+        7
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-nist-cloud-computing-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-001",
+      "locator": "p.6, §2 'The NIST Definition of Cloud Computing', first sentence",
+      "sha256": "7b0c1a9fdfc67218b8ba2098f448c100c27070db91736b3c87fed63bfa21d418",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "8d0611c84974c3756f04eb45e29f3a816167658f2866ac686e4c51533235293a",
+      "anchor": "exact",
+      "pages": [
+        6
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-nist-wafer-fab-processes-for-packaging",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-004",
+      "locator": "p.5, bullet 'Manufacturing equipment'",
+      "sha256": "bb83ae40b64004a77ec5754e374f129ea8426a7bc5dc63d50bb423cdb0c52cf7",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "7320793c66b77c91991de468215dfc6ad547600fb92ff1e328f5b3c38bf537b1",
+      "anchor": "exact",
+      "pages": [
+        5
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-sia-advanced-packaging-breadth",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-005",
+      "locator": "p.21, 'SIDEBAR: Chiplets', first sentence",
+      "sha256": "27040f69e8e036c927a193a8477e7d975a2ae35fb7e7cf37f759553fc14ff9cf",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "298d02495c2353caa493f7bd0749a3b136d06ac6701f11194d450134773af9ac",
+      "anchor": "exact",
+      "pages": [
+        21
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-sia-heterogeneous-integration-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-005",
+      "locator": "p.21, 'SIDEBAR: Chiplets', the sentence beginning 'Heterogeneous integration of chiplets is'",
+      "sha256": "27040f69e8e036c927a193a8477e7d975a2ae35fb7e7cf37f759553fc14ff9cf",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "298d02495c2353caa493f7bd0749a3b136d06ac6701f11194d450134773af9ac",
+      "anchor": "exact",
+      "pages": [
+        21
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-sk-hynix-chiplet-description",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-045",
+      "locator": "the paragraph after 'Figure 5. Conceptual diagram of a chiplet', the sentence beginning 'As shown in Figure 5'",
+      "sha256": "9fa11b9743abbbd81a8994200fc2db9c27f098b16b37eef607519406faa2cb11",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "04b26748932b6c68575be14eef0096f629630514a49da698555a701fceb33c19",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-trainium2-identity",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-043",
+      "locator": "heading 'Trainium2 Architecture', first sentence",
+      "sha256": "977c1aab6d9beda3ab0e62beb9fbe001ac5f6cdb5f478c7863db0c8d47b2fd30",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "34c8f4789cadf676fe7d6f2da7bad9a87c214d1d0a62c04c4e230d662e9c2d73",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-micron-manassas-fab",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-025",
+      "locator": "p.48, Item 2 'Properties', the sentence beginning 'On June 11, 2025, we also entered into a direct funding agreement'",
+      "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "1c3938bf71b34b268465adccbc6e649430784897cc4a465879d5cd2ad12842e9",
+      "anchor": "exact",
+      "pages": [
+        48,
+        56
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-micron-second-idaho-fab-announced",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-025",
+      "locator": "p.47, Item 2 'Properties', the sentence beginning 'In June 2025, in connection with certain amendments'",
+      "sha256": "4b50d54e91dae01c043a4be883157cd09348dd852d58a1d74384edf7ec551fe9",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "1c3938bf71b34b268465adccbc6e649430784897cc4a465879d5cd2ad12842e9",
+      "anchor": "exact",
+      "pages": [
+        47,
+        56
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-sk-hynix-m16-completed-icheon",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-046",
+      "locator": "I.2 'Company history', item (3) 생산설비의 변동 (changes in production facilities), the row dated 2021. 02",
+      "sha256": "da06078ebf59de1cbda03b62a98c05ef35b6bf4b175965cd46d53c74ca8ec2cb",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "1304ce745d60a988a68f988be1779939074ebfca66d759fbbb110358ef318859",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-sk-hynix-production-plants-icheon-cheongju",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-047",
+      "locator": "notes to the separate financial statements, note 1 'Company overview', the first sentence, its last clause (the clause before it names the head office, and is not used)",
+      "sha256": "5d9519c006af94430a23b38451251cc351987c6d449e7ba55d8de3d27e472c42",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "aa318cceeccd7a998a5338b5b5a1f687fa243da855267f92b4dd1cd5bcbaa43a",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-sk-hynix-m16-fabrication-plant",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-049",
+      "locator": "body, first paragraph, the sentence beginning 'SK hynix Inc. (or ‘the Company’' (its last words, a head-office phrase, are not used)",
+      "sha256": "818249434ab69544d296cbe5b846ffc1da1ed50868e8def50d045f9cc4c38cfd",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "90c42bdd9d4fee469e3f1cadd8ead0389c08179f335367701f5a3dd396bd124b",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-sk-hynix-m15x-plan-disclosed",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-048",
+      "locator": "XI.1 'Progress and changes of disclosure information', table 가, the row whose 신고일자 (filing date) is 2022.09.06; cells read in order, table-cell boundaries as whitespace",
+      "sha256": "9471557596770c666a7715c5d62e205cb910bb27fc38adbd6d83596490ddaadd",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "0a2ccbdbef392052b55d7094f1bbd99ddde731c942d2b2f6c80075c5f2a8430c",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-amkor-arizona-phase-2-announced",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-050",
+      "locator": "first paragraph after the dateline 'TEMPE, Ariz.--(BUSINESS WIRE)--Sep. 8, 2026--'",
+      "anchor": "access_gap"
+    },
+    {
+      "claim": "claim-asml-manufacturing-sites",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-029",
+      "locator": "p.69, the paragraph on manufacturing, the sentence beginning 'All of our manufacturing activities'",
+      "sha256": "add58be9d9822ca12584b63c55c089b36e1ae5bf7a1825ebf1d1572628f2c52c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "ae3ddbf91542e074e7eb75370e3152700a94bf3322bfc597b1e88c843e4d3bae",
+      "anchor": "exact",
+      "pages": [
+        69
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-hir-2d-architecture-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-039",
+      "locator": "p.4 (chapter page 2), §3 'Converged Nomenclature Framework for 2D & 3D Architectures', item a",
+      "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "4f45d6cf45c75d961955d547bfac90ca54f60e9d351ada35d8fae7a0f34fec08",
+      "anchor": "not_found",
+      "pages": [],
+      "locator_page_matches": false
+    },
+    {
+      "claim": "claim-hir-2x-names-no-technical-basis",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-039",
+      "locator": "p.4 (chapter page 2), §3, item a, the sentences after the 2DS definition",
+      "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "4f45d6cf45c75d961955d547bfac90ca54f60e9d351ada35d8fae7a0f34fec08",
+      "anchor": "exact",
+      "pages": [
+        4
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-hir-3d-architecture-definition",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-039",
+      "locator": "p.4 (chapter page 2), §3, item b",
+      "sha256": "80e8ea7385b21ce64c8b072051e67d695e4331c1ca44e0ab7be616d8aae12e16",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "4f45d6cf45c75d961955d547bfac90ca54f60e9d351ada35d8fae7a0f34fec08",
+      "anchor": "exact",
+      "pages": [
+        4
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-nist-euv-duv-wavelengths",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-041",
+      "locator": "article body, the paragraph beginning 'In general, feature size is proportional to the wavelength'",
+      "sha256": "3a5d222d24c7c9087fc071814fefd5118b7baef1e94e1e16571cf36f4190d16b",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "1b2e1c5a1f7529d7c109b5d0e95f1f854c92e299f0ff7f8bd6eef204c7c0fede",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-h100-hbm-stacks",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-051",
+      "locator": "section 'H100 HBM3 and HBM2e DRAM subsystems', the sentence beginning 'The H100 SXM5 GPU raises the bar'",
+      "sha256": "0433f64a0170dc96e64eadbb2b21dd9027d8bac5eea59ec5b64eb972832c0772",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "8b0edac062404b73b0d844741cd4f0ff27a323ec6c2a5d126d956b0a1aab5269",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-h100-hbm-stacks",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-051",
+      "locator": "section 'H100 HBM3 and HBM2e DRAM subsystems', the sentence beginning 'The PCIe H100 provides'",
+      "sha256": "0433f64a0170dc96e64eadbb2b21dd9027d8bac5eea59ec5b64eb972832c0772",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "8b0edac062404b73b0d844741cd4f0ff27a323ec6c2a5d126d956b0a1aab5269",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-trainium2-hbm-capacity",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-043",
+      "locator": "section 'Trainium2 performance improvements', subsection 'Memory', the table's header row and its row 'HBM Capacity (GiB)'; cells read in order, table-cell boundaries as whitespace",
+      "sha256": "977c1aab6d9beda3ab0e62beb9fbe001ac5f6cdb5f478c7863db0c8d47b2fd30",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "34c8f4789cadf676fe7d6f2da7bad9a87c214d1d0a62c04c4e230d662e9c2d73",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-aws-designed-trainium2",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-052",
+      "locator": "first paragraph after the dateline 'LAS VEGAS--(BUSINESS WIRE)--'",
+      "sha256": "d755b5079dbcb0cd2d821f77645cf95074c2a9ee525208b77bbed168a8bed8e2",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "3ba9786d486a476b6a14f7bb3bac294fab9b29b458e80fd80c22ea7b301c63db",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-aws-designed-trainium2",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-052",
+      "locator": "first paragraph after the dateline, the sentence beginning 'Graviton4 and Trainium2 mark'",
+      "sha256": "d755b5079dbcb0cd2d821f77645cf95074c2a9ee525208b77bbed168a8bed8e2",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "3ba9786d486a476b6a14f7bb3bac294fab9b29b458e80fd80c22ea7b301c63db",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-sk-hynix-hbm3-for-h100-2022",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-053",
+      "locator": "'News Highlights', the second bullet",
+      "sha256": "3712f70b893f491fda26a1e47826ca83a0161beeee78b33290c3b1de9593174a",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "053ea0fd103ad06fc97ff3cdf293f1de58c4afb897c358c322f016b0b5268734",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-sk-hynix-hbm3-for-h100-2022",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-053",
+      "locator": "the paragraph beginning 'NVIDIA has recently completed its performance evaluation'",
+      "sha256": "3712f70b893f491fda26a1e47826ca83a0161beeee78b33290c3b1de9593174a",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "053ea0fd103ad06fc97ff3cdf293f1de58c4afb897c358c322f016b0b5268734",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-trendforce-h100-hbm3-primarily-sk-hynix-2024",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-054",
+      "locator": "the release body, the paragraph beginning 'The current HBM3 supply', its first sentence",
+      "sha256": "172719f2b8e8f9af79470a9025669ea6d5e1232207dbecad7f3e078bd70597d9",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "4470387461f8928418ca9009aeb63c85dce7a30ede8ce826ceb585b7014e0801",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-semianalysis-trn2-hbm-samsung-2025",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-055",
+      "locator": "the free part, the paragraph beginning 'The HBM3E is upgraded to 12-high for Trainium3', its third and fourth sentences",
+      "sha256": "17ec73c5f56c95cdfb0f37028919cb61801a6aeb81e6ede7780a083b6cfa90e3",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "4e62ea992a8e529ad2f1d66245a1e135175fd8df6a9b0fce96d9d16576ddd9ee",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-semianalysis-trn2-hbm-samsung-2025",
+      "claim_type": "ATTRIBUTION",
+      "citation": 2,
+      "source_id": "src-055",
+      "locator": "the same paragraph, its fourth sentence",
+      "sha256": "17ec73c5f56c95cdfb0f37028919cb61801a6aeb81e6ede7780a083b6cfa90e3",
+      "equals_registered": false,
+      "equals_read": false,
+      "text_sha256": "4e62ea992a8e529ad2f1d66245a1e135175fd8df6a9b0fce96d9d16576ddd9ee",
+      "anchor": "exact"
+    },
+    {
+      "claim": "claim-samsung-electronics-legal-name",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-056",
+      "locator": "p.4, 'A. Legal, Commercial name', its line",
+      "sha256": "626dd527bb25dc1ffd7ce72d84a0ded10f4d8f3daa0352d6c6b6be07c3eae73a",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "a655f2557b136b71036e6e444fcd82cadbedeb001f4919b1c23faf737c2794a0",
+      "anchor": "exact",
+      "pages": [
+        4,
+        22,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        63,
+        64,
+        66,
+        67,
+        99,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        148,
+        183,
+        184,
+        187,
+        188,
+        189,
+        190,
+        194,
+        195,
+        216,
+        217,
+        269,
+        273,
+        302,
+        303,
+        307
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-samsung-electronics-head-office-address",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-056",
+      "locator": "p.4, 'C. Address, phone number, and English language website of the corporate headquarters', the address line",
+      "sha256": "626dd527bb25dc1ffd7ce72d84a0ded10f4d8f3daa0352d6c6b6be07c3eae73a",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "a655f2557b136b71036e6e444fcd82cadbedeb001f4919b1c23faf737c2794a0",
+      "anchor": "exact",
+      "pages": [
+        4
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-samsung-electronics-memory-products",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-056",
+      "locator": "p.22, the paragraph on the company's businesses, the sentence beginning 'For components'",
+      "sha256": "626dd527bb25dc1ffd7ce72d84a0ded10f4d8f3daa0352d6c6b6be07c3eae73a",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "a655f2557b136b71036e6e444fcd82cadbedeb001f4919b1c23faf737c2794a0",
+      "anchor": "exact",
+      "pages": [
+        22
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-ear-cfr-scope",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-057",
+      "locator": "p.1, § 730.1 What these regulations cover, first sentence",
+      "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "da07244f41b7eadc945aadea38035fb9157199293820e5a27a29094c2728dac6",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-ear-issued-by-bis",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-057",
+      "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+      "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "da07244f41b7eadc945aadea38035fb9157199293820e5a27a29094c2728dac6",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-ear-export-control",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-057",
+      "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+      "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "da07244f41b7eadc945aadea38035fb9157199293820e5a27a29094c2728dac6",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-title",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-058",
+      "locator": "p.1, heading (title)",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b821647f550e317728ff217377601ff673914502fa550a2e88d69d0292224a9",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-title",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-058",
+      "locator": "p.1, AGENCY",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b821647f550e317728ff217377601ff673914502fa550a2e88d69d0292224a9",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-citation",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-058",
+      "locator": "p.1, page header",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b821647f550e317728ff217377601ff673914502fa550a2e88d69d0292224a9",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-document-number",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-058",
+      "locator": "p.30, closing filing line",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b821647f550e317728ff217377601ff673914502fa550a2e88d69d0292224a9",
+      "anchor": "exact",
+      "pages": [
+        30
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-form",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-058",
+      "locator": "p.1, ACTION",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b821647f550e317728ff217377601ff673914502fa550a2e88d69d0292224a9",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-amends-ear",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-058",
+      "locator": "p.10, the amendatory clause",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b821647f550e317728ff217377601ff673914502fa550a2e88d69d0292224a9",
+      "anchor": "exact",
+      "pages": [
+        10
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-export-controls",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-058",
+      "locator": "p.1, heading (title)",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b821647f550e317728ff217377601ff673914502fa550a2e88d69d0292224a9",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-issued-in-us",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-058",
+      "locator": "p.1, AGENCY",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b821647f550e317728ff217377601ff673914502fa550a2e88d69d0292224a9",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-issued-in-us",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-057",
+      "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+      "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "da07244f41b7eadc945aadea38035fb9157199293820e5a27a29094c2728dac6",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-effective-2022-10-07",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-058",
+      "locator": "p.1, DATES, item a",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b821647f550e317728ff217377601ff673914502fa550a2e88d69d0292224a9",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-effective-2022-10-12",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-058",
+      "locator": "p.1, DATES, item b",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b821647f550e317728ff217377601ff673914502fa550a2e88d69d0292224a9",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-effective-2022-10-21",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-058",
+      "locator": "p.1, DATES, item c",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b821647f550e317728ff217377601ff673914502fa550a2e88d69d0292224a9",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23055-title",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-059",
+      "locator": "p.1, heading (title)",
+      "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "5fa3ff986ed1bf243f259cdedd8572d41f83f189ba8348c2798fa0610e090a07",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23055-title",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-059",
+      "locator": "p.1, AGENCY",
+      "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "5fa3ff986ed1bf243f259cdedd8572d41f83f189ba8348c2798fa0610e090a07",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23055-citation",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-059",
+      "locator": "p.1, page header",
+      "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "5fa3ff986ed1bf243f259cdedd8572d41f83f189ba8348c2798fa0610e090a07",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23055-document-number",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-059",
+      "locator": "p.60, closing filing line",
+      "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "5fa3ff986ed1bf243f259cdedd8572d41f83f189ba8348c2798fa0610e090a07",
+      "anchor": "exact",
+      "pages": [
+        60
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23055-form",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-059",
+      "locator": "p.1, ACTION",
+      "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "5fa3ff986ed1bf243f259cdedd8572d41f83f189ba8348c2798fa0610e090a07",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23055-amends-ear",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-059",
+      "locator": "p.30, the amendatory clause",
+      "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "5fa3ff986ed1bf243f259cdedd8572d41f83f189ba8348c2798fa0610e090a07",
+      "anchor": "exact",
+      "pages": [
+        30
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23055-export-controls",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-059",
+      "locator": "p.1, heading (title)",
+      "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "5fa3ff986ed1bf243f259cdedd8572d41f83f189ba8348c2798fa0610e090a07",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23055-issued-in-us",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-059",
+      "locator": "p.1, AGENCY",
+      "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "5fa3ff986ed1bf243f259cdedd8572d41f83f189ba8348c2798fa0610e090a07",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23055-issued-in-us",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-057",
+      "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+      "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "da07244f41b7eadc945aadea38035fb9157199293820e5a27a29094c2728dac6",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23055-effective-2023-11-17",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-059",
+      "locator": "p.1, DATES, DATES",
+      "sha256": "7ae382cb1812b0b3052ad66a4f1bacbc6c93f45e0aab72912cac9807475309a1",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "5fa3ff986ed1bf243f259cdedd8572d41f83f189ba8348c2798fa0610e090a07",
+      "anchor": "not_found",
+      "pages": [],
+      "locator_page_matches": false
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-title",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-060",
+      "locator": "p.1, heading (title)",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "96e6ee08d8089e3539ac493a5f33eaa6a826c5d31aa59d60e97cf4de5a6b1c77",
+      "anchor": "exact",
+      "pages": [
+        1,
+        14
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-title",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-060",
+      "locator": "p.1, AGENCY",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "96e6ee08d8089e3539ac493a5f33eaa6a826c5d31aa59d60e97cf4de5a6b1c77",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-citation",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-060",
+      "locator": "p.1, page header",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "96e6ee08d8089e3539ac493a5f33eaa6a826c5d31aa59d60e97cf4de5a6b1c77",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-document-number",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-060",
+      "locator": "p.32, closing filing line",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "96e6ee08d8089e3539ac493a5f33eaa6a826c5d31aa59d60e97cf4de5a6b1c77",
+      "anchor": "exact",
+      "pages": [
+        32
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-form",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-060",
+      "locator": "p.1, ACTION",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "96e6ee08d8089e3539ac493a5f33eaa6a826c5d31aa59d60e97cf4de5a6b1c77",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-amends-ear",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-060",
+      "locator": "p.23, the amendatory clause",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "96e6ee08d8089e3539ac493a5f33eaa6a826c5d31aa59d60e97cf4de5a6b1c77",
+      "anchor": "exact",
+      "pages": [
+        23
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-export-controls",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-060",
+      "locator": "p.1, heading (title)",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "96e6ee08d8089e3539ac493a5f33eaa6a826c5d31aa59d60e97cf4de5a6b1c77",
+      "anchor": "exact",
+      "pages": [
+        1,
+        14
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-issued-in-us",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-060",
+      "locator": "p.1, FOR FURTHER INFORMATION CONTACT",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "96e6ee08d8089e3539ac493a5f33eaa6a826c5d31aa59d60e97cf4de5a6b1c77",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-effective-2023-11-17",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-060",
+      "locator": "p.1, DATES, DATES",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "96e6ee08d8089e3539ac493a5f33eaa6a826c5d31aa59d60e97cf4de5a6b1c77",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-title",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-061",
+      "locator": "p.1, heading (title)",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "exact",
+      "pages": [
+        1,
+        41
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-title",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-061",
+      "locator": "p.1, AGENCY",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "exact",
+      "pages": [
+        1,
+        41
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-citation",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-061",
+      "locator": "p.1, page header",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-document-number",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-061",
+      "locator": "p.41, closing filing line",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "exact",
+      "pages": [
+        41
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-form",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-061",
+      "locator": "p.1, ACTION",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-amends-ear",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-061",
+      "locator": "p.20, the amendatory clause",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "exact",
+      "pages": [
+        20
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-export-controls",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-061",
+      "locator": "p.1, SUMMARY, first sentence",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-export-controls",
+      "claim_type": "ATTRIBUTION",
+      "citation": 2,
+      "source_id": "src-057",
+      "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+      "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "da07244f41b7eadc945aadea38035fb9157199293820e5a27a29094c2728dac6",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-issued-in-us",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-061",
+      "locator": "p.1, AGENCY",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "exact",
+      "pages": [
+        1,
+        41
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-issued-in-us",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-057",
+      "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+      "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "da07244f41b7eadc945aadea38035fb9157199293820e5a27a29094c2728dac6",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-effective-2024-12-02",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-061",
+      "locator": "p.1, DATES, DATES",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "exact",
+      "pages": [
+        1,
+        41
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-controls-hbm-stacks",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-061",
+      "locator": "p.10, section C.1 'Addition of New 3A090.c'",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "exact",
+      "pages": [
+        10
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-adds-sme-3b090",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-058",
+      "locator": "p.7, section IV, 'First, BIS adds to the CCL'",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b821647f550e317728ff217377601ff673914502fa550a2e88d69d0292224a9",
+      "anchor": "exact",
+      "pages": [
+        7
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2022-21658-adds-sme-3b090",
+      "claim_type": "ATTRIBUTION",
+      "citation": 2,
+      "source_id": "src-058",
+      "locator": "p.23, amendatory instruction 25, ECCN 3B090 heading",
+      "sha256": "a4d622d8c5578b38b8e2bedbcb9442d6f22385f91cdeeb373d46a299a8b8c52b",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b821647f550e317728ff217377601ff673914502fa550a2e88d69d0292224a9",
+      "anchor": "exact",
+      "pages": [
+        23
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-removes-3b090",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-060",
+      "locator": "p.14, 'Overview of EAR Amendments'",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "96e6ee08d8089e3539ac493a5f33eaa6a826c5d31aa59d60e97cf4de5a6b1c77",
+      "anchor": "exact",
+      "pages": [
+        14
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-removes-3b090",
+      "claim_type": "ATTRIBUTION",
+      "citation": 2,
+      "source_id": "src-060",
+      "locator": "p.17, section C.3 'Removal of ECCN 3B090 and Conforming Changes'",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "96e6ee08d8089e3539ac493a5f33eaa6a826c5d31aa59d60e97cf4de5a6b1c77",
+      "anchor": "exact",
+      "pages": [
+        17
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-sme-controls",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-060",
+      "locator": "p.1, SUMMARY",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "96e6ee08d8089e3539ac493a5f33eaa6a826c5d31aa59d60e97cf4de5a6b1c77",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2023-23049-sme-controls",
+      "claim_type": "ATTRIBUTION",
+      "citation": 2,
+      "source_id": "src-060",
+      "locator": "p.14, 'Overview of EAR Amendments'",
+      "sha256": "6706911eb862774430771d9c847c8594accb8cbb886feb8b4e7dd166c4ff83db",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "96e6ee08d8089e3539ac493a5f33eaa6a826c5d31aa59d60e97cf4de5a6b1c77",
+      "anchor": "exact",
+      "pages": [
+        14
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-revises-3b001-3b002",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-061",
+      "locator": "p.15, section E.1 'Revisions to 3B001'",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "not_found",
+      "pages": [],
+      "locator_page_matches": false
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-revises-3b001-3b002",
+      "claim_type": "ATTRIBUTION",
+      "citation": 2,
+      "source_id": "src-061",
+      "locator": "p.17, section D.4 'Addition of ECCN 3B993', after the crosswalk table",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "exact",
+      "pages": [
+        17
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-revises-3b001-3b002",
+      "claim_type": "ATTRIBUTION",
+      "citation": 3,
+      "source_id": "src-061",
+      "locator": "p.16, section E.2 'Revisions to 3B002'",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "exact",
+      "pages": [
+        16
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2024-28270-new-sme-controls",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-061",
+      "locator": "p.1, SUMMARY, first sentence",
+      "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "bfa09bcf0cebe5f9b6a9e0cfbb5f99aa41683ce80c0893bc2903ffae1fae66ab",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-title",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-062",
+      "locator": "p.1, heading (title)",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-title",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-062",
+      "locator": "p.1, AGENCY",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-citation",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-062",
+      "locator": "p.1, page header",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-document-number",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-062",
+      "locator": "p.41, closing filing line",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        41
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-form",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-062",
+      "locator": "p.1, ACTION",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-amends-ear",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-062",
+      "locator": "p.14, the amendatory clause",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        14
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-export-controls",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-062",
+      "locator": "p.1, SUMMARY, first sentence",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-export-controls",
+      "claim_type": "ATTRIBUTION",
+      "citation": 2,
+      "source_id": "src-057",
+      "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+      "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "da07244f41b7eadc945aadea38035fb9157199293820e5a27a29094c2728dac6",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-issued-in-us",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-062",
+      "locator": "p.1, AGENCY",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-issued-in-us",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-057",
+      "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+      "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "da07244f41b7eadc945aadea38035fb9157199293820e5a27a29094c2728dac6",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-effective-2025-01-13",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-062",
+      "locator": "p.1, DATES",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-revises-3a090",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-062",
+      "locator": "p.24, amendatory instruction 26",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        24
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-revises-3a090",
+      "claim_type": "ATTRIBUTION",
+      "citation": 2,
+      "source_id": "src-062",
+      "locator": "p.31, ECCN 3A090, paragraph c",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        31
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-revises-3a090",
+      "claim_type": "ATTRIBUTION",
+      "citation": 3,
+      "source_id": "src-062",
+      "locator": "p.31, ECCN 3A090, the note after paragraph c",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        31
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-worldwide-requirement",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-062",
+      "locator": "p.18, amendatory instruction 11",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        18
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00636-worldwide-requirement",
+      "claim_type": "ATTRIBUTION",
+      "citation": 2,
+      "source_id": "src-062",
+      "locator": "p.18, § 742.6(a)(6)(iii)(A)",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "c309bf944530285636d71643d5c63fbcd558044f2a162efde6087fde341859ee",
+      "anchor": "exact",
+      "pages": [
+        18
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-title",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-063",
+      "locator": "p.1, heading (title)",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-title",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-063",
+      "locator": "p.1, AGENCY",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-citation",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-063",
+      "locator": "p.1, page header",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-document-number",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-063",
+      "locator": "p.24, closing filing line",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        24
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-form",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-063",
+      "locator": "p.1, ACTION",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-amends-ear",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-063",
+      "locator": "p.11, the amendatory clause",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        11
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-export-controls",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-063",
+      "locator": "p.1, SUMMARY, first sentence",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-export-controls",
+      "claim_type": "ATTRIBUTION",
+      "citation": 2,
+      "source_id": "src-057",
+      "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+      "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "da07244f41b7eadc945aadea38035fb9157199293820e5a27a29094c2728dac6",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-issued-in-us",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-063",
+      "locator": "p.1, AGENCY",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-issued-in-us",
+      "claim_type": "FACT",
+      "citation": 2,
+      "source_id": "src-057",
+      "locator": "p.1, § 730.1 What these regulations cover, second sentence",
+      "sha256": "ae2ed36c9fed7314d42ba28b25b9018d342a68e14c6b47c14e03772d4ce1abc2",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "da07244f41b7eadc945aadea38035fb9157199293820e5a27a29094c2728dac6",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-effective-2025-01-16",
+      "claim_type": "FACT",
+      "citation": 1,
+      "source_id": "src-063",
+      "locator": "p.1, DATES",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        1
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-revises-3a090",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-063",
+      "locator": "p.17, amendatory instruction 30",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        17
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-revises-3a090",
+      "claim_type": "ATTRIBUTION",
+      "citation": 2,
+      "source_id": "src-063",
+      "locator": "p.18, ECCN 3A090, paragraph c and the note after it",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        18
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-adds-3b001-f6",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-063",
+      "locator": "p.9, section ii.a 'Revision to add items for improving 3B001.f and 3B993.f lithography equipment'",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        9
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-adds-3b001-f6",
+      "claim_type": "ATTRIBUTION",
+      "citation": 2,
+      "source_id": "src-063",
+      "locator": "p.17, amendatory instruction 30",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        17
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-adds-3b001-f6",
+      "claim_type": "ATTRIBUTION",
+      "citation": 3,
+      "source_id": "src-063",
+      "locator": "p.18, ECCN 3B001, License Requirements, RS",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        18
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-adds-3b001-f6",
+      "claim_type": "ATTRIBUTION",
+      "citation": 4,
+      "source_id": "src-063",
+      "locator": "p.20, ECCN 3B001, paragraph f heading",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        20,
+        22
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-adds-3b001-f6",
+      "claim_type": "ATTRIBUTION",
+      "citation": 5,
+      "source_id": "src-063",
+      "locator": "p.21, ECCN 3B001, paragraph f.6",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        21
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-revises-3b993",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-063",
+      "locator": "p.9, section ii.b 'Revisions to ECCNs 3B993 and 3B994'",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        9
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-revises-3b993",
+      "claim_type": "ATTRIBUTION",
+      "citation": 2,
+      "source_id": "src-063",
+      "locator": "p.17, amendatory instruction 30",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        17
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-revises-3b993",
+      "claim_type": "ATTRIBUTION",
+      "citation": 3,
+      "source_id": "src-063",
+      "locator": "p.21, ECCN 3B993 heading",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        21
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-revises-3b993",
+      "claim_type": "ATTRIBUTION",
+      "citation": 4,
+      "source_id": "src-063",
+      "locator": "p.22, ECCN 3B993, paragraph f heading",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        20,
+        22
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2025-00711-revises-3b993",
+      "claim_type": "ATTRIBUTION",
+      "citation": 5,
+      "source_id": "src-063",
+      "locator": "p.22, ECCN 3B993, paragraph f.4",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "3406096d7fae3df49a042b1d7067eb335abb534a63d6ecb11fee1c6a8947f025",
+      "anchor": "exact",
+      "pages": [
+        22
+      ],
+      "locator_page_matches": true
+    },
+    {
+      "claim": "claim-bis-rule-2026-14132-enforcement-statement",
+      "claim_type": "ATTRIBUTION",
+      "citation": 1,
+      "source_id": "src-064",
+      "locator": "p.3, 'Enforcement of License Requirements for Advanced Computing Items'",
+      "sha256": "4e4b5555a41f7799f4e4dfe192a3a159c6fbb023da36ffacd76e4bbb80c5d9d5",
+      "equals_registered": true,
+      "equals_read": true,
+      "text_sha256": "6b5e6cb4783ac24353ea057eb603ade60563e8bef7b881bde25fa4cddc97b701",
+      "anchor": "exact",
+      "pages": [
+        3
+      ],
+      "locator_page_matches": true
+    }
+  ]
+}
