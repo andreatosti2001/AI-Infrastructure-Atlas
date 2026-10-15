@@ -3530,3 +3530,17 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   - breaks S22-13 to S22-17 and the control S22-C2.
 - **Rejected:** a "later statements" field on the policy record (a schema change and a canonical data edit in an audit
   session); keeping the panels in print with repeats replaced by references (24 repeats; far fewer pages saved).
+
+## D-215 — S23 dates its pages to its opening day and re-runs the later-rule search
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, after S22's report; the recommended
+  next decision, option A)
+- **Context:** S23, the research depth and content audit, reads the pages as a reader would; their as-of date
+  (2026-10-15) ages with every day the audit opens later. Moving it requires the later-rule search to reach the new date
+  (D-137, D-208), which is now a tool (D-211).
+- **Decision:** S23 sets the reference date in `sql/source_age.sql` to its opening day, runs `tools/later_rule_search.py`
+  from 2026-10-16 to that day, and, if the run is complete and finds no candidate, moves "Searched to" in
+  `change-detection.md` and rebuilds the 18 pages. A candidate text stops S23 for a policy-research verdict (D-183,
+  CD-6); an incomplete run moves no date.
+- **Rejected:** keeping the pages as of 2026-10-15 through S23 (the audit would read stale pages; S25 would still move
+  the date).
