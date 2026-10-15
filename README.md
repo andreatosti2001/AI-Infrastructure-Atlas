@@ -97,7 +97,9 @@ anchors and review.
   (D-214).
 - **The engineering audit** (S22): the repository audited as a software system, with measured evidence
   ([`engineering-audit.md`](docs/architecture/engineering-audit.md)); its blocking finding, browser checks that could
-  not fail, is fixed and those checks now run in CI (D-212).
+  not fail, is fixed and those checks now run in CI (D-212). S22.5 closed the findings left for v1.5's opening, checks
+  first: a named build error for a value outside its vocabulary, a break for each check module never shown failing,
+  CI's actions pinned to commit hashes, and the search tool's main function split by step (D-216, D-217).
 - **The first policy links** (M5): four `restricts` links say that an act's own text names a class among the
   items it controls: the December 2024 rule names high-bandwidth memory, and the 2022, 2023 and 2024 rules
   name semiconductor manufacturing equipment. Each rests on the act's quoted sentence and a recorded match
@@ -116,7 +118,7 @@ anchors and review.
 | `python -m unittest discover -s tests` | schemas, data integrity (every reference resolves, no unreviewed claim is canonical, freshness), the human review record, the SQL results, and every page (every text node has a home in the records or is marked framing, every count recomputed, rebuild byte-identical, accessibility basics; on the export-control page, every matrix cell, timeline mark and status against the records, and the no-advice line beside every act; on the client brief, every summary sentence recomputed from its rows, scope and limits in its first section and in print, and every cited source in its appendix); 28 planted data faults the record checks must name (D-176); every file has an owner role (D-180) |
 | `python tools/validate_repo.py` | Gate 0: the governing documents exist, every relative link in the repository's Markdown resolves, and no session record is committed here |
 | `--check` on `tools/warehouse.py`, `tools/build_page.py`, `tools/build_insight.py`, `tools/build_journeys.py`, `tools/build_brief.py` | every committed result and page equals a fresh rebuild from `data/` |
-| [`tests/regression/`](tests/regression/README.md) | deliberate breaks (172): each plants one fault in its own copy and must be caught by the suite for the reason it names; run in parallel, selected by the files a change touches (D-177, D-178) |
+| [`tests/regression/`](tests/regression/README.md) | deliberate breaks (208): each plants one fault in its own copy and must be caught by the suite for the reason it names; run in parallel, selected by the files a change touches (D-177, D-178) |
 | [`tests/browser/`](tests/browser/README.md) | browser QA at 1280 and 375 px: errors, overflow, keyboard path, measured contrast; the brief also printed on A4 and Letter |
 | [Audits](docs/quality/audit-history.md) | milestone, content, analytical and process audits under `PROJECT-EVALUATION-FRAMEWORK.md` |
 
@@ -153,8 +155,9 @@ kept the script-free generated pages (D-200) and set the plan after v1.0 ([`VERS
 D-201); S21 built the first client brief and activated the Client Output role
 ([`client-brief.md`](docs/architecture/client-brief.md), D-202 to D-206). S21.5, added by the human (D-207), activates
 the Change Detector and runs its first task, the dated search for later export-control texts after 5 December 2024
-([`change-detection.md`](docs/research/change-detection.md)). Next: M7, the final audits and the v1.0 release (S22 to
-S25), starting with S22, the code and engineering audit.
+([`change-detection.md`](docs/research/change-detection.md)). M7, the final audits and the v1.0 release (S22 to
+S25), opened with S22, the code and engineering audit, and S22.5, which closed its findings outside v1.5; next is S23,
+the research depth and content audit.
 
 ## Layout
 

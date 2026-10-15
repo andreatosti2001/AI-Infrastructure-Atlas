@@ -35,7 +35,7 @@ M6 Client Product
   S20, S20.5, S21, S21.5
        ↓
 M7 Final Audits + Release
-  S22–S25
+  S22, S22.5, S23–S25
 ```
 
 **After v1.0** (D-201): v1.5, visual intelligence (S26 onward), then v2, coverage of the global AI infrastructure
@@ -559,6 +559,25 @@ Audit the complete repository as an engineered software system.
 - visual regression and rendering consistency;
 - responsive behaviour of major infographics;
 - chart/data binding correctness.
+
+---
+
+## S22.5 — Closing the engineering audit's findings outside v1.5
+**Type:** IMPLEMENTATION (audit remediation; added 2026-10-15 by the human's decision, D-216)
+
+### Mission
+Close, checks first, every finding of the engineering audit not assigned to v1.5: F-2, F-5, F-12 and F-14 (moved from
+v1.5's opening session), F-3 (verified, no data change), and F-1, F-4, F-7, F-11 and F-13's print half (re-verified).
+
+### Inputs
+- `docs/architecture/engineering-audit.md` §5 and §6; D-212, D-213;
+- `tools/build_page.py` (`Page.value`), `tools/later_rule_search.py`, `.github/workflows/ci.yml`, the five check
+  modules never shown failing, `tools/policy_status.py`.
+
+### Gate
+Each finding closed or ruled with a decision; every new check has a break that fails it for its named reason;
+`tools/check_all.py` exits 0 on Python 3.11; CI green, Firefox and WebKit included; the 18 pages differ only in their
+input digest.
 
 ---
 
