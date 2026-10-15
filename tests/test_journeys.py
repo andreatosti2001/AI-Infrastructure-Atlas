@@ -36,6 +36,10 @@ JR-13 the export-control page shows how far later texts were searched: the "Sear
       docs/research/change-detection.md, which equals the end of the search log's window and is no earlier than the as-of
       date (S21.5, D-208). From S22 (D-211) every log in search-logs/later-rules/ counts: S21.5's and the search tool's
       runs. A log whose outcome is incomplete covers nothing; the others' windows join without a gap up to the date.
+JR-14 (S22, D-210, D-214) every later statement the Change Detector's table in change-detection.md §1 ("Later statements
+      about acts held") assigns to an act is shown in that act's evidence panel on the export-control page, under its
+      own heading and framing, as a whole claim card; no other act panel has such a block; the act's status stays the
+      one derived from its own events.
 """
 
 from __future__ import annotations
@@ -135,6 +139,29 @@ def search_windows() -> list[tuple[str, str, bool, str]]:
             outcome = re.search(r"^\*\*Outcome:\*\* (.*)$", text, re.M)
             found.append((window.group(1), window.group(2), not (outcome and outcome.group(1).startswith("incomplete")), path.name))
     return found
+
+
+def later_statements() -> dict[str, list[str]]:
+    """{act ID: [claim IDs]} from change-detection.md §1's table of later statements, read independently of the build."""
+    text = CHANGE_DETECTION.read_text(encoding="utf-8") if CHANGE_DETECTION.is_file() else ""
+    table = text.partition("### Later statements about acts held")[2].split("\n#")[0]
+    found: dict[str, list[str]] = {}
+    for line in table.splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 2 and cells[0].startswith("`policy-"):
+            found.setdefault(cells[0].strip("`"), []).extend(re.findall(r"`(claim-[^`]+)`", cells[1]))
+    return found
+
+
+def later_blocks(page) -> dict[str, list[str]]:
+    """{act ID: [claim IDs whose statement the act panel's later-statements block shows]} on a built page."""
+    shown: dict[str, list[str]] = {}
+    for panel in [n for n in page.nodes if "data-act" in n.attrs and n.tag == "article"]:
+        blocks = [n for n in panel.walk() if "data-later" in n.attrs]
+        if blocks:
+            shown[panel.attrs["data-act"]] = [n.attrs["data-ref"] for b in blocks for n in b.walk()
+                                              if n.attrs.get("data-field") == "/statement" and n.attrs.get("data-ref", "").startswith("claim-")]
+    return shown
 
 
 class Records:
@@ -707,6 +734,20 @@ class JourneyTests(unittest.TestCase):
         self.assertGreaterEqual(to, on, "the as-of date is later than the searched window: run the later-rule search again or keep the date (D-208)")
         shown = [n.text() for n in self.pages[EXPORT].find(data_derived="searched-to")]
         self.assertEqual(shown, [to], "the export-control page does not show the date up to which later texts were searched")
+
+    # JR-14
+    def test_jr14_later_statements_sit_in_their_act_panel(self) -> None:
+        expected = later_statements()
+        self.assertTrue(expected, "change-detection.md assigns no later statement to an act (D-210)")
+        page = self.pages[EXPORT]
+        self.assertEqual(later_blocks(page), expected, "the export-control page's later statements differ from the Change Detector's table")
+        for act in expected:
+            panel = [n for n in page.nodes if n.tag == "article" and n.attrs.get("data-act") == act][0]
+            block = [n for n in panel.walk() if "data-later" in n.attrs][0]
+            self.assertTrue([n for n in block.walk() if "data-framing" in n.attrs], "the later statements carry no framing")
+            self.assertTrue([n for n in block.walk() if n.tag == "h4"], "the later statements have no heading")
+            derived = [n.text() for n in panel.walk() if n.attrs.get("data-derived") == "policy-status"]
+            self.assertEqual(derived, [self.records.status(act, self.on).replace("_", " ")], "the act's status is not the one its own events give")
 
 
 if __name__ == "__main__":

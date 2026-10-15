@@ -3507,3 +3507,26 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   - code and engineering maturity: process 3, outcome 2 at the audit and 3 with F-1 remediated (F-2 stays debt).
 - **Rejected:** the named build error, the five breaks, the split search function and hash-pinned actions in S22 (each
   moved to v1.5's opening); a scrollable timeline now; keeping seven separate commands.
+
+## D-214 — The July 2026 statement under its act; the printed brief lists each claim once
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, S22, on the two designs D-210 asked for)
+- **Context:** D-210 put two page items in S22: show the July 2026 enforcement statement
+  (`claim-bis-rule-2026-14132-enforcement-statement`) under the AI Diffusion rule on the export-control page and the
+  client brief, and print the brief's evidence as a compact list (79 A4 pages). No record held the link between that
+  statement and the act; the only accepted home of it was the Change Detector's comparison C-5.
+- **Decision:**
+  - the link lives in the Change Detector's ruling: `change-detection.md` §1 gains a table "Later statements about acts
+    held" (act ID, claim, comparison); the journeys build reads it, refuses an act the Atlas does not hold, a claim that
+    is not a canonical `ATTRIBUTION`, and a claim citing the act's own text; each act panel (export-control page and
+    brief) shows its later statements under "Later statements about this act" with a framing block; the act's status
+    stays derived from its own events (D-156). Checks JR-14 and BR-14;
+  - in print only, the brief's evidence appendix gives way to `#evidence-print`: every claim the appendix shows, once
+    each, in order of first appearance, with its statement, each citation's source title and ID and its locator; the
+    screen keeps the panels. BR-7's rule that print hides no evidence is narrowed to this exchange (it still fails on
+    any other hidden scope, summary, evidence or source); BR-13 checks the list and the stylesheet; the browser script
+    checks print and screen. Measured: 32 A4 pages (33 Letter), from 79 (83); the HTML grows from 884 to 1,006 KB,
+    because the list is in the page and hidden on screen;
+  - breaks S22-13 to S22-17 and the control S22-C2.
+- **Rejected:** a "later statements" field on the policy record (a schema change and a canonical data edit in an audit
+  session); keeping the panels in print with repeats replaced by references (24 repeats; far fewer pages saved).

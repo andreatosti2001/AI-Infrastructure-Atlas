@@ -6,7 +6,8 @@
 // and wide elements (outside scrolling tables and code); every link reached by Tab, with a visible focus ring; every
 // in-page link's target exists; Enter on a diagram mark and on a matrix cell lands on its evidence; every disclosure
 // opens from the keyboard; measured contrast on every rendered text node with every disclosure open; screenshots.
-// In print (U-5): the boundary line, the scope section, the summary, the evidence and the sources are displayed; the
+// In print (U-5): the boundary line, the scope section, the summary, the evidence (as one list of claims, S22, D-210;
+// the panels hidden) and the sources are displayed; the
 // first printed page carries the question, the boundary line, the as-of date and the input digest; the PDF's page
 // count on A4 and Letter.
 const { playwright, verdict, finish, widthChecks } = require('./qa-lib');
@@ -100,6 +101,13 @@ function ratio(a, b) { const [h, l] = [lum(a), lum(b)].sort((x, y) => y - x); re
     report.widths[name] = r;
     await ctx.close();
   }
+  {
+    const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await ctx.newPage();
+    await page.goto(url, { waitUntil: 'load' });
+    report.screenListHidden = await page.evaluate(() => getComputedStyle(document.querySelector('#evidence-print')).display === 'none');
+    await ctx.close();
+  }
   // print: what U-5 says must travel is displayed; the first page; the PDF on A4 and Letter
   for (const format of ['A4', 'Letter']) {
     const ctx = await browser.newContext();
@@ -107,8 +115,11 @@ function ratio(a, b) { const [h, l] = [lum(a), lum(b)].sort((x, y) => y - x); re
     await page.goto(url, { waitUntil: 'load' });
     await page.emulateMedia({ media: 'print' });
     const p = {};
-    p.displayed = await page.evaluate(() => Object.fromEntries(['[data-boundary]', '#scope', '[data-limits]', '[data-identity]', '#summary', '#map svg.chain', '#texts table', '#evidence', '#sources', '[data-citation]']
+    p.displayed = await page.evaluate(() => Object.fromEntries(['[data-boundary]', '#scope', '[data-limits]', '[data-identity]', '#summary', '#map svg.chain', '#texts table', '#evidence-print', '#sources', '[data-citation]']
       .map(sel => { const e = document.querySelector(sel); return [sel, !!e && getComputedStyle(e).display !== 'none' && e.getBoundingClientRect().height > 0]; })));
+    // S22 (D-210, BR-13): in print the appendix's panels give way to the list of claims, each once
+    p.panelsHidden = await page.evaluate(() => getComputedStyle(document.querySelector('#evidence')).display === 'none');
+    p.listItems = await page.$$eval('#evidence-print li[data-claim]', ls => ls.length);
     const file = `${OUT}/brief-${format}.pdf`;
     await page.pdf({ path: file, format, printBackground: true, preferCSSPageSize: false });
     const pdf = fs.readFileSync(file, 'latin1');
@@ -129,9 +140,12 @@ function ratio(a, b) { const [h, l] = [lum(a), lum(b)].sort((x, y) => y - x); re
   await browser.close();
   const { failures, check } = verdict();
   for (const [name, r] of Object.entries(report.widths)) widthChecks(check, name, r);
+  check('screen: the print-only evidence list shows on screen', report.screenListHidden);
   for (const [format, p] of Object.entries(report.print)) {
     check(`print ${format}: hidden in print`, Object.values(p.displayed).every(Boolean), Object.keys(p.displayed).filter(k => !p.displayed[k]));
     check(`print ${format}: no PDF pages`, p.pages > 0, p.pages);
+    check(`print ${format}: the evidence panels print beside the list`, p.panelsHidden);
+    check(`print ${format}: the printed evidence list is empty`, p.listItems > 0, p.listItems);
     check(`print ${format}: missing from the first printed page`, Object.values(p.firstPage).every(Boolean), Object.keys(p.firstPage).filter(k => !p.firstPage[k]));
   }
   const w = report.widths;

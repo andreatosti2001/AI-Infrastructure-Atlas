@@ -31,6 +31,12 @@ BR-10 every link resolves; only source URLs point outside; nothing is loaded; no
 BR-11 document structure (lang, one h1 equal to the title, landmarks, no skipped heading level, table headers with a
       scope, every SVG named), palette, contrast and a print stylesheet;
 BR-12 the committed brief equals a rebuild; two builds are identical; no other file sits in site/briefs/.
+BR-13 (S22, D-210, D-214) in print, the evidence travels as one list: `#evidence-print` lists every claim the evidence
+      appendix shows, once each, in the order of first appearance, with its statement, each citation's source title
+      and ID and its locator; the stylesheet hides that list on screen and, in print, shows it and hides only the
+      appendix's panels (`#evidence`). BR-7's rule that print hides no evidence is narrowed to this exchange.
+BR-14 (S22, D-210, D-214) every later statement the Change Detector's table assigns to an act is shown in that act's
+      panel, as on the export-control page (JR-14).
 """
 
 from __future__ import annotations
@@ -592,9 +598,44 @@ class BriefTests(unittest.TestCase):
         block = css[i + 1 : j]
         for selectors, body in re.findall(r"([^{}]+)\{([^{}]*)\}", block):
             if re.search(r"display\s*:\s*none|visibility\s*:\s*hidden", body):
+                if selectors.strip() == "#evidence" and "evidence-print" in self.sections():
+                    continue  # BR-13: the panels give way to the printed list, which carries every claim once
                 for word in ("scope", "boundary", "summary", "limits", "citation", "evidence", "sources", "panel", "main", "section", "table", "svg", "framing"):
                     with self.subTest(selectors=selectors.strip(), word=word):
                         self.assertNotIn(word, selectors, "print hides what must travel with the brief")
+
+    # BR-13
+    def test_br13_print_lists_every_claim_once(self) -> None:
+        sections = self.sections()
+        self.assertIn("evidence-print", sections, "no printed evidence list (D-210)")
+        printed = sections["evidence-print"]
+        self.assertIn("print-only", printed.attrs.get("class", "").split(), "the printed list is not marked print-only")
+        appendix = [n.attrs["data-ref"] for n in sections["evidence"].walk()
+                    if n.attrs.get("data-field") == "/statement" and n.attrs.get("data-ref", "").startswith("claim-")]
+        expected = list(dict.fromkeys(appendix))
+        items = [n for n in printed.walk() if n.tag == "li" and "data-claim" in n.attrs]
+        self.assertEqual([n.attrs["data-claim"] for n in items], expected, "the printed list is not every appendix claim once, in order")
+        for item in items:
+            cid = item.attrs["data-claim"]
+            fields = {(n.attrs["data-ref"], n.attrs["data-field"]) for n in item.walk() if "data-ref" in n.attrs}
+            with self.subTest(claim=cid):
+                self.assertIn((cid, "/statement"), fields)
+                for k, citation in enumerate(self.records.claims[cid].get("citations", [])):
+                    self.assertIn((citation["source_id"], "/title"), fields)
+                    self.assertIn((citation["source_id"], "/id"), fields)
+                    self.assertIn((cid, f"/citations/{k}/locator"), fields)
+        css = "".join("".join(t for t, _ in n.texts()) for n in self.page.nodes if n.tag == "style")
+        start = css.find("@media print")
+        self.assertRegex(css[:start], r"\.print-only\s*\{[^}]*display\s*:\s*none", "the printed list shows on screen")
+        print_css = css[start:]
+        self.assertRegex(print_css, r"\.print-only\s*\{[^}]*display\s*:\s*block", "the printed list is not shown in print")
+        self.assertRegex(print_css, r"(?m)^\s*#evidence\s*\{[^}]*display\s*:\s*none", "the panels still print beside the list")
+
+    # BR-14
+    def test_br14_later_statements_sit_in_their_act_panel(self) -> None:
+        expected = tj.later_statements()
+        self.assertTrue(expected)
+        self.assertEqual(tj.later_blocks(self.page), expected, "the brief's later statements differ from the Change Detector's table")
 
     # BR-8
     def test_br8_every_citation_resolves_to_a_source_record(self) -> None:

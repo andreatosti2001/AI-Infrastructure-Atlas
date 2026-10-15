@@ -121,7 +121,7 @@ compared: a product meeting a text is a legal determination (LA-3).
 | input digest | section 1; method; citation | yes |
 | rows shown / rows in the result | summary tile: "8 of 8 rows" | yes |
 | citation | section 11: "AI Infrastructure Atlas, {question}, client brief, as of {date}, input digest {digest}" | yes |
-| evidence and sources | sections 10 and 11; URLs printed in full | yes |
+| evidence and sources | sections 10 and 11; URLs printed in full | yes: in print the evidence travels as one list of claims, each once, with its source and locator (S22, D-214); the panels stay on screen |
 | the SQL tutorial, "how to read" notes, IDs | closed disclosures | their titles only (a browser does not print closed `details` content) |
 
 **Print** (measured on the built brief, Chromium 141, 2026-10-14): 65 A4 pages (69 Letter). The brief itself (sections 1
@@ -129,6 +129,12 @@ to 9) is 13 pages; the evidence and source appendices start on a new page, in co
 appendices carry every claim behind the brief (35 panels, 114 claims): printing only the brief's own pages keeps its
 scope, limits and citation, and the appendices can be printed when the evidence is needed. A shorter evidence form
 is a later UX question (A-4).
+
+**From S22** (D-210, D-214): in print, the evidence appendix's panels give way to `#evidence-print`, every claim the
+appendix shows, once each, with its statement, each citation's source and its locator; quoted passages and the hashes
+read stay on screen. Measured (Chromium 141, 2026-10-15): **32 A4 pages (33 Letter)**, from 79 (83). The act panels
+also show any later official statement about the act that the Change Detector ruled (`change-detection.md` §1), under
+"Later statements about this act" (BR-14).
 
 **Copying:** a reader who copies one sentence copies it without its limits; the brief cannot prevent that. The
 limits sit in the same section as the summary so that a copied section carries them.
@@ -181,6 +187,8 @@ the brief's path, `BRIEF`, as its one home); JR-8 also requires the link. The br
 | BR-10 | a link with no target; anything loaded from the network; a script (JR-10) |
 | BR-11 | document structure (one `h1` equal to the title, landmarks, no skipped level, table headers with scope, named SVGs), palette and contrast (JR-11); no print stylesheet |
 | BR-12 | the committed brief differs from a rebuild; two builds differ; a stray file in `site/briefs/` |
+| BR-13 (S22) | the printed list leaves out an appendix claim, repeats one, or loses a statement, source or locator; the list shows on screen; the panels print beside it (BR-7 is narrowed to exactly this exchange) |
+| BR-14 (S22) | an act panel's later statements differ from the Change Detector's table (JR-14) |
 
 ## 8. Breaks (D-177)
 
