@@ -3345,3 +3345,90 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
 - **Decision:** `site/index.html` gains one card with the brief's question and a button to it (`tools/build_journeys.py`
   and its labels); JR-8 also requires the link. The brief links back to the entry page.
 - **Rejected:** leaving the entry page unchanged (the brief would be reachable only by its path).
+
+## D-207 — S21.5 runs between S21 and S22; the Change Detector becomes active, with a contract
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-14, after the external audit of
+  2026-10-14; supersedes D-184's ruling that the Change Detector stays inactive)
+- **Context:** every act's status and every `restricts` link say "no later change recorded in the Atlas", but no dated
+  search for later rules after 5 December 2024 has been run (D-175). The agent audit kept the Change Detector
+  inactive until that search had a session (F-6, D-184). The human scheduled it as a dedicated session. The session
+  prompt named this decision D-202; S21 had already used D-202 to D-206, so it is recorded under the next free number.
+- **Decision:**
+  - `SESSION-ROADMAP.md` gains S21.5 (RESEARCH) between S21 and S22 in M6, with its mission, inputs and gate. Its
+    prompt is in the private archive (D-152);
+  - the Change Detector is active with an MA §12 contract (`docs/agents/contracts.md`): it compares an act the Atlas
+    holds with a later official text and writes each comparison, both sides quoted, as a candidate change in its one
+    home, `docs/research/change-detection.md`; it writes nothing in `data/`, no `review`, no date on a link and no
+    conclusion; the Source Scout searches and the Extractor drafts the records in staging;
+  - `tests/test_agent_contracts.py` lists the Change Detector among the active roles.
+- **Rejected:** folding the search into S22 (an engineering audit would carry a research step and a review);
+  merging the role into the Source Scout (F-6: the Scout asserts nothing, and ruling that a later text changes an
+  entry is a comparison); leaving the activation to the next policy research session (the freshness gap would stay
+  open through the release audits).
+
+## D-208 — The pages say up to when later texts were searched; a check keeps that date at or after the as-of date
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, S21.5 H-1 and H-4)
+- **Context:** the export-control page and the client brief said that acts published after the latest publication
+  date the Atlas holds "were not searched", and the brief's framing said "The Atlas runs no change detection". After
+  S21.5's dated search (`docs/research/change-detection.md` §1) both were untrue.
+- **Decision:**
+  - the date up to which later texts were searched has one home, the "Searched to" line of
+    `docs/research/change-detection.md` §1; S21.5 set it to 2026-10-15, the day the search ran, which is also the
+    reference date the pages carry (D-137 moves it to the day a rebuilding session opens);
+  - the export-control page shows it as "later texts searched for up to:", and the client brief's scope and summary
+    say "Later texts were searched for up to <date>; texts published after it were not searched." The framing of both
+    pages is reworded to match; `change-detection.md` is an input of both builds;
+  - checks: JR-3 and BR-3 recompute the date; BR-5 and BR-7 require it in the summary's limits and the first section;
+    **JR-13** requires the export-control page to show it, the search log's window to end on it, and the date to be
+    no earlier than the as-of date. A later session that moves the as-of date (D-137) therefore runs the later-rule
+    search again, or the check fails.
+- **Rejected:** keeping the old sentence until S22 (untrue in the meantime); leaving the pages to S22 (newly accepted
+  acts would not appear).
+
+## D-209 — The later-rule search's outcome: two later acts recorded, their changes quoted beside the links; the change-detection rules bind
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, S21.5 review; closes D-175)
+- **Context:** S21.5's dated search (2024-12-06 to 2026-10-15; `docs/research/change-detection.md` §1) found two
+  later BIS rules that change the wording of entries the `restricts` links rest on, no repeal of the five acts, and
+  no official text rescinding the AI Diffusion rule.
+- **Decision:**
+  - BIS rules 2025-00636 (90 FR 4544) and 2025-00711 (90 FR 5298) are policy records from their official texts, with
+    their published and effective dates as events and their status derived (D-156); the AI Diffusion debt of D-163
+    and the M5 audit is closed by recording the rule;
+  - each change is an `ATTRIBUTION` quoting the later text, cited by the link whose evidence names the entry
+    (D-169): the 2024 HBM link cites the two 3A090.c claims; the 2023 equipment link cites the 3B001 and 3B993 claims.
+    No link is dated; no term match is re-ruled, because no later text changes the sentences the matches rest on;
+  - the July 2026 rule's (2026-14132) enforcement statement is a canonical `ATTRIBUTION` with no record field; no
+    `repealed` event is recorded, since no repealing text exists in the window;
+  - the Change Detector's rules CD-1 to CD-7 (`change-detection.md`) bind every later comparison;
+  - the EAR's dates stay unrecorded, a named gap for the next policy session (search log, step 9).
+- **Rejected:** recording only 2025-00711 (the AI Diffusion rule would stay unrecorded debt); keeping the comparisons
+  without records; recording the acts with the links unchanged (a reader of a link would not see the later
+  amendment); a repeal or end date from the July 2026 statement (it repeals nothing).
+
+## D-210 — S21.5's open debt: a search tool, the EAR's dates, the July 2026 statement on the pages, a compact printed appendix
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, after S21.5's report); each item is
+  work for the session named, which brings its design to the human before building
+- **Context:** S21.5's report left four open items: the later-rule search must be re-run whenever the as-of date moves
+  (D-208), but exists only as archived session scripts; the EAR record has no dates; the July 2026 enforcement
+  statement (`claim-bis-rule-2026-14132-enforcement-statement`) is canonical but on no page; the printed brief grew to
+  79 A4 pages, 66 of them evidence appendices (A-4).
+- **Decision:**
+  - **a repository tool re-runs the later-rule search** (S22): standard library; it queries the Federal Register index
+    and the CFR finding aids, writes a dated log and lists candidate texts; recording any act still goes through
+    staging and the human's verdict (D-183). The Verifier's anchor re-read (agent audit F-4) is considered for the same
+    tool;
+  - **the EAR's dates come from the 1996 reissue** (the next policy research session): the Federal Register rule the
+    CFR names as the EAR's source (61 FR 12714, 25 March 1996) is retrieved, and its publication and effective dates
+    become events under the existing model; no schema change;
+  - **the pages show the July 2026 statement under the AI Diffusion rule** (S22, with the page builds): a "later
+    statements about this act" line quoting BIS in that act's evidence on the export-control page and the client brief;
+    the act's status stays derived from its own events (D-156);
+  - **the printed brief lists each claim once** (S22, with the page builds): in print only, a compact evidence list
+    (statement, source, page) replaces the repeated panels; the screen version is unchanged; print checks follow.
+- **Rejected:** re-running the search by hand each session; freezing the pages' as-of date until a search runs; dating
+  the EAR by the CFR edition read (a new event kind); leaving the EAR undated by rule; keeping the July 2026 statement
+  off the pages; keeping the full printed appendix; deferring the print length to v1.5.

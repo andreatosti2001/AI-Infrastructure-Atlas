@@ -4,7 +4,8 @@
 2026-10-02 (D-107). Paths are kept current when a file moves (Editorial, paths only); no role or boundary
 changes without a decision. S19's agent audit (`docs/architecture/agent-audit.md`): every file has an owner,
 checked (D-180); the Analyst's contract (D-181); the Verifier re-scoped (D-182); drafts always in staging (D-183),
-all accepted on 2026-10-14. S21: the Client Output's contract, for the client brief (D-205), accepted on 2026-10-14.
+all accepted on 2026-10-14. S21: the Client Output's contract, for the client brief (D-205), accepted on 2026-10-14. S21.5: the Change Detector's
+contract, for the dated search for later rules (D-207), decided by the human on 2026-10-14.
 
 MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. Each contract has
 MA's nine fields, in MA's order.
@@ -60,6 +61,20 @@ MA's nine fields, in MA's order.
 | HANDOFF_FORMAT | the updated claims, plus a report table: claim, status, what was read, and any wording that exceeds its evidence |
 | VALIDATION_GATE | `tests/test_data_integrity.py` (VD-6, VD-7, VD-11, VD-12) and `tests/test_data_schema.py` (VD-2) |
 | FAILURE_BEHAVIOUR | a source that cannot be re-read leaves the claim `unverified` (SP-7); an anchor not found makes it `context_only`; the Verifier never invents replacement evidence (MA §11.4) |
+
+## Change Detector
+
+| Field | Value |
+|---|---|
+| ROLE | Change Detector |
+| INPUTS | two versions of the same thing: an act the Atlas holds (its registered official text, the claims and links that cite it) and a later official text the Source Scout found and the Extractor registered; or a registered source and its re-retrieval (a changed hash); the search log in `docs/research/search-logs/` |
+| OUTPUTS | candidate changes, one per comparison: the earlier text and the later text, each quoted at its locator in registered bytes, and what the later text does to the earlier entry or act in the later text's own words (adds, removes, revises, moves, repeals, or none found); for a search that finds nothing, the terms, registers and dates searched; a changed hash reported for the Verifier's re-read |
+| ALLOWED_WRITES | `docs/research/change-detection.md` (the rules it keeps and the comparisons, S21.5, D-207); the session report, outside this repository (D-151) |
+| FORBIDDEN_WRITES | any file in `data/` (the Extractor drafts the records a change needs, in staging); a claim's `review`; a date on a link, or an act dated, ended or repealed by anything but its own events (D-169, D-156); a source re-registered after its hash changed; a conclusion: that a change has legal effect, that an act or entry is in force, repealed or superseded in the Atlas's own voice, or that a product or firm is controlled (LA-1 to LA-5) |
+| EVIDENCE_REQUIREMENTS | both sides of every comparison are quoted from official texts (`official_legal_text`, D-158) at their locators, in the bytes whose hash is registered; a secondary text (a press release, an index entry, a summary) may point to a later text, never stand for it (SP-7); a search that finds nothing records its terms, registers and dates, and says "none found in the searched window", never "none exists"; a text that cannot be retrieved is an access gap |
+| HANDOFF_FORMAT | a comparison table in `docs/research/change-detection.md` §1: entry or act, earlier text and locator, later text and locator, the change in the later text's words, the candidate record the Extractor drafts, and its status (candidate until the human's verdict) |
+| VALIDATION_GATE | `tests/test_agent_contracts.py` (the contract, its writes and its owner rows); the records it hands over are checked by the Extractor's gates (`tests/test_data_integrity.py`, `tests/test_data_events.py`) |
+| FAILURE_BEHAVIOUR | a comparison whose later text cannot be retrieved or read stays open as an access gap; a later text whose effect on an entry is unclear is quoted and left as a question to the human, never resolved by inference; a finding that would change an accepted rule, a check or the schema stops the session (CLAUDE.md §18) |
 
 ## Knowledge Architect
 

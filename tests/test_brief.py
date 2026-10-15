@@ -10,7 +10,8 @@ checks against the records (PG-3, PG-5).
 BR-1  every text node sits inside a record value, an absent value, a fixed label, a derived value or a framing
       block; no annotated value contains another; framing names no record and holds no digit;
 BR-2  every record value equals its home; labels hold no digit and name no record; claims in panels are shown whole;
-BR-3  every derived value (counts, result cells and flags, the as-of cell, statuses, the latest publication date,
+BR-3  every derived value (counts, result cells and flags, the as-of cell, statuses, the latest publication date, the
+      date up to which later texts were searched (S21.5, D-208),
       the evidence date range, the tutorial, inputs, the digest, pointers, byte matches, rule homes) equals an
       independent recomputation; every count names its unit and is never zero;
 BR-4  the dependency map: the brief's figure draws the same marks, targets and bases as the HBM page's figure; every
@@ -58,6 +59,7 @@ INPUT_FILES = (
     "docs/architecture/company-dataset.md",
     "docs/architecture/decisions.md",
     "docs/architecture/relationship-taxonomy.md",
+    "docs/research/change-detection.md",
     "docs/research/source-policy.md",
     "tools/brief_template.html",
     "tools/build_brief.py",
@@ -74,7 +76,7 @@ NO_ADVICE = tj.NO_ADVICE
 BOUNDARY = "This brief describes what the Atlas’s records hold. It is not legal, investment or procurement advice, and it makes no recommendation."
 FORBIDDEN = tj.FORBIDDEN + ("should", "must", "recommend", "recommends", "recommended", "is controlled", "are controlled", "subject to the")
 DERIVED_KINDS = {
-    "count", "sql-cell", "sql-flag", "policy-status", "latest-published", "evidence-first", "evidence-last",
+    "count", "sql-cell", "sql-flag", "policy-status", "latest-published", "searched-to", "evidence-first", "evidence-last",
     "input-file", "input-digest", "pointer", "bytes-match", "rule-home", "no-activity-edge", "lane-unlinked",
     "sql-question", "sql-reading", "sql-step-title", "sql-step-text", "sql-step-code", "sql-file", "sql-digest", "sql-header",
 }
@@ -293,6 +295,8 @@ class BriefTests(unittest.TestCase):
                     self.assertEqual(node.text(), SQL_FLAGS[key])
                 elif kind == "latest-published":
                     self.assertEqual(node.text(), self.records.latest_published())
+                elif kind == "searched-to":
+                    self.assertEqual(node.text(), tj.searched_to())
                 elif kind == "evidence-first":
                     self.assertEqual(node.text(), min(dated_from))
                 elif kind == "evidence-last":
@@ -484,7 +488,7 @@ class BriefTests(unittest.TestCase):
                     counts = {n.attrs.get("data-count") for n in node.walk() if n.attrs.get("data-derived") == "count"}
                     self.assertEqual(counts, {kind.replace("texts-", "classes-"), "chain-classes"}, "a group without its count over the classes compared")
         limits = items["limits"][0]
-        self.assertEqual([n.text() for n in limits.walk() if n.attrs.get("data-derived") == "latest-published"], [r.latest_published()])
+        self.assertEqual([n.text() for n in limits.walk() if n.attrs.get("data-derived") == "searched-to"], [tj.searched_to()])
 
     # BR-6
     def test_br6_the_matrix_equals_the_records(self) -> None:
@@ -555,7 +559,7 @@ class BriefTests(unittest.TestCase):
             "the out-of-scope list": [n for n in scope.walk() if "data-limits" in n.attrs and any("data-framing" in x.attrs for x in n.walk())],
             "the as-of date": [n for n in scope.walk() if n.attrs.get("data-column") == "reference_date"],
             "the input digest": [n for n in scope.walk() if n.attrs.get("data-derived") == "input-digest"],
-            "the unsearched period": [n for n in scope.walk() if n.attrs.get("data-derived") == "latest-published"],
+            "the unsearched period": [n for n in scope.walk() if n.attrs.get("data-derived") == "searched-to"],
             "the scope counts": [n for n in scope.walk() if n.attrs.get("data-count") in ("accelerators", "acts", "chain-classes")],
         }
         for what, nodes in must.items():

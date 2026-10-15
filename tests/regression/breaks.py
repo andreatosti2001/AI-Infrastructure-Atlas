@@ -10,7 +10,7 @@ The harness is built in layers, each loading the one before it and replacing the
 text its own changes removed (see tests/regression/README.md):
     breaks_records_and_page.py, breaks_sql.py, breaks_research_view.py  ->  breaks_metrics.py
     -> breaks_metric_audit.py -> breaks_supplier_freshness.py -> this file (supplier evidence; review records;
-    S17's policy layer; S18's policy links; S20's research journeys; S20.5's filter guard; S21's client brief).
+    S17's policy layer; S18's policy links; S20's research journeys; S20.5's filter guard; S21's client brief; S21.5's search window).
 
 Run with a virtualenv built from requirements-test.txt and requirements-analysis.txt, from the repository root
 (the runner is tests/regression/runner.py: parallel copies, one summary, selection by measured files, D-177,
@@ -114,13 +114,18 @@ REPLACED = {
                edit(INSIGHT_BUILD, '("parts_supplier_reported", "with a supplier reported by a third party;"))\n                    if r[column]',
                     '("parts_supplier_reported", "with a supplier reported by a third party;"))\n                    if True'), [INSIGHT_BUILD],
                ["a zero beside a supplier metric reads as 'no suppliers'"]),
-    # S17, S18 and S20 (D-137): the reference date moved to 2026-10-08, 2026-10-13, then 2026-10-14, so the two breaks
-    # that move the literal date move it from the current value: the same fault and the same control on the S20 tree.
+    # S17, S18, S20 and S21.5 (D-137): the reference date moved to 2026-10-08, 2026-10-13, 2026-10-14, then 2026-10-15,
+    # so the two breaks that move the literal date move it from the current value: the same fault and the same control.
+    # From S21.5 (D-208, JR-13) a session that moves the date also runs the later-rule search again: the control moves
+    # the "Searched to" date and the search log's window end with it.
     "S15-M3": ("S15-M3", "the reference date moved, results not rebuilt",
-               edit("sql/source_age.sql", "DATE '2026-10-14' AS reference_date", "DATE '2027-10-14' AS reference_date"), [],
+               edit("sql/source_age.sql", "DATE '2026-10-15' AS reference_date", "DATE '2027-10-15' AS reference_date"), [],
                ["is not a fresh run of the current inputs"]),
-    "S16-C1": ("S16-C1", "control: the reference date moved one day, everything rebuilt (D-137's move)",
-               edit("sql/source_age.sql", "DATE '2026-10-14' AS reference_date", "DATE '2026-10-15' AS reference_date"), ALL, []),
+    "S16-C1": ("S16-C1", "control: the reference date moved one day with the later-rule search, everything rebuilt (D-137, D-208)",
+               both(edit("sql/source_age.sql", "DATE '2026-10-15' AS reference_date", "DATE '2026-10-16' AS reference_date"),
+                    edit("docs/research/change-detection.md", "**Searched to:** 2026-10-15", "**Searched to:** 2026-10-16"),
+                    edit("docs/research/search-logs/later-rules/search-log.md", "**Window searched: 2024-12-06 to 2026-10-15**",
+                         "**Window searched: 2024-12-06 to 2026-10-16**")), ALL, []),
     "S15-M9": ("S15-M9", "the supplier metrics' status loosened: computable once suppliers are named (rebuilt)",
                edit(SUP, "'cannot_be_computed_yet' AS status,", "'computable' AS status,"), ALL,
                ["a supplier metric became computable"]),
@@ -456,6 +461,28 @@ S21 = [
           "Making any High Bandwidth Memory stack needs 3D die stacking."), ALL, []),
 ]
 
+# S21.5: the Change Detector and the date up to which later texts were searched (D-207, D-208; JR-13, BR-3, BR-7).
+CD = "docs/research/change-detection.md"
+S215 = [
+    ("S21.5-1", "the 'Searched to' date moved past the search log's window, pages not rebuilt (JR-13)",
+     edit(CD, "**Searched to:** 2026-10-15", "**Searched to:** 2026-10-16"), [],
+     ["the search log's window does not end on the 'Searched to' date"]),
+    ("S21.5-2", "the as-of date moved past the searched window, everything rebuilt (JR-13, D-208)",
+     edit("sql/source_age.sql", "SELECT DATE '2026-10-15' AS reference_date", "SELECT DATE '2026-10-16' AS reference_date"), ALL,
+     ["the as-of date is later than the searched window"]),
+    ("S21.5-3", "the export-control page drops the searched-to line (JR-13) (rebuilt)",
+     edit(JOURNEYS, """            + f'<p>{self.label("later texts searched for up to:")} {self.derived("searched-to", searched_to())}</p>'\n""", ""), [JOURNEYS],
+     ["the export-control page does not show the date up to which later texts were searched"]),
+    ("S21.5-4", "the brief's unsearched period reverts to the latest publication date (BR-7) (rebuilt)",
+     edit(BRIEF, 'return self.derived("searched-to", build_journeys.searched_to())', "return self.latest()"), [BRIEF],
+     ["the unsearched period missing from the first section"]),
+    ("S21.5-5", "the Change Detector marked inactive again (D-207)",
+     edit("docs/agents/roles.md", "| Change Detector | active |", "| Change Detector | inactive |"), [],
+     ["test_active_roles_are_exactly_the_contracted_roles"]),
+    ("S21.5-C1", "control: a framing sentence of the journey template reworded, journeys rebuilt",
+     edit(JT, "texts published after the search date below were not searched.", "texts published after the search date below were not read."), [JOURNEYS], []),
+]
+
 S165_BREAKS = s165.breaks
 
 
@@ -478,7 +505,7 @@ def with_brief(brk):
 
 
 def breaks():
-    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205 + S21
+    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205 + S21 + S215
     return [with_brief(with_journeys(b)) for b in found]
 
 

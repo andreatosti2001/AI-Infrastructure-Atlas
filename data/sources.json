@@ -1420,5 +1420,71 @@
       "accessed_at": "2026-10-08T19:54Z",
       "sha256": "9c9ea7f0655e32b76647b83ca64432792a83f43e74eb917017466b806c3f4c84"
     }
+  },
+  {
+    "id": "src-062",
+    "source_class": "official_legal_text",
+    "title": "Framework for Artificial Intelligence Diffusion",
+    "publisher": "Federal Register (official edition, govinfo.gov)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "Bureau of Industry and Security, Department of Commerce",
+    "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2025-01-15"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-15T07:13Z",
+      "sha256": "0ec0f7fc1016b9654ea0559819e821d1baee1814efe1e0048a10d5df9230f86c"
+    }
+  },
+  {
+    "id": "src-063",
+    "source_class": "official_legal_text",
+    "title": "Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period",
+    "publisher": "Federal Register (official edition, govinfo.gov)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "Bureau of Industry and Security, Department of Commerce",
+    "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2025-01-16"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-15T07:13Z",
+      "sha256": "e1f7ddd6e4fd08d1ee1470bd001d38ca16adb28bb42444640775a63c7bef1026"
+    }
+  },
+  {
+    "id": "src-064",
+    "source_class": "official_legal_text",
+    "title": "Enhanced Favorable Treatment for the United Arab Emirates Under the Export Administration Regulations",
+    "publisher": "Federal Register (official edition, govinfo.gov)",
+    "publisher_entity": {
+      "state": "not_applicable"
+    },
+    "authors": "Bureau of Industry and Security, Department of Commerce",
+    "url": "https://www.govinfo.gov/content/pkg/FR-2026-07-14/pdf/2026-14132.pdf",
+    "stated_dates": [
+      {
+        "kind": "published",
+        "date": "2026-07-14"
+      }
+    ],
+    "retrieval": {
+      "method": "automated",
+      "accessed_at": "2026-10-15T07:13Z",
+      "sha256": "4e4b5555a41f7799f4e4dfe192a3a159c6fbb023da36ffacd76e4bbb80c5d9d5"
+    }
   }
 ]
