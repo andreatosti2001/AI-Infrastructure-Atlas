@@ -76,3 +76,14 @@ dates they fix.
 
 **Status:** all candidates accepted by the human on 2026-10-15 and made canonical (D-209;
 `docs/quality/human-reviews.md`). The rules CD-1 to CD-7 bind every later comparison.
+
+## §2 — Later runs of the search (S22 onward, D-211)
+
+Each run of `tools/later_rule_search.py` writes its log in [`search-logs/later-rules/`](search-logs/later-rules/).
+The "Searched to" date of §1 moves to a run's last day only when the run is complete and every candidate it lists is
+ruled here (CD-4, CD-6); JR-13 checks that the complete windows join without a gap up to that date.
+
+| Window | Log | Outcome | Ruling |
+|---|---|---|---|
+| 2026-10-15 to 2026-10-15 | [`run-2026-10-15-to-2026-10-15.md`](search-logs/later-rules/run-2026-10-15-to-2026-10-15.md) | none found in the searched window; the eight registered official texts unchanged | none needed; "Searched to" stays 2026-10-15 (the run re-checks S21.5's last day: S22 opened on the day S21.5's search ran) |
+

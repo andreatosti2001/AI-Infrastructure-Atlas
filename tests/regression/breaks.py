@@ -10,7 +10,7 @@ The harness is built in layers, each loading the one before it and replacing the
 text its own changes removed (see tests/regression/README.md):
     breaks_records_and_page.py, breaks_sql.py, breaks_research_view.py  ->  breaks_metrics.py
     -> breaks_metric_audit.py -> breaks_supplier_freshness.py -> this file (supplier evidence; review records;
-    S17's policy layer; S18's policy links; S20's research journeys; S20.5's filter guard; S21's client brief; S21.5's search window).
+    S17's policy layer; S18's policy links; S20's research journeys; S20.5's filter guard; S21's client brief; S21.5's search window; S22's search tool).
 
 Run with a virtualenv built from requirements-test.txt and requirements-analysis.txt, from the repository root
 (the runner is tests/regression/runner.py: parallel copies, one summary, selection by measured files, D-177,
@@ -483,6 +483,56 @@ S215 = [
      edit(JT, "texts published after the search date below were not searched.", "texts published after the search date below were not read."), [JOURNEYS], []),
 ]
 
+# S22: the later-rule search tool and the widened JR-13 (D-210, D-211; tests/test_later_rule_search.py LS-1 to LS-11).
+TOOL = "tools/later_rule_search.py"
+LOGS = "docs/research/search-logs/later-rules"
+
+
+def run_log(first, last, outcome):
+    """A run log of the search tool (its window and outcome lines), with the 'Searched to' date moved to its end."""
+    def apply(root):
+        (root / LOGS / f"run-{first}-to-{last}.md").write_text(
+            f"# Later-rule search run: {first} to {last}\n\n**Window searched: {first} to {last}**\n\n**Outcome:** {outcome}.\n",
+            encoding="utf-8")
+        edit(CD, "**Searched to:** 2026-10-15", f"**Searched to:** {last}")(root)
+    return apply
+
+
+S22 = [
+    ("S22-1", "a gap between search windows: a later run starts two days after the last one, the date moved, pages rebuilt (JR-13)",
+     run_log("2026-10-17", "2026-10-17", "none found in the searched window"), [JOURNEYS, BRIEF],
+     ["a gap in the searched windows"]),
+    ("S22-2", "the run ending on the 'Searched to' date is incomplete, the date moved, pages rebuilt (JR-13)",
+     run_log("2026-10-16", "2026-10-16", "incomplete: an access gap"), [JOURNEYS, BRIEF],
+     ["the only search logs ending on the 'Searched to' date are incomplete"]),
+    ("S22-3", "the search tool reports an outcome without its access gaps (LS-3)",
+     edit(TOOL, "    if result.gaps:\n", "    if False:\n"), [],
+     ["test_ls3_a_refused_request_is_an_access_gap_never_none_found"]),
+    ("S22-4", "the search tool ignores a heading naming 15 CFR part 774 (LS-2)",
+     edit(TOOL, "        if d.part_774:\n", "        if False:\n"), [],
+     ["test_ls2_a_candidate_is_listed_with_its_hash_and_stops_the_date"]),
+    ("S22-5", "the search tool calls a changed registered text unchanged (LS-5, CD-5)",
+     edit(TOOL, 'verdict = "unchanged" if now == registered_sha else', 'verdict = "unchanged" if True else'), [],
+     ["test_ls5_a_changed_registered_text_is_reported"]),
+    ("S22-6", "the search tool writes its log anywhere in the repository (LS-9)",
+     edit(TOOL, "    if _inside(log, REPO_ROOT) and not _inside(log, LOG_DIR):\n", "    if False:\n"), [],
+     ["test_ls9_the_command_line_writes_only_its_log"]),
+    ("S22-7", "the search tool reads only the 3A entries of CD-3 (LS-8)",
+     edit(TOOL, 'r"\\b3[AB]\\d{3}\\b"', 'r"\\b3A\\d{3}\\b"'), [],
+     ["test_ls8_terms_come_from_their_homes"]),
+    ("S22-8", "the search tool selects BIS notices by their repeal words (LS-11)",
+     edit(TOOL, 'if d.is_bis and d.tag in ("RULE", "PRORULE") and d.bis_words:', "if d.is_bis and d.bis_words:"), [],
+     ["test_ls11_repeal_words_select_bis_rules_not_notices"]),
+    ("S22-9", "the search tool accepts fewer index results than the count (LS-10)",
+     edit(TOOL, '            if len(found) != reply["count"]:\n', "            if False:\n"), [],
+     ["test_ls10_fewer_results_than_the_count_is_an_access_gap"]),
+    ("S22-10", "the search tool treats an issue the index lists as absent (LS-4)",
+     edit(TOOL, "        elif listed == 0:\n", "        elif True:\n"), [],
+     ["test_ls4_a_missing_issue_is_a_gap_only_when_the_index_lists_documents"]),
+    ("S22-C1", "control: a framing sentence of the search log reworded",
+     edit(TOOL, "Times are UTC.", "All times are UTC."), [], []),
+]
+
 S165_BREAKS = s165.breaks
 
 
@@ -505,7 +555,7 @@ def with_brief(brk):
 
 
 def breaks():
-    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205 + S21 + S215
+    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205 + S21 + S215 + S22
     return [with_brief(with_journeys(b)) for b in found]
 
 

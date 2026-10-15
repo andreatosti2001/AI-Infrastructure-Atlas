@@ -34,7 +34,8 @@ JR-11 document structure (lang, one h1 equal to the title, landmarks, no skipped
 JR-12 every committed page equals a rebuild; two builds are identical; no other page sits in the journey folders;
 JR-13 the export-control page shows how far later texts were searched: the "Searched to" date of
       docs/research/change-detection.md, which equals the end of the search log's window and is no earlier than the as-of
-      date (S21.5, D-208).
+      date (S21.5, D-208). From S22 (D-211) every log in search-logs/later-rules/ counts: S21.5's and the search tool's
+      runs. A log whose outcome is incomplete covers nothing; the others' windows join without a gap up to the date.
 """
 
 from __future__ import annotations
@@ -62,7 +63,7 @@ BRIEFS = ("site/briefs/accelerator-memory/index.html",)  # S21 (D-206): the entr
 AGE_RESULT = REPO_ROOT / "sql" / "results" / "source_age.json"
 # S21.5 (D-208): the one home of the date up to which later texts were searched, and the log it summarises.
 CHANGE_DETECTION = REPO_ROOT / "docs" / "research" / "change-detection.md"
-SEARCH_LOG = REPO_ROOT / "docs" / "research" / "search-logs" / "later-rules" / "search-log.md"
+SEARCH_LOGS = REPO_ROOT / "docs" / "research" / "search-logs" / "later-rules"  # S21.5's log and the tool's runs (D-211)
 INPUT_GLOBS = ("data/*.json", "data/staging/*.json", "schemas/*.json", "sql/*.sql", "sql/results/*.json")
 INPUT_FILES = (
     "docs/architecture/company-dataset.md",
@@ -121,6 +122,19 @@ def searched_to() -> str:
     text = CHANGE_DETECTION.read_text(encoding="utf-8") if CHANGE_DETECTION.is_file() else ""
     found = re.search(r"^\*\*Searched to:\*\* (\d{4}-\d{2}-\d{2})$", text, re.M)
     return found.group(1) if found else ""
+
+
+def search_windows() -> list[tuple[str, str, bool, str]]:
+    """(first day, last day, complete, file) of every log of the later-rule search (D-208, D-211). A log is incomplete
+    when its outcome says so (an access gap left part of its window unsearched); S21.5's log has no outcome line."""
+    found = []
+    for path in sorted(SEARCH_LOGS.glob("*.md")) if SEARCH_LOGS.is_dir() else []:
+        text = path.read_text(encoding="utf-8")
+        window = re.search(r"\*\*Window searched: (\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})\*\*", text)
+        if window:
+            outcome = re.search(r"^\*\*Outcome:\*\* (.*)$", text, re.M)
+            found.append((window.group(1), window.group(2), not (outcome and outcome.group(1).startswith("incomplete")), path.name))
+    return found
 
 
 class Records:
@@ -680,9 +694,15 @@ class JourneyTests(unittest.TestCase):
     def test_jr13_the_search_window_is_shown_and_reaches_the_as_of_date(self) -> None:
         to = searched_to()
         self.assertRegex(to, r"^\d{4}-\d{2}-\d{2}$", "change-detection.md states no 'Searched to' date")
-        log = SEARCH_LOG.read_text(encoding="utf-8") if SEARCH_LOG.is_file() else ""
-        window = re.search(r"\*\*Window searched: (\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})\*\*", log)
-        self.assertTrue(window and window.group(2) == to, "the search log's window does not end on the 'Searched to' date")
+        windows = search_windows()
+        ending = [w for w in windows if w[1] == to]
+        self.assertTrue(ending, "the search log's window does not end on the 'Searched to' date")
+        self.assertTrue([w for w in ending if w[2]], "the only search logs ending on the 'Searched to' date are incomplete")
+        covered = None
+        for first, last, _, name in sorted(w for w in windows if w[2] and w[0] <= to):
+            if covered is not None and day(first) > day(covered) + 1:
+                self.fail(f"a gap in the searched windows: nothing searched between {covered} and {first} ({name})")
+            covered = last if covered is None else max(covered, last)
         on = json.loads(AGE_RESULT.read_text(encoding="utf-8"))["rows"][0]["reference_date"]
         self.assertGreaterEqual(to, on, "the as-of date is later than the searched window: run the later-rule search again or keep the date (D-208)")
         shown = [n.text() for n in self.pages[EXPORT].find(data_derived="searched-to")]

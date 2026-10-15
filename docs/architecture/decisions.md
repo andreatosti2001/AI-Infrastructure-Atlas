@@ -3432,3 +3432,30 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
 - **Rejected:** re-running the search by hand each session; freezing the pages' as-of date until a search runs; dating
   the EAR by the CFR edition read (a new event kind); leaving the EAR undated by rule; keeping the July 2026 statement
   off the pages; keeping the full printed appendix; deferring the print length to v1.5.
+
+## D-211 — The later-rule search tool: the index and the official daily edition, owned by the Source Scout
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, S22, on the tool's design; D-210)
+- **Context:** D-208 makes every page rebuild that moves the as-of date re-run the later-rule search; S21.5 ran it with
+  archived session scripts. D-210 asked for a standard-library repository tool. S21.5's independent register, the List
+  of CFR Sections Affected and the daily reader aids, exists only as PDF, which the standard library cannot read.
+- **Decision:**
+  - `tools/later_rule_search.py` runs `plan.md` steps 1 to 5 for a window: the Federal Register index (every BIS
+    document; each term in every agency's documents; the rescind and repeal words in BIS documents); the **official
+    daily edition's XML** on govinfo.gov, read in full text for the same terms and for CFR headings naming 15 CFR
+    part 774, as the independent register; candidates selected mechanically, each official PDF hashed; the registered
+    official texts re-hashed (CD-5). The entries come from CD-3 of `change-detection.md` and the acts from
+    `data/policies.json` (one home each); the EAR's own citation is not a term (nearly every BIS rule names it);
+  - it writes one log per run, `docs/research/search-logs/later-rules/run-<from>-to-<to>.md`, with every request's
+    host, time, status and hash and one outcome: none found in the searched window (exit 0), to review (3) or
+    incomplete (4); a refusal is an access gap, never retried under another identity. It never writes `data/` or
+    `change-detection.md`, reads no PDF's text and rules nothing (the Change Detector does, CD-1 to CD-7);
+  - the Source Scout owns the tool; the Data Auditor writes its checks, `tests/test_later_rule_search.py` (LS-1 to
+    LS-11, on constructed recorded responses, without the network), and the breaks S22-3 to S22-10;
+  - **JR-13** reads every log in that folder: a log whose outcome is incomplete covers nothing; the others' windows
+    must join without a gap up to the "Searched to" date, which a complete log must end on (breaks S22-1, S22-2);
+  - the first run covers 2026-10-15 (S22 opened on the day S21.5 searched, so the window from 2026-10-16 was empty):
+    none found; "Searched to" stays 2026-10-15 (`change-detection.md` §2). A test run on 13 to 17 January 2025, kept in
+    the archive, found 2025-00636 and 2025-00711 with the hashes S21.5 registered.
+- **Rejected:** the LSA and reader-aid PDFs as the second register (a PDF reader, poppler's `pdftotext`, outside the
+  standard library and without a decision); the Data Auditor owning both the tool and its checks; no live run in S22.

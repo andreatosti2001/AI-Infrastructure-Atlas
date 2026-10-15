@@ -91,3 +91,16 @@ log records both.
   → stop and ask (CLAUDE.md §9A); checks first if the human approves.
 - A text that cannot be retrieved → access gap, logged with host, response and time.
 - A registered source whose hash changed → its anchors re-read before anything rests on it.
+
+## From S22: the search tool (D-210, D-211)
+
+Steps 1 to 5 are run by `tools/later_rule_search.py` for a window: step 1 and step 2 as above (the index, every BIS
+document and every term; the act citations and document numbers are read from `data/policies.json`, the entries from
+CD-3 of `change-detection.md`); for step 3 the independent register is the **official daily edition** itself, the XML
+of each issue on govinfo.gov, read in full text for the same terms and for headings naming 15 CFR part 774, in place
+of the LSA and reader-aid PDFs (which the standard library cannot read); step 4 selects candidates mechanically and
+hashes their official PDFs; step 5 re-hashes the registered official texts (CD-5). Each run writes its log here as
+`run-<from>-to-<to>.md`, every request with its host, time, status and hash. Steps 6 to 9 stay with the Change Detector
+and the Extractor: the tool reads no PDF's text and rules nothing. A run whose outcome is "incomplete" moves no date
+(JR-13).
+
