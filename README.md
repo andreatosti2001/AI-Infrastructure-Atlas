@@ -85,6 +85,12 @@ anchors and review.
   provides stays in claims attributed to the authority; its dates are events, and its status on any day is
   computed by `tools/policy_status.py` ("has taken effect; no repeal recorded in the Atlas", never "in force").
   ([`policy-dataset.md`](docs/architecture/policy-dataset.md)).
+- **The later-rule search** (S21.5): the Change Detector searched the official record from 6 December 2024 to
+  15 October 2026 for later texts changing the entries the links rest on or repealing an act. It found two later BIS
+  rules of January 2025 (the AI Diffusion rule and a due-diligence rule for advanced computing chips), now recorded
+  as acts, whose changes to 3A090.c, 3B001 and 3B993 are quoted beside the links; no repeal; no official text
+  rescinding the AI Diffusion rule ([`change-detection.md`](docs/research/change-detection.md), D-209). The pages
+  state the date up to which the search ran, and a check keeps it at or after their as-of date (D-208).
 - **The first policy links** (M5): four `restricts` links say that an act's own text names a class among the
   items it controls: the December 2024 rule names high-bandwidth memory, and the 2022, 2023 and 2024 rules
   name semiconductor manufacturing equipment. Each rests on the act's quoted sentence and a recorded match
@@ -122,8 +128,8 @@ CI runs the unit tests and Gate 0 on every push and pull request.
   threshold is applied to a product (`policy-dataset.md` P-9). A policy link says only that an act's text
   names a class among the items it controls: never that every member, a product or a firm is controlled, for
   which destination, or that the control is in effect today; no exposure is shown. Products and companies
-  are not linked to acts yet, and later rules the Atlas does not hold were not searched for changes (after 5
-  December 2024; D-175). Only acts issued by a country can be recorded; EU instruments
+  are not linked to acts yet, and texts published after the search date (15 October 2026) were not searched for
+  changes (D-208, D-209). The EAR record still has no dates. Only acts issued by a country can be recorded; EU instruments
   stay in `Eu-Digital-Policy`. A repeal the Atlas has not recorded would not show: the status says "no repeal
   recorded in the Atlas". The end of a single instruction's effect (one 2023 instruction ran to 2026-01-01) is
   stated in a claim, not as an event.
