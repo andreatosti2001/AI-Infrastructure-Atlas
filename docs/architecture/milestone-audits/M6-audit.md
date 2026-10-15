@@ -3,8 +3,8 @@
 > **Records cited.** This is a process audit (PEF §4). The session reports and prompts it cites are kept in the
 > private development archive, not in this repository (D-151); the decisions, documents and files it cites are here.
 
-**Status:** PROPOSED (S22, 2026-10-15), for the human's ruling with the engineering audit (S22 H-2). Written in S22
-because M6 closed without its audit (S22 H-1).
+**Status:** ACCEPTED by the human on 2026-10-15 (S22 H-2, D-213); M6 closes with this audit. Written in S22 because M6
+had closed without its audit (S22 H-1).
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §4 (a milestone audit at every major milestone);
 `SESSION-PROMPT-SPEC.md` §4 (mandatory "before client mode is considered stable": the client brief is S21's).
 **Written by:** Claude, as the Knowledge Architect; the human's review stands in for the Portfolio Reviewer (D-184).
@@ -137,5 +137,4 @@ finding-aid PDFs as the tool's second register (D-211).
 ## Part 4 — Findings and debt
 
 No blocking finding is specific to M6's process; the engineering audit's F-1 (blocking) concerns M6's pages and is
-remediated with H-0's CI job. The rest is debt with the owners above. **M6 closes with this audit** if the human
-accepts it.
+remediated with H-0's CI job (D-212). The rest is debt with the owners above. **M6 is closed** with this audit (D-213).

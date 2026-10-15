@@ -164,11 +164,15 @@ docs/            documentation map, architecture, decisions, research, audits, a
 
 ## Validate
 
-Requires Python 3.11+. The tools use the standard library only, except the SQL warehouse, which needs the
-pinned DuckDB (D-118). The tests also need the pinned test dependencies (D-026).
+Use Python 3.11, the version CI runs (D-004): a newer interpreter accepts syntax 3.11 rejects (EN-1 catches it in CI).
+The tools use the standard library only, except the SQL warehouse, which needs the pinned DuckDB (D-118). The tests
+also need the pinned test dependencies (D-026). **Run `python tools/check_all.py` immediately before each commit**,
+after the last edit (D-213): it runs the suite, Gate 0 and every `--check` below, in order.
 
 ```bash
+python3.11 -m venv .venv && . .venv/bin/activate                 # outside Git: .venv is not committed
 python -m pip install -r requirements-test.txt -r requirements-analysis.txt
+python tools/check_all.py                                        # every check below, in order; stops at the first failure
 python -m unittest discover -s tests -v                          # unit tests
 python tools/validate_repo.py                                    # Gate 0: repository integrity
 python tools/warehouse.py --check                                # every SQL result equals a fresh run from data/
@@ -179,4 +183,8 @@ python tools/build_brief.py --check                              # the client br
 python tools/trace.py company-nvidia                             # what supports a record or claim
 python tools/facility_status.py facility-kr-m16 --on 2026-10-02  # a facility's derived status
 python tools/navigate.py depends-on technology-3d-die-stacking   # what depends on a record; --json for data
+python tools/later_rule_search.py --from YYYY-MM-DD --to YYYY-MM-DD   # the later-rule search for a window (D-211)
 ```
+
+Browser checks (Node 22; CI runs them on every push, D-212): `npm ci`, then the scripts in
+[`tests/browser/`](tests/browser/README.md).

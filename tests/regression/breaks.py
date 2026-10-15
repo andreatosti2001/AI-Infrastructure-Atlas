@@ -483,7 +483,8 @@ S215 = [
      edit(JT, "texts published after the search date below were not searched.", "texts published after the search date below were not read."), [JOURNEYS], []),
 ]
 
-# S22: the later-rule search tool and the widened JR-13 (D-210, D-211; tests/test_later_rule_search.py LS-1 to LS-11).
+# S22: the later-rule search tool and the widened JR-13 (D-210, D-211; tests/test_later_rule_search.py LS-1 to LS-11);
+# the engineering audit's remediations EN-1 and EN-2 (D-213; tests/test_engineering.py).
 TOOL = "tools/later_rule_search.py"
 LOGS = "docs/research/search-logs/later-rules"
 
@@ -529,6 +530,13 @@ S22 = [
     ("S22-10", "the search tool treats an issue the index lists as absent (LS-4)",
      edit(TOOL, "        elif listed == 0:\n", "        elif True:\n"), [],
      ["test_ls4_a_missing_issue_is_a_gap_only_when_the_index_lists_documents"]),
+    ("S22-11", "an audit-evidence script gains syntax only Python 3.12 parses (EN-1, A-1)",
+     edit("docs/quality/audit-evidence/agent-audit/write_boundaries.py", "import collections\n",
+          'import collections\nX = {"k": 1}\nY = f"{X["k"]}"\n'), [],
+     ["test_en1_every_tracked_python_file_compiles"]),
+    ("S22-12", "the one check command forgets the brief's --check (EN-2, F-7)",
+     edit("tools/check_all.py", '    ("the client brief", "tools/build_brief.py", "--check"),\n', ""), [],
+     ["test_en2_check_all_runs_every_check_in_order"]),
     ("S22-C1", "control: a framing sentence of the search log reworded",
      edit(TOOL, "Times are UTC.", "All times are UTC."), [], []),
 ]

@@ -4,7 +4,9 @@
 > not in this repository (D-151); the decisions, documents, commits and files it cites are here. The measurements can
 > be re-run: [`../quality/audit-evidence/engineering-audit/`](../quality/audit-evidence/engineering-audit/).
 
-**Status:** PROPOSED (S22, 2026-10-15), for the human's ruling item by item (S22 H-2).
+**Status:** ACCEPTED by the human on 2026-10-15 (S22 H-2, D-213). Rulings: F-1, F-4, F-7, F-11 remediated in S22 (D-212,
+D-213); F-13 in print by D-210's compact list, on screen v1.5; F-2, F-5, F-12, F-14 debt for v1.5's opening session;
+F-6, F-8, F-9, F-10 v1.5; F-3 kept. §5 keeps each finding as proposed, with its ruling below it; §6 shows the rulings.
 **Required by:** `SESSION-ROADMAP.md` S22 (the twelve points of §3 below); `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §9
 (code and engineering), §3 (maturity), §4 (the pre-release dual audit: this is its engineering half).
 **Base read:** `claude/new-session-evm2a6` @ `5c492b2` (public `main` = `6c19501`, S21.5, plus S22's later-rule search
@@ -85,6 +87,7 @@ tool runs the later-rule search over the Federal Register (D-211).
   the wrong reason whenever nobody reads their output, and cannot run in CI as they are (H-0 chose CI).
 - **Proposed disposition.** Remediate in S22, checks first: every script computes one verdict from all its measures
   and exits non-zero on any failure; each is shown failing on a planted page defect; then the CI job of H-0.
+- **Ruling (2026-10-15):** remediated in S22 (D-212): every script lists failed conditions and exits non-zero, shown failing on planted pages; CI's `browser` job runs them.
 
 ### F-2 — An out-of-vocabulary value crashes three builds without a reason (debt; E-2)
 
@@ -93,6 +96,7 @@ tool runs the later-rule search over the Federal Register (D-211).
   schema's `oneOf`). The record checks refuse the value first, so no wrong value reaches a page.
 - **Proposed disposition.** Remediate in S22: `Page.value` raises a `BuildError` naming the record, the field and the
   value; one test written first.
+- **Ruling (2026-10-15):** not in S22; debt for v1.5's opening session (D-213).
 
 ### F-3 — The HBM page's specification names records, so the most plausible evidence change stops two builds (debt; E-1)
 
@@ -104,6 +108,7 @@ tool runs the later-rule search over the Federal Register (D-211).
   PG-10 already requires to have homes.
 - **Proposed disposition.** Keep, owned by the session that resolves `cand-001` (it edits the specification with the
   record); S23 is told, since the H100's fabrication evidence is a content question.
+- **Ruling (2026-10-15):** kept as proposed (D-213).
 
 ### F-4 — Python 3.11 is guarded only for the files the suite loads (debt; A-1)
 
@@ -112,6 +117,7 @@ tool runs the later-rule search over the Federal Register (D-211).
   audit-evidence scripts) are compiled by nothing in CI.
 - **Proposed disposition.** Remediate in S22: a test compiles every tracked `.py` file with the running interpreter,
   so CI's 3.11 compiles all of them; `README.md` names the 3.11 virtualenv as the local command.
+- **Ruling (2026-10-15):** remediated in S22: EN-1 in `tests/test_engineering.py` (D-213).
 
 ### F-5 — Five check modules have never been shown to fail (debt)
 
@@ -121,6 +127,7 @@ tool runs the later-rule search over the Federal Register (D-211).
   and the status rule agree. One branch of `policy_status.derive_status` is never run (coverage).
 - **Proposed disposition.** S22 adds one break per module (five breaks, each failing for its named reason) and a
   fictional test of the untested status branch; no check changes.
+- **Ruling (2026-10-15):** not in S22; debt for v1.5's opening session (D-213).
 
 ### F-6 — The export-control timeline is illegible on a phone (debt)
 
@@ -130,6 +137,7 @@ tool runs the later-rule search over the Federal Register (D-211).
   phone form. Alternative: a CSS-only change in S22 that keeps the figure at a readable width inside a horizontal
   scroller below 760 px (the template's style, Editorial; the browser scripts' overflow rule would need to accept the
   scroller).
+- **Ruling (2026-10-15):** v1.5; the word list is the phone form until then (D-213).
 
 ### F-7 — The pre-commit sequence is seven commands (debt; S21.5's red CI)
 
@@ -138,6 +146,7 @@ tool runs the later-rule search over the Federal Register (D-211).
 - **Proposed disposition.** S22 adds `tools/check_all.py` (standard library): runs the suite, Gate 0 and every
   `--check` in order and exits non-zero on the first failure; `README.md` names it as the command run immediately
   before each commit. Alternative: keep the commands and the lesson as they are.
+- **Ruling (2026-10-15):** remediated in S22: `tools/check_all.py`, checked by EN-2 (D-213).
 
 ### F-8 — One large base class, two levels of subclassing and the label lists (debt; A-2)
 
@@ -146,55 +155,62 @@ tool runs the later-rule search over the Federal Register (D-211).
 - **What it means.** The complexity is paid for by reuse and by PG-1, but the base class mixes record access,
   rendering and composition, and the next page kind will deepen it.
 - **Proposed disposition.** v1.5, which plans reusable visual components (D-201); no refactor before v1.0 (non-goal).
+- **Ruling (2026-10-15):** v1.5 (D-213).
 
 ### F-9 — Two templates still compose differently (debt; A-3)
 
 - **Evidence.** D-204 covers new templates; `page_template.html` and `insight_template.html` keep their own
   mechanism; the journeys and brief builds each carry the same template parsing and input lists (11 shared windows).
 - **Proposed disposition.** v1.5, with F-8.
+- **Ruling (2026-10-15):** v1.5 (D-213).
 
 ### F-10 — No visual regression check (debt; A-7)
 
 - **Evidence.** Byte-identical screenshots inside one environment; system fonts make baselines machine-bound.
 - **Proposed disposition.** v1.5: its opening session decides browser rules (D-201); a baseline made and compared in
   the CI job of H-0 is feasible on this evidence.
+- **Ruling (2026-10-15):** v1.5 (D-213).
 
 ### F-11 — The research view's filter has never run in Firefox or Safari (debt; D-196, D-200)
 
 - **Evidence.** Only Chromium is installed in the session environment; the filter relies on `:has()` with a CSS guard.
 - **Proposed disposition.** The CI job of H-0 also installs Playwright's Firefox and WebKit (pinned with Playwright)
   and runs the research view's filter checks in them; the result is reported from CI. Alternative: v1.5.
+- **Ruling (2026-10-15):** remediated in S22: `tests/browser/filter.qa.js` in Chromium, Firefox and WebKit in CI (D-212).
 
 ### F-12 — Supply-chain pins are by name (debt, low)
 
 - **Evidence.** `actions/checkout@v4`, `actions/setup-python@v5`; exact pip pins without hashes.
 - **Proposed disposition.** Pin the actions to commit hashes in S22, since H-0 changes the workflow; pip hashes kept as
   they are (exact pins and a clean `pip check` suffice at this scale).
+- **Ruling (2026-10-15):** not in S22; debt for v1.5's opening session (D-213).
 
 ### F-13 — The brief prints 79 A4 pages (debt; A-4)
 
 - **Evidence.** 884 KB and 11,637 elements; 66 of the printed pages are evidence appendices.
 - **Proposed disposition.** D-210's compact printed evidence list (S22, H-0); the screen weight, a single home per
   claim's evidence, stays with a later UX session (v1.5).
+- **Ruling (2026-10-15):** as proposed: the print list in S22 (D-210); the screen weight v1.5 (D-213).
 
 ### F-14 — The search tool's main function is the most complex in `tools/` (debt; S22's own code)
 
 - **Evidence.** `later_rule_search.search`: 104 lines, 56 branches.
 - **Proposed disposition.** S22 splits it into one function per step, with no change of behaviour (LS-1 to LS-11 and
   breaks S22-3 to S22-10 guard it).
+- **Ruling (2026-10-15):** not in S22; debt for v1.5's opening session (D-213).
 
-## 6. The debt S22 owns, ruled
+## 6. The debt S22 owns, ruled (D-213)
 
-| Item | Proposed disposition | Finding |
+| Item | Disposition (ruled, D-213) | Finding |
 |---|---|---|
-| A-1, Python 3.11 syntax | remediate in S22 | F-4 |
+| A-1, Python 3.11 syntax | **remediated in S22** (EN-1) | F-4 |
 | A-2, labels, subclassing, `endpoint` signatures | v1.5 | F-8 |
 | A-3, the two older templates | v1.5 | F-9 |
-| A-6, browser checks outside CI | remediated in S22 (H-0), after F-1 | F-1 |
+| A-6, browser checks outside CI | **remediated in S22** (D-212) | F-1 |
 | A-7, visual regression | v1.5 | F-10 |
-| Cross-browser `:has()` filter | S22's CI job, or v1.5 | F-11 |
+| Cross-browser `:has()` filter | **remediated in S22**: CI runs it in Firefox and WebKit (D-212) | F-11 |
 | E-1, a resolved gap stops two builds | kept; the session that resolves `cand-001` | F-3 |
-| E-2, unnamed `StopIteration` | remediate in S22 | F-2 |
+| E-2, unnamed `StopIteration` | debt for v1.5's opening session | F-2 |
 | C-8, two access dates for `src-043` | S23: which access date is canonical is a data question (no data changes in S22) | — |
 | F-4 (agent audit), the Verifier's re-read is a private script | kept, owned by the next session that adds claims from a retrieval (the EAR's 1996 dates, D-210); a re-read tool needs PDF text, so that session's opening decides how (a pinned `pypdf`, or `pdftotext`) | — |
 | M5 §6, a rule's country joins two texts; an official text's publisher is an edition's name | S23 (content and data, not code) | — |
@@ -208,7 +224,7 @@ tool runs the later-rule search over the Federal Register (D-211).
 | Axis | Rating | Evidence |
 |---|---|---|
 | Process | **3, Controlled** | checks first and breaks every session; full harness on every check change; decisions for every dependency; CI red three times in M6, each fixed forward, two from the same lesson (run CI's checks, on CI's Python, immediately before committing) |
-| Outcome | **2, Defined at this audit; 3, Controlled once F-1 and F-2 are remediated** | 92 % line coverage, 168 planted faults, builds identical across three interpreters, text binding checked node by node, clean security basics; but the browser checks could not fail (F-1) and a vocabulary error still crashes without a reason (F-2) |
+| Outcome | **2, Defined at this audit; 3, Controlled with F-1 remediated** (accepted, D-213; F-2 stays debt) | 92 % line coverage, 168 planted faults, builds identical across three interpreters, text binding checked node by node, clean security basics; but the browser checks could not fail (F-1) and a vocabulary error still crashes without a reason (F-2) |
 
 ## 8. What this audit does not cover
 

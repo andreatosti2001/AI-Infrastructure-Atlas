@@ -1,11 +1,14 @@
 // Browser QA for the research view, site/hbm-insight/index.html (visual-architecture.md §12; D-106, D-125, D-132).
-// Run from anywhere: node tests/browser/hbm-insight.qa.js OUTDIR. Playwright and Chromium come from the environment,
-// not the repository (D-106); the screenshots and qa-result.json go to OUTDIR, outside the repository.
+// Run from anywhere: node tests/browser/hbm-insight.qa.js OUTDIR. Playwright comes from the pinned package or the
+// environment (qa-lib.js, D-212); the screenshots and qa-result.json go to OUTDIR, outside the repository. Any failed
+// condition is listed by name and exits non-zero (S22, F-1). QA_BROWSER=firefox or webkit runs the same checks in that
+// engine (CI does, for the :has() filter, S22, F-11).
 // Checks at 1280 and 375 px: console, page errors and network; document overflow and wide elements; the keyboard
 // path to every mark (strip lines, the supplier slot, unit squares); Enter on a unit square lands on its table row;
 // the basis filter driven from the keyboard and its effect on the table and the marks; every metric tutorial opened
 // from the keyboard; measured contrast on every rendered text node, with the SQL tutorial open; screenshots.
-const { chromium } = require('/opt/node-tools/node_modules/playwright');
+const { engine, verdict, finish, onlyThePage } = require('./qa-lib');
+const [ENGINE, browserType] = engine();
 const OUT = process.argv[2];
 const URL = 'file://' + require('path').resolve(__dirname, '../../site/hbm-insight/index.html');
 
@@ -16,7 +19,7 @@ function lum(rgb) {
 function ratio(a, b) { const [h, l] = [lum(a), lum(b)].sort((x, y) => y - x); return (h + 0.05) / (l + 0.05); }
 
 (async () => {
-  const browser = await chromium.launch();
+  const browser = await browserType.launch();
   const report = {};
   for (const [name, width, height] of [['desktop', 1280, 900], ['mobile', 375, 812]]) {
     const ctx = await browser.newContext({ viewport: { width, height }, deviceScaleFactor: name === 'mobile' ? 2 : 1 });
@@ -108,7 +111,28 @@ function ratio(a, b) { const [h, l] = [lum(a), lum(b)].sort((x, y) => y - x); re
     report[name] = r;
     await ctx.close();
   }
-  require('fs').writeFileSync(`${OUT}/qa-result.json`, JSON.stringify(report, null, 2) + '\n');
+  report.engine = `${ENGINE} ${browser.version()}`;
   await browser.close();
-  console.log(JSON.stringify(report, (k, v) => (k === 'unitEnter' ? v.every(x => x.ok) : v), 1));
+  const { failures, check } = verdict();
+  for (const name of ['desktop', 'mobile']) {
+    const r = report[name];
+    check(`${name}: console messages`, !r.console.length, r.console);
+    check(`${name}: page errors`, !r.pageErrors.length, r.pageErrors);
+    check(`${name}: requests other than the page`, !onlyThePage(r.requests, URL).length, onlyThePage(r.requests, URL));
+    check(`${name}: document overflow`, r.overflow.scrollWidth <= r.overflow.clientWidth, r.overflow);
+    check(`${name}: wide elements`, !r.wideElements.length, r.wideElements);
+    check(`${name}: marks reached by Tab`, r.marksReachedByTab === r.marks, `${r.marksReachedByTab} of ${r.marks}`);
+    check(`${name}: a visible focus ring`, !/^none/.test(r.focusRing), r.focusRing);
+    check(`${name}: Enter on a unit square lands on its row`, r.unitEnter.every(x => x.ok), r.unitEnter.filter(x => !x.ok));
+    check(`${name}: every tutorial opens from the keyboard`, r.tutorials.every(x => x.opened), r.tutorials.filter(x => !x.opened));
+    check(`${name}: every "how" link has its target`, r.howLinks.every(Boolean));
+    check(`${name}: wide elements with the tutorials open`, !r.wideWithTutorialsOpen.length, r.wideWithTutorialsOpen);
+    check(`${name}: the basis filter from the keyboard`, r.filter.every(f => f.ok), r.filter.filter(f => !f.ok));
+    check(`${name}: the filter back to all links`, r.filterBackToAll.checked === 'all' && r.filterBackToAll.rowsHidden === 0, r.filterBackToAll);
+    check(`${name}: text below 4.5:1 contrast`, !r.contrastBelow45.length, r.contrastBelow45);
+    check(`${name}: wide elements with every disclosure open`, !r.wideElementsOpen.length, r.wideElementsOpen);
+  }
+  const summary = {};
+  for (const k of ['desktop', 'mobile']) summary[k] = `marks ${report[k].marksReachedByTab}/${report[k].marks}, filter ${report[k].filter.filter(f => f.ok).length}/4, min contrast ${report[k].contrastMin}`;
+  finish(OUT, report, failures, { engine: report.engine, ...summary });
 })();

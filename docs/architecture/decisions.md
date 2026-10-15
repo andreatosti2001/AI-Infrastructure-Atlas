@@ -3459,3 +3459,51 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
     the archive, found 2025-00636 and 2025-00711 with the hashes S21.5 registered.
 - **Rejected:** the LSA and reader-aid PDFs as the second register (a PDF reader, poppler's `pdftotext`, outside the
   standard library and without a decision); the Data Auditor owning both the tool and its checks; no live run in S22.
+
+## D-212 — The browser checks can fail, and run in CI with a pinned Playwright (amends D-106 and D-026)
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, S22 H-0, "Browser checks run in CI
+  on every push"; H-2, the Firefox and WebKit filter check; engineering audit F-1, F-11)
+- **Context:** S21's report asked whether the four browser scripts should run in CI (A-6). The engineering audit found
+  that none of them could fail: all exited 0 whatever they measured, two computed no verdict, and the brief's print
+  verdict ignored its own first-page measures (F-1, blocking). The research view's filter had never run outside
+  Chromium (D-196, D-200; F-11).
+- **Decision:**
+  - every script lists each failed condition by name in `qa-result.json` and exits non-zero (`tests/browser/qa-lib.js`);
+    the brief's print verdict includes the first printed page (question, boundary line, as-of date, digest);
+  - `tests/browser/filter.qa.js` checks the filter per engine: where `:has()` works, each basis shows exactly its rows
+    and marks; where it does not, the filter is hidden and every row shown; an engine that cannot start fails;
+  - `package.json` and `package-lock.json` pin Playwright 1.56.1 (test-only, like `requirements-test.txt`; no page loads
+    a script); the Data Auditor owns them. Scripts take Playwright from that package when installed, else from the
+    session environment (D-106 kept for sessions);
+  - CI gains a `browser` job (Node 22, `npm ci`, Playwright's Chromium, Firefox and WebKit): the four page scripts in
+    Chromium and the filter in all three engines, every step run even after a failure, the results kept as an artifact
+    when one fails. It adds a few minutes per push.
+- **Amends:** D-106 (browser QA no longer only in a scratch environment) and D-026 (a pinned Node test-only package
+  beside the Python pins). D-200's condition for reconsidering a framework ("browser checks run in CI") is now met in
+  part; its other condition, a recorded user question needing state in the browser, is unchanged.
+- **Rejected:** keeping the checks manual (H-0's alternative); the four page scripts in Firefox and WebKit too (their
+  keyboard measures depend on each engine's Tab behaviour; only the filter's engine risk was recorded).
+
+## D-213 — The engineering audit and the M6 audit accepted; S22's remediations and the debt's owners; M6 closes
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, S22 H-1 and H-2)
+- **Context:** `docs/architecture/engineering-audit.md` (findings F-1 to F-14, S22's debt rows) and
+  `docs/architecture/milestone-audits/M6-audit.md` (PEF §4 over S20 to S21.5), both proposed in S22.
+- **Decision:**
+  - both audits are accepted with these rulings; **M6 closes** with its audit;
+  - **remediated in S22:** F-1 (the browser checks can fail; with H-0's CI job, D-212); F-11 (the filter in Firefox
+    and WebKit, in CI, D-212); F-4 (EN-1: every tracked Python file compiles in CI on 3.11); F-7
+    (`tools/check_all.py` runs the suite, Gate 0 and every `--check` in order, checked by EN-2; `README.md` names it as
+    the command run immediately before each commit); F-13's print half (D-210's compact printed evidence list);
+  - **debt for v1.5's opening session:** F-2 (a named build error for an out-of-vocabulary value, E-2), F-5 (breaks for
+    the five check modules never shown failing, and the untested status branch), F-12 (CI actions pinned to commit
+    hashes), F-14 (the search tool's main function split by step); and, as v1.5's subject, F-6 (the timeline on a
+    phone; the word list is the phone form until then), F-8 (A-2), F-9 (A-3), F-10 (A-7), F-13's screen half (A-4),
+    dark mode;
+  - **kept:** F-3 (E-1), owned by the session that resolves `cand-001`; the Verifier's re-read tool (agent audit F-4),
+    owned by the next session that adds claims from a retrieval, which decides how PDF text is read;
+  - **S23:** C-8, the M5 data rows, `not_researched`'s wording against ER-3, the ID rule's legal-form list;
+  - code and engineering maturity: process 3, outcome 2 at the audit and 3 with F-1 remediated (F-2 stays debt).
+- **Rejected:** the named build error, the five breaks, the split search function and hash-pinned actions in S22 (each
+  moved to v1.5's opening); a scrollable timeline now; keeping seven separate commands.

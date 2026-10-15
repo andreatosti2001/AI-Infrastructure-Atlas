@@ -1,12 +1,13 @@
 // Browser QA for the S20 research journeys (visual-architecture.md §15; D-106, D-190 to D-193): the entry page, the
 // export-control page, the 9 company pages and the 4 place pages, each at 1280 and 375 px.
-// Run from anywhere: node tests/browser/journeys.qa.js OUTDIR. Playwright and Chromium come from the environment,
-// not the repository (D-106); the screenshots and qa-result.json go to OUTDIR, outside the repository.
+// Run from anywhere: node tests/browser/journeys.qa.js OUTDIR. Playwright comes from the pinned package or the
+// environment (qa-lib.js, D-212); the screenshots and qa-result.json go to OUTDIR, outside the repository.
 // Per page and width: console and page errors; network requests (only the page itself); document overflow and wide
 // elements (outside scrolling tables and code); every link reached by Tab, and a visible focus ring; every in-page
 // link's target exists; Enter on a timeline mark and on a matrix cell lands on its evidence; every disclosure opens
 // from the keyboard; measured contrast on every rendered text node with every disclosure open; a top screenshot.
-const { chromium } = require('/opt/node-tools/node_modules/playwright');
+const { playwright, verdict, finish, widthChecks } = require('./qa-lib');
+const { chromium } = playwright();
 const fs = require('fs');
 const path = require('path');
 const OUT = process.argv[2];
@@ -112,9 +113,9 @@ function pages() {
       await ctx.close();
     }
   }
-  report.allOk = Object.values(report.pages).every(p => p.desktop.ok && p.mobile.ok);
-  fs.writeFileSync(`${OUT}/qa-result.json`, JSON.stringify(report, null, 2) + '\n');
   await browser.close();
+  const { failures, check } = verdict();
+  for (const [key, widths] of Object.entries(report.pages)) for (const [name, r] of Object.entries(widths)) widthChecks(check, `${key} ${name}`, r);
   const summary = Object.fromEntries(Object.entries(report.pages).map(([k, v]) => [k, `${v.desktop.ok ? 'ok' : 'FAIL'} / ${v.mobile.ok ? 'ok' : 'FAIL'} (min contrast ${v.desktop.contrastMin}, links ${v.desktop.linksReachedByTab}/${v.desktop.links})`]));
-  console.log(JSON.stringify({ chromium: report.chromium, allOk: report.allOk, pages: summary }, null, 1));
+  finish(OUT, report, failures, { chromium: report.chromium, pages: summary });
 })();

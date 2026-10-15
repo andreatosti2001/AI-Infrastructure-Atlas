@@ -1,7 +1,7 @@
 // Browser QA for the S21 client brief (docs/architecture/client-brief.md; D-106, D-202, D-203):
 // site/briefs/accelerator-memory/index.html at 1280 and 375 px, and printed on A4 and Letter.
-// Run from anywhere: node tests/browser/brief.qa.js OUTDIR. Playwright and Chromium come from the environment, not
-// the repository (D-106); the screenshots, the two PDFs and qa-result.json go to OUTDIR, outside the repository.
+// Run from anywhere: node tests/browser/brief.qa.js OUTDIR. Playwright comes from the pinned package or the
+// environment (qa-lib.js, D-212); the screenshots, the two PDFs and qa-result.json go to OUTDIR, outside the repository.
 // Per width (as journeys.qa.js): console and page errors; network requests (only the page itself); document overflow
 // and wide elements (outside scrolling tables and code); every link reached by Tab, with a visible focus ring; every
 // in-page link's target exists; Enter on a diagram mark and on a matrix cell lands on its evidence; every disclosure
@@ -9,7 +9,8 @@
 // In print (U-5): the boundary line, the scope section, the summary, the evidence and the sources are displayed; the
 // first printed page carries the question, the boundary line, the as-of date and the input digest; the PDF's page
 // count on A4 and Letter.
-const { chromium } = require('/opt/node-tools/node_modules/playwright');
+const { playwright, verdict, finish, widthChecks } = require('./qa-lib');
+const { chromium } = playwright();
 const fs = require('fs');
 const path = require('path');
 const OUT = process.argv[2];
@@ -121,18 +122,23 @@ function ratio(a, b) { const [h, l] = [lum(a), lum(b)].sort((x, y) => y - x); re
       const inFirst = sel => { const e = document.querySelector(sel); if (!e) return false; const b = e.getBoundingClientRect(); return b.top >= 0 && b.top < hgt; };
       return { h1: inFirst('h1'), boundary: inFirst('[data-boundary]'), asOf: inFirst('[data-identity]') || inFirst('[data-column="reference_date"]'), digest: inFirst('[data-identity] .digest') };
     }, h - 2 * 16 * 3.78);
-    p.ok = Object.values(p.displayed).every(Boolean) && p.pages > 0;
+    p.ok = Object.values(p.displayed).every(Boolean) && p.pages > 0 && Object.values(p.firstPage).every(Boolean);
     report.print[format] = p;
     await ctx.close();
   }
-  report.allOk = report.widths.desktop.ok && report.widths.mobile.ok && report.print.A4.ok && report.print.Letter.ok;
-  fs.writeFileSync(`${OUT}/qa-result.json`, JSON.stringify(report, null, 2) + '\n');
   await browser.close();
+  const { failures, check } = verdict();
+  for (const [name, r] of Object.entries(report.widths)) widthChecks(check, name, r);
+  for (const [format, p] of Object.entries(report.print)) {
+    check(`print ${format}: hidden in print`, Object.values(p.displayed).every(Boolean), Object.keys(p.displayed).filter(k => !p.displayed[k]));
+    check(`print ${format}: no PDF pages`, p.pages > 0, p.pages);
+    check(`print ${format}: missing from the first printed page`, Object.values(p.firstPage).every(Boolean), Object.keys(p.firstPage).filter(k => !p.firstPage[k]));
+  }
   const w = report.widths;
-  console.log(JSON.stringify({
-    chromium: report.chromium, allOk: report.allOk,
+  finish(OUT, report, failures, {
+    chromium: report.chromium,
     desktop: `${w.desktop.ok ? 'ok' : 'FAIL'} (min contrast ${w.desktop.contrastMin}, links ${w.desktop.linksReachedByTab}/${w.desktop.links}, overflow ${w.desktop.overflow})`,
     mobile: `${w.mobile.ok ? 'ok' : 'FAIL'} (min contrast ${w.mobile.contrastMin}, links ${w.mobile.linksReachedByTab}/${w.mobile.links}, overflow ${w.mobile.overflow}, wide ${w.mobile.wideElements.join(' ')})`,
     print: Object.fromEntries(Object.entries(report.print).map(([k, v]) => [k, `${v.ok ? 'ok' : 'FAIL'} ${v.pages} pages; first page ${JSON.stringify(v.firstPage)}`])),
-  }, null, 1));
+  });
 })();

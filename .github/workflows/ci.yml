@@ -23,3 +23,39 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Repository integrity (Gate 0)
         run: python tools/validate_repo.py
+
+  # D-212 (S22 H-0; engineering audit F-1, F-11): the browser checks, with the Playwright pinned in package-lock.json and
+  # its own browsers. Each script lists its failed conditions and exits non-zero; every step runs even after a failure.
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install the pinned Playwright (D-212)
+        run: npm ci
+      - name: Install Chromium, Firefox and WebKit for that Playwright
+        run: npx playwright install --with-deps chromium firefox webkit
+      - name: HBM page (Chromium)
+        if: success() || failure()
+        run: mkdir -p "$RUNNER_TEMP/qa/hbm-chain" && node tests/browser/hbm-chain.qa.js "$RUNNER_TEMP/qa/hbm-chain"
+      - name: Research view (Chromium)
+        if: success() || failure()
+        run: mkdir -p "$RUNNER_TEMP/qa/hbm-insight" && node tests/browser/hbm-insight.qa.js "$RUNNER_TEMP/qa/hbm-insight"
+      - name: Research journeys, 15 pages (Chromium)
+        if: success() || failure()
+        run: mkdir -p "$RUNNER_TEMP/qa/journeys" && node tests/browser/journeys.qa.js "$RUNNER_TEMP/qa/journeys"
+      - name: Client brief, screen and print (Chromium)
+        if: success() || failure()
+        run: mkdir -p "$RUNNER_TEMP/qa/brief" && node tests/browser/brief.qa.js "$RUNNER_TEMP/qa/brief"
+      - name: The research view's filter in Chromium, Firefox and WebKit (F-11)
+        if: success() || failure()
+        run: mkdir -p "$RUNNER_TEMP/qa/filter" && node tests/browser/filter.qa.js "$RUNNER_TEMP/qa/filter"
+      - name: Keep the screenshots and results of a failed run
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-qa
+          path: ${{ runner.temp }}/qa

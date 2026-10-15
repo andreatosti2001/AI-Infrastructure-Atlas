@@ -1,10 +1,12 @@
 // Browser QA for the HBM page, site/hbm-chain/index.html (vertical-slice.md; D-106, D-121).
-// Run from anywhere: node tests/browser/hbm-chain.qa.js OUTDIR. Playwright and Chromium come from the environment,
-// not the repository (D-106); the screenshots and qa-result.json go to OUTDIR, outside the repository.
+// Run from anywhere: node tests/browser/hbm-chain.qa.js OUTDIR. Playwright comes from the pinned package or the
+// environment (qa-lib.js, D-212); the screenshots and qa-result.json go to OUTDIR, outside the repository. Any failed
+// condition below is listed by name and exits non-zero (S22, engineering audit F-1).
 // Checks at 1280 and 375 px: console, page errors and network; document overflow and wide elements; the keyboard
 // path to every evidence panel; "The chain as a table": overflow with no exclusion, its tutorial opened from the
 // keyboard, and the contrast of its text with every disclosure open.
-const { chromium } = require('/opt/node-tools/node_modules/playwright');
+const { playwright, verdict, finish, onlyThePage } = require('./qa-lib');
+const { chromium } = playwright();
 const OUT = process.argv[2];
 const URL = 'file://' + require('path').resolve(__dirname, '../../site/hbm-chain/index.html');
 
@@ -138,8 +140,28 @@ function ratio(a, b) { const [h, l] = [lum(a), lum(b)].sort((x, y) => y - x); re
     report[name] = r;
     await ctx.close();
   }
+  report.chromium = browser.version();
   await browser.close();
-  const summary = JSON.parse(JSON.stringify(report));
-  for (const k of Object.keys(summary)) { summary[k].enterAllOk = summary[k].enter.every(e => e.ok); summary[k].enterFailures = summary[k].enter.filter(e => !e.ok); delete summary[k].enter; }
-  console.log(JSON.stringify(summary, null, 1));
+  const { failures, check } = verdict();
+  for (const name of ['desktop', 'mobile']) {
+    const r = report[name], t = r.sqlSection;
+    check(`${name}: console messages`, !r.console.length, r.console);
+    check(`${name}: page errors`, !r.pageErrors.length, r.pageErrors);
+    check(`${name}: requests other than the page`, !onlyThePage(r.requests, URL).length, onlyThePage(r.requests, URL));
+    check(`${name}: document overflow`, r.overflow.scrollWidth <= r.overflow.clientWidth, r.overflow);
+    check(`${name}: wide elements`, !r.wideElements.length, r.wideElements);
+    check(`${name}: marks reached by Tab`, r.marksReachedByTab === r.marks, `${r.marksReachedByTab} of ${r.marks}`);
+    check(`${name}: Enter on a mark lands on its panel`, r.enter.every(e => e.ok), r.enter.filter(e => !e.ok));
+    check(`${name}: a disclosure opens from the keyboard`, r.disclosureOpensByKeyboard);
+    check(`${name}: the skip link`, r.skipLink === '#evidence', r.skipLink);
+    check(`${name}: text below 4.5:1 contrast`, !r.belowAA.length, r.belowAA);
+    check(`${name}: the SQL tutorial is closed at load`, t.tutorialClosedAtLoad);
+    check(`${name}: the SQL tutorial opens from the keyboard`, t.tutorialOpensByKeyboard);
+    check(`${name}: wide elements in the SQL section`, !t.wideInSection.length, t.wideInSection);
+    check(`${name}: overflow with the SQL section open`, t.overflowAfterOpen.scrollWidth <= t.overflowAfterOpen.clientWidth, t.overflowAfterOpen);
+    check(`${name}: SQL section text below 4.5:1`, !t.belowAA.length, t.belowAA);
+  }
+  const summary = {};
+  for (const k of ['desktop', 'mobile']) summary[k] = `marks ${report[k].marksReachedByTab}/${report[k].marks}, min contrast ${report[k].minContrast.ratio.toFixed(2)}, min SVG text ${report[k].minSvgFontPx.toFixed(1)} px`;
+  finish(OUT, report, failures, { chromium: report.chromium, ...summary });
 })();
