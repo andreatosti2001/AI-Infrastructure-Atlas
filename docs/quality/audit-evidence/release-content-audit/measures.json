@@ -1,0 +1,504 @@
+{
+  "inputs": {
+    "data/claims.json": "0670e572ab5b764b90eaeb3cec38ad4a04990cbcbcc31853069ea79686fce445",
+    "data/sources.json": "6938525d2407c756b26c94230130528cda8b62518956b165ce933a0f2ad9be17",
+    "data/relationships.json": "1d5716ae07fe2afa988305a22510881f42ec8ddc092b61bf8c2da1670e5b7558",
+    "data/events.json": "ff0c7821f584f42b5b501822bb960be41772c54ac9ae79a9ded58257ef906284",
+    "data/policies.json": "2335351eef1469c9bdd35b5dd320b255d8aa5bb65cf56e37604a636101e27b67",
+    "data/companies.json": "ff07246c91cdbbdf53e7ca96d3546fc72a6b8be94c48bb107d0e8ed8206f11a5",
+    "data/jurisdictions.json": "b3322fc7fb6bac05a2a5b71c9ead49425b49e23a344a04d6337b74ab04404998",
+    "data/facilities.json": "53a2e9ef322233e97fb0437e1d7803f2ff08573b85c66809ddb04e1ae3d94dfe",
+    "data/products.json": "b33c3e1777bfc96eb6fa3ac31d30d7186d3923bd0cb567b3f3b5690fdd44f711",
+    "data/components.json": "f02f0ed04faf80780e352cdd33ea73f1013a67e1c1ebcd24e3ae3afcf6f62da0",
+    "data/technologies.json": "d0775054a23be7b6e7f1842f730427597e8d21f45eaad37f431b10aef13c5d37",
+    "data/identity_basis.json": "74031f8bc2981b56897d9fe072c82ef02c7c774bc15ca1cb904fc51635582c3a",
+    "data/refused_candidates.json": "7fd8bc44c5925e55bc7845d63565da5d1b0b9ab669c9e9c504d86e7cbbcf1bd8",
+    "docs/research/domain-map.md": "16ef965fa6d45af56ea1c6c30e88d47739deee0c5e93d0eb20a4c575ed4eb2aa",
+    "docs/research/source-policy.md": "c39a3faca1bc3f12bc5c9e6b72215496f4d602ff4f1fef49e28d6dc773d56da1",
+    "docs/research/change-detection.md": "3a2008c95ef2e0bb004eaddc61fe409c43d486697dc0f4b116fdca4e335400f1",
+    "sql/source_age.sql": "f4dd337aac665f2d9696eea594b0582a28193f88fe5fe544dc8d0dadf028a7b9"
+  },
+  "counts": {
+    "claims": 196,
+    "sources": 64,
+    "sources_cited": 50,
+    "claim_types": {
+      "FACT": 105,
+      "DERIVATION": 22,
+      "ATTRIBUTION": 51,
+      "INTERPRETATION": 17,
+      "IMPLICATION": 1
+    },
+    "evidence_status": {
+      "supported": 196
+    },
+    "source_classes": {
+      "government_publication": 3,
+      "policy_research_brief": 2,
+      "industry_association": 1,
+      "company_technical_documentation": 8,
+      "company_marketing": 11,
+      "company_press_release": 5,
+      "research_report": 5,
+      "company_filing": 12,
+      "standard_specification": 7,
+      "market_research_consultancy": 2,
+      "official_legal_text": 8
+    },
+    "retrieval_method": {
+      "automated": 56,
+      "manual_by_human": 8
+    }
+  },
+  "1_conceptual_coverage": {
+    "concepts": 45,
+    "concepts_with_a_record": 15,
+    "concepts_recorded_as_gap": [
+      "HBM-03",
+      "HBM-04"
+    ],
+    "by_layer_concepts_and_with_record": {
+      "ACC": [
+        5,
+        4
+      ],
+      "DC": [
+        6,
+        2
+      ],
+      "EDA": [
+        3,
+        1
+      ],
+      "EN": [
+        6,
+        0
+      ],
+      "FAB": [
+        6,
+        0
+      ],
+      "HBM": [
+        6,
+        1
+      ],
+      "PKG": [
+        7,
+        4
+      ],
+      "SME": [
+        6,
+        3
+      ]
+    },
+    "concepts_without_record": [
+      "ACC-04",
+      "DC-01",
+      "DC-03",
+      "DC-04",
+      "DC-06",
+      "EDA-02",
+      "EDA-03",
+      "EN-01",
+      "EN-02",
+      "EN-03",
+      "EN-04",
+      "EN-05",
+      "EN-06",
+      "FAB-01",
+      "FAB-02",
+      "FAB-03",
+      "FAB-04",
+      "FAB-05",
+      "FAB-06",
+      "HBM-01",
+      "HBM-03",
+      "HBM-04",
+      "HBM-05",
+      "HBM-06",
+      "PKG-01",
+      "PKG-02",
+      "PKG-07",
+      "SME-02",
+      "SME-04",
+      "SME-05"
+    ],
+    "dependencies": 18,
+    "dependencies_with_an_edge": [
+      "DEP-01",
+      "DEP-03",
+      "DEP-15"
+    ],
+    "dependencies_drawn_as_gap": [
+      "DEP-05"
+    ],
+    "dependency_reading": {
+      "DEP-01": "the H100 and Trainium2 incorporate HBM (two incorporates edges)",
+      "DEP-03": "HBM requires 3D die stacking (D-091; restates the definition, S13 F-8)",
+      "DEP-05": "TSMC fabricates H100 is a drawn gap, cand-001 (D-092)",
+      "DEP-15": "Amazon designs Trainium2 (D-093)"
+    }
+  },
+  "2_first_hand": {
+    "all": {
+      "claims": 196,
+      "claims_citing_a_source": 156,
+      "citations": 203,
+      "standing": {
+        "party": 68,
+        "reporter": 1,
+        "originator": 134
+      },
+      "first_hand_share": 0.995,
+      "by_class": {
+        "official_legal_text": 96,
+        "company_filing": 52,
+        "research_report": 10,
+        "standard_specification": 10,
+        "company_technical_documentation": 8,
+        "policy_research_brief": 7,
+        "government_publication": 6,
+        "company_press_release": 6,
+        "company_marketing": 3,
+        "market_research_consultancy": 3,
+        "industry_association": 2
+      },
+      "company_published_citations": 69,
+      "official_legal_text_citations": 96,
+      "claims_citing_two_or_more_publishers": 8,
+      "by_type": {
+        "FACT": 105,
+        "DERIVATION": 22,
+        "ATTRIBUTION": 51,
+        "INTERPRETATION": 17,
+        "IMPLICATION": 1
+      }
+    },
+    "chain": {
+      "claims": 55,
+      "claims_citing_a_source": 35,
+      "citations": 37,
+      "standing": {
+        "party": 13,
+        "originator": 24
+      },
+      "first_hand_share": 1.0,
+      "by_class": {
+        "research_report": 9,
+        "policy_research_brief": 7,
+        "company_technical_documentation": 6,
+        "government_publication": 5,
+        "company_press_release": 3,
+        "company_filing": 3,
+        "company_marketing": 2,
+        "industry_association": 2
+      },
+      "company_published_citations": 14,
+      "official_legal_text_citations": 0,
+      "claims_citing_two_or_more_publishers": 0,
+      "by_type": {
+        "INTERPRETATION": 17,
+        "FACT": 11,
+        "ATTRIBUTION": 24,
+        "DERIVATION": 3
+      }
+    },
+    "suppliers": {
+      "claims": 2,
+      "claims_citing_a_source": 2,
+      "citations": 3,
+      "standing": {
+        "originator": 3
+      },
+      "first_hand_share": 1.0,
+      "by_class": {
+        "market_research_consultancy": 3
+      },
+      "company_published_citations": 0,
+      "official_legal_text_citations": 0,
+      "claims_citing_two_or_more_publishers": 0,
+      "by_type": {
+        "ATTRIBUTION": 2
+      }
+    },
+    "companies_and_places": {
+      "claims": 65,
+      "claims_citing_a_source": 51,
+      "citations": 63,
+      "standing": {
+        "party": 53,
+        "originator": 10
+      },
+      "first_hand_share": 1.0,
+      "by_class": {
+        "company_filing": 51,
+        "standard_specification": 10,
+        "company_press_release": 2
+      },
+      "company_published_citations": 53,
+      "official_legal_text_citations": 0,
+      "claims_citing_two_or_more_publishers": 0,
+      "by_type": {
+        "DERIVATION": 14,
+        "FACT": 48,
+        "ATTRIBUTION": 3
+      }
+    },
+    "policy": {
+      "claims": 72,
+      "claims_citing_a_source": 66,
+      "citations": 96,
+      "standing": {
+        "originator": 96
+      },
+      "first_hand_share": 1.0,
+      "by_class": {
+        "official_legal_text": 94,
+        "policy_research_brief": 1,
+        "research_report": 1
+      },
+      "company_published_citations": 0,
+      "official_legal_text_citations": 94,
+      "claims_citing_two_or_more_publishers": 8,
+      "by_type": {
+        "INTERPRETATION": 2,
+        "ATTRIBUTION": 20,
+        "FACT": 46,
+        "DERIVATION": 4
+      }
+    },
+    "unreached": {
+      "claims": 10,
+      "claims_citing_a_source": 8,
+      "citations": 10,
+      "standing": {
+        "party": 6,
+        "originator": 3,
+        "reporter": 1
+      },
+      "first_hand_share": 0.9,
+      "by_class": {
+        "company_technical_documentation": 2,
+        "official_legal_text": 2,
+        "company_press_release": 2,
+        "company_marketing": 1,
+        "company_filing": 1,
+        "research_report": 1,
+        "government_publication": 1
+      },
+      "company_published_citations": 6,
+      "official_legal_text_citations": 2,
+      "claims_citing_two_or_more_publishers": 0,
+      "by_type": {
+        "ATTRIBUTION": 4,
+        "FACT": 4,
+        "IMPLICATION": 1,
+        "DERIVATION": 1
+      }
+    }
+  },
+  "3_verification": {
+    "citations": 203,
+    "anchor": {
+      "exact": 175,
+      "access_gap": 25,
+      "not_found": 3
+    },
+    "equals_registered": {
+      "True": 161,
+      "False": 17
+    },
+    "sources_with_changed_bytes": [
+      "src-006",
+      "src-017",
+      "src-041",
+      "src-042",
+      "src-043",
+      "src-044",
+      "src-045",
+      "src-049",
+      "src-051",
+      "src-052",
+      "src-054",
+      "src-055"
+    ],
+    "access_gap_sources": [
+      "src-026",
+      "src-031",
+      "src-032",
+      "src-033",
+      "src-034",
+      "src-035",
+      "src-036",
+      "src-037",
+      "src-038",
+      "src-050"
+    ],
+    "locator_page_mismatch": [
+      "claim-hir-2d-architecture-definition #1",
+      "claim-bis-rule-2023-23055-effective-2023-11-17 #1",
+      "claim-bis-rule-2024-28270-revises-3b001-3b002 #1"
+    ]
+  },
+  "4_counterevidence": {
+    "conflicts_recorded": [
+      "CON-01",
+      "CON-02",
+      "CON-03",
+      "CON-04",
+      "CON-05"
+    ],
+    "evidence_status_other_than_supported": 0
+  },
+  "5_temporal": {
+    "reference_date": "2026-10-15",
+    "horizon_months": 12,
+    "limit": "2025-10-15",
+    "time_sensitive_current_values": 38,
+    "within_horizon": 34,
+    "beyond_horizon_at_reference_date": [
+      {
+        "record": "company-micron-technology",
+        "field": "legal_name",
+        "value": "Micron Technology, Inc.",
+        "newest_evidence": "2025-10-03"
+      },
+      {
+        "record": "company-micron-technology",
+        "field": "incorporated_in",
+        "value": "jurisdiction-us",
+        "newest_evidence": "2025-10-03"
+      },
+      {
+        "record": "company-micron-technology",
+        "field": "headquartered_in",
+        "value": "jurisdiction-us",
+        "newest_evidence": "2025-10-03"
+      },
+      {
+        "record": "company-micron-technology",
+        "field": "roles",
+        "value": "memory_manufacturer",
+        "newest_evidence": "2025-10-03"
+      }
+    ],
+    "sources_by_newest_stated_year": {
+      "2011": 1,
+      "2018": 1,
+      "2019": 1,
+      "2020": 2,
+      "2021": 2,
+      "2022": 3,
+      "2023": 7,
+      "2024": 5,
+      "2025": 12,
+      "2026": 14,
+      "undated": 16
+    },
+    "sources_by_access_day": {
+      "2026-09-29": 23,
+      "2026-09-30": 1,
+      "2026-10-01": 21,
+      "2026-10-02": 7,
+      "2026-10-07": 4,
+      "2026-10-08": 5,
+      "2026-10-15": 3
+    }
+  },
+  "6_analytical": {
+    "claims_with_inputs": 40,
+    "by_type": {
+      "DERIVATION": 22,
+      "INTERPRETATION": 17,
+      "IMPLICATION": 1
+    },
+    "citing_no_source_of_their_own": 40,
+    "inputs_per_claim": {
+      "1": 6,
+      "2": 10,
+      "3": 18,
+      "4": 6
+    },
+    "max_input_depth": 3,
+    "depth_distribution": {
+      "1": 30,
+      "2": 9,
+      "3": 1
+    }
+  },
+  "7_limitations": {
+    "pages": 18,
+    "pages_digest": "ba997337b5126442660c02eb3c6e0bb143e2e3807d5c9cf10bb7d192f83fb836",
+    "claims_on_no_page": [
+      "claim-asml-euv-unique-to-asml",
+      "claim-asml-manufacturing-sites",
+      "claim-atlas-2-5d-packaging-with-an-interposer-working-definition",
+      "claim-atlas-accelerated-server-working-definition",
+      "claim-atlas-advanced-packaging-working-definition",
+      "claim-atlas-ai-accelerator-working-definition",
+      "claim-atlas-ai-asic-working-definition",
+      "claim-atlas-assembly-packaging-and-wafer-level-packaging-tools-working-definition",
+      "claim-atlas-cloud-computing-working-definition",
+      "claim-atlas-data-centre-gpu-working-definition",
+      "claim-atlas-duv-lithography-working-definition",
+      "claim-atlas-electronic-design-automation-working-definition",
+      "claim-atlas-euv-lithography-working-definition",
+      "claim-atlas-multi-die-accelerator-working-definition",
+      "claim-atlas-multi-die-package-working-definition",
+      "claim-aws-availability-zone-data-centers",
+      "claim-bis-rule-2025-00636-worldwide-requirement",
+      "claim-cloud-compute-facility-often-undisclosed",
+      "claim-cset-ai-chip-definition",
+      "claim-cset-asic-definition",
+      "claim-cset-assembly-packaging-tools",
+      "claim-cset-eda-definition",
+      "claim-cset-gpu-definition",
+      "claim-cset-photolithography-grades",
+      "claim-h100-gh100-process-name",
+      "claim-hir-2d-architecture-definition",
+      "claim-hir-2x-names-no-technical-basis",
+      "claim-lbnl-accelerated-servers-category",
+      "claim-lbnl-ai-accelerator-accounting",
+      "claim-lbnl-asic-definition",
+      "claim-lbnl-gpu-definition",
+      "claim-lbnl-reports-idc-gpu-die-supply",
+      "claim-lbnl-server-definition",
+      "claim-nist-advanced-packaging-scope",
+      "claim-nist-chiplet-definition",
+      "claim-nist-cloud-computing-definition",
+      "claim-nist-cloud-location-independence",
+      "claim-nist-euv-duv-wavelengths",
+      "claim-nist-wafer-fab-processes-for-packaging",
+      "claim-sia-advanced-packaging-breadth",
+      "claim-sia-heterogeneous-integration-definition",
+      "claim-sk-hynix-chiplet-description",
+      "claim-sk-hynix-hbm3-for-h100-2022",
+      "claim-tsmc-fabricates-h100-gh100"
+    ],
+    "explicit_states_by_field": {
+      "amends:not_applicable": 1,
+      "cooling_method:not_applicable": 3,
+      "incorporated_in:not_researched": 2,
+      "nameplate_it_capacity_mw:not_applicable": 2,
+      "rack_scale:not_applicable": 3,
+      "rated_power_w:not_applicable": 3,
+      "tdp_w:not_researched": 3,
+      "vendor_process_name:not_researched": 2
+    },
+    "explicit_states_total": {
+      "not_researched": 7,
+      "not_applicable": 12
+    },
+    "refused_candidates": 21,
+    "refusal_reasons": {
+      "relation_not_stated": 9,
+      "term_not_matched": 6,
+      "endpoint_has_no_record": 3,
+      "evidence_not_fresh": 2,
+      "item_has_no_record": 2,
+      "company_level_only": 2,
+      "wrong_relation_type": 1,
+      "applies_a_threshold": 1
+    }
+  }
+}
