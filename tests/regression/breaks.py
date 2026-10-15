@@ -10,7 +10,7 @@ The harness is built in layers, each loading the one before it and replacing the
 text its own changes removed (see tests/regression/README.md):
     breaks_records_and_page.py, breaks_sql.py, breaks_research_view.py  ->  breaks_metrics.py
     -> breaks_metric_audit.py -> breaks_supplier_freshness.py -> this file (supplier evidence; review records;
-    S17's policy layer; S18's policy links; S20's research journeys; S20.5's filter guard; S21's client brief; S21.5's search window; S22's search tool).
+    S17's policy layer; S18's policy links; S20's research journeys; S20.5's filter guard; S21's client brief; S21.5's search window; S22's search tool; S22.5's audit findings).
 
 Run with a virtualenv built from requirements-test.txt and requirements-analysis.txt, from the repository root
 (the runner is tests/regression/runner.py: parallel copies, one summary, selection by measured files, D-177,
@@ -558,6 +558,49 @@ S22 = [
      edit(TOOL, "Times are UTC.", "All times are UTC."), [], []),
 ]
 
+# S22.5: the engineering audit's findings pulled forward from v1.5's opening (D-216): the named build error (F-2), the
+# drawn gap's named refusal (F-3), one break for each check module never shown failing and the untested status branch
+# (F-5), hash-pinned actions (F-12, EN-3).
+S225 = [
+    ("S22.5-1", "an out-of-vocabulary value crashes the builds with a bare StopIteration again (F-2), pages rebuilt",
+     edit(PAGE_BUILD, 'node = next((item for item in node["oneOf"] if item.get("const") == const), None)',
+          'node = next(item for item in node["oneOf"] if item.get("const") == const)'), [PAGE_BUILD, INSIGHT_BUILD],
+     ["test_an_out_of_vocabulary_value_is_named", "StopIteration"]),
+    ("S22.5-2", "cand-001 resolved in the records, the HBM page's specification not updated (F-3)",
+     jedit("data/refused_candidates.json", lambda d: d.remove(cand(d, "cand-001"))), [],
+     ["cand-001 is resolved: the specification must be updated with its record (F-3)"]),
+    ("S22.5-3", "the build no longer names a refused candidate that left the records (F-3), pages rebuilt",
+     edit(PAGE_BUILD, '        if cand_id not in self.candidates:\n            raise BuildError(f"refused candidate {cand_id} is not canonical")',
+          '        if False:\n            raise BuildError(f"refused candidate {cand_id} is not canonical")'), [PAGE_BUILD, INSIGHT_BUILD],
+     ["test_a_resolved_drawn_gap_stops_the_builds_by_name"]),
+    ("S22.5-4", "the claim model's prose miscounts the schema's claim types (F-5: test_claim_model.py)",
+     edit("docs/architecture/claim-model.md", "The schema has five claim types", "The schema has six claim types"), [],
+     ["test_vocabulary_counts_in_prose", "The schema has (\\\\w+) claim types"]),
+    ("S22.5-5", "the relationship taxonomy's prose miscounts the types, pages rebuilt (F-5: test_relationship_taxonomy.py)",
+     edit("docs/architecture/relationship-taxonomy.md", "Twelve types: two at class level", "Eleven types: two at class level"),
+     [PAGE_BUILD, INSIGHT_BUILD], ["test_type_counts_in_prose_match_the_schema"]),
+    ("S22.5-6", "the entity taxonomy maps a concept twice (F-5: test_entity_taxonomy.py)",
+     edit("docs/architecture/entity-taxonomy.md", "| ACC-02 | Data-centre GPU | model | model | `type:component` | constituent; `broader` = the ACC-01 record |\n",
+          "| ACC-02 | Data-centre GPU | model | model | `type:component` | constituent; `broader` = the ACC-01 record |\n" * 2), [],
+     ["test_every_part4_concept_is_mapped_exactly_once", "a concept is mapped twice"]),
+    ("S22.5-7", "an announced opening moves a facility's status (ER-8), pages rebuilt (F-5: test_facility_status.py)",
+     edit("tools/facility_status.py", 'OCCURRENCES = ("opened", "closed")', 'OCCURRENCES = ("opened", "closed", "announced")'),
+     [JOURNEYS, BRIEF], ["test_plans_and_expansions_never_move_the_status"]),
+    ("S22.5-8", "a schema change no longer selects the full harness (D-177) (F-5: test_break_selection.py)",
+     edit("tests/regression/runner.py", '"tests/test_*.py", "schemas/*", ', '"tests/test_*.py", '), [],
+     ["test_check_schema_gate0_and_harness_code_select_the_full_harness", "schemas/claims.schema.json"]),
+    ("S22.5-9", "a publication month containing the date reads as not yet published, pages rebuilt (F-5: the untested branch)",
+     edit("tools/policy_status.py", '        return "indeterminate", [o[3] for o in published if o[0] <= on < o[1]]',
+          '        return "not_yet_published", []'), [JOURNEYS, BRIEF],
+     ["test_a_publication_month_containing_the_date_is_indeterminate"]),
+    ("S22.5-10", "a CI action pinned by its tag again (F-12, EN-3)",
+     edit(".github/workflows/ci.yml", "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0", "actions/setup-python@v5"), [],
+     ["test_en3_every_action_is_pinned_to_a_commit", "actions/setup-python@v5"]),
+    ("S22.5-C1", "control: the named build error's comment reworded, pages rebuilt",
+     edit(PAGE_BUILD, "# S22.5 (F-2): named, never a bare StopIteration", "# S22.5 (F-2): named; never a bare StopIteration"),
+     [PAGE_BUILD, INSIGHT_BUILD], []),
+]
+
 S165_BREAKS = s165.breaks
 
 
@@ -580,7 +623,7 @@ def with_brief(brk):
 
 
 def breaks():
-    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205 + S21 + S215 + S22
+    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205 + S21 + S215 + S22 + S225
     return [with_brief(with_journeys(b)) for b in found]
 
 

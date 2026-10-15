@@ -5,6 +5,8 @@ EN-1 (F-4, A-1) every tracked Python file compiles with the interpreter running 
      imports (the audit-evidence scripts); and the CI workflow keeps that version.
 EN-2 (F-7) tools/check_all.py runs every check a commit needs, in order: the suite, Gate 0, then the `--check` of every
      tool that has one, in build order (results, HBM page, research view, journeys, brief).
+EN-3 (F-12, S22.5, D-216) every action a workflow uses is pinned to a full commit hash, with the release it is
+     beside it as a comment: a tag can be moved to other code, a commit cannot. The pip pins stay exact versions.
 
 Standard library only.
 """
@@ -59,6 +61,15 @@ class EngineeringTests(unittest.TestCase):
         self.assertTrue(all(c.endswith(" --check") for c in commands[2:]))
         order = ["tools/warehouse.py", "tools/build_page.py", "tools/build_insight.py", "tools/build_journeys.py", "tools/build_brief.py"]
         self.assertEqual([c for c in checked if c in order], order, "the checks run out of build order")
+
+    # EN-3
+    def test_en3_every_action_is_pinned_to_a_commit(self) -> None:
+        uses = []
+        for workflow in sorted((REPO_ROOT / ".github/workflows").glob("*.yml")):
+            uses += re.findall(r"^\s*(?:-\s*)?uses:\s*(.+?)\s*$", workflow.read_text(encoding="utf-8"), re.M)
+        self.assertGreater(len(uses), 3)
+        unpinned = [u for u in uses if not re.fullmatch(r"[\w.-]+/[\w.-]+@[0-9a-f]{40} # v\d+\.\d+\.\d+", u)]
+        self.assertEqual(unpinned, [], "actions not pinned to a commit hash with their release as a comment (F-12)")
 
 
 if __name__ == "__main__":

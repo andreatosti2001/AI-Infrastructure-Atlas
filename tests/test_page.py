@@ -876,6 +876,54 @@ class BuildRefusalTests(unittest.TestCase):
         message = self.build_with(stage)
         self.assertIn("not canonical", message)
 
+    def test_an_out_of_vocabulary_value_is_named(self) -> None:
+        # S22.5 (engineering audit F-2, E-2): a value outside its vocabulary stops the build with a BuildError naming
+        # the record, the field and the value, not a bare StopIteration; the record checks refuse it first.
+        from test_source_record_schema import CLAIM_SCHEMA, validator
+
+        claim_id = "claim-trendforce-h100-hbm3-primarily-sk-hynix-2024"
+
+        def plant(records: list) -> None:
+            next(c for c in records if c["id"] == claim_id)["citations"][0]["standing"] = "witness"
+
+        claims = load(DATA / "claims.json")
+        plant(claims)
+        refused = [e.message for e in validator(CLAIM_SCHEMA).iter_errors(claims)]
+        self.assertTrue(any("'witness'" in m for m in refused), "the claim schema no longer refuses the value")
+        message = self.build_with(lambda data: self.rewrite(data / "claims.json", plant))
+        self.assertIn("'witness' is not a value of vocab_standing", message)
+        self.assertIn(f"{claim_id} /citations/0/standing", message)
+
+    def test_a_resolved_drawn_gap_stops_the_builds_by_name(self) -> None:
+        # S22.5 (engineering audit F-3, E-1; kept by D-213): the specification names cand-001 as the page's drawn gap
+        # while the records still refuse it; resolving it (the candidate leaves the refused list) stops the HBM page
+        # and the brief by name, so the session that resolves it must edit JOURNEY with the record. If cand-001 is
+        # resolved, this test fails first: update the specification, then this test.
+        build = build_module()
+        refused = {c["id"]: c for c in load(DATA / "refused_candidates.json")}
+        self.assertEqual([g["candidate"] for g in build.JOURNEY["drawn_gaps"]], ["cand-001"])
+        self.assertIn("cand-001", refused, "cand-001 is resolved: the specification must be updated with its record (F-3)")
+        self.assertEqual(refused["cand-001"]["reasons"], ["evidence_not_fresh"])
+
+        def resolve(data: Path) -> None:
+            self.rewrite(data / "refused_candidates.json", lambda r: r.remove(next(c for c in r if c["id"] == "cand-001")))
+
+        self.assertIn("refused candidate cand-001 is not canonical", self.build_with(resolve))
+        import importlib.util
+        import shutil
+        import tempfile
+
+        spec = importlib.util.spec_from_file_location("build_brief", REPO_ROOT / "tools" / "build_brief.py")
+        brief = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(brief)
+        with tempfile.TemporaryDirectory() as tmp:
+            data = Path(tmp) / "data"
+            shutil.copytree(DATA, data)
+            resolve(data)
+            with self.assertRaises(brief.BuildError) as raised:
+                brief.build(data)
+        self.assertIn("refused candidate cand-001 is not canonical", str(raised.exception))
+
 
 if __name__ == "__main__":
     unittest.main()

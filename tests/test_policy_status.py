@@ -55,6 +55,14 @@ class DerivationTests(unittest.TestCase):
         events = [event("e", "effective", "2025-01-13"), event("a", "announced", "2025-05-13")]
         self.assertEqual(status(events, "2026-01-01"), ("has_taken_effect", ["e"]))
 
+    def test_a_publication_month_containing_the_date_is_indeterminate(self) -> None:
+        # S22.5 (engineering audit F-5): a publication dated only to its month, with the date inside that month and
+        # the effect later, cannot be placed before or after the date: indeterminate, resting on the publication.
+        events = [event("p", "published", "2026-10"), event("e", "effective", "2026-12-01")]
+        self.assertEqual(status(events, "2026-10-15"), ("indeterminate", ["p"]))
+        self.assertEqual(status(events, "2026-11-01"), ("published_not_yet_in_effect", ["p", "e"]))
+        self.assertEqual(status(events, "2026-09-30"), ("not_yet_published", []))
+
     def test_a_proposal_never_takes_effect(self) -> None:
         events = [event("p", "published", "2024-01-02"), event("e", "effective", "2024-03-01")]
         self.assertEqual(status(events, "2026-01-01", forms=("proposed_rule",))[0], "proposed")
