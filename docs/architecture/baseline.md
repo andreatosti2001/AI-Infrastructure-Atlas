@@ -78,7 +78,9 @@ Roles and the contract format are defined in CLAUDE.md §8 and MA §11–12. S06
 through S11 have contracts (Editorial and QA added in S11, D-107, accepted at the S12 opening review), and the others name the session that first activates them. There is no root `AGENTS.md`
 (decision D-010). Agents are contracts plus deterministic validators, with no agent runtime (D-018 L-01; NG-08):
 S19's agent audit found no workflow that needs one, so NG-08 holds for v1.0 (`agent-audit.md`, D-184). From S19 the
-Analyst is active with a contract (D-181) and every tracked file has an owner, checked in CI (D-180).
+Analyst is active with a contract (D-181) and every tracked file has an owner, checked in CI (D-180). The Client
+Output is active from S21 (D-205), and the Change Detector from S21.5 (D-207), for its first task: the dated search
+for later rules changing the entries and acts the Atlas holds (`docs/research/change-detection.md`).
 
 ## 4. Initial data model
 
@@ -112,7 +114,7 @@ Gate definitions: MA §14. Validation-command philosophy: MA §15.
 | `validate-data` | **built for sources, claims, entity, event, relationship and refused-candidate records** (S06 to S10, S12; D-051, D-063, D-077, D-087, D-096, D-109): `python -m unittest discover -s tests -p "test_data*.py"`, run in CI; V-7 and V-8 report warnings |
 | `validate-i18n` | not applicable in v1.0 (NG-10: English only) |
 | `validate-design` | **built for the S11 page** (D-105): `python -m unittest discover -s tests -p "test_page.py"`, run in CI; `python tools/build_page.py --check` compares the committed page with a rebuild. **And for the S14.5 prototype** (D-125): `tests/test_insight.py` (IN-1 to IN-9; IN-10 and IN-11 from S15; IN-12 from S16, extended in S20 for C-2 and C-5; IN-14 from S20.5, the filter hidden where `:has()` is unsupported, D-200), run in CI; `python tools/build_insight.py --check`. **And for the S20 journeys** (D-190): `tests/test_journeys.py` (JR-1 to JR-12), run in CI; `python tools/build_journeys.py --check`. **And for the S21 client brief** (D-203): `tests/test_brief.py` (BR-1 to BR-12), run in CI; `python tools/build_brief.py --check` |
-| `validate-freshness` | **first rule built** (S07, D-064): F-1, the 12-month horizon for `time_sensitive` fields, `python -m unittest discover -s tests -p "test_freshness.py"`, run in CI. Scheduled re-checks wait for the Change Detector |
+| `validate-freshness` | **first rule built** (S07, D-064): F-1, the 12-month horizon for `time_sensitive` fields, `python -m unittest discover -s tests -p "test_freshness.py"`, run in CI. Scheduled re-checks wait for the Change Detector, active from S21.5 (D-207); its first task is the dated later-rule search for the policy layer (`docs/research/change-detection.md` §1) |
 | `qa-browser` | **scripted, outside CI** (D-106): one script per page in `tests/browser/` (from S20, one script for the 15 journey pages; from S21, one for the client brief, which also prints it on A4 and Letter), run with the pre-installed Chromium and Playwright; results are reported, not committed; a pinned, CI-run version waits for a decision |
 | `regression breaks` | **scripted, outside CI** (D-150, D-151): `tests/regression/breaks.py` copies the repository, plants one fault per break, rebuilds and runs the suite, and counts a break only if the suite fails for the reason it names; controls must pass. The full run is for milestone audits and for a change to a check, schema, Gate 0 or the harness's code (not its documentation, D-188); otherwise a change runs the breaks it selects, measured from the files each setup touches (D-177). Breaks run in parallel copies with one summary (D-178); 28 data breaks also run in CI as `tests/test_planted_faults.py` (D-176). M5's full run (S19): see `M5-audit.md` |
 

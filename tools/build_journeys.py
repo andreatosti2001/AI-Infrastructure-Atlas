@@ -51,6 +51,7 @@ INPUT_FILES = (
     "docs/architecture/company-dataset.md",
     "docs/architecture/decisions.md",
     "docs/architecture/relationship-taxonomy.md",
+    "docs/research/change-detection.md",
     "docs/research/source-policy.md",
     "tools/build_journeys.py",
     "tools/build_page.py",
@@ -93,7 +94,7 @@ LABELS = build_page.LABELS | frozenset(
         "status on", "official citation", "form", "issued by", "issued in", "act", "class", "the official text",
         "quoted from the act’s text; matched to the record by the Atlas", "by", "see the card",
         "The pairs as a table", "State", "Reasons", "Record", "considered:", "no record in the Atlas",
-        "the latest publication date of an act the Atlas holds:", "Method and limitations", "Built from", "Reproduce",
+        "the latest publication date of an act the Atlas holds:", "later texts searched for up to:", "Method and limitations", "Built from", "Reproduce",
         "the policy links of one class:", "one act’s status:", "rebuild these pages:",
         "python tools/navigate.py edges", "python tools/policy_status.py", "--on", "python tools/build_journeys.py --check",
         "Rulings these pages depend on", "Evidence", "Acts", "Policy links", "Events", "Terms", "back to the top",
@@ -170,6 +171,17 @@ def pages(data: Path = DATA) -> list[tuple[str, str, str | None]]:
     out += [(f"site/places/{p['id']}/index.html", "place", p["id"]) for p in load_json(data / "jurisdictions.json")]
     return out
 
+
+
+CHANGE_DETECTION = REPO_ROOT / "docs" / "research" / "change-detection.md"
+
+
+def searched_to() -> str:
+    """The date up to which later texts were searched: its one home is change-detection.md §1 (S21.5, D-208)."""
+    found = re.search(r"^\*\*Searched to:\*\* (\d{4}-\d{2}-\d{2})$", CHANGE_DETECTION.read_text(encoding="utf-8"), re.M)
+    if not found:
+        raise BuildError("docs/research/change-detection.md states no 'Searched to' date (D-208)")
+    return found.group(1)
 
 class Journey(build_page.Page):
     back = ("#top", "back to the top")
@@ -637,6 +649,7 @@ class Journey(build_page.Page):
         method = (
             self.label("What this page cannot answer", tag="h3") + self.framing("export-limits")
             + f'<p>{self.label("the latest publication date of an act the Atlas holds:")} {self.derived("latest-published", latest)}</p>'
+            + f'<p>{self.label("later texts searched for up to:")} {self.derived("searched-to", searched_to())}</p>'
             + self.method()
             + self.reproduce([
                 ("the policy links of one class:", f'{self.label("python tools/navigate.py edges")} {self.ref(hbm, "/id")} {self.label("--on")} {self.as_of()}'),

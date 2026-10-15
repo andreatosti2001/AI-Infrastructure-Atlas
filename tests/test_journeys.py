@@ -31,7 +31,10 @@ JR-10 every link resolves (a fragment into another page names an element there);
       texts point outside; nothing is loaded; no script;
 JR-11 document structure (lang, one h1 equal to the title, landmarks, no skipped heading level, table headers
       with a scope, every SVG named), palette and contrast;
-JR-12 every committed page equals a rebuild; two builds are identical; no other page sits in the journey folders.
+JR-12 every committed page equals a rebuild; two builds are identical; no other page sits in the journey folders;
+JR-13 the export-control page shows how far later texts were searched: the "Searched to" date of
+      docs/research/change-detection.md, which equals the end of the search log's window and is no earlier than the as-of
+      date (S21.5, D-208).
 """
 
 from __future__ import annotations
@@ -57,11 +60,15 @@ EXPORT = "site/questions/export-control-texts/index.html"
 BUILT = ("site/hbm-chain/index.html", "site/hbm-insight/index.html")
 BRIEFS = ("site/briefs/accelerator-memory/index.html",)  # S21 (D-206): the entry page links the client brief too
 AGE_RESULT = REPO_ROOT / "sql" / "results" / "source_age.json"
+# S21.5 (D-208): the one home of the date up to which later texts were searched, and the log it summarises.
+CHANGE_DETECTION = REPO_ROOT / "docs" / "research" / "change-detection.md"
+SEARCH_LOG = REPO_ROOT / "docs" / "research" / "search-logs" / "later-rules" / "search-log.md"
 INPUT_GLOBS = ("data/*.json", "data/staging/*.json", "schemas/*.json", "sql/*.sql", "sql/results/*.json")
 INPUT_FILES = (
     "docs/architecture/company-dataset.md",
     "docs/architecture/decisions.md",
     "docs/architecture/relationship-taxonomy.md",
+    "docs/research/change-detection.md",
     "docs/research/source-policy.md",
     "tools/build_journeys.py",
     "tools/build_page.py",
@@ -74,7 +81,7 @@ INPUT_FILES = (
 )
 NO_ADVICE = "This page describes what the text says; it does not advise."
 FORBIDDEN = ("in force", "compliant", "licence required", "license required", "prohibited", "banned", "restricted", "critical")
-DERIVED_KINDS = {"count", "policy-status", "latest-published", "sql-cell", "input-file", "input-digest", "pointer", "bytes-match", "year"}
+DERIVED_KINDS = {"count", "policy-status", "latest-published", "searched-to", "sql-cell", "input-file", "input-digest", "pointer", "bytes-match", "year"}
 COUNT_UNITS = {
     # data-count -> the unit that must follow the number in its own line (V-4: a number shows its unit); the singular
     # stem, so that a count of one may read "1 link" (S20 browser QA found "1 links")
@@ -107,6 +114,13 @@ def period(date: str) -> tuple[str, str]:
 
 def day(date: str) -> int:
     return datetime.date.fromisoformat(date).toordinal()
+
+
+def searched_to() -> str:
+    """The "Searched to" date of change-detection.md §1, read independently of the build (D-208)."""
+    text = CHANGE_DETECTION.read_text(encoding="utf-8") if CHANGE_DETECTION.is_file() else ""
+    found = re.search(r"^\*\*Searched to:\*\* (\d{4}-\d{2}-\d{2})$", text, re.M)
+    return found.group(1) if found else ""
 
 
 class Records:
@@ -355,6 +369,8 @@ class JourneyTests(unittest.TestCase):
                             self.assertEqual(node.text(), str(value))
                         elif kind == "latest-published":
                             self.assertEqual(node.text(), latest)
+                        elif kind == "searched-to":
+                            self.assertEqual(node.text(), searched_to())
                         elif kind == "pointer":
                             record = self.homes.canonical[node.attrs["data-target"]]
                             self.assertIn(node.attrs["data-claim"], tp.Homes.pointer(record, node.text()))
@@ -659,6 +675,18 @@ class JourneyTests(unittest.TestCase):
         found = {p.relative_to(REPO_ROOT).as_posix() for folder in ("questions", "companies", "places") for p in (SITE / folder).rglob("*") if p.is_file()} if SITE.exists() else set()
         found |= {INDEX} if (SITE / "index.html").exists() else set()
         self.assertEqual(found, set(self.records.pages()), "a stray file in the journey folders")
+
+    # JR-13
+    def test_jr13_the_search_window_is_shown_and_reaches_the_as_of_date(self) -> None:
+        to = searched_to()
+        self.assertRegex(to, r"^\d{4}-\d{2}-\d{2}$", "change-detection.md states no 'Searched to' date")
+        log = SEARCH_LOG.read_text(encoding="utf-8") if SEARCH_LOG.is_file() else ""
+        window = re.search(r"\*\*Window searched: (\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})\*\*", log)
+        self.assertTrue(window and window.group(2) == to, "the search log's window does not end on the 'Searched to' date")
+        on = json.loads(AGE_RESULT.read_text(encoding="utf-8"))["rows"][0]["reference_date"]
+        self.assertGreaterEqual(to, on, "the as-of date is later than the searched window: run the later-rule search again or keep the date (D-208)")
+        shown = [n.text() for n in self.pages[EXPORT].find(data_derived="searched-to")]
+        self.assertEqual(shown, [to], "the export-control page does not show the date up to which later texts were searched")
 
 
 if __name__ == "__main__":

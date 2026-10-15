@@ -3345,3 +3345,44 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
 - **Decision:** `site/index.html` gains one card with the brief's question and a button to it (`tools/build_journeys.py`
   and its labels); JR-8 also requires the link. The brief links back to the entry page.
 - **Rejected:** leaving the entry page unchanged (the brief would be reachable only by its path).
+
+## D-207 — S21.5 runs between S21 and S22; the Change Detector becomes active, with a contract
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-14, after the external audit of
+  2026-10-14; supersedes D-184's ruling that the Change Detector stays inactive)
+- **Context:** every act's status and every `restricts` link say "no later change recorded in the Atlas", but no dated
+  search for later rules after 5 December 2024 has been run (D-175). The agent audit kept the Change Detector
+  inactive until that search had a session (F-6, D-184). The human scheduled it as a dedicated session. The session
+  prompt named this decision D-202; S21 had already used D-202 to D-206, so it is recorded under the next free number.
+- **Decision:**
+  - `SESSION-ROADMAP.md` gains S21.5 (RESEARCH) between S21 and S22 in M6, with its mission, inputs and gate. Its
+    prompt is in the private archive (D-152);
+  - the Change Detector is active with an MA §12 contract (`docs/agents/contracts.md`): it compares an act the Atlas
+    holds with a later official text and writes each comparison, both sides quoted, as a candidate change in its one
+    home, `docs/research/change-detection.md`; it writes nothing in `data/`, no `review`, no date on a link and no
+    conclusion; the Source Scout searches and the Extractor drafts the records in staging;
+  - `tests/test_agent_contracts.py` lists the Change Detector among the active roles.
+- **Rejected:** folding the search into S22 (an engineering audit would carry a research step and a review);
+  merging the role into the Source Scout (F-6: the Scout asserts nothing, and ruling that a later text changes an
+  entry is a comparison); leaving the activation to the next policy research session (the freshness gap would stay
+  open through the release audits).
+
+## D-208 — The pages say up to when later texts were searched; a check keeps that date at or after the as-of date
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, S21.5 H-1 and H-4)
+- **Context:** the export-control page and the client brief said that acts published after the latest publication
+  date the Atlas holds "were not searched", and the brief's framing said "The Atlas runs no change detection". After
+  S21.5's dated search (`docs/research/change-detection.md` §1) both were untrue.
+- **Decision:**
+  - the date up to which later texts were searched has one home, the "Searched to" line of
+    `docs/research/change-detection.md` §1; S21.5 set it to 2026-10-15, the day the search ran, which is also the
+    reference date the pages carry (D-137 moves it to the day a rebuilding session opens);
+  - the export-control page shows it as "later texts searched for up to:", and the client brief's scope and summary
+    say "Later texts were searched for up to <date>; texts published after it were not searched." The framing of both
+    pages is reworded to match; `change-detection.md` is an input of both builds;
+  - checks: JR-3 and BR-3 recompute the date; BR-5 and BR-7 require it in the summary's limits and the first section;
+    **JR-13** requires the export-control page to show it, the search log's window to end on it, and the date to be
+    no earlier than the as-of date. A later session that moves the as-of date (D-137) therefore runs the later-rule
+    search again, or the check fails.
+- **Rejected:** keeping the old sentence until S22 (untrue in the meantime); leaving the pages to S22 (newly accepted
+  acts would not appear).

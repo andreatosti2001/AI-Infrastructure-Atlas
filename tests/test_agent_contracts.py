@@ -112,7 +112,8 @@ class RoleTests(unittest.TestCase):
         # S11 (D-107; the human's ruling "Yes, both (Recommended)"): Editorial and QA join the five.
         # S19 (D-181): the Analyst, whose work S14 to S16 did without a contract.
         # S21 (D-205; the human's ruling "Activate Client Output (Recommended)"): the Client Output, for the brief.
-        self.assertEqual(active, {"Source Scout", "Extractor", "Verifier", "Knowledge Architect", "Data Auditor", "Editorial", "QA", "Analyst", "Client Output"})
+        # S21.5 (D-207; the human's instruction to run the later-rule search as a dedicated session): the Change Detector.
+        self.assertEqual(active, {"Source Scout", "Extractor", "Verifier", "Knowledge Architect", "Data Auditor", "Editorial", "QA", "Analyst", "Client Output", "Change Detector"})
 
     def test_inactive_roles_name_their_first_session(self) -> None:
         for row in role_rows():

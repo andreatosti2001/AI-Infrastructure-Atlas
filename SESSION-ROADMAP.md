@@ -32,7 +32,7 @@ M5 Policy / Geopolitical Layer
   S17–S19
        ↓
 M6 Client Product
-  S20, S20.5, S21
+  S20, S20.5, S21, S21.5
        ↓
 M7 Final Audits + Release
   S22–S25
@@ -513,6 +513,28 @@ Generate a reproducible, evidence-backed technology dependency brief from a defi
 
 ### Boundary
 No autonomous legal, investment or procurement recommendation.
+
+---
+
+## S21.5 — Change Detector: the later-rule search
+**Type:** RESEARCH (added 2026-10-14 by the human's decision, D-207)
+
+### Mission
+Activate the Change Detector and run its first task: a dated search for later US export-control texts that change
+the control entries the Atlas's policy links rest on or repeal one of the acts it holds, recording any later act from
+its official text and each comparison as a candidate change with both sides quoted, for the human's review.
+
+### Inputs
+- D-175 (the unsearched period after 5 December 2024), D-169 (a later change is quoted, never dated on a link),
+  D-184 and the agent audit's F-6;
+- the five acts the Atlas holds, their events, claims and `restricts` links; `docs/architecture/policy-dataset.md`,
+  `docs/architecture/policy-links.md`, `docs/research/source-policy.md`;
+- the M5 audit's debt rows (`docs/architecture/milestone-audits/M5-audit.md` §6).
+
+### Gate
+A logged, re-runnable search covers the window to the reference date for the four entries and the five acts; every
+later act found is drafted from its official text or recorded as an access gap; every comparison quotes both sides;
+no canonical record without the human's verdict; suite, Gate 0 and the selected breaks pass.
 
 ---
 

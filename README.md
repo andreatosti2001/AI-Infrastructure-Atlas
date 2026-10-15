@@ -133,12 +133,14 @@ CI runs the unit tests and Gate 0 on every push and pull request.
 
 ## Next phase
 
-M6, the client product, closes with S21 ([`SESSION-ROADMAP.md`](SESSION-ROADMAP.md)). S20 built the researcher and
+M6, the client product, closes with S21.5 ([`SESSION-ROADMAP.md`](SESSION-ROADMAP.md)). S20 built the researcher and
 analyst journeys ([`visual-architecture.md`](docs/architecture/visual-architecture.md) §15, D-189 to D-197); S20.5
 kept the script-free generated pages (D-200) and set the plan after v1.0 ([`VERSION-ROADMAP.md`](VERSION-ROADMAP.md),
 D-201); S21 built the first client brief and activated the Client Output role
-([`client-brief.md`](docs/architecture/client-brief.md), D-202 to D-206). Next: M7, the final audits and the v1.0
-release (S22 to S25), starting with S22, the code and engineering audit.
+([`client-brief.md`](docs/architecture/client-brief.md), D-202 to D-206). S21.5, added by the human (D-207), activates
+the Change Detector and runs its first task, the dated search for later export-control texts after 5 December 2024
+([`change-detection.md`](docs/research/change-detection.md)). Next: M7, the final audits and the v1.0 release (S22 to
+S25), starting with S22, the code and engineering audit.
 
 ## Layout
 

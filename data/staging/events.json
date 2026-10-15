@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "id": "event-us-fr-2025-00636-published-2025-01-15",
+    "event_type": "published",
+    "subject": "policy-us-fr-2025-00636",
+    "date": "2025-01-15",
+    "claim_ids": [
+      "claim-bis-rule-2025-00636-citation"
+    ]
+  },
+  {
+    "id": "event-us-fr-2025-00636-effective-2025-01-13",
+    "event_type": "effective",
+    "subject": "policy-us-fr-2025-00636",
+    "date": "2025-01-13",
+    "claim_ids": [
+      "claim-bis-rule-2025-00636-effective-2025-01-13"
+    ]
+  },
+  {
+    "id": "event-us-fr-2025-00711-published-2025-01-16",
+    "event_type": "published",
+    "subject": "policy-us-fr-2025-00711",
+    "date": "2025-01-16",
+    "claim_ids": [
+      "claim-bis-rule-2025-00711-citation"
+    ]
+  },
+  {
+    "id": "event-us-fr-2025-00711-effective-2025-01-16",
+    "event_type": "effective",
+    "subject": "policy-us-fr-2025-00711",
+    "date": "2025-01-16",
+    "claim_ids": [
+      "claim-bis-rule-2025-00711-effective-2025-01-16"
+    ]
+  }
+]

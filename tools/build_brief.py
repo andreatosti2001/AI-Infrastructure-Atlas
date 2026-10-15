@@ -42,6 +42,7 @@ INPUT_FILES = (
     "docs/architecture/company-dataset.md",
     "docs/architecture/decisions.md",
     "docs/architecture/relationship-taxonomy.md",
+    "docs/research/change-detection.md",
     "docs/research/source-policy.md",
     "tools/brief_template.html",
     "tools/build_brief.py",
@@ -67,7 +68,7 @@ LABELS = build_journeys.LABELS | frozenset(
         "Evidence appendix", "Source appendix", "How to cite this brief",
         "The chain:", "accelerator recorded", "accelerators recorded", "rows of the dependency result shown",
         "row of the dependency result shown", "act recorded, issued in", "acts recorded, issued in",
-        "class the chain reaches", "classes the chain reaches", "Out of scope", "Acts published after", "were not searched.",
+        "class the chain reaches", "classes the chain reaches", "Out of scope", "Later texts were searched for up to", "; texts published after it were not searched.",
         "At a glance", "Accelerators", "Chain rows", "Acts", "Classes compared",
         "each", "which", "a recorded gap, not a link", "Who designs or fabricates each accelerator:",
         "Who supplies that memory, as reported:", "in", "source-policy criterion not met:",
@@ -168,6 +169,9 @@ class Brief(build_journeys.Journey):
     def latest(self) -> str:
         return self.derived("latest-published", max(e["date"] for e in self.events if e["event_type"] == "published" and e["subject"] in {p["id"] for p in self.policies}))
 
+    def searched_to(self) -> str:
+        return self.derived("searched-to", build_journeys.searched_to())
+
     def question(self) -> str:
         return f'{self.label("What does an")} {self.name("component-ai-accelerator")}{self.label("’s memory depend on, who is reported to supply it, and which recorded export-control texts name those parts?")}'
 
@@ -192,7 +196,7 @@ class Brief(build_journeys.Journey):
         )
         limits = (
             f'<div class="limits" data-limits>{self.label("Out of scope", tag="h3")}{self.framing("brief-out-of-scope")}'
-            f'<p>{self.label("Acts published after")} {self.latest()} {self.label("were not searched.")}</p></div>'
+            f'<p>{self.label("Later texts were searched for up to")} {self.searched_to()}{self.label("; texts published after it were not searched.")}</p></div>'
         )
         identity = (
             f'<p class="identity" data-identity>{self.label("read as of", cls="k")} {self.as_of()} · {self.label("input digest", cls="k")} {self.digest()} · '
@@ -291,7 +295,7 @@ class Brief(build_journeys.Journey):
 
     def summary(self) -> str:
         items = self.depends() + [self.made(), self.supplied()] + self.texts()
-        items.append(f'<li data-summary="limits">{self.label("Acts published after")} {self.latest()} {self.label("were not searched.")}</li>')
+        items.append(f'<li data-summary="limits">{self.label("Later texts were searched for up to")} {self.searched_to()}{self.label("; texts published after it were not searched.")}</li>')
         return f'{self.tiles()}<ul class="findings summary">{"".join(items)}</ul>{self.framing("brief-summary")}'
 
     # --- 3 to 8 ------------------------------------------------------------------------------------------
