@@ -327,17 +327,36 @@ def _names_part_774(cfr: str) -> bool:
 
 
 def search(a: str, b: str, fetcher, terms: tuple[Term, ...], registered: tuple[tuple[str, str, str], ...]) -> Result:
+    """The five steps of the search for one window, in order (plan.md); each step is one function (F-14, S22.5)."""
+    _check_window(a, b, fetcher)
+    result = Result((a, b), terms)
+    index_answered = _bis_documents(fetcher, result)
+    _index_hits(fetcher, result, terms)
+    _daily_edition(fetcher, result, terms)
+    _candidates(fetcher, result, _candidate_reasons(result))
+    _disagreements(result, index_answered)
+    _registered_texts(fetcher, result, registered)
+    return result
+
+
+def _check_window(a: str, b: str, fetcher) -> None:
     if not (re.fullmatch(r"\d{4}-\d{2}-\d{2}", a) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", b)) or a > b:
         raise ValueError(f"the window must be two dates, the first no later than the second: {a} to {b}")
     if b > fetcher.today():
         raise ValueError(f"the window ends after today ({fetcher.today()}): a later day's texts cannot be searched yet")
-    result = Result((a, b), terms)
 
-    # step 1: every BIS document in the window (finding aid)
+
+def _bis_documents(fetcher, result: Result) -> bool:
+    """Step 1: every BIS document in the window (finding aid). True when the index answered."""
+    a, b = result.window
     bis_docs = _index(fetcher, result, a, b, bis=True, term=None, what="every BIS document")
     result.bis_docs = bis_docs or []
+    return bis_docs is not None
 
-    # step 2: the terms in every agency's documents; the rescind and repeal words in BIS documents
+
+def _index_hits(fetcher, result: Result, terms: tuple[Term, ...]) -> None:
+    """Step 2: the terms in every agency's documents; the rescind and repeal words in BIS documents."""
+    a, b = result.window
     for t in terms:
         hits = _index(fetcher, result, a, b, bis=False, term=t.index_query, what=f"the term {t.name}")
         result.term_hits[t.name] = hits or []
@@ -345,14 +364,11 @@ def search(a: str, b: str, fetcher, terms: tuple[Term, ...], registered: tuple[t
         hits = _index(fetcher, result, a, b, bis=True, term=word, what=f"the word {word} in BIS documents")
         result.term_hits[f"{word} (BIS)"] = hits or []
 
-    # step 3: the official daily edition, independently of the index
-    r = _get(fetcher, result, facets_url(a, b))
-    try:
-        counts = {d: v["count"] for d, v in json.loads(r.body).items()} if r.status == 200 else None
-    except (ValueError, KeyError, TypeError, AttributeError):
-        counts = None
-    if counts is None:
-        _gap(result, r, "the index did not say on which days documents were published")
+
+def _daily_edition(fetcher, result: Result, terms: tuple[Term, ...]) -> None:
+    """Step 3: the official daily edition, independently of the index: every day's issue, read or named as a gap."""
+    a, b = result.window
+    counts = _issue_counts(fetcher, result)
     for day in _days(a, b):
         listed = None if counts is None else counts.get(day, 0)
         weekday = datetime.date.fromisoformat(day).weekday() < 5
@@ -377,7 +393,21 @@ def search(a: str, b: str, fetcher, terms: tuple[Term, ...], registered: tuple[t
                  + ("" if listed is None else f" (the index lists {listed} documents that day)"))
             result.days.append((day, "not read: access gap"))
 
-    # step 4: candidates
+
+def _issue_counts(fetcher, result: Result) -> dict[str, int] | None:
+    """How many documents the index lists on each day of the window, or None (an access gap) if it did not say."""
+    r = _get(fetcher, result, facets_url(*result.window))
+    try:
+        counts = {d: v["count"] for d, v in json.loads(r.body).items()} if r.status == 200 else None
+    except (ValueError, KeyError, TypeError, AttributeError):
+        counts = None
+    if counts is None:
+        _gap(result, r, "the index did not say on which days documents were published")
+    return counts
+
+
+def _candidate_reasons(result: Result) -> dict[str, list[str]]:
+    """Step 4a: why each document is a candidate: what the official edition shows, then what the index matched."""
     reasons: dict[str, list[str]] = {}
     for d in result.official.values():
         why = [f"names {h}" for h in d.hits]
@@ -387,13 +417,23 @@ def search(a: str, b: str, fetcher, terms: tuple[Term, ...], registered: tuple[t
             why.append("a BIS rule using " + ", ".join(d.bis_words))
         if why:
             reasons[d.number] = why
-    index_docs = {doc["document_number"]: doc for hits in result.term_hits.values() for doc in hits}
-    index_docs.update({doc["document_number"]: doc for doc in result.bis_docs})
     for name, hits in result.term_hits.items():
         for doc in hits:
             why = reasons.setdefault(doc["document_number"], [])
             if not any(name.split(" (")[0] in w for w in why):
                 why.append(f"the index matched {name}")
+    return reasons
+
+
+def _index_docs(result: Result) -> dict[str, dict]:
+    index_docs = {doc["document_number"]: doc for hits in result.term_hits.values() for doc in hits}
+    index_docs.update({doc["document_number"]: doc for doc in result.bis_docs})
+    return index_docs
+
+
+def _candidates(fetcher, result: Result, reasons: dict[str, list[str]]) -> None:
+    """Step 4b: each candidate's official text fetched and hashed, in order of day, or named as a gap."""
+    index_docs = _index_docs(result)
     for number in sorted(reasons, key=lambda n: (_day_of(n, result, index_docs), n)):
         official = result.official.get(number)
         indexed = index_docs.get(number, {})
@@ -408,6 +448,10 @@ def search(a: str, b: str, fetcher, terms: tuple[Term, ...], registered: tuple[t
         else:
             _gap(result, r, f"the official text of candidate {number} was not served")
         result.candidates.append(c)
+
+
+def _disagreements(result: Result, index_answered: bool) -> None:
+    """Step 4c: the BIS documents one register lists and the other does not, on the days both were read."""
     official_bis = {n for n, d in result.official.items() if d.is_bis}
     read_days = {day for day, what in result.days if what.startswith("read")}
     for doc in result.bis_docs:
@@ -415,11 +459,13 @@ def search(a: str, b: str, fetcher, terms: tuple[Term, ...], registered: tuple[t
             result.disagreements.append(f"{doc['document_number']} ({doc['publication_date']}, {doc['title'][:80]}): "
                                         "in the index, not in the official edition of that day")
     for number in sorted(official_bis - {doc["document_number"] for doc in result.bis_docs}):
-        if bis_docs is not None:
+        if index_answered:
             result.disagreements.append(f"{number} ({result.official[number].day}): a BIS document in the official "
                                         "edition, not in the index's list of BIS documents")
 
-    # step 5: the registered official texts (CD-5)
+
+def _registered_texts(fetcher, result: Result, registered: tuple[tuple[str, str, str], ...]) -> None:
+    """Step 5: the registered official texts re-fetched and re-hashed (CD-5)."""
     for source, url, registered_sha in registered:
         r = _get(fetcher, result, url)
         if r.status != 200:
@@ -429,7 +475,6 @@ def search(a: str, b: str, fetcher, terms: tuple[Term, ...], registered: tuple[t
         now = hashlib.sha256(r.body).hexdigest()
         verdict = "unchanged" if now == registered_sha else "CHANGED: the Verifier re-reads its anchors; the record is not edited (CD-5)"
         result.registered.append((source, registered_sha, now, verdict))
-    return result
 
 
 def _day_of(number: str, result: Result, index_docs: dict[str, dict]) -> str:

@@ -3544,3 +3544,62 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   CD-6); an incomplete run moves no date.
 - **Rejected:** keeping the pages as of 2026-10-15 through S23 (the audit would read stale pages; S25 would still move
   the date).
+
+## D-216 — S22.5 closes the engineering audit's findings outside v1.5 (amends D-213's owners)
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, the S22.5 session prompt: the
+  findings not assigned to v1.5 closed with checks first; F-6, F-8, F-9, F-10 and the screen half of F-13 untouched)
+- **Context:** D-213 ruled F-1, F-4, F-7, F-11 and the print half of F-13 remediated in S22, F-3 kept, and F-2, F-5,
+  F-12, F-14 debt for v1.5's opening session. The human opened a dedicated session, S22.5, after S22, for every finding
+  not assigned to v1.5 itself.
+- **Decision:**
+  - **F-2, F-5, F-12, F-14 move from v1.5's opening session to S22.5** and are remediated there; F-6, F-8, F-9, F-10,
+    the screen half of F-13 and dark mode stay v1.5 (D-213 unchanged for them);
+  - **F-2:** `Page.value` (`tools/build_page.py`) stops on a value outside its vocabulary with a `BuildError` naming the
+    value, the vocabulary and every record field holding it (found from the schemas: the property names whose `$ref`
+    chain reaches that vocabulary), so the three builds that read it (HBM page, journeys, brief) give the same named
+    reason instead of a bare `StopIteration`. The record checks still refuse the value first (the claim schema; the
+    test asserts both). Test `test_an_out_of_vocabulary_value_is_named` (`tests/test_page.py`), written first and shown
+    failing with the `StopIteration`;
+  - **F-3 stays kept** as D-213 ruled, since `cand-001` is unresolved (refused, `evidence_not_fresh`, D-092); no data
+    change. A regression test (`test_a_resolved_drawn_gap_stops_the_builds_by_name`) confirms that the specification
+    draws `cand-001` as the page's gap while the records refuse it, and that resolving it stops the HBM page and the
+    brief with "refused candidate cand-001 is not canonical". It fails first when `cand-001` is resolved, telling that
+    session to update `JOURNEY` with the record;
+  - **F-5:** one break per module never shown failing, each failing that module alone for its named reason
+    (S22.5-4 to S22.5-8: `test_claim_model.py`, `test_relationship_taxonomy.py`, `test_entity_taxonomy.py`,
+    `test_facility_status.py`, `test_break_selection.py`); a fictional test runs `policy_status.derive_status`'s
+    untested branch (a publication dated to the month that contains the as-of date: indeterminate), with break S22.5-9.
+    No check changes;
+  - **F-12:** CI's actions are pinned to commit hashes (D-217), checked by EN-3 (`tests/test_engineering.py`);
+    the pip pins stay exact versions without hashes;
+  - **F-14:** `later_rule_search.search` is split into one function per step (window check; BIS documents; index
+    terms; the daily edition and its day counts; candidate reasons; candidates; disagreements; registered texts),
+    with no change of behaviour: LS-1 to LS-11 pass, every setup of S22-3 to S22-10 still applies and each still
+    fails as named, and the old and new functions give identical logs, outcomes and requests on all 13 searches the
+    LS tests run. `search` goes from 104 lines and complexity 56 to 11 lines and complexity 1; no step function is longer
+    than 27 lines or above complexity 12 (the audit's measure);
+  - F-1, F-4, F-7, F-11 and F-13's print half are re-verified, not rebuilt: each browser script exits non-zero on a
+    planted page defect; EN-1 and EN-2 keep their breaks (S22-11, S22-12); the brief prints 31 A4 pages;
+  - breaks S22.5-1 to S22.5-10 and the control S22.5-C1 (`tests/regression/breaks.py`).
+- **Amends:** D-213 (the owner of F-2, F-5, F-12, F-14). With F-2 remediated, D-213's "F-2 stays debt" in the code
+  and engineering outcome rating no longer holds; the rating itself is left to the next audit (S24).
+- **Rejected:** passing the record and field into `Page.value` from each of its callers (about 25 call sites
+  changed for a message); a hand list of which field carries which vocabulary (it would drift from the schemas); a
+  break that edits `data/` to make F-3's test fail as a permanent break (its fault is named by a build, not by a
+  record check, so it does not meet D-176's criterion).
+
+## D-217 — CI's actions are pinned to the commit of the release they run (F-12)
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, the S22.5 session prompt: the
+  actions pinned to commit hashes, the pip pins kept exact without hashes)
+- **Context:** `.github/workflows/ci.yml` named its four actions by moving tags (`actions/checkout@v4`,
+  `actions/setup-python@v5`, `actions/setup-node@v4`, `actions/upload-artifact@v4`); a tag can be moved to other code.
+- **Decision:** every `uses:` names a full 40-character commit hash, with the exact release beside it as a comment.
+  The hashes are the commits each major tag CI already ran pointed to on 2026-10-15, read from the action's own
+  repository (`git ls-remote --tags`): checkout `11d5960…` (v4.4.0), setup-python `a26af69…` (v5.6.0), setup-node
+  `49933ea…` (v4.4.0), upload-artifact `ea165f8…` (v4.6.2); no action is upgraded. A later upgrade changes the hash and
+  the comment together, both read from the action's repository. EN-3 fails on any `uses:` without a hash and its
+  release; break S22.5-10. The Data Auditor owns the workflow, as before.
+- **Rejected:** upgrading the actions while pinning them (a change of behaviour outside F-12); pip hashes (exact pins
+  and a clean `pip check` suffice at this scale, the audit's own disposition).

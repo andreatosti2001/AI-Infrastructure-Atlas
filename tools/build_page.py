@@ -262,7 +262,9 @@ class Page:
             name, _, const = rest.partition("/")
             node = self.schemas[stem]["$defs"][name]
             if const:
-                node = next(item for item in node["oneOf"] if item.get("const") == const)
+                node = next((item for item in node["oneOf"] if item.get("const") == const), None)
+                if node is None:  # S22.5 (F-2): named, never a bare StopIteration
+                    raise BuildError(f"'{const}' is not a value of {name} (schemas/{stem}.schema.json); held at: {self.holders(stem, name, const)}")
         elif ref.startswith("doc:decisions#"):
             key = ref[len("doc:decisions#") :]
             return key if field == "id" else self.decisions[key].replace("`", "")
@@ -276,6 +278,53 @@ class Page:
         if not isinstance(node, (str, int, float)):
             raise BuildError(f"{ref} {field} is not a scalar")
         return node
+
+    def holders(self, stem: str, name: str, value: str) -> str:
+        """Every record field that holds a value of vocabulary `name` equal to `value` (F-2): the property names whose
+        schema reaches that vocabulary through its $ref chain, matched against every record the build reads."""
+
+        def reaches(at: str, node, seen: set) -> bool:
+            if isinstance(node, list):
+                return any(reaches(at, v, seen) for v in node)
+            if not isinstance(node, dict):
+                return False
+            if "$ref" in node:
+                file, _, pointer = node["$ref"].partition("#")
+                target = (file.split(".")[0] if file else at, pointer.split("/")[2])
+                if target == (stem, name):
+                    return True
+                if target not in seen:
+                    seen.add(target)
+                    if reaches(target[0], self.schemas[target[0]]["$defs"][target[1]], seen):
+                        return True
+            return any(reaches(at, v, seen) for k, v in node.items() if k != "$ref")
+
+        fields = set()
+        for at, schema in self.schemas.items():
+            stack = [schema]
+            while stack:
+                node = stack.pop()
+                if isinstance(node, dict):
+                    fields.update(k for k, v in (node.get("properties") or {}).items() if reaches(at, v, set()))
+                    stack.extend(node.values())
+                elif isinstance(node, list):
+                    stack.extend(node)
+
+        found = []
+
+        def walk(record_id: str, node, path: list) -> None:
+            if isinstance(node, dict):
+                for k, v in node.items():
+                    walk(record_id, v, [*path, k])
+            elif isinstance(node, list):
+                for i, v in enumerate(node):
+                    walk(record_id, v, [*path, str(i)])
+            elif node == value and next((p for p in reversed(path) if not p.isdigit()), None) in fields:
+                found.append(f"{record_id} /{'/'.join(path)}")
+
+        for record_id, record in self.homes.items():
+            walk(record_id, record, [])
+        return ", ".join(sorted(found)) or "no record (a value the build itself names)"
 
     def attrs(self, extra: dict | None) -> str:
         return "".join(f' {k}="{esc(v)}"' if v is not None else f" {k}" for k, v in (extra or {}).items())
