@@ -3712,3 +3712,19 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
 - **Rejected:** refreshing Micron from its FY2026 10-K (fixes one company once; new research for a named session after
   v1.0, D-218); listing the four values as a limitation only; a mark computed from today's date (V-5); an SQL query and
   its tutorial for a comparison of two dates.
+
+## D-222 — S24 writes v1.0's known limitations as a document and audits it
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, after S23's report; the recommended
+  next decision, option A)
+- **Context:** D-218 sends the gaps no v1 session owns (C-8: the EAR's dates, the May 2026 BIS guidance, a current
+  H100 supplier and fabricator, a recognised source for Trainium2's memory maker, newer evidence for values past the
+  horizon, `cand-001`) to S25 as v1.0 known limitations, beside single-voice values and narrow coverage (C-5, C-6).
+  S24, the portfolio and capability audit, asks whether the project communicates its capability honestly; the
+  limitations are half of that answer.
+- **Decision:** S24 creates `docs/known-limitations.md`, one row per gap: what is missing, why, what would close it,
+  and which session after v1.0 owns it. S24 checks that the pages' limits (their "does not track" and method framing,
+  the brief's scope and limits) agree with it, and audits it as part of the portfolio audit. S25 links it from the
+  release notes. No record, page or check changes beyond the new document and its check; the roadmap's sessions are
+  unchanged.
+- **Rejected:** leaving the list to S25's release notes, written once at the release without an independent look.
