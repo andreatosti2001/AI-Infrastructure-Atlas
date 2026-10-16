@@ -531,6 +531,15 @@ class WarehouseTests(unittest.TestCase):
         self.assertEqual(independent_ages(Records(root / "data").rows(), later), {(r["accelerator_id"], r["record_id"], r["gap_reason"], r["newest_evidence"], r["newest_evidence_basis"], r["age_days"], r["beyond_horizon"]) for r in after})
 
     # WH-15
+    def test_wh16_every_query_states_its_population_denominator_and_limits(self) -> None:
+        # S24 (portfolio audit P-7, H-2): the Analyst's contract asks every query, not only a metric, to state what it
+        # does not prove; a listing states what it covers and that it has no denominator of its own.
+        for query in query_files():
+            header = tutorial(query.read_text(encoding="utf-8"))["header"]
+            for field in ("question", "population", "denominator", "does not prove"):
+                with self.subTest(query=query.name, field=field):
+                    self.assertTrue(header.get(field), f"{query.name}: the header does not state '{field}' (Analyst contract; P-7)")
+
     def test_wh15_metric_headers_say_what_a_reader_needs(self) -> None:
         coverage = tutorial((REPO_ROOT / "sql" / f"{COVERAGE}.sql").read_text(encoding="utf-8"))["header"]
         self.assertRegex(coverage["population"], r"refused", "coverage's population does not say which refused relations are rows (an independent reader counted one too many)")

@@ -646,6 +646,19 @@ S24 = [
     ("S24-6", "the Portfolio Reviewer marked inactive again while its contract stays (D-223)",
      edit("docs/agents/roles.md", "| Portfolio Reviewer | active |", "| Portfolio Reviewer | inactive |"), [],
      ["test_active_roles_are_exactly_the_contracted_roles", "Portfolio Reviewer"]),
+    ("S24-7", "the brief's query states no longer what it does not prove, results and pages rebuilt (WH-16, P-7)",
+     edit(DEP, "-- does not prove: A missing row is not a missing dependency: the table holds only what the Atlas records.\n"
+               "--   Stated means that at least one cited claim is a FACT, often stated by the party itself, not confirmed\n"
+               "--   by anyone else. A reported supplier is not the only supplier, and a gap is not a no. With two\n"
+               "--   accelerators, the table supports no comparison between accelerators in general.\n", ""),
+     [WH, PAGE_BUILD, INSIGHT_BUILD],
+     ["test_wh16_every_query_states_its_population_denominator_and_limits", "does not prove"]),
+    ("S24-8", "the brief's summary drops the limit on a reported supplier, brief rebuilt (KL-3, P-5)",
+     edit(BT, " A named or reported supplier is not the only supplier: a source that names one maker does not say that there are no others.", ""),
+     [BRIEF], ["test_kl3_each_statement_is_on_the_pages_it_names", "A named or reported supplier is not the only supplier"]),
+    ("S24-9", "the export-control page no longer says that a text a later statement cites is unread, pages rebuilt (KL-3, P-14)",
+     edit(JT, " A text the later statement itself cites is held only as the statement quotes it: the Atlas has not read it.", ""),
+     [JOURNEYS], ["test_kl3_each_statement_is_on_the_pages_it_names", "export-control-texts"]),
     ("S24-C1", "control: a gap's reason reworded in the known limitations",
      edit(KL, "| v1 was scoped to one end-to-end slice before growing |", "| v1 was scoped to one end-to-end slice before it grew |"),
      [], []),

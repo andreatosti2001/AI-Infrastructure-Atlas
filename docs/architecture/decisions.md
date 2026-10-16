@@ -3745,3 +3745,44 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
 - **Rejected:** the Portfolio Reviewer writing the audit only, with the known limitations left to the Knowledge
   Architect (the capability judgement and the disclosed limits with two roles); keeping the role inactive and amending
   D-184 (the roadmap's reviewer unused before v1.0).
+
+## D-224 — The portfolio audit is accepted with its rulings; v1.0's known limitations are accepted
+
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, S24 H-2: the audit and the
+  known-limitations document "as written"; each remediation as recommended)
+- **Context:** S24's portfolio and capability audit (`docs/architecture/portfolio-audit.md`) measured the roadmap's
+  eight capability points and PEF §4's retrospective, with two fresh readers before its assessment (H-0), and found no
+  blocking finding and fourteen findings, P-1 to P-14. D-222 asked S24 to write v1.0's known limitations and check
+  them against the pages.
+- **Decision:**
+  - the audit, its ratings (Part 6; the code and engineering outcome, left open by D-216, is 3) and
+    `docs/known-limitations.md` (15 gaps, 5 boundaries) are accepted; S25 links the document from the release notes;
+  - **remediated in S24:** P-1, a "How this was built" section in `README.md`; P-4 and P-12, a plain-language opening
+    and the break count corrected; P-5, the brief's summary framing says that a named or reported supplier is not the
+    only supplier; P-7, the brief's query states its population, its denominator and what it does not prove, checked
+    for every query by WH-16 (written first), results and pages rebuilt with the query's logic unchanged; P-8, the
+    archive's `sessions/README.md` says that sessions, not a tool, now check a report's fields; P-10, D-225; P-14, the
+    "later statements" framing says that a text a later statement cites is held only as it is quoted and is unread;
+  - **owned after S24:** P-2 (no recorded code review) and P-6 (policy description, not analysis) are stated in S25's
+    case study, and a code-review rule or an analysis layer is the human's decision at S25, v1.5 or v2; P-3
+    (publication) is S25's decision; P-9 is a process lesson in S24's report; P-11 goes to v2's agent activation; P-13
+    stays as D-152 rules, with this audit's counts as the public summary;
+  - breaks S24-1 to S24-9 and the control S24-C1 test the new checks.
+- **Rejected:** leaving the authorship account, the README's wording, the unread guidance, the supplier warning and
+  the query header to S25 or v1.5; a checker script in the archive (the archive has no CI); leaving the three rule
+  changes unrecorded; changing findings or ratings before acceptance.
+
+## D-225 — Three changes to the rule documents of 2 October 2026 are recorded
+
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, S24 H-2, portfolio audit P-10)
+- **Context:** three changes to the constitutional documents were made on 2 October 2026 on the human's instruction,
+  each in its own pull request merged by the human, with no decision record (portfolio audit, Part 4).
+- **Decision:** the record holds them, with their commits and pull requests, as taken by the human on that day:
+  - `269a1fa` (pull request #16): visual intelligence and data storytelling become a cross-cutting capability
+    (`CLAUDE.md` §6A, `MASTER-ARCHITECTURE.md` §16.1, `SESSION-ROADMAP.md`'s cross-cutting section);
+  - `d8a5be5` (pull request #19): a request for a human decision explains its concrete consequences (`CLAUDE.md` §9A,
+    `SESSION-PROMPT-SPEC.md` §9);
+  - `aeec137` (pull request #21): an interactive question must be understandable on its own (`CLAUDE.md` §9A,
+    `SESSION-PROMPT-SPEC.md` §9), with the S12 prompt's questions rewritten to that rule.
+  No document changes; the rules stand as merged.
+- **Rejected:** leaving the audit's finding as the only trace of the three changes.

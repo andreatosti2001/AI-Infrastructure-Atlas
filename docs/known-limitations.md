@@ -1,6 +1,6 @@
 # Known limitations of v1.0
 
-**Status:** proposed (S24, the portfolio and capability audit; D-222, D-223). Written by the Portfolio Reviewer;
+**Status:** accepted (decided by the human on 2026-10-16, S24 H-2; D-222, D-223, D-224). Written by the Portfolio Reviewer;
 checked against the built pages by `tests/test_known_limitations.py` (KL-1 to KL-8). S25 links it from the release
 notes.
 
@@ -58,13 +58,15 @@ in the text of every page the path names. `none`: no page states it; the record 
 | KL-02 | `site/hbm-chain/index.html` | label | "one publisher only" |
 | KL-03 | `site/briefs/accelerator-memory/index.html` | label | "historical, to" |
 | KL-03 | `site/hbm-insight/index.html` | label | "historical, to" |
+| KL-03 | `site/briefs/accelerator-memory/index.html` | framing | "A named or reported supplier is not the only supplier: a source that names one maker does not say that there are no others." |
 | KL-04 | `site/briefs/accelerator-memory/index.html` | label | "a recorded gap, not a link" |
 | KL-04 | `site/hbm-chain/index.html` | label | "evidence not fresh" |
 | KL-05 | `site/briefs/accelerator-memory/index.html` | label | "criterion not met: recognised" |
 | KL-05 | `site/hbm-insight/index.html` | label | "criterion not met: recognised" |
 | KL-06 | `site/companies/company-micron-technology/index.html` | framing | "It does not mean the value has changed: the Atlas has not yet re-checked it against newer evidence." |
 | KL-07 | `site/questions/export-control-texts/index.html` | label | "no recorded effect" |
-| KL-08 | — | none | No page says that the guidance is unread: the pages quote the later text that cites it, and its address. Held in the release content audit (Part 6 row 8) and D-218 |
+| KL-08 | `site/questions/export-control-texts/index.html` | framing | "A text the later statement itself cites is held only as the statement quotes it: the Atlas has not read it." |
+| KL-08 | `site/briefs/accelerator-memory/index.html` | framing | "A text the later statement itself cites is held only as the statement quotes it: the Atlas has not read it." |
 | KL-09 | `site/briefs/accelerator-memory/index.html` | framing | "Acts, amendments or guidance published after the latest publication date shown in this brief." |
 | KL-09 | `site/questions/export-control-texts/index.html` | framing | "Only the acts the Atlas holds and the later texts its search found were read; texts published after the search date below were not searched." |
 | KL-10 | `site/briefs/accelerator-memory/index.html` | framing | "Changes of supplier, design or fabrication after the dates of the evidence shown." |

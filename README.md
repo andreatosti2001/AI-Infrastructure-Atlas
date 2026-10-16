@@ -12,8 +12,31 @@ for two accelerators, the NVIDIA H100 and AWS Trainium2, and their High Bandwidt
 on its pages can be traced to a sentence in a registered source, and everything the Atlas does not know is
 shown as a named gap, never as zero.
 
+**In plain terms.** The Atlas is a small research database you can check yourself. The
+[client brief](site/briefs/accelerator-memory/index.html) gives its answer with its scope and gaps; every value on it
+opens the source sentence it rests on; and `python tools/check_all.py` (Python 3.11) re-runs every check and rebuilds
+every page to confirm it matches what is committed, byte for byte. What v1.0 does not cover is listed in one place,
+[known limitations](docs/known-limitations.md). The sections after "How this was built" record the project's state
+session by session; their codes (S20, D-212) point to the [decision log](docs/architecture/decisions.md).
+
 This is an independent repository. It shares no code, data or runtime with `Eu-Digital-Policy`
 ([D-006](docs/architecture/decisions.md)).
+
+## How this was built
+
+The Atlas was built between 29 September and 16 October 2026 in governed working sessions by Claude, an AI model made
+by Anthropic, under rules the repository's human owner wrote and decisions the owner took.
+
+- **The human owner** set the project's rules: wrote its rule documents (`CLAUDE.md`, `MASTER-ARCHITECTURE.md` and
+  the frameworks beside them) at the start and decided every later change to them; chose between the options put at each decision (the [decision log](docs/architecture/decisions.md)
+  says which are the owner's), read and accepted or rejected every claim before it became canonical (the
+  [human review record](docs/quality/human-reviews.md)), and merged every change.
+- **Claude** drafted the research records, the code, the checks, the pages and the documents, working in roles with
+  written contracts ([agent roles](docs/agents/roles.md)). A role is a set of permissions and checks that Claude works
+  under in a session, not a separate program; nothing in the repository writes records or code on its own.
+- **The checks, not a person, review the code.** Each new check is shown failing on a planted fault before it is
+  trusted, and CI runs the suite and the browser checks on every push. No review of the code by a person is recorded:
+  the pull requests carry no reviews ([portfolio audit](docs/architecture/portfolio-audit.md), P-2).
 
 ## What it contains
 
@@ -107,6 +130,10 @@ anchors and review.
   values. Remediated: BIS's own May 2025 announcement about the AI Diffusion rule is recorded and shown under the act,
   whose status is unchanged (D-220); company pages mark values whose newest evidence is past the freshness horizon on
   the as-of date (D-221); `not_researched` is reworded to cover a partial search (D-219).
+- **The portfolio audit** (S24): the Atlas audited for the capability it shows, with two first-time readers and
+  counts from its Git history ([`portfolio-audit.md`](docs/architecture/portfolio-audit.md), D-224); v1.0's known
+  limitations are listed in one place and checked against the pages sentence by sentence
+  ([`known-limitations.md`](docs/known-limitations.md), D-222).
 - **The first policy links** (M5): four `restricts` links say that an act's own text names a class among the
   items it controls: the December 2024 rule names high-bandwidth memory, and the 2022, 2023 and 2024 rules
   name semiconductor manufacturing equipment. Each rests on the act's quoted sentence and a recorded match
@@ -125,7 +152,7 @@ anchors and review.
 | `python -m unittest discover -s tests` | schemas, data integrity (every reference resolves, no unreviewed claim is canonical, freshness), the human review record, the SQL results, and every page (every text node has a home in the records or is marked framing, every count recomputed, rebuild byte-identical, accessibility basics; on the export-control page, every matrix cell, timeline mark and status against the records, and the no-advice line beside every act; on the client brief, every summary sentence recomputed from its rows, scope and limits in its first section and in print, and every cited source in its appendix); 28 planted data faults the record checks must name (D-176); every file has an owner role (D-180) |
 | `python tools/validate_repo.py` | Gate 0: the governing documents exist, every relative link in the repository's Markdown resolves, and no session record is committed here |
 | `--check` on `tools/warehouse.py`, `tools/build_page.py`, `tools/build_insight.py`, `tools/build_journeys.py`, `tools/build_brief.py` | every committed result and page equals a fresh rebuild from `data/` |
-| [`tests/regression/`](tests/regression/README.md) | deliberate breaks (208): each plants one fault in its own copy and must be caught by the suite for the reason it names; run in parallel, selected by the files a change touches (D-177, D-178) |
+| [`tests/regression/`](tests/regression/README.md) | deliberate breaks (222): each plants one fault in its own copy and must be caught by the suite for the reason it names; run in parallel, selected by the files a change touches (D-177, D-178) |
 | [`tests/browser/`](tests/browser/README.md) | browser QA at 1280 and 375 px: errors, overflow, keyboard path, measured contrast; the brief also printed on A4 and Letter |
 | [Audits](docs/quality/audit-history.md) | milestone, content, analytical and process audits under `PROJECT-EVALUATION-FRAMEWORK.md` |
 
@@ -150,6 +177,8 @@ Firefox and WebKit, D-212), on every push and pull request.
   stay in `Eu-Digital-Policy`. A repeal the Atlas has not recorded would not show: the status says "no repeal
   recorded in the Atlas". The end of a single instruction's effect (one 2023 instruction ran to 2026-01-01) is
   stated in a claim, not as an event.
+- Every gap and boundary of v1.0, with what would close it and who owns it, is in
+  [`docs/known-limitations.md`](docs/known-limitations.md).
 - The open debt, each item with an owner, is listed in the latest audits
   ([M5](docs/architecture/milestone-audits/M5-audit.md), [agent audit](docs/architecture/agent-audit.md),
   [M4](docs/architecture/milestone-audits/M4-audit.md), [analytical audit](docs/architecture/analytical-audit.md)).
@@ -164,7 +193,8 @@ D-201); S21 built the first client brief and activated the Client Output role
 the Change Detector and runs its first task, the dated search for later export-control texts after 5 December 2024
 ([`change-detection.md`](docs/research/change-detection.md)). M7, the final audits and the v1.0 release (S22 to
 S25), opened with S22, the code and engineering audit, and S22.5, which closed its findings outside v1.5; S23, the
-research depth and content audit, is done (D-218 to D-221); next is S24, the portfolio and capability audit.
+research depth and content audit, is done (D-218 to D-221); S24, the portfolio and capability audit, is done (D-223
+to D-225); next is S25, the v1.0 synthesis and release.
 
 ## Layout
 

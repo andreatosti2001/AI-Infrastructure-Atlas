@@ -1,6 +1,7 @@
 # Portfolio and capability audit (S24)
 
-- **Status:** proposed (S24, 2026-10-16). Findings, dispositions and ratings await the human's ruling, item by item.
+- **Status:** accepted (decided by the human on 2026-10-16, S24 H-2, with the dispositions and ratings as written;
+  D-224, D-225). The rulings and what S24 remediated are in Part 11.
 - **Author:** the Portfolio Reviewer, in its first activation (D-223). PEF §12's eight outputs: process findings and
   outcome findings (Part 5), the evidence for each (Parts 3 to 5), maturity per dimension (Part 6), regressions
   (Part 7), high-value and rejected improvements (Part 8), new learning outcomes (Part 9).
@@ -400,9 +401,11 @@ breaks are in the harness.
 
 - **Every gap D-218 sends to S25 has a row (KL-6).** These are: the EAR's dates, the May 2026 guidance, a current
   H100 supplier, the H100's fabricator, Trainium2's recognised source, aged values, single voice, and coverage.
-- **12 of 15 gaps are stated on at least one page.** 7 are stated as framing, 5 as labels drawn from the records.
-- **3 gaps are stated on no page:**
-  - KL-08, the unread May 2026 guidance: material, because readers meet its citation (P-14);
+- **12 of 15 gaps were stated on at least one page at the audit**: 7 as framing, 5 as labels drawn from the records.
+  After P-14's remediation, 13 are.
+- **3 gaps were stated on no page:**
+  - KL-08, the unread May 2026 guidance: material, because readers meet its citation (P-14; now stated on the
+    export-control page and the brief);
   - KL-13, the concept layer, which is invisible by definition;
   - KL-14, access gaps, which belong to the Atlas's re-reading, not to a page.
 - **Owners:** 7 gaps are owned by "a research session after v1.0 that the roadmap does not yet name" or by v2
@@ -411,5 +414,24 @@ breaks are in the harness.
 
 ## 11. Rulings
 
-Pending: the human's ruling on each finding P-1 to P-14, the ratings in Part 6, and the known-limitations document
-(S24 H-2).
+Decided by the human on 2026-10-16 (S24 H-2; D-224, D-225). The audit, its ratings and the known-limitations
+document are accepted as written.
+
+| Finding | Ruling | Done in S24 |
+|---|---|---|
+| P-1 | a "How this was built" section in the README | `README.md`: who drafted, who decided, what the checks do, and that no code review by a person is recorded |
+| P-2 | owned by S25 (case study) and the human (a review rule) | — |
+| P-3 | S25 decides publication | — |
+| P-4, P-12 | a plain-language opening and the corrected count | `README.md`: an opening paragraph; the break count (222 with S24's ten) |
+| P-5 | (a) the brief warns that a reported supplier is not the only supplier; (b) v1.5 | the brief's summary framing (`tools/brief_template.html`); the brief rebuilt; `known-limitations.md` KL-03 quotes it |
+| P-6 | owned by S25 (case study) and v2 | — |
+| P-7 | complete the query and check every query | WH-16, written first and shown failing on `accelerator_dependencies.sql`; the header's population, denominator and "does not prove"; results and pages rebuilt, rows unchanged |
+| P-8 | correct the archive's README only | the archive's `sessions/README.md` |
+| P-9 | a process lesson | S24's report |
+| P-10 | one decision recording the three changes | D-225 |
+| P-11 | v2 | — |
+| P-13 | as D-152 rules | — |
+| P-14 | the pages say that a text a later statement cites is unread | the "later statements" framing in `tools/journey_template.html` and `tools/brief_template.html`; pages rebuilt; `known-limitations.md` KL-08 quotes it |
+
+Every remediation that a check can see is held by one: WH-16 and the breaks S24-7 to S24-9 for P-5, P-7 and P-14;
+KL-1 to KL-8 and the breaks S24-1 to S24-6 for the document and the role.
