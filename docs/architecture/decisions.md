@@ -3786,3 +3786,18 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
     `SESSION-PROMPT-SPEC.md` §9), with the S12 prompt's questions rewritten to that rule.
   No document changes; the rules stand as merged.
 - **Rejected:** leaving the audit's finding as the only trace of the three changes.
+
+## D-226 — v1.0's pages are published at a public address when v1.0 is released
+
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, after S24's report: the recommended
+  next decision, option A)
+- **Context:** S24's portfolio audit found that no one outside the project has used the Atlas and that its strongest
+  evidence is reachable only by cloning (P-3, KL-15); both first-time readers named a live page or a visible CI run as
+  what would most change their view. NG-13's condition (the first slice passing its gates) has held since S12, so
+  publishing is the human's decision, an external action.
+- **Decision:** S25 publishes the generated pages of `site/` at a public address as part of the v1.0 release: a
+  static deployment with no server code, a link from the README to the live pages and to the CI runs, and a browser
+  check of the published address; NG-13's line in the baseline and the pages' "not published" wording are updated in
+  the same session. No record, claim or check changes; the pages stay generated and script-free. Which host serves
+  them is S25's design, put to the human.
+- **Rejected:** releasing v1.0 as a repository only (the capability stays visible only to those who run it).
