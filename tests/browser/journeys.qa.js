@@ -6,7 +6,7 @@
 // elements (outside scrolling tables and code); every link reached by Tab, and a visible focus ring; every in-page
 // link's target exists; Enter on a timeline mark and on a matrix cell lands on its evidence; every disclosure opens
 // from the keyboard; measured contrast on every rendered text node with every disclosure open; a top screenshot.
-const { playwright, verdict, finish, widthChecks } = require('./qa-lib');
+const { playwright, pageUrl, verdict, finish, widthChecks } = require('./qa-lib');
 const { chromium } = playwright();
 const fs = require('fs');
 const path = require('path');
@@ -31,7 +31,7 @@ function pages() {
   const browser = await chromium.launch();
   const report = { chromium: browser.version(), pages: {} };
   for (const [key, rel] of pages()) {
-    const url = 'file://' + path.join(SITE, rel);
+    const url = pageUrl(rel);
     report.pages[key] = {};
     for (const [name, width, height] of [['desktop', 1280, 900], ['mobile', 375, 812]]) {
       const ctx = await browser.newContext({ viewport: { width, height }, deviceScaleFactor: name === 'mobile' ? 2 : 1 });

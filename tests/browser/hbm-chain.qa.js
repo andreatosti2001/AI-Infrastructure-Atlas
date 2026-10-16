@@ -5,10 +5,10 @@
 // Checks at 1280 and 375 px: console, page errors and network; document overflow and wide elements; the keyboard
 // path to every evidence panel; "The chain as a table": overflow with no exclusion, its tutorial opened from the
 // keyboard, and the contrast of its text with every disclosure open.
-const { playwright, verdict, finish, onlyThePage } = require('./qa-lib');
+const { playwright, pageUrl, verdict, finish, onlyThePage } = require('./qa-lib');
 const { chromium } = playwright();
 const OUT = process.argv[2];
-const URL = 'file://' + require('path').resolve(__dirname, '../../site/hbm-chain/index.html');
+const URL = pageUrl('hbm-chain/index.html');
 
 function lum(rgb) {
   const c = rgb.map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; });

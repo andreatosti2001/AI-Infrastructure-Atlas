@@ -7,10 +7,10 @@
 // path to every mark (strip lines, the supplier slot, unit squares); Enter on a unit square lands on its table row;
 // the basis filter driven from the keyboard and its effect on the table and the marks; every metric tutorial opened
 // from the keyboard; measured contrast on every rendered text node, with the SQL tutorial open; screenshots.
-const { engine, verdict, finish, onlyThePage } = require('./qa-lib');
+const { engine, pageUrl, verdict, finish, onlyThePage } = require('./qa-lib');
 const [ENGINE, browserType] = engine();
 const OUT = process.argv[2];
-const URL = 'file://' + require('path').resolve(__dirname, '../../site/hbm-insight/index.html');
+const URL = pageUrl('hbm-insight/index.html');
 
 function lum(rgb) {
   const c = rgb.map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; });

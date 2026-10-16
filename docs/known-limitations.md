@@ -1,8 +1,8 @@
 # Known limitations of v1.0
 
 **Status:** accepted (decided by the human on 2026-10-16, S24 H-2; D-222, D-223, D-224). Written by the Portfolio Reviewer;
-checked against the built pages by `tests/test_known_limitations.py` (KL-1 to KL-8). S25 links it from the release
-notes.
+checked against the built pages by `tests/test_known_limitations.py` (KL-1 to KL-8). S25 links it from the
+[release notes](release/release-notes.md) and rewrote KL-15 for the publication of v1.0 (D-226, D-227).
 
 This page says what v1.0 of the Atlas does not do, in one place. **Gaps** are things a later session could close:
 each says what is missing, why, what would close it, and which session after v1.0 owns it. **Boundaries by design**
@@ -33,7 +33,7 @@ page and missing here, or quoted here and gone from the page, fails the suite.
 | KL-12 | `search` | Search across the records. The entry page lists every page instead | the pages load no script and need no server (v1's design rules) | a search decided at v1.5's opening, if the human approves it | v1.5, the overview and interaction session | D-201 (v1.5's plan); D-193 |
 | KL-13 | `concept-layer` | A page for the Atlas's working definitions and the conflicts between sources' definitions. That research is in the records but on no page | no v1 journey needed it | a page for the concepts and their conflicts | v1.5 | [release content audit C-7](research/release-content-audit.md); D-218 (DT-S23-4) |
 | KL-14 | `access-gaps` | A second reading, without the human, of every source the Atlas cites. Some sources (standards pages, one annual report, two company pages) refuse automated retrieval, so their anchors can be re-read only from a file the human supplies | the publishers refuse automated requests, and the Atlas never circumvents a refusal | the human's file for each, when a claim citing it is next relied on | the Verifier, with the human's file, in the session that next relies on them | [release content audit C-4](research/release-content-audit.md); D-218 (DT-S23-2) |
-| KL-15 | `outside-reader` | Any use by a reader outside the project, and a public address. The pages are built and checked in the repository but not published, and no one who did not build them has used them | publication is the human's decision (an external action), and v1 measured readers only by the human and by fresh AI readers | publishing the pages, and a reading by someone outside the project | S25 (the release decides publication); v1.5's design review | [portfolio audit P-3](architecture/portfolio-audit.md); D-184 |
+| KL-15 | `outside-reader` | Any use by a person outside the project. From v1.0 the pages are published at a public address, but no one who did not build the Atlas is recorded as having used them: the reading that tested the release was done by two fresh AI readers, not people | v1 measured its readers only by the human and by fresh AI readers | a reading or a use by a person outside the project, recorded with what they could and could not do | v1.5's design review | [portfolio audit P-3](architecture/portfolio-audit.md); D-184; D-226; D-227 |
 
 ## Boundaries by design
 
@@ -75,7 +75,7 @@ in the text of every page the path names. `none`: no page states it; the record 
 | KL-12 | `site/index.html` | framing | "Searching across the records would need a script or a server, so the Atlas lists every page instead." |
 | KL-13 | — | none | No page shows the concept layer, so no page can say it is missing. Held in the release content audit (C-7) |
 | KL-14 | — | none | Access gaps are a property of the Atlas's re-reading, not of a page's content. Held in the release content audit (C-4) |
-| KL-15 | `site/hbm-insight/index.html` | framing | "It is not published." |
+| KL-15 | — | none | No page states it: who has used the pages is a fact about the project's record, not about a page's content. Held in the portfolio audit (P-3) and the case study |
 | KB-01 | `site/briefs/accelerator-memory/index.html` | framing | "Whether any product, firm or transaction falls under a text: the Atlas never makes that determination." |
 | KB-01 | `site/briefs/accelerator-memory/index.html` | framing | "Whether any product, firm or transaction falls under a text, and what anyone would need to do about it." |
 | KB-01 | `site/briefs/accelerator-memory/index.html` | framing | "Destinations, licence policy, thresholds and exemptions: they stay in the texts." |

@@ -18,6 +18,23 @@ Precedence follows `SESSION-PROMPT-SPEC.md` §1: higher rows win.
 | [`VERSION-ROADMAP.md`](../VERSION-ROADMAP.md) | After v1.0: v1.5 (visual intelligence) and v2 (coverage of the global chain), planned (D-201) |
 | [`SESSION-PROMPT-SPEC.md`](../SESSION-PROMPT-SPEC.md) | How a development session is specified, run and reported |
 
+## The v1.0 release (S25)
+
+Proposed on 2026-10-16 for the human's acceptance with the release (D-229 names each file's owner).
+
+| Document | What it holds |
+|---|---|
+| [`release/release-notes.md`](./release/release-notes.md) | what v1.0 is, where to start, the seven points of the exit condition and where each is explained, what changed in S25 |
+| [`architecture/final-architecture.md`](./architecture/final-architecture.md) | the architecture as released, layer by layer with each layer's home, set beside the baseline's intent |
+| [`architecture/final-audit.md`](./architecture/final-audit.md) | the final process and outcome audit: S22, S23 and S24's ratings side by side, what changed after them, what stays open |
+| [`research/backlog.md`](./research/backlog.md) | the research gaps no planned session closes, each with a session kind and a place in v1.5 or v2 |
+| [`case-study.md`](./case-study.md) | the portfolio case study: what the Atlas shows, how it was built, what it does not show |
+| [`release/demonstration.md`](./release/demonstration.md) | the demonstration dataset and one journey from a question to a source sentence, online and from a clone |
+| [`release/infographic-set.md`](./release/infographic-set.md) | four existing visuals, each with its question, form, evidence route and checks |
+
+The pages are published from the release commit at <https://andreatosti2001.github.io/AI-Infrastructure-Atlas/site/index.html>
+by `.github/workflows/pages.yml`, and checked there against that commit (D-226, D-227).
+
 ## Architecture and data model
 
 | Document | What it holds | Status |
@@ -69,10 +86,11 @@ Precedence follows `SESSION-PROMPT-SPEC.md` §1: higher rows win.
 | [`architecture/milestone-audits/M5-audit.md`](./architecture/milestone-audits/M5-audit.md) | accepted 2026-10-14 (D-187): the policy layer (S17, S18) and S19; M5 closed |
 | [`architecture/agent-audit.md`](./architecture/agent-audit.md) with [`quality/audit-evidence/agent-audit/`](./quality/audit-evidence/agent-audit/) | agent architecture audit (PEF §7): rulings accepted 2026-10-14 (D-180 to D-184) |
 | [`architecture/milestone-audits/M6-audit.md`](./architecture/milestone-audits/M6-audit.md) | accepted 2026-10-15 (D-213): the client product (S20 to S21.5); M6 closed |
+| [`architecture/milestone-audits/M7-audit.md`](./architecture/milestone-audits/M7-audit.md) | proposed 2026-10-16 (S25): final audits and release (S22 to S25) |
 | [`architecture/engineering-audit.md`](./architecture/engineering-audit.md) with [`quality/audit-evidence/engineering-audit/`](./quality/audit-evidence/engineering-audit/) | engineering audit (PEF §9, S22): findings F-1 to F-14 ruled 2026-10-15 (D-212, D-213); F-2, F-5, F-12, F-14 remediated in S22.5 (D-216, D-217) |
 | [`research/release-content-audit.md`](./research/release-content-audit.md) with [`quality/audit-evidence/release-content-audit/`](./quality/audit-evidence/release-content-audit/) | release content audit (PEF §6, the roadmap's S23): accepted 2026-10-15 with its dispositions (D-218); C-1 and C-2 remediated (D-220, D-221); research and content: process 3, outcome 2 |
 | [`architecture/portfolio-audit.md`](./architecture/portfolio-audit.md) with [`quality/audit-evidence/portfolio-audit/`](./quality/audit-evidence/portfolio-audit/) | portfolio and capability audit (PEF §10, §12, the roadmap's S24), the Portfolio Reviewer's first: accepted 2026-10-16 with its rulings (D-224, D-225); every PEF dimension rated for process and outcome |
-| [`known-limitations.md`](./known-limitations.md) | v1.0's known limitations: 15 gaps and 5 boundaries, each with what would close it and its owner, checked against the pages sentence by sentence (KL-1 to KL-8; D-222, D-224) |
+| [`known-limitations.md`](./known-limitations.md) | v1.0's known limitations: 15 gaps and 5 boundaries, each with what would close it and its owner, checked against the pages sentence by sentence (KL-1 to KL-8; D-222, D-224); KL-15 rewritten for the publication (S25, D-227) |
 | [`research/content-audit.md`](./research/content-audit.md) with [`quality/audit-evidence/content-audit/`](./quality/audit-evidence/content-audit/) | content and evidence depth audit (PEF §6): findings ruled 2026-10-02 (D-111 to D-113); maturity accepted 2026-10-03 |
 | [`architecture/analytical-audit.md`](./architecture/analytical-audit.md) with [`quality/audit-evidence/analytical-audit/`](./quality/audit-evidence/analytical-audit/) | analytical depth audit (PEF §8): verdicts decided 2026-10-07 (D-133 to D-138) |
 | `research/content-review-log.md` | planned |

@@ -16,6 +16,15 @@ node tests/browser/brief.qa.js       OUTDIR   # the S21 client brief: site/brief
 QA_BROWSERS="chromium firefox webkit" node tests/browser/filter.qa.js OUTDIR   # the research view's filter per engine (F-11)
 ```
 
+**At a published address** (S25, D-227): with `QA_BASE_URL` set to the address the repository is served at, each
+script opens the same page under it (`site/<page>`) and runs the same measures; the publication workflow
+(`.github/workflows/pages.yml`) does this after each deployment, beside `tools/check_published.py`, which compares every
+page and every file the pages link to with the commit, byte for byte.
+
+```bash
+QA_BASE_URL=https://andreatosti2001.github.io/AI-Infrastructure-Atlas/ node tests/browser/brief.qa.js OUTDIR
+```
+
 `journeys.qa.js` (S20, D-190) also counts every visible link reached by Tab (distinct links, each with a focus ring),
 checks every in-page fragment, presses Enter on a timeline mark and on a matrix cell, and opens every disclosure from
 the keyboard. Its `qa-result.json` has `allOk` and one entry per page and width.
