@@ -479,8 +479,13 @@ S215 = [
     ("S21.5-5", "the Change Detector marked inactive again (D-207)",
      edit("docs/agents/roles.md", "| Change Detector | active |", "| Change Detector | inactive |"), [],
      ["test_active_roles_are_exactly_the_contracted_roles"]),
-    ("S21.5-C1", "control: a framing sentence of the journey template reworded, journeys rebuilt",
-     edit(JT, "texts published after the search date below were not searched.", "texts published after the search date below were not read."), [JOURNEYS], []),
+    # Replaced in S24 (D-224): the sentence is now quoted by docs/known-limitations.md (KL-09), so rewording it on the page
+    # alone is a disagreement KL-3 and KL-4 catch (S24-2's kind of fault). The control keeps its edit and makes the same
+    # edit in the known limitations, as a rewording of a stated limit must now be made.
+    ("S21.5-C1", "control: a framing sentence of the journey template reworded, with its quotation in the known limitations, journeys rebuilt",
+     both(edit(JT, "texts published after the search date below were not searched.", "texts published after the search date below were not read."),
+          edit("docs/known-limitations.md", "texts published after the search date below were not searched.", "texts published after the search date below were not read.")),
+     [JOURNEYS], []),
 ]
 
 # S22: the later-rule search tool and the widened JR-13 (D-210, D-211; tests/test_later_rule_search.py LS-1 to LS-11);
