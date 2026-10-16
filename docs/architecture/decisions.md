@@ -3728,3 +3728,20 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   release notes. No record, page or check changes beyond the new document and its check; the roadmap's sessions are
   unchanged.
 - **Rejected:** leaving the list to S25's release notes, written once at the release without an independent look.
+
+## D-223 — The Portfolio Reviewer is active, for the portfolio audit and v1.0's known limitations
+
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, S24 H-1: "Audit plus limitations
+  list (Recommended)")
+- **Context:** D-184 kept the Portfolio Reviewer inactive "until S24"; every audit since S12 was written by the
+  Knowledge Architect. S24 is the portfolio and capability audit (PEF §10, §12), and D-222 gives it v1.0's known
+  limitations to write and audit. MA §12 requires a contract before a role acts.
+- **Decision:** the Portfolio Reviewer is active with a contract (`docs/agents/contracts.md`). It writes the portfolio
+  audit `docs/architecture/portfolio-audit.md`, its evidence in `docs/quality/audit-evidence/portfolio-audit/`, and
+  `docs/known-limitations.md`. The Knowledge Architect keeps `decisions.md` and `audit-history.md` and no longer owns
+  the portfolio audit's evidence folder; the Data Auditor writes the check that the pages' limits agree with the known
+  limitations. The role credits a capability only for evidence a reviewer can recount, never for a document's
+  description of itself. `tests/test_agent_contracts.py` expects the role active.
+- **Rejected:** the Portfolio Reviewer writing the audit only, with the known limitations left to the Knowledge
+  Architect (the capability judgement and the disclosed limits with two roles); keeping the role inactive and amending
+  D-184 (the roadmap's reviewer unused before v1.0).
