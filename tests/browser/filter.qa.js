@@ -5,10 +5,9 @@
 // that basis's table rows and outlines exactly its marks, and "all links" shows every row again; where it does not,
 // the filter is hidden (the @supports guard) and every row stays shown. An engine that cannot start is a failure, never
 // a skip. Every failed condition is listed by name and exits non-zero (qa-lib.js).
-const path = require('path');
-const { playwright, verdict, finish } = require('./qa-lib');
+const { playwright, pageUrl, verdict, finish } = require('./qa-lib');
 const OUT = process.argv[2];
-const URL = 'file://' + path.resolve(__dirname, '../../site/hbm-insight/index.html');
+const URL = pageUrl('hbm-insight/index.html');
 const ENGINES = (process.env.QA_BROWSERS || 'chromium firefox webkit').split(/\s+/).filter(Boolean);
 
 (async () => {

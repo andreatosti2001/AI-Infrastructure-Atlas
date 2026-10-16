@@ -3801,3 +3801,101 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
   the same session. No record, claim or check changes; the pages stay generated and script-free. Which host serves
   them is S25's design, put to the human.
 - **Rejected:** releasing v1.0 as a repository only (the capability stays visible only to those who run it).
+
+## D-227 — How v1.0 is published: the release commit's tracked files at one address, checked there
+
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, S25 H-1: the whole repository at the
+  tagged release commit, served by GitHub Pages); the workflow, the check and the wording below are S25's build of that
+  answer, reviewed with the release (S25 H-3)
+- **Context:** D-226 decided that v1.0's pages are published and left the host to S25. Measured on the 18 pages: 1,344
+  of their 2,762 links (49 %) open a file outside `site/`, 60 distinct files (records, the human review record,
+  queries and their results, schemas, tools). Publishing `site/` alone would break every one of them unless the builds
+  changed (v1.5's work). The repository is public already.
+- **Decision:**
+  - GitHub Pages serves the tracked files of the release commit (`git archive`), so the pages are at
+    `<address>site/…` and every relative link opens the file it names. The address's root has no page; the README
+    links the entry page `site/index.html`. Pages' source is "GitHub Actions", set by the human in the repository's
+    settings;
+  - `.github/workflows/pages.yml` runs only by hand. It refuses a commit that carries no `v*` tag, runs
+    `tools/check_all.py` on it, uploads the tracked tree and deploys it; then it checks the address with
+    `tools/check_published.py` (PA-1: each page served and equal to the committed page, byte for byte; PA-2: each file
+    a page links to likewise) and with the five browser scripts, which open the published pages when `QA_BASE_URL`
+    names the address (`pageUrl` in `tests/browser/qa-lib.js`; the measures are unchanged). The two Pages actions are
+    pinned by commit (EN-3): `actions/upload-pages-artifact` `fc324d3…` (v5.0.0), `actions/deploy-pages` `368f825…`
+    (v5.0.1), read from each action's repository; checkout, setup-python, setup-node and upload-artifact keep CI's pins;
+  - checks first: `tests/test_published.py` (PA-1 to PA-3 against a local server with planted differences; PW-1 the
+    workflow's trigger, guard, order and checks), written before the tool and the workflow and shown failing; the tool
+    run against the address before any deployment failed on 78 of 78 files (HTTP 404); breaks S25-1 to S25-7 and the
+    control S25-C1; S14.5-F1, whose sentence is gone, replaced by the same fault in the same framing block;
+  - the publication wording: the research view's framing drops "It is not published." (`tools/insight_template.html`,
+    Editorial); `docs/known-limitations.md` KL-15 keeps its outside-reader half as a gap and states it on no page; the
+    README and the baseline's NG-13 and presentation rows say v1.0 is published and where.
+- **Rejected:** `site/` alone (1,344 broken links, or a build change that is v1.5's); serving `main` on every merge (the
+  live pages would drift from the release commit); a redirect page at the address's root (a page outside the builds);
+  a deployment triggered by the tag (the Pages environment admits only the default branch unless the human widens it);
+  the byte comparison in the browser scripts (a Python check runs in the suite against a local server, with breaks).
+
+## D-228 — The release keeps the as-of date of 15 October 2026; two fresh AI readers test the exit condition
+
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, S25 H-0 and H-2)
+- **Context:** S25 opened on 2026-10-16, one day after the pages' as-of date; moving it requires the later-rule search
+  to the new day first (D-208). The roadmap's exit condition asks whether another person can understand seven points
+  about the Atlas.
+- **Decision:**
+  - the pages keep the as-of date and "Searched to" of 2026-10-15; no search runs; the release notes say the evidence
+    and the search stop at that day;
+  - two fresh AI readers, given only the release candidate's tree (the README, the pages and what they link to, as the
+    publication serves them), each answer a form with one field per point of the exit condition before S25 assesses
+    anything; their answers are kept as given in `docs/quality/audit-evidence/portfolio-audit/exit-reading/`, and the
+    limit is stated: language models, not people.
+- **Rejected:** dating the release to S25's opening day (H-0); the human reading on the same form, or a reader the human
+  names (H-2).
+
+## D-229 — The owners of the release's files
+
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, S25 H-3)
+- **Context:** S25 writes the nine outputs the roadmap requires for v1.0, M7's milestone audit and the publication's
+  workflow and check. Every tracked file needs an owner role (D-180); `docs/agents/contracts.md` changes only by
+  decision.
+- **Decision:**
+  - **the Editorial** owns `docs/release/`: the release notes, the demonstration (the dataset and one journey) and the
+    infographic set. These are the readable account of what exists, and they change no canonical fact;
+  - **the Knowledge Architect** owns the final architecture record (`docs/architecture/final-architecture.md`), the
+    final process and outcome audit (`docs/architecture/final-audit.md`) and the research backlog
+    (`docs/research/backlog.md`), beside the milestone audits, M7's included, which it already owns;
+  - **the Portfolio Reviewer** owns the case study (`docs/case-study.md`) and the exit-condition reading's evidence,
+    inside its existing folder `docs/quality/audit-evidence/portfolio-audit/`; the known limitations stay its own;
+  - **the Data Auditor** owns the publication workflow (`.github/workflows/pages.yml`), as it owns CI (D-212), with the
+    check of the published address (`tools/check_published.py`) and its tests, already in its `tools/` and `tests/`.
+- **Rejected:** one owner for every release document (it would mix the readable account, the audit synthesis and the
+  capability judgement in one role); the backlog owned by the Source Scout (a backlog places gaps in the plan, not
+  sources).
+
+## D-230 — v1.0 is accepted for release; two untrue tutorial sentences corrected; M7 closes
+
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, S25 H-3: part 1 option A; items 1
+  to 13; the go for the merge, the tag, the deployment and its check)
+- **Context:** S25 put the release to the human item by item, after two fresh AI readers had answered the exit
+  condition's form (D-228). One reader found that a query tutorial shown on the research view still said the memory's
+  suppliers were "not researched", although both had been recorded as reported since S16.6; S25 then found a second
+  sentence that had drifted (a count of undated sources, fourteen when written in S15, sixteen at the release). No
+  check had failed: the checks prove that each sentence comes from its home, not that the home is still true.
+- **Decision:**
+  - **corrected before the release:** the "missing data" lines of `sql/evidence_coverage.sql` and `sql/source_age.sql`
+    reworded so that they state no value that can drift (results rebuilt with new query hashes and unchanged rows;
+    the pages rebuilt; the research view's two tutorial sentences change); `metrics.md`'s reference-date history and
+    its source-age row dated, and its and `visual-architecture.md`'s "not published" lines set to the publication
+    (D-227). No record, claim, source, result row or status changes;
+  - **accepted:** the release notes, the final architecture record, the final process and outcome audit (no new
+    rating), the known limitations as rewritten for KL-15, the research backlog (RB-1 to RB-5, proposals for the
+    version openings; no session added to the roadmap), the case study, the demonstration, the infographic set, M7's
+    milestone audit (**M7 closes**), the owners (D-229), and the publication as built (D-227);
+  - **the exit condition is met:** both readers understood all seven points; their doubts are stated in the case
+    study (how closely the human read each claim; role boundaries checked after the fact; the published files cannot
+    be checked as served, so the release notes say to clone). The limit stands: language models, not people;
+  - **carried:** CI's actions that target Node.js 20 stay pinned as they are, to v1.5's opening (Data Auditor);
+  - **the release:** the session's branch is merged into `main`, `main`'s merge commit is tagged `v1.0`, and the
+    publication workflow deploys and checks it; Pages' source and the GitHub release are the human's.
+- **Rejected:** releasing with the two sentences listed as a known limitation (H-3 part 1, B); a check that every
+  number written in prose matches the records (a new check for a release session; the reworded sentences carry no
+  number).

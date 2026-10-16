@@ -19,6 +19,13 @@ every page to confirm it matches what is committed, byte for byte. What v1.0 doe
 [known limitations](docs/known-limitations.md). The sections after "How this was built" record the project's state
 session by session; their codes (S20, D-212) point to the [decision log](docs/architecture/decisions.md).
 
+**v1.0 online.** The pages are published at
+<https://andreatosti2001.github.io/AI-Infrastructure-Atlas/site/index.html>, built from the release commit tagged
+`v1.0` and checked there against it; the address serves the repository's files without `.github/`, hidden files or
+Git history, so run the checks in a clone. They run on every push in
+[CI](https://github.com/andreatosti2001/AI-Infrastructure-Atlas/actions/workflows/ci.yml). Start with the
+[release notes](docs/release/release-notes.md).
+
 This is an independent repository. It shares no code, data or runtime with `Eu-Digital-Policy`
 ([D-006](docs/architecture/decisions.md)).
 
@@ -65,7 +72,9 @@ by Anthropic, under rules the repository's human owner wrote and decisions the o
     evidence and source appendix ([`client-brief.md`](docs/architecture/client-brief.md)). It describes the
     records; it is not legal, investment or procurement advice.
 
-The pages are not published (NG-13): they are built and checked in the repository.
+From v1.0 the pages are published, with the files they link to, from the release commit only:
+`.github/workflows/pages.yml` runs every check on a commit tagged `v*`, publishes its tracked files and then checks
+the published address against it (D-226, D-227).
 
 ## How evidence works
 
@@ -134,6 +143,10 @@ anchors and review.
   counts from its Git history ([`portfolio-audit.md`](docs/architecture/portfolio-audit.md), D-224); v1.0's known
   limitations are listed in one place and checked against the pages sentence by sentence
   ([`known-limitations.md`](docs/known-limitations.md), D-222).
+- **The release** (S25): the pages published from the release commit and checked at their address (D-227); the
+  release notes, the final architecture record, the final process and outcome audit, the research backlog, the
+  [case study](docs/case-study.md), a demonstration journey, the infographic set and M7's milestone audit
+  ([release notes](docs/release/release-notes.md)).
 - **The first policy links** (M5): four `restricts` links say that an act's own text names a class among the
   items it controls: the December 2024 rule names high-bandwidth memory, and the 2022, 2023 and 2024 rules
   name semiconductor manufacturing equipment. Each rests on the act's quoted sentence and a recorded match
@@ -152,8 +165,9 @@ anchors and review.
 | `python -m unittest discover -s tests` | schemas, data integrity (every reference resolves, no unreviewed claim is canonical, freshness), the human review record, the SQL results, and every page (every text node has a home in the records or is marked framing, every count recomputed, rebuild byte-identical, accessibility basics; on the export-control page, every matrix cell, timeline mark and status against the records, and the no-advice line beside every act; on the client brief, every summary sentence recomputed from its rows, scope and limits in its first section and in print, and every cited source in its appendix); 28 planted data faults the record checks must name (D-176); every file has an owner role (D-180) |
 | `python tools/validate_repo.py` | Gate 0: the governing documents exist, every relative link in the repository's Markdown resolves, and no session record is committed here |
 | `--check` on `tools/warehouse.py`, `tools/build_page.py`, `tools/build_insight.py`, `tools/build_journeys.py`, `tools/build_brief.py` | every committed result and page equals a fresh rebuild from `data/` |
-| [`tests/regression/`](tests/regression/README.md) | deliberate breaks (222): each plants one fault in its own copy and must be caught by the suite for the reason it names; run in parallel, selected by the files a change touches (D-177, D-178) |
+| [`tests/regression/`](tests/regression/README.md) | deliberate breaks (230): each plants one fault in its own copy and must be caught by the suite for the reason it names; run in parallel, selected by the files a change touches (D-177, D-178) |
 | [`tests/browser/`](tests/browser/README.md) | browser QA at 1280 and 375 px: errors, overflow, keyboard path, measured contrast; the brief also printed on A4 and Letter |
+| `python tools/check_published.py <address>` | the published address serves every page and every file the pages link to, byte for byte as the commit holds them (PA-1, PA-2; run by the publication workflow, with the browser scripts on the live pages) |
 | [Audits](docs/quality/audit-history.md) | milestone, content, analytical and process audits under `PROJECT-EVALUATION-FRAMEWORK.md` |
 
 CI runs the unit tests and Gate 0, and in a second job the browser checks (Chromium; the research view's filter also in
@@ -185,7 +199,11 @@ Firefox and WebKit, D-212), on every push and pull request.
 
 ## Next phase
 
-M6, the client product, closes with S21.5 ([`SESSION-ROADMAP.md`](SESSION-ROADMAP.md)). S20 built the researcher and
+v1.0 is released with S25, which closes M7. Next is v1.5, visual intelligence, when the human opens it (S26,
+[`VERSION-ROADMAP.md`](VERSION-ROADMAP.md)); the research gaps no planned session closes are placed in the
+[research backlog](docs/research/backlog.md).
+
+How v1.0 came about: M6, the client product, closed with S21.5 ([`SESSION-ROADMAP.md`](SESSION-ROADMAP.md)). S20 built the researcher and
 analyst journeys ([`visual-architecture.md`](docs/architecture/visual-architecture.md) §15, D-189 to D-197); S20.5
 kept the script-free generated pages (D-200) and set the plan after v1.0 ([`VERSION-ROADMAP.md`](VERSION-ROADMAP.md),
 D-201); S21 built the first client brief and activated the Client Output role
@@ -194,7 +212,7 @@ the Change Detector and runs its first task, the dated search for later export-c
 ([`change-detection.md`](docs/research/change-detection.md)). M7, the final audits and the v1.0 release (S22 to
 S25), opened with S22, the code and engineering audit, and S22.5, which closed its findings outside v1.5; S23, the
 research depth and content audit, is done (D-218 to D-221); S24, the portfolio and capability audit, is done (D-223
-to D-225); next is S25, the v1.0 synthesis and release.
+to D-225); S25 released v1.0 (D-227 to D-229).
 
 ## Layout
 

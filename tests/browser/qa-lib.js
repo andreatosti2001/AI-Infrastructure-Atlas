@@ -20,6 +20,15 @@ function engine() {
   return [name, playwright()[name]];
 }
 
+// Where a script opens a page (S25, D-227): the committed file under site/, or, when QA_BASE_URL names a published
+// address, the same path under that address (`site/<rel>`, as the publication serves the repository's tree). The
+// measures are the same either way.
+function pageUrl(rel) {
+  const base = process.env.QA_BASE_URL;
+  if (!base) return 'file://' + require('path').resolve(__dirname, '../../site', rel);
+  return new URL('site/' + rel, base.endsWith('/') ? base : base + '/').href;
+}
+
 // Collects named failures: check(label, condition, detail).
 function verdict() {
   const failures = [];
@@ -60,4 +69,4 @@ function widthChecks(check, label, r) {
   check(`${label}: Enter lands on the evidence`, !r.enter || r.enter.every(x => x.ok), (r.enter || []).filter(x => !x.ok));
 }
 
-module.exports = { playwright, engine, verdict, finish, onlyThePage, widthChecks };
+module.exports = { playwright, engine, pageUrl, verdict, finish, onlyThePage, widthChecks };

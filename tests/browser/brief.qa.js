@@ -10,12 +10,10 @@
 // the panels hidden) and the sources are displayed; the
 // first printed page carries the question, the boundary line, the as-of date and the input digest; the PDF's page
 // count on A4 and Letter.
-const { playwright, verdict, finish, widthChecks } = require('./qa-lib');
+const { playwright, pageUrl, verdict, finish, widthChecks } = require('./qa-lib');
 const { chromium } = playwright();
 const fs = require('fs');
-const path = require('path');
 const OUT = process.argv[2];
-const PAGE = path.resolve(__dirname, '../../site/briefs/accelerator-memory/index.html');
 
 function lum(rgb) {
   const c = rgb.map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; });
@@ -25,7 +23,7 @@ function ratio(a, b) { const [h, l] = [lum(a), lum(b)].sort((x, y) => y - x); re
 
 (async () => {
   const browser = await chromium.launch();
-  const url = 'file://' + PAGE;
+  const url = pageUrl('briefs/accelerator-memory/index.html');
   const report = { chromium: browser.version(), widths: {}, print: {} };
   for (const [name, width, height] of [['desktop', 1280, 900], ['mobile', 375, 812]]) {
     const ctx = await browser.newContext({ viewport: { width, height }, deviceScaleFactor: name === 'mobile' ? 2 : 1 });

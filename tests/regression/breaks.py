@@ -10,7 +10,7 @@ The harness is built in layers, each loading the one before it and replacing the
 text its own changes removed (see tests/regression/README.md):
     breaks_records_and_page.py, breaks_sql.py, breaks_research_view.py  ->  breaks_metrics.py
     -> breaks_metric_audit.py -> breaks_supplier_freshness.py -> this file (supplier evidence; review records;
-    S17's policy layer; S18's policy links; S20's research journeys; S20.5's filter guard; S21's client brief; S21.5's search window; S22's search tool; S22.5's audit findings; S24's known limitations).
+    S17's policy layer; S18's policy links; S20's research journeys; S20.5's filter guard; S21's client brief; S21.5's search window; S22's search tool; S22.5's audit findings; S24's known limitations; S25's publication).
 
 Run with a virtualenv built from requirements-test.txt and requirements-analysis.txt, from the repository root
 (the runner is tests/regression/runner.py: parallel copies, one summary, selection by measured files, D-177,
@@ -129,6 +129,12 @@ REPLACED = {
     "S15-M9": ("S15-M9", "the supplier metrics' status loosened: computable once suppliers are named (rebuilt)",
                edit(SUP, "'cannot_be_computed_yet' AS status,", "'computable' AS status,"), ALL,
                ["a supplier metric became computable"]),
+    # S25 (D-227): the research view's framing no longer says "It is not published.", the sentence S14.5-F1 extended;
+    # the same fault (framing that names a record) is planted in the block's first sentence instead
+    "S14.5-F1": ("S14.5-F1", "framing names a record, rebuilt (the research view's opening framing)",
+                 edit("tools/insight_template.html", "This page is a prototype of the Atlas’s research view.",
+                      "This page is a prototype of the Atlas’s research view, and it covers NVIDIA."), [INSIGHT_BUILD],
+                 ["framing names a record (NVIDIA)"]),
 }
 
 S166 = [
@@ -669,6 +675,36 @@ S24 = [
      [], []),
 ]
 
+# S25: the published address serves the release commit (PA-1 to PA-3), the publication workflow (PW-1), its pins (EN-3)
+# and v1.0's known limitations after the publication wording (KL-15's rows, D-226, D-227).
+CP, PAGES_YML = "tools/check_published.py", ".github/workflows/pages.yml"
+S25 = [
+    ("S25-1", "the published-address check stops comparing bytes, so a page that differs passes (PA-1)",
+     edit(CP, "            if body != (REPO_ROOT / rel).read_bytes():\n", "            if False:\n"), [],
+     ["test_pa1_a_page_whose_bytes_differ_fails_by_name"]),
+    ("S25-2", "the published-address check reads only the links inside site/, so the records and documents go unchecked (PA-3)",
+     edit(CP, "    return sorted(found - set(pages()))\n", "    return sorted(f for f in found - set(pages()) if f.startswith(\"site/\"))\n"), [],
+     ["test_pa3_every_page_and_every_relative_link_target_is_covered"]),
+    ("S25-3", "the publication workflow publishes a commit that carries no release tag (PW-1)",
+     edit(PAGES_YML, "          tags=\"$(git tag --points-at HEAD --list 'v*')\"\n", "          tags=\"any\"\n"), [],
+     ["test_pw1_the_workflow_publishes_only_a_checked_tagged_commit_and_checks_the_address", "the tag guard"]),
+    ("S25-4", "the publication workflow also publishes every push to main (PW-1)",
+     edit(PAGES_YML, "on:\n  workflow_dispatch:\n", "on:\n  workflow_dispatch:\n  push:\n    branches: [main]\n"), [],
+     ["test_pw1_the_workflow_publishes_only_a_checked_tagged_commit_and_checks_the_address", "the workflow must run only by hand"]),
+    ("S25-5", "the published brief is no longer checked in a browser (PW-1)",
+     edit(PAGES_YML, "node tests/browser/brief.qa.js", "echo tests/browser/brief.qa.js"), [],
+     ["test_pw1_the_workflow_publishes_only_a_checked_tagged_commit_and_checks_the_address", "brief.qa.js"]),
+    ("S25-6", "the deployment action named by its tag, not its commit (EN-3)",
+     edit(PAGES_YML, "actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1", "actions/deploy-pages@v5"), [],
+     ["test_en3_every_action_is_pinned_to_a_commit", "actions/deploy-pages@v5"]),
+    ("S25-7", "the known limitations quote again the research view's retired sentence 'It is not published.' (KL-3)",
+     edit(KL, "| KL-15 | \u2014 | none | No page states it: who has used the pages is a fact about the project's record, not about a page's content. Held in the portfolio audit (P-3) and the case study |",
+          "| KL-15 | `site/hbm-insight/index.html` | framing | \"It is not published.\" |"), [],
+     ["test_kl3_each_statement_is_on_the_pages_it_names", "It is not published."]),
+    ("S25-C1", "control: the published-address check's closing line reworded",
+     edit(CP, "every page and every linked file equals the commit\")", "every page and every linked file equals the commit, byte for byte\")"), [], []),
+]
+
 S165_BREAKS = s165.breaks
 
 
@@ -691,7 +727,7 @@ def with_brief(brk):
 
 
 def breaks():
-    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205 + S21 + S215 + S22 + S225 + S23 + S24
+    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205 + S21 + S215 + S22 + S225 + S23 + S24 + S25
     return [with_brief(with_journeys(b)) for b in found]
 
 
