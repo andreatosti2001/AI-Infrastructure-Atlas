@@ -16,8 +16,9 @@
 --   but one reports what a third party says (source-policy §7.1), inferred when every cited claim is the Atlas's
 --   reasoning, and a gap when the Atlas records that it does not know. These are the
 --   first query's definitions, used unchanged. Every link weighs the same.
--- missing data: The suppliers of the memory are not researched, so each accelerator has a gap that a
---   piece of research could turn into a stated link. Links nobody has looked for are not counted at all.
+-- missing data: A reported link or a recorded gap is one that further research could turn into a stated
+--   link; the result's columns say how many of each an accelerator has. Links nobody has looked for are
+--   not counted at all.
 -- reproduce: python tools/warehouse.py rebuilds this result from the records; the warehouse's checks
 --   recompute it independently, in plain Python and without SQL.
 -- sensitivity: With four links per accelerator, one new link or one gap resolved moves the split by a

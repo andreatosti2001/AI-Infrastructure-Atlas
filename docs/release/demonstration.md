@@ -1,6 +1,6 @@
 # Demonstration: the dataset and one journey through it — v1.0
 
-- **Status:** proposed (S25, 2026-10-16), for the human's acceptance with the release (S25 H-3). Written by the
+- **Status:** accepted (decided by the human on 2026-10-16, S25 H-3; D-230). Written by the
   Editorial (D-229).
 - **What it is:** the dataset v1.0 ships, and one journey through the published pages that a reader can repeat:
   question, answer, evidence, source. The same journey follows from a clone of the repository. No step needs an
@@ -46,8 +46,8 @@ Start at <https://andreatosti2001.github.io/AI-Infrastructure-Atlas/site/index.h
 8. **See what is not known.** "What the Atlas does not know" lists the recorded gaps, the candidates the Atlas refused
    with their reasons, and the pairs with no record either way.
 9. **Take the answer away.** The [client brief](https://andreatosti2001.github.io/AI-Infrastructure-Atlas/site/briefs/accelerator-memory/index.html)
-   answers the wider question, including the export-control texts, on one printable page with its scope and limits
-   first.
+   answers the wider question, including the export-control texts, in one printable document with its scope and
+   limits first.
 
 ## 3. The same journey from a clone
 

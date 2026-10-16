@@ -3,7 +3,7 @@
 > **Records cited.** This is a process audit (PEF §4). The session reports and prompts it cites are kept in the
 > private development archive, not in this repository (D-151); the decisions, documents and files it cites are here.
 
-**Status:** proposed (S25, 2026-10-16), for the human's acceptance with the release (S25 H-3). Written in S25, the
+**Status:** ACCEPTED by the human on 2026-10-16 (S25 H-3, D-230); M7 closes with this audit. Written in S25, the
 milestone's last session, as M6-P5 asked: "the last session of a milestone carries its audit".
 **Required by:** `PROJECT-EVALUATION-FRAMEWORK.md` (PEF) §4 (a milestone audit at every major milestone); S24's prompt
 §08 ("it closes with S25").
@@ -111,6 +111,7 @@ alone, publishing every merge to `main`, and a redirect page at the address's ro
 | M7-P2 | **Handoffs still race the merge.** PR #42 was merged during S25's opening, after S24 had found the same race | S24 P-9; S25's opening record | standing practice: re-measure the base at the opening and again before the first commit |
 | M7-P3 | **The milestone closed with its audit**, as M6-P5 asked; M3, M4 and M6 had not | this audit; `audit-history.md` | resolved |
 | M7-P4 | **Five sessions in two days, with no review of the code by a person.** The checks carried the review | S24 Part 4 (P-2) | the human's: a review rule at v1.5's opening or later |
+| M7-P5 | **The checks prove provenance, not truth.** Two query-tutorial sentences shown on the research view had stopped being true (the suppliers "not researched"; "fourteen" undated sources) without any check failing; a first-time reader of the release found the first | S25's exit reading (fresh reader 2, field 4); D-230 | remediated in S25: both reworded so that they state no value that can drift; v1.5's design review should read the tutorials as text |
 
 ## Part 3 — Maturity
 
@@ -119,4 +120,4 @@ after S24, are in the [final process and outcome audit](../final-audit.md).
 
 ## Part 4 — Findings and debt
 
-No blocking finding is open. **M7 closes** with this audit when the human accepts it with the release (S25 H-3).
+No blocking finding is open. **M7 is closed** with this audit (D-230).

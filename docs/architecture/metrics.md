@@ -7,7 +7,7 @@
 - source age: kept, saying that the 12-month horizon applies only to time-sensitive links (D-134);
 - the publishers count: **retired** (D-135); its history stays in §6;
 - the three supplier metrics: kept as built (D-136);
-- the reference date moves with each session that rebuilds the pages; S16 set it to 2026-10-07, S17 to 2026-10-08, S18 to 2026-10-13 (D-137).
+- the reference date moves with each session that rebuilds the pages; S16 set it to 2026-10-07, S17 to 2026-10-08, S18 to 2026-10-13, S20 to 2026-10-14 and S21.5 to 2026-10-15 (D-137); the current date is the one written in `sql/source_age.sql`.
 **Decided by the human at the S15 opening (2026-10-06):**
 - the contract runs as written, with `sql-layer.md` §7's publisher sentence corrected (D-127);
 - the three supplier metrics are shown as "cannot be computed yet", with why (H-1, D-130);
@@ -35,7 +35,7 @@ are shown as "cannot be computed yet", with the reason:
 | Metric | Query | Status | What it says today |
 |---|---|---|---|
 | Evidence coverage | `sql/evidence_coverage.sql` | computed | Trainium2: 2 of 4 links stated, 1 inferred, 1 reported, 0 gaps. H100: 1 of 4 stated, 1 inferred, 1 reported, 1 gap (S16.6). Each accelerator's 4 rows come from 3 records, 1 of them shared |
-| Source age | `sql/source_age.sql` | computed, as of 2026-10-07 (D-137) | 5 of the 6 dated links rest on evidence older than 12 months; the source policy's re-check applies to only one of them, already a gap (D-134). The one recent date (6 days) is only the day an undated page was read |
+| Source age | `sql/source_age.sql` | computed (D-137); the figures in this row are S16's, as of 2026-10-07 | 5 of the 6 dated links rest on evidence older than 12 months; the source policy's re-check applies to only one of them, already a gap (D-134). The one recent date (6 days) is only the day an undated page was read |
 | Supplier count | `sql/supplier_metrics.sql` | cannot be computed yet | 2 of 2 incorporated parts have a supplier reported by a third party (S16.6); no part has its full set of suppliers stated |
 | Geographic concentration | `sql/supplier_metrics.sql` | cannot be computed yet | needs where each named supplier makes the part |
 | Single-source relationships | `sql/supplier_metrics.sql` | cannot be computed yet | needs a source stating that a part has exactly one supplier |
@@ -93,7 +93,7 @@ Deviations).
 ## 4. Source age (D-129)
 
 - **The reference date** is written in the query and moves only by a commit (H-3). Each session that
-  rebuilds the pages sets it to the day it opened (D-137, S16): 2026-10-06 in S15, 2026-10-07 in S16, 2026-10-08 in S17, 2026-10-13 in S18. An age is "as of" that date. It is never relative to today, so S14.5's rule against clock
+  rebuilds the pages sets it to the day it opened (D-137, S16): 2026-10-06 in S15, 2026-10-07 in S16, 2026-10-08 in S17, 2026-10-13 in S18, 2026-10-14 in S20 and 2026-10-15 in S21.5 (S22 to S25 kept it). An age is "as of" that date. It is never relative to today, so S14.5's rule against clock
   ages (V-5) holds and the result is byte-identical across runs. WH-13 moves the date and checks that
   only the reference date, the ages and the horizon flags change. Since S16 it moves whatever date the query
   holds.
@@ -158,7 +158,7 @@ The metrics sit in the research view's INSIGHT layer (H-4 C):
 Each metric block links to its "How this was computed" in the METHOD layer, which renders the query
 file: its question, its eight PEF §8 answers, its steps and its reading guide. The DATA layer gains
 "Evidence age, link by link", every row of the source-age result. The HBM journey page is unchanged
-except its table's new access-date flag. The research view stays a prototype, not published (NG-13).
+except its table's new access-date flag. The research view stays a prototype; it was not published before v1.0 (NG-13), and is published from v1.0 (D-227).
 
 ## 8. Queries that build on queries (D-131)
 

@@ -20,7 +20,7 @@ Precedence follows `SESSION-PROMPT-SPEC.md` §1: higher rows win.
 
 ## The v1.0 release (S25)
 
-Proposed on 2026-10-16 for the human's acceptance with the release (D-229 names each file's owner).
+Accepted by the human on 2026-10-16 (S25 H-3, D-230); D-229 names each file's owner.
 
 | Document | What it holds |
 |---|---|
@@ -86,7 +86,7 @@ by `.github/workflows/pages.yml`, and checked there against that commit (D-226, 
 | [`architecture/milestone-audits/M5-audit.md`](./architecture/milestone-audits/M5-audit.md) | accepted 2026-10-14 (D-187): the policy layer (S17, S18) and S19; M5 closed |
 | [`architecture/agent-audit.md`](./architecture/agent-audit.md) with [`quality/audit-evidence/agent-audit/`](./quality/audit-evidence/agent-audit/) | agent architecture audit (PEF §7): rulings accepted 2026-10-14 (D-180 to D-184) |
 | [`architecture/milestone-audits/M6-audit.md`](./architecture/milestone-audits/M6-audit.md) | accepted 2026-10-15 (D-213): the client product (S20 to S21.5); M6 closed |
-| [`architecture/milestone-audits/M7-audit.md`](./architecture/milestone-audits/M7-audit.md) | proposed 2026-10-16 (S25): final audits and release (S22 to S25) |
+| [`architecture/milestone-audits/M7-audit.md`](./architecture/milestone-audits/M7-audit.md) | accepted 2026-10-16 (D-230): final audits and release (S22 to S25); M7 closed |
 | [`architecture/engineering-audit.md`](./architecture/engineering-audit.md) with [`quality/audit-evidence/engineering-audit/`](./quality/audit-evidence/engineering-audit/) | engineering audit (PEF §9, S22): findings F-1 to F-14 ruled 2026-10-15 (D-212, D-213); F-2, F-5, F-12, F-14 remediated in S22.5 (D-216, D-217) |
 | [`research/release-content-audit.md`](./research/release-content-audit.md) with [`quality/audit-evidence/release-content-audit/`](./quality/audit-evidence/release-content-audit/) | release content audit (PEF §6, the roadmap's S23): accepted 2026-10-15 with its dispositions (D-218); C-1 and C-2 remediated (D-220, D-221); research and content: process 3, outcome 2 |
 | [`architecture/portfolio-audit.md`](./architecture/portfolio-audit.md) with [`quality/audit-evidence/portfolio-audit/`](./quality/audit-evidence/portfolio-audit/) | portfolio and capability audit (PEF §10, §12, the roadmap's S24), the Portfolio Reviewer's first: accepted 2026-10-16 with its rulings (D-224, D-225); every PEF dimension rated for process and outcome |

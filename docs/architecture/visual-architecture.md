@@ -457,7 +457,7 @@ S21 (client briefs) inherits U-5 and P-18 (built: [`client-brief.md`](./client-b
 - the HBM page `site/hbm-chain/index.html`: its evidence anchors are the targets of the prototype's
   evidence links, and the build refuses a link with no target.
 
-It is not linked from the HBM page, not published (NG-13), and marked "Prototype" in its kicker. It
+It is not linked from the HBM page, was not published before v1.0 (NG-13; published from v1.0, D-227), and is marked "Prototype" in its kicker. It
 reuses `tools/build_page.py`'s machinery (record values, labels, the SQL table and tutorial) by
 subclassing it; `build_page.py` and the HBM page are unchanged.
 

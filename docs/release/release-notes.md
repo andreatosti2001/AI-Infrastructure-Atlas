@@ -1,12 +1,14 @@
 # AI-Infrastructure-Atlas v1.0 — release notes
 
-- **Status:** proposed (S25, 2026-10-16), for the human's acceptance with the release (S25 H-3). Written by the
+- **Status:** accepted (decided by the human on 2026-10-16, S25 H-3; D-230). Written by the
   Editorial (D-229).
 - **The release:** the commit tagged `v1.0` on `main`. Its pages are published at
   <https://andreatosti2001.github.io/AI-Infrastructure-Atlas/site/index.html>, built from that commit and checked
   there against it, byte for byte (D-226, D-227).
 - **Dates:** the pages are read as of 15 October 2026, and the search for later export-control texts runs to the same
   day (D-228). Nothing published after it is in the Atlas.
+- **What the address serves:** the release commit's files as they are, Markdown and JSON as plain text, without the
+  `.github/` folder, hidden files or Git history. To run the checks, clone the repository.
 - **Claim discipline:** a count names where it was measured. A sentence that judges is the release's reading
   (`INTERPRETATION`), and is marked as such.
 
@@ -47,7 +49,7 @@ point in one sentence and links the document that explains it.
 | 3. How claims are verified | A Verifier re-reads each cited sentence in the source's bytes and sets its evidence status. The human then accepts or rejects every claim before it becomes canonical; drafts wait in staging. | [README, How evidence works](../../README.md#how-evidence-works); [human review record](../quality/human-reviews.md) |
 | 4. How metrics are produced | SQL queries over an in-memory DuckDB rebuilt from the records. Each query states its question, population, denominator and what it does not prove, and its committed result carries the hash of every input. | [`sql-layer.md`](../architecture/sql-layer.md); [`metrics.md`](../architecture/metrics.md); the "How this was computed" tutorials on the pages |
 | 5. How agents are governed | Twelve roles, eleven active, each a written contract of what Claude may read and write in a session. Every file has an owner, checked in CI. The human's verdicts are outside every contract. No program acts on its own. | [agent roles](../agents/roles.md); [contracts](../agents/contracts.md); [README, How this was built](../../README.md#how-this-was-built) |
-| 6. How to reproduce the build | One command re-runs every check and rebuilds every result and page, failing if any differs from what is committed. CI does the same on every push, and the publication does it again before deploying. | [README, Validate](../../README.md#validate); [`.github/workflows/`](../../.github/workflows/) |
+| 6. How to reproduce the build | One command, run in a clone of the repository, re-runs every check and rebuilds every result and page, failing if any differs from what is committed. CI does the same on every push, and the publication does it again before deploying. | [README, Validate](../../README.md#validate); [the workflows](https://github.com/andreatosti2001/AI-Infrastructure-Atlas/tree/main/.github/workflows) |
 | 7. Why the product is useful | It shows exactly what is known about an AI-hardware dependency, how well, and what is not known. The reading behind that judgement is the case study's. | [the case study](../case-study.md); [the client brief](https://andreatosti2001.github.io/AI-Infrastructure-Atlas/site/briefs/accelerator-memory/index.html) |
 
 ## What is in v1.0

@@ -1,6 +1,6 @@
 # Future research backlog — after v1.0
 
-- **Status:** proposed (S25, 2026-10-16), for the human's acceptance with the release (S25 H-3). Written by the
+- **Status:** accepted (decided by the human on 2026-10-16, S25 H-3; D-230). Written by the
   Knowledge Architect (D-229).
 - **What it is:** each research gap of v1.0's [known limitations](../known-limitations.md) that no planned session
   closes, with the kind of session that would close it and where it could fall in

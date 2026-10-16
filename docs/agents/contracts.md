@@ -7,7 +7,7 @@ checked (D-180); the Analyst's contract (D-181); the Verifier re-scoped (D-182);
 all accepted on 2026-10-14. S21: the Client Output's contract, for the client brief (D-205), accepted on 2026-10-14. S21.5: the Change Detector's
 contract, for the dated search for later rules (D-207), decided by the human on 2026-10-14. S24: the Portfolio Reviewer's
 contract, for the portfolio audit and v1.0's known limitations (D-223), decided by the human on 2026-10-16. S25: the owners of the
-release's files (D-229), proposed for the human's acceptance with the release.
+release's files (D-229), decided by the human on 2026-10-16.
 
 MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. Each contract has
 MA's nine fields, in MA's order.

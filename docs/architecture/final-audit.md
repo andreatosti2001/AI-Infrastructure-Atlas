@@ -1,6 +1,6 @@
 # Final process and outcome audit — v1.0
 
-- **Status:** proposed (S25, 2026-10-16), for the human's acceptance with the release (S25 H-3). Written by the
+- **Status:** accepted (decided by the human on 2026-10-16, S25 H-3; D-230). Written by the
   Knowledge Architect (D-229).
 - **What it is:** the pre-release dual audit of PEF §4, as a synthesis. M7 audited the release three times, each audit
   accepted by the human: S22 the code and engineering ([engineering audit](engineering-audit.md), D-213), S23 the

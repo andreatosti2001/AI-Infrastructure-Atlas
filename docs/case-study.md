@@ -1,6 +1,6 @@
 # Case study: an evidence-backed research system built by an AI model under human governance
 
-- **Status:** proposed (S25, 2026-10-16), for the human's acceptance with the release (S25 H-3). Written by the
+- **Status:** accepted (decided by the human on 2026-10-16, S25 H-3; D-230). Written by the
   Portfolio Reviewer (D-229).
 - **Claim discipline:** a count is **measured**, and names where it was measured: mostly the S24 portfolio audit's
   script ([`measures.json`](quality/audit-evidence/portfolio-audit/measures.json), at public commit `5fd5891`), so
@@ -69,6 +69,9 @@ Three limits of the process are stated, not hidden:
 - **The richest record of the process is private (P-13).** Session prompts, reports and their 180 numbered
   deviations are in a private archive by decision (D-152). The public record is the commits, the decision log, the
   audits and these counts.
+- **How closely the human read each claim is not recorded.** The review record holds each verdict, its date and
+  the anchors the human spot-checked, not the time or depth of each reading; both first-time readers of the release
+  said they could not tell careful drafting from light review.
 - **The owner's learning is not measured.** The repository records decisions and verdicts, not what the human learned.
 
 ## 5. What it does not show
@@ -93,6 +96,9 @@ From the audits, in the order they were learned:
   that the strongest evidence was hard to reach and that authorship was unstated.
 - **Controls outside CI decay** (S24). The archive's report rule stopped being enforced when the reports moved out of
   the checked repository.
+- **A check proves where a sentence comes from, not that it is still true** (S25). A reader of the release found a
+  query tutorial, shown on a page, still saying the suppliers were not researched, nine days after they were
+  recorded; every check had passed. It was corrected before the release (D-230).
 
 ## 7. The exit-condition reading
 
@@ -101,6 +107,22 @@ structured, how claims are verified, how metrics are produced, how agents are go
 and why it is useful. Two fresh AI readers were given the release candidate's tree and nothing else, and answered one
 form field per point before any assessment (D-228). Their answers are kept as given in
 [`exit-reading/`](quality/audit-evidence/portfolio-audit/exit-reading/).
+
+**The assessment** (`INTERPRETATION`, written after both answers were in):
+
+| Point | Understood? | What the readers doubted or could not find |
+|---|---|---|
+| 1. What it does | yes, both: the question, its scope, the pages, the audience | who the "client" is; no named user |
+| 2. How the data is structured | yes, both: thirteen kinds, claims citing sources, records citing claims, explicit unknown states, staging | no single overview diagram of the model |
+| 3. How claims are verified | yes, both: extraction, re-read, the human's verdict, the checks | how closely the human read each claim (now stated in Part 4) |
+| 4. How metrics are produced | yes, both: the warehouse, the queries as tutorials, the digests, the independent recomputation | two tutorial sentences no longer true, and stale lines in `metrics.md`: corrected before the release (D-230) |
+| 5. How agents are governed | yes, both: roles as contracts that Claude works under, no runtime, the owner and data checks, the human's merges | role boundaries are checked after the fact, not when a file is written (P-11); no review of the code by a person (P-2) |
+| 6. How to reproduce the build | yes, both: Python 3.11, the pins, `check_all.py`, byte comparison, the harness | the published files lack `.github/` and Git history, so they cannot be checked as served: the release notes now say to clone |
+| 7. Why it is useful | yes, both, and both judged it the same way: a worked, checkable template for evidence-grade research more than a data product a practitioner can rely on today | no outside user; coverage too narrow and evidence too old for a decision |
+
+**Result:** both readers understood all seven points, and neither misread the system. Their doubts are limits the
+Atlas states or now states, and one was a real defect, which was corrected. The limit of the test: the readers are
+language models, not people, and they read the pages as text without rendering them.
 
 ## 8. Check it yourself
 

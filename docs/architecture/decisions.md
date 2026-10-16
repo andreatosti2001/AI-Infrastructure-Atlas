@@ -3853,7 +3853,7 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
 
 ## D-229 — The owners of the release's files
 
-- **Date:** 2026-10-16 · **Status:** proposed (S25), for the human's acceptance with the release (S25 H-3)
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, S25 H-3)
 - **Context:** S25 writes the nine outputs the roadmap requires for v1.0, M7's milestone audit and the publication's
   workflow and check. Every tracked file needs an owner role (D-180); `docs/agents/contracts.md` changes only by
   decision.
@@ -3870,3 +3870,32 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
 - **Rejected:** one owner for every release document (it would mix the readable account, the audit synthesis and the
   capability judgement in one role); the backlog owned by the Source Scout (a backlog places gaps in the plan, not
   sources).
+
+## D-230 — v1.0 is accepted for release; two untrue tutorial sentences corrected; M7 closes
+
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, S25 H-3: part 1 option A; items 1
+  to 13; the go for the merge, the tag, the deployment and its check)
+- **Context:** S25 put the release to the human item by item, after two fresh AI readers had answered the exit
+  condition's form (D-228). One reader found that a query tutorial shown on the research view still said the memory's
+  suppliers were "not researched", although both had been recorded as reported since S16.6; S25 then found a second
+  sentence that had drifted (a count of undated sources, fourteen when written in S15, sixteen at the release). No
+  check had failed: the checks prove that each sentence comes from its home, not that the home is still true.
+- **Decision:**
+  - **corrected before the release:** the "missing data" lines of `sql/evidence_coverage.sql` and `sql/source_age.sql`
+    reworded so that they state no value that can drift (results rebuilt with new query hashes and unchanged rows;
+    the pages rebuilt; the research view's two tutorial sentences change); `metrics.md`'s reference-date history and
+    its source-age row dated, and its and `visual-architecture.md`'s "not published" lines set to the publication
+    (D-227). No record, claim, source, result row or status changes;
+  - **accepted:** the release notes, the final architecture record, the final process and outcome audit (no new
+    rating), the known limitations as rewritten for KL-15, the research backlog (RB-1 to RB-5, proposals for the
+    version openings; no session added to the roadmap), the case study, the demonstration, the infographic set, M7's
+    milestone audit (**M7 closes**), the owners (D-229), and the publication as built (D-227);
+  - **the exit condition is met:** both readers understood all seven points; their doubts are stated in the case
+    study (how closely the human read each claim; role boundaries checked after the fact; the published files cannot
+    be checked as served, so the release notes say to clone). The limit stands: language models, not people;
+  - **carried:** CI's actions that target Node.js 20 stay pinned as they are, to v1.5's opening (Data Auditor);
+  - **the release:** the session's branch is merged into `main`, `main`'s merge commit is tagged `v1.0`, and the
+    publication workflow deploys and checks it; Pages' source and the GitHub release are the human's.
+- **Rejected:** releasing with the two sentences listed as a known limitation (H-3 part 1, B); a check that every
+  number written in prose matches the records (a new check for a release session; the reworded sentences carry no
+  number).

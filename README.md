@@ -21,7 +21,8 @@ session by session; their codes (S20, D-212) point to the [decision log](docs/ar
 
 **v1.0 online.** The pages are published at
 <https://andreatosti2001.github.io/AI-Infrastructure-Atlas/site/index.html>, built from the release commit tagged
-`v1.0` and checked there against it. The checks run on every push in
+`v1.0` and checked there against it; the address serves the repository's files without `.github/`, hidden files or
+Git history, so run the checks in a clone. They run on every push in
 [CI](https://github.com/andreatosti2001/AI-Infrastructure-Atlas/actions/workflows/ci.yml). Start with the
 [release notes](docs/release/release-notes.md).
 

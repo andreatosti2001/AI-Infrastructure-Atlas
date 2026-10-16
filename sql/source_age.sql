@@ -11,8 +11,8 @@
 --   links (who fabricates a product, who supplies a part); for every other link it is a reading aid. A link's age is the age of its newest evidence, because the freshness
 --   rule asks for at least one recent citation. A partial date counts from the start of its period. A
 --   web page that states no date is dated by the day it was read, and its row says so.
--- missing data: Fourteen sources state no date of their own. Where one of them is the newest evidence,
---   the age measures the reading, not the content.
+-- missing data: Some sources state no date of their own (their records say undated). Where one of them is
+--   the newest evidence, the age measures the reading, not the content.
 -- reproduce: python tools/warehouse.py rebuilds this result; the warehouse's checks recompute every age
 --   independently, in plain Python, and check that moving the reference date changes the ages and
 --   nothing else.

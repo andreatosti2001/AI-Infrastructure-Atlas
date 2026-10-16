@@ -1,6 +1,6 @@
 # The representative infographic set — v1.0
 
-- **Status:** proposed (S25, 2026-10-16), for the human's acceptance with the release (S25 H-3). Written by the
+- **Status:** accepted (decided by the human on 2026-10-16, S25 H-3; D-230). Written by the
   Editorial (D-229).
 - **What it is:** four visuals chosen from the 18 pages to show the Atlas's visual language and its evidence-aware
   storytelling. No visual was made for this set. Each entry says which question the visual answers, why it has its

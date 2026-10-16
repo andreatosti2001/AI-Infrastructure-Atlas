@@ -1,6 +1,6 @@
 # Final architecture record — v1.0
 
-- **Status:** proposed (S25, 2026-10-16), for the human's acceptance with the release (S25 H-3). Written by the
+- **Status:** accepted (decided by the human on 2026-10-16, S25 H-3; D-230). Written by the
   Knowledge Architect (D-229).
 - **What it is:** the architecture of the Atlas as released, set beside what the [baseline](baseline.md) intended on
   2026-09-29 (PEF §4). It points to each part's home and restates none of them; the baseline keeps the current-state
