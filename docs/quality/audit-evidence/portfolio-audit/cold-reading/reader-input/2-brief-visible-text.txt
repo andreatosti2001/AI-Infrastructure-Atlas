@@ -1,0 +1,3521 @@
+AI INFRASTRUCTURE ATLASCLIENT BRIEF
+
+All research pages
+
+What does an AI accelerator’s memory depend on, who is reported to supply it, and which recorded export-control texts name those parts?
+
+This brief describes what the Atlas’s records hold. It is not legal, investment or procurement advice, and it makes no recommendation.
+
+ATLAS FRAMING
+
+This brief answers one question from the Atlas’s records, over the scope stated below. Every value in it is generated from a record or a computed result by a tested build step and opens its evidence; the Atlas’s own explanations are marked as framing, like this box.
+
+JUMP TO
+Executive summary
+Dependency map
+Export-control texts
+Evidence gaps and caveats
+Methodology
+Evidence appendix
+Source appendix
+Question and scope
+
+READ AS OF 2026-10-15 · INPUT DIGEST a10db2877897dcfac5159f2e3db95f7a738802474470a13a3d6646a8aad2c46b · BUILT BY tools/build_brief.py
+
+ATLAS FRAMING
+
+The scope is what the brief reads. The chain is the dependency result: each link the Atlas records from an accelerator to the memory inside it and to the process that memory needs, with who designs, fabricates or supplies each part. The policy layer is every export-control text the Atlas records, compared with the classes that chain reaches.
+
+THE CHAIN: 2 accelerators recorded (AWS Trainium2, NVIDIA H100); 8 of 8 rows of the dependency result shown
+7 acts recorded, issued in United States; 5 classes the chain reaches
+Out of scope
+
+ATLAS FRAMING
+
+Accelerators other than those named above, and stages of the chain beyond memory: fabrication beyond the recorded gap, packaging, equipment, servers and cloud.
+Destinations, licence policy, thresholds and exemptions: they stay in the texts.
+Whether any product, firm or transaction falls under a text: the Atlas never makes that determination.
+The law of any other jurisdiction.
+Market share, price, volume, capacity or customers.
+
+Later texts were searched for up to 2026-10-15; texts published after it were not searched.
+
+Executive summary
+AT A GLANCE
+ACCELERATORS
+
+2 accelerators recorded
+
+CHAIN ROWS
+
+8 of 8 rows of the dependency result shown
+
+ACTS
+
+7 acts recorded, issued in United States
+
+CLASSES COMPARED
+
+5 classes the chain reaches
+
+AWS Trainium2 (stated) and NVIDIA H100 (stated) each incorporates High Bandwidth Memory, which requires 3D die stacking (inferred · rests on the Atlas’s own definitions).
+Who designs or fabricates each accelerator: Amazon designs AWS Trainium2 (stated); TSMC → NVIDIA H100, fabricates: a recorded gap, not a link (evidence not fresh).
+Who supplies that memory, as reported: Samsung Electronics in AWS Trainium2 (reported; source-policy criterion not met: recognised); SK hynix in NVIDIA H100 (reported; historical, to 2024-03).
+1 of 5 classes the chain reaches · named in a recorded act: High Bandwidth Memory, by 89 FR 96790 (status on 2026-10-15: has taken effect).
+3 of 5 classes the chain reaches · considered for a recorded act and refused: AI accelerator (term not matched, by 87 FR 62186, 88 FR 73458, 89 FR 96790); AI ASIC (term not matched, by 87 FR 62186, 88 FR 73458, 89 FR 96790); Data-centre GPU (term not matched, by 87 FR 62186, 88 FR 73458, 89 FR 96790).
+1 of 5 classes the chain reaches · no recorded relationship with a recorded act: 3D die stacking.
+Later texts were searched for up to 2026-10-15; texts published after it were not searched.
+
+ATLAS FRAMING
+
+Each sentence above groups rows of the dependency result or of the policy records and states them with their basis: stated by a party, reported by a third party, inferred by the Atlas, or a recorded gap with its reason. A count counts the Atlas’s records, never the world. A class with no recorded relationship to a text is unknown to the Atlas, not outside the text.
+
+Dependency map
+COMPANY
+TSMC
+fabricates
+inferred
+gap: no edge
+PRODUCT
+NVIDIA H100
+incorporates
+stated
+supplier (who makes it)
+SK hynix
+reported
+historical, to 2024-03
+COMPANY
+Amazon
+designs
+stated
+PRODUCT
+AWS Trainium2
+incorporates
+stated
+supplier (who makes it)
+Samsung Electronics
+reported
+class
+COMPONENT
+High Bandwidth Memory
+requires
+inferred
+class
+TECHNOLOGY
+3D die stacking
+ALSO RECORDED IN THE ATLAS
+the facility and product here: not linked to this chain
+COMPANY
+SK hynix
+operates
+inferred
+FACILITY
+SK hynix M16
+PRODUCT
+Micron HBM4 36GB 12H
+recorded as a kind of
+High Bandwidth Memory
+a property of its record,
+not a supply link
+How to read the diagram
+named thing (instance level)
+vendor-neutral class (class level)
+stated: at least one cited claim is a FACT
+inferred: every cited claim is a DERIVATION
+reported: no cited claim is a FACT, and one reports what a third party says
+gap: an unknown value or a recorded gap, never a zero
+recorded gap: a claim the Atlas holds, not an edge
+recorded in the Atlas, not linked to the chain
+The chain in words
+TSMC → NVIDIA H100: fabricates · recorded gap: a claim the Atlas holds, not an edge · inferred evidence
+Amazon designs AWS Trainium2 · stated evidence
+NVIDIA H100 incorporates High Bandwidth Memory · stated · supplier (who makes this part): SK hynix · reported · historical, to 2024-03 evidence
+AWS Trainium2 incorporates High Bandwidth Memory · stated · supplier (who makes this part): Samsung Electronics · reported evidence
+High Bandwidth Memory requires 3D die stacking · inferred evidence
+
+also recorded in the Atlas · the facility and product here: not linked to this chain
+
+SK hynix operates SK hynix M16 · inferred evidence
+Micron HBM4 36GB 12H: recorded as a kind of High Bandwidth Memory · a property of its record, not a supply link evidence
+The chain as a table
+Accelerator	Link	How the Atlas knows	Evidence dated	Published by	Caveats	Traced to
+AWS Trainium2	Amazon designs AWS Trainium2	stated	2023-11-28	Amazon (US Press Center)	one publisher only
+publisher not linked to a company record: src-052	
+IDs
+
+AWS Trainium2	AWS Trainium2 incorporates High Bandwidth Memory	stated	2026-10-01	Amazon Web Services (AWS Neuron documentation)	one publisher only
+dated by the day the page was read
+publisher not linked to a company record: src-043	
+IDs
+
+AWS Trainium2	High Bandwidth Memory · supplier: Samsung Electronics	reported	2025-12-04	SemiAnalysis	one publisher only	
+IDs
+
+AWS Trainium2	High Bandwidth Memory requires 3D die stacking	inferred	2018-06-08 to 2020-12	IEEE Electronics Packaging Society (EPS); Sandia National Laboratories, for the DOE Exascale Computing Project (ECP), via OSTI	rests on the Atlas’s own definitions	
+IDs
+
+NVIDIA H100	TSMC fabricates NVIDIA H100	gap · evidence not fresh	2025-07-22	NVIDIA (NVIDIA Technical Blog)	one publisher only
+publisher not linked to a company record: src-042	
+IDs
+
+NVIDIA H100	NVIDIA H100 incorporates High Bandwidth Memory	stated	2025-07-22	NVIDIA (NVIDIA Technical Blog)	one publisher only
+publisher not linked to a company record: src-051	
+IDs
+
+NVIDIA H100	High Bandwidth Memory · supplier: SK hynix	reported	2024-03-13	TrendForce (Press Center)	one publisher only	
+IDs
+
+NVIDIA H100	High Bandwidth Memory requires 3D die stacking	inferred	2018-06-08 to 2020-12	IEEE Electronics Packaging Society (EPS); Sandia National Laboratories, for the DOE Exascale Computing Project (ECP), via OSTI	rests on the Atlas’s own definitions	
+IDs
+How this was computed
+Export-control texts
+
+ATLAS FRAMING
+
+Each row is a class the chain reaches; each column is a recorded act. “Named in the text” means the act’s own words name the class among the items it controls, as quoted in the evidence. “Refused” gives the reason the Atlas recorded for not linking the pair, for example a term in the text that is broader than the class. The Atlas never compares a product with a text: whether a product meets a text’s parameters is a legal determination.
+
+The classes against the acts
+named in the text
+:
+the text names the class among the items it controls
+refused:
+the Atlas considered the pair and recorded why not
+no recorded relationship
+:
+no record either way
+Class or product	87 FR 62186
+has taken effect
+	88 FR 73424
+has taken effect
+	88 FR 73458
+has taken effect
+	89 FR 96790
+has taken effect
+	90 FR 4544
+has taken effect
+	90 FR 5298
+has taken effect
+	15 CFR chapter VII, subchapter C
+no recorded effect
+
+AI accelerator
+component
+	refused: term not matched	no recorded relationship	refused: term not matched	refused: term not matched	no recorded relationship	no recorded relationship	no recorded relationship
+AI ASIC
+component
+	refused: term not matched	no recorded relationship	refused: term not matched	refused: term not matched	no recorded relationship	no recorded relationship	no recorded relationship
+Data-centre GPU
+component
+	refused: term not matched	no recorded relationship	refused: term not matched	refused: term not matched	no recorded relationship	no recorded relationship	no recorded relationship
+High Bandwidth Memory
+component
+	no recorded relationship	no recorded relationship	refused: relation not stated	named in the text	no recorded relationship	no recorded relationship	no recorded relationship
+3D die stacking
+technology
+	no recorded relationship	no recorded relationship	no recorded relationship	no recorded relationship	no recorded relationship	no recorded relationship	no recorded relationship
+Statuses on the as-of date
+What a status means
+87 FR 62186 · status on 2026-10-15: has taken effect
+88 FR 73424 · status on 2026-10-15: has taken effect
+88 FR 73458 · status on 2026-10-15: has taken effect
+89 FR 96790 · status on 2026-10-15: has taken effect
+90 FR 4544 · status on 2026-10-15: has taken effect
+90 FR 5298 · status on 2026-10-15: has taken effect
+15 CFR chapter VII, subchapter C · status on 2026-10-15: no recorded effect
+
+the export-control comparison
+
+Key entities
+
+ATLAS FRAMING
+
+The companies and products at an end of a link on the chain, or named as a supplier on one, with what the chain records about each. A company that is not listed may still take part in the chain: the Atlas has not recorded it.
+
+Name	type	On this chain	Headquartered in	Profile
+Amazon	company	designs AWS Trainium2 (stated); vendor of AWS Trainium2	United States	company page
+Samsung Electronics	company	supplier High Bandwidth Memory (reported)	Republic of Korea	company page
+TSMC	company	fabricates NVIDIA H100 (gap)	Taiwan	company page
+SK hynix	company	supplier High Bandwidth Memory (reported)	Republic of Korea	company page
+NVIDIA	company	vendor of NVIDIA H100	United States	company page
+AWS Trainium2	product	incorporates High Bandwidth Memory (stated)		evidence
+NVIDIA H100	product	incorporates High Bandwidth Memory (stated)		evidence
+Recent changes
+
+ATLAS FRAMING
+
+The Atlas lists here the dated events it holds for the recorded acts, and the dates of the evidence on the chain. Later texts changing the recorded entries or acts were searched for up to the date the first section gives; a change published after that date is unknown to the Atlas, not absent.
+
+THE LATEST PUBLICATION DATE THE ATLAS HOLDS: 2025-01-16
+
+EVIDENCE ON THE CHAIN DATED FROM 2018-06-08 to 2026-10-01
+
+Dated events of the acts
+2022-10-07 · 87 FR 62186 · effective evidence
+2022-10-12 · 87 FR 62186 · effective evidence
+2022-10-13 · 87 FR 62186 · published evidence
+2022-10-21 · 87 FR 62186 · effective evidence
+2023-10-25 · 88 FR 73424 · published evidence
+2023-10-25 · 88 FR 73458 · published evidence
+2023-11-17 · 88 FR 73424 · effective evidence
+2023-11-17 · 88 FR 73458 · effective evidence
+2024-12-02 · 89 FR 96790 · effective evidence
+2024-12-05 · 89 FR 96790 · published evidence
+2025-01-13 · 90 FR 4544 · effective evidence
+2025-01-15 · 90 FR 4544 · published evidence
+2025-01-16 · 90 FR 5298 · effective evidence
+2025-01-16 · 90 FR 5298 · published evidence
+2025-05-13 · 90 FR 4544 · announced evidence
+2026-01-01 · 88 FR 73424 · effective evidence
+Evidence gaps and caveats
+
+ATLAS FRAMING
+
+What the records leave open, each with its reason: values the Atlas could not determine, candidate links it considered and refused, and pairs with no record either way. A gap is never a zero and never a “no”.
+
+Recorded gaps
+TSMC → NVIDIA H100 · fabricates · a claim the Atlas holds, not an edge evidence
+meets §5 only as a DERIVATION, but rel:fabricates is time_sensitive and the product-level evidence is dated 2025-07-22 (src-042, src-051), more than the §12 horizon before its use. F-1 fails. The human chose a gap (D-092). NVIDIA's live Hopper page names TSMC 4N for the architecture, not the product (D-073 logic)
+ruling: D-092 TSMC → H100 fabricates is a gap until fresh evidence (the human's ruling)
+Candidates that are not edges
+
+the rule that refuses candidates: edge design record
+
+relation not stated
+
+The sentence does not state this relation itself: it names the parties together, says what a thing is for, or states possession, production or group membership, which the type's evidence expectation does not accept (RR-1, ER-2).
+
+NVIDIA → NVIDIA H100 · designs
+
+states what the GPU is designed for, not who designed it (ER-2). NVIDIA's H100 product page and the 2022 H100 PCIe product brief name no designer either
+
+ruling: D-089 Edge scope: five edges, and the candidates that fail §5 (H-1)
+
+Micron Technology → Micron HBM4 36GB 12H · fabricates
+
+production is not stated as wafer fabrication by Micron for this product; the 10-K sentence is company-level (ER-9)
+
+ruling: D-089 Edge scope: five edges, and the candidates that fail §5 (H-1)
+
+company level only
+
+The sentence is about a company in general, not the product or item the edge would name (ER-9).
+
+Micron Technology → Micron HBM4 36GB 12H · fabricates
+
+production is not stated as wafer fabrication by Micron for this product; the 10-K sentence is company-level (ER-9)
+
+ruling: D-089 Edge scope: five edges, and the candidates that fail §5 (H-1)
+
+item has no record
+
+The item has no record, and the Atlas does not stretch it to one that exists (ER-9).
+
+SK hynix, Micron Technology, Samsung Electronics → NVIDIA · supplies · item: memory (no record in the Atlas)
+
+the item is "memory" (ER-9: exactly as broad as the source), and no memory component record exists. HBM would be narrower than the sentence. Samsung, the third firm the sentence names, had no company record (D-111); its record was created in S16.6 and the card now links it (D-149). The relation stays refused because the item has no record
+
+ruling: D-089 Edge scope: five edges, and the candidates that fail §5 (H-1)
+
+No recorded relationship
+NVIDIA H100 · activity edges into this record: no recorded relationship
+Rules cited above
+D-073 The GH100 ruling
+D-092 TSMC → H100 fabricates is a gap until fresh evidence (the human's ruling)
+D-111 A refused candidate names every party its quoted sentence names (cand-002 and Samsung)
+D-149 The refused NVIDIA memory-supplier card links Samsung's new record
+ER-2
+A vendor is not a designer. defined in docs/research/source-policy.md
+ER-9
+Company-level is not product-level. defined in docs/research/source-policy.md
+F-1
+For every field whose row is time_sensitive, at least one citation the row accepts must have an evidence date no more than the source-policy.md §12 horizon before its use. defined in docs/architecture/company-dataset.md
+Classes named by a recorded act that the chain does not reach
+Semiconductor manufacturing equipment · named among the items controlled by 3 of 7 acts: 87 FR 62186, 88 FR 73424, 89 FR 96790 · no recorded dependency link to this chain
+Caveats from the result
+AWS Trainium2 · Amazon designs AWS Trainium2: one publisher only
+AWS Trainium2 · AWS Trainium2 incorporates High Bandwidth Memory: one publisher only; dated by the day the page was read
+AWS Trainium2 · Samsung Electronics supplier High Bandwidth Memory: one publisher only
+AWS Trainium2 · High Bandwidth Memory requires 3D die stacking: rests on the Atlas’s own definitions
+NVIDIA H100 · TSMC fabricates NVIDIA H100: one publisher only
+NVIDIA H100 · NVIDIA H100 incorporates High Bandwidth Memory: one publisher only
+NVIDIA H100 · SK hynix supplier High Bandwidth Memory: one publisher only
+NVIDIA H100 · High Bandwidth Memory requires 3D die stacking: rests on the Atlas’s own definitions
+What this brief does not track
+
+ATLAS FRAMING
+
+Acts, amendments or guidance published after the latest publication date shown in this brief.
+Changes of supplier, design or fabrication after the dates of the evidence shown.
+Accelerators, memory products and stages of the chain outside the scope.
+Quantities: market share, price, volume, capacity, customers.
+Whether any product, firm or transaction falls under a text, and what anyone would need to do about it.
+
+This list describes the Atlas’s coverage. It is not a list of things to watch.
+
+Methodology
+
+ATLAS FRAMING
+
+The brief is generated from the Atlas’s data files and its computed results by a tested build step; nothing on it is typed by hand. Only canonical records appear: records awaiting review are left out. The summary copies values, counts the rows it shows, takes the first and last of a date column, and groups rows; it computes nothing else. A status comes from the Atlas’s status rule on the as-of date. The digest identifies the exact inputs; rebuilding from the same inputs gives the same brief, byte for byte.
+
+Rulings this brief depends on
+D-094 Unknown HBM suppliers are not_researched
+D-124 From SQL results to visuals: the binding rule, and tallies of drawn rows
+D-147 Third-party evidence for a product's supplier, under the human's criteria (R-5)
+D-148 How a reported supplier is shown (H-3)
+D-156 A policy's dates are events; its status is derived (P-4)
+D-161 Description, never advice (P-9)
+D-167 A link needs the act's own term for the record's class (K-2)
+D-172 Refused policy candidates are records, with two new reasons (K-7)
+D-175 The M5 audit records the later-rule gap; it does not search
+D-202 The first client brief: its question, scope and form
+D-203 The brief's design: twelve sections, a summary composed from groups and tallies, five classes compared
+D-204 One composition mechanism for new templates
+Inputs
+
+INPUT DIGEST a10db2877897dcfac5159f2e3db95f7a738802474470a13a3d6646a8aad2c46b
+
+input files
+Reproduce
+the dependency result:
+python tools/warehouse.py --check
+the policy links of one class:
+python tools/navigate.py edges component-high-bandwidth-memory --on 2026-10-15
+one act’s status:
+python tools/policy_status.py policy-us-fr-2022-21658 --on 2026-10-15
+rebuild this brief:
+python tools/build_brief.py --check
+Evidence appendix
+The chain’s records
+TSMC → NVIDIA H100 · recorded gap
+TYPE
+fabricates
+WHY NOT
+meets §5 only as a DERIVATION, but rel:fabricates is time_sensitive and the product-level evidence is dated 2025-07-22 (src-042, src-051), more than the §12 horizon before its use. F-1 fails. The human chose a gap (D-092). NVIDIA's live Hopper page names TSMC 4N for the architecture, not the product (D-073 logic)
+RULING
+D-092 TSMC → H100 fabricates is a gap until fresh evidence (the human's ruling)
+
+DERIVATION supported TSMC performs the wafer fabrication of the NVIDIA H100.
+
+REASONING ER-1: TSMC is named only inside the process name NVIDIA gives the H100, “TSMC 4N” (claim-h100-process-name), so fabrication by TSMC is read out of that name; no retrieved source names the manufacturer of the H100 directly. NVIDIA's 10-K names TSMC among its foundries at company level only (src-024 p.8, ER-9). The H100's HBM stacks are separate parts (the incorporates edge), whose maker is not researched. Not an edge in S10: rel:fabricates is time_sensitive, and this input's evidence is dated 2025-07-22, beyond the horizon of source-policy.md §12 (F-1); the human chose a gap (D-092).
+
+CLAIM claim-tsmc-fabricates-h100 · verified 2026-10-02 · review: accepted by the human on 2026-10-02 · recorded in docs/quality/human-reviews.md#first-relationships-2026-10-02
+
+inputs to this inference
+
+back to the top
+
+Amazon designs AWS Trainium2
+ID
+rel-company-amazon-com-designs-product-amazon-com-trainium2
+LEVEL
+instance
+PERIOD
+no period in the claims
+BASIS
+stated
+
+cited at /claim_ids
+
+FACT supported Amazon Web Services, Inc. (AWS), which the release calls an Amazon.com, Inc. company, announced Trainium2 on 2023-11-28 as one of two AWS-designed chip families, and calls Graviton4 and Trainium2 the latest innovations in chip design from AWS.
+
+AS OF 2023-11-28
+
+Amazon Web Services, Inc. (AWS), an Amazon.com, Inc. company (NASDAQ: AMZN), today announced the next generation of two AWS-designed chip families—AWS Graviton4 and AWS Trainium2
+
+SOURCE AWS Unveils Next Generation AWS-Designed Chips · Amazon (US Press Center)
+
+LOCATOR first paragraph after the dateline 'LAS VEGAS--(BUSINESS WIRE)--'
+
+company_press_release · standing party · stated dates published 2023-11-28 · accessed 2026-10-02T16:17Z
+
+URL https://press.aboutamazon.com/2023/11/aws-unveils-next-generation-aws-designed-chips
+
+READ BY THE VERIFIER 2026-10-02T16:17Z · same bytes as registered
+
+Graviton4 and Trainium2 mark the latest innovations in chip design from AWS
+
+SOURCE AWS Unveils Next Generation AWS-Designed Chips · Amazon (US Press Center)
+
+LOCATOR first paragraph after the dateline, the sentence beginning 'Graviton4 and Trainium2 mark'
+
+company_press_release · standing party · stated dates published 2023-11-28 · accessed 2026-10-02T16:17Z
+
+URL https://press.aboutamazon.com/2023/11/aws-unveils-next-generation-aws-designed-chips
+
+READ BY THE VERIFIER 2026-10-02T16:17Z · same bytes as registered
+
+CLAIM claim-aws-designed-trainium2 · verified 2026-10-02 · review: accepted by the human on 2026-10-02 · recorded in docs/quality/human-reviews.md#first-relationships-2026-10-02
+
+back to the top
+
+NVIDIA H100 incorporates High Bandwidth Memory
+ID
+rel-product-nvidia-h100-tensor-core-gpu-incorporates-component-high-bandwidth-memory
+LEVEL
+instance
+PERIOD
+no period in the claims
+SUPPLIER
+SK hynix · reported · historical, to 2024-03
+BASIS
+stated
+
+cited at /claim_ids
+
+FACT supported NVIDIA states that the H100 SXM5 GPU supports 80 GB (five stacks) of HBM3 memory, and that the PCIe H100 provides 80 GB of HBM2e.
+
+AS OF not stated
+
+The H100 SXM5 GPU raises the bar considerably by supporting 80 GB (five stacks) of fast HBM3 memory
+
+SOURCE NVIDIA Hopper Architecture In-Depth (retrieval of 2026-10-02; earlier bytes: src-006, src-042) · NVIDIA (NVIDIA Technical Blog)
+
+LOCATOR section 'H100 HBM3 and HBM2e DRAM subsystems', the sentence beginning 'The H100 SXM5 GPU raises the bar'
+
+company_technical_documentation · standing party · stated dates published 2022-03-22; modified 2025-07-22 · accessed 2026-10-02T16:17Z
+
+URL https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/
+
+READ BY THE VERIFIER 2026-10-02T16:17Z · same bytes as registered
+
+The PCIe H100 provides 80 GB of fast HBM2e
+
+SOURCE NVIDIA Hopper Architecture In-Depth (retrieval of 2026-10-02; earlier bytes: src-006, src-042) · NVIDIA (NVIDIA Technical Blog)
+
+LOCATOR section 'H100 HBM3 and HBM2e DRAM subsystems', the sentence beginning 'The PCIe H100 provides'
+
+company_technical_documentation · standing party · stated dates published 2022-03-22; modified 2025-07-22 · accessed 2026-10-02T16:17Z
+
+URL https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/
+
+READ BY THE VERIFIER 2026-10-02T16:17Z · same bytes as registered
+
+CLAIM claim-h100-hbm-stacks · verified 2026-10-02 · review: accepted by the human on 2026-10-02 · recorded in docs/quality/human-reviews.md#first-relationships-2026-10-02
+
+cited at /supplier/0/claim_ids
+
+ATTRIBUTION supported TrendForce stated on 13 March 2024 that the current HBM3 supply for NVIDIA's H100 solution was primarily met by SK hynix. It is TrendForce's own assessment; the release names no source for it.
+
+AS OF not stated
+
+The current HBM3 supply for NVIDIA’s H100 solution is primarily met by SK hynix
+
+SOURCE HBM3 Initially Exclusively Supplied by SK Hynix, Samsung Rallies Fast After AMD Validation, Says TrendForce · TrendForce (Press Center)
+
+LOCATOR the release body, the paragraph beginning 'The current HBM3 supply', its first sentence
+
+market_research_consultancy · standing originator · stated dates published 2024-03-13 · accessed 2026-10-07T16:44Z
+
+URL https://www.trendforce.com/presscenter/news/20240313-12075.html
+
+CRITERIA (SOURCE POLICY) recognised as reliable: met · an established, independent market-research firm on S16.6's list of recognised analysis firms (plan.md), approved by the human on 2026-10-07; citation by parties or governments was not checked · independent of the parties: met · the release states no sponsor, commission or tie to NVIDIA or SK hynix; the firm's ownership was not researched
+
+READ BY THE VERIFIER 2026-10-07T16:44Z · same bytes as registered
+
+CLAIM claim-trendforce-h100-hbm3-primarily-sk-hynix-2024 · verified 2026-10-07 · review: accepted by the human on 2026-10-07 · recorded in docs/quality/human-reviews.md#third-party-supplier-reports-and-samsung-electronics-2026-10-07
+
+back to the top
+
+AWS Trainium2 incorporates High Bandwidth Memory
+ID
+rel-product-amazon-com-trainium2-incorporates-component-high-bandwidth-memory
+LEVEL
+instance
+PERIOD
+no period in the claims
+SUPPLIER
+Samsung Electronics · reported
+BASIS
+stated
+
+cited at /claim_ids
+
+FACT supported AWS's Trainium2 architecture page gives Trainium2 an HBM capacity of 96 GiB, against 32 GiB for the first Trainium.
+
+AS OF not stated
+
+Trainium Trainium2 Improvement factor HBM Capacity (GiB) 32 96 3x
+
+SOURCE Trainium2 Architecture (retrieval of 2026-10-01; earlier bytes: src-010) · Amazon Web Services (AWS Neuron documentation)
+
+LOCATOR section 'Trainium2 performance improvements', subsection 'Memory', the table's header row and its row 'HBM Capacity (GiB)'; cells read in order, table-cell boundaries as whitespace
+
+company_technical_documentation · standing party · stated dates undated · accessed 2026-10-01T20:44Z
+
+URL https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html
+
+READ BY THE VERIFIER 2026-10-02T16:00Z · same bytes as registered
+
+CLAIM claim-trainium2-hbm-capacity · verified 2026-10-02 · review: accepted by the human on 2026-10-02 · recorded in docs/quality/human-reviews.md#first-relationships-2026-10-02
+
+cited at /supplier/0/claim_ids
+
+ATTRIBUTION supported SemiAnalysis stated on 4 December 2025 that the 5.7 Gbps HBM pin speed used in Trn2 (AWS Trainium2) was due to using memory supplied by Samsung. It is SemiAnalysis's own assessment; it names no source, and it does not say that Samsung was the only supplier.
+
+AS OF not stated
+
+the 5.7Gbps pin speed that was used in Trn2 is more in line with HBM3 speeds
+
+SOURCE AWS Trainium3 Deep Dive | A Potential Challenger Approaching · SemiAnalysis
+
+LOCATOR the free part, the paragraph beginning 'The HBM3E is upgraded to 12-high for Trainium3', its third and fourth sentences
+
+market_research_consultancy · standing originator · stated dates published 2025-12-04 · accessed 2026-10-07T16:45Z
+
+URL https://newsletter.semianalysis.com/p/aws-trainium3-deep-dive-a-potential
+
+CRITERIA (SOURCE POLICY) recognised as reliable: not met · an independent semiconductor analysis firm widely read in the industry, but the Atlas found no evidence that parties, governments or intergovernmental bodies routinely cite it · independent of the parties: met · the text states no sponsor or tie to Amazon, Samsung, SK hynix or Micron; the firm sells research and consulting to the industry
+
+READ BY THE VERIFIER 2026-10-07T16:45Z · same bytes as registered
+
+The speed deficiency was due to using memory supplied by Samsung
+
+SOURCE AWS Trainium3 Deep Dive | A Potential Challenger Approaching · SemiAnalysis
+
+LOCATOR the same paragraph, its fourth sentence
+
+market_research_consultancy · standing originator · stated dates published 2025-12-04 · accessed 2026-10-07T16:45Z
+
+URL https://newsletter.semianalysis.com/p/aws-trainium3-deep-dive-a-potential
+
+CRITERIA (SOURCE POLICY) recognised as reliable: not met · as the citation above · independent of the parties: met · as the citation above
+
+READ BY THE VERIFIER 2026-10-07T16:45Z · same bytes as registered
+
+CLAIM claim-semianalysis-trn2-hbm-samsung-2025 · verified 2026-10-07 · review: accepted by the human on 2026-10-07 · recorded in docs/quality/human-reviews.md#third-party-supplier-reports-and-samsung-electronics-2026-10-07
+
+back to the top
+
+High Bandwidth Memory requires 3D die stacking
+ID
+rel-component-high-bandwidth-memory-requires-technology-3d-die-stacking
+LEVEL
+class
+BASIS
+inferred
+
+cited at /claim_ids
+
+DERIVATION supported Making any High Bandwidth Memory stack requires 3D die stacking.
+
+REASONING The ECP report, a research report and the originator of its definition, defines HBM as a DRAM stacking technology that vertically stacks multiple DRAM dies and directly connects them with TSVs (claim-ecp-hbm-definition); the Atlas's HBM is that stack (claim-atlas-high-bandwidth-memory-working-definition). Stacking active dies and interconnecting them directly, not through the package, is what the Atlas calls 3D die stacking (claim-atlas-3d-die-stacking-working-definition). Since every HBM stack is stacked dies by definition, no HBM stack can be made without 3D die stacking: necessity read out of a definition, not stated in words. ER-1 does not cover this step; the human allowed it for S10 as a DERIVATION (D-091, 2026-10-02: "Allow, as DERIVATION (Recommended)"). The 3D die stacking record covers HBM stacking only in v1, so the edge says nothing about other stacked products.
+
+CLAIM claim-hbm-requires-3d-die-stacking · verified 2026-10-02 · review: accepted by the human on 2026-10-02 · recorded in docs/quality/human-reviews.md#first-relationships-2026-10-02
+
+inputs to this inference
+
+back to the top
+
+SK hynix operates SK hynix M16
+ID
+rel-company-sk-hynix-operates-facility-kr-m16
+LEVEL
+instance
+PERIOD
+no period in the claims
+BASIS
+inferred
+
+cited at /claim_ids
+
+DERIVATION supported SK hynix Inc. operates its plant M16 in 이천 (Icheon).
+
+REASONING SK hynix Inc., the entity of its separate financial statements, states that it has installed and operates (설치ㆍ가동) production plants in 경기도 이천시 (claim-sk-hynix-production-plants-icheon-cheongju). Its annual report lists M16 among the changes in its own production facilities, as a new plant (공장) in 이천 completed in 2021-02 (claim-sk-hynix-m16-completed-icheon), and its release calls M16 its new fabrication plant (claim-sk-hynix-m16-fabrication-plant). So M16 is one of SK hynix's production plants in 이천, which SK hynix Inc. states it operates. The step is the Atlas's (D-082, D-099): the filing does not list the 이천 plants one by one, and neither source names an operator other than SK hynix. Ownership is not read from it (설치 is not ownership), and no period is: the 2021-02 completion dates construction, not the start of operation.
+
+CLAIM claim-sk-hynix-operates-m16 · verified 2026-10-02 · review: accepted by the human on 2026-10-02 · recorded in docs/quality/human-reviews.md#first-relationships-2026-10-02
+
+inputs to this inference
+
+back to the top
+
+TSMC
+ID
+company-taiwan-semiconductor-manufacturing-company
+TYPE
+company
+
+cited at /identity_claim_ids
+
+FACT supported TSMC's Articles of Incorporation give its name as 台灣積體電路製造股份有限公司 in the Chinese language and Taiwan Semiconductor Manufacturing Company Limited in the English language. The 20-F cover gives the Chinese name as the exact name in its charter, and the English name as its translation.
+
+AS OF not stated
+
+its name shall be 台灣積體電路製造股份有限公司 in the Chinese language, and Taiwan Semiconductor Manufacturing Company Limited in the English language
+
+SOURCE Annual Report on Form 20-F for the fiscal year ended December 31, 2025 · Taiwan Semiconductor Manufacturing Company Limited
+
+LOCATOR p.179, Exhibit 1.1, Articles of Incorporation, Article 1
+
+company_filing · standing party · stated dates signed 2026-04-16 · accessed 2026-10-01T14:44Z
+
+URL https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf
+
+READ BY THE VERIFIER 2026-10-01T14:44Z · same bytes as registered
+
+Our legal and commercial name is 台灣積體電路製造股份有限公司 (Taiwan Semiconductor Manufacturing Company Limited)
+
+SOURCE Annual Report on Form 20-F for the fiscal year ended December 31, 2025 · Taiwan Semiconductor Manufacturing Company Limited
+
+LOCATOR p.20, Item 4, 'Our History and Structure', the first sentence
+
+company_filing · standing party · stated dates signed 2026-04-16 · accessed 2026-10-01T14:44Z
+
+URL https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf
+
+READ BY THE VERIFIER 2026-10-01T14:44Z · same bytes as registered
+
+台灣積體電路製造股份有限公司 (Exact Name of Registrant as Specified in Its Charter)
+
+SOURCE Annual Report on Form 20-F for the fiscal year ended December 31, 2025 · Taiwan Semiconductor Manufacturing Company Limited
+
+LOCATOR p.1, cover page, the name printed above the label '(Exact Name of Registrant as Specified in Its Charter)'
+
+company_filing · standing party · stated dates signed 2026-04-16 · accessed 2026-10-01T14:44Z
+
+URL https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf
+
+READ BY THE VERIFIER 2026-10-01T14:44Z · same bytes as registered
+
+Taiwan Semiconductor Manufacturing Company Limited Republic of China (Translation of Registrant’s Name Into English)
+
+SOURCE Annual Report on Form 20-F for the fiscal year ended December 31, 2025 · Taiwan Semiconductor Manufacturing Company Limited
+
+LOCATOR p.1, cover page, the English name and its label; the text runs on into the jurisdiction field beside it
+
+company_filing · standing party · stated dates signed 2026-04-16 · accessed 2026-10-01T14:44Z
+
+URL https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf
+
+READ BY THE VERIFIER 2026-10-01T14:44Z · same bytes as registered
+
+CLAIM claim-tsmc-legal-name · verified 2026-10-01 · review: accepted by the human on 2026-10-01 · recorded in docs/quality/human-reviews.md#companies-and-jurisdictions-2026-10-01
+
+cited at /roles/0/claim_ids
+
+FACT supported As a foundry, TSMC manufactures semiconductors with its own manufacturing processes for its customers, based on proprietary integrated circuit designs that the customers provide.
+
+AS OF not stated
+
+As a foundry, we manufacture semiconductors using our manufacturing processes for our customers based on proprietary integrated circuit designs provided by them
+
+SOURCE Annual Report on Form 20-F for the fiscal year ended December 31, 2025 · Taiwan Semiconductor Manufacturing Company Limited
+
+LOCATOR p.21, Item 4, 'Business Overview of the Company', the first sentence
+
+company_filing · standing party · stated dates signed 2026-04-16 · accessed 2026-10-01T14:44Z
+
+URL https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf
+
+READ BY THE VERIFIER 2026-10-01T14:44Z · same bytes as registered
+
+CLAIM claim-tsmc-foundry · verified 2026-10-01 · review: accepted by the human on 2026-10-01 · recorded in docs/quality/human-reviews.md#companies-and-jurisdictions-2026-10-01
+
+other claims in this record’s trace
+
+back to the top
+
+Amazon
+ID
+company-amazon-com
+TYPE
+company
+
+cited at /identity_claim_ids
+
+FACT supported The registrant of Amazon's Annual Report on Form 10-K for the fiscal year ended December 31, 2025 has the exact name “AMAZON.COM, INC.”, as specified in its charter.
+
+AS OF not stated
+
+AMAZON.COM, INC. (Exact name of registrant as specified in its charter)
+
+SOURCE 2025 Annual Report (including the Annual Report on Form 10-K for the fiscal year ended December 31, 2025) · Amazon.com, Inc.
+
+LOCATOR p.12 (the Form 10-K's cover page, which follows the shareholder letter), the name printed above the label '(Exact name of registrant as specified in its charter)'
+
+company_filing · standing party · stated dates signed 2026-02-05 · accessed 2026-10-01T05:33Z
+
+URL https://ir.aboutamazon.com/files/doc_financials/2026/ar/Amazon-2025-Annual-Report.pdf
+
+READ BY THE VERIFIER 2026-10-01T05:33Z · same bytes as registered
+
+CLAIM claim-amazon-registrant-name · verified 2026-10-01 · review: accepted by the human on 2026-10-01 · recorded in docs/quality/human-reviews.md#companies-and-jurisdictions-2026-10-01
+
+cited at /roles/0/claim_ids
+
+FACT supported Amazon provides cloud services to businesses, and through AWS offers on-demand technology services, including compute, storage and database services.
+
+AS OF not stated
+
+We provide physical, e-commerce, and omnichannel retail, cloud services, and other services to businesses
+
+SOURCE 2025 Annual Report (including the Annual Report on Form 10-K for the fiscal year ended December 31, 2025) · Amazon.com, Inc.
+
+LOCATOR p.23, Form 10-K Item 1A, under 'Our Commercial Agreements, Strategic Alliances, and Other Business Relationships Expose Us to Risks', the first sentence
+
+company_filing · standing party · stated dates signed 2026-02-05 · accessed 2026-10-01T05:33Z
+
+URL https://ir.aboutamazon.com/files/doc_financials/2026/ar/Amazon-2025-Annual-Report.pdf
+
+READ BY THE VERIFIER 2026-10-01T05:33Z · same bytes as registered
+
+through AWS, which offers a broad set of on-demand technology services, including compute, storage, database
+
+SOURCE 2025 Annual Report (including the Annual Report on Form 10-K for the fiscal year ended December 31, 2025) · Amazon.com, Inc.
+
+LOCATOR p.14, Form 10-K Item 1 'Business', 'Developers and Enterprises'
+
+company_filing · standing party · stated dates signed 2026-02-05 · accessed 2026-10-01T05:33Z
+
+URL https://ir.aboutamazon.com/files/doc_financials/2026/ar/Amazon-2025-Annual-Report.pdf
+
+READ BY THE VERIFIER 2026-10-01T05:33Z · same bytes as registered
+
+CLAIM claim-amazon-provides-cloud-services · verified 2026-10-01 · review: accepted by the human on 2026-10-01 · recorded in docs/quality/human-reviews.md#companies-and-jurisdictions-2026-10-01
+
+cited at /roles/0/claim_ids
+
+FACT supported As of December 31, 2025, Amazon operated leased and owned facilities in the category 'Fulfillment, data centers, and other', in North America and internationally.
+
+AS OF 2025-12-31
+
+As of December 31, 2025, we operated the following facilities
+
+SOURCE 2025 Annual Report (including the Annual Report on Form 10-K for the fiscal year ended December 31, 2025) · Amazon.com, Inc.
+
+LOCATOR p.29, Form 10-K Item 2 'Properties', the first sentence
+
+company_filing · standing party · stated dates signed 2026-02-05 · accessed 2026-10-01T05:33Z
+
+URL https://ir.aboutamazon.com/files/doc_financials/2026/ar/Amazon-2025-Annual-Report.pdf
+
+READ BY THE VERIFIER 2026-10-01T05:33Z · same bytes as registered
+
+Fulfillment, data centers, and other
+
+SOURCE 2025 Annual Report (including the Annual Report on Form 10-K for the fiscal year ended December 31, 2025) · Amazon.com, Inc.
+
+LOCATOR p.29, Form 10-K Item 2 'Properties', first table, column 'Description of Use', the rows for North America and International
+
+company_filing · standing party · stated dates signed 2026-02-05 · accessed 2026-10-01T05:33Z
+
+URL https://ir.aboutamazon.com/files/doc_financials/2026/ar/Amazon-2025-Annual-Report.pdf
+
+READ BY THE VERIFIER 2026-10-01T05:33Z · same bytes as registered
+
+CLAIM claim-amazon-operates-data-centers · verified 2026-10-01 · review: accepted by the human on 2026-10-01 · recorded in docs/quality/human-reviews.md#companies-and-jurisdictions-2026-10-01
+
+other claims in this record’s trace
+
+back to the top
+
+NVIDIA H100
+ID
+product-nvidia-h100-tensor-core-gpu
+TYPE
+product
+VENDOR
+company-nvidia · NVIDIA
+INSTANCE OF
+component-data-centre-gpu · Data-centre GPU
+
+cited at /identity_claim_ids
+
+FACT supported The NVIDIA H100 Tensor Core GPU is a data center GPU that NVIDIA offers for large-scale AI and HPC.
+
+AS OF not stated
+
+The NVIDIA H100 Tensor Core GPU is our ninth-generation data center GPU designed to deliver an order-of-magnitude performance leap for large-scale AI and HPC
+
+SOURCE NVIDIA Hopper Architecture In-Depth (retrieval of 2026-10-01; earlier bytes: src-006) · NVIDIA (NVIDIA Technical Blog)
+
+LOCATOR section 'Introducing the NVIDIA H100 Tensor Core GPU', first sentence
+
+company_technical_documentation · standing party · stated dates published 2022-03-22; modified 2025-07-22 · accessed 2026-10-01T20:44Z
+
+URL https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/
+
+READ BY THE VERIFIER 2026-10-01T20:44Z · same bytes as registered
+
+CLAIM claim-h100-identity · verified 2026-10-01 · review: accepted by the human on 2026-10-01 · recorded in docs/quality/human-reviews.md#technologies-components-and-products-2026-10-01
+
+cited at /vendor_process_name/0/claim_ids
+
+FACT supported NVIDIA names the fabrication process of the H100 “TSMC 4N”.
+
+AS OF not stated
+
+Using the TSMC 4N fabrication process enables H100 to increase GPU core frequency
+
+SOURCE NVIDIA Hopper Architecture In-Depth (retrieval of 2026-10-01; earlier bytes: src-006) · NVIDIA (NVIDIA Technical Blog)
+
+LOCATOR after the GH100 specification list, the sentence beginning 'Using the TSMC 4N fabrication process'
+
+company_technical_documentation · standing party · stated dates published 2022-03-22; modified 2025-07-22 · accessed 2026-10-01T20:44Z
+
+URL https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/
+
+READ BY THE VERIFIER 2026-10-01T20:44Z · same bytes as registered
+
+CLAIM claim-h100-process-name · verified 2026-10-01 · review: accepted by the human on 2026-10-01 · recorded in docs/quality/human-reviews.md#technologies-components-and-products-2026-10-01
+
+back to the top
+
+AWS Trainium2
+ID
+product-amazon-com-trainium2
+TYPE
+product
+VENDOR
+company-amazon-com · Amazon
+INSTANCE OF
+component-ai-asic · AI ASIC
+
+cited at /identity_claim_ids
+
+FACT supported Trainium2 is a machine learning chip that AWS offers, its third generation of purpose-built machine learning chip.
+
+AS OF not stated
+
+Trainium2 is the third generation, purpose-built Machine Learning chip from AWS
+
+SOURCE Trainium2 Architecture (retrieval of 2026-10-01; earlier bytes: src-010) · Amazon Web Services (AWS Neuron documentation)
+
+LOCATOR heading 'Trainium2 Architecture', first sentence
+
+company_technical_documentation · standing party · stated dates undated · accessed 2026-10-01T20:44Z
+
+URL https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html
+
+READ BY THE VERIFIER 2026-10-01T20:44Z · same bytes as registered
+
+CLAIM claim-trainium2-identity · verified 2026-10-01 · review: accepted by the human on 2026-10-01 · recorded in docs/quality/human-reviews.md#technologies-components-and-products-2026-10-01
+
+back to the top
+
+High Bandwidth Memory
+ID
+component-high-bandwidth-memory
+TYPE
+component
+
+cited at /identity_claim_ids
+
+ATTRIBUTION supported An ECP milestone report by Sandia describes HBM as a DRAM stacking technology that vertically stacks multiple DRAM dies and directly connects them with through-silicon vias (TSVs).
+
+AS OF not stated
+
+HBM is a DRAM stacking technology that vertically stacks multiple DRAM dies and directly connects them with through-silicon vias (TSVs)
+
+SOURCE Milestone M1 Report: HBM2/3 Evaluation on Many-core CPU (ECP Milestone ECP-MT-1000; SAND2018-6370R) · Sandia National Laboratories, for the DOE Exascale Computing Project (ECP), via OSTI
+
+LOCATOR p.5 (printed p.1), §1 'Introduction', second sentence
+
+research_report · standing originator · stated dates published 2018-06-08 · accessed 2026-10-01T20:51Z
+
+URL https://www.osti.gov/servlets/purl/1455354/
+
+READ BY THE VERIFIER 2026-10-01T20:51Z · same bytes as registered
+
+CLAIM claim-ecp-hbm-definition · verified 2026-10-01 · review: accepted by the human on 2026-10-01 · recorded in docs/quality/human-reviews.md#technologies-components-and-products-2026-10-01
+
+cited at /definition/0/claim_ids
+
+INTERPRETATION supported For the Atlas, high Bandwidth Memory (HBM) is a memory component: a stack of DRAM dies, placed vertically and connected directly by through-silicon vias.
+
+REASONING The ECP report describes HBM as a DRAM stacking technology. The Atlas records HBM as a component (entity-taxonomy §5, HBM-02), so the working definition names the stack the technology produces; the stacking process itself is the 3D die stacking record. Where the stack sits (TQ-02, in-package) is an S10 edge, not part of the definition.
+
+CLAIM claim-atlas-high-bandwidth-memory-working-definition · verified 2026-10-01 · review: accepted by the human on 2026-10-01 · recorded in docs/quality/human-reviews.md#technologies-components-and-products-2026-10-01
+
+inputs to this inference
+
+back to the top
+
+3D die stacking
+ID
+technology-3d-die-stacking
+TYPE
+technology
+BROADER
+technology-advanced-packaging · Advanced packaging
+
+cited at /identity_claim_ids
+
+ATTRIBUTION supported The IEEE EPS Heterogeneous Integration Roadmap defines a 3D architecture as two or more active silicon devices stacked and interconnected without the agency of the package.
+
+AS OF not stated
+
+A 3D architecture is defined as an architecture where two or more active silicon devices are stacked and interconnected without the agency of the package
+
+SOURCE Heterogeneous Integration Roadmap, 2020 Edition, Chapter 22: Interconnects for 2D and 3D Architectures · IEEE Electronics Packaging Society (EPS)
+
+LOCATOR p.4 (chapter page 2), §3, item b
+
+research_report · standing originator · stated dates published 2020-12 · accessed 2026-10-01T20:46Z
+
+URL https://eps.ieee.org/wp-content/uploads/2025/11/ch22_2D-3D-2020.pdf
+
+READ BY THE VERIFIER 2026-10-01T20:46Z · same bytes as registered
+
+CLAIM claim-hir-3d-architecture-definition · verified 2026-10-01 · review: accepted by the human on 2026-10-02 · recorded in docs/quality/human-reviews.md#facilities-events-and-the-held-concept-claims-2026-10-02
+
+cited at /definition/0/claim_ids
+
+INTERPRETATION supported For the Atlas, 3D die stacking is the process of stacking two or more active dies and interconnecting them directly, not through the package. In v1 it covers HBM stacking only.
+
+REASONING HIR's 3D architecture gives the definition; the ECP report gives HBM as a case (DRAM dies stacked and connected by TSVs). The v1 scope (HBM only) is the taxonomy's (entity-taxonomy §5, PKG-05).
+
+CLAIM claim-atlas-3d-die-stacking-working-definition · verified 2026-10-01 · review: accepted by the human on 2026-10-02 · recorded in docs/quality/human-reviews.md#facilities-events-and-the-held-concept-claims-2026-10-02
+
+inputs to this inference
+
+back to the top
+
+SK hynix
+ID
+company-sk-hynix
+TYPE
+company
+
+cited at /identity_claim_ids
+
+FACT supported The company's name is 에스케이하이닉스 주식회사, written in English as SK hynix Inc. (the Atlas's translation of the Korean sentence).
+
+AS OF not stated
+
+당사의 명칭은 에스케이하이닉스 주식회사이며, 영문으로는 SK hynix Inc.라고 표기합니다
+
+SOURCE Annual Report for fiscal year 2025 (제78기), section I.1 'Company overview' (English DART) · SK hynix Inc.
+
+LOCATOR I.1 'Company overview', item 나 (the company's legal and commercial names), the first sentence
+
+company_filing · standing party · stated dates published 2026-03-17 · accessed 2026-10-01T05:37Z
+
+URL https://englishdart.fss.or.kr/report/eng/viewer.do?rcpNo=20260317000635&dcmNo=11132576&eleId=4&offset=20380&length=52430&dtd=dart4.xsd
+
+READ BY THE VERIFIER 2026-10-01T05:37Z · same bytes as registered
+
+CLAIM claim-sk-hynix-legal-name · verified 2026-10-01 · review: accepted by the human on 2026-10-01 · recorded in docs/quality/human-reviews.md#companies-and-jurisdictions-2026-10-01
+
+cited at /roles/0/claim_ids
+
+FACT supported SK hynix's main manufactured products are memory semiconductor products such as DRAM, NAND Flash and MCP (Multi-chip Package) (the Atlas's translation of the Korean sentence).
+
+AS OF not stated
+
+현재 당사의 주력 생산제품은 DRAM, NAND Flash 및 MCP(Multi-chip Package)와 같은 메모리 반도체 제품입니다
+
+SOURCE Annual Report for fiscal year 2025 (제78기), section I.1 'Company overview' (English DART) · SK hynix Inc.
+
+LOCATOR I.1 'Company overview', item 바 (main business), the first sentence
+
+company_filing · standing party · stated dates published 2026-03-17 · accessed 2026-10-01T05:37Z
+
+URL https://englishdart.fss.or.kr/report/eng/viewer.do?rcpNo=20260317000635&dcmNo=11132576&eleId=4&offset=20380&length=52430&dtd=dart4.xsd
+
+READ BY THE VERIFIER 2026-10-01T05:37Z · same bytes as registered
+
+CLAIM claim-sk-hynix-memory-products · verified 2026-10-01 · review: accepted by the human on 2026-10-01 · recorded in docs/quality/human-reviews.md#companies-and-jurisdictions-2026-10-01
+
+other claims in this record’s trace
+
+back to the top
+
+SK hynix M16
+ID
+facility-kr-m16
+TYPE
+facility
+
+cited at /identity_claim_ids
+
+FACT supported SK hynix's annual report lists, among the changes in its production facilities, the completion (준공) of its new plant M16 in 이천 (Icheon) in February 2021 (the Atlas's translation).
+
+AS OF 2021-02
+
+(3) 생산설비의 변동 2021. 02 이천 신규 공장 M16 준공
+
+SOURCE Annual Report for fiscal year 2025 (제78기), section I.2 'Company history' (English DART) · SK hynix Inc.
+
+LOCATOR I.2 'Company history', item (3) 생산설비의 변동 (changes in production facilities), the row dated 2021. 02
+
+company_filing · standing party · stated dates published 2026-03-17 · accessed 2026-10-02T12:23Z
+
+URL https://englishdart.fss.or.kr/report/eng/viewer.do?rcpNo=20260317000635&dcmNo=11132576&eleId=5&offset=72814&length=24617&dtd=dart4.xsd
+
+READ BY THE VERIFIER 2026-10-02T12:23Z · same bytes as registered
+
+CLAIM claim-sk-hynix-m16-completed-icheon · verified 2026-10-02 · review: accepted by the human on 2026-10-02 · recorded in docs/quality/human-reviews.md#facilities-events-and-the-held-concept-claims-2026-10-02
+
+cited at /identity_claim_ids
+
+FACT supported SK hynix describes M16 as its new fabrication plant, for which it held a completion ceremony.
+
+AS OF not stated
+
+held a completion ceremony for its new fabrication plant M16
+
+SOURCE SK hynix Announces the Completion of M16 Plant Construction · SK hynix Newsroom
+
+LOCATOR body, first paragraph, the sentence beginning 'SK hynix Inc. (or ‘the Company’' (its last words, a head-office phrase, are not used)
+
+company_press_release · standing party · stated dates published 2021-02-01 · accessed 2026-10-02T12:23Z
+
+URL https://news.skhynix.com/en/sk-hynix-announces-the-completion-of-m16-plant-construction/
+
+READ BY THE VERIFIER 2026-10-02T12:23Z · same bytes as registered
+
+CLAIM claim-sk-hynix-m16-fabrication-plant · verified 2026-10-02 · review: accepted by the human on 2026-10-02 · recorded in docs/quality/human-reviews.md#facilities-events-and-the-held-concept-claims-2026-10-02
+
+other claims in this record’s trace
+
+back to the top
+
+Micron HBM4 36GB 12H
+ID
+product-micron-technology-hbm4-36gb-12h
+TYPE
+product
+VENDOR
+company-micron-technology · Micron Technology
+INSTANCE OF
+component-high-bandwidth-memory · High Bandwidth Memory
+
+cited at /identity_claim_ids
+
+FACT supported Micron names an HBM4 product “HBM4 36GB 12H” and states that it is in high-volume production.
+
+AS OF not stated
+
+Micron is in high-volume production of HBM4 36GB 12H
+
+SOURCE High-bandwidth memory (HBM) (product page; retrieval of 2026-10-01; earlier bytes: src-015) · Micron Technology
+
+LOCATOR section 'Micron HBM4 in high-volume production', first sentence
+
+company_marketing · standing party · stated dates undated · accessed 2026-10-01T20:44Z
+
+URL https://www.micron.com/products/memory/hbm
+
+READ BY THE VERIFIER 2026-10-01T20:44Z · same bytes as registered
+
+CLAIM claim-micron-hbm4-identity · verified 2026-10-01 · review: accepted by the human on 2026-10-01 · recorded in docs/quality/human-reviews.md#technologies-components-and-products-2026-10-01
+
+back to the top
+
+Policy texts and links
+BIS rule of 13 October 2022 on advanced computing and semiconductor manufacturing items
+ID
+policy-us-fr-2022-21658
+OFFICIAL CITATION
+87 FR 62186
+FORM
+interim final rule
+ISSUED BY
+Bureau of Industry and Security, Department of Commerce
+ISSUED IN
+United States
+STATUS ON
+2026-10-15: has taken effect
+
+THE OFFICIAL TEXT https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+This page describes what the text says; it does not advise.
+
+cited at /identity_claim_ids
+
+FACT supported Rule 2022-21658 is titled 'Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification'; its AGENCY line names the Bureau of Industry and Security, Department of Commerce.
+
+AS OF 2022-10-13
+
+Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, heading (title)
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+AGENCY: Bureau of Industry and Security, Department of Commerce.
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, AGENCY
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2022-21658-title · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /identity_claim_ids
+
+FACT supported The rule's Federal Register document number is 2022-21658.
+
+AS OF 2022-10-13
+
+[FR Doc. 2022–21658 Filed 10–7–22; 11:15 am]
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.30, closing filing line
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2022-21658-document-number · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /official_title/0/claim_ids
+
+shown above: claim-bis-rule-2022-21658-title
+
+cited at /official_citation/0/claim_ids
+
+FACT supported The rule begins on page 62186 of volume 87 (No. 197) of the Federal Register, the issue of Thursday, 13 October 2022; recorded in the Atlas as 87 FR 62186.
+
+AS OF 2022-10-13
+
+62186 Federal Register / Vol. 87, No. 197 / Thursday, October 13, 2022 / Rules and Regulations
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, page header
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2022-21658-citation · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /issued_in/0/claim_ids
+
+FACT supported The rule is issued by the Bureau of Industry and Security, Department of Commerce and amends the Export Administration Regulations, which the Code of Federal Regulations states are issued by the United States Department of Commerce, Bureau of Industry and Security.
+
+AS OF 2022-10-13
+
+AGENCY: Bureau of Industry and Security, Department of Commerce.
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, AGENCY
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.
+
+SOURCE Code of Federal Regulations, Title 15, Chapter VII, Subchapter C (Export Administration Regulations), Part 730: General Information (1–1–26 Edition) · Code of Federal Regulations, annual edition (govinfo.gov)
+
+LOCATOR p.1, § 730.1 What these regulations cover, second sentence
+
+official_legal_text · standing originator · stated dates undated · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2022-21658-issued-in-us · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /issuing_authority/0/claim_ids
+
+shown above: claim-bis-rule-2022-21658-title
+
+cited at /instrument_form/0/claim_ids
+
+FACT supported The Federal Register labels the rule an interim final rule, with a request for comments.
+
+AS OF 2022-10-13
+
+ACTION: Interim final rule; request for comments.
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, ACTION
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2022-21658-form · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /measure_kinds/0/claim_ids
+
+ATTRIBUTION supported BIS's rule 2022-21658 describes itself, in its title, as the implementation of additional export controls.
+
+AS OF 2022-10-13
+
+Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, heading (title)
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2022-21658-export-controls · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /amends/0/claim_ids
+
+FACT supported The rule amends parts 734, 736, 740, 742, 744, 762, 772 and 774 of the Export Administration Regulations (15 CFR parts 730 through 774).
+
+AS OF 2022-10-13
+
+For the reasons stated in the preamble, parts 734, 736, 740, 742, 744, 762, 772, and 774 of the Export Administration Regulations (15 CFR parts 730 through 774) are amended as follows:
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.10, the amendatory clause
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2022-21658-amends-ear · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+BIS rule of 25 October 2023 on semiconductor manufacturing items
+ID
+policy-us-fr-2023-23049
+OFFICIAL CITATION
+88 FR 73424
+FORM
+interim final rule
+ISSUED BY
+Bureau of Industry and Security, Commerce
+ISSUED IN
+United States
+STATUS ON
+2026-10-15: has taken effect
+
+THE OFFICIAL TEXT https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+This page describes what the text says; it does not advise.
+
+cited at /identity_claim_ids
+
+FACT supported Rule 2023-23049 is titled 'Export Controls on Semiconductor Manufacturing Items'; its AGENCY line names the Bureau of Industry and Security, Commerce.
+
+AS OF 2023-10-25
+
+Export Controls on Semiconductor Manufacturing Items
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, heading (title)
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+AGENCY: Bureau of Industry and Security, Commerce.
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, AGENCY
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23049-title · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /identity_claim_ids
+
+FACT supported The rule's Federal Register document number is 2023-23049.
+
+AS OF 2023-10-25
+
+[FR Doc. 2023–23049 Filed 10–18–23; 8:45 am]
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.32, closing filing line
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23049-document-number · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /official_title/0/claim_ids
+
+shown above: claim-bis-rule-2023-23049-title
+
+cited at /official_citation/0/claim_ids
+
+FACT supported The rule begins on page 73424 of volume 88 (No. 205) of the Federal Register, the issue of Wednesday, 25 October 2023; recorded in the Atlas as 88 FR 73424.
+
+AS OF 2023-10-25
+
+73424 Federal Register / Vol. 88, No. 205 / Wednesday, October 25, 2023 / Rules and Regulations
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, page header
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23049-citation · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /issued_in/0/claim_ids
+
+FACT supported The rule names its issuing bureau as the Bureau of Industry and Security, U.S. Department of Commerce.
+
+AS OF 2023-10-25
+
+Bureau of Industry and Security, U.S. Department of Commerce
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, FOR FURTHER INFORMATION CONTACT
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23049-issued-in-us · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /issuing_authority/0/claim_ids
+
+shown above: claim-bis-rule-2023-23049-title
+
+cited at /instrument_form/0/claim_ids
+
+FACT supported The Federal Register labels the rule an interim final rule, with a request for comments.
+
+AS OF 2023-10-25
+
+ACTION: Interim final rule; request for comments.
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, ACTION
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23049-form · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /measure_kinds/0/claim_ids
+
+ATTRIBUTION supported BIS's rule 2023-23049 describes itself, in its title, as export controls on semiconductor manufacturing items.
+
+AS OF 2023-10-25
+
+Export Controls on Semiconductor Manufacturing Items
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, heading (title)
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23049-export-controls · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /amends/0/claim_ids
+
+FACT supported The rule amends parts 734, 736, 740, 742, 744, 772 and 774 of the Export Administration Regulations (15 CFR parts 730 through 774).
+
+AS OF 2023-10-25
+
+Accordingly, parts 734, 736, 740, 742, 744, 772, and 774 of the Export Administration Regulations (15 CFR parts 730–774) are amended as follows:
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.23, the amendatory clause
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23049-amends-ear · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+BIS rule of 25 October 2023 on advanced computing items (updates and corrections)
+ID
+policy-us-fr-2023-23055
+OFFICIAL CITATION
+88 FR 73458
+FORM
+interim final rule
+ISSUED BY
+Bureau of Industry and Security, Department of Commerce
+ISSUED IN
+United States
+STATUS ON
+2026-10-15: has taken effect
+
+THE OFFICIAL TEXT https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23055.pdf
+
+This page describes what the text says; it does not advise.
+
+cited at /identity_claim_ids
+
+FACT supported Rule 2023-23055 is titled 'Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections'; its AGENCY line names the Bureau of Industry and Security, Department of Commerce.
+
+AS OF 2023-10-25
+
+Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, heading (title)
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23055.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+AGENCY: Bureau of Industry and Security, Department of Commerce.
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, AGENCY
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23055.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23055-title · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /identity_claim_ids
+
+FACT supported The rule's Federal Register document number is 2023-23055.
+
+AS OF 2023-10-25
+
+[FR Doc. 2023–23055 Filed 10–18–23; 8:45 am]
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.60, closing filing line
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23055.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23055-document-number · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /official_title/0/claim_ids
+
+shown above: claim-bis-rule-2023-23055-title
+
+cited at /official_citation/0/claim_ids
+
+FACT supported The rule begins on page 73458 of volume 88 (No. 205) of the Federal Register, the issue of Wednesday, 25 October 2023; recorded in the Atlas as 88 FR 73458.
+
+AS OF 2023-10-25
+
+73458 Federal Register / Vol. 88, No. 205 / Wednesday, October 25, 2023 / Rules and Regulations
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, page header
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23055.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23055-citation · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /issued_in/0/claim_ids
+
+FACT supported The rule is issued by the Bureau of Industry and Security, Department of Commerce and amends the Export Administration Regulations, which the Code of Federal Regulations states are issued by the United States Department of Commerce, Bureau of Industry and Security.
+
+AS OF 2023-10-25
+
+AGENCY: Bureau of Industry and Security, Department of Commerce.
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, AGENCY
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23055.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.
+
+SOURCE Code of Federal Regulations, Title 15, Chapter VII, Subchapter C (Export Administration Regulations), Part 730: General Information (1–1–26 Edition) · Code of Federal Regulations, annual edition (govinfo.gov)
+
+LOCATOR p.1, § 730.1 What these regulations cover, second sentence
+
+official_legal_text · standing originator · stated dates undated · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23055-issued-in-us · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /issuing_authority/0/claim_ids
+
+shown above: claim-bis-rule-2023-23055-title
+
+cited at /instrument_form/0/claim_ids
+
+FACT supported The Federal Register labels the rule an interim final rule, with a request for comments.
+
+AS OF 2023-10-25
+
+ACTION: Interim final rule; request for comments.
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, ACTION
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23055.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23055-form · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /measure_kinds/0/claim_ids
+
+ATTRIBUTION supported BIS's rule 2023-23055 describes itself, in its title, as the implementation of additional export controls.
+
+AS OF 2023-10-25
+
+Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, heading (title)
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23055.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23055-export-controls · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /amends/0/claim_ids
+
+FACT supported The rule amends parts 732, 734, 736, 740, 742, 744, 746, 748, 758, 770, 772 and 774 of the Export Administration Regulations (15 CFR parts 730 through 774).
+
+AS OF 2023-10-25
+
+For the reasons stated in the preamble, parts 732, 734, 736, 740, 742, 744, 746, 748, 758, 770, 772, and 774 of the Export Administration Regulations (15 CFR parts 730 through 774) are amended as follows:
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.30, the amendatory clause
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23055.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23055-amends-ear · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+BIS rule of 5 December 2024 on foreign-produced direct product rules and refined controls
+ID
+policy-us-fr-2024-28270
+OFFICIAL CITATION
+89 FR 96790
+FORM
+interim final rule
+ISSUED BY
+Bureau of Industry and Security, Commerce
+ISSUED IN
+United States
+STATUS ON
+2026-10-15: has taken effect
+
+THE OFFICIAL TEXT https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+This page describes what the text says; it does not advise.
+
+cited at /identity_claim_ids
+
+FACT supported Rule 2024-28270 is titled 'Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items'; its AGENCY line names the Bureau of Industry and Security, Commerce.
+
+AS OF 2024-12-05
+
+Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, heading (title)
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+AGENCY: Bureau of Industry and Security, Commerce.
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, AGENCY
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2024-28270-title · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /identity_claim_ids
+
+FACT supported The rule's Federal Register document number is 2024-28270.
+
+AS OF 2024-12-05
+
+[FR Doc. 2024–28270 Filed 12–2–24; 8:45 am]
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.41, closing filing line
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2024-28270-document-number · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /official_title/0/claim_ids
+
+shown above: claim-bis-rule-2024-28270-title
+
+cited at /official_citation/0/claim_ids
+
+FACT supported The rule begins on page 96790 of volume 89 (No. 234) of the Federal Register, the issue of Thursday, 5 December 2024; recorded in the Atlas as 89 FR 96790.
+
+AS OF 2024-12-05
+
+96790 Federal Register / Vol. 89, No. 234 / Thursday, December 5, 2024 / Rules and Regulations
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, page header
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2024-28270-citation · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /issued_in/0/claim_ids
+
+FACT supported The rule is issued by the Bureau of Industry and Security, Commerce and amends the Export Administration Regulations, which the Code of Federal Regulations states are issued by the United States Department of Commerce, Bureau of Industry and Security.
+
+AS OF 2024-12-05
+
+AGENCY: Bureau of Industry and Security, Commerce.
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, AGENCY
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.
+
+SOURCE Code of Federal Regulations, Title 15, Chapter VII, Subchapter C (Export Administration Regulations), Part 730: General Information (1–1–26 Edition) · Code of Federal Regulations, annual edition (govinfo.gov)
+
+LOCATOR p.1, § 730.1 What these regulations cover, second sentence
+
+official_legal_text · standing originator · stated dates undated · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2024-28270-issued-in-us · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /issuing_authority/0/claim_ids
+
+shown above: claim-bis-rule-2024-28270-title
+
+cited at /instrument_form/0/claim_ids
+
+FACT supported The Federal Register labels the rule an interim final rule.
+
+AS OF 2024-12-05
+
+ACTION: Interim final rule.
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, ACTION
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2024-28270-form · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /measure_kinds/0/claim_ids
+
+ATTRIBUTION supported BIS's rule 2024-28270 states that it makes changes to the controls of the Export Administration Regulations for certain advanced computing items, supercomputers and semiconductor manufacturing equipment; the Code of Federal Regulations states that the EAR are issued under laws relating to the control of certain exports, reexports and activities.
+
+AS OF 2024-12-05
+
+In this interim final rule (IFR), the Bureau of Industry and Security (BIS) makes changes to the Export Administration Regulations (EAR) controls for certain advanced computing items, supercomputers, and semiconductor manufacturing equipment
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, SUMMARY, first sentence
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.
+
+SOURCE Code of Federal Regulations, Title 15, Chapter VII, Subchapter C (Export Administration Regulations), Part 730: General Information (1–1–26 Edition) · Code of Federal Regulations, annual edition (govinfo.gov)
+
+LOCATOR p.1, § 730.1 What these regulations cover, second sentence
+
+official_legal_text · standing originator · stated dates undated · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2024-28270-export-controls · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /amends/0/claim_ids
+
+FACT supported The rule amends parts 732, 734, 736, 740, 742, 744, 758, 762, 770, 772 and 774 of the Export Administration Regulations (15 CFR parts 730 through 774).
+
+AS OF 2024-12-05
+
+For the reasons stated in the preamble, parts 732, 734, 736, 740, 742, 744, 758, 762, 770, 772, and 774 of the Export Administration Regulations (15 CFR parts 730 through 774) are amended as follows:
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.20, the amendatory clause
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2024-28270-amends-ear · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+BIS rule of 15 January 2025 on a framework for artificial intelligence diffusion
+ID
+policy-us-fr-2025-00636
+OFFICIAL CITATION
+90 FR 4544
+FORM
+interim final rule
+ISSUED BY
+Bureau of Industry and Security, Department of Commerce
+ISSUED IN
+United States
+STATUS ON
+2026-10-15: has taken effect
+
+THE OFFICIAL TEXT https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+This page describes what the text says; it does not advise.
+
+Later statements about this act
+
+ATLAS FRAMING
+
+A later official text’s own words about this act, as the Change Detector ruled them. They change neither the act’s recorded dates nor its status, which the Atlas derives only from the act’s own dated events, and the Atlas does not say what they mean for anyone.
+
+ATTRIBUTION supported BIS's rule 2026-14132 states that, although § 742.6(a)(6)(iii)(A) of the EAR specifies a worldwide license requirement for certain advanced computing items (ECCNs 3A090.a, 4A090.a and related '.z' paragraph items), consistent with guidance issued on 13 May 2025 (cited by a bis.gov press-release address that includes the words 'rescission-biden-era') and on 31 May 2026, BIS is only enforcing this license requirement to destinations in Country Groups D:1, D:4 or D:5 (excluding those also in Country Groups A:5 or A:6) and to entities headquartered in, or with an ultimate parent headquartered in, Country Group D:5 or Macau.
+
+AS OF 2026-07-14
+
+Although § 742.6(a)(6)(iii)(A) of the EAR specifies a worldwide license requirement for certain advanced computing items (ECCNs 3A090.a, 4A090.a, and related ‘‘.z’’ paragraph items), consistent with guidance issued on May 13, 2025 (bis.gov/press-release/ department-commerce-announcesrescission-biden-era-artificialintelligence-diffusion-rule-strengthens) and May 31, 2026 (https://www.bis.gov/ media/documents/bis-guidance-may-312026.pdf), BIS is only enforcing this license requirement to destinations in Country Groups D:1, D:4, or D:5 (excluding those also specified in Country Groups A:5 or A:6), and to entities headquartered in or with an ultimate parent headquartered in Country Group D:5 or Macau, wherever located.
+
+SOURCE Enhanced Favorable Treatment for the United Arab Emirates Under the Export Administration Regulations · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.3, 'Enforcement of License Requirements for Advanced Computing Items'
+
+official_legal_text · standing originator · stated dates published 2026-07-14 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2026-07-14/pdf/2026-14132.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2026-14132-enforcement-statement · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /identity_claim_ids
+
+FACT supported Rule 2025-00636 is titled 'Framework for Artificial Intelligence Diffusion'; its AGENCY line names the Bureau of Industry and Security, Department of Commerce.
+
+AS OF 2025-01-15
+
+Framework for Artificial Intelligence Diffusion
+
+SOURCE Framework for Artificial Intelligence Diffusion · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, heading (title)
+
+official_legal_text · standing originator · stated dates published 2025-01-15 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+AGENCY: Bureau of Industry and Security, Department of Commerce.
+
+SOURCE Framework for Artificial Intelligence Diffusion · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, AGENCY
+
+official_legal_text · standing originator · stated dates published 2025-01-15 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00636-title · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /identity_claim_ids
+
+FACT supported The rule's Federal Register document number is 2025-00636.
+
+AS OF 2025-01-15
+
+[FR Doc. 2025–00636 Filed 1–13–25; 8:45 am]
+
+SOURCE Framework for Artificial Intelligence Diffusion · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.41, closing filing line
+
+official_legal_text · standing originator · stated dates published 2025-01-15 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00636-document-number · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /official_title/0/claim_ids
+
+shown above: claim-bis-rule-2025-00636-title
+
+cited at /official_citation/0/claim_ids
+
+FACT supported The rule begins on page 4544 of volume 90 (No. 9) of the Federal Register, the issue of Wednesday, 15 January 2025; recorded in the Atlas as 90 FR 4544.
+
+AS OF 2025-01-15
+
+4544 Federal Register / Vol. 90, No. 9 / Wednesday, January 15, 2025 / Rules and Regulations
+
+SOURCE Framework for Artificial Intelligence Diffusion · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, page header
+
+official_legal_text · standing originator · stated dates published 2025-01-15 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00636-citation · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /issued_in/0/claim_ids
+
+FACT supported The rule is issued by the Bureau of Industry and Security, Department of Commerce and amends the Export Administration Regulations, which the Code of Federal Regulations states are issued by the United States Department of Commerce, Bureau of Industry and Security.
+
+AS OF 2025-01-15
+
+AGENCY: Bureau of Industry and Security, Department of Commerce.
+
+SOURCE Framework for Artificial Intelligence Diffusion · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, AGENCY
+
+official_legal_text · standing originator · stated dates published 2025-01-15 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.
+
+SOURCE Code of Federal Regulations, Title 15, Chapter VII, Subchapter C (Export Administration Regulations), Part 730: General Information (1–1–26 Edition) · Code of Federal Regulations, annual edition (govinfo.gov)
+
+LOCATOR p.1, § 730.1 What these regulations cover, second sentence
+
+official_legal_text · standing originator · stated dates undated · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00636-issued-in-us · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /issuing_authority/0/claim_ids
+
+shown above: claim-bis-rule-2025-00636-title
+
+cited at /instrument_form/0/claim_ids
+
+FACT supported The Federal Register labels the rule an interim final rule, with a request for comments.
+
+AS OF 2025-01-15
+
+ACTION: Interim final rule; request for comments.
+
+SOURCE Framework for Artificial Intelligence Diffusion · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, ACTION
+
+official_legal_text · standing originator · stated dates published 2025-01-15 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00636-form · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /measure_kinds/0/claim_ids
+
+ATTRIBUTION supported BIS's rule 2025-00636 states that it revises the Export Administration Regulations' controls on advanced computing integrated circuits and adds a new control on AI model weights for certain advanced closed-weight dual-use AI models; the Code of Federal Regulations states that the EAR are issued under laws relating to the control of certain exports, reexports and activities.
+
+AS OF 2025-01-15
+
+With this interim final rule, the Commerce Department’s Bureau of Industry and Security (BIS) revises the Export Administration Regulations’ (EAR) controls on advanced computing integrated circuits (ICs) and adds a new control on artificial intelligence (AI) model weights for certain advanced closed-weight dual-use AI models.
+
+SOURCE Framework for Artificial Intelligence Diffusion · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, SUMMARY, first sentence
+
+official_legal_text · standing originator · stated dates published 2025-01-15 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.
+
+SOURCE Code of Federal Regulations, Title 15, Chapter VII, Subchapter C (Export Administration Regulations), Part 730: General Information (1–1–26 Edition) · Code of Federal Regulations, annual edition (govinfo.gov)
+
+LOCATOR p.1, § 730.1 What these regulations cover, second sentence
+
+official_legal_text · standing originator · stated dates undated · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00636-export-controls · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /amends/0/claim_ids
+
+FACT supported The rule amends parts 732, 734, 740, 742, 744, 748, 750, 762, 772 and 774 of the Export Administration Regulations (15 CFR parts 730 through 774).
+
+AS OF 2025-01-15
+
+Accordingly, parts 732, 734, 740, 742, 744, 748, 750, 762, 772, and 774 of the Export Administration Regulations (15 CFR parts 730 through 774) are amended as follows:
+
+SOURCE Framework for Artificial Intelligence Diffusion · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.14, the amendatory clause
+
+official_legal_text · standing originator · stated dates published 2025-01-15 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00636-amends-ear · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+back to the top
+
+BIS rule of 16 January 2025 on due diligence for advanced computing integrated circuits
+ID
+policy-us-fr-2025-00711
+OFFICIAL CITATION
+90 FR 5298
+FORM
+interim final rule
+ISSUED BY
+Bureau of Industry and Security, Department of Commerce
+ISSUED IN
+United States
+STATUS ON
+2026-10-15: has taken effect
+
+THE OFFICIAL TEXT https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+This page describes what the text says; it does not advise.
+
+cited at /identity_claim_ids
+
+FACT supported Rule 2025-00711 is titled 'Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period'; its AGENCY line names the Bureau of Industry and Security, Department of Commerce.
+
+AS OF 2025-01-16
+
+Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, heading (title)
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+AGENCY: Bureau of Industry and Security, Department of Commerce.
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, AGENCY
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00711-title · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /identity_claim_ids
+
+FACT supported The rule's Federal Register document number is 2025-00711.
+
+AS OF 2025-01-16
+
+[FR Doc. 2025–00711 Filed 1–15–25; 8:45 am]
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.24, closing filing line
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00711-document-number · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /official_title/0/claim_ids
+
+shown above: claim-bis-rule-2025-00711-title
+
+cited at /official_citation/0/claim_ids
+
+FACT supported The rule begins on page 5298 of volume 90 (No. 10) of the Federal Register, the issue of Thursday, 16 January 2025; recorded in the Atlas as 90 FR 5298.
+
+AS OF 2025-01-16
+
+5298 Federal Register / Vol. 90, No. 10 / Thursday, January 16, 2025 / Rules and Regulations
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, page header
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00711-citation · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /issued_in/0/claim_ids
+
+FACT supported The rule is issued by the Bureau of Industry and Security, Department of Commerce and amends the Export Administration Regulations, which the Code of Federal Regulations states are issued by the United States Department of Commerce, Bureau of Industry and Security.
+
+AS OF 2025-01-16
+
+AGENCY: Bureau of Industry and Security, Department of Commerce.
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, AGENCY
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.
+
+SOURCE Code of Federal Regulations, Title 15, Chapter VII, Subchapter C (Export Administration Regulations), Part 730: General Information (1–1–26 Edition) · Code of Federal Regulations, annual edition (govinfo.gov)
+
+LOCATOR p.1, § 730.1 What these regulations cover, second sentence
+
+official_legal_text · standing originator · stated dates undated · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00711-issued-in-us · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /issuing_authority/0/claim_ids
+
+shown above: claim-bis-rule-2025-00711-title
+
+cited at /instrument_form/0/claim_ids
+
+FACT supported The Federal Register labels the rule an interim final rule, with a request for comment.
+
+AS OF 2025-01-16
+
+ACTION: Interim final rule, with request for comment.
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, ACTION
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00711-form · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /measure_kinds/0/claim_ids
+
+ATTRIBUTION supported BIS's rule 2025-00711 states that BIS is revising the Export Administration Regulations to provide additional due diligence procedures regarding advanced computing integrated circuits; the Code of Federal Regulations states that the EAR are issued under laws relating to the control of certain exports, reexports and activities.
+
+AS OF 2025-01-16
+
+BIS is revising the Export Administration Regulations (EAR) in response to requests from the public to provide additional due diligence procedures regarding advanced computing integrated circuits (ICs).
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, SUMMARY, first sentence
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.
+
+SOURCE Code of Federal Regulations, Title 15, Chapter VII, Subchapter C (Export Administration Regulations), Part 730: General Information (1–1–26 Edition) · Code of Federal Regulations, annual edition (govinfo.gov)
+
+LOCATOR p.1, § 730.1 What these regulations cover, second sentence
+
+official_legal_text · standing originator · stated dates undated · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00711-export-controls · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /amends/0/claim_ids
+
+FACT supported The rule amends parts 734, 736, 740, 742, 744, 748, 762, 772 and 774 of the Export Administration Regulations (15 CFR parts 730 through 774).
+
+AS OF 2025-01-16
+
+For the reasons stated in the preamble, parts 734, 736, 740, 742, 744, 748, 762, 772, and 774 of the Export Administration Regulations (15 CFR parts 730 through 774) are amended as follows:
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.11, the amendatory clause
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00711-amends-ear · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+back to the top
+
+Export Administration Regulations
+ID
+policy-us-15-cfr-730-774
+OFFICIAL CITATION
+15 CFR chapter VII, subchapter C
+FORM
+codified regulation
+ISSUED BY
+United States Department of Commerce, Bureau of Industry and Security (BIS)
+ISSUED IN
+United States
+STATUS ON
+2026-10-15: no recorded effect
+
+THE OFFICIAL TEXT https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf
+
+This page describes what the text says; it does not advise.
+
+cited at /identity_claim_ids
+
+FACT supported Title 15 of the Code of Federal Regulations states that references to the Export Administration Regulations (EAR) are references to 15 CFR chapter VII, subchapter C.
+
+AS OF 2026-01-01
+
+In this part, references to the Export Administration Regulations (EAR) are references to 15 CFR chapter VII, subchapter C.
+
+SOURCE Code of Federal Regulations, Title 15, Chapter VII, Subchapter C (Export Administration Regulations), Part 730: General Information (1–1–26 Edition) · Code of Federal Regulations, annual edition (govinfo.gov)
+
+LOCATOR p.1, § 730.1 What these regulations cover, first sentence
+
+official_legal_text · standing originator · stated dates undated · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-ear-cfr-scope · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /official_title/0/claim_ids
+
+shown above: claim-ear-cfr-scope
+
+cited at /official_citation/0/claim_ids
+
+shown above: claim-ear-cfr-scope
+
+cited at /issued_in/0/claim_ids
+
+FACT supported The Code of Federal Regulations states that the EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS).
+
+AS OF 2026-01-01
+
+The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.
+
+SOURCE Code of Federal Regulations, Title 15, Chapter VII, Subchapter C (Export Administration Regulations), Part 730: General Information (1–1–26 Edition) · Code of Federal Regulations, annual edition (govinfo.gov)
+
+LOCATOR p.1, § 730.1 What these regulations cover, second sentence
+
+official_legal_text · standing originator · stated dates undated · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-ear-issued-by-bis · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+cited at /issuing_authority/0/claim_ids
+
+shown above: claim-ear-issued-by-bis
+
+cited at /instrument_form/0/claim_ids
+
+shown above: claim-ear-cfr-scope
+
+cited at /measure_kinds/0/claim_ids
+
+ATTRIBUTION supported The Code of Federal Regulations states that the EAR are issued under laws relating to the control of certain exports, reexports, and activities.
+
+AS OF 2026-01-01
+
+The EAR are issued by the United States Department of Commerce, Bureau of Industry and Security (BIS) under laws relating to the control of certain exports, reexports, and activities.
+
+SOURCE Code of Federal Regulations, Title 15, Chapter VII, Subchapter C (Export Administration Regulations), Part 730: General Information (1–1–26 Edition) · Code of Federal Regulations, annual edition (govinfo.gov)
+
+LOCATOR p.1, § 730.1 What these regulations cover, second sentence
+
+official_legal_text · standing originator · stated dates undated · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-ear-export-control · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+High Bandwidth Memory named among the items controlled by BIS rule of 5 December 2024 on foreign-produced direct product rules and refined controls
+ID
+rel-policy-us-fr-2024-28270-restricts-component-high-bandwidth-memory
+LEVEL
+policy
+BASIS
+quoted from the act’s text; matched to the record by the Atlas
+
+cited at /claim_ids
+
+ATTRIBUTION supported BIS's rule 2024-28270 states that BIS is adding a new ECCN control on HBM stacks with a specific memory bandwidth density to ECCN 3A090.c.
+
+AS OF 2024-12-05
+
+Based on the importance of HBM described above, BIS is adding a new ECCN control on HBM stacks with a specific memory bandwidth density to ECCN 3A090.c.
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.10, section C.1 'Addition of New 3A090.c'
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-13T18:45Z · same bytes as registered
+
+CLAIM claim-bis-rule-2024-28270-controls-hbm-stacks · verified 2026-10-13 · review: accepted by the human on 2026-10-13 · recorded in docs/quality/human-reviews.md#first-policy-links-2026-10-13
+
+cited at /claim_ids
+
+DERIVATION supported The term 'HBM' with which rule 2024-28270 names the stacks it adds to ECCN 3A090.c is the alias of the Atlas's record High Bandwidth Memory, and names the same kind of part.
+
+REASONING The rule's sentence names 'HBM stacks'. The Atlas's working definition reads: 'High Bandwidth Memory (HBM) is a memory component: a stack of DRAM dies, placed vertically and connected directly by through-silicon vias.' The rule's word is the record's alias HBM, applied to stacks. 'With a specific memory bandwidth density' limits which stacks the entry covers; that is scope, which stays in the text, not a different class. The rule also defines its term at its edges (p.11: high bandwidth memory includes DRAM ICs whether or not they conform to the JEDEC standards, above its density threshold; co-packaged logic and HBM chips are not covered by 3A090.c), so the text's class and the Atlas's may differ at their edges; the link does not carry either edge. It concludes only that the two words name the same kind of part. It does not conclude that every member of the class, or any product or firm, is controlled, for which destination or under which licence policy, or that the control is in effect on any date (policy-links.md K-2, D-167).
+
+CLAIM claim-bis-rule-2024-28270-hbm-term-match · verified 2026-10-13 · review: accepted by the human on 2026-10-13 · recorded in docs/quality/human-reviews.md#first-policy-links-2026-10-13
+
+inputs to this inference
+
+cited at /claim_ids
+
+ATTRIBUTION supported BIS's rule 2025-00636 states that supplement no. 1 to part 774 is amended by revising ECCNs that include 3A090; in its revised text, paragraph 3A090.c reads 'High bandwidth memory having a ‘memory bandwidth density’ greater than 2 gigabytes per second per square millimeter', and the note that follows is headed 'Technical note to 3A090.c'.
+
+AS OF 2025-01-15
+
+Supplement no. 1 to part 774 is amended by: ■ a. Revising ECCNs 3A001, 3A090, 3D001, 3E001, 4A003, 4A004, 4A005, 4A090, 4D001, 4D090, and 4E001;
+
+SOURCE Framework for Artificial Intelligence Diffusion · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.24, amendatory instruction 26
+
+official_legal_text · standing originator · stated dates published 2025-01-15 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+c. High bandwidth memory having a ‘memory bandwidth density’ greater than 2 gigabytes per second per square millimeter.
+
+SOURCE Framework for Artificial Intelligence Diffusion · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.31, ECCN 3A090, paragraph c
+
+official_legal_text · standing originator · stated dates published 2025-01-15 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+Technical note to 3A090.c: ‘Memory bandwidth density’ is the memory bandwidth measured in gigabytes per second
+
+SOURCE Framework for Artificial Intelligence Diffusion · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.31, ECCN 3A090, the note after paragraph c
+
+official_legal_text · standing originator · stated dates published 2025-01-15 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00636-revises-3a090 · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /claim_ids
+
+ATTRIBUTION supported BIS's rule 2025-00711 states that supplement no. 1 to part 774 is amended by revising ECCN 3A090, among others, to read as follows; in its revised text, paragraph 3A090.c reads 'High bandwidth memory (HBM) having a ‘memory bandwidth density’ greater than 2 gigabytes per second per square millimeter', and the note that follows is headed 'Technical Note 1 to 3A090.c'.
+
+AS OF 2025-01-16
+
+Supplement no. 1 to part 774 is amended by revising ECCN 3A090, 3B001, 3B993 and 3B994, 3D992, 3D993, 3D994, 3E992, 3E993, and 3E994, to read as follows:
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.17, amendatory instruction 30
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+c. High bandwidth memory (HBM) having a ‘memory bandwidth density’ greater than 2 gigabytes per second per square millimeter. Technical Note 1 to 3A090.c:
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.18, ECCN 3A090, paragraph c and the note after it
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00711-revises-3a090 · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+back to the top
+
+Semiconductor manufacturing equipment named among the items controlled by BIS rule of 13 October 2022 on advanced computing and semiconductor manufacturing items
+ID
+rel-policy-us-fr-2022-21658-restricts-component-semiconductor-manufacturing-equipment
+LEVEL
+policy
+BASIS
+quoted from the act’s text; matched to the record by the Atlas
+
+cited at /claim_ids
+
+ATTRIBUTION supported BIS's rule 2022-21658 states that BIS adds to the CCL certain advanced semiconductor manufacturing equipment under a new ECCN 3B090; its amendatory text heads that entry '3B090 Semiconductor manufacturing equipment, not Controlled by 3B001'.
+
+AS OF 2022-10-13
+
+First, BIS adds to the CCL certain advanced semiconductor manufacturing equipment under a new ECCN 3B090, controlled for RS and AT reasons of control with limited license exception availability.
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.7, section IV, 'First, BIS adds to the CCL'
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-13T18:45Z · same bytes as registered
+
+3B090 Semiconductor manufacturing equipment, not Controlled by 3B001, as follows
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.23, amendatory instruction 25, ECCN 3B090 heading
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-13T18:45Z · same bytes as registered
+
+CLAIM claim-bis-rule-2022-21658-adds-sme-3b090 · verified 2026-10-13 · review: accepted by the human on 2026-10-13 · recorded in docs/quality/human-reviews.md#first-policy-links-2026-10-13
+
+cited at /claim_ids
+
+DERIVATION supported The term 'semiconductor manufacturing equipment' that rule 2022-21658 uses for the equipment it adds under ECCN 3B090 is the name of the Atlas's record Semiconductor manufacturing equipment, and names the same kind of part.
+
+REASONING The rule's sentence names 'certain advanced semiconductor manufacturing equipment', and the entry's heading 'Semiconductor manufacturing equipment'. The Atlas's working definition reads: 'semiconductor manufacturing equipment is the class of tools used to fabricate, assemble, test and package chips.' The words are the record's name; 'certain advanced' limits which tools the entry covers, which is scope, not a different class. It concludes only that the two words name the same kind of part. It does not conclude that every member of the class, or any product or firm, is controlled, for which destination or under which licence policy, or that the control is in effect on any date (policy-links.md K-2, D-167).
+
+CLAIM claim-bis-rule-2022-21658-sme-term-match · verified 2026-10-13 · review: accepted by the human on 2026-10-13 · recorded in docs/quality/human-reviews.md#first-policy-links-2026-10-13
+
+inputs to this inference
+
+cited at /claim_ids
+
+ATTRIBUTION supported BIS's rule 2023-23049 states that it removes ECCN 3B090 and replaces and expands its provisions in ECCNs 3B001 and 3B002, and that ECCN 3B090 was added to the CCL in the October 7 IFR.
+
+AS OF 2023-10-25
+
+Principally, this rule removes ECCN 3B090 and replaces and expands its provisions in ECCNs 3B001 and 3B002.
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.14, 'Overview of EAR Amendments'
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-13T18:45Z · same bytes as registered
+
+BIS added ECCN 3B090 to the CCL in the October 7 IFR. This rule removes ECCN 3B090
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.17, section C.3 'Removal of ECCN 3B090 and Conforming Changes'
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-13T18:45Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23049-removes-3b090 · verified 2026-10-13 · review: accepted by the human on 2026-10-13 · recorded in docs/quality/human-reviews.md#first-policy-links-2026-10-13
+
+back to the top
+
+Semiconductor manufacturing equipment named among the items controlled by BIS rule of 25 October 2023 on semiconductor manufacturing items
+ID
+rel-policy-us-fr-2023-23049-restricts-component-semiconductor-manufacturing-equipment
+LEVEL
+policy
+BASIS
+quoted from the act’s text; matched to the record by the Atlas
+
+cited at /claim_ids
+
+ATTRIBUTION supported BIS's rule 2023-23049 states that it amends the EAR to implement SME controls more effectively, and that it removes ECCN 3B090 and replaces and expands its provisions in ECCNs 3B001 and 3B002.
+
+AS OF 2023-10-25
+
+This IFR addresses comments received in response to only the part of the October 7 IFR that controls semiconductor manufacturing equipment (SME) and amends the EAR to implement SME controls more effectively and to address ongoing national security concerns.
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, SUMMARY
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-13T18:45Z · same bytes as registered
+
+Principally, this rule removes ECCN 3B090 and replaces and expands its provisions in ECCNs 3B001 and 3B002.
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.14, 'Overview of EAR Amendments'
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-13T18:45Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23049-sme-controls · verified 2026-10-13 · review: accepted by the human on 2026-10-13 · recorded in docs/quality/human-reviews.md#first-policy-links-2026-10-13
+
+cited at /claim_ids
+
+DERIVATION supported The term 'SME', which rule 2023-23049 defines as semiconductor manufacturing equipment, is the alias and the name of the Atlas's record Semiconductor manufacturing equipment, and names the same kind of part.
+
+REASONING The rule's summary writes 'semiconductor manufacturing equipment (SME)' and then 'SME controls', the controls it implements. The Atlas's working definition reads: 'semiconductor manufacturing equipment is the class of tools used to fabricate, assemble, test and package chips.' The words are the record's name and alias. Which tools ECCNs 3B001 and 3B002 cover is scope, which stays in the text. It concludes only that the two words name the same kind of part. It does not conclude that every member of the class, or any product or firm, is controlled, for which destination or under which licence policy, or that the control is in effect on any date (policy-links.md K-2, D-167).
+
+CLAIM claim-bis-rule-2023-23049-sme-term-match · verified 2026-10-13 · review: accepted by the human on 2026-10-13 · recorded in docs/quality/human-reviews.md#first-policy-links-2026-10-13
+
+inputs to this inference
+
+cited at /claim_ids
+
+ATTRIBUTION supported BIS's rule 2024-28270 states that it amends ECCN 3B001, that seven commodities are moved from former ECCN 3B001 paragraphs into the new ECCN 3B993, and that ECCN 3B002 is amended by removing 3B002.b from certain license requirements in the license requirements table.
+
+AS OF 2024-12-05
+
+This section discusses the amendments to ECCN 3B001 other than the commodities moved to new ECCN 3B993
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.15, section E.1 'Revisions to 3B001'
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-13T18:45Z · same bytes as registered
+
+Seven commodities are moved from former ECCN 3B001 paragraphs into the new ECCN 3B993
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.17, section D.4 'Addition of ECCN 3B993', after the crosswalk table
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-13T18:45Z · same bytes as registered
+
+ECCN 3B002 is amended by removing 3B002.b from certain license requirements in the license requirements table.
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.16, section E.2 'Revisions to 3B002'
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-13T18:45Z · same bytes as registered
+
+CLAIM claim-bis-rule-2024-28270-revises-3b001-3b002 · verified 2026-10-13 · review: accepted by the human on 2026-10-13 · recorded in docs/quality/human-reviews.md#first-policy-links-2026-10-13
+
+cited at /claim_ids
+
+ATTRIBUTION supported BIS's rule 2025-00711 states that it adds new paragraphs under 3B001.f and 3B993.f, among others, for commodities designed or modified to improve the minimum resolvable feature size and ‘dedicated chuck overlay’ of deep-ultraviolet lithography equipment, and that supplement no. 1 to part 774 is amended by revising ECCN 3B001; in its revised 3B001, paragraph f is headed 'Lithography commodities', a new paragraph f.6 reads 'Commodities not specified by 3B001.f.1, designed or modified to perform all of the following in or with …', and f.6 is named among the paragraphs to which RS applies.
+
+AS OF 2025-01-16
+
+This rule adds new paragraphs under 3B001.f, 3B993.f, 3D992, 3D993, 3E992, and 3E993 for commodities, ‘‘software,’’ and ‘‘technology’’ designed or modified to improve the minimum resolvable feature size and ‘dedicated chuck overlay’ of deep-ultraviolet lithography equipment specified in 3B001.f.1 and 3B993.f.
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.9, section ii.a 'Revision to add items for improving 3B001.f and 3B993.f lithography equipment'
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+Supplement no. 1 to part 774 is amended by revising ECCN 3A090, 3B001, 3B993 and 3B994, 3D992, 3D993, 3D994, 3E992, 3E993, and 3E994, to read as follows:
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.17, amendatory instruction 30
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+RS applies to 3B001.a.4, c, d, f.1, f.5, f.6, k to n, p.2, p.4, r.
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.18, ECCN 3B001, License Requirements, RS
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+f. Lithography commodities as follows:
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.20, ECCN 3B001, paragraph f heading
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+f.6. Commodities not specified by 3B001.f.1, designed or modified to perform all of the following in or with
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.21, ECCN 3B001, paragraph f.6
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00711-adds-3b001-f6 · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+cited at /claim_ids
+
+ATTRIBUTION supported BIS's rule 2025-00711 states that it amends the headings for ECCNs 3B993 and 3B994 to specify both equipment and 'specially designed' 'components' and 'accessories' for commodities specified in these ECCNs, and that supplement no. 1 to part 774 is amended by revising ECCN 3B993; in its revised 3B993, paragraph f is headed 'Lithography commodities' and a new paragraph f.4 reads 'Commodities not specified by 3B993.f.1 designed or modified to perform all of the following in or with' deep-ultraviolet immersion photolithography equipment.
+
+AS OF 2025-01-16
+
+This rule amends the headings for ECCNs 3B993 and 3B994 to specify both equipment and ‘‘specially designed’’ ‘‘components’’ and ‘‘accessories’’ for commodities specified in these ECCNs.
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.9, section ii.b 'Revisions to ECCNs 3B993 and 3B994'
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+Supplement no. 1 to part 774 is amended by revising ECCN 3A090, 3B001, 3B993 and 3B994, 3D992, 3D993, 3D994, 3E992, 3E993, and 3E994, to read as follows:
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.17, amendatory instruction 30
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+3B993 Specified semiconductor manufacturing equipment as follows (see list of items controls), and ‘‘specially designed’’ ‘‘components’’ and ‘‘accessories’’ therefor.
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.21, ECCN 3B993 heading
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+f. Lithography commodities as follows:
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.22, ECCN 3B993, paragraph f heading
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+f.4. Commodities not specified by 3B993.f.1 designed or modified to perform all of the following in or with deep-ultraviolet immersion photolithography equipment:
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.22, ECCN 3B993, paragraph f.4
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00711-revises-3b993 · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+back to the top
+
+Semiconductor manufacturing equipment named among the items controlled by BIS rule of 5 December 2024 on foreign-produced direct product rules and refined controls
+ID
+rel-policy-us-fr-2024-28270-restricts-component-semiconductor-manufacturing-equipment
+LEVEL
+policy
+BASIS
+quoted from the act’s text; matched to the record by the Atlas
+
+cited at /claim_ids
+
+ATTRIBUTION supported BIS's rule 2024-28270 states that its changes to the EAR's controls include adding new controls for certain semiconductor manufacturing equipment and related items.
+
+AS OF 2024-12-05
+
+makes changes to the Export Administration Regulations (EAR) controls for certain advanced computing items, supercomputers, and semiconductor manufacturing equipment, which includes adding new controls for certain semiconductor manufacturing equipment and related items
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, SUMMARY, first sentence
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-13T18:45Z · same bytes as registered
+
+CLAIM claim-bis-rule-2024-28270-new-sme-controls · verified 2026-10-13 · review: accepted by the human on 2026-10-13 · recorded in docs/quality/human-reviews.md#first-policy-links-2026-10-13
+
+cited at /claim_ids
+
+DERIVATION supported The term 'semiconductor manufacturing equipment' that rule 2024-28270 uses for the items it adds new controls on is the name of the Atlas's record Semiconductor manufacturing equipment, and names the same kind of part.
+
+REASONING The rule's summary names 'certain semiconductor manufacturing equipment and related items'. The Atlas's working definition reads: 'semiconductor manufacturing equipment is the class of tools used to fabricate, assemble, test and package chips.' The words are the record's name; 'certain' limits which tools are covered, and 'related items' are not part of the link. It concludes only that the two words name the same kind of part. It does not conclude that every member of the class, or any product or firm, is controlled, for which destination or under which licence policy, or that the control is in effect on any date (policy-links.md K-2, D-167).
+
+CLAIM claim-bis-rule-2024-28270-sme-term-match · verified 2026-10-13 · review: accepted by the human on 2026-10-13 · recorded in docs/quality/human-reviews.md#first-policy-links-2026-10-13
+
+inputs to this inference
+
+back to the top
+
+Refused policy candidates
+
+88 FR 73458 → High Bandwidth Memory · restricts
+
+refused: relation not stated
+
+The rule names high-bandwidth memory only as a feature of the chips that raise a red flag: it does not name HBM among the items it controls (RR-1; policy-links.md K-2).
+
+ruling: D-089 Edge scope: five edges, and the candidates that fail §5 (H-1)
+
+considered:
+will incorporate (A) more than 50 billion transistors and (B) high-bandwidth memory (HBM). This raises a red flag that needs to be resolved
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · LOCATOR p.31, supplement no. 3 to part 732, red flag 19
+
+87 FR 62186, 88 FR 73458, 89 FR 96790 → Data-centre GPU · restricts
+
+refused: term not matched
+
+The rules name graphical processing units (GPUs), a broader term than the record's data-centre GPU; the Atlas records a term exactly as broad as the text says and never stretches it to a narrower record (ER-9; policy-links.md K-2).
+
+ruling: D-167 A link needs the act's own term for the record's class (K-2)
+
+considered:
+Integrated circuits specified by 3A090.a include graphical processing units (GPUs)
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · LOCATOR p.26, ECCN 3A090, note to 3A090.a
+Integrated circuits specified by 3A090 include graphical processing units (GPUs)
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · LOCATOR p.46, ECCN 3A090, Note 1 to 3A090
+Integrated circuits specified by 3A090 include graphical processing units (GPUs)
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · LOCATOR p.31, ECCN 3A090, Note 2 to 3A090.a and 3A090.b
+
+87 FR 62186, 88 FR 73458, 89 FR 96790 → AI ASIC · restricts
+
+refused: term not matched
+
+The rules name application-specific integrated circuits (ASICs), a broader term than the record's AI ASIC (ER-9; policy-links.md K-2).
+
+ruling: D-167 A link needs the act's own term for the record's class (K-2)
+
+considered:
+and application-specific integrated circuits (ASICs)
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · LOCATOR p.26, ECCN 3A090, note to 3A090.a
+and application-specific integrated circuits (ASICs)
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · LOCATOR p.46, ECCN 3A090, Note 1 to 3A090
+and application-specific integrated circuits (ASICs)
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · LOCATOR p.31, ECCN 3A090, Note 2 to 3A090.a and 3A090.b
+
+87 FR 62186, 88 FR 73458, 89 FR 96790 → AI accelerator · restricts
+
+refused: term not matched
+
+The rules name co-processors/accelerators, a broader term than the record's AI accelerator, which is limited to AI training or inference (ER-9; policy-links.md K-2).
+
+ruling: D-167 A link needs the act's own term for the record's class (K-2)
+
+considered:
+co-processors/accelerators
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · LOCATOR p.26, ECCN 3A090, note to 3A090.a
+co-processors/accelerators
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · LOCATOR p.46, ECCN 3A090, Note 1 to 3A090
+co-processors/accelerators
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · LOCATOR p.31, ECCN 3A090, Note 2 to 3A090.a and 3A090.b
+Policy events
+effective · 2022-10-07
+ID
+event-us-fr-2022-21658-effective-2022-10-07
+NAME
+BIS rule of 13 October 2022 on advanced computing and semiconductor manufacturing items
+
+cited at /claim_ids
+
+FACT supported Rule 2022-21658 states that its instructions 7, 9, 11, 17 and 25 are effective on 7 October 2022.
+
+AS OF 2022-10-13
+
+a. Effective on October 7, 2022, are the following instructions: 7 (§ 740.2), 9 (§ 740.10), 11 (§ 742.6), 17 (§ 744.23), and 25 (supplement no. 1 to part 774).
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, DATES, item a
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2022-21658-effective-2022-10-07 · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+effective · 2022-10-12
+ID
+event-us-fr-2022-21658-effective-2022-10-12
+NAME
+BIS rule of 13 October 2022 on advanced computing and semiconductor manufacturing items
+
+cited at /claim_ids
+
+FACT supported Rule 2022-21658 states that its instruction 15 is effective on 12 October 2022.
+
+AS OF 2022-10-13
+
+b. Effective on October 12, 2022, is the following instruction: 15 (§ 744.6).
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, DATES, item b
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2022-21658-effective-2022-10-12 · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+published · 2022-10-13
+ID
+event-us-fr-2022-21658-published-2022-10-13
+NAME
+BIS rule of 13 October 2022 on advanced computing and semiconductor manufacturing items
+
+cited at /claim_ids
+
+FACT supported The rule begins on page 62186 of volume 87 (No. 197) of the Federal Register, the issue of Thursday, 13 October 2022; recorded in the Atlas as 87 FR 62186.
+
+AS OF 2022-10-13
+
+62186 Federal Register / Vol. 87, No. 197 / Thursday, October 13, 2022 / Rules and Regulations
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, page header
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2022-21658-citation · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+effective · 2022-10-21
+ID
+event-us-fr-2022-21658-effective-2022-10-21
+NAME
+BIS rule of 13 October 2022 on advanced computing and semiconductor manufacturing items
+
+cited at /claim_ids
+
+FACT supported Rule 2022-21658 states that its instructions 2, 3, 5, 8, 12, 14, 16, 18, 19, 21, 23 and 26 are effective on 21 October 2022.
+
+AS OF 2022-10-13
+
+c. Effective on October 21, 2022, are the following instructions: 2 (§ 734.9), 3 (supplement no. 1 to part 734), 5 (supplement no. 1 to part 736), 8 (§ 740.2), 12 (§ 742.6), 14 (§ 744.1), 16 (§ 744.11), 18 (§ 744.23), 19 (supplement no. 4 to part 744), 21 (§ 762.2), 23 (§ 772.1), and 26 (supplement no. 1 to part 774).
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, DATES, item c
+
+official_legal_text · standing originator · stated dates published 2022-10-13 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2022-21658-effective-2022-10-21 · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+published · 2023-10-25
+ID
+event-us-fr-2023-23049-published-2023-10-25
+NAME
+BIS rule of 25 October 2023 on semiconductor manufacturing items
+
+cited at /claim_ids
+
+FACT supported The rule begins on page 73424 of volume 88 (No. 205) of the Federal Register, the issue of Wednesday, 25 October 2023; recorded in the Atlas as 88 FR 73424.
+
+AS OF 2023-10-25
+
+73424 Federal Register / Vol. 88, No. 205 / Wednesday, October 25, 2023 / Rules and Regulations
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, page header
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23049-citation · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+published · 2023-10-25
+ID
+event-us-fr-2023-23055-published-2023-10-25
+NAME
+BIS rule of 25 October 2023 on advanced computing items (updates and corrections)
+
+cited at /claim_ids
+
+FACT supported The rule begins on page 73458 of volume 88 (No. 205) of the Federal Register, the issue of Wednesday, 25 October 2023; recorded in the Atlas as 88 FR 73458.
+
+AS OF 2023-10-25
+
+73458 Federal Register / Vol. 88, No. 205 / Wednesday, October 25, 2023 / Rules and Regulations
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, page header
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23055.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23055-citation · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+effective · 2023-11-17
+ID
+event-us-fr-2023-23049-effective-2023-11-17
+NAME
+BIS rule of 25 October 2023 on semiconductor manufacturing items
+
+cited at /claim_ids
+
+FACT supported Rule 2023-23049 states that it is effective on 17 November 2023, except for amendatory instruction 5, which it states is effective on 1 January 2026.
+
+AS OF 2023-10-25
+
+Effective dates: This rule is effective November 17, 2023, except for amendatory instruction 5, which is effective January 1, 2026.
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, DATES, DATES
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23049-effective-2023-11-17 · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+effective · 2023-11-17
+ID
+event-us-fr-2023-23055-effective-2023-11-17
+NAME
+BIS rule of 25 October 2023 on advanced computing items (updates and corrections)
+
+cited at /claim_ids
+
+FACT supported Rule 2023-23055 states that it is effective on 17 November 2023, except for amendatory instruction 11, which it states is effective from 17 November 2023 to 1 January 2026.
+
+AS OF 2023-10-25
+
+This rule is effective November 17, 2023, except for amendatory instruction 11 amending supplement no. 1 to part 736 of the EAR, which is effective from November 17, 2023, to January 1, 2026.
+
+SOURCE Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, DATES, DATES
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23055.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23055-effective-2023-11-17 · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+effective · 2024-12-02
+ID
+event-us-fr-2024-28270-effective-2024-12-02
+NAME
+BIS rule of 5 December 2024 on foreign-produced direct product rules and refined controls
+
+cited at /claim_ids
+
+FACT supported Rule 2024-28270 states that it is effective on 2 December 2024.
+
+AS OF 2024-12-05
+
+Effective date: This rule is effective December 2, 2024.
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, DATES, DATES
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2024-28270-effective-2024-12-02 · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+published · 2024-12-05
+ID
+event-us-fr-2024-28270-published-2024-12-05
+NAME
+BIS rule of 5 December 2024 on foreign-produced direct product rules and refined controls
+
+cited at /claim_ids
+
+FACT supported The rule begins on page 96790 of volume 89 (No. 234) of the Federal Register, the issue of Thursday, 5 December 2024; recorded in the Atlas as 89 FR 96790.
+
+AS OF 2024-12-05
+
+96790 Federal Register / Vol. 89, No. 234 / Thursday, December 5, 2024 / Rules and Regulations
+
+SOURCE Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, page header
+
+official_legal_text · standing originator · stated dates published 2024-12-05 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2024-28270-citation · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+effective · 2025-01-13
+ID
+event-us-fr-2025-00636-effective-2025-01-13
+NAME
+BIS rule of 15 January 2025 on a framework for artificial intelligence diffusion
+
+cited at /claim_ids
+
+FACT supported Rule 2025-00636 states that it is effective on 13 January 2025 (its text reads 'January 13. 2025').
+
+AS OF 2025-01-15
+
+Effective date: This rule is effective January 13. 2025.
+
+SOURCE Framework for Artificial Intelligence Diffusion · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, DATES
+
+official_legal_text · standing originator · stated dates published 2025-01-15 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00636-effective-2025-01-13 · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+back to the top
+
+published · 2025-01-15
+ID
+event-us-fr-2025-00636-published-2025-01-15
+NAME
+BIS rule of 15 January 2025 on a framework for artificial intelligence diffusion
+
+cited at /claim_ids
+
+FACT supported The rule begins on page 4544 of volume 90 (No. 9) of the Federal Register, the issue of Wednesday, 15 January 2025; recorded in the Atlas as 90 FR 4544.
+
+AS OF 2025-01-15
+
+4544 Federal Register / Vol. 90, No. 9 / Wednesday, January 15, 2025 / Rules and Regulations
+
+SOURCE Framework for Artificial Intelligence Diffusion · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, page header
+
+official_legal_text · standing originator · stated dates published 2025-01-15 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00636-citation · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+back to the top
+
+effective · 2025-01-16
+ID
+event-us-fr-2025-00711-effective-2025-01-16
+NAME
+BIS rule of 16 January 2025 on due diligence for advanced computing integrated circuits
+
+cited at /claim_ids
+
+FACT supported Rule 2025-00711 states that its effective date is 16 January 2025.
+
+AS OF 2025-01-16
+
+Effective date: The effective date of this rule is January 16, 2025.
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, DATES
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00711-effective-2025-01-16 · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+back to the top
+
+published · 2025-01-16
+ID
+event-us-fr-2025-00711-published-2025-01-16
+NAME
+BIS rule of 16 January 2025 on due diligence for advanced computing integrated circuits
+
+cited at /claim_ids
+
+FACT supported The rule begins on page 5298 of volume 90 (No. 10) of the Federal Register, the issue of Thursday, 16 January 2025; recorded in the Atlas as 90 FR 5298.
+
+AS OF 2025-01-16
+
+5298 Federal Register / Vol. 90, No. 10 / Thursday, January 16, 2025 / Rules and Regulations
+
+SOURCE Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, page header
+
+official_legal_text · standing originator · stated dates published 2025-01-16 · accessed 2026-10-15T07:13Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+
+READ BY THE VERIFIER 2026-10-15T07:13Z · same bytes as registered
+
+CLAIM claim-bis-rule-2025-00711-citation · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#later-rules-found-by-the-change-detection-search-2026-10-15
+
+back to the top
+
+announced · 2025-05-13
+ID
+event-us-fr-2025-00636-announced-2025-05-13
+NAME
+BIS rule of 15 January 2025 on a framework for artificial intelligence diffusion
+
+cited at /claim_ids
+
+ATTRIBUTION supported BIS's press release of 13 May 2025 states that the Department of Commerce announced a rescission of the AI Diffusion Rule, which the release says was issued on 15 January 2025 with compliance requirements set to come into effect on 15 May 2025; that BIS plans to publish a regulation formalizing the rescission and will issue a replacement rule; and that the Under Secretary for Industry and Security has instructed BIS enforcement officials not to enforce the rule. It is an announcement of intent (ER-8): it does not itself rescind the rule.
+
+AS OF 2025-05-13
+
+Today, the Department of Commerce (DOC) announced a rescission of the Biden Administration’s AI Diffusion Rule
+
+SOURCE Department of Commerce Announces Rescission of Biden-Era Artificial Intelligence Diffusion Rule, Strengthens Chip-Related Export Controls (press release) · Bureau of Industry and Security (BIS), U.S. Department of Commerce (bis.gov)
+
+LOCATOR body, the paragraph after the dateline 'WASHINGTON, D.C. —', its first sentence
+
+government_publication · standing party · stated dates published 2025-05-13 · accessed 2026-10-15T21:06Z
+
+URL https://www.bis.gov/press-release/department-commerce-announces-rescission-biden-era-artificial-intelligence-diffusion-rule-strengthens
+
+READ BY THE VERIFIER 2026-10-15T21:06Z · same bytes as registered
+
+The AI Diffusion Rule was issued on January 15, 2025, with compliance requirements that were set to come into effect on May 15, 2025.
+
+SOURCE Department of Commerce Announces Rescission of Biden-Era Artificial Intelligence Diffusion Rule, Strengthens Chip-Related Export Controls (press release) · Bureau of Industry and Security (BIS), U.S. Department of Commerce (bis.gov)
+
+LOCATOR body, the second paragraph, its first sentence
+
+government_publication · standing party · stated dates published 2025-05-13 · accessed 2026-10-15T21:06Z
+
+URL https://www.bis.gov/press-release/department-commerce-announces-rescission-biden-era-artificial-intelligence-diffusion-rule-strengthens
+
+READ BY THE VERIFIER 2026-10-15T21:06Z · same bytes as registered
+
+BIS plans to publish a regulation formalizing the rescission and will issue a replacement rule in the future.
+
+SOURCE Department of Commerce Announces Rescission of Biden-Era Artificial Intelligence Diffusion Rule, Strengthens Chip-Related Export Controls (press release) · Bureau of Industry and Security (BIS), U.S. Department of Commerce (bis.gov)
+
+LOCATOR body, the third paragraph
+
+government_publication · standing party · stated dates published 2025-05-13 · accessed 2026-10-15T21:06Z
+
+URL https://www.bis.gov/press-release/department-commerce-announces-rescission-biden-era-artificial-intelligence-diffusion-rule-strengthens
+
+READ BY THE VERIFIER 2026-10-15T21:06Z · same bytes as registered
+
+Under Secretary of Commerce for Industry and Security Jeffery Kessler has instructed BIS enforcement officials not to enforce the Biden Administration’s AI Diffusion Rule
+
+SOURCE Department of Commerce Announces Rescission of Biden-Era Artificial Intelligence Diffusion Rule, Strengthens Chip-Related Export Controls (press release) · Bureau of Industry and Security (BIS), U.S. Department of Commerce (bis.gov)
+
+LOCATOR body, the fourth paragraph, the words before the quotation
+
+government_publication · standing party · stated dates published 2025-05-13 · accessed 2026-10-15T21:06Z
+
+URL https://www.bis.gov/press-release/department-commerce-announces-rescission-biden-era-artificial-intelligence-diffusion-rule-strengthens
+
+READ BY THE VERIFIER 2026-10-15T21:06Z · same bytes as registered
+
+CLAIM claim-bis-ai-diffusion-rescission-announced-2025-05-13 · verified 2026-10-15 · review: accepted by the human on 2026-10-15 · recorded in docs/quality/human-reviews.md#bis-announcement-about-the-ai-diffusion-rule-2026-10-15
+
+back to the top
+
+effective · 2026-01-01
+ID
+event-us-fr-2023-23049-effective-2026-01-01
+NAME
+BIS rule of 25 October 2023 on semiconductor manufacturing items
+
+cited at /claim_ids
+
+FACT supported Rule 2023-23049 states that it is effective on 17 November 2023, except for amendatory instruction 5, which it states is effective on 1 January 2026.
+
+AS OF 2023-10-25
+
+Effective dates: This rule is effective November 17, 2023, except for amendatory instruction 5, which is effective January 1, 2026.
+
+SOURCE Export Controls on Semiconductor Manufacturing Items · Federal Register (official edition, govinfo.gov)
+
+LOCATOR p.1, DATES, DATES
+
+official_legal_text · standing originator · stated dates published 2023-10-25 · accessed 2026-10-08T19:54Z
+
+URL https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+
+READ BY THE VERIFIER 2026-10-08T19:54Z · same bytes as registered
+
+CLAIM claim-bis-rule-2023-23049-effective-2023-11-17 · verified 2026-10-08 · review: accepted by the human on 2026-10-08 · recorded in docs/quality/human-reviews.md#export-control-records-2026-10-08
+
+back to the top
+
+Source appendix
+
+ATLAS FRAMING
+
+Every source that a claim in this brief cites, with the address it was read at. A printed copy keeps each address in full.
+
+Source	Publisher	Class	Stated dates	Accessed	URL
+src-002 The Semiconductor Supply Chain: Assessing National Competitiveness (Issue Brief)	Center for Security and Emerging Technology (CSET), Georgetown University	policy_research_brief	published 2021-01	2026-09-29T13:25Z	https://cset.georgetown.edu/wp-content/uploads/The-Semiconductor-Supply-Chain-Issue-Brief-1.pdf
+src-028 2025 Annual Report (including the Annual Report on Form 10-K for the fiscal year ended December 31, 2025)	Amazon.com, Inc.	company_filing	signed 2026-02-05	2026-10-01T05:33Z	https://ir.aboutamazon.com/files/doc_financials/2026/ar/Amazon-2025-Annual-Report.pdf
+src-030 Annual Report for fiscal year 2025 (제78기), section I.1 'Company overview' (English DART)	SK hynix Inc.	company_filing	published 2026-03-17	2026-10-01T05:37Z	https://englishdart.fss.or.kr/report/eng/viewer.do?rcpNo=20260317000635&dcmNo=11132576&eleId=4&offset=20380&length=52430&dtd=dart4.xsd
+src-031 Annual Report on Form 20-F for the fiscal year ended December 31, 2025	Taiwan Semiconductor Manufacturing Company Limited	company_filing	signed 2026-04-16	2026-10-01T14:44Z	https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf
+src-032 ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for US, identity block (screenshot)	International Organization for Standardization (ISO)	standard_specification	undated	2026-10-01T14:30Z	https://www.iso.org/obp/ui/#iso:code:3166:US
+src-033 ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for US, subdivision table, Alabama to New York (screenshot)	International Organization for Standardization (ISO)	standard_specification	undated	2026-10-01T14:26Z	https://www.iso.org/obp/ui/#iso:code:3166:US
+src-034 ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for US, subdivision table, North Carolina to Wyoming (screenshot)	International Organization for Standardization (ISO)	standard_specification	undated	2026-10-01T14:26Z	https://www.iso.org/obp/ui/#iso:code:3166:US
+src-036 ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for KR, identity block (screenshot)	International Organization for Standardization (ISO)	standard_specification	undated	2026-10-01T14:30Z	https://www.iso.org/obp/ui/#iso:code:3166:KR
+src-037 ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for KR, subdivision table (screenshot)	International Organization for Standardization (ISO)	standard_specification	undated	2026-10-01T14:26Z	https://www.iso.org/obp/ui/#iso:code:3166:KR
+src-038 ISO 3166 — Codes for the representation of names of countries and their subdivisions: Online Browsing Platform entry for TW, identity block (screenshot)	International Organization for Standardization (ISO)	standard_specification	undated	2026-10-01T14:30Z	https://www.iso.org/obp/ui/#iso:code:3166:TW
+src-039 Heterogeneous Integration Roadmap, 2020 Edition, Chapter 22: Interconnects for 2D and 3D Architectures	IEEE Electronics Packaging Society (EPS)	research_report	published 2020-12	2026-10-01T20:46Z	https://eps.ieee.org/wp-content/uploads/2025/11/ch22_2D-3D-2020.pdf
+src-040 Milestone M1 Report: HBM2/3 Evaluation on Many-core CPU (ECP Milestone ECP-MT-1000; SAND2018-6370R)	Sandia National Laboratories, for the DOE Exascale Computing Project (ECP), via OSTI	research_report	published 2018-06-08	2026-10-01T20:51Z	https://www.osti.gov/servlets/purl/1455354/
+src-042 NVIDIA Hopper Architecture In-Depth (retrieval of 2026-10-01; earlier bytes: src-006)	NVIDIA (NVIDIA Technical Blog)	company_technical_documentation	published 2022-03-22; modified 2025-07-22	2026-10-01T20:44Z	https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/
+src-043 Trainium2 Architecture (retrieval of 2026-10-01; earlier bytes: src-010)	Amazon Web Services (AWS Neuron documentation)	company_technical_documentation	undated	2026-10-01T20:44Z	https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html
+src-044 High-bandwidth memory (HBM) (product page; retrieval of 2026-10-01; earlier bytes: src-015)	Micron Technology	company_marketing	undated	2026-10-01T20:44Z	https://www.micron.com/products/memory/hbm
+src-046 Annual Report for fiscal year 2025 (제78기), section I.2 'Company history' (English DART)	SK hynix Inc.	company_filing	published 2026-03-17	2026-10-02T12:23Z	https://englishdart.fss.or.kr/report/eng/viewer.do?rcpNo=20260317000635&dcmNo=11132576&eleId=5&offset=72814&length=24617&dtd=dart4.xsd
+src-047 Annual Report for fiscal year 2025 (제78기), notes to the separate financial statements, note 1 'Company overview' (English DART)	SK hynix Inc.	company_filing	published 2026-03-17	2026-10-02T12:23Z	https://englishdart.fss.or.kr/report/eng/viewer.do?rcpNo=20260317000635&dcmNo=11132576&eleId=66&offset=3650620&length=2897&dtd=dart4.xsd
+src-049 SK hynix Announces the Completion of M16 Plant Construction	SK hynix Newsroom	company_press_release	published 2021-02-01	2026-10-02T12:23Z	https://news.skhynix.com/en/sk-hynix-announces-the-completion-of-m16-plant-construction/
+src-051 NVIDIA Hopper Architecture In-Depth (retrieval of 2026-10-02; earlier bytes: src-006, src-042)	NVIDIA (NVIDIA Technical Blog)	company_technical_documentation	published 2022-03-22; modified 2025-07-22	2026-10-02T16:17Z	https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/
+src-052 AWS Unveils Next Generation AWS-Designed Chips	Amazon (US Press Center)	company_press_release	published 2023-11-28	2026-10-02T16:17Z	https://press.aboutamazon.com/2023/11/aws-unveils-next-generation-aws-designed-chips
+src-054 HBM3 Initially Exclusively Supplied by SK Hynix, Samsung Rallies Fast After AMD Validation, Says TrendForce	TrendForce (Press Center)	market_research_consultancy	published 2024-03-13	2026-10-07T16:44Z	https://www.trendforce.com/presscenter/news/20240313-12075.html
+src-055 AWS Trainium3 Deep Dive | A Potential Challenger Approaching	SemiAnalysis	market_research_consultancy	published 2025-12-04	2026-10-07T16:45Z	https://newsletter.semianalysis.com/p/aws-trainium3-deep-dive-a-potential
+src-057 Code of Federal Regulations, Title 15, Chapter VII, Subchapter C (Export Administration Regulations), Part 730: General Information (1–1–26 Edition)	Code of Federal Regulations, annual edition (govinfo.gov)	official_legal_text	undated	2026-10-08T19:54Z	https://www.govinfo.gov/content/pkg/CFR-2026-title15-vol2/pdf/CFR-2026-title15-vol2-part730.pdf
+src-058 Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification	Federal Register (official edition, govinfo.gov)	official_legal_text	published 2022-10-13	2026-10-08T19:54Z	https://www.govinfo.gov/content/pkg/FR-2022-10-13/pdf/2022-21658.pdf
+src-059 Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections	Federal Register (official edition, govinfo.gov)	official_legal_text	published 2023-10-25	2026-10-08T19:54Z	https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23055.pdf
+src-060 Export Controls on Semiconductor Manufacturing Items	Federal Register (official edition, govinfo.gov)	official_legal_text	published 2023-10-25	2026-10-08T19:54Z	https://www.govinfo.gov/content/pkg/FR-2023-10-25/pdf/2023-23049.pdf
+src-061 Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items	Federal Register (official edition, govinfo.gov)	official_legal_text	published 2024-12-05	2026-10-08T19:54Z	https://www.govinfo.gov/content/pkg/FR-2024-12-05/pdf/2024-28270.pdf
+src-062 Framework for Artificial Intelligence Diffusion	Federal Register (official edition, govinfo.gov)	official_legal_text	published 2025-01-15	2026-10-15T07:13Z	https://www.govinfo.gov/content/pkg/FR-2025-01-15/pdf/2025-00636.pdf
+src-063 Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period	Federal Register (official edition, govinfo.gov)	official_legal_text	published 2025-01-16	2026-10-15T07:13Z	https://www.govinfo.gov/content/pkg/FR-2025-01-16/pdf/2025-00711.pdf
+src-064 Enhanced Favorable Treatment for the United Arab Emirates Under the Export Administration Regulations	Federal Register (official edition, govinfo.gov)	official_legal_text	published 2026-07-14	2026-10-15T07:13Z	https://www.govinfo.gov/content/pkg/FR-2026-07-14/pdf/2026-14132.pdf
+src-065 Department of Commerce Announces Rescission of Biden-Era Artificial Intelligence Diffusion Rule, Strengthens Chip-Related Export Controls (press release)	Bureau of Industry and Security (BIS), U.S. Department of Commerce (bis.gov)	government_publication	published 2025-05-13	2026-10-15T21:06Z	https://www.bis.gov/press-release/department-commerce-announces-rescission-biden-era-artificial-intelligence-diffusion-rule-strengthens
+How to cite this brief
+
+AI Infrastructure Atlas, “What does an AI accelerator’s memory depend on, who is reported to supply it, and which recorded export-control texts name those parts?”, client brief, as of 2026-10-15, input digest a10db2877897dcfac5159f2e3db95f7a738802474470a13a3d6646a8aad2c46b.
+
+Terms
+Relation types
+designs
+The source company performs design work on the target product (a chip or system). Not established by the product's vendor field alone.
+fabricates
+The source company performs wafer fabrication of the target product's dies (front end, including TSV formation). Not packaging, not design.
+incorporates
+The source product physically contains the target: a constituent component class, or a named product. The supplier of a class-level part is the edge's supplier qualifier.
+operates
+The source company runs the day-to-day activity of the target facility. Says nothing about who owns it.
+requires
+Making or operating any instance of the source class is not possible, at the state of technology the cited source describes, without the target class. Necessity, not current practice.
+restricts
+The source act's own text names the target class among the items it controls (S18; policy-links.md). Never that every member of the class, or any product or firm, is controlled; never for which destination or under which licence policy; never that the control is in effect today.
+supplies
+The source company sells or licenses the item (a product or a component class) to the target company, as a claim states at company level.
+Claim types
+ATTRIBUTION
+What a named source says, defines, claims, plans or estimates, recorded as that source's statement. Superlatives, intentions and second-hand reports are always this type (ER-5, ER-6, ER-8).
+DERIVATION
+A proposition that follows from other claims, or from a recorded search, by a stated step. The Atlas's inference, shown as inferred.
+FACT
+A proposition about the world, stated by a first-hand source (standing party or originator) at its locator. Never the Atlas's own inference.
+INTERPRETATION
+The Atlas's own judgement or choice, such as a working definition, citing the claims it interprets.
+Evidence status
+supported
+The Verifier read each cited locator, found the anchor, and judged that the sentence states the proposition and the wording does not exceed it; for a claim with inputs, every input is supported and the stated step follows. MA §10 'direct', renamed.
+Standing
+originator
+source-policy.md §4, row originator.
+party
+source-policy.md §4, row party.
+Unknown and unstated values
+not stated
+The source gives no as-of date for this content.
+undated
+The source states no date of any kind (register: 'undated (live page)'). Its access date is its only temporal anchor.
+Source classes
+company filing
+A disclosure a company makes to a regulator or exchange under a named legal reporting obligation (e.g. an annual report on Form 10-K or 20-F), for whose misstatement the company is legally accountable.
+company marketing
+Content a company publishes to present its products, technologies or expertise to customers and the public: product and technology pages, glossaries, newsroom explainers. Neither a specification, nor a dated announcement, nor a regulated disclosure.
+company press release
+A dated announcement by a company of its own event, result, decision, plan or partnership, issued as news.
+company technical documentation
+Documentation in which a company specifies its own product, service or process for the people who build on, integrate or operate it: datasheets, architecture papers, developer and service documentation, user guides.
+government publication
+A publication or record issued by a government agency, programme office, regulator or intergovernmental organisation in its official capacity: definitions, programme documents, official registers, permits, statistics.
+market research consultancy
+Analysis, estimates or advice sold by a commercial market-research or consulting firm, including trackers, forecasts and analysts' communications.
+official legal text
+The text of a law, regulation or rule as an official journal or official code publishes it, by or for the body that issues it (e.g. the Federal Register and the Code of Federal Regulations on govinfo.gov). It is the act itself, not a statement about it: a press release or fact sheet about an act is a government_publication (S17; source-policy.md §2, D-158).
+policy research brief
+Analysis framed to inform policy decisions, published by a policy research centre or think tank (e.g. an issue brief addressed to policymakers), whether or not the centre sits in a university.
+research report
+A report of research methods and results by a research organisation (national laboratory, university, independent research institute), including peer-reviewed papers, even when a government sponsors the work.
+standard specification
+A document issued by a standards body through its standards process under a standard designation (e.g. a JEDEC JESD or an ISO/IEC number), defining terms, interfaces or measurement methods.

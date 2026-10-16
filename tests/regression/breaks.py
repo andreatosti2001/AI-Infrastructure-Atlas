@@ -10,7 +10,7 @@ The harness is built in layers, each loading the one before it and replacing the
 text its own changes removed (see tests/regression/README.md):
     breaks_records_and_page.py, breaks_sql.py, breaks_research_view.py  ->  breaks_metrics.py
     -> breaks_metric_audit.py -> breaks_supplier_freshness.py -> this file (supplier evidence; review records;
-    S17's policy layer; S18's policy links; S20's research journeys; S20.5's filter guard; S21's client brief; S21.5's search window; S22's search tool; S22.5's audit findings).
+    S17's policy layer; S18's policy links; S20's research journeys; S20.5's filter guard; S21's client brief; S21.5's search window; S22's search tool; S22.5's audit findings; S24's known limitations).
 
 Run with a virtualenv built from requirements-test.txt and requirements-analysis.txt, from the repository root
 (the runner is tests/regression/runner.py: parallel copies, one summary, selection by measured files, D-177,
@@ -620,6 +620,37 @@ S23 = [
      [JOURNEYS], []),
 ]
 
+# S24: v1.0's known limitations agree with the pages (KL-1 to KL-8, D-222); the Portfolio Reviewer is active (D-223).
+KL = "docs/known-limitations.md"
+S24 = [
+    ("S24-1", "a limit added to the brief's 'does not track' framing and missing from the known limitations, brief rebuilt (KL-4)",
+     edit(BT, "Quantities: market share, price, volume, capacity, customers.",
+          "Quantities: market share, price, volume, capacity, customers. Prices of memory parts."), [BRIEF],
+     ["test_kl4_every_limit_the_pages_state_is_in_the_document", "Prices of memory parts."]),
+    ("S24-2", "a limit the known limitations quote reworded on the company pages, pages rebuilt (KL-3)",
+     edit(JT, "Market share, revenue, capacity, customers or ownership: the Atlas records none of them.",
+          "Market share, revenue, capacity or customers: the Atlas records none of them."), [JOURNEYS],
+     ["test_kl3_each_statement_is_on_the_pages_it_names", "known-limitations.md and the page disagree"]),
+    ("S24-3", "the row of a gap D-218 sends to S25 removed from the known limitations (KL-6)",
+     edit(KL, next((line for line in (REPO / KL).read_text(encoding="utf-8").splitlines(keepends=True)
+                    if line.startswith("| KL-07 |")), "| KL-07 | (the row was not found: this setup is stale) |"), ""),
+     [], ["test_kl6_every_gap_d218_sends_to_s25_has_a_row", "ear-dates"]),
+    ("S24-4", "a known limitation restates a value's date instead of linking its record (KL-8)",
+     edit(KL, "are marked on their company page, not refreshed |", "are marked on their company page, not refreshed since 2025-10-03 |"),
+     [], ["test_kl8_no_canonical_value_is_restated", "restates a date"]),
+    ("S24-5", "an explanation entry that no page carries (KL-5)",
+     edit(KL, '| `site/index.html` | "A missing link means the Atlas has not recorded one; it never means that none exists." |',
+          '| `site/index.html` | "A missing link means the Atlas has not recorded one; it never means that none exists." |\n'
+          '| `site/index.html` | "Every page covers the whole industry." |'),
+     [], ["test_kl5_every_explanation_entry_is_on_a_page_it_names", "Every page covers the whole industry."]),
+    ("S24-6", "the Portfolio Reviewer marked inactive again while its contract stays (D-223)",
+     edit("docs/agents/roles.md", "| Portfolio Reviewer | active |", "| Portfolio Reviewer | inactive |"), [],
+     ["test_active_roles_are_exactly_the_contracted_roles", "Portfolio Reviewer"]),
+    ("S24-C1", "control: a gap's reason reworded in the known limitations",
+     edit(KL, "| v1 was scoped to one end-to-end slice before growing |", "| v1 was scoped to one end-to-end slice before it grew |"),
+     [], []),
+]
+
 S165_BREAKS = s165.breaks
 
 
@@ -642,7 +673,7 @@ def with_brief(brk):
 
 
 def breaks():
-    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205 + S21 + S215 + S22 + S225 + S23
+    found = [REPLACED_BY_WHAT.get((b[0], b[1]), REPLACED.get(b[0], b)) for b in S165_BREAKS()] + S166 + D151 + D152 + S17 + S18 + S20 + S205 + S21 + S215 + S22 + S225 + S23 + S24
     return [with_brief(with_journeys(b)) for b in found]
 
 

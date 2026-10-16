@@ -1,0 +1,1281 @@
+{
+ "base": {
+  "public_head": "5fd589191ffb253e48eeb547c2260abf85948f11",
+  "files_read_sha256": {
+   ".github/workflows/ci.yml": "4ed0b6169fa6af837d2eef57bbe38c5d313ea7565c963d5b94d163e02f906040",
+   "README.md": "ce5e6e227e137025b21e06052637566c286ba5cf82b5790191ffa26b7f77c9ad",
+   "data/claims.json": "ec56d438fcd6b5218ca7a175c53cb6554d120a915ac320ae66d90e1438e8c7f2",
+   "data/companies.json": "ff07246c91cdbbdf53e7ca96d3546fc72a6b8be94c48bb107d0e8ed8206f11a5",
+   "data/components.json": "f02f0ed04faf80780e352cdd33ea73f1013a67e1c1ebcd24e3ae3afcf6f62da0",
+   "data/events.json": "df65c82cf494c3014436523e577fc06c543f885da182ef5476be0e6440f67fc7",
+   "data/facilities.json": "53a2e9ef322233e97fb0437e1d7803f2ff08573b85c66809ddb04e1ae3d94dfe",
+   "data/identity_basis.json": "74031f8bc2981b56897d9fe072c82ef02c7c774bc15ca1cb904fc51635582c3a",
+   "data/jurisdictions.json": "b3322fc7fb6bac05a2a5b71c9ead49425b49e23a344a04d6337b74ab04404998",
+   "data/policies.json": "2335351eef1469c9bdd35b5dd320b255d8aa5bb65cf56e37604a636101e27b67",
+   "data/products.json": "b33c3e1777bfc96eb6fa3ac31d30d7186d3923bd0cb567b3f3b5690fdd44f711",
+   "data/refused_candidates.json": "7fd8bc44c5925e55bc7845d63565da5d1b0b9ab669c9e9c504d86e7cbbcf1bd8",
+   "data/relationships.json": "1d5716ae07fe2afa988305a22510881f42ec8ddc092b61bf8c2da1670e5b7558",
+   "data/sources.json": "391551ee9f481569113c80bf65eeb88a2964bc80830e1e2da8e94c0fa381f4af",
+   "data/technologies.json": "d0775054a23be7b6e7f1842f730427597e8d21f45eaad37f431b10aef13c5d37",
+   "docs/architecture/decisions.md": "91b18b65c3e573f3fc6a40c85d7494588cd2467853374a62c42b6b39140ea8e3",
+   "docs/quality/human-reviews.md": "adde80589b8003ad08270bc20eb8422fd02bdb3a6f7cf1d3b9f1a89bdfa0faf5",
+   "requirements-analysis.txt": "6315c9d551a0e236b462d4827393e08105e0d0c69fecef1598c50a5eea41c0ff",
+   "requirements-test.txt": "b195a38a7eeca5e0d0524f90775c15325388866c699e91ec26b6d86105aca1c7",
+   "site/briefs/accelerator-memory/index.html": "db14550fa1f41f9e8d97f8756643dde95a3527322d6cb4f8b396cf6bbeb22b15",
+   "site/companies/company-amazon-com/index.html": "ecde02ae6a0d26c56ec4bbcee9a6a3e9e98e39b68369ba3855767648eae5996b",
+   "site/companies/company-amkor-technology/index.html": "ab9d646aa9f721b70e59693267017da5ded88c391e8422c35ce7a1df2cd96f56",
+   "site/companies/company-asml-holding/index.html": "bd635c00680c5b2cc052a8f64b1bcca3d9f9983e4525b31fe12ae1a310852fb6",
+   "site/companies/company-micron-technology/index.html": "3ede4bfe95a219e5892b2480ad010a6f734e150a224c57e6947debf7a1f569dc",
+   "site/companies/company-nvidia/index.html": "fcc20f43ee30268a02e47e5ca32ee8df83bcf22059b8fa5533e256bb5329ebca",
+   "site/companies/company-samsung-electronics-co-ltd/index.html": "d97694b3ea5e88972ae461365fa9e50a2ee9f83fe3d55177bf0002730a26d4c4",
+   "site/companies/company-sk-hynix/index.html": "d9fde5a8ffd68ffa013b8de5349741abe2b6dcfa5cc45a1a64fd5f9f896e24ab",
+   "site/companies/company-synopsys/index.html": "87c86aa142c4ab7f8696a556ac3ab1e7dd63cf20d64fca4e4512659d94abad94",
+   "site/companies/company-taiwan-semiconductor-manufacturing-company/index.html": "65de64f839e74d47b2678d356c596fbb72dcf13269d6383aff4f57a87dacd178",
+   "site/hbm-chain/index.html": "9516f516c2d46395d3cc1079da7cb0ca755095a18632ac34573a4398aace7e5e",
+   "site/hbm-insight/index.html": "3fc19a455404168235468b3bde26d2a3c8cb5c73034a75d20c6346aadfb232de",
+   "site/index.html": "53c496a537a49262052a95d101ce06b86fd58bf165ba79c50ed8e6446035037f",
+   "site/places/jurisdiction-kr/index.html": "b9f42017df2e369f3592b8ea8f96f7dde7b2a96bd3048b176f9a735f3d838875",
+   "site/places/jurisdiction-nl/index.html": "15b6a2d448418fef1b0356dfaed51b3783e755a8ad3d444fcb9d395fb477bc3c",
+   "site/places/jurisdiction-tw/index.html": "254fd4712fcfe567dda0cc544a9ab65867ffd4bdcee25c0d45ec5d2d57bfe5c0",
+   "site/places/jurisdiction-us/index.html": "2989bb9ad9810e19aaf364e9ce28685278a31c99f6572820725f5cd04d204c8a",
+   "site/questions/export-control-texts/index.html": "a5990531430c49868c9d20983c45f7b04995f4a3e66a809b0d6e24acdc6ccd7e",
+   "sql/accelerator_dependencies.sql": "86815758cb5a569f29426c46adeec17888884072c61beb64e60118f600e93e18",
+   "sql/evidence_coverage.sql": "8f26b10a7cb663184a6a734c68dcc42882817081b82a49337bafe83a8cfa80e1",
+   "sql/source_age.sql": "f4dd337aac665f2d9696eea594b0582a28193f88fe5fe544dc8d0dadf028a7b9",
+   "sql/supplier_metrics.sql": "8a3a18d3eb7b92dfef0f742ee8a3792379b7575e19b04571c6353a6c8f7fd5c9",
+   "tests/browser/brief.qa.js": "84ae906ecd63100e48b5bf541daf193c1810afe839313a1acf92460d62bd9ff1",
+   "tests/browser/filter.qa.js": "9b5682337d108120be58b84a505768ceed4aa453f7b1ada877bdc6390dcf4b8f",
+   "tests/browser/hbm-chain.qa.js": "7a74fd46e1a7890eee60176b69744b1ca59aedd08250488ed9179ce2ba7d8239",
+   "tests/browser/hbm-insight.qa.js": "e71448b39033503c20b3a7c1674b53d14effa5776a99553c45f95cad84fc9e87",
+   "tests/browser/journeys.qa.js": "796559dd98f4fa1144510cb721f8ca5cf22388bb79c87f412b5e5ac9bee6064e",
+   "tests/browser/qa-lib.js": "f11caa33fd8d98dd380ac0537ffbc879ccdf351a7a89f878adec43d975ef23ea",
+   "tests/regression/breaks.py": "3a88eb7749e171b0ce6c5a45e2a06957e6cf9429455c0bcc3f568589ccc637b0",
+   "tests/regression/breaks_metric_audit.py": "b00455cdec8f4f420776e858f5cdadafd6f76a7d8a000cf08f1f7105799b9aa2",
+   "tests/regression/breaks_metrics.py": "02a7ad486967c3b1b95bc8e22a5cd93ffb43ed7d3cc46fa2dad28095cd3f7339",
+   "tests/regression/breaks_records_and_page.py": "7683b14e57e18dfe02c1677c6ff0b3071471ee664c531c707d43f5c95408f354",
+   "tests/regression/breaks_research_view.py": "0bc3703356ddd56ce9bd61efbb16c923fd527c5bd596aac422e9730298aee5ce",
+   "tests/regression/breaks_sql.py": "af839ce1f9583e1843949d0f40a052db6a1d10a5e426b721226f8940a064866a",
+   "tests/regression/breaks_supplier_freshness.py": "3c39d4c6ea26d71309ad7d9fe8b6c9fb18f61bdbc204077e589c7d5790ab2c7f",
+   "tests/regression/runner.py": "534a50e838d1eb8ddd5ef050d990c42554e788d8aaa23af65c644e3f4af840f8",
+   "tests/test_agent_contracts.py": "26a427f6be7bbea470fd714ae5f3b4071b69244e4dfd40ff16b6ec3abcac993d",
+   "tests/test_break_selection.py": "99ea7ece5c022af7bca378c9dec151e6700e8e5426f43a12d07e5ea936810627",
+   "tests/test_brief.py": "c67d341670611d477617e317f4d7c55efead33f60e9df612b214744a0e86b9a2",
+   "tests/test_claim_model.py": "d53dfab3e2f81f2b2e5d5e8275d5dbf12c3aca059e745ef705cba9f6ad5cb677",
+   "tests/test_claim_schema.py": "2d7333772f0e337428529989105fd2e643b2584534da5301a7400314c6601a42",
+   "tests/test_data_candidates.py": "faf2faaaafc7c34712b2f08cb727cd5e4c8ae43e243dca46d56d2d530d092855",
+   "tests/test_data_entities.py": "d3deef222bc6ada4aad3b90e4213d9fc393874a663bb85e2e05b369a4586a8b7",
+   "tests/test_data_events.py": "305ce361d625b7019051666d633ce923643a03f56fed61f862ce8e6e799a7d87",
+   "tests/test_data_identity_basis.py": "aa6a15ae92d751555d3268261a533af74dacedd4f9bb37ab5e4bcd882eaa7f89",
+   "tests/test_data_integrity.py": "34d9cea88fb01695c81f698d99905892e1989191bff2b27537046ba9d72b1d3a",
+   "tests/test_data_relationships.py": "c6b01e7c27bf8068094987f3f4b909d1fbcc9a22f3d684b7467d88b44f8e2bd2",
+   "tests/test_data_schema.py": "c40ba685c02c6123c3e4f678333f34ded2a03ac1307a30a1f9d9e544fb26a488",
+   "tests/test_engineering.py": "4348a303bcb0be6eeda79ce9d5cd4ffaa6cee2a0232dcb241b7ff741f456b8cb",
+   "tests/test_entity_schema.py": "64b6512c81f025424f2b094b57928a75b264c588b23a7da04731e7d94e415be8",
+   "tests/test_entity_taxonomy.py": "ab154db6a95624ae0e65dd01a45d0a82ac8cfb5c41f8837ec696063283ff5b7b",
+   "tests/test_facility_status.py": "494bc9716220872d10e9d2ce65a76e21c555e46b31fe7efe6d7e6178eded4573",
+   "tests/test_freshness.py": "83fa0df287c113744ce1b25af88c57c23c4605b89763e8e14e025e86b15bf91b",
+   "tests/test_human_reviews.py": "1425873474fc538433de68cd561c70750d3575d7fed418a856251dc492081635",
+   "tests/test_insight.py": "077cc4f1dbfb9da9716b327350df5c2421270169ed1140f90905a2bb62244b1c",
+   "tests/test_journeys.py": "b53db687f1705f7e7e900e4b76259aeccaeea84ee87731be6aa52f521cedaa2c",
+   "tests/test_later_rule_search.py": "f4b29108ed40f60ba15c2fc647ac514420c10d7b454a452b082d7af591286f81",
+   "tests/test_navigate.py": "2fcb34d44cee0f27b0f062c0a22cc1b2147af7e674c6bd4b29f782ee52a30b43",
+   "tests/test_page.py": "4e06d03bc2ef928c65b621cd2588ecf9e845644ca92e6d1b8c7002584a34b39a",
+   "tests/test_planted_faults.py": "7776b633765a4bcc03ad581bc562cbd55625dc0aef5ce684a0852e63cfdcc7b8",
+   "tests/test_policy_layer.py": "5539b9596c3233ad1eb27f0e95947d1647218670d796cda6621ef07c410a0525",
+   "tests/test_policy_status.py": "47b2a7a554c58a1f9fe91385fce4f696c3ff81980b1eda56b31412b69dbd5bea",
+   "tests/test_relationship_schema.py": "13e1fdc76a938f5724f2f5ed7509ab4f7c3c6b0948ec2d2e891b40bd9994899c",
+   "tests/test_relationship_taxonomy.py": "0cadb85410bc373aaeba31df134fa3007f8884358851305a3922256805bb61d7",
+   "tests/test_source_policy.py": "26550b2a34fb45039e8da78d1578da7872927c634b8d7eb90d77c5389ee93aca",
+   "tests/test_source_record_schema.py": "780a93366d84ca22af950f79cd5ca06baf1c2ea9c9181bf029b9ae0c12758d74",
+   "tests/test_source_schema.py": "5443ea2925cec15c180cd293ab57d72b681561a4cb26d31aa27fab7f77f9a9a5",
+   "tests/test_trace.py": "bc69e56ea4707d0290d55b53a86de8a23e1d165482207c2fb08da3a925fa8710",
+   "tests/test_validate_repo.py": "b4c6a94fcf1862bd3ca33cbe44189fb0ec71aa2becc30abff76163af3752f08b",
+   "tests/test_warehouse.py": "384d2289f1caff5eef9c4393a88182f3133b8f3f87fea3bd9dee6210860e9748",
+   "tools/build_brief.py": "8e9569ed832c454bb8411bba87886be1440e8f2b8941345ca15b342bbd39c5ab",
+   "tools/build_insight.py": "889861281b3a1c4d52922615df7e110189a18d7054f891cc54a632c8e73970c9",
+   "tools/build_journeys.py": "8214861f07a67909a4e92c148d42b30c684be612577bdf03ba5779084961dc5e",
+   "tools/build_page.py": "3cef7109959fdd62b8b4c2d9f24c098b8669b7efbb32fab6c971775702c22833",
+   "tools/check_all.py": "fcbbf3f23e82189cb0d1e6582e7f94e35a4f9e24bdc5502dfa7bd1db8ae68fca",
+   "tools/evidence_age.py": "5ef212fe698878de5b7b433ff4811df81c3fc2a17cf3e80c7ad70967ac643c48",
+   "tools/facility_status.py": "66ddb2aea535b02eaa59bc54a02b9bc4f878e2f3b04fb3fdcc6725ad4411b05d",
+   "tools/later_rule_search.py": "341414abde667c8bdf066eab4c65081ba3116365c21972e36dfd8ecbfe2cc94c",
+   "tools/navigate.py": "de30622b9908dda2d89fd9f0b0ccd5d675062436e865458f8abf9d1bc0583b44",
+   "tools/policy_status.py": "e9e2158c45fee3f34d58bf603a7e232449252ba87c742a871ea22c5e4767c3d3",
+   "tools/trace.py": "8087292bfe5c1fef946fdafd57cdd42950f7c38d05a2744f95a5f48ed1a48a82",
+   "tools/validate_repo.py": "97ea98bd4690f851932d56034b0d7fa57ea44e177d922c3d2fa43500b21fcc44",
+   "tools/warehouse.py": "f2b0b1062808a38ad14f425ec831fda987cecfc3e41645181e2eca206638e07a"
+  }
+ },
+ "capabilities": {
+  "1_domain_expertise": {
+   "population": "canonical records at the base",
+   "claims_by_type": {
+    "ATTRIBUTION": 52,
+    "DERIVATION": 22,
+    "FACT": 105,
+    "IMPLICATION": 1,
+    "INTERPRETATION": 17
+   },
+   "sources_by_class": {
+    "company_filing": 12,
+    "company_marketing": 11,
+    "company_press_release": 5,
+    "company_technical_documentation": 8,
+    "government_publication": 4,
+    "industry_association": 1,
+    "market_research_consultancy": 2,
+    "official_legal_text": 8,
+    "policy_research_brief": 2,
+    "research_report": 5,
+    "standard_specification": 7
+   },
+   "refused_candidates": 21,
+   "records_by_kind": {
+    "claims": 197,
+    "companies": 9,
+    "components": 7,
+    "events": 20,
+    "facilities": 2,
+    "identity_basis": 28,
+    "jurisdictions": 4,
+    "policies": 7,
+    "products": 3,
+    "refused_candidates": 21,
+    "relationships": 9,
+    "sources": 65,
+    "technologies": 9
+   }
+  },
+  "2_data_engineering": {
+   "population": "tracked files at the base",
+   "schemas": 7,
+   "test_modules": 34,
+   "test_methods_declared": 489,
+   "builds_with_check": 5,
+   "break_harness": {
+    "entries": 212,
+    "faults": 188,
+    "controls": 24,
+    "by_id_prefix": {
+     "D151": 5,
+     "D152": 2,
+     "S13": 32,
+     "S14": 14,
+     "S14.5": 15,
+     "S15": 13,
+     "S16": 9,
+     "S16.5": 4,
+     "S16.6": 13,
+     "S17": 12,
+     "S18": 11,
+     "S20": 19,
+     "S20.5": 3,
+     "S21": 20,
+     "S21.5": 6,
+     "S22": 19,
+     "S22.5": 11,
+     "S23": 4
+    }
+   },
+   "permanent_breaks_listed": 28
+  },
+  "3_sql_python": {
+   "population": "sql/*.sql and tools/*.py at the base; the 18 generated pages",
+   "queries": 4,
+   "queries_whose_header_states_question_population_denominator": 3,
+   "query_header_words": {
+    "sql/accelerator_dependencies.sql": [
+     "question"
+    ],
+    "sql/evidence_coverage.sql": [
+     "question",
+     "population",
+     "denominator",
+     "does not prove"
+    ],
+    "sql/source_age.sql": [
+     "question",
+     "population",
+     "denominator",
+     "does not prove"
+    ],
+    "sql/supplier_metrics.sql": [
+     "question",
+     "population",
+     "denominator",
+     "does not prove"
+    ]
+   },
+   "tools": 13,
+   "tool_lines": 5577,
+   "tools_importing_a_third_party_package": {
+    "tools/warehouse.py": [
+     "duckdb"
+    ]
+   },
+   "pages_with_a_sql_tutorial": {
+    "site/briefs/accelerator-memory/index.html": 1,
+    "site/hbm-chain/index.html": 1,
+    "site/hbm-insight/index.html": 4
+   }
+  },
+  "4_ai_governance_agents": {
+   "population": "docs/agents/roles.md rows; contracts.md; decisions.md D-001 to the last; human-reviews.md index",
+   "roles": 12,
+   "roles_active": 11,
+   "contracts": 11,
+   "contracts_with_all_nine_ma_fields": 11,
+   "decisions": 223,
+   "decisions_whose_status_names_the_human": 137,
+   "human_review_entries": 10,
+   "claims_in_review_entries": 197,
+   "canonical_claims": 197,
+   "canonical_claims_reviewed_by_the_human": 197
+  },
+  "5_policy_analysis": {
+   "population": "canonical records; docs/research/change-detection.md; docs/research/search-logs/later-rules/",
+   "policies": 7,
+   "events_by_kind": {
+    "announced": 4,
+    "effective": 9,
+    "opened": 1,
+    "published": 6
+   },
+   "relationships_by_type": {
+    "designs": 1,
+    "incorporates": 2,
+    "operates": 1,
+    "requires": 1,
+    "restricts": 4
+   },
+   "claims_interpretation_or_implication": 18,
+   "later_rule_search_logs": 3
+  },
+  "6_reproducibility": {
+   "population": "the 18 generated pages; CI; the pins",
+   "pages": 18,
+   "pages_with_input_digest": 18,
+   "requirements_pinned_exactly": 7,
+   "requirements_unpinned": 0,
+   "ci_actions_pinned_by_commit": 5,
+   "ci_actions_pinned_by_tag": 0,
+   "readme_mentions_ci_status_badge": false,
+   "pages_published": false
+  },
+  "7_client_value": {
+   "population": "the client brief, site/briefs/accelerator-memory/index.html, and the 18 pages",
+   "briefs": 1,
+   "brief_sections": [
+    "Question and scope",
+    "Executive summary",
+    "Dependency map",
+    "Export-control texts",
+    "Key entities",
+    "Recent changes",
+    "Evidence gaps and caveats",
+    "What this brief does not track",
+    "Methodology",
+    "Evidence appendix",
+    "Evidence, each claim once",
+    "Source appendix",
+    "Terms"
+   ],
+   "brief_words": 37593,
+   "words_before_question_and_scope": 140,
+   "words_before_executive_summary": 125,
+   "pages_whose_h1_is_a_question": 18,
+   "records_of_a_reader_outside_the_project": "none found in the repository (searched: README, docs, decisions)"
+  },
+  "8_documentation_quality": {
+   "population": "tracked .md files; decisions.md; the README and the brief's text",
+   "markdown_files": 68,
+   "decisions_with_context": 177,
+   "decisions_with_rejected_alternatives": 221,
+   "readme_internal_code_density": {
+    "words": 2522,
+    "internal_codes": 65,
+    "per_1000_words": 25.8,
+    "section_signs": 3,
+    "most_frequent": [
+     [
+      "S22",
+      4
+     ],
+     [
+      "S20",
+      3
+     ],
+     [
+      "M5",
+      3
+     ],
+     [
+      "S21.5",
+      3
+     ],
+     [
+      "D-212",
+      3
+     ],
+     [
+      "S21",
+      2
+     ],
+     [
+      "D-209",
+      2
+     ],
+     [
+      "D-208",
+      2
+     ],
+     [
+      "D-211",
+      2
+     ],
+     [
+      "S22.5",
+      2
+     ],
+     [
+      "S23",
+      2
+     ],
+     [
+      "D-218",
+      2
+     ]
+    ]
+   },
+   "brief_internal_code_density": {
+    "words": 37593,
+    "internal_codes": 116,
+    "per_1000_words": 3.1,
+    "section_signs": 70,
+    "most_frequent": [
+     [
+      "K-2",
+      12
+     ],
+     [
+      "ER-9",
+      10
+     ],
+     [
+      "D-167",
+      8
+     ],
+     [
+      "D-092",
+      6
+     ],
+     [
+      "M1",
+      6
+     ],
+     [
+      "D-089",
+      5
+     ],
+     [
+      "H-1",
+      5
+     ],
+     [
+      "S10",
+      5
+     ],
+     [
+      "D-057",
+      5
+     ],
+     [
+      "F-1",
+      4
+     ],
+     [
+      "D-073",
+      3
+     ],
+     [
+      "ER-2",
+      3
+     ]
+    ]
+   }
+  }
+ },
+ "retrospective": {
+  "population": "commits reachable from HEAD (non-merge unless stated); decisions.md; tracked files at the base",
+  "calendar_days_with_commits": 12,
+  "first_commit_date": "2026-09-29",
+  "last_commit_date": "2026-10-16",
+  "non_merge_commits": 168,
+  "first_parent_merges": 42,
+  "pull_requests_merged_by_the_human": 41,
+  "lines_added_by_kind": {
+   "human_docs": 3529,
+   "Claude_code": 44176,
+   "Claude_data": 16949,
+   "Claude_docs": 40312,
+   "Claude_generated": 8949
+  },
+  "files_touched_by_kind_in_claude_commits": {
+   "code": 695,
+   "data": 117,
+   "docs": 601,
+   "generated": 468
+  },
+  "sessions": {
+   "S00": {
+    "commits": 3,
+    "lines_added_code": 255,
+    "lines_added_docs": 865,
+    "days": [
+     "2026-09-29"
+    ]
+   },
+   "S01": {
+    "commits": 3,
+    "lines_added_docs": 1516,
+    "days": [
+     "2026-09-29"
+    ]
+   },
+   "S02": {
+    "commits": 3,
+    "lines_added_docs": 790,
+    "days": [
+     "2026-09-29"
+    ]
+   },
+   "S03": {
+    "commits": 2,
+    "lines_added_code": 846,
+    "lines_added_docs": 1100,
+    "days": [
+     "2026-09-30"
+    ]
+   },
+   "S04": {
+    "commits": 4,
+    "lines_added_code": 976,
+    "lines_added_docs": 2439,
+    "days": [
+     "2026-09-30"
+    ]
+   },
+   "S05": {
+    "commits": 6,
+    "lines_added_code": 524,
+    "lines_added_docs": 2093,
+    "days": [
+     "2026-09-30"
+    ]
+   },
+   "S06": {
+    "commits": 4,
+    "lines_added_code": 3255,
+    "lines_added_data": 812,
+    "lines_added_docs": 2428,
+    "days": [
+     "2026-09-30"
+    ]
+   },
+   "S07": {
+    "commits": 9,
+    "lines_added_code": 1052,
+    "lines_added_data": 4231,
+    "lines_added_docs": 3864,
+    "days": [
+     "2026-09-30",
+     "2026-10-01"
+    ]
+   },
+   "S08": {
+    "commits": 4,
+    "lines_added_code": 761,
+    "lines_added_data": 2745,
+    "lines_added_docs": 2246,
+    "days": [
+     "2026-10-01",
+     "2026-10-02"
+    ]
+   },
+   "S09": {
+    "commits": 3,
+    "lines_added_code": 1247,
+    "lines_added_data": 1135,
+    "lines_added_docs": 1315,
+    "days": [
+     "2026-10-02"
+    ]
+   },
+   "S10": {
+    "commits": 3,
+    "lines_added_code": 1612,
+    "lines_added_data": 459,
+    "lines_added_docs": 1683,
+    "days": [
+     "2026-10-02"
+    ]
+   },
+   "S11": {
+    "commits": 3,
+    "lines_added_code": 2493,
+    "lines_added_docs": 1344,
+    "lines_added_generated": 242,
+    "days": [
+     "2026-10-02"
+    ]
+   },
+   "S12": {
+    "commits": 8,
+    "lines_added_code": 1110,
+    "lines_added_data": 701,
+    "lines_added_docs": 1556,
+    "lines_added_generated": 14,
+    "days": [
+     "2026-10-02"
+    ]
+   },
+   "S13": {
+    "commits": 7,
+    "lines_added_code": 1361,
+    "lines_added_data": 7,
+    "lines_added_docs": 1293,
+    "lines_added_generated": 6,
+    "days": [
+     "2026-10-02",
+     "2026-10-03"
+    ]
+   },
+   "S14": {
+    "commits": 8,
+    "lines_added_code": 3480,
+    "lines_added_data": 184,
+    "lines_added_docs": 1204,
+    "lines_added_generated": 500,
+    "days": [
+     "2026-10-03"
+    ]
+   },
+   "S14.5": {
+    "commits": 4,
+    "lines_added_code": 1632,
+    "lines_added_docs": 1460,
+    "lines_added_generated": 453,
+    "days": [
+     "2026-10-06"
+    ]
+   },
+   "S15": {
+    "commits": 10,
+    "lines_added_code": 1634,
+    "lines_added_docs": 1780,
+    "lines_added_generated": 633,
+    "days": [
+     "2026-10-06"
+    ]
+   },
+   "S16": {
+    "commits": 10,
+    "lines_added_code": 2073,
+    "lines_added_docs": 1651,
+    "lines_added_generated": 33,
+    "days": [
+     "2026-10-07"
+    ]
+   },
+   "S16.5": {
+    "commits": 6,
+    "lines_added_code": 172,
+    "lines_added_data": 62,
+    "lines_added_docs": 1579,
+    "lines_added_generated": 21,
+    "days": [
+     "2026-10-07"
+    ]
+   },
+   "S16.6": {
+    "commits": 11,
+    "lines_added_code": 1578,
+    "lines_added_data": 314,
+    "lines_added_docs": 1835,
+    "lines_added_generated": 241,
+    "days": [
+     "2026-10-07"
+    ]
+   },
+   "S17": {
+    "commits": 3,
+    "lines_added_code": 66,
+    "lines_added_data": 1471,
+    "lines_added_docs": 162,
+    "lines_added_generated": 40,
+    "days": [
+     "2026-10-08",
+     "2026-10-13"
+    ]
+   },
+   "S18": {
+    "commits": 5,
+    "lines_added_code": 590,
+    "lines_added_data": 628,
+    "lines_added_docs": 641,
+    "lines_added_generated": 27,
+    "days": [
+     "2026-10-13"
+    ]
+   },
+   "S19": {
+    "commits": 6,
+    "lines_added_code": 528,
+    "lines_added_docs": 698,
+    "lines_added_generated": 4,
+    "days": [
+     "2026-10-13",
+     "2026-10-14"
+    ]
+   },
+   "S20": {
+    "commits": 8,
+    "lines_added_code": 2212,
+    "lines_added_docs": 336,
+    "lines_added_generated": 5608,
+    "days": [
+     "2026-10-14"
+    ]
+   },
+   "S20.5": {
+    "commits": 1,
+    "lines_added_code": 27,
+    "lines_added_docs": 30,
+    "lines_added_generated": 18,
+    "days": [
+     "2026-10-14"
+    ]
+   },
+   "S21": {
+    "commits": 1,
+    "lines_added_code": 1625,
+    "lines_added_docs": 350,
+    "lines_added_generated": 583,
+    "days": [
+     "2026-10-14"
+    ]
+   },
+   "S21.5": {
+    "commits": 4,
+    "lines_added_code": 98,
+    "lines_added_data": 1855,
+    "lines_added_docs": 515,
+    "lines_added_generated": 131,
+    "days": [
+     "2026-10-15"
+    ]
+   },
+   "S22": {
+    "commits": 5,
+    "lines_added_code": 4380,
+    "lines_added_docs": 686,
+    "lines_added_generated": 79,
+    "days": [
+     "2026-10-15"
+    ]
+   },
+   "S22.5": {
+    "commits": 2,
+    "lines_added_code": 233,
+    "lines_added_docs": 105,
+    "lines_added_generated": 20,
+    "days": [
+     "2026-10-15"
+    ]
+   },
+   "S23": {
+    "commits": 2,
+    "lines_added_code": 6798,
+    "lines_added_data": 87,
+    "lines_added_docs": 565,
+    "lines_added_generated": 84,
+    "days": [
+     "2026-10-15"
+    ]
+   },
+   "S24": {
+    "commits": 1,
+    "lines_added_code": 2,
+    "lines_added_docs": 40,
+    "lines_added_generated": 20,
+    "days": [
+     "2026-10-16"
+    ]
+   },
+   "human upload or edit": {
+    "commits": 2,
+    "lines_added_docs": 3529,
+    "days": [
+     "2026-09-29"
+    ]
+   },
+   "unlabelled (decision or governance commit)": {
+    "commits": 17,
+    "lines_added_code": 1556,
+    "lines_added_data": 2258,
+    "lines_added_docs": 2143,
+    "lines_added_generated": 192,
+    "days": [
+     "2026-10-02",
+     "2026-10-03",
+     "2026-10-08",
+     "2026-10-13",
+     "2026-10-14",
+     "2026-10-15"
+    ]
+   }
+  },
+  "decisions_by_date": {
+   "2026-09-29": 21,
+   "2026-09-30": 32,
+   "2026-10-01": 24,
+   "2026-10-02": 36,
+   "2026-10-03": 8,
+   "2026-10-06": 11,
+   "2026-10-07": 18,
+   "2026-10-08": 14,
+   "2026-10-13": 10,
+   "2026-10-14": 32,
+   "2026-10-15": 16,
+   "2026-10-16": 1
+  },
+  "1_repeated_rework": {
+   "decisions_superseded": [
+    "D-002",
+    "D-009",
+    "D-014",
+    "D-015",
+    "D-126",
+    "D-142"
+   ],
+   "decisions_that_amend_or_supersede_another": 24,
+   "most_changed_authored_files": [
+    [
+     "docs/architecture/decisions.md",
+     76
+    ],
+    [
+     "docs/README.md",
+     50
+    ],
+    [
+     "docs/architecture/baseline.md",
+     47
+    ],
+    [
+     "README.md",
+     40
+    ],
+    [
+     "docs/agents/contracts.md",
+     22
+    ],
+    [
+     "tests/regression/breaks.py",
+     20
+    ],
+    [
+     "docs/quality/audit-history.md",
+     19
+    ],
+    [
+     "tests/test_page.py",
+     11
+    ],
+    [
+     "tests/regression/README.md",
+     11
+    ],
+    [
+     "docs/research/source-policy.md",
+     10
+    ],
+    [
+     "docs/architecture/visual-architecture.md",
+     10
+    ],
+    [
+     "docs/agents/roles.md",
+     8
+    ]
+   ],
+   "commits_that_rebuild_pages_for_their_input_digest_only": 4
+  },
+  "2_duplicated_abstractions": {
+   "functions_defined_in_two_or_more_tools": {
+    "build": [
+     "tools/build_brief.py",
+     "tools/build_insight.py",
+     "tools/build_journeys.py",
+     "tools/build_page.py"
+    ],
+    "derive_status": [
+     "tools/facility_status.py",
+     "tools/policy_status.py"
+    ],
+    "input_paths": [
+     "tools/build_brief.py",
+     "tools/build_insight.py",
+     "tools/build_journeys.py",
+     "tools/build_page.py"
+    ],
+    "load": [
+     "tools/facility_status.py",
+     "tools/navigate.py",
+     "tools/policy_status.py",
+     "tools/warehouse.py"
+    ],
+    "load_json": [
+     "tools/build_journeys.py",
+     "tools/build_page.py"
+    ],
+    "main": [
+     "tools/build_brief.py",
+     "tools/build_insight.py",
+     "tools/build_journeys.py",
+     "tools/build_page.py",
+     "tools/check_all.py",
+     "tools/evidence_age.py",
+     "tools/facility_status.py",
+     "tools/later_rule_search.py",
+     "tools/navigate.py",
+     "tools/policy_status.py",
+     "tools/trace.py",
+     "tools/validate_repo.py",
+     "tools/warehouse.py"
+    ],
+    "pages": [
+     "tools/build_brief.py",
+     "tools/build_journeys.py"
+    ],
+    "template_parts": [
+     "tools/build_brief.py",
+     "tools/build_journeys.py"
+    ]
+   },
+   "templates": 4,
+   "page_builds": 4
+  },
+  "3_architecture_drift": {
+   "commits_changing_a_constitutional_document": [
+    {
+     "sha": "9112455",
+     "date": "2026-09-29",
+     "author": "human",
+     "files": [
+      "CLAUDE.md",
+      "MASTER-ARCHITECTURE.md",
+      "PROJECT-EVALUATION-FRAMEWORK.md",
+      "SESSION-PROMPT-SPEC.md",
+      "SESSION-ROADMAP.md"
+     ],
+     "decision_named_or_appended": false
+    },
+    {
+     "sha": "269a1fa",
+     "date": "2026-10-02",
+     "author": "Claude",
+     "files": [
+      "CLAUDE.md",
+      "MASTER-ARCHITECTURE.md",
+      "SESSION-ROADMAP.md"
+     ],
+     "decision_named_or_appended": false
+    },
+    {
+     "sha": "d8a5be5",
+     "date": "2026-10-02",
+     "author": "Claude",
+     "files": [
+      "CLAUDE.md",
+      "SESSION-PROMPT-SPEC.md"
+     ],
+     "decision_named_or_appended": false
+    },
+    {
+     "sha": "aeec137",
+     "date": "2026-10-02",
+     "author": "Claude",
+     "files": [
+      "CLAUDE.md",
+      "SESSION-PROMPT-SPEC.md"
+     ],
+     "decision_named_or_appended": false
+    },
+    {
+     "sha": "102672a",
+     "date": "2026-10-03",
+     "author": "Claude",
+     "files": [
+      "CLAUDE.md",
+      "SESSION-PROMPT-SPEC.md"
+     ],
+     "decision_named_or_appended": true
+    },
+    {
+     "sha": "e9e036d",
+     "date": "2026-10-08",
+     "author": "Claude",
+     "files": [
+      "SESSION-PROMPT-SPEC.md"
+     ],
+     "decision_named_or_appended": true
+    },
+    {
+     "sha": "b9b5070",
+     "date": "2026-10-08",
+     "author": "Claude",
+     "files": [
+      "CLAUDE.md",
+      "SESSION-PROMPT-SPEC.md"
+     ],
+     "decision_named_or_appended": true
+    },
+    {
+     "sha": "13d6993",
+     "date": "2026-10-14",
+     "author": "Claude",
+     "files": [
+      "SESSION-ROADMAP.md"
+     ],
+     "decision_named_or_appended": true
+    },
+    {
+     "sha": "3dba9ab",
+     "date": "2026-10-14",
+     "author": "Claude",
+     "files": [
+      "SESSION-ROADMAP.md",
+      "VERSION-ROADMAP.md"
+     ],
+     "decision_named_or_appended": true
+    },
+    {
+     "sha": "9c3883d",
+     "date": "2026-10-15",
+     "author": "Claude",
+     "files": [
+      "SESSION-ROADMAP.md"
+     ],
+     "decision_named_or_appended": true
+    },
+    {
+     "sha": "d8bf40a",
+     "date": "2026-10-15",
+     "author": "Claude",
+     "files": [
+      "SESSION-ROADMAP.md"
+     ],
+     "decision_named_or_appended": true
+    }
+   ],
+   "of_which_by_claude_without_a_decision": 3
+  },
+  "4_agent_overlap": {
+   "tracked_files_owned_by_two_or_more_roles": {
+    "data/staging/claims.json": [
+     "Extractor",
+     "Verifier"
+    ],
+    "data/staging/refused_candidates.json": [
+     "Extractor",
+     "Verifier"
+    ],
+    "tools/brief_template.html": [
+     "Data Auditor",
+     "Editorial"
+    ],
+    "tools/build_brief.py": [
+     "Client Output",
+     "Data Auditor"
+    ],
+    "tools/insight_template.html": [
+     "Data Auditor",
+     "Editorial"
+    ],
+    "tools/journey_template.html": [
+     "Data Auditor",
+     "Editorial"
+    ],
+    "tools/later_rule_search.py": [
+     "Data Auditor",
+     "Source Scout"
+    ],
+    "tools/page_template.html": [
+     "Data Auditor",
+     "Editorial"
+    ],
+    "tools/warehouse.py": [
+     "Analyst",
+     "Data Auditor"
+    ]
+   },
+   "tracked_files": 233
+  },
+  "5_schema_changes": {
+   "commits_changing_schemas": 19,
+   "without_a_decision_named_or_appended": []
+  },
+  "6_content_churn": {
+   "claim_ids_ever_canonical": 197,
+   "claim_ids_now": 197,
+   "claim_ids_removed": [],
+   "claims_whose_statement_changed_under_the_same_id": [],
+   "source_ids_ever_canonical": 65,
+   "source_ids_now": 65,
+   "source_ids_removed": []
+  },
+  "7_tests_after_regressions": {
+   "commits_naming_a_fix_or_regression_that_change_tests": [
+    "e491166"
+   ],
+   "decisions_mentioning_a_red_ci": []
+  },
+  "8_features_without_a_journey": {
+   "queries_shown_on_a_page": {
+    "accelerator_dependencies": true,
+    "evidence_coverage": true,
+    "source_age": true,
+    "supplier_metrics": true
+   },
+   "tools_no_check_build_or_ci_names": [],
+   "canonical_claims_named_on_no_page": 44,
+   "canonical_claims": 197
+  }
+ },
+ "archive": {
+  "archive_head": "7cdf62491cc8f5931f0150ff81986daa6de3fc3d",
+  "prompts": 31,
+  "reports": 30,
+  "prompts_without_report": [
+   "24"
+  ],
+  "per_report": {
+   "00": {
+    "deviations_numbered": 0,
+    "invalidated_assumptions_recorded": false,
+    "fail_first_recorded": false,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "01": {
+    "deviations_numbered": 4,
+    "invalidated_assumptions_recorded": false,
+    "fail_first_recorded": false,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "02": {
+    "deviations_numbered": 5,
+    "invalidated_assumptions_recorded": false,
+    "fail_first_recorded": false,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "03": {
+    "deviations_numbered": 5,
+    "invalidated_assumptions_recorded": false,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "04": {
+    "deviations_numbered": 5,
+    "invalidated_assumptions_recorded": false,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "05": {
+    "deviations_numbered": 6,
+    "invalidated_assumptions_recorded": false,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "06": {
+    "deviations_numbered": 7,
+    "invalidated_assumptions_recorded": false,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "07": {
+    "deviations_numbered": 10,
+    "invalidated_assumptions_recorded": false,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "08": {
+    "deviations_numbered": 7,
+    "invalidated_assumptions_recorded": false,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "09": {
+    "deviations_numbered": 7,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "10": {
+    "deviations_numbered": 6,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "11": {
+    "deviations_numbered": 6,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "12": {
+    "deviations_numbered": 7,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "13": {
+    "deviations_numbered": 5,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "14": {
+    "deviations_numbered": 6,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "14.5": {
+    "deviations_numbered": 6,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "15": {
+    "deviations_numbered": 4,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "16": {
+    "deviations_numbered": 4,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "16.5": {
+    "deviations_numbered": 5,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "16.6": {
+    "deviations_numbered": 6,
+    "invalidated_assumptions_recorded": false,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "17": {
+    "deviations_numbered": 12,
+    "invalidated_assumptions_recorded": false,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "18": {
+    "deviations_numbered": 10,
+    "invalidated_assumptions_recorded": false,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "19": {
+    "deviations_numbered": 9,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "20": {
+    "deviations_numbered": 8,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": true,
+    "minimum_fields_present": true
+   },
+   "20.5": {
+    "deviations_numbered": 0,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": false
+   },
+   "21": {
+    "deviations_numbered": 5,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "21.5": {
+    "deviations_numbered": 6,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "22": {
+    "deviations_numbered": 7,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "22.5": {
+    "deviations_numbered": 6,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   },
+   "23": {
+    "deviations_numbered": 6,
+    "invalidated_assumptions_recorded": true,
+    "fail_first_recorded": true,
+    "red_ci_recorded": false,
+    "minimum_fields_present": true
+   }
+  },
+  "reports_with_red_ci": [
+   "20"
+  ],
+  "reports_with_fail_first": 27,
+  "deviations_total": 180
+ }
+}
