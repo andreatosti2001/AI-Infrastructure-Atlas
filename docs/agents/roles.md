@@ -1,6 +1,6 @@
 # Agent roles
 
-**Status:** ACCEPTED (human review of S06, 2026-09-30; D-052, D-010); S19's rulings accepted on 2026-10-14 (D-180 to D-184); the Client Output active from S21 (D-205); the Change Detector active from S21.5 (D-207). **Session:** S06.
+**Status:** ACCEPTED (human review of S06, 2026-09-30; D-052, D-010); S19's rulings accepted on 2026-10-14 (D-180 to D-184); the Client Output active from S21 (D-205); the Change Detector active from S21.5 (D-207); the Portfolio Reviewer active from S24 (D-223). **Session:** S06.
 
 The roles are CLAUDE.md §8's; their duties are MA §11's. This file says which roles are
 active and where each active role's contract is. It does not restate the duties.
@@ -32,6 +32,10 @@ S21.5 activates the Change Detector for its first task, the dated search for lat
 inactive ruling for this role): it compares an act the Atlas holds with a later text and writes each comparison as a
 candidate change in `docs/research/change-detection.md`; the Source Scout searches, the Extractor drafts the records.
 
+S24 activates the Portfolio Reviewer for the portfolio and capability audit (D-223, as D-184 planned): it writes the
+audit, its evidence and v1.0's known limitations; the Knowledge Architect keeps the decision log and the audit index,
+and the Data Auditor writes the check that the pages' limits agree with the known limitations.
+
 | Role | Status | Mission (MA §11) | Contract | First active |
 |---|---|---|---|---|
 | Orchestrator | inactive | Decompose and assign tasks, and request human approval; never alter sources or facts | none | none in v1.0: S19 found no runtime justified (NG-08, D-184). The session prompt and the human coordinate |
@@ -45,4 +49,4 @@ candidate change in `docs/research/change-detection.md`; the Source Scout search
 | Editorial | active | Turn validated material into readable pages, keeping claim boundaries | [contracts.md](./contracts.md#editorial) | S11 (the first page; contract accepted at the S12 opening review, D-107). Before S11 its session work was limited to recording state rows |
 | Client Output | active | Produce briefs and exports from validated data; summarise, never alter a record | [contracts.md](./contracts.md#client-output) | S21 (the client brief; contract accepted at S21 H-1, D-205) |
 | QA | active | Test rendering, links, accessibility and browser behaviour | [contracts.md](./contracts.md#qa) | S11 (the first UI; contract accepted at the S12 opening review, D-107). Data and code checks stay the Data Auditor's |
-| Portfolio Reviewer | inactive | Judge whether a feature shows a real capability | none | S24 (capability audit). Until then, the human's review at each session (baseline §5, Gate 8); the Knowledge Architect writes the milestone audits, and the human accepts their findings and ratings (D-184) |
+| Portfolio Reviewer | active | Judge whether a feature shows a real capability | [contracts.md](./contracts.md#portfolio-reviewer) | S24 (the portfolio and capability audit and v1.0's known limitations; contract accepted at S24 H-1, D-223). Before S24, the human's review at each session (baseline §5, Gate 8), with the milestone audits written by the Knowledge Architect (D-184) |

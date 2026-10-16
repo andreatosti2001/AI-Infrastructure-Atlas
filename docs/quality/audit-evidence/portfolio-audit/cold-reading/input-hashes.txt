@@ -1,0 +1,10 @@
+be49542e07b47e6dd3874d96dc3ca99be2b0773daf02d94f646da8f8a349fecf  form.md
+ce5e6e227e137025b21e06052637566c286ba5cf82b5790191ffa26b7f77c9ad  reader-input/1-README.md
+4d48ae34980a272f0d92664ec1e96f1951d91543be769857db81e7a61ec9a664  reader-input/2-brief-desktop-first-screen.png
+1b0fbf9b7ca97bda8f294d927d391433e719f8b60876dac2035928ed6f4d7549  reader-input/2-brief-mobile-first-screen.png
+aa18f622936dedb0e380a7ec837aa1c29331f0c0787a26429f996fb6e90af307  reader-input/2-brief-visible-text.txt
+40ae2e14079d7aaa3f0d305a4e43ebb8b2f3872046603994c22352f383965b50  reader-input/3-sql-tutorial-text.txt
+b8d6e92fa0b63b744f439db09af48d1682930736618ed36f2d036d301e644185  reader-input/4-decision-D-118.md
+# In the public evidence folder the two Markdown inputs carry a .txt suffix (1-README.md.txt, 4-decision-D-118.md.txt),
+# so that Gate 0 does not read the README copy's relative links as links of this folder; the bytes are unchanged.
+# The two screenshots (2-brief-*-first-screen.png) are kept in the private archive only; their hashes are above.

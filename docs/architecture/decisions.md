@@ -3712,3 +3712,92 @@ asked or the human's words (D-114). Status lines were condensed to this form onc
 - **Rejected:** refreshing Micron from its FY2026 10-K (fixes one company once; new research for a named session after
   v1.0, D-218); listing the four values as a limitation only; a mark computed from today's date (V-5); an SQL query and
   its tutorial for a comparison of two dates.
+
+## D-222 — S24 writes v1.0's known limitations as a document and audits it
+
+- **Date:** 2026-10-15 · **Status:** accepted (decided by the human on 2026-10-15, after S23's report; the recommended
+  next decision, option A)
+- **Context:** D-218 sends the gaps no v1 session owns (C-8: the EAR's dates, the May 2026 BIS guidance, a current
+  H100 supplier and fabricator, a recognised source for Trainium2's memory maker, newer evidence for values past the
+  horizon, `cand-001`) to S25 as v1.0 known limitations, beside single-voice values and narrow coverage (C-5, C-6).
+  S24, the portfolio and capability audit, asks whether the project communicates its capability honestly; the
+  limitations are half of that answer.
+- **Decision:** S24 creates `docs/known-limitations.md`, one row per gap: what is missing, why, what would close it,
+  and which session after v1.0 owns it. S24 checks that the pages' limits (their "does not track" and method framing,
+  the brief's scope and limits) agree with it, and audits it as part of the portfolio audit. S25 links it from the
+  release notes. No record, page or check changes beyond the new document and its check; the roadmap's sessions are
+  unchanged.
+- **Rejected:** leaving the list to S25's release notes, written once at the release without an independent look.
+
+## D-223 — The Portfolio Reviewer is active, for the portfolio audit and v1.0's known limitations
+
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, S24 H-1: "Audit plus limitations
+  list (Recommended)")
+- **Context:** D-184 kept the Portfolio Reviewer inactive "until S24"; every audit since S12 was written by the
+  Knowledge Architect. S24 is the portfolio and capability audit (PEF §10, §12), and D-222 gives it v1.0's known
+  limitations to write and audit. MA §12 requires a contract before a role acts.
+- **Decision:** the Portfolio Reviewer is active with a contract (`docs/agents/contracts.md`). It writes the portfolio
+  audit `docs/architecture/portfolio-audit.md`, its evidence in `docs/quality/audit-evidence/portfolio-audit/`, and
+  `docs/known-limitations.md`. The Knowledge Architect keeps `decisions.md` and `audit-history.md` and no longer owns
+  the portfolio audit's evidence folder; the Data Auditor writes the check that the pages' limits agree with the known
+  limitations. The role credits a capability only for evidence a reviewer can recount, never for a document's
+  description of itself. `tests/test_agent_contracts.py` expects the role active.
+- **Rejected:** the Portfolio Reviewer writing the audit only, with the known limitations left to the Knowledge
+  Architect (the capability judgement and the disclosed limits with two roles); keeping the role inactive and amending
+  D-184 (the roadmap's reviewer unused before v1.0).
+
+## D-224 — The portfolio audit is accepted with its rulings; v1.0's known limitations are accepted
+
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, S24 H-2: the audit and the
+  known-limitations document "as written"; each remediation as recommended)
+- **Context:** S24's portfolio and capability audit (`docs/architecture/portfolio-audit.md`) measured the roadmap's
+  eight capability points and PEF §4's retrospective, with two fresh readers before its assessment (H-0), and found no
+  blocking finding and fourteen findings, P-1 to P-14. D-222 asked S24 to write v1.0's known limitations and check
+  them against the pages.
+- **Decision:**
+  - the audit, its ratings (Part 6; the code and engineering outcome, left open by D-216, is 3) and
+    `docs/known-limitations.md` (15 gaps, 5 boundaries) are accepted; S25 links the document from the release notes;
+  - **remediated in S24:** P-1, a "How this was built" section in `README.md`; P-4 and P-12, a plain-language opening
+    and the break count corrected; P-5, the brief's summary framing says that a named or reported supplier is not the
+    only supplier; P-7, the brief's query states its population, its denominator and what it does not prove, checked
+    for every query by WH-16 (written first), results and pages rebuilt with the query's logic unchanged; P-8, the
+    archive's `sessions/README.md` says that sessions, not a tool, now check a report's fields; P-10, D-225; P-14, the
+    "later statements" framing says that a text a later statement cites is held only as it is quoted and is unread;
+  - **owned after S24:** P-2 (no recorded code review) and P-6 (policy description, not analysis) are stated in S25's
+    case study, and a code-review rule or an analysis layer is the human's decision at S25, v1.5 or v2; P-3
+    (publication) is S25's decision; P-9 is a process lesson in S24's report; P-11 goes to v2's agent activation; P-13
+    stays as D-152 rules, with this audit's counts as the public summary;
+  - breaks S24-1 to S24-9 and the control S24-C1 test the new checks.
+- **Rejected:** leaving the authorship account, the README's wording, the unread guidance, the supplier warning and
+  the query header to S25 or v1.5; a checker script in the archive (the archive has no CI); leaving the three rule
+  changes unrecorded; changing findings or ratings before acceptance.
+
+## D-225 — Three changes to the rule documents of 2 October 2026 are recorded
+
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, S24 H-2, portfolio audit P-10)
+- **Context:** three changes to the constitutional documents were made on 2 October 2026 on the human's instruction,
+  each in its own pull request merged by the human, with no decision record (portfolio audit, Part 4).
+- **Decision:** the record holds them, with their commits and pull requests, as taken by the human on that day:
+  - `269a1fa` (pull request #16): visual intelligence and data storytelling become a cross-cutting capability
+    (`CLAUDE.md` §6A, `MASTER-ARCHITECTURE.md` §16.1, `SESSION-ROADMAP.md`'s cross-cutting section);
+  - `d8a5be5` (pull request #19): a request for a human decision explains its concrete consequences (`CLAUDE.md` §9A,
+    `SESSION-PROMPT-SPEC.md` §9);
+  - `aeec137` (pull request #21): an interactive question must be understandable on its own (`CLAUDE.md` §9A,
+    `SESSION-PROMPT-SPEC.md` §9), with the S12 prompt's questions rewritten to that rule.
+  No document changes; the rules stand as merged.
+- **Rejected:** leaving the audit's finding as the only trace of the three changes.
+
+## D-226 — v1.0's pages are published at a public address when v1.0 is released
+
+- **Date:** 2026-10-16 · **Status:** accepted (decided by the human on 2026-10-16, after S24's report: the recommended
+  next decision, option A)
+- **Context:** S24's portfolio audit found that no one outside the project has used the Atlas and that its strongest
+  evidence is reachable only by cloning (P-3, KL-15); both first-time readers named a live page or a visible CI run as
+  what would most change their view. NG-13's condition (the first slice passing its gates) has held since S12, so
+  publishing is the human's decision, an external action.
+- **Decision:** S25 publishes the generated pages of `site/` at a public address as part of the v1.0 release: a
+  static deployment with no server code, a link from the README to the live pages and to the CI runs, and a browser
+  check of the published address; NG-13's line in the baseline and the pages' "not published" wording are updated in
+  the same session. No record, claim or check changes; the pages stay generated and script-free. Which host serves
+  them is S25's design, put to the human.
+- **Rejected:** releasing v1.0 as a repository only (the capability stays visible only to those who run it).

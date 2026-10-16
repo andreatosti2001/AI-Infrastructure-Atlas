@@ -5,7 +5,8 @@
 changes without a decision. S19's agent audit (`docs/architecture/agent-audit.md`): every file has an owner,
 checked (D-180); the Analyst's contract (D-181); the Verifier re-scoped (D-182); drafts always in staging (D-183),
 all accepted on 2026-10-14. S21: the Client Output's contract, for the client brief (D-205), accepted on 2026-10-14. S21.5: the Change Detector's
-contract, for the dated search for later rules (D-207), decided by the human on 2026-10-14.
+contract, for the dated search for later rules (D-207), decided by the human on 2026-10-14. S24: the Portfolio Reviewer's
+contract, for the portfolio audit and v1.0's known limitations (D-223), decided by the human on 2026-10-16.
 
 MA §12 contracts for the roles [`roles.md`](./roles.md) marks active. Each contract has
 MA's nine fields, in MA's order.
@@ -83,7 +84,7 @@ MA's nine fields, in MA's order.
 | ROLE | Knowledge Architect |
 | INPUTS | the session prompt; the schemas; the taxonomies, the source policy and the claim model; the decision log |
 | OUTPUTS | schema and vocabulary changes, each with a decision; one-home rulings; ID formats |
-| ALLOWED_WRITES | `schemas/`; `docs/architecture/claim-model.md`; `docs/architecture/company-dataset.md` (S07); `docs/architecture/concept-dataset.md` (S08); `docs/architecture/facility-dataset.md` (S09); `docs/architecture/edge-dataset.md` (S10); `docs/architecture/vertical-slice.md` (S11); `docs/architecture/milestone-audits/` (S12, the audit report; S19: also when the Portfolio Reviewer is inactive); `docs/architecture/decisions.md` (append only); `docs/architecture/entity-taxonomy.md`, `docs/architecture/relationship-taxonomy.md`; `docs/architecture/policy-dataset.md` (S17), `docs/architecture/policy-links.md` (S18); `docs/research/source-policy.md` (rows and rules, each with a decision); `docs/research/supplier-evidence-rules.md`, `docs/research/supplier-presentation.md` (S16.6); the audit record: `docs/architecture/agent-audit.md` (S19), `docs/architecture/engineering-audit.md` (S22), `docs/research/content-audit.md` (S13), `docs/research/release-content-audit.md` (S23), `docs/quality/audit-history.md`, `docs/quality/audit-evidence/` (D-180) |
+| ALLOWED_WRITES | `schemas/`; `docs/architecture/claim-model.md`; `docs/architecture/company-dataset.md` (S07); `docs/architecture/concept-dataset.md` (S08); `docs/architecture/facility-dataset.md` (S09); `docs/architecture/edge-dataset.md` (S10); `docs/architecture/vertical-slice.md` (S11); `docs/architecture/milestone-audits/` (S12, the audit report; S19: also when the Portfolio Reviewer is inactive); `docs/architecture/decisions.md` (append only); `docs/architecture/entity-taxonomy.md`, `docs/architecture/relationship-taxonomy.md`; `docs/architecture/policy-dataset.md` (S17), `docs/architecture/policy-links.md` (S18); `docs/research/source-policy.md` (rows and rules, each with a decision); `docs/research/supplier-evidence-rules.md`, `docs/research/supplier-presentation.md` (S16.6); the audit record: `docs/architecture/agent-audit.md` (S19), `docs/architecture/engineering-audit.md` (S22), `docs/research/content-audit.md` (S13), `docs/research/release-content-audit.md` (S23), `docs/quality/audit-history.md`, `docs/quality/audit-evidence/` (D-180), except the portfolio audit's evidence folder (the Portfolio Reviewer's, S24, D-223) |
 | FORBIDDEN_WRITES | any file in `data/`; a claim's `review`; an accepted vocabulary value or field without a decision the human approves first; the root constitutional documents |
 | EVIDENCE_REQUIREMENTS | a vocabulary value needs a used case (M0 audit A-1, L-09); where a choice rests on the domain, it cites the concept or source that shows it |
 | HANDOFF_FORMAT | a decision record (`proposed`) and the changed schema, with fixtures |
@@ -101,7 +102,7 @@ MA's nine fields, in MA's order.
 | FORBIDDEN_WRITES | any file in `data/`: the Auditor reports, and the Extractor or Verifier fixes; a claim's `review`; a check weakened to make data pass |
 | EVIDENCE_REQUIREMENTS | each check is shown to catch a planted fault before it is trusted (deliberate breaks); prose counts are tested or labelled as measured (L-04) |
 | HANDOFF_FORMAT | failing test output naming the record and the rule, in the session report |
-| VALIDATION_GATE | `tests/test_data_integrity.py`, `tests/test_data_schema.py`, `tests/test_data_entities.py`, `tests/test_freshness.py`, `tests/test_trace.py`, `tests/test_agent_contracts.py`; from S09, `tests/test_data_events.py` and `tests/test_facility_status.py`; from S10, `tests/test_data_relationships.py` and `tests/test_navigate.py`; from S11, `tests/test_page.py`; from S20, `tests/test_journeys.py` (D-197); from S21, `tests/test_brief.py`, the client brief's checks, which the Data Auditor writes and the Client Output does not (D-205) |
+| VALIDATION_GATE | `tests/test_data_integrity.py`, `tests/test_data_schema.py`, `tests/test_data_entities.py`, `tests/test_freshness.py`, `tests/test_trace.py`, `tests/test_agent_contracts.py`; from S09, `tests/test_data_events.py` and `tests/test_facility_status.py`; from S10, `tests/test_data_relationships.py` and `tests/test_navigate.py`; from S11, `tests/test_page.py`; from S20, `tests/test_journeys.py` (D-197); from S21, `tests/test_brief.py`, the client brief's checks, which the Data Auditor writes and the Client Output does not (D-205); from S24, `tests/test_known_limitations.py`, which the Data Auditor writes and the Portfolio Reviewer does not (D-222, D-223) |
 | FAILURE_BEHAVIOUR | a failure that cannot be explained stops the session (CLAUDE.md §18); no test is skipped or loosened to get green |
 
 ## Analyst
@@ -159,6 +160,20 @@ MA's nine fields, in MA's order.
 | HANDOFF_FORMAT | a report table: check, width, result, evidence |
 | VALIDATION_GATE | `tests/test_page.py` (PG-8 accessibility basics, PG-9 links and no network resource), run in CI; the browser run (`tests/browser/`) is recorded in the session report, outside CI (D-106) |
 | FAILURE_BEHAVIOUR | a failure is reported with its log and screenshot; a page that fails a check is not shown to the human as done, and never published (NG-13) |
+
+## Portfolio Reviewer
+
+| Field | Value |
+|---|---|
+| ROLE | Portfolio Reviewer |
+| INPUTS | the repository, its Git history and the product (the generated pages, the SQL layer and its tutorials, the tools and checks); the decision log and every accepted audit; the archive's prompts and reports, read in a session (D-152); `PROJECT-EVALUATION-FRAMEWORK.md` §3, §4, §10, §12; MA §11.12; the roadmap's capability points; the answers of cold readers given only named artifacts |
+| OUTPUTS | at a major milestone, PEF §12's eight outputs: process findings, outcome findings, the evidence for each, maturity per dimension for process and outcome, regressions since the previous audit, high-value improvements, explicitly rejected improvements, new learning outcomes; v1.0's known limitations, one row per gap, each linked to its record (the finding, the decision, the page framing that states it) |
+| ALLOWED_WRITES | the portfolio audit `docs/architecture/portfolio-audit.md` and its evidence `docs/quality/audit-evidence/portfolio-audit/` (measurement scripts, standard library, and their outputs); `docs/known-limitations.md` (S24, D-222, D-223); the session report, outside this repository (D-151) |
+| FORBIDDEN_WRITES | any file in `data/`; a claim's `review`; a page, a template or a build (a limit the pages should state goes to the Editorial as a proposal, through the human); the checks (the Data Auditor's), including the known-limitations check; `docs/architecture/decisions.md` and `docs/quality/audit-history.md` (the Knowledge Architect's); a rating or finding marked accepted before the human rules |
+| EVIDENCE_REQUIREMENTS | a capability is credited only for evidence a reviewer can open and recount (a check that fails on a planted fault, a query with its tutorial, a decision with its rejected alternatives, a claim re-read against its source), never for a document's description of itself (PEF §10); every finding is an `INTERPRETATION` shown beside its evidence; every count names its population and denominator and is produced by a script whose output records the commits or hashes it read, run twice with identical output (L-04); it never rewards feature count, code volume or appearance (PEF §12); a known limitation restates no canonical value |
+| HANDOFF_FORMAT | the audit marked proposed, with findings P-1 onward (evidence, rating, proposed disposition), put to the human item by item (CLAUDE.md §9A); the known-limitations document with, per row, the gap, why, what would close it, the owner after v1.0, and the record it links to |
+| VALIDATION_GATE | `tests/test_agent_contracts.py` (this contract, its writes and its owner rows); `tests/test_known_limitations.py` (KL-1 to KL-8: `docs/known-limitations.md` agrees with the pages, sentence by sentence; written by the Data Auditor, D-222) |
+| FAILURE_BEHAVIOUR | a capability the documentation claims with no artifact behind it is a blocking finding and stops the session for the human's ruling before any document changes (S24 prompt §16); a limit the pages and the document disagree on is reported, never resolved by editing one side alone; a measure that cannot be recounted is left out, never estimated |
 
 ## Outside every contract
 

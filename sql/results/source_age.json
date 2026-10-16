@@ -3,7 +3,7 @@
   "query": "sql/source_age.sql",
   "query_sha256": "f4dd337aac665f2d9696eea594b0582a28193f88fe5fe544dc8d0dadf028a7b9",
   "engine": "duckdb 1.5.6",
-  "input_digest": "8f149ddb734afcd4e6f1a03335a09f7555dddef79d74ab7fcb08b26548ebd21a",
+  "input_digest": "ad82b0a3d98e656ebc9156013032b89ea89cbe174a6d8a3af718540050cbcef9",
   "inputs": [
     {
       "path": "data/claims.json",
@@ -59,7 +59,7 @@
     },
     {
       "path": "sql/accelerator_dependencies.sql",
-      "sha256": "86815758cb5a569f29426c46adeec17888884072c61beb64e60118f600e93e18"
+      "sha256": "a441bf37c6f60822fb615a27b98d171dae2389a3cd427e7233b2c431e55db5e1"
     },
     {
       "path": "sql/source_age.sql",

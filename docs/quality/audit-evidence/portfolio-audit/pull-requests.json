@@ -1,0 +1,260 @@
+{
+ "queried": "GitHub search API via the session's GitHub tool, 2026-10-16: repo:andreatosti2001/AI-Infrastructure-Atlas is:pr is:merged (41 results, every 'comments' 0); is:pr reviewed-by:andreatosti2001 (0 results)",
+ "summary": {
+  "merged_prs": 41,
+  "review_comments_or_reviews": 0,
+  "issue_comments_total": 0,
+  "open_to_merge_seconds_median": 29,
+  "under_60_seconds": 25,
+  "under_5_minutes": 33,
+  "over_30_minutes": 4
+ },
+ "pull_requests": [
+  {
+   "pr": 1,
+   "opened": "2026-09-29T14:15:52Z",
+   "merged": "2026-09-29T14:17:57Z",
+   "seconds_open": 125
+  },
+  {
+   "pr": 2,
+   "opened": "2026-09-29T17:09:01Z",
+   "merged": "2026-09-29T17:14:30Z",
+   "seconds_open": 329
+  },
+  {
+   "pr": 3,
+   "opened": "2026-09-30T15:49:26Z",
+   "merged": "2026-09-30T15:49:40Z",
+   "seconds_open": 14
+  },
+  {
+   "pr": 4,
+   "opened": "2026-09-30T16:31:39Z",
+   "merged": "2026-09-30T16:32:08Z",
+   "seconds_open": 29
+  },
+  {
+   "pr": 5,
+   "opened": "2026-09-30T16:51:45Z",
+   "merged": "2026-09-30T16:51:58Z",
+   "seconds_open": 13
+  },
+  {
+   "pr": 6,
+   "opened": "2026-09-30T16:55:42Z",
+   "merged": "2026-10-01T05:25:49Z",
+   "seconds_open": 45007
+  },
+  {
+   "pr": 7,
+   "opened": "2026-09-30T20:34:35Z",
+   "merged": "2026-09-30T20:35:10Z",
+   "seconds_open": 35
+  },
+  {
+   "pr": 8,
+   "opened": "2026-09-30T20:38:00Z",
+   "merged": "2026-09-30T20:38:29Z",
+   "seconds_open": 29
+  },
+  {
+   "pr": 9,
+   "opened": "2026-09-30T21:08:00Z",
+   "merged": "2026-09-30T21:08:27Z",
+   "seconds_open": 27
+  },
+  {
+   "pr": 10,
+   "opened": "2026-09-30T22:33:34Z",
+   "merged": "2026-09-30T22:33:49Z",
+   "seconds_open": 15
+  },
+  {
+   "pr": 11,
+   "opened": "2026-09-30T22:40:50Z",
+   "merged": "2026-09-30T22:41:01Z",
+   "seconds_open": 11
+  },
+  {
+   "pr": 12,
+   "opened": "2026-10-01T20:42:38Z",
+   "merged": "2026-10-01T20:42:53Z",
+   "seconds_open": 15
+  },
+  {
+   "pr": 13,
+   "opened": "2026-10-02T11:07:52Z",
+   "merged": "2026-10-02T11:08:03Z",
+   "seconds_open": 11
+  },
+  {
+   "pr": 14,
+   "opened": "2026-10-02T12:59:01Z",
+   "merged": "2026-10-02T13:01:31Z",
+   "seconds_open": 150
+  },
+  {
+   "pr": 15,
+   "opened": "2026-10-02T14:02:03Z",
+   "merged": "2026-10-02T14:02:12Z",
+   "seconds_open": 9
+  },
+  {
+   "pr": 16,
+   "opened": "2026-10-02T15:54:59Z",
+   "merged": "2026-10-02T15:55:48Z",
+   "seconds_open": 49
+  },
+  {
+   "pr": 17,
+   "opened": "2026-10-02T16:36:47Z",
+   "merged": "2026-10-02T16:36:52Z",
+   "seconds_open": 5
+  },
+  {
+   "pr": 18,
+   "opened": "2026-10-02T16:40:01Z",
+   "merged": "2026-10-02T16:40:18Z",
+   "seconds_open": 17
+  },
+  {
+   "pr": 19,
+   "opened": "2026-10-02T16:54:40Z",
+   "merged": "2026-10-02T16:54:49Z",
+   "seconds_open": 9
+  },
+  {
+   "pr": 20,
+   "opened": "2026-10-02T19:43:01Z",
+   "merged": "2026-10-02T19:43:25Z",
+   "seconds_open": 24
+  },
+  {
+   "pr": 21,
+   "opened": "2026-10-02T20:12:54Z",
+   "merged": "2026-10-02T20:13:17Z",
+   "seconds_open": 23
+  },
+  {
+   "pr": 22,
+   "opened": "2026-10-02T21:38:27Z",
+   "merged": "2026-10-02T21:38:42Z",
+   "seconds_open": 15
+  },
+  {
+   "pr": 23,
+   "opened": "2026-10-03T08:47:42Z",
+   "merged": "2026-10-03T08:47:53Z",
+   "seconds_open": 11
+  },
+  {
+   "pr": 24,
+   "opened": "2026-10-03T12:59:46Z",
+   "merged": "2026-10-03T12:59:56Z",
+   "seconds_open": 10
+  },
+  {
+   "pr": 25,
+   "opened": "2026-10-06T09:14:28Z",
+   "merged": "2026-10-06T12:59:18Z",
+   "seconds_open": 13490
+  },
+  {
+   "pr": 26,
+   "opened": "2026-10-06T12:57:49Z",
+   "merged": "2026-10-06T13:01:30Z",
+   "seconds_open": 221
+  },
+  {
+   "pr": 27,
+   "opened": "2026-10-06T15:10:32Z",
+   "merged": "2026-10-06T15:28:45Z",
+   "seconds_open": 1093
+  },
+  {
+   "pr": 28,
+   "opened": "2026-10-07T15:16:48Z",
+   "merged": "2026-10-07T15:58:35Z",
+   "seconds_open": 2507
+  },
+  {
+   "pr": 29,
+   "opened": "2026-10-07T22:02:22Z",
+   "merged": "2026-10-07T22:06:13Z",
+   "seconds_open": 231
+  },
+  {
+   "pr": 30,
+   "opened": "2026-10-08T15:49:40Z",
+   "merged": "2026-10-08T16:01:25Z",
+   "seconds_open": 705
+  },
+  {
+   "pr": 31,
+   "opened": "2026-10-08T16:24:24Z",
+   "merged": "2026-10-08T16:26:08Z",
+   "seconds_open": 104
+  },
+  {
+   "pr": 32,
+   "opened": "2026-10-13T10:22:19Z",
+   "merged": "2026-10-13T10:23:19Z",
+   "seconds_open": 60
+  },
+  {
+   "pr": 33,
+   "opened": "2026-10-13T20:10:48Z",
+   "merged": "2026-10-13T20:11:21Z",
+   "seconds_open": 33
+  },
+  {
+   "pr": 34,
+   "opened": "2026-10-14T14:10:35Z",
+   "merged": "2026-10-14T14:10:44Z",
+   "seconds_open": 9
+  },
+  {
+   "pr": 35,
+   "opened": "2026-10-14T18:22:49Z",
+   "merged": "2026-10-14T18:23:00Z",
+   "seconds_open": 11
+  },
+  {
+   "pr": 36,
+   "opened": "2026-10-14T20:00:31Z",
+   "merged": "2026-10-14T20:00:45Z",
+   "seconds_open": 14
+  },
+  {
+   "pr": 37,
+   "opened": "2026-10-14T21:55:19Z",
+   "merged": "2026-10-14T21:58:07Z",
+   "seconds_open": 168
+  },
+  {
+   "pr": 38,
+   "opened": "2026-10-15T09:57:19Z",
+   "merged": "2026-10-15T10:06:29Z",
+   "seconds_open": 550
+  },
+  {
+   "pr": 39,
+   "opened": "2026-10-15T18:25:32Z",
+   "merged": "2026-10-15T18:26:35Z",
+   "seconds_open": 63
+  },
+  {
+   "pr": 40,
+   "opened": "2026-10-15T19:13:43Z",
+   "merged": "2026-10-15T20:05:33Z",
+   "seconds_open": 3110
+  },
+  {
+   "pr": 41,
+   "opened": "2026-10-15T21:43:27Z",
+   "merged": "2026-10-15T21:43:36Z",
+   "seconds_open": 9
+  }
+ ]
+}

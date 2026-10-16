@@ -1,0 +1,24 @@
+## D-118 — The SQL layer: DuckDB rebuilt in memory from the canonical files, results committed, page build unchanged
+
+- **Date:** 2026-10-03 · **Status:** accepted (the engine and its place decided by
+  the human on 2026-10-03, H-2; the rest accepted by the human on 2026-10-03, at the S14 review)
+- **Context:** the roadmap's S14 gate: "All published metrics can be regenerated from versioned
+  inputs"; `MASTER-ARCHITECTURE.md` §17 names DuckDB. D-003 allows a new dependency only with a
+  recorded reason.
+- **Decision** (`docs/architecture/sql-layer.md` §1, §2, §5):
+  - `tools/warehouse.py` loads the canonical files of `data/` (never `data/staging/`) into a fresh
+    in-memory DuckDB on every run. It runs every query in `sql/` and writes each result to
+    `sql/results/<query>.json`, recording the digests of its inputs, its query and the engine
+    version.
+  - The database is never committed and never written back. The runner refuses to save a database
+    file inside the repository.
+  - `requirements-analysis.txt` pins `duckdb==1.5.6`, which has no transitive dependencies. CI
+    installs it. This amends D-003 and D-026: `tools/warehouse.py` and `tests/test_warehouse.py`
+    may import DuckDB; every other tool stays standard library.
+  - `tools/build_page.py` reads the result and the query file as files and never imports DuckDB, so
+    the page still rebuilds byte-identically without it (PG-7). The order is: data, then results
+    (`tools/warehouse.py`), then the page.
+  - Checks WH-1 to WH-10 (`tests/test_warehouse.py`) and the page's PG-11.
+- **Rejected:** a committed database file; DuckDB inside the page build (H-2 B); SQLite (H-2 C);
+  DuckDB's own JSON reader (it infers types and turns state objects into structs); loading staging;
+  CSV results.

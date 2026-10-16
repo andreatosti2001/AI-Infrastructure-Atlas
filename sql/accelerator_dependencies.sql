@@ -1,6 +1,17 @@
 -- question: For each AI accelerator on this page, which links does the Atlas record around it, on what
 --   basis (stated by a source, reported by a third party, inferred by the Atlas, or a known gap), and how
 --   old is the evidence behind each link?
+-- population: Every product recorded as an AI accelerator, or as a kind of one, and every link the Atlas
+--   records around it: the edges that touch it, the incorporates and requires edges walked outward from
+--   its parts, each supplier or unknown recorded on those edges, and each refused candidate about it
+--   whose only reason is that its evidence is too old. Only canonical records are read.
+-- denominator: The table has no denominator of its own: it lists links and counts nothing. A share read
+--   from it takes its denominator from the query that computes it (evidence coverage counts the links
+--   around each accelerator).
+-- does not prove: A missing row is not a missing dependency: the table holds only what the Atlas records.
+--   Stated means that at least one cited claim is a FACT, often stated by the party itself, not confirmed
+--   by anyone else. A reported supplier is not the only supplier, and a gap is not a no. With two
+--   accelerators, the table supports no comparison between accelerators in general.
 -- reading: Each row is one link around one accelerator. The basis says how the Atlas knows it:
 --   stated (a cited claim is a FACT), reported (no cited claim is a FACT, and one reports what a third
 --   party says), inferred (every cited claim is the Atlas's reasoning), or gap (the Atlas records that it
